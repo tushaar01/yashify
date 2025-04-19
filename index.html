@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title> spend money : make money </title> 
+  <meta charset="UTF-8">
+  <title>My Dual Project</title>
   <style>
-    iframe {
-      width: 50%;
+    .container {
+      display: flex;
       height: 100vh;
-      float: left;
+      margin: 0;
+    }
+    .site {
+      width: 50%;
+      border-right: 1px solid #ccc;
+    }
+    iframe {
+      width: 100%;
+      height: 95%;
       border: none;
+    }
+    h2 {
+      text-align: center;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <iframe src="ElonMusk/index.html"></iframe>
-  
-  <iframe src="project2/index.html"></iframe>
+  <div class="container">
+    <div class="site">
+      <h2>Project 1: Elon Musk</h2>
+      <iframe src="ElonMusk/index.html"></iframe>
+    </div>
+    <div class="site">
+      <h2>Project 2</h2>
+      <iframe src="project2/index.html"></iframe>
+    </div>
+  </div>
 </body>
 </html>
