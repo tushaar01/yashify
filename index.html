@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Next Level Space</title>
+  <title>Next Level Space</title>
   <style>
     * {
       margin: 0;
@@ -41,10 +41,10 @@
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       margin-bottom: 40px;
       text-align: center;
-      text-shadow: 0 0 10px #00ffff;
+      text-shadow: 0 0 12px #00ffff;
     }
 
     .card-container {
@@ -59,7 +59,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       padding: 20px;
-      width: 280px;
+      width: 260px;
       text-align: center;
       backdrop-filter: blur(6px);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
@@ -99,11 +99,11 @@
   <div class="card-container">
     <div class="card">
       <img src="elon.jpg" alt="Elon Project" />
-      <a href="Elon Musk/index.html" target="_blank">Visit Project 1</a>
+      <a href="Elon Musk/index.html" target="_blank">Spend Elon Musk's Money</a>
     </div>
     <div class="card">
-      <img src="project2.jpg" alt="Project 2" />
-      <a href="project 2/index.html" target="_blank">Visit Project 2</a>
+      <img src="project2.jpg" alt="SpaceX Project" />
+      <a href="project 2/index.html" target="_blank">Explore SpaceX</a>
     </div>
   </div>
 </div>
@@ -119,10 +119,12 @@
   const centerY = h / 2;
 
   const planets = [
-    { radius: 4, orbit: 50, speed: 0.03, angle: 0, color: "#ffdd00" }, // Mercury
-    { radius: 6, orbit: 90, speed: 0.02, angle: 0, color: "#ff6600" }, // Venus
-    { radius: 8, orbit: 140, speed: 0.015, angle: 0, color: "#00ccff" }, // Earth
-    { radius: 6, orbit: 190, speed: 0.012, angle: 0, color: "#ff3333" }  // Mars
+    { radius: 10, orbit: 60, speed: 0.03, angle: 0, color: "#ffe066" },   // Mercury
+    { radius: 14, orbit: 100, speed: 0.02, angle: 1, color: "#ff9900" },  // Venus
+    { radius: 18, orbit: 150, speed: 0.015, angle: 2, color: "#00ccff" }, // Earth
+    { radius: 16, orbit: 210, speed: 0.012, angle: 3, color: "#ff3333" }, // Mars
+    { radius: 22, orbit: 290, speed: 0.008, angle: 4, color: "#ffcc99" }, // Jupiter
+    { radius: 20, orbit: 360, speed: 0.006, angle: 5, color: "#ffccff" }  // Saturn
   ];
 
   function drawSolarSystem() {
@@ -130,11 +132,13 @@
 
     // Draw Sun
     ctx.beginPath();
-    ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+    ctx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
     ctx.fillStyle = "#ffaa00";
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "#ffaa00";
     ctx.fill();
+    ctx.shadowBlur = 0;
 
-    // Draw planets
     planets.forEach(planet => {
       const x = centerX + Math.cos(planet.angle) * planet.orbit;
       const y = centerY + Math.sin(planet.angle) * planet.orbit;
