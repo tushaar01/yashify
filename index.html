@@ -29,7 +29,8 @@
     .main-content {
       position: relative;
       z-index: 2;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -37,46 +38,43 @@
     }
 
     h1 {
-      font-size: 2.8rem;
-      margin-bottom: 40px;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
       text-align: center;
       color: #00ffff;
       text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      position: absolute;
+      top: 40px;
     }
 
     .card-container {
       display: flex;
-      flex-direction: row;
-      gap: 40px;
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-      z-index: 2;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 120px;
     }
 
     .card {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 30px;
-      width: 340px;
+      border-radius: 12px;
+      padding: 20px;
+      width: 260px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-      transition: transform 0.4s;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.08);
+      transform: scale(1.05);
     }
 
     .card img {
       width: 100%;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
     .card a {
@@ -86,10 +84,9 @@
       font-size: 1.1rem;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 600px) {
       .card-container {
         flex-direction: column;
-        align-items: center;
       }
     }
   </style>
@@ -114,18 +111,18 @@
 </div>
 
 <script>
-  // Twinkling Stars (larger and more visible)
+  // Twinkling Stars
   const starCanvas = document.getElementById('stars');
   const starCtx = starCanvas.getContext('2d');
   let w = starCanvas.width = window.innerWidth;
   let h = starCanvas.height = window.innerHeight;
 
   const stars = [];
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 200; i++) {
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      radius: Math.random() * 2 + 1,  // Bigger stars
+      radius: Math.random() * 1.2,
       alpha: Math.random(),
       delta: Math.random() * 0.02
     });
@@ -164,12 +161,12 @@
   const centerY = h / 2;
 
   const planets = [
-    { radius: 20, orbit: 150, speed: 0.02, angle: 0, color: "#ffe066" },
-    { radius: 26, orbit: 200, speed: 0.015, angle: 1, color: "#ff9900" },
-    { radius: 24, orbit: 260, speed: 0.012, angle: 2, color: "#00ccff" },
-    { radius: 28, orbit: 330, speed: 0.009, angle: 3, color: "#ff3333" },
-    { radius: 32, orbit: 420, speed: 0.005, angle: 4, color: "#ffcc99" },
-    { radius: 40, orbit: 500, speed: 0.003, angle: 5, color: "#ffccff" }
+    { radius: 10, orbit: 60, speed: 0.03, angle: 0, color: "#ffe066" },
+    { radius: 14, orbit: 100, speed: 0.02, angle: 1, color: "#ff9900" },
+    { radius: 18, orbit: 150, speed: 0.015, angle: 2, color: "#00ccff" },
+    { radius: 16, orbit: 210, speed: 0.012, angle: 3, color: "#ff3333" },
+    { radius: 22, orbit: 290, speed: 0.008, angle: 4, color: "#ffcc99" },
+    { radius: 20, orbit: 360, speed: 0.006, angle: 5, color: "#ffccff" }
   ];
 
   function drawSolarSystem() {
