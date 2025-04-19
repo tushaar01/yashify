@@ -1,31 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Background</title>
-
-  <!-- Add this CSS inside <style> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Next Level Space</title>
   <style>
     body {
       margin: 0;
-      background: black;
-      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: 0;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      width: 280px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .card a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My Space Website</h1>
 
-  <!-- Add this JavaScript before </body> -->
   <canvas id="space"></canvas>
+
+  <div class="main-content">
+    <h1>Welcome to Next Level Space by Yashh</h1>
+    <div class="card-container">
+      <div class="card">
+        <img src="elon.jpg" alt="Elon Project" />
+        <a href="Elon Musk/index.html" target="_blank">Visit Project 1</a>
+      </div>
+      <div class="card">
+        <img src="project2.jpg" alt="Project 2" />
+        <a href="project 2/index.html" target="_blank">Visit Project 2</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     const canvas = document.getElementById("space");
     const ctx = canvas.getContext("2d");
