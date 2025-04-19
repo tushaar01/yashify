@@ -1,99 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yashify - Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Background</title>
+
+  <!-- Add this CSS inside <style> -->
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0d0d0d; /* Space-like dark background */
-      color: #ffffff;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      flex-direction: column;
-      background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* subtle star texture */
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 40px;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .container {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .card {
-      width: 260px;
-      height: 260px;
-      background: #1a1a1a;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: #ffffff;
-      text-decoration: none;
-      position: relative;
+      background: black;
       overflow: hidden;
-      transition: transform 0.3s ease;
     }
 
-    .card:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-    }
-
-    .card img {
-      width: 60px;
-      height: 60px;
-      position: absolute;
-      top: 15px;
-      left: 15px;
-    }
-
-    .card-content {
-      margin-top: 80px;
-    }
-
-    .card-content h3 {
-      font-size: 20px;
-      color: #ddd;
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
+  <h1>Welcome to My Space Website</h1>
 
-  <h1>Welcome to the Next Level Space by Yash</h1>
+  <!-- Add this JavaScript before </body> -->
+  <canvas id="space"></canvas>
+  <script>
+    const canvas = document.getElementById("space");
+    const ctx = canvas.getContext("2d");
 
-  <div class="container">
-    <a href="ElonMusk/index.html" class="card">
-      <img src="https://via.placeholder.com/60" alt="Elon Musk Logo" />
-      <div class="card-content">
-        <h3>Elon Musk Website</h3>
-      </div>
-    </a>
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    <a href="project2/index.html" class="card">
-      <img src="https://via.placeholder.com/60" alt="Project 2 Logo" />
-      <div class="card-content">
-        <h3>Project 2 Website</h3>
-      </div>
-    </a>
-  </div>
+    let stars = [];
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+      });
+    }
 
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach((star) => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
+
+    function twinkle() {
+      stars.forEach((star) => {
+        star.r = Math.random() * 1.5;
+      });
+      drawStars();
+      requestAnimationFrame(twinkle);
+    }
+
+    twinkle();
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
