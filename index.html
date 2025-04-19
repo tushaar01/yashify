@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Next Level Space</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -13,75 +13,78 @@
     }
 
     body {
-      background: black;
-      color: white;
-      font-family: 'Caveat', cursive;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      background: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
     }
 
-    .stars {
-      background: url('https://media.giphy.com/media/Yl5aO3gdVfsQ0/giphy.gif') repeat;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
+    /* Galaxy background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url('https://i.gifer.com/7PlP.gif') no-repeat center center/cover;
       z-index: -1;
-      opacity: 0.3;
+      opacity: 0.2;
     }
 
     .heading {
       text-align: center;
       font-size: 40px;
-      padding-top: 40px;
-      white-space: pre-line;
-      text-shadow: 0 0 8px #fff;
+      margin-top: 40px;
+      text-shadow: 0 0 15px #0ff, 0 0 30px #00f;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #0ff; }
+      to { text-shadow: 0 0 30px #00f, 0 0 40px #0ff; }
     }
 
     .container {
       display: flex;
       justify-content: center;
-      margin-top: 60px;
-      gap: 50px;
       flex-wrap: wrap;
+      gap: 50px;
+      margin-top: 60px;
     }
 
     .card {
-      width: 250px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 280px;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 0 20px #fff2;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
       transition: 0.3s;
+      backdrop-filter: blur(6px);
     }
 
     .card:hover {
       transform: scale(1.05);
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     .card img {
       width: 80px;
       margin-bottom: 15px;
+      filter: drop-shadow(0 0 5px #0ff);
     }
 
     .card a {
       color: white;
       font-size: 22px;
       text-decoration: none;
-      display: block;
     }
   </style>
 </head>
 <body>
 
-  <div class="stars"></div>
-
   <div class="heading">
-    Welcome<br>To<br>The next level space<br>By yash ✨
+    Welcome to the next level space by yashh
   </div>
 
   <div class="container">
