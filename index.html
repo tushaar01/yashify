@@ -15,9 +15,6 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
       background: black;
       color: white;
     }
@@ -33,7 +30,7 @@
       position: relative;
       z-index: 2;
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,10 +38,13 @@
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 40px;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
       text-align: center;
-      text-shadow: 0 0 12px #00ffff;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      position: absolute;
+      top: 40px;
     }
 
     .card-container {
@@ -52,6 +52,7 @@
       gap: 30px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 120px;
     }
 
     .card {
@@ -92,6 +93,7 @@
 </head>
 <body>
 
+<canvas id="stars"></canvas>
 <canvas id="solar"></canvas>
 
 <div class="main-content">
@@ -109,44 +111,83 @@
 </div>
 
 <script>
-  const canvas = document.getElementById("solar");
-  const ctx = canvas.getContext("2d");
+  // Twinkling Stars
+  const starCanvas = document.getElementById('stars');
+  const starCtx = starCanvas.getContext('2d');
+  let w = starCanvas.width = window.innerWidth;
+  let h = starCanvas.height = window.innerHeight;
 
-  let w = canvas.width = window.innerWidth;
-  let h = canvas.height = window.innerHeight;
+  const stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      radius: Math.random() * 1.2,
+      alpha: Math.random(),
+      delta: Math.random() * 0.02
+    });
+  }
+
+  function drawStars() {
+    starCtx.clearRect(0, 0, w, h);
+    for (let star of stars) {
+      starCtx.beginPath();
+      starCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      starCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+      starCtx.fill();
+
+      star.alpha += star.delta;
+      if (star.alpha <= 0 || star.alpha >= 1) {
+        star.delta = -star.delta;
+      }
+    }
+    requestAnimationFrame(drawStars);
+  }
+
+  drawStars();
+
+  // Solar System
+  const solarCanvas = document.getElementById("solar");
+  const solarCtx = solarCanvas.getContext("2d");
+
+  function resizeCanvas() {
+    w = solarCanvas.width = window.innerWidth;
+    h = solarCanvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
 
   const centerX = w / 2;
   const centerY = h / 2;
 
   const planets = [
-    { radius: 10, orbit: 60, speed: 0.03, angle: 0, color: "#ffe066" },   // Mercury
-    { radius: 14, orbit: 100, speed: 0.02, angle: 1, color: "#ff9900" },  // Venus
-    { radius: 18, orbit: 150, speed: 0.015, angle: 2, color: "#00ccff" }, // Earth
-    { radius: 16, orbit: 210, speed: 0.012, angle: 3, color: "#ff3333" }, // Mars
-    { radius: 22, orbit: 290, speed: 0.008, angle: 4, color: "#ffcc99" }, // Jupiter
-    { radius: 20, orbit: 360, speed: 0.006, angle: 5, color: "#ffccff" }  // Saturn
+    { radius: 10, orbit: 60, speed: 0.03, angle: 0, color: "#ffe066" },
+    { radius: 14, orbit: 100, speed: 0.02, angle: 1, color: "#ff9900" },
+    { radius: 18, orbit: 150, speed: 0.015, angle: 2, color: "#00ccff" },
+    { radius: 16, orbit: 210, speed: 0.012, angle: 3, color: "#ff3333" },
+    { radius: 22, orbit: 290, speed: 0.008, angle: 4, color: "#ffcc99" },
+    { radius: 20, orbit: 360, speed: 0.006, angle: 5, color: "#ffccff" }
   ];
 
   function drawSolarSystem() {
-    ctx.clearRect(0, 0, w, h);
+    solarCtx.clearRect(0, 0, w, h);
 
-    // Draw Sun
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
-    ctx.fillStyle = "#ffaa00";
-    ctx.shadowBlur = 30;
-    ctx.shadowColor = "#ffaa00";
-    ctx.fill();
-    ctx.shadowBlur = 0;
+    solarCtx.beginPath();
+    solarCtx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+    solarCtx.fillStyle = "#ffaa00";
+    solarCtx.shadowBlur = 30;
+    solarCtx.shadowColor = "#ffaa00";
+    solarCtx.fill();
+    solarCtx.shadowBlur = 0;
 
     planets.forEach(planet => {
       const x = centerX + Math.cos(planet.angle) * planet.orbit;
       const y = centerY + Math.sin(planet.angle) * planet.orbit;
 
-      ctx.beginPath();
-      ctx.arc(x, y, planet.radius, 0, 2 * Math.PI);
-      ctx.fillStyle = planet.color;
-      ctx.fill();
+      solarCtx.beginPath();
+      solarCtx.arc(x, y, planet.radius, 0, 2 * Math.PI);
+      solarCtx.fillStyle = planet.color;
+      solarCtx.fill();
 
       planet.angle += planet.speed;
     });
@@ -157,8 +198,7 @@
   drawSolarSystem();
 
   window.addEventListener("resize", () => {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    resizeCanvas();
   });
 </script>
 
