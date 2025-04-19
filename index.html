@@ -3,52 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yashify - Space</title>
+  <title>Yashify - Cosmic Home</title>
   <style>
-    /* Background with stars */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: black;
-      height: 100vh;
+      background: #000000;
       overflow: hidden;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100vh;
     }
 
-    /* Twinkling stars animation */
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.imgur.com/7rA5GOb.png') repeat;
-      animation: twinkling 20s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes twinkling {
-      from { background-position: 0 0; }
-      to { background-position: -10000px 5000px; }
-    }
-
-    /* Welcome Text */
     h1 {
+      position: relative;
       z-index: 1;
       font-size: 2.2rem;
       margin-bottom: 50px;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
       animation: glow 3s infinite alternate;
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 5px #00ffff; }
+      from { text-shadow: 0 0 5px #ff00cc; }
       to { text-shadow: 0 0 20px #00ffff; }
     }
 
-    /* Card Container */
     .container {
       z-index: 1;
       display: flex;
@@ -57,14 +40,13 @@
       flex-wrap: wrap;
     }
 
-    /* Cards */
     .card {
       width: 200px;
       height: 120px;
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #00ffff;
+      border: 1px solid #ffffff44;
       border-radius: 15px;
-      color: #00ffff;
+      color: #ffffffcc;
       text-align: center;
       text-decoration: none;
       font-weight: bold;
@@ -72,17 +54,66 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.3s ease, background 0.3s;
+      backdrop-filter: blur(4px);
     }
 
     .card:hover {
       transform: scale(1.05);
-      background: rgba(0, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Bubbles */
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #00f0ff, #ff00cc);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: rise 10s infinite ease-in;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-1200px) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
-  <h1>Welcome to Next Level Space by Yashh ✨</h1>
+  <div class="bubbles">
+    <!-- Auto generate 30 random bubbles -->
+    <script>
+      for (let i = 0; i < 30; i++) {
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.width = bubble.style.height = Math.random() * 25 + 10 + "px";
+        bubble.style.animationDuration = Math.random() * 8 + 5 + "s";
+        bubble.style.animationDelay = Math.random() * 5 + "s";
+        document.querySelector(".bubbles").appendChild(bubble);
+      }
+    </script>
+  </div>
+
+  <h1>Welcome to Next Level Space by Yashh 🫧</h1>
+
   <div class="container">
     <a href="ElonMusk/index.html" class="card">Elon Musk Website</a>
     <a href="project2/index.html" class="card">Project 2 Website</a>
