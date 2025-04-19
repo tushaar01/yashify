@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #6a1b9a, #4a148c);
+      background: linear-gradient(135deg, #6a1b9a, #4a148c); /* Dark purple gradient background */
       color: white;
       height: 100vh;
       display: flex;
@@ -46,8 +46,9 @@
       font-weight: bold;
       color: #333;
       text-decoration: none;
-      transition: transform 0.3s, background 0.3s;
       position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, background 0.3s;
     }
 
     .card:hover {
@@ -55,6 +56,7 @@
       background: #e0e0e0;
     }
 
+    /* Image style for logo on cards */
     .card img {
       width: 60px; /* Adjust logo size */
       height: 60px;
