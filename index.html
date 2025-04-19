@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Next Level Space</title>
-  
-  <!-- Caveat Font -->
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 
   <style>
@@ -16,90 +13,85 @@
     }
 
     body {
-      font-family: 'Caveat', cursive;
       background: black;
       color: white;
-      overflow-x: hidden;
+      font-family: 'Caveat', cursive;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
 
-    .galaxy-bg {
-      background: url('https://i.gifer.com/7V4.gif') no-repeat center center/cover;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
+    .stars {
+      background: url('https://media.giphy.com/media/Yl5aO3gdVfsQ0/giphy.gif') repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
+      width: 100%;
       z-index: -1;
+      opacity: 0.3;
     }
 
-    .content {
+    .heading {
       text-align: center;
-      padding: 60px 20px 20px;
-    }
-
-    .content h1 {
-      font-size: 48px;
-      line-height: 1.4;
+      font-size: 40px;
+      padding-top: 40px;
       white-space: pre-line;
-      text-shadow: 0 0 8px #fff, 0 0 15px #8000ff;
+      text-shadow: 0 0 8px #fff;
     }
 
-    .card-container {
+    .container {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      margin-top: 50px;
+      margin-top: 60px;
+      gap: 50px;
       flex-wrap: wrap;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 2px solid #ffffff22;
-      border-radius: 15px;
-      padding: 20px;
       width: 250px;
-      transition: 0.3s;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
       text-align: center;
+      box-shadow: 0 0 20px #fff2;
+      transition: 0.3s;
     }
 
     .card:hover {
       transform: scale(1.05);
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
     .card img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
+      width: 80px;
       margin-bottom: 15px;
     }
 
     .card a {
       color: white;
-      font-size: 20px;
+      font-size: 22px;
       text-decoration: none;
-      text-shadow: 0 0 3px #fff;
+      display: block;
     }
-
   </style>
 </head>
 <body>
 
-  <div class="galaxy-bg"></div>
+  <div class="stars"></div>
 
-  <div class="content">
-    <h1>Welcome<br>To<br>The next level space<br>By yash ✨</h1>
+  <div class="heading">
+    Welcome<br>To<br>The next level space<br>By yash ✨
+  </div>
 
-    <div class="card-container">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" alt="Spend Money Logo">
-        <a href="Elon%20Musk/index.html" target="_blank">Spend Elon Musk Money</a>
-      </div>
-
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3215/3215439.png" alt="SpaceX Logo">
-        <a href="project2/index.html" target="_blank">SpaceX</a>
-      </div>
+  <div class="container">
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" alt="Spend Money">
+      <a href="Elon%20Musk/index.html" target="_blank">Spend Elon Musk Money</a>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3215/3215439.png" alt="SpaceX">
+      <a href="project2/index.html" target="_blank">SpaceX</a>
     </div>
   </div>
 
