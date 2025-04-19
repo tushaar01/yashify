@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Next Level Space by Yash</title>
+  <title>Next Level Space</title>
   <style>
     * {
       margin: 0;
@@ -11,135 +11,196 @@
       box-sizing: border-box;
     }
 
-    body {
-      height: 100vh;
+    html, body {
+      height: 100%;
       overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
       background: black;
       color: white;
-      font-family: 'Caveat', cursive;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -2;
+      z-index: 0;
     }
 
-    .twinkling-stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: transparent url('https://i.ibb.co/hgFYwYH/twinkling-stars.gif') repeat;
-      z-index: -1;
-      opacity: 0.3;
-      animation: moveStars 200s linear infinite;
-    }
-
-    @keyframes moveStars {
-      from { background-position: 0 0; }
-      to { background-position: -10000px 5000px; }
-    }
-
-    .title {
-      position: absolute;
-      top: 10%;
-      width: 100%;
-      text-align: center;
-      font-size: 3rem;
-      color: white;
-      text-shadow: 0 0 15px #0ff;
-    }
-
-    .cards {
-      position: absolute;
-      bottom: 10%;
-      width: 100%;
+    .main-content {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      padding: 20px;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      gap: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      position: absolute;
+      top: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 120px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #0ff;
-      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      backdrop-filter: blur(10px);
-      cursor: pointer;
+      padding: 20px;
+      width: 260px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
       transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
     .card a {
-      color: #0ff;
-      font-size: 1.5rem;
+      color: #00ffff;
       text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      .card-container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <canvas id="solar"></canvas>
-  <div class="twinkling-stars"></div>
 
-  <div class="title">
-    Welcome<br>
-    To<br>
-    The Next Level Space<br>
-    By Yashh
+<canvas id="stars"></canvas>
+<canvas id="solar"></canvas>
+
+<div class="main-content">
+  <h1>Welcome to Next Level Space by Yashh</h1>
+  <div class="card-container">
+    <div class="card">
+      <img src="elon.jpg" alt="Elon Project" />
+      <a href="Elon Musk/index.html" target="_blank">Spend Elon Musk's Money</a>
+    </div>
+    <div class="card">
+      <img src="project2.jpg" alt="SpaceX Project" />
+      <a href="project 2/index.html" target="_blank">Explore SpaceX</a>
+    </div>
   </div>
+</div>
 
-  <div class="cards">
-    <div class="card"><a href="Elon Musk/index.html" target="_blank">Spend Elon Musk Money</a></div>
-    <div class="card"><a href="Project 2/index.html" target="_blank">SpaceX</a></div>
-  </div>
+<script>
+  // Twinkling Stars
+  const starCanvas = document.getElementById('stars');
+  const starCtx = starCanvas.getContext('2d');
+  let w = starCanvas.width = window.innerWidth;
+  let h = starCanvas.height = window.innerHeight;
 
-  <script>
-    const canvas = document.getElementById('solar');
-    const ctx = canvas.getContext('2d');
+  const stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      radius: Math.random() * 1.2,
+      alpha: Math.random(),
+      delta: Math.random() * 0.02
+    });
+  }
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  function drawStars() {
+    starCtx.clearRect(0, 0, w, h);
+    for (let star of stars) {
+      starCtx.beginPath();
+      starCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      starCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+      starCtx.fill();
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    let angle = 0;
-
-    function drawPlanet(radius, distance, color, speed) {
-      const x = centerX + Math.cos(angle * speed) * distance;
-      const y = centerY + Math.sin(angle * speed) * distance;
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
+      star.alpha += star.delta;
+      if (star.alpha <= 0 || star.alpha >= 1) {
+        star.delta = -star.delta;
+      }
     }
+    requestAnimationFrame(drawStars);
+  }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawStars();
 
-      // Sun
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, 30, 0, Math.PI * 2);
-      ctx.fillStyle = 'yellow';
-      ctx.fill();
+  // Solar System
+  const solarCanvas = document.getElementById("solar");
+  const solarCtx = solarCanvas.getContext("2d");
 
-      // Planets
-      drawPlanet(8, 70, 'gray', 1.6);
-      drawPlanet(10, 110, 'orange', 1.2);
-      drawPlanet(12, 150, 'blue', 1.0);
-      drawPlanet(10, 190, 'red', 0.8);
+  function resizeCanvas() {
+    w = solarCanvas.width = window.innerWidth;
+    h = solarCanvas.height = window.innerHeight;
+  }
 
-      angle += 0.01;
-      requestAnimationFrame(draw);
-    }
+  resizeCanvas();
 
-    draw();
-  </script>
+  const centerX = w / 2;
+  const centerY = h / 2;
 
-  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  const planets = [
+    { radius: 10, orbit: 60, speed: 0.03, angle: 0, color: "#ffe066" },
+    { radius: 14, orbit: 100, speed: 0.02, angle: 1, color: "#ff9900" },
+    { radius: 18, orbit: 150, speed: 0.015, angle: 2, color: "#00ccff" },
+    { radius: 16, orbit: 210, speed: 0.012, angle: 3, color: "#ff3333" },
+    { radius: 22, orbit: 290, speed: 0.008, angle: 4, color: "#ffcc99" },
+    { radius: 20, orbit: 360, speed: 0.006, angle: 5, color: "#ffccff" }
+  ];
+
+  function drawSolarSystem() {
+    solarCtx.clearRect(0, 0, w, h);
+
+    solarCtx.beginPath();
+    solarCtx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+    solarCtx.fillStyle = "#ffaa00";
+    solarCtx.shadowBlur = 30;
+    solarCtx.shadowColor = "#ffaa00";
+    solarCtx.fill();
+    solarCtx.shadowBlur = 0;
+
+    planets.forEach(planet => {
+      const x = centerX + Math.cos(planet.angle) * planet.orbit;
+      const y = centerY + Math.sin(planet.angle) * planet.orbit;
+
+      solarCtx.beginPath();
+      solarCtx.arc(x, y, planet.radius, 0, 2 * Math.PI);
+      solarCtx.fillStyle = planet.color;
+      solarCtx.fill();
+
+      planet.angle += planet.speed;
+    });
+
+    requestAnimationFrame(drawSolarSystem);
+  }
+
+  drawSolarSystem();
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+  });
+</script>
+
 </body>
 </html>
