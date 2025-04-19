@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Next Level Space</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Next Level Space by Yash</title>
   <style>
     * {
       margin: 0;
@@ -13,90 +12,134 @@
     }
 
     body {
-      background: #000;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* Galaxy background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
       height: 100vh;
-      width: 100vw;
-      background: url('https://i.gifer.com/7PlP.gif') no-repeat center center/cover;
+      overflow: hidden;
+      background: black;
+      color: white;
+      font-family: 'Caveat', cursive;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    .twinkling-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.ibb.co/hgFYwYH/twinkling-stars.gif') repeat;
       z-index: -1;
-      opacity: 0.2;
+      opacity: 0.3;
+      animation: moveStars 200s linear infinite;
     }
 
-    .heading {
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .title {
+      position: absolute;
+      top: 10%;
+      width: 100%;
       text-align: center;
-      font-size: 40px;
-      margin-top: 40px;
-      text-shadow: 0 0 15px #0ff, 0 0 30px #00f;
-      animation: glow 3s ease-in-out infinite alternate;
+      font-size: 3rem;
+      color: white;
+      text-shadow: 0 0 15px #0ff;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #0ff; }
-      to { text-shadow: 0 0 30px #00f, 0 0 40px #0ff; }
-    }
-
-    .container {
+    .cards {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 50px;
-      margin-top: 60px;
+      gap: 2rem;
     }
 
     .card {
-      width: 280px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,255,255,0.3);
-      transition: 0.3s;
-      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #0ff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .card img {
-      width: 80px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 5px #0ff);
+      transform: scale(1.1);
     }
 
     .card a {
-      color: white;
-      font-size: 22px;
+      color: #0ff;
+      font-size: 1.5rem;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
+  <canvas id="solar"></canvas>
+  <div class="twinkling-stars"></div>
 
-  <div class="heading">
-    Welcome to the next level space by yashh
+  <div class="title">
+    Welcome<br>
+    To<br>
+    The Next Level Space<br>
+    By Yashh
   </div>
 
-  <div class="container">
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" alt="Spend Money">
-      <a href="Elon%20Musk/index.html" target="_blank">Spend Elon Musk Money</a>
-    </div>
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/3215/3215439.png" alt="SpaceX">
-      <a href="project2/index.html" target="_blank">SpaceX</a>
-    </div>
+  <div class="cards">
+    <div class="card"><a href="Elon Musk/index.html" target="_blank">Spend Elon Musk Money</a></div>
+    <div class="card"><a href="Project 2/index.html" target="_blank">SpaceX</a></div>
   </div>
 
+  <script>
+    const canvas = document.getElementById('solar');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    let angle = 0;
+
+    function drawPlanet(radius, distance, color, speed) {
+      const x = centerX + Math.cos(angle * speed) * distance;
+      const y = centerY + Math.sin(angle * speed) * distance;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Sun
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 30, 0, Math.PI * 2);
+      ctx.fillStyle = 'yellow';
+      ctx.fill();
+
+      // Planets
+      drawPlanet(8, 70, 'gray', 1.6);
+      drawPlanet(10, 110, 'orange', 1.2);
+      drawPlanet(12, 150, 'blue', 1.0);
+      drawPlanet(10, 190, 'red', 0.8);
+
+      angle += 0.01;
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 </body>
 </html>
