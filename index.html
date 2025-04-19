@@ -5,11 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome to Next Level Space</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: black;
       color: white;
-      overflow-x: hidden;
     }
 
     canvas {
@@ -22,30 +32,38 @@
     .main-content {
       position: relative;
       z-index: 2;
-      padding: 40px;
-      text-align: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 2.2rem;
       margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 0 0 10px #00ffff;
     }
 
     .card-container {
       display: flex;
-      justify-content: center;
-      gap: 40px;
+      gap: 30px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .card {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      padding: 30px;
+      padding: 20px;
       width: 280px;
+      text-align: center;
       backdrop-filter: blur(6px);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s;
     }
 
     .card:hover {
@@ -54,81 +72,91 @@
 
     .card img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 15px;
     }
 
     .card a {
-      color: #fff;
+      color: #00ffff;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.1rem;
     }
 
     @media (max-width: 600px) {
       .card-container {
         flex-direction: column;
-        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <canvas id="space"></canvas>
+<canvas id="solar"></canvas>
 
-  <div class="main-content">
-    <h1>Welcome to Next Level Space by Yashh</h1>
-    <div class="card-container">
-      <div class="card">
-        <img src="elon.jpg" alt="Elon Project" />
-        <a href="Elon Musk/index.html" target="_blank">Visit Project 1</a>
-      </div>
-      <div class="card">
-        <img src="project2.jpg" alt="Project 2" />
-        <a href="project 2/index.html" target="_blank">Visit Project 2</a>
-      </div>
+<div class="main-content">
+  <h1>Welcome to Next Level Space by Yashh</h1>
+  <div class="card-container">
+    <div class="card">
+      <img src="elon.jpg" alt="Elon Project" />
+      <a href="Elon Musk/index.html" target="_blank">Visit Project 1</a>
+    </div>
+    <div class="card">
+      <img src="project2.jpg" alt="Project 2" />
+      <a href="project 2/index.html" target="_blank">Visit Project 2</a>
     </div>
   </div>
+</div>
 
-  <script>
-    const canvas = document.getElementById("space");
-    const ctx = canvas.getContext("2d");
+<script>
+  const canvas = document.getElementById("solar");
+  const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
 
-    let stars = [];
-    for (let i = 0; i < 200; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5,
-      });
-    }
+  const centerX = w / 2;
+  const centerY = h / 2;
 
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
-      stars.forEach((star) => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
-        ctx.fill();
-      });
-    }
+  const planets = [
+    { radius: 4, orbit: 50, speed: 0.03, angle: 0, color: "#ffdd00" }, // Mercury
+    { radius: 6, orbit: 90, speed: 0.02, angle: 0, color: "#ff6600" }, // Venus
+    { radius: 8, orbit: 140, speed: 0.015, angle: 0, color: "#00ccff" }, // Earth
+    { radius: 6, orbit: 190, speed: 0.012, angle: 0, color: "#ff3333" }  // Mars
+  ];
 
-    function twinkle() {
-      stars.forEach((star) => {
-        star.r = Math.random() * 1.5;
-      });
-      drawStars();
-      requestAnimationFrame(twinkle);
-    }
+  function drawSolarSystem() {
+    ctx.clearRect(0, 0, w, h);
 
-    twinkle();
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Draw Sun
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = "#ffaa00";
+    ctx.fill();
+
+    // Draw planets
+    planets.forEach(planet => {
+      const x = centerX + Math.cos(planet.angle) * planet.orbit;
+      const y = centerY + Math.sin(planet.angle) * planet.orbit;
+
+      ctx.beginPath();
+      ctx.arc(x, y, planet.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = planet.color;
+      ctx.fill();
+
+      planet.angle += planet.speed;
     });
-  </script>
+
+    requestAnimationFrame(drawSolarSystem);
+  }
+
+  drawSolarSystem();
+
+  window.addEventListener("resize", () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  });
+</script>
+
 </body>
 </html>
