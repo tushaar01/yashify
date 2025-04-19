@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spend Elon Musk's Money</title>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --musk-blue: #005288;
+            --musk-red: #e82127;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+        }
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--dark-bg);
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .header-bg {
+            background: linear-gradient(135deg, var(--musk-blue), #000);
+        }
+        
+        .balance-tracker {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--musk-red);
+            box-shadow: 0 4px 20px rgba(232, 33, 39, 0.2);
+            z-index: 100;
+        }
+        
+        .item-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 82, 136, 0.3);
+            border-color: var(--musk-blue);
+        }
+        
+        .tesla-section .item-card:hover {
+            border-color: var(--musk-red);
+        }
+        
+        .spacex-section .item-card:hover {
+            border-color: #005288;
+        }
+        
+        .neuralink-section .item-card:hover {
+            border-color: #6b21a8;
+        }
+        
+        .boring-section .item-card:hover {
+            border-color: #f59e0b;
+        }
+        
+        .twitter-section .item-card:hover {
+            border-color: #1d9bf0;
+        }
+        
+        .buy-btn {
+            background-color: #2f2f2f;
+            color: white;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .buy-btn:hover:not(:disabled) {
+            background-color: var(--musk-blue);
+        }
+        
+        .sell-btn {
+            background-color: #2f2f2f;
+            color: white;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .sell-btn:hover:not(:disabled) {
+            background-color: var(--musk-red);
+        }
+        
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .counter {
+            background-color: #333;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .category-header {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--musk-blue), var(--musk-red), transparent);
+        }
+        
+        .monospace {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .bounce {
+            animation: bounce 0.5s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .shrink {
+            animation: shrink 0.3s;
+        }
+        
+        @keyframes shrink {
+            0% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .reset-button {
+            background: linear-gradient(135deg, var(--musk-blue), var(--musk-red));
+            transition: all 0.3s ease;
+        }
+        
+        .reset-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(232, 33, 39, 0.5);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--musk-blue), var(--musk-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-bg p-6 text-center relative">
+        <h1 class="text-4xl md:text-6xl font-bold mb-2 slide-in">Spend Elon Musk's Money</h1>
+        <p class="text-xl text-gray-300 mb-6 slide-in">You have $200 billion to spend on Elon's ventures           by yash giri ✨ </p>
+    </header>
+    
+    <!-- Floating Balance Tracker -->
+    <div class="balance-tracker sticky top-0 p-4 text-center mb-8">
+        <div class="text-2xl md:text-4xl font-bold monospace" id="balance">$200,000,000,000</div>
+        <div class="flex justify-center mt-2">
+            <button id="resetButton" class="reset-button text-white px-6 py-2 rounded-full font-bold">
+                RESET
+            </button>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 pb-20">
+        <!-- Tesla Section -->
+        <div class="mb-16 tesla-section">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fas fa-car mr-3 text-red-500"></i>Tesla
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tesla Model 3 -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-car text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tesla Model 3</h3>
+                        <p class="text-gray-400 monospace">$40,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="model3" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="model3-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="model3" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Tesla Model S Plaid -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-car-side text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tesla Model S Plaid</h3>
+                        <p class="text-gray-400 monospace">$120,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="modelS" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="modelS-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="modelS" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Tesla Cybertruck -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-truck-pickup text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tesla Cybertruck</h3>
+                        <p class="text-gray-400 monospace">$80,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="cybertruck" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="cybertruck-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="cybertruck" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Tesla Semi -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-truck text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tesla Semi</h3>
+                        <p class="text-gray-400 monospace">$180,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="semi" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="semi-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="semi" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Tesla Factory -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-industry text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tesla Gigafactory</h3>
+                        <p class="text-gray-400 monospace">$5,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="gigafactory" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="gigafactory-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="gigafactory" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SpaceX Section -->
+        <div class="mb-16 spacex-section">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fas fa-rocket mr-3 text-blue-500"></i>SpaceX
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Falcon 9 Launch -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-rocket text-5xl text-blue-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Falcon 9 Launch</h3>
+                        <p class="text-gray-400 monospace">$67,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="falcon9" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="falcon9-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="falcon9" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Falcon Heavy Launch -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-space-shuttle text-5xl text-blue-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Falcon Heavy Launch</h3>
+                        <p class="text-gray-400 monospace">$97,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="falconHeavy" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="falconHeavy-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="falconHeavy" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Starship Prototype -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-rocket text-5xl text-blue-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Starship Prototype</h3>
+                        <p class="text-gray-400 monospace">$200,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="starship" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="starship-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="starship" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Starlink Satellites (60 pack) -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-satellite text-5xl text-blue-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Starlink Satellites (60 pack)</h3>
+                        <p class="text-gray-400 monospace">$15,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="starlink" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="starlink-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="starlink" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Mars Colony -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-globe-americas text-5xl text-red-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Mars Colony</h3>
+                        <p class="text-gray-400 monospace">$10,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="marsColony" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="marsColony-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="marsColony" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Neuralink Section -->
+        <div class="mb-16 neuralink-section">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fas fa-brain mr-3 text-purple-500"></i>Neuralink
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Neuralink Implant -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-microchip text-5xl text-purple-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Neuralink Implant</h3>
+                        <p class="text-gray-400 monospace">$100,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="neuralinkImplant" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="neuralinkImplant-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="neuralinkImplant" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Neuralink Research Lab -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-flask text-5xl text-purple-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Neuralink Research Lab</h3>
+                        <p class="text-gray-400 monospace">$500,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="neuralinkLab" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="neuralinkLab-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="neuralinkLab" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- The Boring Company Section -->
+        <div class="mb-16 boring-section">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fas fa-tunnel mr-3 text-yellow-500"></i>The Boring Company
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Not-a-Flamethrower -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-fire text-5xl text-yellow-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Not-a-Flamethrower</h3>
+                        <p class="text-gray-400 monospace">$500</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="flamethrower" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="flamethrower-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="flamethrower" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Tunnel Boring Machine -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-dharmachakra text-5xl text-yellow-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Tunnel Boring Machine</h3>
+                        <p class="text-gray-400 monospace">$10,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="boringMachine" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="boringMachine-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="boringMachine" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Underground Tunnel System -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-road text-5xl text-yellow-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Underground Tunnel System</h3>
+                        <p class="text-gray-400 monospace">$1,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="tunnelSystem" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="tunnelSystem-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="tunnelSystem" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Twitter/X Section -->
+        <div class="mb-16 twitter-section">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fab fa-twitter mr-3 text-blue-400"></i>Twitter/X
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Twitter Verification -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-check-circle text-5xl text-blue-400 mb-2"></i>
+                        <h3 class="text-xl font-bold">X Premium Subscription</h3>
+                        <p class="text-gray-400 monospace">$8</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="twitterVerification" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="twitterVerification-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="twitterVerification" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Twitter/X Company -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fab fa-twitter text-5xl text-blue-400 mb-2"></i>
+                        <h3 class="text-xl font-bold">Buy Twitter/X Again</h3>
+                        <p class="text-gray-400 monospace">$44,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="twitterCompany" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="twitterCompany-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="twitterCompany" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other Ventures -->
+        <div class="mb-16">
+            <div class="category-header mb-8 pb-2">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <i class="fas fa-random mr-3 text-green-500"></i>Other Ventures
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Private Island -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-island-tropical text-5xl text-green-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Private Island</h3>
+                        <p class="text-gray-400 monospace">$100,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="privateIsland" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="privateIsland-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="privateIsland" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Supersonic Electric Jet -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-fighter-jet text-5xl text-green-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Supersonic Electric Jet</h3>
+                        <p class="text-gray-400 monospace">$1,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="electricJet" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="electricJet-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="electricJet" data-action="buy">Buy</button>
+                    </div>
+                </div>
+                
+                <!-- Humanoid Robot Factory -->
+                <div class="item-card p-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-robot text-5xl text-green-500 mb-2"></i>
+                        <h3 class="text-xl font-bold">Humanoid Robot Factory</h3>
+                        <p class="text-gray-400 monospace">$5,000,000,000</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="sell-btn px-4 py-2 rounded-l-lg w-1/3" data-item="robotFactory" data-action="sell" disabled>Sell</button>
+                        <span class="counter py-2 px-4 w-1/3" id="robotFactory-count">0</span>
+                        <button class="buy-btn px-4 py-2 rounded-r-lg w-1/3" data-item="robotFactory" data-action="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="p-6 text-center text-gray-500">
+        <p>This is just a fun game. No affiliation with Elon Musk or his companies.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Items data with prices
+            const items = {
+                model3: { price: 40000, name: "Tesla Model 3" },
+                modelS: { price: 120000, name: "Tesla Model S Plaid" },
+                cybertruck: { price: 80000, name: "Tesla Cybertruck" },
+                semi: { price: 180000, name: "Tesla Semi" },
+                gigafactory: { price: 5000000000, name: "Tesla Gigafactory" },
+                falcon9: { price: 67000000, name: "Falcon 9 Launch" },
+                falconHeavy: { price: 97000000, name: "Falcon Heavy Launch" },
+                starship: { price: 200000000, name: "Starship Prototype" },
+                starlink: { price: 15000000, name: "Starlink Satellites (60 pack)" },
+                marsColony: { price: 10000000000, name: "Mars Colony" },
+                neuralinkImplant: { price: 100000, name: "Neuralink Implant" },
+                neuralinkLab: { price: 500000000, name: "Neuralink Research Lab" },
+                flamethrower: { price: 500, name: "Not-a-Flamethrower" },
+                boringMachine: { price: 10000000, name: "Tunnel Boring Machine" },
+                tunnelSystem: { price: 1000000000, name: "Underground Tunnel System" },
+                twitterVerification: { price: 8, name: "X Premium Subscription" },
+                twitterCompany: { price: 44000000000, name: "Twitter/X Company" },
+                privateIsland: { price: 100000000, name: "Private Island" },
+                electricJet: { price: 1000000000, name: "Supersonic Electric Jet" },
+                robotFactory: { price: 5000000000, name: "Humanoid Robot Factory" }
+            };
+            
+            // Game state
+            let balance = 200000000000; // $200 billion
+            const itemCounts = {};
+            Object.keys(items).forEach(item => {
+                itemCounts[item] = 0;
+            });
+            
+            // Format number as currency
+            function formatCurrency(amount) {
+                return '$' + amount.toLocaleString('en-US');
+            }
+            
+            // Update the balance display
+            function updateBalance() {
+                document.getElementById('balance').textContent = formatCurrency(balance);
+                document.getElementById('balance').classList.add('bounce');
+                setTimeout(() => {
+                    document.getElementById('balance').classList.remove('bounce');
+                }, 500);
+                
+                // Check if buy buttons should be disabled
+                Object.keys(items).forEach(item => {
+                    const buyBtn = document.querySelector(`button[data-item="${item}"][data-action="buy"]`);
+                    if (balance < items[item].price) {
+                        buyBtn.disabled = true;
+                        buyBtn.classList.add('btn-disabled');
+                    } else {
+                        buyBtn.disabled = false;
+                        buyBtn.classList.remove('btn-disabled');
+                    }
+                });
+            }
+            
+            // Buy an item
+            function buyItem(itemId) {
+                const item = items[itemId];
+                if (balance >= item.price) {
+                    balance -= item.price;
+                    itemCounts[itemId]++;
+                    updateItemCount(itemId);
+                    updateBalance();
+                    
+                    // Show animation on the item card
+                    const itemCard = document.querySelector(`button[data-item="${itemId}"][data-action="buy"]`).closest('.item-card');
+                    itemCard.classList.add('shrink');
+                    setTimeout(() => {
+                        itemCard.classList.remove('shrink');
+                    }, 300);
+                }
+            }
+            
+            // Sell an item
+            function sellItem(itemId) {
+                if (itemCounts[itemId] > 0) {
+                    balance += items[itemId].price;
+                    itemCounts[itemId]--;
+                    updateItemCount(itemId);
+                    updateBalance();
+                    
+                    // Show animation on the item card
+                    const itemCard = document.querySelector(`button[data-item="${itemId}"][data-action="sell"]`).closest('.item-card');
+                    itemCard.classList.add('shrink');
+                    setTimeout(() => {
+                        itemCard.classList.remove('shrink');
+                    }, 300);
+                }
+            }
+            
+            // Update the item count display
+            function updateItemCount(itemId) {
+                const countElement = document.getElementById(`${itemId}-count`);
+                countElement.textContent = itemCounts[itemId];
+                
+                // Enable/disable sell button
+                const sellBtn = document.querySelector(`button[data-item="${itemId}"][data-action="sell"]`);
+                if (itemCounts[itemId] > 0) {
+                    sellBtn.disabled = false;
+                    sellBtn.classList.remove('btn-disabled');
+                } else {
+                    sellBtn.disabled = true;
+                    sellBtn.classList.add('btn-disabled');
+                }
+            }
+            
+            // Reset the game
+            function resetGame() {
+                balance = 200000000000;
+                Object.keys(items).forEach(item => {
+                    itemCounts[item] = 0;
+                    updateItemCount(item);
+                });
+                updateBalance();
+                
+                // Show shake animation on the reset button
+                document.getElementById('resetButton').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('resetButton').classList.remove('shake');
+                }, 500);
+            }
+            
+            // Add event listeners to all buy/sell buttons
+            document.querySelectorAll('button[data-action]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-item');
+                    const action = this.getAttribute('data-action');
+                    
+                    if (action === 'buy') {
+                        buyItem(itemId);
+                    } else if (action === 'sell') {
+                        sellItem(itemId);
+                    }
+                });
+            });
+            
+            // Add event listener to reset button
+            document.getElementById('resetButton').addEventListener('click', resetGame);
+            
+            // Initialize the game
+            updateBalance();
+        });
+    </script>
+</body>
+</html>
