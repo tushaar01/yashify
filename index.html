@@ -3,23 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Multi Website Viewer</title>
+  <title>Yashify - Home</title>
   <style>
     body {
-      display: flex;
-      justify-content: space-around;
       margin: 0;
-      padding: 0;
-    }
-    iframe {
-      width: 48%;
+      font-family: sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100vh;
-      border: none;
+    }
+    .container {
+      display: flex;
+      gap: 30px;
+    }
+    .card {
+      width: 220px;
+      height: 140px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #e0f7fa;
     }
   </style>
 </head>
 <body>
-  <iframe src="ElonMusk/index.html" title="ElonMusk Project"></iframe>
-  <iframe src="project2/index.html" title="Project2"></iframe>
+  <div class="container">
+    <a href="ElonMusk/index.html" class="card">Elon Musk Website</a>
+    <a href="project2/index.html" class="card">Project 2 Website</a>
+  </div>
 </body>
 </html>
