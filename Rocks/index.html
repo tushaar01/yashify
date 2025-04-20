@@ -2,124 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>rocks - yashify.fun</title>
-  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
-  <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Falling Rocks Animation</title>
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      height: 100%;
-      background: #1a202c;
+      box-sizing: border-box;
     }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
     canvas {
       display: block;
+    }
+
+    .mute-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background: #ffffff33;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-  <canvas id="world"></canvas>
-  <div class="absolute top-2 left-2 z-10">
-    <button id="muteBtn" class="bg-gray-700 text-white px-3 py-1 rounded hover:bg-gray-600">Mute</button>
-  </div>
-  <div id="loader" class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 z-50">
-    <div class="text-white text-xl animate-pulse">Loading rocks...</div>
-  </div>
+  <button class="mute-button">Mute</button>
+  <canvas id="rocksCanvas"></canvas>
 
   <script>
-    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Vertices } = Matter;
+    const canvas = document.getElementById("rocksCanvas");
+    const ctx = canvas.getContext("2d");
 
-    const canvas = document.getElementById('world');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Set canvas size to full viewport size
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
 
-    const engine = Engine.create();
-    const world = engine.world;
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    const render = Render.create({
-      canvas: canvas,
-      engine: engine,
-      options: {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        wireframes: false,
-        background: '#1a202c'
+    class Rock {
+      constructor(x, y, radius, dx, dy, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.dx = dx;
+        this.dy = dy;
+        this.color = color;
+        this.gravity = 0.2;
+        this.bounce = 0.6;
       }
-    });
 
-    Render.run(render);
-    Runner.run(engine);
+      update() {
+        this.dy += this.gravity;
+        this.x += this.dx;
+        this.y += this.dy;
 
-    const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
-    const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
-    const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
-    Composite.add(world, [ground, leftWall, rightWall]);
-
-    const rockData = [
-      {
-        color: '#718096',
-        vertices: Vertices.fromPath('0 0 40 0 35 40 5 40')
-      },
-      {
-        color: '#a0aec0',
-        vertices: Vertices.fromPath('0 0 30 10 25 40 10 30')
-      },
-      {
-        color: '#4a5568',
-        vertices: Vertices.fromPath('0 0 45 5 40 35 5 40')
-      },
-    ];
-
-    function createRock(x, y, rockInfo) {
-      const rock = Bodies.fromVertices(x, y, [rockInfo.vertices], {
-        render: {
-          fillStyle: rockInfo.color,
-          strokeStyle: '#2d3748',
-          lineWidth: 1
-        },
-        friction: 0.8,
-        restitution: 0.3
-      }, true);
-
-      Composite.add(world, rock);
-      return rock;
-    }
-
-    for (let i = 0; i < 15; i++) {
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * -500;
-      const rockType = rockData[i % rockData.length];
-      createRock(x, y, rockType);
-    }
-
-    const mouse = Mouse.create(canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        stiffness: 0.2,
-        render: {
-          visible: false
+        // Bounce off the bottom
+        if (this.y + this.radius > canvas.height) {
+          this.y = canvas.height - this.radius;
+          this.dy = -this.dy * this.bounce;
         }
+
+        // Bounce off sides
+        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+          this.dx = -this.dx;
+        }
+
+        this.draw();
       }
-    });
-    Composite.add(world, mouseConstraint);
-    render.mouse = mouse;
 
-    // Loader fadeout
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-      }, 1000);
-    });
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
 
-    // Mute button logic
-    let isMuted = false;
-    document.getElementById('muteBtn').addEventListener('click', () => {
-      isMuted = !isMuted;
-      document.getElementById('muteBtn').innerText = isMuted ? 'Unmute' : 'Mute';
-    });
+    let rocks = [];
+
+    function createRocks(num) {
+      rocks = [];
+      for (let i = 0; i < num; i++) {
+        let radius = Math.random() * 20 + 10;
+        let x = Math.random() * (canvas.width - radius * 2) + radius;
+        let y = Math.random() * -canvas.height;
+        let dx = (Math.random() - 0.5) * 4;
+        let dy = Math.random() * 2;
+        let color = `hsl(${Math.random() * 360}, 40%, 60%)`;
+        rocks.push(new Rock(x, y, radius, dx, dy, color));
+      }
+    }
+
+    createRocks(40);
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      rocks.forEach(rock => rock.update());
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
