@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noise by yashify.fun</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+  
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #2e2e2e;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .slider:hover {
+            opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #6b46c1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+            background: #9f7aea;
+            transform: scale(1.1);
+        }
+        
+        .sound-button {
+            transition: all 0.2s ease;
+            opacity: 0.7;
+        }
+        
+        .sound-button:hover, .sound-button.active {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .sound-button.active .icon-container {
+            border-color: #9f7aea;
+            background-color: rgba(159, 122, 234, 0.2);
+        }
+        
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #4a5568;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 640px) {
+            .icon-container {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        .timer-dropdown {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        
+        .fadeIn {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .mix-dropdown {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .mix-dropdown::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .mix-dropdown::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        .mix-dropdown::-webkit-scrollbar-thumb {
+            background-color: #333;
+            border-radius: 8px;
+        }
+        
+        .save-mix-modal {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .save-mix-form {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        
+        input[type="text"] {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #e0e0e0;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #6b46c1;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="p-4 border-b border-gray-800 flex items-center justify-between">
+        <div class="flex items-center">
+            <h1 class="text-xl md:text-2xl font-semibold text-purple-300">Noise</h1>
+            <span class="text-xs text-gray-400 ml-2">by yashify.fun</span>
+        </div>
+        <div class="flex items-center">
+            <button id="muteButton" class="p-2 text-gray-400 hover:text-white transition">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </header>
+    
+    <main class="flex-grow p-4 flex flex-col items-center">
+        <div class="w-full max-w-3xl">
+            <div class="text-center mb-8 mt-4">
+                <h2 class="text-2xl md:text-3xl font-light text-white mb-2">Noise</h2>
+                <p class="text-gray-400 text-sm">Ambient sounds to wash away distraction.</p>
+            </div>
+            
+            <div class="flex justify-center mb-6 space-x-4">
+                <button id="playButton" class="w-10 h-10 rounded-full bg-purple-700 flex items-center justify-center text-white hover:bg-purple-600 transition">
+                    <i class="fas fa-play" id="playIcon"></i>
+                </button>
+                
+                <div class="relative">
+                    <button id="timerButton" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-gray-600 transition">
+                        <i class="fas fa-clock"></i>
+                    </button>
+                    <div id="timerDropdown" class="timer-dropdown absolute right-0 mt-2 w-48 hidden z-10 py-2 px-3">
+                        <p class="text-sm text-gray-300 mb-2">Sleep Timer</p>
+                        <div class="space-y-2">
+                            <button data-time="15" class="timer-option w-full text-left text-sm py-1 px-2 rounded hover:bg-gray-700 transition">15 minutes</button>
+                            <button data-time="30" class="timer-option w-full text-left text-sm py-1 px-2 rounded hover:bg-gray-700 transition">30 minutes</button>
+                            <button data-time="45" class="timer-option w-full text-left text-sm py-1 px-2 rounded hover:bg-gray-700 transition">45 minutes</button>
+                            <button data-time="60" class="timer-option w-full text-left text-sm py-1 px-2 rounded hover:bg-gray-700 transition">60 minutes</button>
+                            <button data-time="90" class="timer-option w-full text-left text-sm py-1 px-2 rounded hover:bg-gray-700 transition">90 minutes</button>
+                            <button id="cancelTimer" class="w-full text-left text-sm py-1 px-2 rounded hover:bg-red-800 text-red-300 transition">Cancel timer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <button id="mixesButton" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-gray-600 transition">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <div id="mixesDropdown" class="mix-dropdown absolute right-0 mt-2 w-60 hidden z-10 py-2 px-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-sm text-gray-300">Saved Mixes</p>
+                            <button id="createMixButton" class="text-xs text-purple-300 hover:text-purple-200 transition">+ Create New</button>
+                        </div>
+                        <div id="mixesList" class="space-y-2">
+                            <!-- Saved mixes will be loaded here -->
+                            <p class="text-xs text-gray-500 text-center py-2">No saved mixes yet</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="saveButton" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-gray-600 transition">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+            </div>
+            
+            <div id="timerIndicator" class="text-center mb-4 hidden">
+                <p class="text-sm text-purple-300">
+                    <i class="fas fa-clock mr-1"></i>
+                    <span id="timerCountdown">00:00</span> until silence
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
+                <!-- Rain -->
+                <div class="sound-button flex flex-col items-center" data-sound="rain">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-cloud-rain text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Rain</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="rain">
+                </div>
+                
+                <!-- Thunder -->
+                <div class="sound-button flex flex-col items-center" data-sound="thunder">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Thunder</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="thunder">
+                </div>
+                
+                <!-- Wind -->
+                <div class="sound-button flex flex-col items-center" data-sound="wind">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-wind text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Wind</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="wind">
+                </div>
+                
+                <!-- Waves -->
+                <div class="sound-button flex flex-col items-center" data-sound="waves">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-water text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Waves</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="waves">
+                </div>
+                
+                <!-- Fire -->
+                <div class="sound-button flex flex-col items-center" data-sound="fire">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-fire text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Fire</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="fire">
+                </div>
+                
+                <!-- Birds -->
+                <div class="sound-button flex flex-col items-center" data-sound="birds">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-dove text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Birds</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="birds">
+                </div>
+                
+                <!-- Night -->
+                <div class="sound-button flex flex-col items-center" data-sound="night">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-moon text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Night</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="night">
+                </div>
+                
+                <!-- Coffee Shop -->
+                <div class="sound-button flex flex-col items-center" data-sound="coffeeshop">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-mug-hot text-2xl"></i>
+                    </div>
+                    <span class="text-sm">Coffee Shop</span>
+                    <input type="range" min="0" max="100" value="0" class="slider mt-2" data-sound="coffeeshop">
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="p-4 text-center text-gray-500 text-xs">
+        <p>Noise by yashify.fun &copy; 2023</p>
+    </footer>
+    
+    <!-- Save Mix Modal -->
+    <div id="saveMixModal" class="save-mix-modal fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="save-mix-form p-6 max-w-md w-full mx-4">
+            <h3 class="text-lg font-medium text-purple-300 mb-4">Save Current Mix</h3>
+            <form id="saveMixForm">
+                <div class="mb-4">
+                    <label for="mixName" class="block text-sm text-gray-300 mb-2">Mix Name</label>
+                    <input type="text" id="mixName" class="w-full px-3 py-2 rounded" placeholder="My Awesome Mix">
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="cancelSaveMix" class="px-4 py-2 text-sm text-gray-300 hover:text-white transition">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-sm bg-purple-700 text-white rounded hover:bg-purple-600 transition">Save Mix</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Audio elements -->
+    <audio id="rain-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/rain-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="thunder-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/thunder-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wind-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/wind-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="waves-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/waves-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fire-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/fire-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="birds-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/birds-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="night-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/night-ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="coffeeshop-audio" loop preload="none">
+        <source src="https://cdn.jsdelivr.net/gh/draftbit/audio-files/cafe-ambient.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables
+            let isPlaying = false;
+            let isMuted = false;
+            let timerInterval = null;
+            let timerEndTime = null;
+            const sounds = ['rain', 'thunder', 'wind', 'waves', 'fire', 'birds', 'night', 'coffeeshop'];
+            const audioElements = {};
+            
+            // Create audio context for better handling
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const audioContext = new AudioContext();
+            const gainNodes = {};
+            
+            // Set up audio elements with gain nodes
+            sounds.forEach(sound => {
+                const audio = document.getElementById(`${sound}-audio`);
+                audio.load();
+                
+                audioElements[sound] = audio;
+                
+                // Only set up audio nodes when playback starts (to handle autoplay policies)
+                gainNodes[sound] = null;
+            });
+            
+            // Function to ensure audio context and nodes are created
+            function ensureAudioNodesCreated(sound) {
+                if (!gainNodes[sound]) {
+                    const audio = audioElements[sound];
+                    const source = audioContext.createMediaElementSource(audio);
+                    const gainNode = audioContext.createGain();
+                    gainNode.gain.value = 0;
+                    
+                    source.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    gainNodes[sound] = gainNode;
+                }
+            }
+            
+            // Play/Pause button functionality
+            const playButton = document.getElementById('playButton');
+            const playIcon = document.getElementById('playIcon');
+            
+            playButton.addEventListener('click', function() {
+                // Resume audio context if it's suspended (needed for Chrome's autoplay policy)
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+                
+                if (isPlaying) {
+                    pauseAllSounds();
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                } else {
+                    playAllActiveSounds();
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Mute button functionality
+            const muteButton = document.getElementById('muteButton');
+            
+            muteButton.addEventListener('click', function() {
+                isMuted = !isMuted;
+                
+                const muteIcon = muteButton.querySelector('i');
+                
+                if (isMuted) {
+                    sounds.forEach(sound => {
+                        if (gainNodes[sound]) {
+                            gainNodes[sound].gain.setValueAtTime(0, audioContext.currentTime);
+                        }
+                    });
+                    
+                    muteIcon.classList.remove('fa-volume-up');
+                    muteIcon.classList.add('fa-volume-mute');
+                } else {
+                    sounds.forEach(sound => {
+                        const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                        const volume = parseInt(slider.value) / 100;
+                        if (gainNodes[sound]) {
+                            gainNodes[sound].gain.setValueAtTime(volume, audioContext.currentTime);
+                        }
+                    });
+                    
+                    muteIcon.classList.remove('fa-volume-mute');
+                    muteIcon.classList.add('fa-volume-up');
+                }
+            });
+            
+            // Initialize sound buttons
+            const soundButtons = document.querySelectorAll('.sound-button');
+            
+            soundButtons.forEach(button => {
+                const sound = button.getAttribute('data-sound');
+                
+                button.addEventListener('click', function() {
+                    // Toggle active state
+                    this.classList.toggle('active');
+                    
+                    // Toggle sound
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    if (this.classList.contains('active')) {
+                        slider.value = 70; // Default value when activated
+                    } else {
+                        slider.value = 0;
+                    }
+                    
+                    // Update sound volume
+                    updateSoundVolume(sound, parseInt(slider.value));
+                    
+                    // If we're supposed to be playing and we just activated a sound, play it
+                    if (isPlaying && this.classList.contains('active')) {
+                        ensureAudioNodesCreated(sound);
+                        audioElements[sound].play();
+                    } else if (!this.classList.contains('active')) {
+                        audioElements[sound].pause();
+                    }
+                });
+            });
+            
+            // Volume sliders
+            const sliders = document.querySelectorAll('.slider');
+            
+            sliders.forEach(slider => {
+                const sound = slider.getAttribute('data-sound');
+                
+                slider.addEventListener('input', function() {
+                    const soundButton = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                    
+                    if (parseInt(this.value) > 0) {
+                        soundButton.classList.add('active');
+                        if (isPlaying) {
+                            ensureAudioNodesCreated(sound);
+                            if (audioElements[sound].paused) {
+                                audioElements[sound].play();
+                            }
+                            updateSoundVolume(sound, parseInt(this.value));
+                        }
+                    } else {
+                        soundButton.classList.remove('active');
+                        audioElements[sound].pause();
+                    }
+                    
+                    updateSoundVolume(sound, parseInt(this.value));
+                });
+            });
+            
+            // Timer functionality
+            const timerButton = document.getElementById('timerButton');
+            const timerDropdown = document.getElementById('timerDropdown');
+            const timerOptions = document.querySelectorAll('.timer-option');
+            const cancelTimer = document.getElementById('cancelTimer');
+            const timerIndicator = document.getElementById('timerIndicator');
+            const timerCountdown = document.getElementById('timerCountdown');
+            
+            timerButton.addEventListener('click', function() {
+                timerDropdown.classList.toggle('hidden');
+                if (!timerDropdown.classList.contains('hidden')) {
+                    mixesDropdown.classList.add('hidden'); // Close other dropdown
+                }
+            });
+            
+            timerOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const minutes = parseInt(this.getAttribute('data-time'));
+                    setTimer(minutes);
+                    timerDropdown.classList.add('hidden');
+                });
+            });
+            
+            cancelTimer.addEventListener('click', function() {
+                clearTimer();
+                timerDropdown.classList.add('hidden');
+            });
+            
+            // Mixes functionality
+            const mixesButton = document.getElementById('mixesButton');
+            const mixesDropdown = document.getElementById('mixesDropdown');
+            const mixesList = document.getElementById('mixesList');
+            const createMixButton = document.getElementById('createMixButton');
+            
+            mixesButton.addEventListener('click', function() {
+                mixesDropdown.classList.toggle('hidden');
+                if (!mixesDropdown.classList.contains('hidden')) {
+                    timerDropdown.classList.add('hidden'); // Close other dropdown
+                }
+                loadSavedMixes();
+            });
+            
+            // Save button functionality
+            const saveButton = document.getElementById('saveButton');
+            const saveMixModal = document.getElementById('saveMixModal');
+            const saveMixForm = document.getElementById('saveMixForm');
+            const mixNameInput = document.getElementById('mixName');
+            const cancelSaveMix = document.getElementById('cancelSaveMix');
+            
+            saveButton.addEventListener('click', function() {
+                // Check if at least one sound is active
+                const hasActiveSounds = sounds.some(sound => {
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    return parseInt(slider.value) > 0;
+                });
+                
+                if (hasActiveSounds) {
+                    saveMixModal.classList.remove('hidden');
+                    mixNameInput.focus();
+                } else {
+                    showNotification('Please activate at least one sound');
+                }
+            });
+            
+            cancelSaveMix.addEventListener('click', function() {
+                saveMixModal.classList.add('hidden');
+            });
+            
+            saveMixForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const mixName = mixNameInput.value.trim() || `Mix ${new Date().toLocaleTimeString()}`;
+                
+                // Create a mix configuration based on current settings
+                const mixConfig = {};
+                sounds.forEach(sound => {
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    mixConfig[sound] = parseInt(slider.value);
+                });
+                
+                // Store in localStorage
+                const savedMixes = JSON.parse(localStorage.getItem('noiseMixes') || '[]');
+                
+                const newMix = {
+                    id: Date.now(),
+                    name: mixName,
+                    config: mixConfig
+                };
+                
+                savedMixes.push(newMix);
+                localStorage.setItem('noiseMixes', JSON.stringify(savedMixes));
+                
+                // Close modal and show notification
+                saveMixModal.classList.add('hidden');
+                mixNameInput.value = '';
+                
+                showNotification(`Mix "${mixName}" saved successfully`);
+                
+                // Refresh mixes list if visible
+                if (!mixesDropdown.classList.contains('hidden')) {
+                    loadSavedMixes();
+                }
+            });
+            
+            createMixButton.addEventListener('click', function() {
+                mixesDropdown.classList.add('hidden');
+                saveMixModal.classList.remove('hidden');
+                mixNameInput.focus();
+            });
+            
+            // Load saved mixes
+            function loadSavedMixes() {
+                const savedMixes = JSON.parse(localStorage.getItem('noiseMixes') || '[]');
+                
+                if (savedMixes.length === 0) {
+                    mixesList.innerHTML = '<p class="text-xs text-gray-500 text-center py-2">No saved mixes yet</p>';
+                    return;
+                }
+                
+                mixesList.innerHTML = '';
+                
+                savedMixes.forEach(mix => {
+                    const mixItem = document.createElement('div');
+                    mixItem.className = 'flex justify-between items-center p-2 rounded hover:bg-gray-800 transition';
+                    
+                    const nameEl = document.createElement('span');
+                    nameEl.className = 'text-sm text-gray-300';
+                    nameEl.textContent = mix.name;
+                    
+                    const controlsEl = document.createElement('div');
+                    controlsEl.className = 'flex space-x-2';
+                    
+                    const loadButton = document.createElement('button');
+                    loadButton.className = 'text-xs text-purple-300 hover:text-purple-200 transition';
+                    loadButton.innerHTML = '<i class="fas fa-play"></i>';
+                    loadButton.title = 'Load mix';
+                    loadButton.addEventListener('click', () => loadMix(mix));
+                    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'text-xs text-red-400 hover:text-red-300 transition';
+                    deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteButton.title = 'Delete mix';
+                    deleteButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteMix(mix.id);
+                    });
+                    
+                    controlsEl.appendChild(loadButton);
+                    controlsEl.appendChild(deleteButton);
+                    
+                    mixItem.appendChild(nameEl);
+                    mixItem.appendChild(controlsEl);
+                    
+                    mixesList.appendChild(mixItem);
+                });
+            }
+            
+            function loadMix(mix) {
+                // Set each slider value according to the mix config
+                sounds.forEach(sound => {
+                    const value = mix.config[sound] || 0;
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    slider.value = value;
+                    
+                    const soundButton = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                    if (value > 0) {
+                        soundButton.classList.add('active');
+                        if (isPlaying) {
+                            ensureAudioNodesCreated(sound);
+                            audioElements[sound].play();
+                            updateSoundVolume(sound, value);
+                        }
+                    } else {
+                        soundButton.classList.remove('active');
+                        audioElements[sound].pause();
+                    }
+                });
+                
+                // Close dropdown
+                mixesDropdown.classList.add('hidden');
+                
+                // Show notification
+                showNotification(`Mix "${mix.name}" loaded`);
+                
+                // If not already playing, start playback
+                if (!isPlaying) {
+                    playButton.click();
+                }
+            }
+            
+            function deleteMix(mixId) {
+                const savedMixes = JSON.parse(localStorage.getItem('noiseMixes') || '[]');
+                const mixToDelete = savedMixes.find(mix => mix.id === mixId);
+                
+                if (confirm(`Delete mix "${mixToDelete.name}"?`)) {
+                    const updatedMixes = savedMixes.filter(mix => mix.id !== mixId);
+                    localStorage.setItem('noiseMixes', JSON.stringify(updatedMixes));
+                    loadSavedMixes();
+                    showNotification('Mix deleted');
+                }
+            }
+            
+            // Utility functions
+            function updateSoundVolume(sound, value) {
+                if (isMuted) return;
+                
+                const volume = value / 100;
+                if (gainNodes[sound]) {
+                    gainNodes[sound].gain.setValueAtTime(volume, audioContext.currentTime);
+                }
+            }
+            
+            function playAllActiveSounds() {
+                sounds.forEach(sound => {
+                    const button = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                    if (button.classList.contains('active')) {
+                        ensureAudioNodesCreated(sound);
+                        audioElements[sound].play();
+                    }
+                });
+            }
+            
+            function pauseAllSounds() {
+                sounds.forEach(sound => {
+                    audioElements[sound].pause();
+                });
+            }
+            
+            function setTimer(minutes) {
+                // Clear any existing timer
+                clearTimer();
+                
+                // Set end time
+                const now = new Date();
+                timerEndTime = new Date(now.getTime() + minutes * 60000);
+                
+                // Show timer indicator
+                timerIndicator.classList.remove('hidden');
+                
+                // Start interval
+                timerInterval = setInterval(updateTimerDisplay, 1000);
+                
+                // Initial update
+                updateTimerDisplay();
+            }
+            
+            function updateTimerDisplay() {
+                if (!timerEndTime) return;
+                
+                const now = new Date();
+                const diff = timerEndTime - now;
+                
+                if (diff <= 0) {
+                    // Timer finished
+                    clearTimer();
+                    fadeOutAllSounds();
+                    return;
+                }
+                
+                // Calculate minutes and seconds
+                const minutes = Math.floor(diff / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                
+                // Update display
+                timerCountdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            function clearTimer() {
+                clearInterval(timerInterval);
+                timerEndTime = null;
+                timerIndicator.classList.add('hidden');
+            }
+            
+            function fadeOutAllSounds() {
+                const duration = 10; // Fade out over 10 seconds
+                const interval = 100; // Update every 100ms
+                const steps = duration * 1000 / interval;
+                
+                sounds.forEach(sound => {
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    const startVolume = parseInt(slider.value);
+                    let currentStep = 0;
+                    
+                    if (startVolume > 0 && gainNodes[sound]) {
+                        const fadeInterval = setInterval(() => {
+                            currentStep++;
+                            const newVolume = startVolume * (1 - currentStep / steps);
+                            
+                            updateSoundVolume(sound, newVolume);
+                            
+                            if (currentStep >= steps) {
+                                clearInterval(fadeInterval);
+                                slider.value = 0;
+                                audioElements[sound].pause();
+                                const soundButton = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                                soundButton.classList.remove('active');
+                            }
+                        }, interval);
+                    }
+                });
+                
+                // Update play button state
+                isPlaying = false;
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            }
+            
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-purple-700 text-white px-4 py-2 rounded shadow-lg fadeIn';
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 500);
+                }, 3000);
+            }
+            
+            // Handle visibility change to keep audio playing in background
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'hidden' && isPlaying) {
+                    // Keep playing when tab is not visible
+                    sounds.forEach(sound => {
+                        const button = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                        if (button.classList.contains('active')) {
+                            audioElements[sound].play().catch(err => console.log("Autoplay prevented, user interaction needed"));
+                        }
+                    });
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!timerButton.contains(event.target) && !timerDropdown.contains(event.target)) {
+                    timerDropdown.classList.add('hidden');
+                }
+                
+                if (!mixesButton.contains(event.target) && !mixesDropdown.contains(event.target)) {
+                    mixesDropdown.classList.add('hidden');
+                }
+                
+                if (!saveMixModal.contains(event.target) && event.target !== saveButton) {
+                    saveMixModal.classList.add('hidden');
+                }
+            });
+            
+            // Handle page load to restore saved settings
+            window.addEventListener('load', function() {
+                // Check if there was a previous session
+                const previousSession = localStorage.getItem('currentNoiseSession');
+                if (previousSession) {
+                    try {
+                        const session = JSON.parse(previousSession);
+                        sounds.forEach(sound => {
+                            const value = session[sound] || 0;
+                            const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                            slider.value = value;
+                            
+                            if (value > 0) {
+                                const button = document.querySelector(`.sound-button[data-sound="${sound}"]`);
+                                button.classList.add('active');
+                            }
+                        });
+                    } catch (e) {
+                        console.error('Error restoring session:', e);
+                    }
+                }
+            });
+            
+            // Save current settings when page is unloaded
+            window.addEventListener('beforeunload', function() {
+                const currentSession = {};
+                sounds.forEach(sound => {
+                    const slider = document.querySelector(`input[data-sound="${sound}"]`);
+                    currentSession[sound] = parseInt(slider.value);
+                });
+                
+                localStorage.setItem('currentNoiseSession', JSON.stringify(currentSession));
+            });
+        });
+    </script>
+</body>
+</html>
