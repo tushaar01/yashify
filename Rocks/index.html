@@ -44,14 +44,16 @@
     const canvas = document.getElementById("rocksCanvas");
     const ctx = canvas.getContext("2d");
 
-    // Set canvas size to full viewport size
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createRocks(40); // recreate rocks on resize
+    });
 
     class Rock {
       constructor(x, y, radius, dx, dy, color) {
@@ -61,7 +63,7 @@
         this.dx = dx;
         this.dy = dy;
         this.color = color;
-        this.gravity = 0.2;
+        this.gravity = 0.5;
         this.bounce = 0.6;
       }
 
@@ -70,13 +72,11 @@
         this.x += this.dx;
         this.y += this.dy;
 
-        // Bounce off the bottom
         if (this.y + this.radius > canvas.height) {
           this.y = canvas.height - this.radius;
           this.dy = -this.dy * this.bounce;
         }
 
-        // Bounce off sides
         if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
           this.dx = -this.dx;
         }
@@ -98,12 +98,12 @@
     function createRocks(num) {
       rocks = [];
       for (let i = 0; i < num; i++) {
-        let radius = Math.random() * 20 + 10;
+        let radius = Math.random() * 15 + 10;
         let x = Math.random() * (canvas.width - radius * 2) + radius;
-        let y = Math.random() * -canvas.height;
-        let dx = (Math.random() - 0.5) * 4;
-        let dy = Math.random() * 2;
-        let color = `hsl(${Math.random() * 360}, 40%, 60%)`;
+        let y = Math.random() * -100; // only -100 px above screen (earlier was full height)
+        let dx = (Math.random() - 0.5) * 2;
+        let dy = Math.random() * 1;
+        let color = `hsl(${Math.random() * 360}, 50%, 60%)`;
         rocks.push(new Rock(x, y, radius, dx, dy, color));
       }
     }
