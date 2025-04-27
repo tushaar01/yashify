@@ -42,7 +42,7 @@
 
     .card {
       width: 200px;
-      height: 120px;
+      height: 250px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid #ffffff44;
       border-radius: 15px;
@@ -51,15 +51,31 @@
       text-decoration: none;
       font-weight: bold;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      overflow: hidden;
       transition: transform 0.3s ease, background 0.3s;
       backdrop-filter: blur(4px);
+      padding: 10px;
     }
 
     .card:hover {
       transform: scale(1.05);
       background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      font-size: 1rem;
+      margin-top: 5px;
     }
 
     /* Bubbles */
@@ -96,6 +112,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="bubbles">
     <!-- Auto generate 30 random bubbles -->
@@ -115,12 +132,36 @@
   <h1>yashify.fun ✨</h1>
 
   <div class="container">
-    <a href="ElonMusk/index.html" class="card">Elon Musk Money </a>
-    <a href="project2/index.html" class="card"> SpaceX </a>
-    <a href="Rocks/index.html" class="card"> Rocks </a>
-      <a href="Stopat00.00sec/index.html" class="card"> stop at 00:00 sec </a>
-    <a href="Passwordgame/index.html" class="card"> Password Game </a>
-    <a href="Noise/index.html" class="card"> Noise  </a>
+    <a href="ElonMusk/index.html" class="card">
+      <img src="images/elon.jpg" alt="Elon Musk" class="card-img">
+      <span>Elon Musk Money</span>
+    </a>
+
+    <a href="project2/index.html" class="card">
+      <img src="images/spacex.jpg" alt="SpaceX" class="card-img">
+      <span>SpaceX</span>
+    </a>
+
+    <a href="Rocks/index.html" class="card">
+      <img src="images/rocks.jpg" alt="Rocks" class="card-img">
+      <span>Rocks</span>
+    </a>
+
+    <a href="Stopat00.00sec/index.html" class="card">
+      <img src="images/stopwatch.jpg" alt="Stopwatch" class="card-img">
+      <span>Stop at 00:00 sec</span>
+    </a>
+
+    <a href="Passwordgame/index.html" class="card">
+      <img src="images/password.jpg" alt="Password Game" class="card-img">
+      <span>Password Game</span>
+    </a>
+
+    <a href="Noise/index.html" class="card">
+      <img src="images/noise.jpg" alt="Noise" class="card-img">
+      <span>Noise</span>
+    </a>
   </div>
+
 </body>
 </html>
