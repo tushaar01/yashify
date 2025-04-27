@@ -34,15 +34,16 @@
 
     .container {
       z-index: 1;
-      display: flex;
+      display: grid;
       gap: 20px;
       justify-content: center;
-      flex-wrap: wrap;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
     }
 
     .card {
-      width: auto;
-      height: auto;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid #ffffff44;
       border-radius: 15px;
@@ -111,6 +112,21 @@
         opacity: 0;
       }
     }
+
+    /* Media Queries for mobile (2 columns) */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+      }
+    }
+
+    /* Media Queries for very small screens (1 column) */
+    @media (max-width: 480px) {
+      .container {
+        grid-template-columns: 1fr; /* 1 column for very small screens */
+      }
+    }
+
   </style>
 </head>
 
