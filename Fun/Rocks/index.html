@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rocks - yashify.fun</title>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow: hidden;
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
+            font-family: Arial, sans-serif;
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        #game-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            text-decoration: none;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+        
+        .brand:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="brand">yashify.fun</a>
+    <canvas id="game-canvas"></canvas>
+
+    <script>
+        (function() {
+            // Matter.js modules
+            const Engine = Matter.Engine;
+            const Render = Matter.Render;
+            const World = Matter.World;
+            const Bodies = Matter.Bodies;
+            const Body = Matter.Body;
+            const Composite = Matter.Composite;
+            const Mouse = Matter.Mouse;
+            const MouseConstraint = Matter.MouseConstraint;
+            const Events = Matter.Events;
+            
+            // Canvas and engine setup
+            const canvas = document.getElementById('game-canvas');
+            const engine = Engine.create({
+                enableSleeping: true,
+                constraintIterations: 10
+            });
+            const world = engine.world;
+            
+            // Adjust gravity to match original game feel
+            engine.gravity.scale = 0.001;
+            engine.gravity.y = 0.8;
+            
+            // Create renderer
+            const render = Render.create({
+                canvas: canvas,
+                engine: engine,
+                options: {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    wireframes: false,
+                    background: 'transparent',
+                    pixelRatio: window.devicePixelRatio || 1
+                }
+            });
+            
+            // Sound effects using Web Audio API
+            let audioContext;
+            let audioBuffers = {};
+            let soundsLoaded = false;
+            
+            // Initialize audio on first user interaction
+            function initAudio() {
+                if (audioContext) return Promise.resolve();
+                
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Define sound URLs (replace with actual URLs if needed)
+                const soundUrls = {
+                    pick: 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+NAwAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==',
+                    place: 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+NAwAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==',
+                    fall: 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+NAwAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ=='
+                };
+                
+                // Create Audio elements
+                const sounds = {
+                    pick: new Audio(soundUrls.pick),
+                    place: new Audio(soundUrls.place),
+                    fall: new Audio(soundUrls.fall)
+                };
+                
+                // Preload sounds
+                return Promise.all(Object.values(sounds).map(sound => {
+                    return new Promise(resolve => {
+                        sound.addEventListener('canplaythrough', resolve, { once: true });
+                        sound.load();
+                    });
+                })).then(() => {
+                    audioBuffers.sounds = sounds;
+                    soundsLoaded = true;
+                }).catch(err => {
+                    console.error('Error loading sounds:', err);
+                });
+            }
+            
+            // Play sound function
+            function playSound(name, volume = 1.0) {
+                if (!soundsLoaded || !audioBuffers.sounds) return;
+                
+                const sound = audioBuffers.sounds[name];
+                if (sound) {
+                    // Clone the audio to allow overlapping sounds
+                    const soundClone = sound.cloneNode();
+                    soundClone.volume = volume;
+                    soundClone.play().catch(e => {});
+                }
+            }
+            
+            // Create ground
+            const ground = Bodies.rectangle(
+                window.innerWidth / 2,
+                window.innerHeight - 20,
+                window.innerWidth * 2,
+                40,
+                {
+                    isStatic: true,
+                    restitution: 0.2,
+                    friction: 0.8,
+                    render: {
+                        fillStyle: '#8B4513', // Brown color for ground
+                        visible: true
+                    }
+                }
+            );
+            
+            // Rock definitions - closely matching original game
+            const createRocks = () => {
+                const rocks = [];
+                const scaleFactor = Math.min(1, window.innerWidth / 1000);
+                const baseSize = 60 * scaleFactor;
+                
+                // Define rock shapes based on screen size
+                const rockParams = [
+                    {
+                        vertices: [
+                            { x: -baseSize * 0.7, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.7, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.5, y: baseSize * 0.5 },
+                            { x: -baseSize * 0.7, y: baseSize * 0.5 }
+                        ],
+                        color: '#8B4513', // Darker brown
+                        mass: 10
+                    },
+                    {
+                        vertices: [
+                            { x: -baseSize * 0.6, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.6, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.3, y: baseSize * 0.5 },
+                            { x: -baseSize * 0.6, y: baseSize * 0.5 }
+                        ],
+                        color: '#A0522D', // Medium brown
+                        mass: 8
+                    },
+                    {
+                        vertices: [
+                            { x: -baseSize * 0.5, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.5, y: -baseSize * 0.5 },
+                            { x: baseSize * 0.4, y: baseSize * 0.1 },
+                            { x: baseSize * 0.2, y: baseSize * 0.5 },
+                            { x: -baseSize * 0.5, y: baseSize * 0.4 }
+                        ],
+                        color: '#CD853F', // Peru brown
+                        mass: 6
+                    },
+                    {
+                        vertices: [
+                            { x: -baseSize * 0.4, y: -baseSize * 0.4 },
+                            { x: baseSize * 0.4, y: -baseSize * 0.4 },
+                            { x: baseSize * 0.3, y: baseSize * 0.4 },
+                            { x: -baseSize * 0.4, y: baseSize * 0.4 }
+                        ],
+                        color: '#D2B48C', // Tan
+                        mass: 5
+                    }
+                ];
+                
+                // Calculate initial rock positions
+                const spacing = window.innerWidth / 6;
+                const startX = window.innerWidth / 2 - spacing * 1.5;
+                const y = window.innerHeight * 0.65;
+                
+                // Create each rock
+                rockParams.forEach((params, i) => {
+                    const rock = Bodies.fromVertices(
+                        startX + i * spacing, 
+                        y, 
+                        [params.vertices],
+                        {
+                            restitution: 0.2,
+                            friction: 0.6,
+                            mass: params.mass,
+                            render: {
+                                fillStyle: params.color,
+                                strokeStyle: '#000',
+                                lineWidth: 1
+                            }
+                        }
+                    );
+                    
+                    // Store original position for reset functionality
+                    rock.originalPosition = { x: startX + i * spacing, y: y };
+                    rocks.push(rock);
+                });
+                
+                return rocks;
+            };
+            
+            // Create rocks and add to world
+            let rocks = createRocks();
+            World.add(world, [ground, ...rocks]);
+            
+            // Setup mouse control
+            const mouse = Mouse.create(render.canvas);
+            const mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: {
+                        visible: false
+                    }
+                }
+            });
+            
+            // Add mouse constraint to world
+            World.add(world, mouseConstraint);
+            
+            // Disable page scrolling when interacting with canvas
+            render.mouse = mouse;
+            
+            // Track if we're dragging
+            let isDragging = false;
+            let lastRockMoved = null;
+            
+            // Mouse events for sound effects
+            Events.on(mouseConstraint, 'startdrag', event => {
+                // Initialize audio system on first interaction
+                if (!soundsLoaded) {
+                    initAudio();
+                }
+                
+                isDragging = true;
+                lastRockMoved = event.body;
+                
+                // Play pick up sound
+                playSound('pick');
+            });
+            
+            Events.on(mouseConstraint, 'enddrag', event => {
+                isDragging = false;
+                
+                // Play place sound
+                playSound('place');
+            });
+            
+            // Collision events for sound effects
+            Events.on(engine, 'collisionStart', event => {
+                if (!isDragging && soundsLoaded) {
+                    const pairs = event.pairs;
+                    
+                    for (let i = 0; i < pairs.length; i++) {
+                        const pair = pairs[i];
+                        
+                        // Don't play sound for collisions with the ground
+                        if (pair.bodyA === ground || pair.bodyB === ground) {
+                            continue;
+                        }
+                        
+                        // Calculate collision force
+                        const velocity = Math.abs(pair.collision.depth);
+                        
+                        // Only play sound if collision is significant
+                        if (velocity > 1) {
+                            const volume = Math.min(1.0, velocity / 10);
+                            playSound('fall', volume);
+                            break; // Only play sound once per collision group
+                        }
+                    }
+                }
+            });
+            
+            // Background rendering
+            const renderBackground = () => {
+                const ctx = render.context;
+                const width = render.options.width;
+                const height = render.options.height;
+                
+                // Sky gradient
+                const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, '#87CEEB');
+                gradient.addColorStop(1, '#B0E0E6');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, width, height);
+                
+                // Ground
+                ctx.fillStyle = '#8B4513';
+                ctx.fillRect(0, height - 40, width, 40);
+                
+                // Grass line
+                ctx.fillStyle = '#228B22';
+                ctx.fillRect(0, height - 40, width, 5);
+            };
+            
+            // Override render to add custom background
+            const originalRender = render.engine.render;
+            render.engine.render = function() {
+                renderBackground();
+                originalRender(render);
+            };
+            
+            // Reset functionality with double-click
+            let lastClickTime = 0;
+            canvas.addEventListener('click', function(e) {
+                const currentTime = new Date().getTime();
+                const clickDelta = currentTime - lastClickTime;
+                
+                // Detect double click (within 300ms)
+                if (clickDelta < 300 && clickDelta > 0) {
+                    // Reset all rocks to original positions
+                    rocks.forEach(rock => {
+                        Body.setPosition(rock, {
+                            x: rock.originalPosition.x,
+                            y: rock.originalPosition.y
+                        });
+                        Body.setAngle(rock, 0);
+                        Body.setVelocity(rock, { x: 0, y: 0 });
+                        Body.setAngularVelocity(rock, 0);
+                    });
+                }
+                
+                lastClickTime = currentTime;
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Update canvas dimensions
+                render.options.width = window.innerWidth;
+                render.options.height = window.innerHeight;
+                render.canvas.width = window.innerWidth;
+                render.canvas.height = window.innerHeight;
+                
+                // Update ground position
+                Body.setPosition(ground, {
+                    x: window.innerWidth / 2,
+                    y: window.innerHeight - 20
+                });
+                
+                // Remove old rocks
+                rocks.forEach(rock => World.remove(world, rock));
+                
+                // Create new rocks scaled for new screen size
+                rocks = createRocks();
+                World.add(world, rocks);
+            });
+            
+            // Run the engine
+            Engine.run(engine);
+            
+            // Run the renderer
+            Render.run(render);
+        })();
+    </script>
+</body>
+</html>
