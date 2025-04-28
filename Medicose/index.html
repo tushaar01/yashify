@@ -52,18 +52,19 @@
       background: rgba(0, 0, 0, 0.1);
     }
 
+    .card-img {
+      width: 100%;
+      height: 200px; /* Fixed height */
+      object-fit: contain; /* Show full image without cropping */
+      background: white; /* White background if image is smaller */
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
     .card h2 {
       margin: 15px 0 10px 0;
       font-size: 2rem;
       color: black;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 200px; /* Fixed height like Code 1 */
-      object-fit: cover; /* Same style as Code 1 */
-      border-radius: 10px;
-      margin-bottom: 10px;
     }
 
     .card p {
