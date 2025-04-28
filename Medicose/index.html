@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Medicose - Organs</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #000000;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Medicose - Organs</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff; /* White background */
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-        h1 {
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
-        }
+    h1 {
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
+      color: black;
+    }
 
-        .card-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
-        }
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ffffff44;
-            border-radius: 15px;
-            padding: 0;
-            width: 100%;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, background 0.3s;
-            backdrop-filter: blur(4px);
-            margin-bottom: 20px;
-        }
+    .card {
+      background: rgba(0, 0, 0, 0.05); /* Light black transparent */
+      border: 1px solid #00000022;
+      border-radius: 15px;
+      padding: 10px;
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s;
+      backdrop-filter: blur(2px);
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .card:hover {
-            transform: scale(1.02);
-            background: rgba(255, 255, 255, 0.2);
-        }
+    .card:hover {
+      transform: scale(1.02);
+      background: rgba(0, 0, 0, 0.1);
+    }
 
-        .card h2 {
-            margin: 15px 0 10px 0;
-            font-size: 2rem;
-        }
+    .card h2 {
+      margin: 15px 0 10px 0;
+      font-size: 2rem;
+      color: black;
+    }
 
-        .card-img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ffffff22;
-        }
+    .card-img {
+      width: 100%;
+      height: 200px; /* Fixed height like Code 1 */
+      object-fit: cover; /* Same style as Code 1 */
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
 
-        .card p {
-            margin: 15px;
-            font-size: 1rem;
-        }
+    .card p {
+      margin: 10px;
+      font-size: 1rem;
+      color: black;
+    }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            width: 100%;
-        }
-    </style>
+    a {
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -78,24 +86,24 @@
 
 <div class="card-container">
 
-    <a href="organs/heart.html">
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/organs/H.PNG" alt="Heart" class="card-img">
-            <h2>Heart</h2>
-            <p>Click to explore Heart details</p>
-        </div>
-    </a>
+  <a href="organs/heart.html">
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/organs/H.PNG" alt="Heart" class="card-img">
+      <h2>Heart</h2>
+      <p>Click to explore Heart details</p>
+    </div>
+  </a>
 
-    <!-- Baad me aur organs ke card bhi aise add kar sakte ho -->
-    <!-- Example:
-    <a href="organs/brain.html">
-        <div class="card">
-            <img src="brain-image-link.png" alt="Brain" class="card-img">
-            <h2>Brain</h2>
-            <p>Click to explore Brain details</p>
-        </div>
-    </a>
-    -->
+  <!-- Example for another organ (future expansion) -->
+  <!--
+  <a href="organs/brain.html">
+    <div class="card">
+      <img src="brain-image-link.png" alt="Brain" class="card-img">
+      <h2>Brain</h2>
+      <p>Click to explore Brain details</p>
+    </div>
+  </a>
+  -->
 
 </div>
 
