@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yashify - FUN Zone</title>
-   <!-- Favicon -->
   <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
 
   <style>
@@ -12,19 +11,19 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #000000;
-      overflow: hidden;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow: auto;
     }
 
     h1 {
       z-index: 1;
       font-size: 2rem;
-      margin-bottom: 30px;
+      margin: 30px 0;
       text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
       animation: glow 3s infinite alternate;
     }
@@ -39,10 +38,11 @@
       display: grid;
       gap: 20px;
       justify-content: center;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 4 columns for desktop */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       max-width: 1200px;
       width: 100%;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     .card {
@@ -77,13 +77,8 @@
       margin-bottom: 10px;
     }
 
-    .card span {
-      font-size: 1rem;
-      margin-top: 5px;
-    }
-/* Bubbles */
     .bubbles {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
       top: 0;
@@ -95,8 +90,6 @@
     .bubble {
       position: absolute;
       bottom: -150px;
-      width: 20px;
-      height: 20px;
       background: radial-gradient(circle, #00f0ff, #ff00cc);
       border-radius: 50%;
       opacity: 0.6;
@@ -113,35 +106,30 @@
         opacity: 0;
       }
     }
-    
-     /* Media Queries for mobile (2 columns) */
+
     @media (max-width: 768px) {
       .container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* Media Queries for very small screens (1 column) */
     @media (max-width: 480px) {
       .container {
-        grid-template-columns: 1fr; /* 1 column for very small screens */
+        grid-template-columns: 1fr;
       }
     }
-
-    
-    
   </style>
 </head>
-
 <body>
+
   <div class="bubbles">
-    <!-- Auto generate 30 random bubbles -->
     <script>
       for (let i = 0; i < 30; i++) {
         const bubble = document.createElement("div");
         bubble.classList.add("bubble");
         bubble.style.left = Math.random() * 100 + "vw";
-        bubble.style.width = bubble.style.height = Math.random() * 25 + 10 + "px";
+        const size = Math.random() * 25 + 10;
+        bubble.style.width = bubble.style.height = size + "px";
         bubble.style.animationDuration = Math.random() * 8 + 5 + "s";
         bubble.style.animationDelay = Math.random() * 5 + "s";
         document.querySelector(".bubbles").appendChild(bubble);
@@ -151,59 +139,38 @@
 
   <h1>Welcome to Yashify FUN Zone</h1>
 
-  <div class="card-container">
-  
-    <a href="Rocks/index.html">
-    <div class="card">
+  <div class="container">
+
+    <a href="Rocks/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Rocks/Rocks.PNG" alt="Rocks" class="card-img">
       <h2>Rocks</h2>
-   
-    </div>
-  </a>
+    </a>
 
-  <a href="ElonMusk/index.html">
-    <div class="card">
+    <a href="ElonMusk/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
       <h2>Elon Musk Money</h2>
-   
-    </div>
-  </a>
-  
-   <a href="SpaceX/index.html">
-    <div class="card">
+    </a>
+
+    <a href="SpaceX/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/SpaceX/Space.PNG" alt="Space X" class="card-img">
       <h2>Space X</h2>
-   
-    </div>
-  </a>
-  
-  
-   <a href="Noise/index.html">
-    <div class="card">
+    </a>
+
+    <a href="Noise/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Noise/No.PNG" alt="Noise" class="card-img">
       <h2>Noise</h2>
-   
-    </div>
-  </a>
-  
-   <a href="Passwordgame/index.html">
-    <div class="card">
+    </a>
+
+    <a href="Passwordgame/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Passwordgame/P.PNG" alt="Password Game" class="card-img">
       <h2>Password Game</h2>
-   
-    </div>
-  </a>
+    </a>
 
- <a href="stopat00.00sec/index.html">
-    <div class="card">
+    <a href="stopat00.00sec/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
       <h2>Stop at 00:00 sec</h2>
-   
-    </div>
-  </a>
+    </a>
 
-</div>
+  </div>
 </body>
 </html>
-    
-    
