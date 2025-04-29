@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashify.fun - Interactive Playgrounds</title>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #5b42f3;
+            --background-color: #f5f5f5;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--primary-color);
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111;
+        }
+        
+        .project-description {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .featured-project {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-project {
+                grid-column: span 1;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Spend Elon Musk's Money specific styles */
+        .money-game {
+            width: 100%;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .money-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+        
+        .elon-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        .money-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2ecc71;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .item-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .item-price {
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .item-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .counter {
+            width: 50px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-sell {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-buy {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .jump {
+            animation: jump 0.5s ease;
+        }
+        
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">Yashify.fun</h1>
+            <p class="tagline">This is where I make fun interactive stuff on the web.</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Newsletter
+                </a>
+                <a href="#" class="social-link">
+                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                    </svg>
+                    Twitter
+                </a>
+                <a href="#" class="social-link">
+                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                    Buy me a coffee
+                </a>
+            </div>
+            
+            <p>Say hello: <a href="mailto:hello@yashify.fun" class="text-indigo-600 hover:underline">hello@yashify.fun</a></p>
+        </header>
+        
+        <div class="projects-grid">
+            <!-- Featured Project - Spend Elon Musk's Money -->
+            <div class="project-card featured-project fade-in">
+                <div id="spend-elon-money" class="money-game">
+                    <div class="money-header">
+                        <h2 class="text-3xl font-bold mb-4">Spend Elon Musk's Money</h2>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Elon_Musk_%28cropped%29.jpg" alt="Elon Musk" class="elon-image">
+                        <div class="money-counter" id="money-left">$363,000,000,000</div>
+                    </div>
+                    
+                    <div class="items-grid">
+                        <!-- Tesla Model 3 -->
+                        <div class="item">
+                            <img src="https://neal.fun/spend/images/tesla.jpg" alt="Tesla Model 3" class="item-image">
+                            <h3 class="item-name">Tesla Model 3</h3>
+                            <p class="item-price">$40,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="40000" disabled>Sell</button>
+                                <span class="counter" data-item="tesla">0</span>
+                                <button class="btn btn-buy" data-price="40000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- SpaceX Falcon 9 Launch -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/falcon9.jpg" alt="SpaceX Falcon 9" class="item-image">
+                            <h3 class="item-name">SpaceX Falcon 9 Launch</h3>
+                            <p class="item-price">$67,000,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="67000000" disabled>Sell</button>
+                                <span class="counter" data-item="falcon9">0</span>
+                                <button class="btn btn-buy" data-price="67000000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Neuralink Implant -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/neuralink.jpg" alt="Neuralink" class="item-image">
+                            <h3 class="item-name">Neuralink Implant</h3>
+                            <p class="item-price">$10,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="10000" disabled>Sell</button>
+                                <span class="counter" data-item="neuralink">0</span>
+                                <button class="btn btn-buy" data-price="10000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Cybertruck -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/cybertruck.jpg" alt="Cybertruck" class="item-image">
+                            <h3 class="item-name">Cybertruck</h3>
+                            <p class="item-price">$70,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="70000" disabled>Sell</button>
+                                <span class="counter" data-item="cybertruck">0</span>
+                                <button class="btn btn-buy" data-price="70000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Starlink Subscription -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/starlink.jpg" alt="Starlink" class="item-image">
+                            <h3 class="item-name">Starlink Lifetime Subscription</h3>
+                            <p class="item-price">$10,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="10000" disabled>Sell</button>
+                                <span class="counter" data-item="starlink">0</span>
+                                <button class="btn btn-buy" data-price="10000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Mars Trip -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/mars.jpg" alt="Mars Trip" class="item-image">
+                            <h3 class="item-name">Trip to Mars</h3>
+                            <p class="item-price">$500,000,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="500000000" disabled>Sell</button>
+                                <span class="counter" data-item="marstrip">0</span>
+                                <button class="btn btn-buy" data-price="500000000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media Platform -->
+                        <div class="item">
+                            <img src="https://cdn.jsdelivr.net/gh/yashify-fun/assets@main/twitter.jpg" alt="Social Media Platform" class="item-image">
+                            <h3 class="item-name">Social Media Platform</h3>
+                            <p class="item-price">$44,000,000,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="44000000000" disabled>Sell</button>
+                                <span class="counter" data-item="socialmedia">0</span>
+                                <button class="btn btn-buy" data-price="44000000000">Buy</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Private Island -->
+                        <div class="item">
+                            <img src="https://neal.fun/spend/images/yacht.jpg" alt="Private Island" class="item-image">
+                            <h3 class="item-name">Private Island</h3>
+                            <p class="item-price">$125,000,000</p>
+                            <div class="item-controls">
+                                <button class="btn btn-sell" data-price="125000000" disabled>Sell</button>
+                                <span class="counter" data-item="island">0</span>
+                                <button class="btn btn-buy" data-price="125000000">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Life Stats -->
+            <div class="project-card fade-in">
+                <img src="https://placehold.co/600x400/f5f5f5/333?text=Life+Stats" alt="Life Stats" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Life Stats</h3>
+                    <p class="project-description">Track your life's most important statistics and visualize your journey through time.</p>
+                </div>
+            </div>
+            
+            <!-- Draw Logos from Memory -->
+            <div class="project-card fade-in">
+                <img src="https://placehold.co/600x400/f5f5f5/333?text=Draw+Logos" alt="Draw Logos from Memory" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Draw Logos from Memory</h3>
+                    <p class="project-description">Test your memory by drawing famous brand logos and see how close you can get to the originals.</p>
+                </div>
+            </div>
+            
+            <!-- Infinite Craft -->
+            <div class="project-card fade-in">
+                <img src="https://placehold.co/600x400/f5f5f5/333?text=Infinite+Craft" alt="Infinite Craft" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Infinite Craft</h3>
+                    <p class="project-description">Combine elements to discover new ones in this endless crafting sandbox.</p>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="project-card fade-in">
+                <img src="https://placehold.co/600x400/f5f5f5/333?text=Progress" alt="Progress" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Progress</h3>
+                    <p class="project-description">Visualize how far humanity has come through interactive timelines.</p>
+                </div>
+            </div>
+            
+            <!-- Password Game -->
+            <div class="project-card fade-in">
+                <img src="https://placehold.co/600x400/f5f5f5/333?text=Password+Game" alt="Password Game" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Password Game</h3>
+                    <p class="project-description">Create a password that meets increasingly absurd security requirements.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Â© 2025 Yashify.fun - All interactive experiences on this site are inspired by Neal.fun</p>
+            <p><a href="#" class="text-indigo-600 hover:underline">Privacy Policy</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Money spending game functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            let money = 363000000000; // Elon's starting money (363 billion)
+            const moneyDisplay = document.getElementById('money-left');
+            const buyButtons = document.querySelectorAll('.btn-buy');
+            const sellButtons = document.querySelectorAll('.btn-sell');
+            const counters = document.querySelectorAll('.counter');
+            
+            // Format money with commas
+            function formatMoney(amount) {
+                return '$' + amount.toLocaleString('en-US');
+            }
+            
+            // Update money display
+            function updateMoneyDisplay() {
+                moneyDisplay.textContent = formatMoney(money);
+                
+                // Add animation class and remove it after animation completes
+                moneyDisplay.classList.add('jump');
+                setTimeout(() => {
+                    moneyDisplay.classList.remove('jump');
+                }, 500);
+            }
+            
+            // Buy item
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const price = parseInt(this.dataset.price);
+                    
+                    if (money >= price) {
+                        money -= price;
+                        updateMoneyDisplay();
+                        
+                        // Update item counter
+                        const counterElement = this.parentElement.querySelector('.counter');
+                        let count = parseInt(counterElement.textContent);
+                        count++;
+                        counterElement.textContent = count;
+                        
+                        // Enable sell button
+                        this.parentElement.querySelector('.btn-sell').disabled = false;
+                        
+                        // Add animation to the item
+                        this.closest('.item').classList.add('jump');
+                        setTimeout(() => {
+                            this.closest('.item').classList.remove('jump');
+                        }, 500);
+                    }
+                    
+                    // Disable buy button if not enough money
+                    if (money < price) {
+                        this.disabled = true;
+                    }
+                    
+                    // Disable all buy buttons that are too expensive
+                    buyButtons.forEach(btn => {
+                        const btnPrice = parseInt(btn.dataset.price);
+                        if (money < btnPrice) {
+                            btn.disabled = true;
+                        }
+                    });
+                });
+            });
+            
+            // Sell item
+            sellButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const price = parseInt(this.dataset.price);
+                    const counterElement = this.parentElement.querySelector('.counter');
+                    let count = parseInt(counterElement.textContent);
+                    
+                    if (count > 0) {
+                        count--;
+                        counterElement.textContent = count;
+                        money += price;
+                        updateMoneyDisplay();
+                        
+                        // Disable sell button if count is 0
+                        if (count === 0) {
+                            this.disabled = true;
+                        }
+                        
+                        // Enable all buy buttons that are now affordable
+                        buyButtons.forEach(btn => {
+                            const btnPrice = parseInt(btn.dataset.price);
+                            if (money >= btnPrice) {
+                                btn.disabled = false;
+                            }
+                        });
+                        
+                        // Add animation to the item
+                        this.closest('.item').classList.add('jump');
+                        setTimeout(() => {
+                            this.closest('.item').classList.remove('jump');
+                        }, 500);
+                    }
+                });
+            });
+            
+            // Scroll animation for fade-in elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
