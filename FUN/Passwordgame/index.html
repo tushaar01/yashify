@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Password Game - yashify.fun</title>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --olive-green: #556B2F;
+            --light-olive: #7a995e;
+            --dark-olive: #3e4f21;
+            --text-color: #f0f0f0;
+        }
+        
+        body {
+            background-color: var(--olive-green);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid var(--light-olive);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .rules-container {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .rule {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .rule.valid {
+            border-left-color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+        
+        .rule.invalid {
+            border-left-color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        
+        .rule-number {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 0.5s steps(40, end);
+        }
+        
+        @keyframes fire {
+            0% { transform: scale(1.0) rotate(-2deg); }
+            25% { transform: scale(1.1) rotate(2deg); }
+            50% { transform: scale(1.0) rotate(-1deg); }
+            75% { transform: scale(1.2) rotate(1deg); }
+            100% { transform: scale(1.0) rotate(-2deg); }
+        }
+        
+        .on-fire {
+            color: #ff6b35;
+            text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35;
+            animation: fire 0.5s infinite;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--olive-green);
+            border: 2px solid var(--light-olive);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 80%;
+            text-align: center;
+        }
+        
+        .button {
+            background-color: var(--light-olive);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            background-color: var(--dark-olive);
+        }
+        
+        .egg {
+            font-size: 24px;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+        
+        .egg:hover {
+            transform: rotate(10deg);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: var(--dark-olive);
+            border-radius: 3px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--light-olive);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .captcha-container {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .blinking {
+            animation: blink 1s infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">The Password Game</h1>
+        
+        <div class="rules-container">
+            <p class="mb-4">Please choose a password:</p>
+            <div class="password-wrapper relative">
+                <textarea id="password-input" class="password-input" rows="4" placeholder="Type your password here..." autofocus></textarea>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
+            
+            <div id="rules-list">
+                <!-- Rules will be added here dynamically -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            powered by <span class="font-bold">yashify.fun</span>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Congratulations!</h2>
+            <p class="mb-6">You've successfully created a password that meets all the requirements! You must be some sort of password genius.</p>
+            <p class="mb-4">Your final password:</p>
+            <div id="final-password" class="bg-black p-4 rounded mb-6 overflow-x-auto text-sm"></div>
+            <button id="restart-button" class="button">Play Again</button>
+        </div>
+    </div>
+    
+    <!-- Failure Modal -->
+    <div id="failure-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Password Rejected!</h2>
+            <p class="mb-6">Your password was rejected by our extremely reasonable system. Maybe try again with something more... compliant?</p>
+            <button id="try-again-button" class="button">Try Again</button>
+        </div>
+    </div>
+    
+    <!-- Fake Virus Modal -->
+    <div id="virus-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-red-500">WARNING: VIRUS DETECTED!</h2>
+            <p class="mb-6 blinking">Your system has been infected with 17 viruses while creating this password!</p>
+            <div class="fake-progress-bar bg-gray-200 h-4 rounded mb-6">
+                <div id="fake-progress" class="bg-red-500 h-full rounded" style="width: 30%;"></div>
+            </div>
+            <p id="scan-text" class="mb-6">Scanning system... 30% complete</p>
+            <button id="close-virus-button" class="button" style="display: none;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Audio elements
+        const keySound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/beep.mp3');
+        const successSound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/drum-machine/Heater-1.mp3');
+        const errorSound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/drum-machine/Heater-2.mp3');
+        
+        // Reduce volume
+        keySound.volume = 0.2;
+        successSound.volume = 0.3;
+        errorSound.volume = 0.3;
+        
+        // Game state
+        const gameState = {
+            currentRule: 0,
+            rules: [],
+            validRules: new Set(),
+            invalidRules: new Set(),
+            maxRules: 23, // Total number of rules to add
+            eggHatched: false,
+            lastFeedTime: null,
+            sacrificedLetters: [],
+            ruleInterval: null,
+            fireActive: false
+        };
+        
+        // DOM elements
+        const passwordInput = document.getElementById('password-input');
+        const rulesList = document.getElementById('rules-list');
+        const progressBar = document.getElementById('progress');
+        const successModal = document.getElementById('success-modal');
+        const failureModal = document.getElementById('failure-modal');
+        const virusModal = document.getElementById('virus-modal');
+        const finalPassword = document.getElementById('final-password');
+        const restartButton = document.getElementById('restart-button');
+        const tryAgainButton = document.getElementById('try-again-button');
+        const closeVirusButton = document.getElementById('close-virus-button');
+        
+        // Rules definitions
+        const ruleDefs = [
+            { text: "Your password must be at least 5 characters" },
+            { text: "Your password must include a number" },
+            { text: "Your password must include an uppercase letter" },
+            { text: "Your password must include a special character" },
+            { text: "The digits in your password must add up to 25" },
+            { text: "Your password must include a month of the year" },
+            { text: "Your password must include a Roman numeral" },
+            { text: "Your password must include one of our sponsors (CheesyBites, FizzPop, or GreenGlow)" },
+            { text: "The Roman numerals in your password should multiply to 35" },
+            { text: "Your password must include this CAPTCHA: ", captcha: true },
+            { text: "Your password must include today's Wordle answer", dynamicWord: true },
+            { text: "Your password must include a two letter symbol from the periodic table" },
+            { text: "Your password must include the current phase of the moon as an emoji" },
+            { text: "Your password must include the name of this country: ", geoguess: true },
+            { text: "Your password must include a leap year" },
+            { text: "Your password must include the best move in algebraic chess notation", chess: true },
+            { text: "🥚 This is my chicken Gary. He hasn't hatched yet. Please put him in your password and keep him safe" },
+            { text: "Your password must contain one of the following affirmations: I am loved | I am worthy | I am enough" },
+            { text: "Oh no! Your password is on fire 🔥. Quick, put it out!", special: "fire" },
+            { text: "Your password is not strong enough 🏋️‍♂️. Add some muscle!" },
+            { text: "The elements in your password must have atomic numbers that add up to 200" },
+            { text: "All the vowels in your password must be bolded" },
+            { text: "Gary has hatched! Please don't forget to feed him. He eats three 🐛 every minute", special: "chicken" }
+        ];
+        
+        // Initialize game
+        function initGame() {
+            gameState.currentRule = 0;
+            gameState.rules = [];
+            gameState.validRules = new Set();
+            gameState.invalidRules = new Set();
+            gameState.eggHatched = false;
+            gameState.lastFeedTime = null;
+            gameState.sacrificedLetters = [];
+            gameState.fireActive = false;
+            
+            rulesList.innerHTML = '';
+            passwordInput.value = '';
+            
+            // Add first rule
+            addNextRule();
+            
+            // Set up rule interval - adds a new rule every 15 seconds
+            if (gameState.ruleInterval) {
+                clearInterval(gameState.ruleInterval);
+            }
+            
+            gameState.ruleInterval = setInterval(() => {
+                if (gameState.currentRule < gameState.maxRules) {
+                    addNextRule();
+                } else {
+                    clearInterval(gameState.ruleInterval);
+                }
+            }, 15000);
+        }
+        
+        // Add the next rule to the game
+        function addNextRule() {
+            if (gameState.currentRule >= ruleDefs.length) return;
+            
+            const ruleIndex = gameState.currentRule;
+            const ruleData = ruleDefs[ruleIndex];
+            
+            // Create rule element
+            const ruleElement = document.createElement('div');
+            ruleElement.classList.add('rule', 'typewriter');
+            ruleElement.id = `rule-${ruleIndex}`;
+            
+            let ruleContent = `<span class="rule-number">${ruleIndex + 1}.</span> ${ruleData.text}`;
+            
+            // Add special content if needed
+            if (ruleData.captcha) {
+                const captcha = generateCaptcha();
+                ruleContent += `<div class="captcha-container font-mono mt-2">${captcha}</div>`;
+                ruleData.captchaValue = captcha;
+            } else if (ruleData.dynamicWord) {
+                const word = getRandomWord();
+                ruleContent += `: <span class="font-semibold">${word}</span>`;
+                ruleData.wordValue = word;
+            } else if (ruleData.geoguess) {
+                const country = getRandomCountry();
+                ruleContent += `<span class="font-semibold">${country}</span>`;
+                ruleData.countryValue = country;
+            } else if (ruleData.chess) {
+                const chessMove = getRandomChessMove();
+                ruleContent += `: <span class="font-mono">${chessMove}</span>`;
+                ruleData.chessValue = chessMove;
+            }
+            
+            ruleElement.innerHTML = ruleContent;
+            rulesList.appendChild(ruleElement);
+            
+            // Add sound effect
+            keySound.play();
+            
+            // Add the rule to our state
+            gameState.rules.push({
+                id: ruleIndex,
+                element: ruleElement,
+                data: ruleData
+            });
+            
+            // Increment rule counter
+            gameState.currentRule++;
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Validate all rules with the current password
+            validateRules();
+            
+            // Add special behaviors
+            if (ruleData.special === "fire") {
+                setTimeout(() => {
+                    startFire();
+                }, 2000);
+            } else if (ruleData.special === "chicken" && !gameState.eggHatched) {
+                gameState.eggHatched = true;
+                gameState.lastFeedTime = Date.now();
+                startChickenMonitoring();
+            }
+            
+            // Easter egg: 50% chance of triggering fake virus after 10 rules
+            if (gameState.currentRule === 10 && Math.random() < 0.5) {
+                setTimeout(showFakeVirus, 5000);
+            }
+        }
+        
+        // Start the fire mechanic
+        function startFire() {
+            gameState.fireActive = true;
+            
+            // Add fire animation to password
+            passwordInput.classList.add('on-fire');
+            
+            // Play sound effect
+            errorSound.play();
+            
+            // Wait for user to "put out the fire" by typing "water" 
+            // or clicking the password field rapidly
+            let clickCount = 0;
+            const fireExtinguisher = (e) => {
+                clickCount++;
+                if (clickCount >= 5 || passwordInput.value.toLowerCase().includes("water")) {
+                    passwordInput.classList.remove('on-fire');
+                    gameState.fireActive = false;
+                    passwordInput.removeEventListener('click', fireExtinguisher);
+                    validateRules(); // Re-validate rules
+                    successSound.play();
+                }
+            };
+            
+            passwordInput.addEventListener('click', fireExtinguisher);
+        }
+        
+        // Start the chicken monitoring
+        function startChickenMonitoring() {
+            setInterval(() => {
+                if (gameState.eggHatched) {
+                    const now = Date.now();
+                    const elapsedMinutes = (now - gameState.lastFeedTime) / (60 * 1000);
+                    
+                    // Check if chicken needs to be fed
+                    if (elapsedMinutes >= 1) {
+                        const chickenRule = gameState.rules.find(r => r.data.special === "chicken");
+                        if (chickenRule) {
+                            chickenRule.element.classList.add('shake');
+                            setTimeout(() => {
+                                chickenRule.element.classList.remove('shake');
+                            }, 1000);
+                            
+                            // Make error sound
+                            errorSound.play();
+                            
+                            // Reset the feed time, but mark as hungry
+                            gameState.lastFeedTime = now;
+                        }
+                    }
+                }
+            }, 10000); // Check every 10 seconds
+        }
+        
+        // Feed the chicken when user adds worms to password
+        function feedChicken() {
+            const wormCount = (passwordInput.value.match(/🐛/g) || []).length;
+            if (wormCount >= 3) {
+                gameState.lastFeedTime = Date.now();
+                return true;
+            }
+            return false;
+        }
+        
+        // Update the progress bar
+        function updateProgressBar() {
+            const progress = (gameState.currentRule / gameState.maxRules) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Validate each rule against the current password
+        function validateRules() {
+            const password = passwordInput.value;
+            
+            gameState.validRules.clear();
+            gameState.invalidRules.clear();
+            
+            gameState.rules.forEach(rule => {
+                const ruleId = rule.id;
+                const ruleData = rule.data;
+                const element = rule.element;
+                
+                let isValid = false;
+                
+                // Check each rule based on its type
+                switch (ruleId) {
+                    case 0: // At least 5 characters
+                        isValid = password.length >= 5;
+                        break;
+                    case 1: // Include a number
+                        isValid = /\d/.test(password);
+                        break;
+                    case 2: // Include uppercase letter
+                        isValid = /[A-Z]/.test(password);
+                        break;
+                    case 3: // Include special character
+                        isValid = /[^A-Za-z0-9]/.test(password);
+                        break;
+                    case 4: // Digits sum to 25
+                        const digits = password.match(/\d/g) || [];
+                        const sum = digits.reduce((acc, digit) => acc + parseInt(digit), 0);
+                        isValid = sum === 25;
+                        break;
+                    case 5: // Include month
+                        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                        isValid = months.some(month => password.includes(month) || password.includes(month.toLowerCase()));
+                        break;
+                    case 6: // Include Roman numeral
+                        isValid = /[IVXLCDM]/.test(password);
+                        break;
+                    case 7: // Include sponsor
+                        isValid = /(CheesyBites|FizzPop|GreenGlow)/i.test(password);
+                        break;
+                    case 8: // Roman numerals multiply to 35
+                        const romanNumerals = password.match(/[IVXLCDM]+/g) || [];
+                        if (romanNumerals.length > 0) {
+                            // Simple version just checking for specific combinations that multiply to 35
+                            isValid = password.includes('XXXV') || password.includes('VII') && password.includes('V') || 
+                                     password.includes('V') && password.includes('VII');
+                        }
+                        break;
+                    case 9: // Include CAPTCHA
+                        isValid = password.includes(ruleData.captchaValue);
+                        break;
+                    case 10: // Include Wordle answer
+                        isValid = password.toLowerCase().includes(ruleData.wordValue.toLowerCase());
+                        break;
+                    case 11: // Include element symbol
+                        const elements = ['He', 'Li', 'Be', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'Cl', 'Ar', 'Ca', 'Fe', 'Ni', 'Cu', 'Zn', 'Br', 'Kr', 'Ag', 'Cd', 'Sn', 'Xe', 'Au', 'Hg', 'Pb'];
+                        isValid = elements.some(el => new RegExp(el, 'i').test(password));
+                        break;
+                    case 12: // Include moon phase emoji
+                        const moonEmojis = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+                        isValid = moonEmojis.some(emoji => password.includes(emoji));
+                        break;
+                    case 13: // Include country
+                        isValid = password.toLowerCase().includes(ruleData.countryValue.toLowerCase());
+                        break;
+                    case 14: // Include leap year
+                        const leapYears = [2024, 2020, 2016, 2012, 2008, 2004, 2000, 1996];
+                        isValid = leapYears.some(year => password.includes(year.toString()));
+                        break;
+                    case 15: // Include chess move
+                        isValid = password.includes(ruleData.chessValue);
+                        break;
+                    case 16: // Include egg
+                        isValid = password.includes('🥚');
+                        break;
+                    case 17: // Include affirmation
+                        const affirmations = ['I am loved', 'I am worthy', 'I am enough'];
+                        isValid = affirmations.some(aff => password.includes(aff));
+                        break;
+                    case 18: // Put out fire
+                        isValid = !gameState.fireActive;
+                        break;
+                    case 19: // Password strength
+                        isValid = password.includes('💪') || password.includes('strong');
+                        break;
+                    case 20: // Elements atomic numbers
+                        // Simplified check - include specific combinations
+                        const elementCombos = ['NaMgAlSi', 'FeCuZnCl', 'CaCuMgF'];
+                        isValid = elementCombos.some(combo => password.includes(combo));
+                        break;
+                    case 21: // Bolded vowels
+                        const hasVowels = /[aeiou]/i.test(password);
+                        // Just check for HTML bold tags as a proxy
+                        isValid = hasVowels && (password.includes('<b>') || password.includes('strong'));
+                        break;
+                    case 22: // Feed chicken
+                        if (gameState.eggHatched) {
+                            isValid = feedChicken();
+                        } else {
+                            // If chicken hasn't hatched, rule is valid
+                            isValid = true;
+                        }
+                        break;
+                }
+                
+                // Update rule status classes
+                if (isValid) {
+                    element.classList.remove('invalid');
+                    element.classList.add('valid');
+                    gameState.validRules.add(ruleId);
+                } else {
+                    element.classList.remove('valid');
+                    element.classList.add('invalid');
+                    gameState.invalidRules.add(ruleId);
+                }
+            });
+            
+            // Check if all rules are valid
+            if (gameState.validRules.size === gameState.rules.length && gameState.rules.length >= 5) {
+                showSuccessModal();
+            }
+        }
+        
+        // Generate a random CAPTCHA
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+        
+        // Get a random word for the "Wordle answer"
+        function getRandomWord() {
+            const words = ['BEACH', 'ROBOT', 'TIGER', 'PLANT', 'MUSIC', 'HAPPY', 'DREAM', 'LAUGH', 'PIZZA', 'WATER'];
+            return words[Math.floor(Math.random() * words.length)];
+        }
+        
+        // Get a random country for the geography rule
+        function getRandomCountry() {
+            const countries = ['Canada', 'Brazil', 'Japan', 'Egypt', 'France', 'Kenya', 'Australia', 'India', 'Mexico', 'Norway'];
+            return countries[Math.floor(Math.random() * countries.length)];
+        }
+        
+        // Get a random chess move
+        function getRandomChessMove() {
+            const moves = ['e4', 'Nf3', 'Bc4', 'O-O', 'Rxd8+', 'Qh5+', 'Bxf7+', 'Nbd7'];
+            return moves[Math.floor(Math.random() * moves.length)];
+        }
+        
+        // Show success modal
+        function showSuccessModal() {
+            finalPassword.textContent = passwordInput.value;
+            successModal.style.display = 'flex';
+            successSound.play();
+            clearInterval(gameState.ruleInterval);
+        }
+        
+        // Show failure modal
+        function showFailureModal() {
+            failureModal.style.display = 'flex';
+            errorSound.play();
+        }
+        
+        // Show fake virus modal
+        function showFakeVirus() {
+            virusModal.style.display = 'flex';
+            errorSound.play();
+            
+            let progress = 30;
+            const fakeScan = setInterval(() => {
+                progress += 10;
+                document.getElementById('fake-progress').style.width = `${progress}%`;
+                document.getElementById('scan-text').textContent = `Scanning system... ${progress}% complete`;
+                
+                if (progress >= 100) {
+                    clearInterval(fakeScan);
+                    document.getElementById('scan-text').textContent = 'Scan complete. No actual viruses found. It was just a joke!';
+                    closeVirusButton.style.display = 'inline-block';
+                }
+            }, 1000);
+        }
+        
+        // Event listeners
+        passwordInput.addEventListener('input', () => {
+            validateRules();
+            keySound.currentTime = 0;
+            keySound.play();
+        });
+        
+        restartButton.addEventListener('click', () => {
+            successModal.style.display = 'none';
+            initGame();
+        });
+        
+        tryAgainButton.addEventListener('click', () => {
+            failureModal.style.display = 'none';
+        });
+        
+        closeVirusButton.addEventListener('click', () => {
+            virusModal.style.display = 'none';
+        });
+        
+        // Initialize the game on load
+        window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>
