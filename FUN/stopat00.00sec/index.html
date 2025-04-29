@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop at 00.000! - The Perfect Timing Game</title>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+        
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .game-ui {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            z-index: 10;
+        }
+        
+        .timer-display {
+            font-size: 5rem;
+            text-align: center;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            color: #fff;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease;
+            user-select: none;
+        }
+        
+        .stop-button {
+            background: linear-gradient(45deg, #ff00aa, #00ffff);
+            border: none;
+            padding: 15px 30px;
+            font-size: 2rem;
+            border-radius: 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .stop-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+        }
+        
+        .stop-button:active {
+            transform: scale(0.95);
+        }
+        
+        .result-message {
+            font-size: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            min-height: 3rem;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+        
+        .stats-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 1rem 0;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        .perfect {
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+            animation: perfect-pulse 1s infinite;
+            font-size: 3rem;
+        }
+        
+        .missed {
+            color: #f00;
+            text-shadow: 0 0 10px #f00, 0 0 20px #f00;
+        }
+        
+        .brand-tag {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1rem;
+            opacity: 0.7;
+            text-shadow: 0 0 5px #0ff;
+        }
+        
+        .mode-switch {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0ff;
+            color: #0ff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .mode-switch:hover {
+            background: rgba(0, 255, 255, 0.2);
+        }
+        
+        .player-form {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .player-input {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0ff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            margin-right: 10px;
+            outline: none;
+        }
+        
+        .player-input:focus {
+            box-shadow: 0 0 10px #0ff;
+        }
+        
+        .history-container {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #0ff;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .history-table th, .history-table td {
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .history-table th {
+            color: #0ff;
+            border-bottom: 1px solid #0ff;
+        }
+        
+        .challenge-target {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #ff00aa;
+            text-shadow: 0 0 10px #ff00aa;
+        }
+        
+        @keyframes perfect-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: firework-animation 1s forwards;
+        }
+        
+        @keyframes firework-animation {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0ff;
+            box-shadow: 0 0 20px #0ff;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .modal-button {
+            background: linear-gradient(45deg, #ff00aa, #00ffff);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .modal-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.9);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timer-display {
+                font-size: 3.5rem;
+            }
+            
+            .stop-button {
+                font-size: 1.5rem;
+                padding: 12px 25px;
+            }
+            
+            .result-message {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .timer-display {
+                font-size: 2.8rem;
+            }
+            
+            .stop-button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            
+            .result-message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="canvas-container"></div>
+        
+        <button class="mode-switch" id="mode-switch">SWITCH TO CHALLENGE MODE</button>
+        
+        <div class="game-ui">
+            <div id="challenge-target" class="challenge-target" style="display: none;"></div>
+            
+            <div id="timer-display" class="timer-display">00.000</div>
+            
+            <button id="stop-button" class="stop-button">STOP</button>
+            
+            <div id="result-message" class="result-message"></div>
+            
+            <div class="stats-container">
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                        <div class="text-xs text-cyan-400">SCORE</div>
+                        <div id="score" class="text-2xl">0</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-cyan-400">PERFECT HITS</div>
+                        <div id="perfect-hits" class="text-2xl">0</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-cyan-400">ACCURACY</div>
+                        <div id="avg-accuracy" class="text-2xl">0.000</div>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="player-form" class="player-form">
+                <input type="text" id="player-name" class="player-input" placeholder="Enter your name" maxlength="15">
+                <button type="submit" class="stop-button" style="padding: 8px 15px; font-size: 1rem; display: inline-block; width: auto;">SAVE</button>
+            </form>
+            
+            <div class="history-container">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Perfect Hits</th>
+                            <th>Accuracy</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        <!-- Player history rows will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="brand-tag">powered by yashify.fun</div>
+        <div id="fireworks" class="fireworks"></div>
+    </div>
+    
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Stop at 00.000!</h2>
+            <p>Try to stop the timer exactly when it hits .000</p>
+            <p class="mt-4">Perfect hits give you bonus points!</p>
+            <p class="mt-4">Challenge yourself in Challenge Mode where you need to stop at a specific time.</p>
+            <button id="start-game" class="modal-button">START GAME</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const timerDisplay = document.getElementById('timer-display');
+        const stopButton = document.getElementById('stop-button');
+        const resultMessage = document.getElementById('result-message');
+        const scoreElement = document.getElementById('score');
+        const perfectHitsElement = document.getElementById('perfect-hits');
+        const avgAccuracyElement = document.getElementById('avg-accuracy');
+        const playerForm = document.getElementById('player-form');
+        const playerNameInput = document.getElementById('player-name');
+        const historyBody = document.getElementById('history-body');
+        const modeSwitch = document.getElementById('mode-switch');
+        const challengeTarget = document.getElementById('challenge-target');
+        const fireworksContainer = document.getElementById('fireworks');
+        const welcomeModal = document.getElementById('welcome-modal');
+        const startGameButton = document.getElementById('start-game');
+        const canvasContainer = document.getElementById('canvas-container');
+
+        // Game state
+        let gameState = {
+            timer: 0,
+            intervalId: null,
+            running: false,
+            score: 0,
+            perfectHits: 0,
+            totalAttempts: 0,
+            totalAccuracy: 0,
+            gameMode: 'standard', // 'standard' or 'challenge'
+            challengeTime: null,
+            playerName: localStorage.getItem('playerName') || ''
+        };
+
+        // Set stored player name if available
+        playerNameInput.value = gameState.playerName;
+
+        // Sounds
+        const sounds = {
+            click: new Howl({
+                src: ['https://cdn.jsdelivr.net/gh/kennethlaskoski/web-effects@main/click.mp3'],
+                volume: 0.5
+            }),
+            perfect: new Howl({
+                src: ['https://cdn.jsdelivr.net/gh/kennethlaskoski/web-effects@main/success.mp3'],
+                volume: 0.7
+            }),
+            miss: new Howl({
+                src: ['https://cdn.jsdelivr.net/gh/kennethlaskoski/web-effects@main/error.mp3'],
+                volume: 0.4
+            }),
+            milestone: new Howl({
+                src: ['https://cdn.jsdelivr.net/gh/kennethlaskoski/web-effects@main/notification.mp3'],
+                volume: 0.5
+            })
+        };
+
+        // Funny messages for misses
+        const missMessages = [
+            "Not even close! Are your reflexes on vacation?",
+            "Did your finger slip? Or is that just your timing?",
+            "Perfection isn't your thing, is it?",
+            "You're only off by... exactly that much!",
+            "Almost! ...is what I'd say if you were closer.",
+            "Have you considered a career that doesn't require timing?",
+            "That was so close! Just kidding, it wasn't.",
+            "Your precision is... precisely imprecise.",
+            "I've seen sloths with better timing!",
+            "If timing were a sport, you'd be disqualified.",
+            "Did you even try?",
+            "Let me guess, you blinked?",
+            "Timing: 0, You: 0",
+            "Are you playing with your eyes closed?",
+            "Maybe try using ESP next time?",
+            "That's one for the 'not even close' album!",
+            "Exactly wrong, impressively consistent!",
+            "You're consistently inconsistent!",
+            "I'm sensing a pattern here... and it's not good.",
+            "Your timing is like my ex - never there when needed."
+        ];
+
+        // Perfect hit messages
+        const perfectMessages = [
+            "PERFECT! Are you human?!",
+            "PERFECT! You're a timing god!",
+            "PERFECT! Time bends to your will!",
+            "PERFECT! The universe aligned for you!",
+            "PERFECT! Are you from the future?",
+            "PERFECT! Your reflexes are supernatural!",
+            "PERFECT! You've reached timing nirvana!",
+            "PERFECT! The timing lords bow to you!",
+            "PERFECT! That was millisecond magic!",
+            "PERFECT! You've broken the space-time continuum!"
+        ];
+
+        // Three.js Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        canvasContainer.appendChild(renderer.domElement);
+
+        camera.position.z = 5;
+
+        // Create neon glow effect
+        const neonMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+        const glowMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x00ffff, 
+            transparent: true, 
+            opacity: 0.5 
+        });
+
+        // Create background particles
+        const particles = new THREE.Group();
+        scene.add(particles);
+
+        const particleGeometry = new THREE.SphereGeometry(0.05, 8, 8);
+        const particleMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x00ffff, 
+            transparent: true, 
+            opacity: 0.7 
+        });
+
+        for (let i = 0; i < 200; i++) {
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
+            particle.position.set(
+                (Math.random() - 0.5) * 20,
+                (Math.random() - 0.5) * 20,
+                (Math.random() - 0.5) * 20
+            );
+            particle.material.color.setHSL(Math.random(), 0.7, 0.7);
+            particle.userData = {
+                speed: Math.random() * 0.02 - 0.01,
+                rotationSpeed: Math.random() * 0.02 - 0.01
+            };
+            particles.add(particle);
+        }
+
+        // Create a central shape
+        const torusGeometry = new THREE.TorusGeometry(2, 0.3, 16, 100);
+        const torus = new THREE.Mesh(torusGeometry, neonMaterial.clone());
+        scene.add(torus);
+
+        // Clock for timing
+        const clock = new THREE.Clock();
+
+        // Function to update the 3D scene
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const elapsedTime = clock.getElapsedTime();
+            
+            // Rotate torus
+            torus.rotation.x = elapsedTime * 0.3;
+            torus.rotation.y = elapsedTime * 0.5;
+            
+            // Change torus color based on timer
+            const hue = (gameState.timer % 5) / 5;
+            torus.material.color.setHSL(hue, 1, 0.5);
+            
+            // Move and rotate particles
+            particles.children.forEach(particle => {
+                particle.position.y += particle.userData.speed;
+                particle.rotation.x += particle.userData.rotationSpeed;
+                particle.rotation.z += particle.userData.rotationSpeed * 0.5;
+                
+                // Reset position if particle goes out of bounds
+                if (particle.position.y > 10) {
+                    particle.position.y = -10;
+                } else if (particle.position.y < -10) {
+                    particle.position.y = 10;
+                }
+            });
+            
+            renderer.render(scene, camera);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start 3D animation
+        animate();
+        
+        // Format timer display
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const milliseconds = Math.floor((remainingSeconds * 1000) % 1000);
+            
+            // Add leading zeros
+            const minutesStr = minutes.toString().padStart(2, '0');
+            const secondsStr = Math.floor(remainingSeconds).toString().padStart(2, '0');
+            const millisecondsStr = milliseconds.toString().padStart(3, '0');
+            
+            return `${minutesStr}:${secondsStr}.${millisecondsStr}`;
+        }
+        
+        // Format display time without minutes
+        function formatDisplayTime(seconds) {
+            const wholeSeconds = Math.floor(seconds);
+            const milliseconds = Math.floor((seconds * 1000) % 1000);
+            return `${wholeSeconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
+        }
+        
+        // Start timer
+        function startTimer() {
+            if (gameState.running) return;
+            
+            gameState.timer = 0;
+            gameState.running = true;
+            
+            // Challenge mode setup
+            if (gameState.gameMode === 'challenge') {
+                gameState.challengeTime = Math.floor(Math.random() * 20) + 1; // Random time between 1-20 seconds
+                challengeTarget.textContent = `Target: ${gameState.challengeTime.toString().padStart(2, '0')}.000`;
+                challengeTarget.style.display = 'block';
+            } else {
+                challengeTarget.style.display = 'none';
+            }
+            
+            let startTime = Date.now();
+            
+            gameState.intervalId = setInterval(() => {
+                const currentTime = Date.now();
+                gameState.timer = (currentTime - startTime) / 1000;
+                
+                // Update display
+                timerDisplay.textContent = formatDisplayTime(gameState.timer);
+            }, 10); // Update every 10ms for smooth display
+        }
+        
+        // Stop timer and check result
+        function stopTimer() {
+            if (!gameState.running) return;
+            
+            clearInterval(gameState.intervalId);
+            gameState.running = false;
+            
+            // Calculate accuracy
+            const milliseconds = gameState.timer * 1000;
+            const millisecondPart = milliseconds % 1000;
+            let difference = Math.min(millisecondPart, 1000 - millisecondPart);
+            
+            if (gameState.gameMode === 'challenge') {
+                const targetMilliseconds = gameState.challengeTime * 1000;
+                difference = Math.abs(milliseconds - targetMilliseconds);
+            }
+            
+            const isPerfect = (gameState.gameMode === 'standard' && millisecondPart === 0) || 
+                            (gameState.gameMode === 'challenge' && Math.abs(gameState.timer - gameState.challengeTime) < 0.01);
+            
+            // Update game stats
+            gameState.totalAttempts++;
+            gameState.totalAccuracy += difference;
+            
+            // Calculate score and display result
+            if (isPerfect) {
+                const pointsEarned = 1000;
+                gameState.score += pointsEarned;
+                gameState.perfectHits++;
+                
+                // Play perfect sound
+                sounds.perfect.play();
+                
+                // Show perfect message
+                const randomPerfectMessage = perfectMessages[Math.floor(Math.random() * perfectMessages.length)];
+                resultMessage.innerHTML = `<span class="perfect">${randomPerfectMessage}</span>`;
+                
+                // Create fireworks
+                createFireworks();
+                
+                // Trigger haptic feedback if available
+                if (navigator.vibrate) {
+                    navigator.vibrate([100, 50, 100]);
+                }
+            } else {
+                // Calculate points based on accuracy
+                const accuracy = (difference / 1000).toFixed(3);
+                const pointsEarned = Math.max(0, Math.floor(100 - (difference / 2)));
+                gameState.score += pointsEarned;
+                
+                // Play miss sound
+                sounds.miss.play();
+                
+                // Show miss message
+                const randomMissMessage = missMessages[Math.floor(Math.random() * missMessages.length)];
+                resultMessage.innerHTML = `<span class="missed">You missed by ${accuracy} seconds!</span><br><span class="text-sm">${randomMissMessage}</span>`;
+                
+                // Trigger haptic feedback if available
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+            }
+            
+            // Update UI
+            updateStats();
+            
+            // Auto-restart timer after a delay
+            setTimeout(startTimer, 2000);
+        }
+        
+        // Create fireworks effect
+        function createFireworks() {
+            // Clear previous fireworks
+            fireworksContainer.innerHTML = '';
+            
+            // Create multiple firework particles
+            for (let i = 0; i < 100; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                // Random position
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                
+                // Random color
+                const hue = Math.floor(Math.random() * 360);
+                firework.style.background = `hsl(${hue}, 100%, 50%)`;
+                firework.style.boxShadow = `0 0 6px 2px hsl(${hue}, 100%, 60%)`;
+                
+                // Position
+                firework.style.left = `${x}px`;
+                firework.style.top = `${y}px`;
+                
+                // Random animation duration
+                firework.style.animationDuration = `${0.5 + Math.random() * 1}s`;
+                
+                // Random direction
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                firework.style.transform = `translate(0, 0)`;
+                firework.style.animationName = 'none';
+                
+                // Add to container
+                fireworksContainer.appendChild(firework);
+                
+                // Force reflow
+                void firework.offsetWidth;
+                
+                // Set animation
+                firework.style.animationName = 'firework-animation';
+                
+                // Apply direction
+                firework.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            }
+            
+            // Remove fireworks after animation completes
+            setTimeout(() => {
+                fireworksContainer.innerHTML = '';
+            }, 2000);
+        }
+        
+        // Update game statistics display
+        function updateStats() {
+            scoreElement.textContent = gameState.score;
+            perfectHitsElement.textContent = gameState.perfectHits;
+            
+            const averageAccuracy = gameState.totalAttempts > 0 
+                ? (gameState.totalAccuracy / gameState.totalAttempts / 1000).toFixed(3) 
+                : '0.000';
+            
+            avgAccuracyElement.textContent = averageAccuracy;
+        }
+        
+        // Toggle game mode
+        function toggleGameMode() {
+            if (gameState.running) {
+                clearInterval(gameState.intervalId);
+                gameState.running = false;
+            }
+            
+            gameState.gameMode = gameState.gameMode === 'standard' ? 'challenge' : 'standard';
+            modeSwitch.textContent = gameState.gameMode === 'standard' ? 'SWITCH TO CHALLENGE MODE' : 'SWITCH TO STANDARD MODE';
+            
+            // Reset timer display
+            timerDisplay.textContent = '00.000';
+            
+            // Update challenge target display
+            if (gameState.gameMode === 'challenge') {
+                gameState.challengeTime = Math.floor(Math.random() * 20) + 1;
+                challengeTarget.textContent = `Target: ${gameState.challengeTime.toString().padStart(2, '0')}.000`;
+                challengeTarget.style.display = 'block';
+            } else {
+                challengeTarget.style.display = 'none';
+            }
+            
+            // Clear result message
+            resultMessage.textContent = '';
+            
+            // Restart timer
+            setTimeout(startTimer, 500);
+        }
+        
+        // Save player score to history
+        function saveScore(playerName) {
+            if (!playerName.trim()) return;
+            
+            const scores = JSON.parse(localStorage.getItem('stopAtZeroScores') || '[]');
+            
+            // Add new score
+            scores.push({
+                playerName: playerName,
+                score: gameState.score,
+                perfectHits: gameState.perfectHits,
+                accuracy: (gameState.totalAccuracy / gameState.totalAttempts / 1000).toFixed(3),
+                date: new Date().toISOString().split('T')[0]
+            });
+            
+            // Sort by score (highest first)
+            scores.sort((a, b) => b.score - a.score);
+            
+            // Keep only top 10 scores
+            const topScores = scores.slice(0, 10);
+            
+            // Save to localStorage
+            localStorage.setItem('stopAtZeroScores', JSON.stringify(topScores));
+            localStorage.setItem('playerName', playerName);
+            
+            // Update game state
+            gameState.playerName = playerName;
+            
+            // Update history display
+            updateHistory();
+        }
+        
+        // Update score history display
+        function updateHistory() {
+            const scores = JSON.parse(localStorage.getItem('stopAtZeroScores') || '[]');
+            
+            // Clear history table
+            historyBody.innerHTML = '';
+            
+            // Add each score to the table
+            scores.forEach(score => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${score.playerName}</td>
+                    <td>${score.score}</td>
+                    <td>${score.perfectHits}</td>
+                    <td>${score.accuracy}</td>
+                    <td>${score.date}</td>
+                `;
+                historyBody.appendChild(row);
+            });
+        }
+        
+        // Event listeners
+        stopButton.addEventListener('click', () => {
+            sounds.click.play();
+            if (gameState.running) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        });
+        
+        playerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const playerName = playerNameInput.value.trim();
+            if (playerName) {
+                saveScore(playerName);
+            }
+        });
+        
+        modeSwitch.addEventListener('click', () => {
+            sounds.click.play();
+            toggleGameMode();
+        });
+        
+        startGameButton.addEventListener('click', () => {
+            sounds.click.play();
+            welcomeModal.style.display = 'none';
+            startTimer();
+        });
+
+        // Initial setup
+        updateHistory();
+        welcomeModal.style.display = 'flex';
+        
+        // Add touch/keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (welcomeModal.style.display === 'flex') {
+                    welcomeModal.style.display = 'none';
+                    startTimer();
+                } else {
+                    stopButton.click();
+                }
+            }
+        });
+        
+        document.addEventListener('touchstart', (e) => {
+            if (e.target === stopButton) return; // Already handled by click event
+            
+            if (welcomeModal.style.display === 'flex') {
+                welcomeModal.style.display = 'none';
+                startTimer();
+            } else if (gameState.running && e.target !== playerNameInput && !e.target.closest('button')) {
+                stopTimer();
+            }
+        });
+    </script>
+</body>
+</html>
