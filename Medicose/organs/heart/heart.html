@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Heart - Medicose</title>
+  <title>HUMAN HEART</title>
 
   <style>
     body {
@@ -42,11 +42,13 @@
       border: 1px solid #ffffff44;
       border-radius: 15px;
       color: #ffffffcc;
-      text-align: left;
+      text-align: center;
       padding: 20px;
       backdrop-filter: blur(4px);
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
       transition: transform 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
     }
 
     .card:hover {
@@ -56,19 +58,17 @@
 
     .card h2 {
       color: #fff;
-      margin-top: 0;
-      border-bottom: 1px solid #ffffff33;
-      padding-bottom: 5px;
+      margin: 0;
     }
 
-    a {
+    a.back {
       margin-top: 30px;
       color: #00ffff;
       text-decoration: none;
       font-weight: bold;
     }
 
-    a:hover {
+    a.back:hover {
       text-decoration: underline;
     }
   </style>
@@ -78,29 +78,12 @@
   <h1>HUMAN HEART 🫀</h1>
 
   <div class="card-container">
-
-    <div class="card">
-      <h2>Basic Info</h2>
-      <p>The heart is a muscular organ that pumps blood throughout the body, supplying oxygen and nutrients to tissues and removing carbon dioxide and other wastes.</p>
-    </div>
-
-    <div class="card">
-      <h2>Common Diseases</h2>
-      <p>Heart attack, arrhythmia, coronary artery disease, cardiomyopathy, and heart failure are some common heart diseases.</p>
-    </div>
-
-    <div class="card">
-      <h2>Treatments</h2>
-      <p>Common treatments include medications, lifestyle changes, surgical interventions like bypass surgery, and use of medical devices like pacemakers.</p>
-    </div>
-
-    <div class="card">
-      <h2>Research-Based Info</h2>
-      <p>Recent research includes development of artificial hearts, stem cell therapy for damaged heart tissue, and advances in minimally invasive heart surgery.</p>
-    </div>
-
+    <a href="basic.html" target="_blank" class="card"><h2>Basic Info</h2></a>
+    <a href="diseases.html" target="_blank" class="card"><h2>Common Diseases</h2></a>
+    <a href="treatments.html" target="_blank" class="card"><h2>Treatments</h2></a>
+    <a href="research.html" target="_blank" class="card"><h2>Research-Based Info</h2></a>
   </div>
 
-  <a href="../index.html">← Back to Organs</a>
+  <a class="back" href="../index.html">← Back to Organs</a>
 </body>
 </html>
