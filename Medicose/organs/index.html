@@ -2,39 +2,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Heart - Medicose</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart - organs</title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff00cc; }
+      to { text-shadow: 0 0 20px #00ffff; }
+    }
+
+    .container-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .container {
+      display: grid;
+      gap: 20px;
+      justify-content: center;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ffffff44;
+      border-radius: 15px;
+      color: #ffffffcc;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, background 0.3s;
+      backdrop-filter: blur(4px);
+      padding: 10px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    /* Grid for devices */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 769px) {
+      .container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    /* Single card center */
+    .container:has(.card:only-child) {
+      display: flex;
+      justify-content: center;
+    }
+
+  </style>
 </head>
+
 <body>
+  <h1> Organs </h1>
 
-<h1>Heart - Details</h1>
+  <div class="container-wrapper">
+    <div class="container">
+      <a href="heart/index.html" class="card">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/organs/heart/H.PNG" alt="Heart" class="card-img">
+        <span>HUMAN HEART 🫀</span>
+      </a>
 
-<div class="card-container">
+  
+      
 
-    <div class="card">
-        <h2>Basic Info</h2>
-        <p>The heart is a muscular organ that pumps blood throughout the body, supplying oxygen and nutrients to tissues and removing carbon dioxide and other wastes.</p>
+      <!-- Add more cards here -->
     </div>
-
-    <div class="card">
-        <h2>Common Diseases</h2>
-        <p>Heart attack, arrhythmia, coronary artery disease, cardiomyopathy, and heart failure are some common heart diseases.</p>
-    </div>
-
-    <div class="card">
-        <h2>Treatments</h2>
-        <p>Common treatments include medications, lifestyle changes, surgical interventions like bypass surgery, and use of medical devices like pacemakers.</p>
-    </div>
-
-    <div class="card">
-        <h2>Research-Based Info</h2>
-        <p>Recent research includes development of artificial hearts, stem cell therapy for damaged heart tissue, and advances in minimally invasive heart surgery.</p>
-    </div>
-
-</div>
-
-<a href="../index.html">← Back to Home</a>
-
+  </div>
 </body>
 </html>
