@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HUMAN HEART</title>
-
   <style>
     body {
       margin: 0;
@@ -48,7 +47,6 @@
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
       transition: transform 0.3s ease;
       cursor: pointer;
-      text-decoration: none;
     }
 
     .card:hover {
@@ -59,6 +57,14 @@
     .card h2 {
       color: #fff;
       margin: 0;
+    }
+
+    .card-content {
+      margin-top: 10px;
+      display: none;
+      text-align: left;
+      font-weight: normal;
+      color: #ddd;
     }
 
     a.back {
@@ -78,12 +84,63 @@
   <h1>HUMAN HEART 🫀</h1>
 
   <div class="card-container">
-    <a href="basic.html" target="_blank" class="card"><h2>Basic Info</h2></a>
-    <a href="diseases.html" target="_blank" class="card"><h2>Common Diseases</h2></a>
-    <a href="treatments.html" target="_blank" class="card"><h2>Treatments</h2></a>
-    <a href="research.html" target="_blank" class="card"><h2>Research-Based Info</h2></a>
+    <div class="card" onclick="navigateTo('basic-info')">
+      <h2>Basic Info</h2>
+    </div>
+
+    <div class="card" onclick="navigateTo('common-diseases')">
+      <h2>Common Diseases</h2>
+    </div>
+
+    <div class="card" onclick="navigateTo('treatments')">
+      <h2>Treatments</h2>
+    </div>
+
+    <div class="card" onclick="navigateTo('research-based-info')">
+      <h2>Research-Based Info</h2>
+    </div>
   </div>
 
+  <div id="content" style="margin-top: 30px; max-width: 800px;"></div>
+
   <a class="back" href="../index.html">← Back to Organs</a>
+
+  <script>
+    const contentData = {
+      'basic-info': `
+        <h2>Basic Info</h2>
+        <p>The heart is a muscular organ that pumps blood throughout the body, supplying oxygen and nutrients to tissues and removing carbon dioxide and other wastes.</p>
+      `,
+      'common-diseases': `
+        <h2>Common Diseases</h2>
+        <p>Heart attack, arrhythmia, coronary artery disease, cardiomyopathy, and heart failure are some common heart diseases.</p>
+      `,
+      'treatments': `
+        <h2>Treatments</h2>
+        <p>Common treatments include medications, lifestyle changes, surgical interventions like bypass surgery, and use of medical devices like pacemakers.</p>
+      `,
+      'research-based-info': `
+        <h2>Research-Based Info</h2>
+        <p>Recent research includes development of artificial hearts, stem cell therapy for damaged heart tissue, and advances in minimally invasive heart surgery.</p>
+      `
+    };
+
+    function navigateTo(section) {
+      window.location.hash = section;
+    }
+
+    function loadContent() {
+      const hash = window.location.hash.substring(1);
+      const contentDiv = document.getElementById('content');
+      if (contentData[hash]) {
+        contentDiv.innerHTML = contentData[hash];
+      } else {
+        contentDiv.innerHTML = '';
+      }
+    }
+
+    window.addEventListener('hashchange', loadContent);
+    window.addEventListener('load', loadContent);
+  </script>
 </body>
 </html>
