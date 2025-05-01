@@ -6,10 +6,13 @@
   <title>Yashify - Cosmic Home</title>
   <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #000000;
+      background: linear-gradient(45deg, #ff00cc, #00ffff, #ff00cc);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
       color: white;
       display: flex;
       flex-direction: column;
@@ -17,18 +20,24 @@
       justify-content: flex-start;
       min-height: 100vh;
       padding: 20px;
+      overflow: hidden;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
       font-size: 2.2rem;
       margin-bottom: 40px;
-      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
-      animation: glow 3s infinite alternate;
+      text-shadow: 0 0 5px #ff00cc, 0 0 10px #00ffff, 0 0 15px #ff00cc;
+      transition: text-shadow 0.3s ease;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #ff00cc; }
-      to { text-shadow: 0 0 20px #00ffff; }
+    h1:hover {
+      text-shadow: 0 0 15px #ff00cc, 0 0 25px #00ffff, 0 0 35px #ff00cc;
     }
 
     .container-wrapper {
@@ -43,6 +52,7 @@
       justify-content: center;
       max-width: 1200px;
       width: 100%;
+      z-index: 2;
     }
 
     .card {
@@ -56,14 +66,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.3s ease, background 0.3s;
+      transition: transform 0.3s ease, background 0.3s, box-shadow 0.3s ease;
       backdrop-filter: blur(4px);
       padding: 10px;
     }
 
     .card:hover {
       transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.5);
     }
 
     .card-img {
@@ -98,12 +109,20 @@
       justify-content: center;
     }
 
-    /* Bubble Animation */
-    #bubbles {
+    /* Starfield Effect */
+    #starfield {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Floating Stars Animation */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   </style>
 </head>
@@ -125,60 +144,61 @@
       
       <a href="BScMB/index.html" class="card">
         <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/BScMB/M.PNG" alt="BScMB" class="card-img">
-        <span>department of Microbiology</span>
+        <span>Department of Microbiology</span>
       </a>
+      <!-- Add more cards here -->
     </div>
   </div>
 
-  <canvas id="bubbles"></canvas>
+  <!-- Starfield Canvas -->
+  <canvas id="starfield"></canvas>
 
   <script>
-    const canvas = document.getElementById('bubbles');
-    const ctx = canvas.getContext('2d');
-    let bubbles = [];
+    // Starfield Animation
+    const starfieldCanvas = document.getElementById('starfield');
+    const starfieldCtx = starfieldCanvas.getContext('2d');
+    let stars = [];
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function resizeStarfield() {
+      starfieldCanvas.width = window.innerWidth;
+      starfieldCanvas.height = window.innerHeight;
     }
 
-    function createBubble() {
+    function createStar() {
       return {
-        x: Math.random() * canvas.width,
-        y: canvas.height + 10,
-        radius: Math.random() * 6 + 2,
-        speed: Math.random() * 2 + 1,
-        alpha: Math.random() * 0.5 + 0.5
+        x: Math.random() * starfieldCanvas.width,
+        y: Math.random() * starfieldCanvas.height,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() * 0.5 + 0.2
       };
     }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      bubbles.forEach((bubble, i) => {
-        ctx.beginPath();
-        ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.alpha})`;
-        ctx.fill();
-        bubble.y -= bubble.speed;
-
-        if (bubble.y < -10) {
-          bubbles[i] = createBubble();
+    function drawStars() {
+      starfieldCtx.clearRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
+      stars.forEach((star, i) => {
+        star.y += star.speed;
+        if (star.y > starfieldCanvas.height) {
+          stars[i] = createStar();
         }
+        starfieldCtx.beginPath();
+        starfieldCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        starfieldCtx.fillStyle = "white";
+        starfieldCtx.fill();
       });
 
-      requestAnimationFrame(draw);
+      requestAnimationFrame(drawStars);
     }
 
-    function init() {
-      resizeCanvas();
-      for (let i = 0; i < 50; i++) {
-        bubbles.push(createBubble());
+    function initStarfield() {
+      resizeStarfield();
+      for (let i = 0; i < 150; i++) {
+        stars.push(createStar());
       }
-      draw();
+      drawStars();
     }
 
-    window.addEventListener('resize', resizeCanvas);
-    window.onload = init;
+    window.addEventListener('resize', resizeStarfield);
+    window.onload = initStarfield;
   </script>
 </body>
 </html>
