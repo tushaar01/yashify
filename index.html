@@ -98,6 +98,13 @@
       justify-content: center;
     }
 
+    /* Bubble Animation */
+    #bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
   </style>
 </head>
 
@@ -116,14 +123,62 @@
         <span>FUN</span>
       </a>
       
-       <a href="BScMB/index.html" class="card">
+      <a href="BScMB/index.html" class="card">
         <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/BScMB/M.PNG" alt="BScMB" class="card-img">
         <span>department of Microbiology</span>
       </a>
-      
-
-      <!-- Add more cards here -->
     </div>
   </div>
+
+  <canvas id="bubbles"></canvas>
+
+  <script>
+    const canvas = document.getElementById('bubbles');
+    const ctx = canvas.getContext('2d');
+    let bubbles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createBubble() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        radius: Math.random() * 6 + 2,
+        speed: Math.random() * 2 + 1,
+        alpha: Math.random() * 0.5 + 0.5
+      };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      bubbles.forEach((bubble, i) => {
+        ctx.beginPath();
+        ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.alpha})`;
+        ctx.fill();
+        bubble.y -= bubble.speed;
+
+        if (bubble.y < -10) {
+          bubbles[i] = createBubble();
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    function init() {
+      resizeCanvas();
+      for (let i = 0; i < 50; i++) {
+        bubbles.push(createBubble());
+      }
+      draw();
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.onload = init;
+  </script>
 </body>
 </html>
