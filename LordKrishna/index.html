@@ -1,125 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Supreme Personality of Godhead Lord Sri Krsna</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('your-image-url.jpg'); /* Krishna-Arjuna image */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: white;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .shloka-block {
-      text-align: center;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    .shloka-block .sanskrit {
-      font-style: italic;
-      font-size: 18px;
-    }
-
-    .shloka-block .hindi {
-      font-size: 16px;
-    }
-
-    .shloka-block .english {
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #fff;
-      border-radius: 10px;
-      padding: 15px;
-      width: 250px;
-      backdrop-filter: blur(5px);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      font-size: 18px;
-      color: #ffd700;
-    }
-
-    .card p {
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .cards {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-blue: #14213d;
+            --light-gold: #f5e6c2;
+        }
+        
+        body {
+            font-family: 'Spectral', serif;
+            color: #333;
+            background-color: #000;
+            overflow-x: hidden;
+        }
+        
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            filter: contrast(1.1) brightness(0.7);
+        }
+        
+        .main-title {
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--gold);
+        }
+        
+        .accent-text {
+            color: var(--gold);
+        }
+        
+        .card {
+            background-color: rgba(20, 33, 61, 0.85);
+            border: 1px solid var(--gold);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .card-title {
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            color: var(--light-gold);
+        }
+        
+        .sanskrit-block {
+            background-color: rgba(20, 33, 61, 0.85);
+            border: 1px solid var(--gold);
+        }
+        
+        .sanskrit-text {
+            font-family: 'Spectral', serif;
+            font-weight: 500;
+            color: var(--gold);
+        }
+        
+        .hindi-text, .english-text {
+            font-family: 'Spectral', serif;
+        }
+        
+        .container {
+            max-width: 1400px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna</div>
-
-    <div class="shloka-block">
-      <p class="sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</p>
-      <p class="hindi">तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में नहीं।</p>
-      <p class="english">You have the right to perform your duties, but not to the fruits of your actions.</p>
+    <!-- Background Image -->
+    <div class="bg-container">
+        <img src="https://i.redd.it/2yjb3llmcsma1.png" alt="Lord Krishna and Arjuna" class="bg-image">
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <h3>Bhagavad Gita</h3>
-        <p>Teachings of Dharma, Karma, and Bhakti.</p>
-      </div>
-      <div class="card">
-        <h3>Krishna Leelas</h3>
-        <p>Divine stories of Lord Krishna's miracles and love.</p>
-      </div>
-      <div class="card">
-        <h3>Quotes & Wisdom</h3>
-        <p>Powerful shlokas and their meanings.</p>
-      </div>
-      <div class="card">
-        <h3>Childhood in Vrindavan</h3>
-        <p>Mischiefs and miracles from Krishna's early days.</p>
-      </div>
-      <div class="card">
-        <h3>Role in Mahabharata</h3>
-        <p>Krishna as the divine guide and charioteer of Arjuna.</p>
-      </div>
-      <div class="card">
-        <h3>Krishna in Art</h3>
-        <p>Explore how Krishna is portrayed in paintings and sculptures.</p>
-      </div>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <!-- Main Title -->
+        <div class="text-center mb-16">
+            <h1 class="main-title text-5xl md:text-6xl font-bold mb-8 tracking-wider">THE SUPREME PERSONALITY OF GODHEAD<br>LORD Sri Krsna</h1>
+        </div>
+
+        <!-- Sanskrit Shloka Block -->
+        <div class="sanskrit-block rounded-lg p-6 md:p-10 my-16 mx-auto max-w-4xl text-center">
+            <h2 class="sanskrit-text text-2xl md:text-3xl mb-6">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</h2>
+            <p class="hindi-text text-white text-lg md:text-xl mb-4">तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में नहीं।</p>
+            <p class="english-text text-white text-lg md:text-xl">You have the right to perform your duties, but not to the fruits of your actions.</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <!-- Card 1 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Bhagavad Gita</h3>
+                <p class="card-content text-base md:text-lg">The Bhagavad Gita offers profound teachings on Dharma (righteous duty), Karma (action without attachment), and Bhakti (devotional service). Krishna's wisdom guides us through three spiritual paths: Karma Yoga (selfless action), Jnana Yoga (knowledge), and Bhakti Yoga (devotion), helping one achieve self-realization and liberation.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Krishna Leelas</h3>
+                <p class="card-content text-base md:text-lg">Krishna's divine stories reveal his playful yet profound nature. From lifting the Govardhan Hill to protect villagers, to performing the enchanting Rasa Leela with the gopis, his miraculous acts showcase divine love, protection, and spiritual wisdom. Each leela (divine play) offers valuable lessons about devotion, compassion, and the mysterious nature of divinity.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Quotes & Wisdom</h3>
+                <p class="card-content text-base md:text-lg">Krishna's timeless wisdom from the Bhagavad Gita continues to guide humanity through life's challenges. His teachings on detachment, duty, and devotion provide practical spiritual guidance. "Whenever dharma declines and adharma prevails, I manifest myself," assures Krishna, promising divine intervention to restore cosmic balance and protect the virtuous.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Childhood in Vrindavan</h3>
+                <p class="card-content text-base md:text-lg">Krishna's childhood in Vrindavan epitomizes divine playfulness. As a child, he performed miracles while engaging in innocent pranks – stealing butter, defeating demons, and enchanting all with his flute. In Vrindavan, Krishna spent his days herding cows with friends and creating countless memories. His childhood demonstrates how divinity can manifest through joy and playfulness.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Role in Mahabharata</h3>
+                <p class="card-content text-base md:text-lg">In the Mahabharata, Krishna serves as Arjuna's charioteer, counselor, and divine guide. His strategic wisdom helps the Pandavas navigate war while upholding righteousness. Krishna's diplomatic efforts to prevent war reveal his commitment to peace, though he ultimately supports dharma's victory. The Bhagavad Gita, delivered on the battlefield, represents his supreme spiritual guidance to humanity.</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card rounded-lg p-6 shadow-lg">
+                <h3 class="card-title text-2xl mb-4">Krishna in Art</h3>
+                <p class="card-content text-base md:text-lg">Krishna has inspired countless artistic expressions across centuries. In paintings, he's often depicted with blue skin, playing the flute, or dancing with Radha. Sculptures capture his various forms – from the butter-stealing child to the divine charioteer. Each artwork celebrates his divine attributes and leelas through vibrant colors, graceful forms, and symbolic imagery that transcends time.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-20 mb-8">
+            <p class="text-white text-lg">॥ हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे ॥</p>
+            <p class="text-white text-lg">॥ हरे राम हरे राम राम राम हरे हरे ॥</p>
+        </div>
     </div>
-  </div>
 </body>
 </html>
