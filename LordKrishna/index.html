@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('your-image-url.jpg'); /* Replace with your Krishna & Arjuna image URL */
+      background-image: url('your-image-url.jpg'); /* Krishna-Arjuna image */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -26,60 +26,54 @@
     .title {
       text-align: center;
       font-size: 2em;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       font-weight: bold;
+    }
+
+    .shloka-block {
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .shloka-block .sanskrit {
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    .shloka-block .hindi {
+      font-size: 16px;
+    }
+
+    .shloka-block .english {
+      font-size: 14px;
+      color: #ccc;
     }
 
     .cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: 15px;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid #fff;
       border-radius: 10px;
-      padding: 20px;
-      width: 300px;
+      padding: 15px;
+      width: 250px;
       backdrop-filter: blur(5px);
     }
 
     .card h3 {
       margin-top: 0;
+      font-size: 18px;
       color: #ffd700;
     }
 
     .card p {
-      font-size: 15px;
-    }
-
-    .quote {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-    }
-
-    .quote p {
-      margin: 10px 0;
-    }
-
-    .quote .sanskrit {
-      font-style: italic;
-      font-size: 18px;
-    }
-
-    .quote .hindi {
-      font-size: 16px;
-    }
-
-    .quote .english {
-      font-size: 15px;
-      color: #ccc;
+      font-size: 14px;
     }
 
     @media (max-width: 600px) {
@@ -94,27 +88,37 @@
   <div class="overlay">
     <div class="title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna</div>
 
+    <div class="shloka-block">
+      <p class="sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</p>
+      <p class="hindi">तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में नहीं।</p>
+      <p class="english">You have the right to perform your duties, but not to the fruits of your actions.</p>
+    </div>
+
     <div class="cards">
       <div class="card">
         <h3>Bhagavad Gita</h3>
-        <p>Teachings of Lord Krishna to Arjuna — the essence of Dharma, Karma, and Bhakti.</p>
+        <p>Teachings of Dharma, Karma, and Bhakti.</p>
       </div>
-
       <div class="card">
-        <h3>Leelas</h3>
-        <p>From childhood mischief in Vrindavan to divine miracles — explore the divine pastimes.</p>
+        <h3>Krishna Leelas</h3>
+        <p>Divine stories of Lord Krishna's miracles and love.</p>
       </div>
-
       <div class="card">
         <h3>Quotes & Wisdom</h3>
-        <p>Timeless shlokas and lessons from Krishna's words that resonate across time.</p>
+        <p>Powerful shlokas and their meanings.</p>
       </div>
-    </div>
-
-    <div class="quote">
-      <p class="sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</p>
-      <p class="hindi">तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में कभी नहीं।</p>
-      <p class="english">You have the right to perform your duties, but not to the results thereof.</p>
+      <div class="card">
+        <h3>Childhood in Vrindavan</h3>
+        <p>Mischiefs and miracles from Krishna's early days.</p>
+      </div>
+      <div class="card">
+        <h3>Role in Mahabharata</h3>
+        <p>Krishna as the divine guide and charioteer of Arjuna.</p>
+      </div>
+      <div class="card">
+        <h3>Krishna in Art</h3>
+        <p>Explore how Krishna is portrayed in paintings and sculptures.</p>
+      </div>
     </div>
   </div>
 </body>
