@@ -2,61 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Card</title>
+  <title>The Supreme Personality of Godhead Lord Sri Krsna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .card {
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
-    .card-content h3 {
-      margin: 0 0 10px;
-    }
-
-    .card-content p {
-      color: #555;
-      font-size: 14px;
-    }
-
-    .card-content a {
-      display: inline-block;
-      margin-top: 10px;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('your-image-url.jpg'); /* Replace with your Krishna & Arjuna image URL */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: white;
-      background: #007BFF;
-      padding: 8px 12px;
-      text-decoration: none;
-      border-radius: 5px;
+      text-shadow: 1px 1px 4px #000;
     }
 
-    .card-content a:hover {
-      background: #0056b3;
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      backdrop-filter: blur(5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #ffd700;
+    }
+
+    .card p {
+      font-size: 15px;
+    }
+
+    .quote {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .quote p {
+      margin: 10px 0;
+    }
+
+    .quote .sanskrit {
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    .quote .hindi {
+      font-size: 16px;
+    }
+
+    .quote .english {
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="overlay">
+    <div class="title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna</div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300x180" alt="Card Image">
-    <div class="card-content">
-      <h3>Card Title</h3>
-      <p>This is a simple card with an image, title, and some content. You can customize it easily.</p>
-      <a href="#">Read More</a>
+    <div class="cards">
+      <div class="card">
+        <h3>Bhagavad Gita</h3>
+        <p>Teachings of Lord Krishna to Arjuna — the essence of Dharma, Karma, and Bhakti.</p>
+      </div>
+
+      <div class="card">
+        <h3>Leelas</h3>
+        <p>From childhood mischief in Vrindavan to divine miracles — explore the divine pastimes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Quotes & Wisdom</h3>
+        <p>Timeless shlokas and lessons from Krishna's words that resonate across time.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p class="sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</p>
+      <p class="hindi">तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में कभी नहीं।</p>
+      <p class="english">You have the right to perform your duties, but not to the results thereof.</p>
     </div>
   </div>
-
 </body>
 </html>
