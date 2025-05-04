@@ -3,10 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Basics: Complete Guide</title>
+    <title>Heart Explorer: Complete Guide</title>
     <style>
-        /* (Previous CSS remains the same) */
-        /* New styles for additional sections */
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap');
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #ff1e56);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(255, 30, 86, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Card Styles */
+        .card-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .heart-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #ff1e56;
+        }
+        
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: #ff1e56;
+        }
+        
+        .card-content {
+            flex-grow: 1;
+        }
+        
+        .fact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .fact-icon {
+            margin-right: 10px;
+            color: #ff1e56;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        
+        .flip-btn {
+            align-self: center;
+            background: linear-gradient(135deg, #ff6b6b, #ff1e56);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .flip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 30, 86, 0.4);
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .quiz-title {
+            font-family: 'Poppins', sans-serif;
+            color: #ff1e56;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        /* New Detailed Sections Styles */
         .detail-section {
             background-color: white;
             border-radius: 15px;
@@ -24,13 +177,19 @@
         .tab-container {
             display: flex;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         .tab {
             padding: 10px 20px;
             background: #f0f0f0;
             margin-right: 10px;
+            margin-bottom: 10px;
             border-radius: 5px 5px 0 0;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            background: #ddd;
         }
         .tab.active {
             background: #ff1e56;
@@ -38,6 +197,7 @@
         }
         .tab-content {
             display: none;
+            animation: fadeIn 0.5s;
         }
         .tab-content.active {
             display: block;
@@ -59,14 +219,203 @@
         .comparison-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #333, #111);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .did-you-know {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: #ff6b6b;
+        }
+        
+        .social-icons {
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            color: #ff6b6b;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .card {
+                height: auto;
+                min-height: 400px;
+            }
+            
+            .card-title, .quiz-title, .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- (Previous header, card and quiz sections remain the same) -->
-
-    <!-- NEW DETAILED SECTIONS -->
     <div class="container">
-        <!-- Anatomy Details Section -->
+        <header>
+            <h1>Heart Explorer: Complete Guide</h1>
+            <p class="subtitle">"From basic anatomy to advanced health knowledge - all in one place!"</p>
+        </header>
+        
+        <!-- Interactive Flip Card -->
+        <div class="card-container">
+            <div class="card" id="heartCard" onclick="flipCard()">
+                <div class="card-front">
+                    <div class="card-header">
+                        <div class="heart-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h2 class="card-title">Heart Basics</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-question-circle"></i></div>
+                            <div><strong>What?</strong> A muscular organ that pumps blood throughout the body</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-ruler-combined"></i></div>
+                            <div><strong>Size?</strong> About the size of your fist (250-350g)</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div><strong>Location?</strong> Left side of the chest, behind the ribcage</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-door-open"></i></div>
+                            <div><strong>Chambers?</strong> 4 chambers (2 atria + 2 ventricles)</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-heart"></i></div>
+                            <div><strong>Beats per day?</strong> ~100,000 times (60-100 bpm)</div>
+                        </div>
+                    </div>
+                    <button class="flip-btn">Flip for More Details</button>
+                </div>
+                <div class="card-back">
+                    <div class="card-header">
+                        <div class="heart-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h2 class="card-title">Deeper Heart Facts</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div><strong>Blood Circulation:</strong> 
+                                <ul>
+                                    <li>Pulmonary (heart → lungs → heart)</li>
+                                    <li>Systemic (heart → body → heart)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-filter"></i></div>
+                            <div><strong>4 Valves:</strong> 
+                                <ul>
+                                    <li>Tricuspid & Mitral (AV valves)</li>
+                                    <li>Pulmonary & Aortic (semilunar valves)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-bolt"></i></div>
+                            <div><strong>Electrical System:</strong> SA node → AV node → Bundle of His → Purkinje fibers</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="fact-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div><strong>Warning Signs:</strong> Chest pain, shortness of breath, dizziness, fatigue</div>
+                        </div>
+                    </div>
+                    <button class="flip-btn">Flip Back to Basics</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quiz Section -->
+        <div class="quiz-container">
+            <h2 class="quiz-title">Test Your Heart Knowledge!</h2>
+            <div class="quiz-question">
+                <div class="question-text">1. Which chamber pumps oxygenated blood to the entire body?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, 0)">Right Atrium</div>
+                    <div class="option" onclick="selectOption(this, 0)">Right Ventricle</div>
+                    <div class="option correct-answer" onclick="selectOption(this, 0)">Left Ventricle</div>
+                    <div class="option" onclick="selectOption(this, 0)">Left Atrium</div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="question-text">2. What is the "natural pacemaker" of the heart?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, 1)">AV Node</div>
+                    <div class="option correct-answer" onclick="selectOption(this, 1)">SA Node</div>
+                    <div class="option" onclick="selectOption(this, 1)">Bundle of His</div>
+                    <div class="option" onclick="selectOption(this, 1)">Purkinje Fibers</div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="question-text">3. Which artery is most commonly blocked in a heart attack?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(this, 2)">Pulmonary Artery</div>
+                    <div class="option correct-answer" onclick="selectOption(this, 2)">Coronary Artery</div>
+                    <div class="option" onclick="selectOption(this, 2)">Aorta</div>
+                    <div class="option" onclick="selectOption(this, 2)">Carotid Artery</div>
+                </div>
+            </div>
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            <div class="result" id="quizResult"></div>
+        </div>
+        
+        <!-- Detailed Anatomy Section -->
         <div class="detail-section">
             <h2 class="section-title">Heart Anatomy in Detail</h2>
             <div class="tab-container">
@@ -167,18 +516,6 @@
             </div>
         </div>
 
-        <!-- Electrical System Section -->
-        <div class="detail-section">
-            <h2 class="section-title">Electrical Conduction System</h2>
-            <ol>
-                <li><strong>SA Node (Sinoatrial Node):</strong> Pacemaker (60-100 bpm)</li>
-                <li><strong>AV Node (Atrioventricular Node):</strong> Delays impulse (0.1s)</li>
-                <li><strong>Bundle of His:</strong> Conducts to ventricles</li>
-                <li><strong>Purkinje Fibers:</strong> Rapid ventricular contraction</li>
-            </ol>
-            <p><strong>ECG Waves:</strong> P wave (atrial depol), QRS complex (ventricular depol), T wave (ventricular repol)</p>
-        </div>
-
         <!-- Health Section -->
         <div class="detail-section">
             <h2 class="section-title">Heart Health & Diseases</h2>
@@ -233,12 +570,81 @@
                 </ul>
             </div>
         </div>
-    </div>
-
-    <script>
-        // (Previous JavaScript remains the same)
         
-        // New tab functionality
+        <footer>
+            <p class="did-you-know">Did You Know? The heart can continue beating for a short time even when removed from the body if oxygenated!</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Heart Diseases to Avoid</a>
+                <a href="#" class="footer-link">Daily Habits for a Healthy Heart</a>
+                <a href="#" class="footer-link">Emergency Heart Care</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="margin-top: 20px;">© 2023 Heart Explorer | All Rights Reserved</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Flip card functionality
+        function flipCard() {
+            const card = document.getElementById('heartCard');
+            card.classList.toggle('flipped');
+        }
+        
+        // Quiz functionality
+        let selectedOptions = [null, null, null];
+        let correctAnswers = [2, 1, 1]; // Index of correct answers for each question
+        
+        function selectOption(element, questionIndex) {
+            // Remove selected class from all options in this question
+            const options = element.parentElement.children;
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove('selected');
+            }
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Store the selected option
+            selectedOptions[questionIndex] = element;
+        }
+        
+        function checkAnswers() {
+            let score = 0;
+            const resultElement = document.getElementById('quizResult');
+            
+            // Check each question
+            for (let i = 0; i < 3; i++) {
+                if (selectedOptions[i] && selectedOptions[i].classList.contains('correct-answer')) {
+                    score++;
+                    selectedOptions[i].classList.add('correct');
+                } else if (selectedOptions[i]) {
+                    selectedOptions[i].classList.add('incorrect');
+                }
+            }
+            
+            // Show result
+            resultElement.style.display = 'block';
+            if (score === 3) {
+                resultElement.innerHTML = `🎉 Perfect! You got ${score}/3 correct! You're a heart expert!`;
+                resultElement.style.color = '#4caf50';
+            } else if (score >= 1) {
+                resultElement.innerHTML = `👍 Good job! You got ${score}/3 correct!`;
+                resultElement.style.color = '#ff9800';
+            } else {
+                resultElement.innerHTML = `🤔 You got ${score}/3 correct. Try again!`;
+                resultElement.style.color = '#f44336';
+            }
+            
+            // Scroll to result
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Tab functionality
         function openTab(evt, tabName) {
             const tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
