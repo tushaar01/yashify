@@ -159,6 +159,79 @@
             font-size: 1.8rem;
         }
         
+          .quiz-question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .option {
+            margin: 5px 0;
+            padding: 10px 15px;
+            background-color: #f5f7fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #e4e8f0;
+        }
+        
+        .option.selected {
+            background-color: #ff1e56;
+            color: white;
+        }
+        
+        .option.correct {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .submit-btn {
+            display: block;
+            margin: 20px auto 0;
+            background: linear-gradient(135deg, #ff6b6b, #ff1e56);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 30, 86, 0.4);
+        }
+        
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        
+        
         /* New Detailed Sections Styles */
         .detail-section {
             background-color: white;
