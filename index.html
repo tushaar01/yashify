@@ -1,204 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yashify - Cosmic Home</title>
-  <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000000;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
-      animation: glow 3s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #ff00cc; }
-      to { text-shadow: 0 0 20px #00ffff; }
-    }
-
-    .container-wrapper {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .container {
-      display: grid;
-      gap: 20px;
-      justify-content: center;
-      max-width: 1200px;
-      width: 100%;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #ffffff44;
-      border-radius: 15px;
-      color: #ffffffcc;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, background 0.3s;
-      backdrop-filter: blur(4px);
-      padding: 10px;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .card-img {
-      width: 100%;
-      max-width: 250px;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .card span {
-      font-size: 1rem;
-      margin-top: 5px;
-    }
-
-    /* Grid for devices */
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 769px) {
-      .container {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-
-    /* Single card center */
-    .container:has(.card:only-child) {
-      display: flex;
-      justify-content: center;
-    }
-
-    /* Bubble Animation */
-    #bubbles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>yashify.fun ✨</h1>
-
-  <div class="container-wrapper">
-    <div class="container">
-      
-       <a href="LordKrishna/index.html" class="card">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/LordKrishna/I.jpeg" alt="LordKrishna" class="card-img">
-        <span>THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna 🦚</span>
-      </a>
-      
-      
-      <a href="Medicose/index.html" class="card">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/m.PNG" alt="Medicose" class="card-img">
-        <span>Medicose</span>
-      </a>
-
-      <a href="FUN/index.html" class="card">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/F.PNG" alt="FUN" class="card-img">
-        <span>FUN</span>
-      </a>
-      
-      <a href="BScMB/index.html" class="card">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/BScMB/M.PNG" alt="BScMB" class="card-img">
-        <span>Department of Microbiology</span>
-      </a>
-      
-     
-      
-      
-    </div>
-  </div>
-
-  <canvas id="bubbles"></canvas>
-
-  <!-- Social Media Footer -->
-  <footer style="text-align: center; padding: 20px;">
-    <p>Follow me on:</p>
-    <a href="https://www.instagram.com/yashify.fun?igsh=cXMzd2FxZTNtamls">
-      <img src="https://images.app.goo.gl/kF561" width="30" style="margin: 0 10px;">
-    </a>
-   
-  </footer>
-
-  <script>
-    const canvas = document.getElementById('bubbles');
-    const ctx = canvas.getContext('2d');
-    let bubbles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function createBubble() {
-      return {
-        x: Math.random() * canvas.width,
-        y: canvas.height + 10,
-        radius: Math.random() * 6 + 2,
-        speed: Math.random() * 2 + 1,
-        alpha: Math.random() * 0.5 + 0.5
-      };
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      bubbles.forEach((bubble, i) => {
-        ctx.beginPath();
-        ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.alpha})`;
-        ctx.fill();
-        bubble.y -= bubble.speed;
-
-        if (bubble.y < -10) {
-          bubbles[i] = createBubble();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yashify.fun ✨</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
+    <style>
+        /* Base Styles */
+        :root {
+            --bg-gradient-day: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-gradient-night: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --text-color-day: #4a4a4a;
+            --text-color-night: #f0f0f0;
+            --card-bg-day: rgba(255, 255, 255, 0.7);
+            --card-bg-night: rgba(30, 30, 60, 0.7);
+            --card-shadow-day: 8px 8px 15px rgba(163,177,198,0.6), -8px -8px 15px rgba(255,255,255,0.7);
+            --card-shadow-night: 8px 8px 15px rgba(0,0,0,0.6), -8px -8px 15px rgba(50,50,80,0.7);
+            --card-hover-shadow-day: 12px 12px 25px rgba(163,177,198,0.8), -12px -12px 25px rgba(255,255,255,0.9);
+            --card-hover-shadow-night: 12px 12px 25px rgba(0,0,0,0.8), -12px -12px 25px rgba(50,50,80,0.9);
+            --footer-color-day: #666;
+            --footer-color-night: #aaa;
         }
-      });
 
-      requestAnimationFrame(draw);
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text-color-day);
+            background: var(--bg-gradient-day);
+            overflow-x: hidden;
+            transition: all 0.5s ease;
+        }
 
-    function init() {
-      resizeCanvas();
-      for (let i = 0; i < 50; i++) {
-        bubbles.push(createBubble());
-      }
-      draw();
-    }
+        body.dark-mode {
+            color: var(--text-color-night);
+            background: var(--bg-gradient-night);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Animated Title with Glow */
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color-day);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
 
-    window.addEventListener('resize', resizeCanvas);
-    window.onload = init;
-  </script>
+        body.dark-mode .title {
+            color: var(--text-color-night);
+            animation: glow-dark 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+            }
+        }
+
+        @keyframes glow-dark {
+            from {
+                text-shadow: 0 0 5px #000, 0 0 10px #1a1a2e, 0 0 15px #e60073, 0 0 20px #e60073;
+            }
+            to {
+                text-shadow: 0 0 10px #000, 0 0 20px #4a148c, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+            }
+        }
+        
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        body.dark-mode #particles-js {
+            opacity: 0.3;
+        }
+        
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            perspective: 1000px;
+        }
+        
+        /* Glassmorphism Card Styles */
+        .card {
+            background: var(--card-bg-day);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            width: 280px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow-day);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body.dark-mode .card {
+            background: var(--card-bg-night);
+            box-shadow: var(--card-shadow-night);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--card-hover-shadow-day);
+        }
+
+        body.dark-mode .card:hover {
+            box-shadow: var(--card-hover-shadow-night);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #23a6d5);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        body.dark-mode .card::before {
+            background: linear-gradient(90deg, #ff8a00, #9c27b0, #2196f3);
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Card Content */
+        .card-img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-color-day);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        body.dark-mode .card-title {
+            color: var(--text-color-night);
+        }
+        
+        /* Krishna Card Special Styling */
+        .krishna-card::before {
+            background: linear-gradient(90deg, #ff9933, #138808, #000080);
+        }
+
+        body.dark-mode .krishna-card::before {
+            background: linear-gradient(90deg, #ff9933, #4caf50, #3f51b5);
+        }
+        
+        .peacock-feather {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.5rem;
+            color: #138808;
+        }
+
+        body.dark-mode .peacock-feather {
+            color: #4caf50;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            color: var(--footer-color-day);
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode footer {
+            color: var(--footer-color-night);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--footer-color-day);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .social-links a {
+            color: var(--footer-color-night);
+        }
+        
+        .social-links a:hover {
+            color: #e52e71;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .dark-mode-toggle i {
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .title {
+                font-size: 2.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .cards-container {
+                gap: 1.5rem;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+
+            .dark-mode-toggle {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <h1 class="title">yashify.fun ✨</h1>
+        
+        <div class="cards-container">
+            <!-- Lord Krishna Card -->
+            <a href="LordKrishna/index.html" class="card krishna-card">
+                <div class="peacock-feather">🦚</div>
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/LordKrishna/I.jpeg" alt="LordKrishna" class="card-img">
+                <h3 class="card-title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna 🦚</h3>
+            </a>
+            
+            <!-- Medicose Card -->
+            <a href="Medicose/index.html" class="card">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/m.PNG" alt="Medicose" class="card-img">
+                <h3 class="card-title">Medicose</h3>
+            </a>
+            
+            <!-- FUN Card -->
+            <a href="FUN/index.html" class="card">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/F.PNG" alt="FUN" class="card-img">
+                <h3 class="card-title">FUN</h3>
+            </a>
+            
+            <!-- Microbiology Card -->
+            <a href="BScMB/index.html" class="card">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/BScMB/M.PNG" alt="BScMB" class="card-img">
+                <h3 class="card-title">Department of Microbiology</h3>
+            </a>
+        </div>
+        
+        <footer>
+            <p>Made with ❤️ by Yashify</p>
+            <p>© <span id="current-year">2023</span> yashify.fun | Keep Creating ✨</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/yashify.fun?igsh=cXMzd2FxZTNtamls"><i class="fab fa-instagram"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    
+    <script>
+        // Initialize Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#e52e71"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#e52e71",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            // Initialize Vanilla Tilt for cards
+            VanillaTilt.init(document.querySelectorAll(".card"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+                gyroscope: true
+            });
+            
+            // Update current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Dark Mode Toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const icon = darkModeToggle.querySelector('i');
+
+            // Check for saved user preference or time-based preference
+            const currentHour = new Date().getHours();
+            const isNightTime = currentHour < 6 || currentHour >= 18; // 6pm to 6am is night
+            const savedMode = localStorage.getItem('darkMode');
+
+            // Set initial mode
+            if (savedMode === 'dark' || (savedMode === null && isNightTime)) {
+                body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            // Toggle function
+            darkModeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('darkMode', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('darkMode', 'light');
+                }
+            });
+
+            // Automatic time-based switching (every minute)
+            function checkTimeAndToggle() {
+                const now = new Date();
+                const currentHour = now.getHours();
+                const isNight = currentHour < 6 || currentHour >= 18;
+                
+                // Only auto-toggle if user hasn't set a preference
+                if (localStorage.getItem('darkMode') === null) {
+                    if (isNight && !body.classList.contains('dark-mode')) {
+                        body.classList.add('dark-mode');
+                        icon.classList.remove('fa-moon');
+                        icon.classList.add('fa-sun');
+                    } else if (!isNight && body.classList.contains('dark-mode')) {
+                        body.classList.remove('dark-mode');
+                        icon.classList.remove('fa-sun');
+                        icon.classList.add('fa-moon');
+                    }
+                }
+            }
+
+            // Check every minute
+            setInterval(checkTimeAndToggle, 60000);
+            checkTimeAndToggle(); // Initial check
+        });
+    </script>
 </body>
 </html>
