@@ -56,58 +56,45 @@
     }
 
     .card {
-      background: rgba(20, 20, 30, 0.7);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      border: 1px solid transparent;
-      background-clip: padding-box;
-    }
+  background: rgba(20, 20, 30, 0.7);
+  border-radius: 12px;
+  padding: 15px; /* Reduced padding */
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  width: 180px; /* Fixed width for uniformity */
+  height: 220px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
-      z-index: -1;
-      border-radius: 16px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
+.card-img {
+  width: 90%; /* Slightly smaller image */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.3));
+  transition: transform 0.3s;
+  max-height: 120px; /* Limit image height */
+  object-fit: contain; /* Ensures image fits neatly */
+}
 
-    .card:hover::before {
-      opacity: 1;
-    }
+.card h2 {
+  margin: 8px 0;
+  font-size: 1.2rem; /* Smaller heading */
+}
 
-    .card:hover {
-      transform: translateY(-10px) rotateX(5deg);
-      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
-    }
-
-    .card-img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
-      transition: transform 0.3s;
-    }
-
-    .card:hover .card-img {
-      transform: scale(1.05);
-    }
-
-    .card h2 {
-      margin: 10px 0;
-      color: white;
-      font-size: 1.5rem;
-    }
-
+.card span {
+  font-size: 0.8rem; /* Smaller subtitle */
+  opacity: 0.8;
+}
     /* Futuristic Particles Background */
     #particles-js {
       position: fixed;
