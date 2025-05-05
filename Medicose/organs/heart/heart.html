@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Heart - Medicose</title>
+  <title>Heart Explorer | Medicose</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #ff4d6d;
@@ -40,8 +40,9 @@
     }
 
     h1 {
-      font-size: 3rem;
-      margin: 30px 0 60px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      margin: 20px 0 60px;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
@@ -49,23 +50,30 @@
       position: relative;
       text-align: center;
       animation: float 3s ease-in-out infinite;
+      letter-spacing: 1px;
     }
     
     h1::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 120px;
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       border-radius: 2px;
+      animation: widthPulse 2s infinite;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes widthPulse {
+      0%, 100% { width: 120px; opacity: 1; }
+      50% { width: 150px; opacity: 0.7; }
     }
 
     .container-wrapper {
@@ -74,6 +82,7 @@
       width: 100%;
       max-width: 1200px;
       position: relative;
+      perspective: 1000px;
     }
     
     .container-wrapper::before {
@@ -106,13 +115,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: all 0.4s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       backdrop-filter: blur(8px);
       padding: 30px 20px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      min-height: 150px;
+      min-height: 180px;
+      transform-style: preserve-3d;
     }
     
     .card::before {
@@ -126,20 +136,20 @@
       transition: 0.5s;
     }
     
+    .card:hover {
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(255, 77, 109, 0.4);
+      border-color: rgba(255, 77, 109, 0.7);
+    }
+    
     .card:hover::before {
       left: 100%;
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
-      border-color: rgba(255, 77, 109, 0.5);
-    }
-    
     .card span {
       font-size: 1.3rem;
-      margin-top: 10px;
+      margin-top: 15px;
       position: relative;
       z-index: 1;
       transition: all 0.3s ease;
@@ -147,18 +157,19 @@
     
     .card:hover span {
       color: var(--accent);
-      text-shadow: 0 0 10px rgba(255, 204, 213, 0.5);
+      text-shadow: 0 0 15px rgba(255, 204, 213, 0.7);
     }
     
     .card-icon {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       color: var(--primary);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.5));
     }
     
     .card:hover .card-icon {
-      transform: scale(1.2);
+      transform: scale(1.3) rotate(10deg);
       color: var(--secondary);
     }
     
@@ -183,9 +194,45 @@
         opacity: 0.7;
       }
       100% {
-        transform: scale(1.3);
+        transform: scale(1.5);
         opacity: 0;
       }
+    }
+
+    /* Beating Heart Animation */
+    .heart-beat {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(255, 77, 109, 0.7);
+      animation: beat 1.5s infinite;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+    
+    .heart-beat:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255, 77, 109, 0.9);
+    }
+    
+    .heart-beat::before {
+      content: '❤️';
+      font-size: 2.5rem;
+    }
+    
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
     }
 
     @media (max-width: 768px) {
@@ -194,8 +241,15 @@
       }
       
       h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         margin-bottom: 40px;
+      }
+      
+      .heart-beat {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
       }
     }
 
@@ -205,11 +259,6 @@
       }
     }
 
-    .container:has(.card:only-child) {
-      display: flex;
-      justify-content: center;
-    }
-    
     /* Floating hearts background */
     .floating-hearts {
       position: fixed;
@@ -223,17 +272,41 @@
     
     .heart {
       position: absolute;
-      opacity: 0.1;
+      opacity: 0.2;
       animation: float-up linear infinite;
+      filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.5));
     }
     
     @keyframes float-up {
       0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.2;
+      }
+      90% {
+        opacity: 0.2;
       }
       100% {
-        transform: translateY(-100px) rotate(360deg);
+        transform: translateY(-100px) rotate(360deg) scale(1);
+        opacity: 0;
       }
+    }
+    
+    /* Glow effect for cards */
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: radial-gradient(circle at center, rgba(255, 77, 109, 0.3), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card:hover .glow {
+      opacity: 1;
     }
   </style>
 </head>
@@ -241,45 +314,53 @@
 <body>
   <div class="floating-hearts" id="hearts-container"></div>
   
-  <h1>Human Heart</h1>
+  <h1>Heart Explorer</h1>
 
   <div class="container-wrapper">
     <div class="container">
       <a href="basicinfo/index.html" class="card">
+        <div class="glow"></div>
         <div class="card-icon">❤️</div>
-        <span>Basic Info</span>
+        <span>Basic Anatomy</span>
         <div class="pulse"></div>
       </a>
 
       <a href="diseases/index.html" class="card">
+        <div class="glow"></div>
         <div class="card-icon">🫀</div>
-        <span>Common Diseases</span>
+        <span>Heart Conditions</span>
         <div class="pulse"></div>
       </a>
       
       <a href="treatments/index.html" class="card">
+        <div class="glow"></div>
         <div class="card-icon">💊</div>
         <span>Treatments</span>
         <div class="pulse"></div>
       </a>
 
       <a href="research/index.html" class="card">
+        <div class="glow"></div>
         <div class="card-icon">🔬</div>
-        <span>Research-Based Info</span>
+        <span>Latest Research</span>
         <div class="pulse"></div>
       </a>
     </div>
   </div>
   
+  <div class="heart-beat" id="heartBeat"></div>
+  
   <script>
     // Create floating hearts
     const heartsContainer = document.getElementById('hearts-container');
-    const heartCount = 15;
+    const heartCount = 20;
+    
+    const heartEmojis = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💞', '💕'];
     
     for (let i = 0; i < heartCount; i++) {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      heart.innerHTML = '❤️';
+      heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
       heart.style.left = `${Math.random() * 100}%`;
       heart.style.fontSize = `${Math.random() * 20 + 10}px`;
       heart.style.animationDuration = `${Math.random() * 15 + 10}s`;
@@ -287,23 +368,45 @@
       heartsContainer.appendChild(heart);
     }
     
-    // Add ripple effect to cards
+    // Heart beat interaction
+    const heartBeat = document.getElementById('heartBeat');
+    heartBeat.addEventListener('click', function() {
+      // Create burst effect
+      for (let i = 0; i < 15; i++) {
+        const burstHeart = document.createElement('div');
+        burstHeart.classList.add('heart');
+        burstHeart.innerHTML = '❤️';
+        burstHeart.style.left = `${50 + (Math.random() * 20 - 10)}%`;
+        burstHeart.style.top = `${50 + (Math.random() * 20 - 10)}%`;
+        burstHeart.style.fontSize = `${Math.random() * 20 + 10}px`;
+        burstHeart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        burstHeart.style.opacity = '0.8';
+        document.body.appendChild(burstHeart);
+        
+        // Remove after animation
+        setTimeout(() => {
+          burstHeart.remove();
+        }, 3000);
+      }
+      
+      // Intensify beat
+      this.style.animation = 'beat 0.5s 3';
+      setTimeout(() => {
+        this.style.animation = 'beat 1.5s infinite';
+      }, 1500);
+    });
+    
+    // 3D tilt effect for cards
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-      card.addEventListener('click', function(e) {
-        const x = e.clientX - e.target.getBoundingClientRect().left;
-        const y = e.clientY - e.target.getBoundingClientRect().top;
-        
-        const ripple = document.createElement('span');
-        ripple.classList.add('pulse');
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 1000);
+      card.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+        card.style.transform = `translateY(-10px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(-10px) rotateY(0) rotateX(0)';
       });
     });
   </script>
