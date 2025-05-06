@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +7,22 @@
   <title>Yashify - FUN Zone</title>
   <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
     
-    
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-    
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B5X5RJM3XH');
+  </script>
 
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #000000;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
       color: white;
       display: flex;
       flex-direction: column;
@@ -32,17 +32,43 @@
       overflow: auto;
     }
 
-    h1 {
-      z-index: 1;
-      font-size: 2rem;
-      margin: 30px 0;
-      text-shadow: 0 0 10px #ff00cc, 0 0 20px #00ffff;
-      animation: glow 3s infinite alternate;
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #ff00cc; }
-      to { text-shadow: 0 0 20px #00ffff; }
+    .neon-title {
+      font-size: 3rem;
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .neon-title span {
+      color: #fff;
+      text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00ff,
+        0 0 40px #ff00ff,
+        0 0 80px #ff00ff;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #ff00ff,
+          0 0 40px #ff00ff,
+          0 0 80px #ff00ff;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
     }
 
     .container {
@@ -53,75 +79,142 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       max-width: 1200px;
       width: 100%;
-      padding: 20px;
+      padding: 30px;
       box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container:before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff00cc, #00ffff, #00ffcc);
+      z-index: -1;
+      border-radius: 22px;
+      animation: borderGlow 3s linear infinite;
+    }
+
+    @keyframes borderGlow {
+      0% { filter: blur(5px); opacity: 0.7; }
+      50% { filter: blur(7px); opacity: 1; }
+      100% { filter: blur(5px); opacity: 0.7; }
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #ffffff44;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 15px;
-      color: #ffffffcc;
+      color: white;
       text-align: center;
       text-decoration: none;
-      font-weight: bold;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       overflow: hidden;
-      transition: transform 0.3s ease, background 0.3s;
       backdrop-filter: blur(4px);
-      padding: 10px;
       max-width: 300px;
+      height: 250px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-back {
+      background: linear-gradient(45deg, #ff00cc, #00ffff);
+      transform: rotateY(180deg);
+      color: white;
+      font-size: 1.2rem;
     }
 
     .card-img {
-      width: 100%;
+      width: 80%;
       height: auto;
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 10px;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
     }
 
-    .bubbles {
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .card:hover .card-img {
+      animation: none;
+      transform: scale(1.1);
+    }
+
+    body:after {
+      content: "";
       position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 0;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px));
+      z-index: -1;
     }
 
-    .bubble {
-      position: absolute;
-      bottom: -150px;
-      background: radial-gradient(circle, #00f0ff, #ff00cc);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: rise 10s infinite ease-in;
-    }
-
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(-1200px) scale(1.5);
-        opacity: 0;
-      }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
       .container {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .neon-title {
+        font-size: 2rem;
       }
     }
 
@@ -129,69 +222,138 @@
       .container {
         grid-template-columns: 1fr;
       }
+      .neon-title {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="bubbles">
-    <script>
-      for (let i = 0; i < 30; i++) {
-        const bubble = document.createElement("div");
-        bubble.classList.add("bubble");
-        bubble.style.left = Math.random() * 100 + "vw";
-        const size = Math.random() * 25 + 10;
-        bubble.style.width = bubble.style.height = size + "px";
-        bubble.style.animationDuration = Math.random() * 8 + 5 + "s";
-        bubble.style.animationDelay = Math.random() * 5 + "s";
-        document.querySelector(".bubbles").appendChild(bubble);
-      }
-    </script>
-  </div>
-
-  <h1>Welcome to Yashify FUN Zone</h1>
+  <h1 class="neon-title">Welcome to <span>Yashify</span> FUN Zone</h1>
 
   <div class="container">
-
     <a href="Rocks/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Rocks/Rocks.PNG" alt="Rocks" class="card-img">
-      <h2>Rocks</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Rocks/Rocks.PNG" alt="Rocks" class="card-img">
+          <h2>Rocks</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
     <a href="ElonMusk/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
-      <h2>Elon Musk Money</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
+          <h2>Elon Musk Money</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
     <a href="SpaceX/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/SpaceX/Space.PNG" alt="Space X" class="card-img">
-      <h2>Space X</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/SpaceX/Space.PNG" alt="Space X" class="card-img">
+          <h2>Space X</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
     <a href="Noise/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Noise/No.PNG" alt="Noise" class="card-img">
-      <h2>Noise</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Noise/No.PNG" alt="Noise" class="card-img">
+          <h2>Noise</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
     <a href="Passwordgame/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Passwordgame/P.PNG" alt="Password Game" class="card-img">
-      <h2>Password Game</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Passwordgame/P.PNG" alt="Password Game" class="card-img">
+          <h2>Password Game</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
     <a href="stopat00.00sec/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
-      <h2>Stop at 00:00 sec</h2>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
+          <h2>Stop at 00:00 sec</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
 
-
-<a href="rock/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/rock/Ruu.PNG" alt="rock" class="card-img">
-      <h2>rock paper scissors</h2>
+    <a href="rock/index.html" class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/rock/Ruu.PNG" alt="rock" class="card-img">
+          <h2>rock paper scissors</h2>
+        </div>
+        <div class="card-back">
+          <p>Click to play this awesome game!</p>
+        </div>
+      </div>
     </a>
-
-
-
-
   </div>
+
+  <footer>
+    <p>© 2023 Yashify FUN Zone | All Rights Reserved</p>
+  </footer>
+
+  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"></audio>
+
+  <script>
+    // Spotlight follow cursor
+    document.body.addEventListener('mousemove', (e) => {
+      document.body.style.setProperty('--x', e.clientX);
+      document.body.style.setProperty('--y', e.clientY);
+    });
+
+    // Hover sound effect
+    const cards = document.querySelectorAll('.card');
+    const hoverSound = document.getElementById('hoverSound');
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        hoverSound.currentTime = 0;
+        hoverSound.volume = 0.3;
+        hoverSound.play();
+      });
+    });
+
+    // Game count display
+    window.onload = function() {
+      const gameCount = document.querySelectorAll('.card').length;
+      const countElement = document.createElement('h2');
+      countElement.textContent = `${gameCount} Awesome Games Available`;
+      countElement.style.textAlign = 'center';
+      countElement.style.marginTop = '-20px';
+      countElement.style.marginBottom = '20px';
+      countElement.style.color = 'rgba(255,255,255,0.7)';
+      document.querySelector('.neon-title').insertAdjacentElement('afterend', countElement);
+    };
+  </script>
 </body>
 </html>
