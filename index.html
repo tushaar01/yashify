@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,7 @@
     <title>yashify.fun ✨</title>
     <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
         
-        
-        
-        <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,8 +16,6 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-
-
 
     <style>
         /* Base Styles */
@@ -220,6 +217,158 @@
         body.dark-mode .peacock-feather {
             color: #4caf50;
         }
+
+        /* Comments Section Styles */
+        .comments-section {
+            margin-top: 4rem;
+            background: var(--card-bg-day);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow-day);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: left;
+        }
+
+        body.dark-mode .comments-section {
+            background: var(--card-bg-night);
+            box-shadow: var(--card-shadow-night);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comments-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color-day);
+            text-align: center;
+        }
+
+        body.dark-mode .comments-section h2 {
+            color: var(--text-color-night);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        #comment-name, #comment-text {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.8);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode #comment-name,
+        body.dark-mode #comment-text {
+            background: rgba(30,30,60,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #f0f0f0;
+        }
+
+        #comment-text {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #comment-name:focus, #comment-text:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(229, 46, 113, 0.3);
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        body.dark-mode .char-counter {
+            color: #aaa;
+        }
+
+        #comment-form button {
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        body.dark-mode #comment-form button {
+            background: linear-gradient(90deg, #ff8a00, #9c27b0);
+        }
+
+        #comment-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 46, 113, 0.4);
+        }
+
+        .comment {
+            background: rgba(255,255,255,0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        body.dark-mode .comment {
+            background: rgba(30,30,60,0.7);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .comment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            border-radius: 15px 15px 0 0;
+        }
+
+        body.dark-mode .comment::before {
+            background: linear-gradient(90deg, #ff8a00, #9c27b0);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #e52e71;
+        }
+
+        body.dark-mode .comment-author {
+            color: #9c27b0;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        body.dark-mode .comment-date {
+            color: #aaa;
+        }
+
+        .comment-content {
+            line-height: 1.6;
+        }
         
         /* Footer */
         footer {
@@ -303,6 +452,14 @@
                 width: 100%;
                 max-width: 350px;
             }
+
+            .comments-section {
+                padding: 1.5rem;
+            }
+            
+            .comments-section h2 {
+                font-size: 1.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -362,6 +519,25 @@
                 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/BScMB/M.PNG" alt="BScMB" class="card-img">
                 <h3 class="card-title">Department of Microbiology</h3>
             </a>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2>Share Your Thoughts</h2>
+            <form id="comment-form">
+                <div class="form-group">
+                    <input type="text" id="comment-name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="comment-text" placeholder="Write your comment here..." required></textarea>
+                    <div class="char-counter"><span id="char-count">0</span>/250</div>
+                </div>
+                <button type="submit">Post Comment</button>
+            </form>
+            
+            <div class="comments-list" id="comments-list">
+                <!-- Comments will appear here -->
+            </div>
         </div>
         
         <footer>
@@ -553,6 +729,103 @@
             // Check every minute
             setInterval(checkTimeAndToggle, 60000);
             checkTimeAndToggle(); // Initial check
+
+            // Comments System
+            const commentForm = document.getElementById('comment-form');
+            const commentsList = document.getElementById('comments-list');
+            const commentText = document.getElementById('comment-text');
+            const charCount = document.getElementById('char-count');
+            
+            // Load saved name from localStorage
+            const savedName = localStorage.getItem('commentName');
+            if (savedName) {
+                document.getElementById('comment-name').value = savedName;
+            }
+            
+            // Load comments from localStorage
+            loadComments();
+            
+            // Character counter
+            commentText.addEventListener('input', function() {
+                const currentLength = this.value.length;
+                charCount.textContent = currentLength;
+                
+                if (currentLength > 250) {
+                    charCount.style.color = '#e52e71';
+                } else {
+                    charCount.style.color = '';
+                }
+            });
+            
+            // Form submission
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('comment-name').value.trim();
+                const text = commentText.value.trim();
+                
+                if (name && text) {
+                    // Save name for future
+                    localStorage.setItem('commentName', name);
+                    
+                    // Create new comment
+                    const newComment = {
+                        name: name,
+                        text: text,
+                        date: new Date().toISOString()
+                    };
+                    
+                    // Get existing comments
+                    let comments = JSON.parse(localStorage.getItem('yashifyComments') || '[]');
+                    
+                    // Add new comment
+                    comments.unshift(newComment);
+                    
+                    // Save to localStorage
+                    localStorage.setItem('yashifyComments', JSON.stringify(comments));
+                    
+                    // Refresh comments display
+                    loadComments();
+                    
+                    // Reset form
+                    commentText.value = '';
+                    charCount.textContent = '0';
+                }
+            });
+            
+            function loadComments() {
+                const comments = JSON.parse(localStorage.getItem('yashifyComments') || '[]');
+                commentsList.innerHTML = '';
+                
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<p style="text-align: center;">No comments yet. Be the first to share your thoughts!</p>';
+                    return;
+                }
+                
+                comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+                    
+                    const date = new Date(comment.date);
+                    const formattedDate = date.toLocaleString('en-IN', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    commentElement.innerHTML = `
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.name}</span>
+                            <span class="comment-date">${formattedDate}</span>
+                        </div>
+                        <div class="comment-content">${comment.text}</div>
+                    `;
+                    
+                    commentsList.appendChild(commentElement);
+                });
+            }
         });
     </script>
 </body>
