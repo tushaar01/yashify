@@ -6,14 +6,13 @@
     <title>The Password Game - yashify.fun</title>
     
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B5X5RJM3XH');
+    </script>
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,6 +46,18 @@
             margin-bottom: 30px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #f0f0f0, #7a995e, #f0f0f0);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
         }
         
         .password-input {
@@ -59,6 +70,7 @@
             margin-bottom: 20px;
             font-size: 18px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .password-input:focus {
@@ -72,6 +84,8 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .rule {
@@ -81,6 +95,29 @@
             background-color: rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rule::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .rule.valid:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
         }
         
         .rule.valid {
@@ -96,6 +133,14 @@
         .rule-number {
             font-weight: 600;
             margin-right: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 50%;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 20px;
         }
         
         @keyframes shake {
@@ -151,6 +196,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
@@ -160,6 +206,17 @@
             padding: 30px;
             max-width: 80%;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: modalOpen 0.3s forwards;
+        }
+        
+        @keyframes modalOpen {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         .button {
@@ -171,10 +228,35 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .button:hover::after {
+            animation: buttonShine 1.5s infinite;
+        }
+        
+        @keyframes buttonShine {
+            100% {
+                transform: translateX(100%);
+            }
         }
         
         .button:hover {
             background-color: var(--dark-olive);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .egg {
@@ -197,9 +279,27 @@
         
         .progress {
             height: 100%;
-            background-color: var(--light-olive);
+            background: linear-gradient(90deg, var(--light-olive), #10b981);
             width: 0%;
             transition: width 0.3s ease;
+            position: relative;
+        }
+        
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+        
+        @keyframes progressShine {
+            100% {
+                transform: translateX(100%);
+            }
         }
         
         .captcha-container {
@@ -209,6 +309,9 @@
             border-radius: 5px;
             margin: 10px 0;
             text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            font-weight: bold;
         }
         
         @keyframes blink {
@@ -220,6 +323,68 @@
             animation: blink 1s infinite;
         }
         
+        /* New Creative Elements */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .power-up {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .power-up-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--light-olive);
+        }
+        
+        .power-up-btn:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .tooltip:hover::before {
+            opacity: 1;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .title {
@@ -229,6 +394,17 @@
             .container {
                 padding: 10px;
             }
+            
+            .power-up {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .power-up-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -237,7 +413,7 @@
         <h1 class="title">The Password Game</h1>
         
         <div class="rules-container">
-            <p class="mb-4">Please choose a password:</p>
+            <p class="mb-4 text-lg">Please choose a password:</p>
             <div class="password-wrapper relative">
                 <textarea id="password-input" class="password-input" rows="4" placeholder="Type your password here..." autofocus></textarea>
                 <div class="progress-bar">
@@ -255,21 +431,35 @@
         </div>
     </div>
     
+    <!-- Power-ups -->
+    <div class="power-up">
+        <div class="power-up-btn tooltip" data-tooltip="Freeze Rules (15s)" id="freeze-btn">
+            ⏸️
+        </div>
+        <div class="power-up-btn tooltip" data-tooltip="Skip Rule" id="skip-btn">
+            ⏭️
+        </div>
+        <div class="power-up-btn tooltip" data-tooltip="Hint" id="hint-btn">
+            💡
+        </div>
+    </div>
+    
     <!-- Success Modal -->
     <div id="success-modal" class="modal">
         <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4">Congratulations!</h2>
+            <h2 class="text-2xl font-bold mb-4">Congratulations! 🎉</h2>
             <p class="mb-6">You've successfully created a password that meets all the requirements! You must be some sort of password genius.</p>
             <p class="mb-4">Your final password:</p>
             <div id="final-password" class="bg-black p-4 rounded mb-6 overflow-x-auto text-sm"></div>
             <button id="restart-button" class="button">Play Again</button>
+            <button id="share-button" class="button ml-3">Share</button>
         </div>
     </div>
     
     <!-- Failure Modal -->
     <div id="failure-modal" class="modal">
         <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4">Password Rejected!</h2>
+            <h2 class="text-2xl font-bold mb-4">Password Rejected! 😢</h2>
             <p class="mb-6">Your password was rejected by our extremely reasonable system. Maybe try again with something more... compliant?</p>
             <button id="try-again-button" class="button">Try Again</button>
         </div>
@@ -278,7 +468,7 @@
     <!-- Fake Virus Modal -->
     <div id="virus-modal" class="modal">
         <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4 text-red-500">WARNING: VIRUS DETECTED!</h2>
+            <h2 class="text-2xl font-bold mb-4 text-red-500">WARNING: VIRUS DETECTED! 🚨</h2>
             <p class="mb-6 blinking">Your system has been infected with 17 viruses while creating this password!</p>
             <div class="fake-progress-bar bg-gray-200 h-4 rounded mb-6">
                 <div id="fake-progress" class="bg-red-500 h-full rounded" style="width: 30%;"></div>
@@ -289,28 +479,37 @@
     </div>
 
     <script>
-        // Audio elements
-        const keySound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/beep.mp3');
-        const successSound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/drum-machine/Heater-1.mp3');
-        const errorSound = new Audio('https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn/build/testable-projects-fcc/audio/drum-machine/Heater-2.mp3');
+        // Audio elements with new sounds
+        const keySound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-quick-jump-arcade-game-239.mp3');
+        const successSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3');
+        const errorSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-retro-game-over-213.mp3');
+        const powerUpSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3');
         
         // Reduce volume
-        keySound.volume = 0.2;
-        successSound.volume = 0.3;
+        keySound.volume = 0.3;
+        successSound.volume = 0.4;
         errorSound.volume = 0.3;
+        powerUpSound.volume = 0.4;
         
-        // Game state
+        // Game state with new features
         const gameState = {
             currentRule: 0,
             rules: [],
             validRules: new Set(),
             invalidRules: new Set(),
-            maxRules: 23, // Total number of rules to add
+            maxRules: 23,
             eggHatched: false,
             lastFeedTime: null,
             sacrificedLetters: [],
             ruleInterval: null,
-            fireActive: false
+            fireActive: false,
+            powerUps: {
+                freeze: 1,
+                skip: 1,
+                hint: 1
+            },
+            lastPassword: '',
+            difficulty: 1 // 1-3 scale
         };
         
         // DOM elements
@@ -324,8 +523,12 @@
         const restartButton = document.getElementById('restart-button');
         const tryAgainButton = document.getElementById('try-again-button');
         const closeVirusButton = document.getElementById('close-virus-button');
+        const shareButton = document.getElementById('share-button');
+        const freezeBtn = document.getElementById('freeze-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const hintBtn = document.getElementById('hint-btn');
         
-        // Rules definitions
+        // Enhanced Rules definitions
         const ruleDefs = [
             { text: "Your password must be at least 5 characters" },
             { text: "Your password must include a number" },
@@ -352,7 +555,7 @@
             { text: "Gary has hatched! Please don't forget to feed him. He eats three 🐛 every minute", special: "chicken" }
         ];
         
-        // Initialize game
+        // Initialize game with new features
         function initGame() {
             gameState.currentRule = 0;
             gameState.rules = [];
@@ -362,9 +565,18 @@
             gameState.lastFeedTime = null;
             gameState.sacrificedLetters = [];
             gameState.fireActive = false;
+            gameState.powerUps = {
+                freeze: 1,
+                skip: 1,
+                hint: 1
+            };
+            gameState.difficulty = 1;
             
             rulesList.innerHTML = '';
             passwordInput.value = '';
+            
+            // Update power-up buttons
+            updatePowerUpButtons();
             
             // Add first rule
             addNextRule();
@@ -380,10 +592,15 @@
                 } else {
                     clearInterval(gameState.ruleInterval);
                 }
-            }, 15000);
+            }, getRuleIntervalTime());
         }
         
-        // Add the next rule to the game
+        // Get rule interval time based on difficulty
+        function getRuleIntervalTime() {
+            return 15000 - (gameState.difficulty - 1) * 3000;
+        }
+        
+        // Add the next rule to the game with enhancements
         function addNextRule() {
             if (gameState.currentRule >= ruleDefs.length) return;
             
@@ -419,7 +636,11 @@
             ruleElement.innerHTML = ruleContent;
             rulesList.appendChild(ruleElement);
             
+            // Scroll to the new rule
+            ruleElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
             // Add sound effect
+            keySound.currentTime = 0;
             keySound.play();
             
             // Add the rule to our state
@@ -449,13 +670,65 @@
                 startChickenMonitoring();
             }
             
+            // Adjust difficulty based on performance
+            adjustDifficulty();
+            
             // Easter egg: 50% chance of triggering fake virus after 10 rules
             if (gameState.currentRule === 10 && Math.random() < 0.5) {
                 setTimeout(showFakeVirus, 5000);
             }
         }
         
-        // Start the fire mechanic
+        // Adjust game difficulty based on player performance
+        function adjustDifficulty() {
+            const successRate = gameState.validRules.size / gameState.rules.length;
+            
+            if (successRate > 0.8 && gameState.difficulty < 3) {
+                gameState.difficulty++;
+                showNotification(`Difficulty increased to level ${gameState.difficulty}!`);
+            } else if (successRate < 0.4 && gameState.difficulty > 1) {
+                gameState.difficulty--;
+                showNotification(`Difficulty decreased to level ${gameState.difficulty}!`);
+            }
+            
+            // Update rule interval based on new difficulty
+            if (gameState.ruleInterval) {
+                clearInterval(gameState.ruleInterval);
+                gameState.ruleInterval = setInterval(() => {
+                    if (gameState.currentRule < gameState.maxRules) {
+                        addNextRule();
+                    } else {
+                        clearInterval(gameState.ruleInterval);
+                    }
+                }, getRuleIntervalTime());
+            }
+        }
+        
+        // Show a temporary notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.zIndex = '1000';
+            notification.style.transition = 'opacity 0.5s';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+        
+        // Start the fire mechanic with enhancements
         function startFire() {
             gameState.fireActive = true;
             
@@ -463,7 +736,11 @@
             passwordInput.classList.add('on-fire');
             
             // Play sound effect
+            errorSound.currentTime = 0;
             errorSound.play();
+            
+            // Create fire particles
+            createParticles(passwordInput, 20, '#ff6b35');
             
             // Wait for user to "put out the fire" by typing "water" 
             // or clicking the password field rapidly
@@ -475,16 +752,55 @@
                     gameState.fireActive = false;
                     passwordInput.removeEventListener('click', fireExtinguisher);
                     validateRules(); // Re-validate rules
+                    successSound.currentTime = 0;
                     successSound.play();
+                    createParticles(passwordInput, 30, '#10b981');
                 }
             };
             
             passwordInput.addEventListener('click', fireExtinguisher);
         }
         
-        // Start the chicken monitoring
+        // Create visual particles effect
+        function createParticles(element, count, color) {
+            const rect = element.getBoundingClientRect();
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('confetti');
+                particle.style.backgroundColor = color;
+                particle.style.left = `${rect.left + Math.random() * rect.width}px`;
+                particle.style.top = `${rect.top + Math.random() * rect.height}px`;
+                particle.style.width = `${5 + Math.random() * 10}px`;
+                particle.style.height = particle.style.width;
+                
+                // Random shape
+                if (Math.random() > 0.5) {
+                    particle.style.borderRadius = '50%';
+                } else {
+                    particle.style.borderRadius = '0';
+                }
+                
+                document.body.appendChild(particle);
+                
+                // Animation
+                const animation = particle.animate([
+                    { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * -200}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 1000 + Math.random() * 1000,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    document.body.removeChild(particle);
+                };
+            }
+        }
+        
+        // Start the chicken monitoring with enhancements
         function startChickenMonitoring() {
-            setInterval(() => {
+            const chickenInterval = setInterval(() => {
                 if (gameState.eggHatched) {
                     const now = Date.now();
                     const elapsedMinutes = (now - gameState.lastFeedTime) / (60 * 1000);
@@ -499,12 +815,18 @@
                             }, 1000);
                             
                             // Make error sound
+                            errorSound.currentTime = 0;
                             errorSound.play();
+                            
+                            // Create angry chicken particles
+                            createParticles(chickenRule.element, 5, '#ff0000');
                             
                             // Reset the feed time, but mark as hungry
                             gameState.lastFeedTime = now;
                         }
                     }
+                } else {
+                    clearInterval(chickenInterval);
                 }
             }, 10000); // Check every 10 seconds
         }
@@ -514,23 +836,45 @@
             const wormCount = (passwordInput.value.match(/🐛/g) || []).length;
             if (wormCount >= 3) {
                 gameState.lastFeedTime = Date.now();
+                
+                // Create happy chicken particles
+                const chickenRule = gameState.rules.find(r => r.data.special === "chicken");
+                if (chickenRule) {
+                    createParticles(chickenRule.element, 10, '#ffff00');
+                }
+                
                 return true;
             }
             return false;
         }
         
-        // Update the progress bar
+        // Update the progress bar with visual enhancements
         function updateProgressBar() {
             const progress = (gameState.currentRule / gameState.maxRules) * 100;
             progressBar.style.width = `${progress}%`;
+            
+            // Change color based on progress
+            if (progress > 75) {
+                progressBar.style.background = 'linear-gradient(90deg, var(--light-olive), #ef4444)';
+            } else if (progress > 50) {
+                progressBar.style.background = 'linear-gradient(90deg, var(--light-olive), #f59e0b)';
+            } else {
+                progressBar.style.background = 'linear-gradient(90deg, var(--light-olive), #10b981)';
+            }
         }
         
-        // Validate each rule against the current password
+        // Validate each rule against the current password with optimizations
         function validateRules() {
             const password = passwordInput.value;
             
+            // Skip validation if password hasn't changed
+            if (password === gameState.lastPassword) return;
+            gameState.lastPassword = password;
+            
             gameState.validRules.clear();
             gameState.invalidRules.clear();
+            
+            let allValid = true;
             
             gameState.rules.forEach(rule => {
                 const ruleId = rule.id;
@@ -635,30 +979,51 @@
                 
                 // Update rule status classes
                 if (isValid) {
-                    element.classList.remove('invalid');
-                    element.classList.add('valid');
-                    gameState.validRules.add(ruleId);
+                    if (!element.classList.contains('valid')) {
+                        element.classList.remove('invalid');
+                        element.classList.add('valid');
+                        gameState.validRules.add(ruleId);
+                        
+                        // Add visual feedback for newly valid rules
+                        if (gameState.invalidRules.has(ruleId)) {
+                            createParticles(element, 5, '#10b981');
+                        }
+                    }
                 } else {
-                    element.classList.remove('valid');
-                    element.classList.add('invalid');
-                    gameState.invalidRules.add(ruleId);
+                    if (!element.classList.contains('invalid')) {
+                        element.classList.remove('valid');
+                        element.classList.add('invalid');
+                        gameState.invalidRules.add(ruleId);
+                        allValid = false;
+                        
+                        // Add visual feedback for newly invalid rules
+                        if (gameState.validRules.has(ruleId)) {
+                            createParticles(element, 5, '#ef4444');
+                        }
+                    } else {
+                        allValid = false;
+                    }
                 }
             });
             
             // Check if all rules are valid
-            if (gameState.validRules.size === gameState.rules.length && gameState.rules.length >= 5) {
+            if (allValid && gameState.rules.length >= 5) {
                 showSuccessModal();
             }
         }
         
-        // Generate a random CAPTCHA
+        // Generate a random CAPTCHA with visual style
         function generateCaptcha() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
             let captcha = '';
             for (let i = 0; i < 6; i++) {
                 captcha += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            return captcha;
+            
+            // Add visual distortion
+            return captcha.split('').map(char => 
+                `<span style="transform: rotate(${Math.random() * 10 - 5}deg); display: inline-block;">${char}</span>`
+            ).join('');
         }
         
         // Get a random word for the "Wordle answer"
@@ -679,23 +1044,31 @@
             return moves[Math.floor(Math.random() * moves.length)];
         }
         
-        // Show success modal
+        // Show success modal with confetti
         function showSuccessModal() {
             finalPassword.textContent = passwordInput.value;
             successModal.style.display = 'flex';
+            successSound.currentTime = 0;
             successSound.play();
             clearInterval(gameState.ruleInterval);
+            
+            // Create confetti effect
+            for (let i = 0; i < 100; i++) {
+                createParticles(successModal, 1, `hsl(${Math.random() * 360}, 100%, 50%)`);
+            }
         }
         
         // Show failure modal
         function showFailureModal() {
             failureModal.style.display = 'flex';
+            errorSound.currentTime = 0;
             errorSound.play();
         }
         
-        // Show fake virus modal
+        // Show fake virus modal with animation
         function showFakeVirus() {
             virusModal.style.display = 'flex';
+            errorSound.currentTime = 0;
             errorSound.play();
             
             let progress = 30;
@@ -710,6 +1083,160 @@
                     closeVirusButton.style.display = 'inline-block';
                 }
             }, 1000);
+        }
+        
+        // Update power-up buttons state
+        function updatePowerUpButtons() {
+            freezeBtn.textContent = `⏸️ ×${gameState.powerUps.freeze}`;
+            skipBtn.textContent = `⏭️ ×${gameState.powerUps.skip}`;
+            hintBtn.textContent = `💡 ×${gameState.powerUps.hint}`;
+            
+            freezeBtn.style.opacity = gameState.powerUps.freeze > 0 ? '1' : '0.5';
+            skipBtn.style.opacity = gameState.powerUps.skip > 0 ? '1' : '0.5';
+            hintBtn.style.opacity = gameState.powerUps.hint > 0 ? '1' : '0.5';
+        }
+        
+        // Use freeze power-up
+        function useFreeze() {
+            if (gameState.powerUps.freeze > 0) {
+                gameState.powerUps.freeze--;
+                updatePowerUpButtons();
+                
+                clearInterval(gameState.ruleInterval);
+                showNotification('Rules frozen for 15 seconds!');
+                powerUpSound.currentTime = 0;
+                powerUpSound.play();
+                
+                setTimeout(() => {
+                    gameState.ruleInterval = setInterval(() => {
+                        if (gameState.currentRule < gameState.maxRules) {
+                            addNextRule();
+                        } else {
+                            clearInterval(gameState.ruleInterval);
+                        }
+                    }, getRuleIntervalTime());
+                }, 15000);
+            }
+        }
+        
+        // Use skip power-up
+        function useSkip() {
+            if (gameState.powerUps.skip > 0 && gameState.currentRule < gameState.maxRules) {
+                gameState.powerUps.skip--;
+                updatePowerUpButtons();
+                
+                gameState.currentRule++;
+                updateProgressBar();
+                showNotification('Rule skipped!');
+                powerUpSound.currentTime = 0;
+                powerUpSound.play();
+            }
+        }
+        
+        // Use hint power-up
+        function useHint() {
+            if (gameState.powerUps.hint > 0 && gameState.invalidRules.size > 0) {
+                gameState.powerUps.hint--;
+                updatePowerUpButtons();
+                
+                // Get first invalid rule
+                const invalidRuleId = Array.from(gameState.invalidRules)[0];
+                const rule = gameState.rules.find(r => r.id === invalidRuleId);
+                
+                if (rule) {
+                    // Show hint
+                    const hint = document.createElement('div');
+                    hint.textContent = getHintForRule(rule.id);
+                    hint.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    hint.style.padding = '10px';
+                    hint.style.borderRadius = '5px';
+                    hint.style.marginTop = '5px';
+                    hint.style.fontSize = '0.9em';
+                    hint.style.opacity = '0';
+                    hint.style.transition = 'opacity 0.3s';
+                    
+                    rule.element.appendChild(hint);
+                    setTimeout(() => {
+                        hint.style.opacity = '1';
+                    }, 10);
+                    
+                    // Remove hint after 5 seconds
+                    setTimeout(() => {
+                        hint.style.opacity = '0';
+                        setTimeout(() => {
+                            if (rule.element.contains(hint)) {
+                                rule.element.removeChild(hint);
+                            }
+                        }, 300);
+                    }, 5000);
+                    
+                    showNotification('Hint shown!');
+                    powerUpSound.currentTime = 0;
+                    powerUpSound.play();
+                }
+            }
+        }
+        
+        // Get hint for specific rule
+        function getHintForRule(ruleId) {
+            switch (ruleId) {
+                case 0: return "Hint: Just type at least 5 characters";
+                case 1: return "Hint: Add any number (0-9)";
+                case 2: return "Hint: Include at least one capital letter";
+                case 3: return "Hint: Add a symbol like !, @, or #";
+                case 4: return "Hint: Digits like 9+9+7=25 or 8+8+9=25";
+                case 5: return "Hint: Months: January, February, etc.";
+                case 6: return "Hint: Roman numerals: I, V, X, L, C, D, M";
+                case 7: return "Hint: Sponsors: CheesyBites, FizzPop, GreenGlow";
+                case 8: return "Hint: 35 = 7×5 (VII × V)";
+                case 9: return "Hint: Copy the CAPTCHA exactly";
+                case 10: return "Hint: Include the word shown above";
+                case 11: return "Hint: Element symbols: He, Li, Be, etc.";
+                case 12: return "Hint: Moon emoji: 🌑, 🌒, 🌓, etc.";
+                case 13: return "Hint: Include the country name shown";
+                case 14: return "Hint: Leap years: 2024, 2020, 2016, etc.";
+                case 15: return "Hint: Chess move like e4, Nf3, etc.";
+                case 16: return "Hint: Include the egg emoji: 🥚";
+                case 17: return "Hint: Affirmations: 'I am loved' etc.";
+                case 18: return "Hint: Type 'water' or click rapidly";
+                case 19: return "Hint: Add 💪 or the word 'strong'";
+                case 20: return "Hint: Element combinations like NaMgAlSi";
+                case 21: return "Hint: Wrap vowels in <b> tags";
+                case 22: return "Hint: Add 3 worm emojis: 🐛🐛🐛";
+                default: return "Try something different";
+            }
+        }
+        
+        // Share game results
+        function shareResults() {
+            const score = gameState.validRules.size;
+            const total = gameState.rules.length;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Password Game',
+                    text: `I scored ${score}/${total} in the Password Game! Can you do better?`,
+                    url: 'https://yashify.fun'
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    copyToClipboard();
+                });
+            } else {
+                copyToClipboard();
+            }
+        }
+        
+        // Copy results to clipboard as fallback
+        function copyToClipboard() {
+            const score = gameState.validRules.size;
+            const total = gameState.rules.length;
+            const text = `I scored ${score}/${total} in the Password Game! Try it at https://yashify.fun`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Copied to clipboard!');
+            }).catch(err => {
+                showNotification('Failed to copy. Please try manually.');
+            });
         }
         
         // Event listeners
@@ -732,8 +1259,22 @@
             virusModal.style.display = 'none';
         });
         
+        shareButton.addEventListener('click', shareResults);
+        
+        // Power-up buttons
+        freezeBtn.addEventListener('click', useFreeze);
+        skipBtn.addEventListener('click', useSkip);
+        hintBtn.addEventListener('click', useHint);
+        
         // Initialize the game on load
-        window.addEventListener('load', initGame);
+        window.addEventListener('load', () => {
+            initGame();
+            
+            // Preload sounds
+            [keySound, successSound, errorSound, powerUpSound].forEach(sound => {
+                sound.load();
+            });
+        });
     </script>
 </body>
 </html>
