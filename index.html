@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -736,13 +735,16 @@
             const commentText = document.getElementById('comment-text');
             const charCount = document.getElementById('char-count');
             
+            // Server URL for comments (you'll need to create this PHP file)
+            const COMMENTS_API_URL = 'comments_api.php';
+            
             // Load saved name from localStorage
             const savedName = localStorage.getItem('commentName');
             if (savedName) {
                 document.getElementById('comment-name').value = savedName;
             }
             
-            // Load comments from localStorage
+            // Load comments from server
             loadComments();
             
             // Character counter
@@ -758,7 +760,7 @@
             });
             
             // Form submission
-            commentForm.addEventListener('submit', function(e) {
+            commentForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const name = document.getElementById('comment-name').value.trim();
@@ -768,63 +770,76 @@
                     // Save name for future
                     localStorage.setItem('commentName', name);
                     
-                    // Create new comment
-                    const newComment = {
-                        name: name,
-                        text: text,
-                        date: new Date().toISOString()
-                    };
-                    
-                    // Get existing comments
-                    let comments = JSON.parse(localStorage.getItem('yashifyComments') || '[]');
-                    
-                    // Add new comment
-                    comments.unshift(newComment);
-                    
-                    // Save to localStorage
-                    localStorage.setItem('yashifyComments', JSON.stringify(comments));
-                    
-                    // Refresh comments display
-                    loadComments();
-                    
-                    // Reset form
-                    commentText.value = '';
-                    charCount.textContent = '0';
+                    try {
+                        // Send comment to server
+                        const response = await fetch(COMMENTS_API_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name: name,
+                                text: text
+                            })
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            // Refresh comments display
+                            loadComments();
+                            
+                            // Reset form
+                            commentText.value = '';
+                            charCount.textContent = '0';
+                        } else {
+                            alert('Error: ' + (result.error || 'Could not save comment'));
+                        }
+                    } catch (error) {
+                        alert('Error: ' + error.message);
+                    }
                 }
             });
             
-            function loadComments() {
-                const comments = JSON.parse(localStorage.getItem('yashifyComments') || '[]');
-                commentsList.innerHTML = '';
-                
-                if (comments.length === 0) {
-                    commentsList.innerHTML = '<p style="text-align: center;">No comments yet. Be the first to share your thoughts!</p>';
-                    return;
-                }
-                
-                comments.forEach(comment => {
-                    const commentElement = document.createElement('div');
-                    commentElement.className = 'comment';
+            async function loadComments() {
+                try {
+                    const response = await fetch(COMMENTS_API_URL);
+                    const comments = await response.json();
                     
-                    const date = new Date(comment.date);
-                    const formattedDate = date.toLocaleString('en-IN', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                    commentsList.innerHTML = '';
+                    
+                    if (comments.length === 0) {
+                        commentsList.innerHTML = '<p style="text-align: center;">No comments yet. Be the first to share your thoughts!</p>';
+                        return;
+                    }
+                    
+                    comments.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.className = 'comment';
+                        
+                        const date = new Date(comment.date);
+                        const formattedDate = date.toLocaleString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        
+                        commentElement.innerHTML = `
+                            <div class="comment-header">
+                                <span class="comment-author">${comment.name}</span>
+                                <span class="comment-date">${formattedDate}</span>
+                            </div>
+                            <div class="comment-content">${comment.text}</div>
+                        `;
+                        
+                        commentsList.appendChild(commentElement);
                     });
-                    
-                    commentElement.innerHTML = `
-                        <div class="comment-header">
-                            <span class="comment-author">${comment.name}</span>
-                            <span class="comment-date">${formattedDate}</span>
-                        </div>
-                        <div class="comment-content">${comment.text}</div>
-                    `;
-                    
-                    commentsList.appendChild(commentElement);
-                });
+                } catch (error) {
+                    commentsList.innerHTML = '<p style="text-align: center; color: #e52e71;">Error loading comments. Please try again later.</p>';
+                    console.error('Error loading comments:', error);
+                }
             }
         });
     </script>
