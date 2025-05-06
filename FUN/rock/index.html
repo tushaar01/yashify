@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Rock Paper Scissors</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            gap: 15px;
+        }
+        
+        .choice {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .choice:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        #rock { color: #ff6b6b; }
+        #paper { color: #4ecdc4; }
+        #scissors { color: #ffe66d; }
+        
+        .result-area {
+            margin: 20px 0;
+            min-height: 150px;
+        }
+        
+        .selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .player-selection, .computer-selection {
+            font-size: 60px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .vs {
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+        
+        .result-text {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .score {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        
+        .score span {
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .music-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .winner {
+            animation: bounce 0.5s ease infinite;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Confetti CSS */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confetti-fall 3s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="music-toggle" id="musicToggle">🎵</div>
+    
+    <div class="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <p class="subtitle">Choose your weapon and defeat the computer!</p>
+        
+        <div class="choices">
+            <div class="choice" id="rock" onclick="playGame('✊')">✊</div>
+            <div class="choice" id="paper" onclick="playGame('✋')">✋</div>
+            <div class="choice" id="scissors" onclick="playGame('✌️')">✌️</div>
+        </div>
+        
+        <div class="result-area">
+            <div class="selection">
+                <div class="player-selection" id="player-choice">?</div>
+                <div class="vs">VS</div>
+                <div class="computer-selection" id="computer-choice">?</div>
+            </div>
+            
+            <div class="result-text" id="result">Ready to play!</div>
+            
+            <div class="score">
+                <div>Player: <span id="player-score">0</span></div>
+                <div>Computer: <span id="computer-score">0</span></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="resetGame()">Reset Game</button>
+            <button onclick="toggleSound()">Toggle Sound</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="winSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="loseSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-10.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="tieSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-21.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Game variables
+        let playerScore = 0;
+        let computerScore = 0;
+        let isMusicOn = false;
+        let isSoundOn = true;
+        
+        // DOM elements
+        const bgMusic = document.getElementById('bgMusic');
+        const winSound = document.getElementById('winSound');
+        const loseSound = document.getElementById('loseSound');
+        const tieSound = document.getElementById('tieSound');
+        const musicToggle = document.getElementById('musicToggle');
+        
+        // Initialize game
+        function init() {
+            updateScores();
+            musicToggle.addEventListener('click', toggleMusic);
+        }
+        
+        // Play game
+        function playGame(playerChoice) {
+            // Display player choice
+            const playerChoiceEl = document.getElementById('player-choice');
+            playerChoiceEl.textContent = playerChoice;
+            playerChoiceEl.classList.remove('winner');
+            
+            // Computer makes random choice
+            const choices = ['✊', '✋', '✌️'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            const computerChoiceEl = document.getElementById('computer-choice');
+            computerChoiceEl.textContent = computerChoice;
+            computerChoiceEl.classList.remove('winner');
+            
+            // Determine winner
+            let result;
+            if (playerChoice === computerChoice) {
+                result = "It's a tie!";
+                playSound(tieSound);
+            } else if (
+                (playerChoice === '✊' && computerChoice === '✌️') ||
+                (playerChoice === '✋' && computerChoice === '✊') ||
+                (playerChoice === '✌️' && computerChoice === '✋')
+            ) {
+                result = "You win! 🎉";
+                playerScore++;
+                playerChoiceEl.classList.add('winner');
+                playSound(winSound);
+                createConfetti();
+            } else {
+                result = "Computer wins! 😢";
+                computerScore++;
+                computerChoiceEl.classList.add('winner');
+                playSound(loseSound);
+            }
+            
+            // Update result and scores
+            document.getElementById('result').textContent = result;
+            updateScores();
+        }
+        
+        // Update score display
+        function updateScores() {
+            document.getElementById('player-score').textContent = playerScore;
+            document.getElementById('computer-score').textContent = computerScore;
+        }
+        
+        // Reset game
+        function resetGame() {
+            playerScore = 0;
+            computerScore = 0;
+            updateScores();
+            document.getElementById('result').textContent = 'Ready to play!';
+            document.getElementById('player-choice').textContent = '?';
+            document.getElementById('computer-choice').textContent = '?';
+            document.getElementById('player-choice').classList.remove('winner');
+            document.getElementById('computer-choice').classList.remove('winner');
+        }
+        
+        // Toggle background music
+        function toggleMusic() {
+            isMusicOn = !isMusicOn;
+            if (isMusicOn) {
+                bgMusic.play();
+                musicToggle.textContent = '🔊';
+            } else {
+                bgMusic.pause();
+                musicToggle.textContent = '🔇';
+            }
+        }
+        
+        // Toggle sound effects
+        function toggleSound() {
+            isSoundOn = !isSoundOn;
+            document.querySelector('.controls button:nth-child(2)').textContent = 
+                isSoundOn ? 'Sound Off' : 'Sound On';
+        }
+        
+        // Play sound if enabled
+        function playSound(sound) {
+            if (isSoundOn) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Initialize game when page loads
+        window.onload = init;
+    </script>
+</body>
+</html>
