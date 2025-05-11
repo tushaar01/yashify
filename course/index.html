@@ -74,8 +74,8 @@
         .department-card {
             background: white;
             border-radius: 15px;
-            width: 270px; /* Slightly wider for images */
-            height: 180px; /* Slightly taller for images */
+            width: 270px;
+            height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -177,38 +177,12 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         
-        <!-- Department Cards with images -->
+        <!-- Only Biotechnology & Microbiology Card -->
         <div class="department-card hidden" id="biotechCard">
-            <a href="dep/index.html" class="card">
-            <img class="card-image" src="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/ii.PNG" alt="Biotechnology">
+            <img class="card-image" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Biotechnology">
             <div class="card-content">
                 <h3>Department of Biotechnology & Microbiology</h3>
                 <p>Cutting-edge research in genetic engineering and bioprocessing</p>
-            </div>
-        </div>
-        </a>
-        
-        <div class="department-card hidden" id="microbiologyCard">
-            <img class="card-image" src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Microbiology">
-            <div class="card-content">
-                <h3>Department of Microbiology</h3>
-                <p>Exploring microbial worlds and their applications</p>
-            </div>
-        </div>
-        
-        <div class="department-card hidden" id="bioinformaticsCard">
-            <img class="card-image" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bioinformatics">
-            <div class="card-content">
-                <h3>Department of Bioinformatics</h3>
-                <p>Bridging biology with computational sciences</p>
-            </div>
-        </div>
-        
-        <div class="department-card hidden" id="biochemistryCard">
-            <img class="card-image" src="https://images.unsplash.com/photo-1605722625766-daccf54a18bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Biochemistry">
-            <div class="card-content">
-                <h3>Department of Biochemistry</h3>
-                <p>Understanding life at molecular level</p>
             </div>
         </div>
     </div>
@@ -227,24 +201,20 @@
             // Show back button
             backButton.style.display = 'flex';
             
-            // Show all department cards with staggered animation
-            departmentCards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.remove('hidden');
-                    card.classList.add('visible');
-                }, index * 100);
-            });
+            // Show department card with animation
+            setTimeout(() => {
+                document.getElementById('biotechCard').classList.remove('hidden');
+                document.getElementById('biotechCard').classList.add('visible');
+            }, 100);
             
             // Adjust container layout
             cardContainer.style.gap = '20px';
         });
         
         backButton.addEventListener('click', function() {
-            // Hide all department cards
-            departmentCards.forEach(card => {
-                card.classList.remove('visible');
-                card.classList.add('hidden');
-            });
+            // Hide department card
+            document.getElementById('biotechCard').classList.remove('visible');
+            document.getElementById('biotechCard').classList.add('hidden');
             
             // Show main card
             setTimeout(() => {
@@ -259,12 +229,10 @@
             cardContainer.style.gap = '30px';
         });
         
-        // Add click handlers for department cards
-        departmentCards.forEach(card => {
-            card.addEventListener('click', function() {
-                alert(`You selected: ${this.querySelector('h3').textContent}`);
-                // Here you can redirect to the department page or show more details
-            });
+        // Add click handler for department card
+        document.getElementById('biotechCard').addEventListener('click', function() {
+            alert(`You selected: ${this.querySelector('h3').textContent}`);
+            // Here you can redirect to the department page or show more details
         });
     </script>
 </body>
