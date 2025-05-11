@@ -191,9 +191,18 @@
         const mainCard = document.getElementById('mainCard');
         const backButton = document.getElementById('backButton');
         const cardContainer = document.getElementById('cardContainer');
-        const departmentCards = document.querySelectorAll('.department-card');
+        const biotechCard = document.getElementById('biotechCard');
         
-        mainCard.addEventListener('click', function() {
+        // Check if we should show department card on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentView = localStorage.getItem('currentView');
+            
+            if (currentView === 'department') {
+                showDepartmentView();
+            }
+        });
+        
+        function showDepartmentView() {
             // Hide main card
             mainCard.classList.remove('floating');
             mainCard.classList.add('hidden');
@@ -203,18 +212,21 @@
             
             // Show department card with animation
             setTimeout(() => {
-                document.getElementById('biotechCard').classList.remove('hidden');
-                document.getElementById('biotechCard').classList.add('visible');
+                biotechCard.classList.remove('hidden');
+                biotechCard.classList.add('visible');
             }, 100);
             
             // Adjust container layout
             cardContainer.style.gap = '20px';
-        });
+            
+            // Save state
+            localStorage.setItem('currentView', 'department');
+        }
         
-        backButton.addEventListener('click', function() {
+        function showMainView() {
             // Hide department card
-            document.getElementById('biotechCard').classList.remove('visible');
-            document.getElementById('biotechCard').classList.add('hidden');
+            biotechCard.classList.remove('visible');
+            biotechCard.classList.add('hidden');
             
             // Show main card
             setTimeout(() => {
@@ -227,10 +239,16 @@
             
             // Reset container layout
             cardContainer.style.gap = '30px';
-        });
+            
+            // Save state
+            localStorage.setItem('currentView', 'main');
+        }
+        
+        mainCard.addEventListener('click', showDepartmentView);
+        backButton.addEventListener('click', showMainView);
         
         // Add click handler for department card
-        document.getElementById('biotechCard').addEventListener('click', function() {
+        biotechCard.addEventListener('click', function() {
             alert(`You selected: ${this.querySelector('h3').textContent}`);
             // Here you can redirect to the department page or show more details
         });
