@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Biochemistry and Microbiology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #002366;
+            --secondary: #008B8B;
+            --accent: #FFD700;
+            --light: #ffffff;
+            --dark: #333333;
+            --highlight: #32CD32;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dna-animation {
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><circle cx="10" cy="5" r="2" fill="%23FFD700"/><circle cx="30" cy="5" r="2" fill="%23FFD700"/><circle cx="50" cy="5" r="2" fill="%23FFD700"/><circle cx="70" cy="5" r="2" fill="%23FFD700"/><circle cx="90" cy="5" r="2" fill="%23FFD700"/><path d="M10,5 Q20,10 30,5 T50,5 T70,5 T90,5" stroke="%23008B8B" fill="none" stroke-width="0.5"/><path d="M10,5 Q20,0 30,5 T50,5 T70,5 T90,5" stroke="%23008B8B" fill="none" stroke-width="0.5"/></svg>') repeat-x;
+            margin-top: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            margin: 0 2rem;
+            border-radius: 50px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary);
+        }
+        
+        /* Courses Section */
+        .courses-section {
+            margin: 3rem 0;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .program-card {
+            background: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .year-tabs {
+            display: flex;
+            margin: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .year-tabs button {
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .year-tabs button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .resources a {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .resources a:hover {
+            background-color: rgba(0, 131, 143, 0.1);
+            color: var(--secondary);
+        }
+        
+        .resources i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+        
+        /* Subject Notes Section */
+        .notes-section {
+            margin: 4rem 0;
+        }
+        
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .subject-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--highlight));
+        }
+        
+        .subject-code {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .download-btn {
+            display: none;
+            margin-top: 10px;
+            background-color: var(--highlight);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .subject-card:hover .download-btn {
+            display: inline-block;
+        }
+        
+        /* Floating Icon */
+        .floating-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Feedback Card */
+        .feedback-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 4rem auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-left: 5px solid var(--highlight);
+        }
+        
+        .feedback-card::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+        
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group select, 
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            margin-right: 5px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Department of Biochemistry and Microbiology</h1>
+        <div class="dna-animation"></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Courses</a>
+            <a href="#">Resources</a>
+            <a href="#">Faculty</a>
+            <a href="#">Research</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <section class="courses-section">
+            <h2>Explore Our Academic Programs</h2>
+            <div class="programs-grid">
+                <!-- Biotechnology Program Card -->
+                <div class="program-card">
+                    <h3>B.Sc. Biotechnology</h3>
+                    <div class="year-tabs">
+                        <button class="active">1st Year</button>
+                        <button>2nd Year</button>
+                        <button>3rd Year</button>
+                    </div>
+                    <div class="resources">
+                        <a href="#"><i class="fas fa-book"></i> Syllabus</a>
+                        <a href="#"><i class="fas fa-file-alt"></i> Notes</a>
+                        <a href="#"><i class="fas fa-question-circle"></i> Question Bank</a>
+                        <a href="#"><i class="fas fa-microscope"></i> Practical Manuals</a>
+                        <a href="#"><i class="fas fa-headphones"></i> Voice Lectures</a>
+                        <a href="#"><i class="fas fa-video"></i> Video Tutorials</a>
+                    </div>
+                </div>
+                
+                <!-- Microbiology Program Card -->
+                <div class="program-card">
+                    <h3>B.Sc. Microbiology</h3>
+                    <div class="year-tabs">
+                        <button class="active">1st Year</button>
+                        <button>2nd Year</button>
+                        <button>3rd Year</button>
+                    </div>
+                    <div class="resources">
+                        <a href="#"><i class="fas fa-book"></i> Syllabus</a>
+                        <a href="#"><i class="fas fa-file-alt"></i> Notes</a>
+                        <a href="#"><i class="fas fa-question-circle"></i> Question Bank</a>
+                        <a href="#"><i class="fas fa-microscope"></i> Practical Manuals</a>
+                        <a href="#"><i class="fas fa-headphones"></i> Voice Lectures</a>
+                        <a href="#"><i class="fas fa-video"></i> Video Tutorials</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="notes-section">
+            <h2>Subject-Wise Study Resources</h2>
+            <div class="notes-grid">
+                <!-- Subject Cards 101-110 -->
+                <div class="subject-card">
+                    <div class="subject-code">101</div>
+                    <div class="subject-name">Molecular Biology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">102</div>
+                    <div class="subject-name">Biochemistry</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">103</div>
+                    <div class="subject-name">Microbial Genetics</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">104</div>
+                    <div class="subject-name">Immunology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">105</div>
+                    <div class="subject-name">Enzyme Technology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">106</div>
+                    <div class="subject-name">Bioinformatics</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">107</div>
+                    <div class="subject-name">Virology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">108</div>
+                    <div class="subject-name">Bioprocess Engineering</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">109</div>
+                    <div class="subject-name">Medical Microbiology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-code">110</div>
+                    <div class="subject-name">Environmental Biotechnology</div>
+                    <button class="download-btn">Download PDF</button>
+                </div>
+            </div>
+        </section>
+        
+        <div class="feedback-card">
+            <h2>Help Us Improve!</h2>
+            <p>We want to provide the resources you need! Please tell us:</p>
+            <form class="feedback-form">
+                <div class="form-group">
+                    <label for="year">Which year's materials are most needed?</label>
+                    <select id="year">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>What specific resources would help you?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="notes" checked>
+                            <label for="notes">Notes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="syllabus" checked>
+                            <label for="syllabus">Syllabus</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="question-bank">
+                            <label for="question-bank">Question Bank</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practicals">
+                            <label for="practicals">Practical Manuals</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lectures">
+                            <label for="lectures">Voice Lectures</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="suggestions">Any other suggestions?</label>
+                    <textarea id="suggestions" rows="4" placeholder="I need resources for..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-graduation-cap"></i> Submit Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="floating-icon" title="Suggest More Questions">
+        <i class="fas fa-magic"></i>
+    </div>
+    
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>Department of Biochemistry and Microbiology</p>
+        <p>&copy; 2023 All Rights Reserved</p>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for year tabs functionality
+        document.querySelectorAll('.year-tabs button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons in this tab group
+                this.parentNode.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+            });
+        });
+        
+        // Floating icon interaction
+        const floatingIcon = document.querySelector('.floating-icon');
+        floatingIcon.addEventListener('click', function() {
+            const question = prompt("What additional questions or resources would you like to see?");
+            if (question) {
+                alert("Thank you for your suggestion! We'll consider adding this to our resources.");
+                // In a real implementation, you would send this to a server
+            }
+        });
+    </script>
+</body>
+</html>
