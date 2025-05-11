@@ -57,9 +57,12 @@
             z-index: -1;
         }
         
-        .main-card i {
-            font-size: 50px;
+        .main-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
             margin-bottom: 15px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
         }
         
         .main-card h2 {
@@ -71,8 +74,8 @@
         .department-card {
             background: white;
             border-radius: 15px;
-            width: 250px;
-            height: 150px;
+            width: 270px; /* Slightly wider for images */
+            height: 180px; /* Slightly taller for images */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -83,8 +86,9 @@
             transform: scale(0.8);
             position: absolute;
             cursor: pointer;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
+            overflow: hidden;
         }
         
         .department-card:hover {
@@ -92,22 +96,29 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
+        .department-card .card-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 10px;
+        }
+        
+        .department-card .card-content {
+            padding: 0 10px;
+        }
+        
         .department-card h3 {
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-size: 18px;
         }
         
         .department-card p {
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
             margin: 0;
-        }
-        
-        .department-card i {
-            font-size: 30px;
-            margin-bottom: 15px;
-            color: #764ba2;
+            line-height: 1.4;
         }
         
         .visible {
@@ -158,7 +169,7 @@
 <body>
     <div class="card-container" id="cardContainer">
         <div class="main-card floating" id="mainCard">
-            <i class="fas fa-graduation-cap"></i>
+            <img src="https://img.icons8.com/color/96/000000/courses.png" alt="Courses">
             <h2>Explore Our Courses</h2>
         </div>
         
@@ -166,34 +177,37 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         
-        <!-- Department Cards (initially hidden) -->
+        <!-- Department Cards with images -->
         <div class="department-card hidden" id="biotechCard">
-            
-           
-                
-                
-            <i class="fas fa-dna"></i>
-            <h3>Department of Biotechnology & Microbiology </h3>
-              
-            <p>Cutting-edge research in genetic engineering and bioprocessing</p>
+            <img class="card-image" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Biotechnology">
+            <div class="card-content">
+                <h3>Department of Biotechnology & Microbiology</h3>
+                <p>Cutting-edge research in genetic engineering and bioprocessing</p>
+            </div>
         </div>
         
         <div class="department-card hidden" id="microbiologyCard">
-            <i class="fas fa-microscope"></i>
-            <h3>Department of Microbiology</h3>
-            <p>Exploring microbial worlds and their applications</p>
+            <img class="card-image" src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Microbiology">
+            <div class="card-content">
+                <h3>Department of Microbiology</h3>
+                <p>Exploring microbial worlds and their applications</p>
+            </div>
         </div>
         
         <div class="department-card hidden" id="bioinformaticsCard">
-            <i class="fas fa-laptop-code"></i>
-            <h3>Department of Bioinformatics</h3>
-            <p>Bridging biology with computational sciences</p>
+            <img class="card-image" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bioinformatics">
+            <div class="card-content">
+                <h3>Department of Bioinformatics</h3>
+                <p>Bridging biology with computational sciences</p>
+            </div>
         </div>
         
         <div class="department-card hidden" id="biochemistryCard">
-            <i class="fas fa-atom"></i>
-            <h3>Department of Biochemistry</h3>
-            <p>Understanding life at molecular level</p>
+            <img class="card-image" src="https://images.unsplash.com/photo-1605722625766-daccf54a18bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Biochemistry">
+            <div class="card-content">
+                <h3>Department of Biochemistry</h3>
+                <p>Understanding life at molecular level</p>
+            </div>
         </div>
     </div>
 
