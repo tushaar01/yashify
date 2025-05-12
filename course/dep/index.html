@@ -35,6 +35,7 @@
         .resource-card {
             transition: all 0.2s ease;
             background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+            cursor: pointer;
         }
         
         .resource-card:hover {
@@ -153,6 +154,58 @@
             z-index: 99;
         }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        .pdf-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .pdf-option:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .pdf-option i {
+            margin-right: 10px;
+            color: #e74c3c;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 text-align: center;
@@ -163,6 +216,11 @@
                 right: 20px;
                 width: 50px;
                 height: 50px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
             }
         }
     </style>
@@ -224,22 +282,22 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -256,22 +314,22 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -288,22 +346,22 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,26 +381,25 @@
                         <div class="p-5">
                             <div class="grid grid-cols-2 gap-4">
                                 <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/Syllabus .doc" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
-                                    
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -359,22 +416,22 @@
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -391,22 +448,22 @@
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
-                                </a>
-                                <a href="#" class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2">
+                                </div>
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -711,6 +768,17 @@
         </section>
     </main>
 
+    <!-- PDF Selection Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4">Select PDF to Download</h2>
+            <div id="pdfOptions" class="max-h-96 overflow-y-auto">
+                <!-- PDF options will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Action Button -->
     <a href="#" class="floating-icon bg-blue-600 text-white text-2xl shadow-lg hover:bg-blue-700 transition">
         <i class="fas fa-question"></i>
@@ -807,6 +875,67 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        // PDF Modal functionality
+        const modal = document.getElementById("pdfModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const pdfOptions = document.getElementById("pdfOptions");
+        const closeBtn = document.querySelector(".close");
+        const resourceBtns = document.querySelectorAll(".resource-btn");
+        
+        // When user clicks on a resource button
+        resourceBtns.forEach(btn => {
+            btn.addEventListener("click", function() {
+                const resourceType = this.getAttribute("data-resource");
+                modalTitle.textContent = `Download ${resourceType} PDFs`;
+                
+                // Clear previous options
+                pdfOptions.innerHTML = "";
+                
+                // Add PDF options from 101 to 110
+                for (let i = 101; i <= 110; i++) {
+                    const pdfOption = document.createElement("div");
+                    pdfOption.className = "pdf-option";
+                    pdfOption.innerHTML = `
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <h4 class="font-semibold">${resourceType} - ${i}</h4>
+                            <p class="text-sm text-gray-600">Subject description for ${i}</p>
+                        </div>
+                    `;
+                    
+                    // Add click event to download PDF
+                    pdfOption.addEventListener("click", function() {
+                        // In a real implementation, this would link to your actual PDF files
+                        // For demo purposes, we'll just show an alert
+                        alert(`Downloading ${resourceType} - ${i}.pdf`);
+                        
+                        // In a real implementation, you might do something like:
+                        // window.location.href = `/pdfs/${resourceType.toLowerCase().replace(' ', '-')}-${i}.pdf`;
+                        
+                        // Close the modal after download starts
+                        modal.style.display = "none";
+                    });
+                    
+                    pdfOptions.appendChild(pdfOption);
+                }
+                
+                // Show the modal
+                modal.style.display = "block";
+            });
+        });
+        
+        // When user clicks on close button
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+        
+        // When user clicks anywhere outside the modal, close it
+        window.addEventListener("click", function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         });
     </script>
 </body>
