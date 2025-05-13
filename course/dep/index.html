@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,21 +206,69 @@
             color: black;
         }
         
-        .pdf-option {
+        .subject-code-option {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 12px;
             border-bottom: 1px solid #eee;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
         
-        .pdf-option:hover {
+        .subject-code-option:hover {
             background-color: #f5f5f5;
+            transform: translateX(5px);
         }
         
-        .pdf-option i {
+        .subject-code-option i {
             margin-right: 10px;
-            color: #e74c3c;
+            color: #3182ce;
+            font-size: 1.2rem;
+        }
+
+        .subject-code-option.microbiology i {
+            color: #38a169;
+        }
+        
+        /* Loading animation */
+        .loading-indicator {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .loading-indicator div {
+            position: absolute;
+            border: 4px solid #3182ce;
+            opacity: 1;
+            border-radius: 50%;
+            animation: loading-indicator 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+        
+        .loading-indicator.microbiology div {
+            border: 4px solid #38a169;
+        }
+        
+        .loading-indicator div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+        
+        @keyframes loading-indicator {
+            0% {
+                top: 36px;
+                left: 36px;
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                top: 0px;
+                left: 0px;
+                width: 72px;
+                height: 72px;
+                opacity: 0;
+            }
         }
         
         @media (max-width: 768px) {
@@ -238,6 +287,36 @@
                 width: 95%;
                 margin: 20% auto;
             }
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            z-index: 1100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            visibility: visible;
+            bottom: 30px;
+        }
+
+        .toast-notification i {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -298,19 +377,23 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" 
+                                     data-course="B" data-year="1" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="1" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="1" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="B" data-year="1" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -330,19 +413,23 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="2" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="2" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="2" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="B" data-year="2" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -362,19 +449,23 @@
                                     <i class="fas fa-book text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="3" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="3" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="B" data-year="3" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="B" data-year="3" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-blue-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -400,19 +491,23 @@
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="1" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="1" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="1" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="M" data-year="1" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -432,19 +527,23 @@
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="2" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="2" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="2" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="M" data-year="2" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -464,19 +563,23 @@
                                     <i class="fas fa-book text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Syllabus</p>
                                 </a>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Notes">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="3" data-type="note" data-resource="Notes">
                                     <i class="fas fa-file-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Notes</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Question Bank">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="3" data-type="qbank" data-resource="Question Bank">
                                     <i class="fas fa-question-circle text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Question Bank</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn" data-resource="Practical Manuals">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition resource-btn"
+                                     data-course="M" data-year="3" data-type="practical" data-resource="Practical Manuals">
                                     <i class="fas fa-flask text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Practical Manuals</p>
                                 </div>
-                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn" data-resource="Voice Lectures">
+                                <div class="resource-card rounded-lg p-4 text-center shadow hover:shadow-md transition col-span-2 resource-btn"
+                                     data-course="M" data-year="3" data-type="voice" data-resource="Voice Lectures" data-ext="mp3">
                                     <i class="fas fa-microphone-alt text-green-500 text-2xl mb-3"></i>
                                     <p class="font-medium">Voice Lectures</p>
                                 </div>
@@ -784,15 +887,29 @@
         </section>
     </main>
 
-    <!-- PDF Selection Modal -->
-    <div id="pdfModal" class="modal">
+    <!-- Subject Code Selection Modal -->
+    <div id="subjectCodeModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2 id="modalTitle" class="text-2xl font-bold mb-4">Select PDF to Download</h2>
-            <div id="pdfOptions" class="max-h-96 overflow-y-auto">
-                <!-- PDF options will be dynamically inserted here -->
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4">Select Subject Code</h2>
+            <p id="modalSubtitle" class="text-gray-600 mb-5">Choose a subject code to download the resource</p>
+            <div id="subjectCodeOptions" class="max-h-96 overflow-y-auto">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+            <div id="loadingIndicator" class="mt-4 text-center hidden">
+                <div class="loading-indicator mx-auto">
+                    <div></div>
+                    <div></div>
+                </div>
+                <p class="mt-3 text-gray-600">Preparing your download...</p>
             </div>
         </div>
+    </div>
+
+    <!-- Toast notification for download -->
+    <div id="downloadToast" class="toast-notification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="downloadToastMessage">Your download has started</span>
     </div>
 
     <!-- Floating Action Button -->
@@ -885,56 +1002,144 @@
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
         
-        // PDF Modal functionality
-        const modal = document.getElementById("pdfModal");
+        // Subject Code Modal functionality
+        const modal = document.getElementById("subjectCodeModal");
         const modalTitle = document.getElementById("modalTitle");
-        const pdfOptions = document.getElementById("pdfOptions");
+        const modalSubtitle = document.getElementById("modalSubtitle");
+        const subjectCodeOptions = document.getElementById("subjectCodeOptions");
         const closeBtn = document.querySelector(".close");
         const resourceBtns = document.querySelectorAll(".resource-btn");
+        const loadingIndicator = document.getElementById("loadingIndicator");
+        const downloadToast = document.getElementById("downloadToast");
+        const downloadToastMessage = document.getElementById("downloadToastMessage");
+        
+        // File type descriptions for better UX
+        const resourceDescriptions = {
+            'note': {
+                title: 'Class Notes',
+                description: 'Comprehensive lecture notes for this subject',
+                icon: 'fa-file-alt'
+            },
+            'qbank': {
+                title: 'Question Bank',
+                description: 'Collection of important questions and answers',
+                icon: 'fa-question-circle'
+            },
+            'practical': {
+                title: 'Practical Manual',
+                description: 'Laboratory procedures and experiment guidelines',
+                icon: 'fa-flask'
+            },
+            'voice': {
+                title: 'Voice Lecture',
+                description: 'Audio recording of complete lecture',
+                icon: 'fa-microphone-alt'
+            }
+        };
+        
+        // Subject descriptions - in a real implementation, you might fetch these from a database
+        const subjectDescriptions = {
+            '101': 'Introduction to Biology',
+            '102': 'Cell Structure and Function',
+            '103': 'Biochemistry Fundamentals',
+            '104': 'Molecular Biology',
+            '105': 'Genetics and Heredity',
+            '106': 'Microbiology Basics',
+            '107': 'Immunology',
+            '108': 'Biotechnology Applications',
+            '109': 'Biostatistics',
+            '110': 'Research Methodology'
+        };
         
         // When user clicks on a resource button
         resourceBtns.forEach(btn => {
             btn.addEventListener("click", function() {
-                const resourceType = this.getAttribute("data-resource");
-                modalTitle.textContent = `Download ${resourceType} PDFs`;
+                // Get data attributes
+                const course = this.getAttribute("data-course"); // B or M
+                const year = this.getAttribute("data-year"); // 1, 2, or 3
+                const type = this.getAttribute("data-type"); // note, qbank, practical, voice
+                const resourceName = this.getAttribute("data-resource"); // "Notes", "Question Bank", etc.
+                const fileExt = this.getAttribute("data-ext") || "pdf"; // pdf or mp3
+                
+                // Set modal title based on the course (B=Biotechnology, M=Microbiology)
+                const courseName = course === 'B' ? 'Biotechnology' : 'Microbiology';
+                
+                // Update modal content
+                modalTitle.textContent = `Select Subject Code for ${courseName} ${resourceName}`;
+                modalSubtitle.textContent = `Year ${year} - Choose a subject code to download ${resourceDescriptions[type].title}`;
                 
                 // Clear previous options
-                pdfOptions.innerHTML = "";
+                subjectCodeOptions.innerHTML = "";
                 
-                // Add PDF options from 101 to 110
+                // Add subject code options from 101 to 110
                 for (let i = 101; i <= 110; i++) {
-                    const pdfOption = document.createElement("div");
-                    pdfOption.className = "pdf-option";
-                    pdfOption.innerHTML = `
-                        <i class="fas fa-file-pdf"></i>
+                    const option = document.createElement("div");
+                    option.className = `subject-code-option ${course === 'M' ? 'microbiology' : ''}`;
+                    option.innerHTML = `
+                        <i class="fas ${resourceDescriptions[type].icon}"></i>
                         <div>
-                            <h4 class="font-semibold">${resourceType} - ${i}</h4>
-                            <p class="text-sm text-gray-600">Subject description for ${i}</p>
+                            <h4 class="font-semibold">${i} - ${subjectDescriptions[i]}</h4>
+                            <p class="text-sm text-gray-600">${resourceDescriptions[type].description}</p>
                         </div>
                     `;
                     
-                    // Add click event to download PDF
-                    pdfOption.addEventListener("click", function() {
-                        // In a real implementation, this would link to your actual PDF files
-                        // For demo purposes, we'll just show an alert
-                        alert(`Downloading ${resourceType} - ${i}.pdf`);
+                    // Add click event to download the file
+                    option.addEventListener("click", function() {
+                        // Show loading indicator
+                        loadingIndicator.classList.remove("hidden");
+                        if (course === 'M') {
+                            loadingIndicator.querySelector('.loading-indicator').classList.add('microbiology');
+                        } else {
+                            loadingIndicator.querySelector('.loading-indicator').classList.remove('microbiology');
+                        }
                         
-                        // In a real implementation, you might do something like:
-                        // window.location.href = `/pdfs/${resourceType.toLowerCase().replace(' ', '-')}-${i}.pdf`;
+                        // Construct the file name based on pattern (e.g., B1note101.pdf or M3voice105.mp3)
+                        const fileName = `${course}${year}${type}${i}.${fileExt}`;
                         
-                        // Close the modal after download starts
-                        modal.style.display = "none";
+                        // Simulate download preparation (in a real app, this would be fetching the file)
+                        setTimeout(() => {
+                            // Hide loading indicator
+                            loadingIndicator.classList.add("hidden");
+                            
+                            // In a real implementation, this would redirect to the actual file
+                            // For demo purposes, we'll just show a toast notification
+                            downloadToastMessage.textContent = `Downloading ${fileName}`;
+                            downloadToast.classList.add("show");
+                            
+                            // Create a simulated download link (in production, this would be a real file URL)
+                            // In a real implementation, you would use window.location.href or a fetch API
+                            // For demonstration, we'll create a dummy download link
+                            const downloadLink = document.createElement("a");
+                            downloadLink.href = `#${fileName}`; // In production: actual file path
+                            downloadLink.download = fileName;
+                            document.body.appendChild(downloadLink);
+                            downloadLink.click();
+                            document.body.removeChild(downloadLink);
+                            
+                            // Hide toast after 3 seconds
+                            setTimeout(() => {
+                                downloadToast.classList.remove("show");
+                            }, 3000);
+                            
+                            // Close the modal after download starts
+                            modal.style.display = "none";
+                        }, 1000); // Simulate 1 second download preparation
                     });
                     
-                    pdfOptions.appendChild(pdfOption);
+                    subjectCodeOptions.appendChild(option);
                 }
                 
                 // Show the modal
@@ -945,13 +1150,22 @@
         // When user clicks on close button
         closeBtn.addEventListener("click", function() {
             modal.style.display = "none";
+            loadingIndicator.classList.add("hidden");
         });
         
         // When user clicks anywhere outside the modal, close it
         window.addEventListener("click", function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                loadingIndicator.classList.add("hidden");
             }
+        });
+        
+        // Mobile menu toggle (simplified for this demo)
+        const menuButton = document.querySelector("nav button");
+        menuButton.addEventListener("click", function() {
+            // In a real implementation, this would toggle a mobile menu
+            alert("Mobile menu would open here");
         });
     </script>
 </body>
