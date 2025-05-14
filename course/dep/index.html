@@ -1,78 +1,148 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Department of Biotechnology and Microbiology - Resources for students including syllabus, notes, question banks and practical manuals">
-    <title>Department of Biotechnology and Microbiology | Student Resources</title>
+    <meta name="description" content="Department of Biotechnology and Microbiology - Comprehensive resources for students including syllabus, notes, question banks and practical manuals">
+    <title>BioMicro Hub | Department of Biotechnology and Microbiology</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B5X5RJM3XH');
+    </script>
     
-    
-    
-    
-     <style>
+    <style>
         :root {
-            --biotech-color: #3182ce;
-            --micro-color: #38a169;
-            --purple-accent: #805ad5;
+            --biotech-color: #3b82f6;
+            --micro-color: #10b981;
+            --purple-accent: #8b5cf6;
+            --orange-accent: #f97316;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7f9fc;
-            color: #2d3748;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
             line-height: 1.6;
         }
         
+        h1, h2, h3, h4, .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
         .course-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
-            border-radius: 0.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
         
         .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .course-card:hover::before {
+            opacity: 1;
         }
         
         .resource-card {
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--biotech-color), var(--micro-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .resource-card:hover {
             transform: scale(1.03);
-            background: linear-gradient(135deg, #e6f7ff 0%, #ccefff 100%);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card:hover::after {
+            transform: scaleX(1);
         }
         
         .subject-card {
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--biotech-color), var(--micro-color));
+            transition: width 0.3s ease;
         }
         
         .subject-card:hover {
             transform: translateY(-5px);
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subject-card:hover::before {
+            width: 8px;
         }
         
         .header-gradient {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            z-index: 0;
         }
         
         .floating-icon {
@@ -87,17 +157,23 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-icon:hover {
+            transform: scale(1.1) rotate(10deg);
         }
         
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(66, 153, 225, 0.7);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 15px rgba(66, 153, 225, 0);
+                box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(66, 153, 225, 0);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
             }
         }
         
@@ -110,12 +186,26 @@
         }
         
         .page-section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
             scroll-margin-top: 100px;
         }
         
         .feedback-card {
             background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .feedback-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
         }
         
         .nav-link {
@@ -141,17 +231,18 @@
         .section-title {
             position: relative;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -12px;
             left: 0;
-            width: 50px;
+            width: 60px;
             height: 4px;
-            background: var(--biotech-color);
+            background: linear-gradient(90deg, var(--biotech-color), var(--micro-color));
             border-radius: 2px;
         }
         
@@ -163,12 +254,31 @@
             background: var(--purple-accent);
         }
         
+        .orange-title::after {
+            background: var(--orange-accent);
+        }
+        
         .back-to-top {
             display: none;
             position: fixed;
             bottom: 20px;
             left: 20px;
             z-index: 99;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--biotech-color), var(--micro-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
         
         /* Modal Styles */
@@ -181,17 +291,38 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             width: 80%;
-            max-width: 600px;
+            max-width: 700px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--biotech-color), var(--micro-color));
         }
         
         .close {
@@ -200,34 +331,42 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
         
         .close:hover {
-            color: black;
+            color: #333;
+            transform: rotate(90deg);
         }
         
         .subject-code-option {
             display: flex;
             align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
+            margin-bottom: 8px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .subject-code-option:hover {
             background-color: #f5f5f5;
             transform: translateX(5px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .subject-code-option i {
-            margin-right: 10px;
-            color: #3182ce;
-            font-size: 1.2rem;
+            margin-right: 15px;
+            color: var(--biotech-color);
+            font-size: 1.5rem;
+            min-width: 30px;
+            text-align: center;
         }
 
         .subject-code-option.microbiology i {
-            color: #38a169;
+            color: var(--micro-color);
         }
         
         /* Loading animation */
@@ -240,14 +379,14 @@
         
         .loading-indicator div {
             position: absolute;
-            border: 4px solid #3182ce;
+            border: 4px solid var(--biotech-color);
             opacity: 1;
             border-radius: 50%;
             animation: loading-indicator 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
         }
         
         .loading-indicator.microbiology div {
-            border: 4px solid #38a169;
+            border: 4px solid var(--micro-color);
         }
         
         .loading-indicator div:nth-child(2) {
@@ -271,40 +410,22 @@
             }
         }
         
-        @media (max-width: 768px) {
-            .header-content {
-                text-align: center;
-            }
-            
-            .floating-icon {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .modal-content {
-                width: 95%;
-                margin: 20% auto;
-            }
-        }
-
         /* Toast notification */
         .toast-notification {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #2d3748;
+            background-color: #1e293b;
             color: white;
-            padding: 12px 24px;
-            border-radius: 4px;
+            padding: 15px 30px;
+            border-radius: 8px;
             z-index: 1100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             opacity: 0;
             visibility: hidden;
         }
@@ -316,7 +437,8 @@
         }
 
         .toast-notification i {
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 1.2rem;
         }
         
         /* Subject list styles */
@@ -327,548 +449,1365 @@
         }
         
         .subject-list li {
-            padding: 15px;
-            margin-bottom: 10px;
-            background-color: #fff;
+            padding: 18px;
+            margin-bottom: 12px;
+            background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-list li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--biotech-color), var(--micro-color));
+            transition: width 0.2s ease;
         }
         
         .subject-list li:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateX(8px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subject-list li:hover::before {
+            width: 6px;
         }
         
         .subject-list a {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 0 2px;
-            background-color: #f8fafc;
-            border-radius: 4px;
-            color: #3182ce;
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            margin: 0 5px;
+            background-color: #f1f5f9;
+            border-radius: 6px;
+            color: #3b82f6;
             text-decoration: none;
             transition: all 0.2s ease;
             font-size: 0.9rem;
+            font-weight: 500;
         }
         
         .subject-list a:hover {
-            background-color: #3182ce;
+            background-color: #3b82f6;
             color: white;
+            transform: translateY(-2px);
+        }
+        
+        .subject-list a i {
+            margin-right: 5px;
         }
         
         .biotech-year-heading {
-            color: #3182ce;
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            color: var(--biotech-color);
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .biotech-year-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--biotech-color);
+            border-radius: 3px;
         }
         
         .micro-year-heading {
-            color: #38a169;
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            color: var(--micro-color);
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .micro-year-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--micro-color);
+            border-radius: 3px;
+        }
+        
+        /* Animated background for hero section */
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, var(--biotech-color) 0%, transparent 20%),
+                radial-gradient(circle at 75% 75%, var(--micro-color) 0%, transparent 20%);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+        
+        /* Faculty card hover effect */
+        .faculty-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .faculty-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .faculty-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Contact form styling */
+        .contact-input {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .contact-input:focus {
+            border-color: var(--biotech-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        /* Social media icons */
+        .social-icon {
+            transition: all 0.3s ease;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        /* Footer styling */
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: white;
+            transition: width 0.2s ease;
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                text-align: center;
+            }
+            
+            .floating-icon {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+                padding: 20px;
+            }
+            
+            .biotech-year-heading, .micro-year-heading {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--biotech-color), var(--micro-color));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--biotech-color);
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
     <nav class="header-gradient text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-3">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-xl font-bold">BioMicro Dept</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#courses" class="nav-link">Courses</a>
-                    <a href="#notes" class="nav-link">Subject Notes</a>
-                    <a href="#resources" class="nav-link">Resources</a>
-                    <a href="#faculty" class="nav-link">Faculty</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                <div class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-dna mr-2"></i>
+                    <span class="heading-font">BioMicro Hub</span>
                 </div>
-                <button class="md:hidden focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#courses" class="nav-link text-lg">Courses</a>
+                    <a href="#notes" class="nav-link text-lg">Resources</a>
+                    <a href="#faculty" class="nav-link text-lg">Faculty</a>
+                    <a href="#contact" class="nav-link text-lg">Contact</a>
+                    <a href="#" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-semibold hover:bg-blue-100 transition duration-300 flex items-center">
+                        <i class="fas fa-user-graduate mr-2"></i> Student Portal
+                    </a>
+                </div>
+                <button class="md:hidden focus:outline-none text-2xl">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="header-gradient text-white py-12 px-6 shadow-lg">
-        <div class="container mx-auto header-content">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Department of Biotechnology and Microbiology</h1>
-            <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">Providing comprehensive education and resources for the next generation of scientists and researchers</p>
+    <header class="header-gradient text-white py-20 px-6 relative overflow-hidden">
+        <div class="hero-pattern"></div>
+        <div class="container mx-auto header-content relative z-10">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-font leading-tight">
+                Exploring the Frontiers of <span class="text-blue-300">Biotechnology</span> & <span class="text-green-300">Microbiology</span>
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-8">
+                Your comprehensive portal for academic resources, research materials, and department information.
+            </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="#courses" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition duration-300">
-                    Explore Courses <i class="fas fa-arrow-down ml-2"></i>
+                <a href="#notes" class="bg-white text-blue-800 px-8 py-4 rounded-lg font-semibold hover:bg-blue-100 transition duration-300 flex items-center shadow-lg hover:shadow-xl">
+                    <i class="fas fa-book-open mr-3"></i> Explore Resources
                 </a>
-                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
-                    Contact Us <i class="fas fa-envelope ml-2"></i>
+                <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center shadow-lg hover:shadow-xl">
+                    <i class="fas fa-envelope mr-3"></i> Contact Us
                 </a>
             </div>
         </div>
+        
+        <!-- Animated scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#courses" class="text-white text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-12">
         <!-- Courses Offered Section -->
         <section id="courses" class="page-section">
-            <h2 class="text-3xl font-bold mb-8 section-title">Courses Offered</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 section-title heading-font">Our Academic Programs</h2>
             
-            <!-- Subject-wise Notes Section with Integrated Lists -->
-            <section id="notes" class="page-section">
-                <h2 class="text-3xl font-bold mb-8 section-title purple-title">Subject-Wise Resources</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="course-card p-8 biotech-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-dna text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 heading-font">B.Sc. Biotechnology</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6">
+                        Our Biotechnology program provides comprehensive training in molecular biology, genetic engineering, and bioprocess technology to prepare students for careers in research, healthcare, and industry.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Genetic Engineering</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Bioinformatics</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Immunology</span>
+                    </div>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center hover:text-blue-800 transition">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="course-card p-8 micro-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-microscope text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-800 heading-font">B.Sc. Microbiology</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6">
+                        The Microbiology program offers in-depth study of microorganisms, their roles in disease, biotechnology, and the environment, preparing students for careers in healthcare, research, and industry.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Medical Microbiology</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Industrial Micro</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Virology</span>
+                    </div>
+                    <a href="#" class="text-green-600 font-semibold flex items-center hover:text-green-800 transition">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subject-wise Notes Section with Integrated Lists -->
+        <section id="notes" class="page-section">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 section-title purple-title heading-font">Academic Resources</h2>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
+                <div class="p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                    <h3 class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-book-medical mr-3"></i>
+                        <span class="heading-font">Study Materials Repository</span>
+                    </h3>
+                    <p class="opacity-90 mt-2">Access comprehensive academic resources for all subjects and years</p>
+                </div>
                 
                 <!-- Biotechnology Resources -->
-                <div class="mb-12 bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="biotech-year-heading">1st Year - Biotechnology</h3>
-                    <ul class="subject-list">
-                      <li><strong>101</strong> — 
-                        <a href="biotechnology/notes/B1note101.pdf" download>Notes</a> |
-                        <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/BiotechSyllabus.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical101.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice101.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>102</strong> — 
-                        <a href="biotechnology/notes/B1note102.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank102.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical102.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice102.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>103</strong> — 
-                        <a href="biotechnology/notes/B1note103.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank103.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical103.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice103.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>104</strong> — 
-                        <a href="biotechnology/notes/B1note104.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank104.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical104.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice104.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>105</strong> — 
-                        <a href="biotechnology/notes/B1note105.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank105.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical105.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice105.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>106</strong> — 
-                        <a href="biotechnology/notes/B1note106.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank106.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical106.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice106.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>107</strong> — 
-                        <a href="biotechnology/notes/B1note107.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank107.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical107.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice107.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>108</strong> — 
-                        <a href="biotechnology/notes/B1note108.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank108.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical108.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice108.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>109</strong> — 
-                        <a href="biotechnology/notes/B1note109.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank109.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical109.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice109.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>110</strong> — 
-                        <a href="biotechnology/notes/B1note110.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B1qbank110.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B1practical110.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B1voice110.mp3" download>Voice</a>
-                      </li>
-                    </ul>
+                <div class="p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-dna text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="biotech-year-heading heading-font">Biotechnology Program</h3>
+                    </div>
                     
-                    <h3 class="biotech-year-heading">2nd Year - Biotechnology & Microbiology</h3>
-                    <ul class="subject-list">
-                      <li><strong>201</strong> — 
-                        <a href="biotechnology/notes/B2note201.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank201.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical201.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice201.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>202</strong> — 
-                        <a href="biotechnology/notes/B2note202.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank202.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical202.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice202.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>203</strong> — 
-                        <a href="biotechnology/notes/B2note203.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank203.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical203.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice203.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>204</strong> — 
-                        <a href="biotechnology/notes/B2note204.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank204.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical204.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice204.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>205</strong> — 
-                        <a href="biotechnology/notes/B2note205.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank205.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical205.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice205.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>206</strong> — 
-                        <a href="biotechnology/notes/B2note206.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank206.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical206.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice206.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>207</strong> — 
-                        <a href="biotechnology/notes/B2note207.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank207.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical207.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice207.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>208</strong> — 
-                        <a href="biotechnology/notes/B2note208.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank208.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical208.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice208.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>209</strong> — 
-                        <a href="biotechnology/notes/B2note209.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank209.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical209.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice209.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>210</strong> — 
-                        <a href="biotechnology/notes/B2note210.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B2qbank210.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B2practical210.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B2voice210.mp3" download>Voice</a>
-                      </li>
-                    </ul>
+                    <div class="mb-10">
+                        <h4 class="text-xl font-semibold mb-4 text-blue-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> First Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>101 — Biochemistry</strong>
+                                <a href="biotechnology/notes/B1note101.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/BiotechSyllabus.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical101.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice101.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>102 — Biophysics</strong>
+                                <a href="biotechnology/notes/B1note102.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank102.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical102.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice102.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>103 — cell biology</strong>
+                                <a href="biotechnology/notes/B1note103.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank103.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical103.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice103.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>104 — Microbiology</strong>
+                                <a href="biotechnology/notes/B1note104.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank104.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical104.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice104.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>105 — Genetics</strong>
+                                <a href="biotechnology/notes/B1note105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice105.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>106 — instrumentak & bio-analytical Techniques </strong>
+                                <a href="biotechnology/notes/B1note105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice105.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>107 — Biomathematics & Biostatistics</strong>
+                                <a href="biotechnology/notes/B1note105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice105.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>108  — Biodiversity</strong>
+                                <a href="biotechnology/notes/B1note105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice105.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>109 — Chemistry</strong>
+                                <a href="biotechnology/notes/B1note105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B1qbank105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B1practical105.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B1voice105.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
                     
-                    <h3 class="biotech-year-heading">3rd Year - Biotechnology & Microbiology</h3>
-                    <ul class="subject-list">
-                      <li><strong>301</strong> — 
-                        <a href="biotechnology/notes/B3note301.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank301.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical301.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice301.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>302</strong> — 
-                        <a href="biotechnology/notes/B3note302.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank302.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical302.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice302.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>303</strong> — 
-                        <a href="biotechnology/notes/B3note303.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank303.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical303.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice303.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>304</strong> — 
-                        <a href="biotechnology/notes/B3note304.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank304.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical304.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice304.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>305</strong> — 
-                        <a href="biotechnology/notes/B3note305.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank305.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical305.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice305.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>306</strong> — 
-                        <a href="biotechnology/notes/B3note306.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank306.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical306.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice306.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>307</strong> — 
-                        <a href="biotechnology/notes/B3note307.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank307.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical307.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice307.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>308</strong> — 
-                        <a href="biotechnology/notes/B3note308.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank308.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical308.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice308.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>309</strong> — 
-                        <a href="biotechnology/notes/B3note309.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank309.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical309.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice309.mp3" download>Voice</a>
-                      </li>
-                      <li><strong>310</strong> — 
-                        <a href="biotechnology/notes/B3note310.pdf" download>Notes</a> |
-                        <a href="biotechnology/qbank/B3qbank310.pdf" download>Q-Bank</a> |
-                        <a href="biotechnology/practical/B3practical310.pdf" download>Manual</a> |
-                        <a href="biotechnology/voice/B3voice310.mp3" download>Voice</a>
-                      </li>
-                    </ul>
+                    <div class="mb-10">
+                        <h4 class="text-xl font-semibold mb-4 text-blue-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> Second Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>201 — Molecular Biology</strong>
+                                <a href="biotechnology/notes/B2note201.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank201.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical201.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice201.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>202 — Immunology</strong>
+                                <a href="biotechnology/notes/B2note202.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank202.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical202.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice202.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>203 — Bioprocess Technology</strong>
+                                <a href="biotechnology/notes/B2note203.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank203.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical203.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice203.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>204 — Genetic Engineering</strong>
+                                <a href="biotechnology/notes/B2note204.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank204.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical204.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice204.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                            <li><strong>205 — Bioinformatics</strong>
+                                <a href="biotechnology/notes/B2note205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice205.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>206 — Bioinformatics</strong>
+                                <a href="biotechnology/notes/B2note205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice205.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>207 — Bioinformatics</strong>
+                                <a href="biotechnology/notes/B2note205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice205.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>208 — Bioinformatics</strong>
+                                <a href="biotechnology/notes/B2note205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice205.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+ <li><strong>209 — Bioinformatics</strong>
+                                <a href="biotechnology/notes/B2note205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B2qbank205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B2practical205.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B2voice205.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold mb-4 text-blue-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> Third Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>301 — Recombinant DNA Technology</strong>
+                                <a href="biotechnology/notes/B3note301.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank301.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical301.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice301.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>302 — Plant Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note302.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank302.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical302.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice302.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>303 — Animal Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note303.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank303.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical303.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice303.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>304 — Environmental Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note304.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank304.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical304.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice304.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>305 — Pharmaceutical Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice305.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+   <li><strong>306 — Pharmaceutical Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice305.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+   <li><strong>307 — Pharmaceutical Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice305.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+   <li><strong>308 — Pharmaceutical Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice305.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+   <li><strong>309 — Pharmaceutical Biotechnology</strong>
+                                <a href="biotechnology/notes/B3note305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="biotechnology/qbank/B3qbank305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="biotechnology/practical/B3practical305.pdf" download class="hover:bg-blue-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="biotechnology/voice/B3voice305.mp3" download class="hover:bg-blue-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
-
-
-
-   <!-- microbiology Resources -->
-            <div class="mb-12 bg-white rounded-xl shadow-lg p-6">
-                <h3 class="biotech-year-heading">1st Year - microbiology </h3>
-                <ul class="subject-list">
-                  <li><strong>101</strong> — 
-                    <a href="biotechnology/notes/B1note101.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank101.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical101.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice101.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>102</strong> — 
-                    <a href="biotechnology/notes/B1note102.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank102.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical102.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice102.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>103</strong> — 
-                    <a href="biotechnology/notes/B1note103.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank103.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical103.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice103.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>104</strong> — 
-                    <a href="biotechnology/notes/B1note104.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank104.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical104.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice104.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>105</strong> — 
-                    <a href="biotechnology/notes/B1note105.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical105.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice105.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>106</strong> — 
-                    <a href="biotechnology/notes/B1note106.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank106.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical106.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice106.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>107</strong> — 
-                    <a href="biotechnology/notes/B1note107.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank107.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical107.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice107.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>108</strong> — 
-                    <a href="biotechnology/notes/B1note108.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank108.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical108.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice108.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>109</strong> — 
-                    <a href="biotechnology/notes/B1note109.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank109.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical109.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice109.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>110</strong> — 
-                    <a href="biotechnology/notes/B1note110.pdf" download>Notes</a> |
-                    <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank110.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B1practical110.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B1voice110.mp3" download>Voice</a>
-                  </li>
-                </ul>
                 
-                <h3 class="biotech-year-heading">2nd Year - Microbiology</h3>
-                <ul class="subject-list">
-                  <li><strong>201</strong> — 
-                    <a href="biotechnology/notes/B2note201.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank201.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical201.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice201.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>202</strong> — 
-                    <a href="biotechnology/notes/B2note202.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank202.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical202.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice202.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>203</strong> — 
-                    <a href="biotechnology/notes/B2note203.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank203.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical203.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice203.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>204</strong> — 
-                    <a href="biotechnology/notes/B2note204.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank204.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical204.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice204.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>205</strong> — 
-                    <a href="biotechnology/notes/B2note205.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank205.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical205.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice205.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>206</strong> — 
-                    <a href="biotechnology/notes/B2note206.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank206.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical206.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice206.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>207</strong> — 
-                    <a href="biotechnology/notes/B2note207.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank207.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical207.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice207.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>208</strong> — 
-                    <a href="biotechnology/notes/B2note208.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank208.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical208.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice208.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>209</strong> — 
-                    <a href="biotechnology/notes/B2note209.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank209.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical209.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice209.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>210</strong> — 
-                    <a href="biotechnology/notes/B2note210.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B2qbank210.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B2practical210.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B2voice210.mp3" download>Voice</a>
-                  </li>
-                </ul>
-                
-                <h3 class="biotech-year-heading">3rd Year - Microbiology</h3>
-                <ul class="subject-list">
-                  <li><strong>301</strong> — 
-                    <a href="biotechnology/notes/B3note301.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank301.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical301.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice301.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>302</strong> — 
-                    <a href="biotechnology/notes/B3note302.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank302.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical302.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice302.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>303</strong> — 
-                    <a href="biotechnology/notes/B3note303.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank303.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical303.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice303.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>304</strong> — 
-                    <a href="biotechnology/notes/B3note304.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank304.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical304.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice304.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>305</strong> — 
-                    <a href="biotechnology/notes/B3note305.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank305.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical305.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice305.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>306</strong> — 
-                    <a href="biotechnology/notes/B3note306.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank306.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical306.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice306.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>307</strong> — 
-                    <a href="biotechnology/notes/B3note307.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank307.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical307.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice307.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>308</strong> — 
-                    <a href="biotechnology/notes/B3note308.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank308.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical308.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice308.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>309</strong> — 
-                    <a href="biotechnology/notes/B3note309.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank309.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical309.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice309.mp3" download>Voice</a>
-                  </li>
-                  <li><strong>310</strong> — 
-                    <a href="biotechnology/notes/B3note310.pdf" download>Notes</a> |
-                    <a href="biotechnology/qbank/B3qbank310.pdf" download>Q-Bank</a> |
-                    <a href="biotechnology/practical/B3practical310.pdf" download>Manual</a> |
-                    <a href="biotechnology/voice/B3voice310.mp3" download>Voice</a>
-                  </li>
-                      </ul>
+                <!-- Microbiology Resources -->
+                <div class="p-8 border-t border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-microscope text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="micro-year-heading heading-font">Microbiology Program</h3>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <h4 class="text-xl font-semibold mb-4 text-green-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> First Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>101 — General Microbiology</strong>
+                                <a href="microbiology/notes/M1note101.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank101.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical101.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice101.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>102 — Microbial Physiology</strong>
+                                <a href="microbiology/notes/M1note102.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank102.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical102.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice102.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>103 — Microbial Genetics</strong>
+                                <a href="microbiology/notes/M1note103.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank103.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical103.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice103.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>104 — Immunology</strong>
+                                <a href="microbiology/notes/M1note104.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank104.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical104.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice104.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>105 — Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>106— Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>107— Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>108 — Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>109— Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>110 — Medical Microbiology</strong>
+                                <a href="microbiology/notes/M1note105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/M1qbank105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M1practical105.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M1voice105.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <h4 class="text-xl font-semibold mb-4 text-green-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> Second Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>201 — Virology</strong>
+                                <a href="microbiology/notes/M2note201.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank201.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical201.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice201.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>202 — Bacteriology</strong>
+                                <a href="microbiology/notes/M2note202.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank202.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical202.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice202.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>203 — Mycology</strong>
+                                <a href="microbiology/notes/M2note203.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank203.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical203.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice203.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>204 — Parasitology</strong>
+                                <a href="microbiology/notes/M2note204.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank204.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical204.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice204.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>205 — Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+  <li><strong>206 — Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+  <li><strong>207 — Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+  <li><strong>208 — Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+  <li><strong>209 — Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+  <li><strong>210— Industrial Microbiology</strong>
+                                <a href="microbiology/notes/M2note205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M2qbank205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M2practical205.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M2voice205.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold mb-4 text-green-700 flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i> Third Year Subjects
+                        </h4>
+                        <ul class="subject-list">
+                            <li><strong>301 — Food Microbiology</strong>
+                                <a href="microbiology/notes/M3note301.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank301.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical301.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice301.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>302 — Environmental Microbiology</strong>
+                                <a href="microbiology/notes/M3note302.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank302.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical302.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice302.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>303 — Microbial Biotechnology</strong>
+                                <a href="microbiology/notes/M3note303.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank303.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical303.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice303.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>304 — Diagnostic Microbiology</strong>
+                                <a href="microbiology/notes/M3note304.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank304.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical304.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice304.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+                            <li><strong>305 — Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>306 — Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>307 — Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>308— Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>309— Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+<li><strong>310— Pharmaceutical Microbiology</strong>
+                                <a href="microbiology/notes/M3note305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-file-pdf mr-1"></i> Notes
+                                </a>
+                                <a href="microbiology/qbank/M3qbank305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-question-circle mr-1"></i> Q-Bank
+                                </a>
+                                <a href="microbiology/practical/M3practical305.pdf" download class="hover:bg-green-100">
+                                    <i class="fas fa-flask mr-1"></i> Manual
+                                </a>
+                                <a href="microbiology/voice/M3voice305.mp3" download class="hover:bg-green-100">
+                                    <i class="fas fa-microphone-alt mr-1"></i> Voice
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
-                  
-
-            </section>
+            </div>
+        </section>
 
         <!-- Faculty Section -->
         <section id="faculty" class="page-section">
-            <h2 class="text-3xl font-bold mb-8 section-title">Our Faculty</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 section-title orange-title heading-font">Our Distinguished Faculty</h2>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-48 bg-blue-600 flex items-center justify-center">
-                        <i class="fas fa-user-tie text-white text-6xl"></i>
+                <!-- Faculty Card 1 -->
+                <div class="faculty-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black opacity-10"></div>
+                        <i class="fas fa-user-tie text-white text-6xl relative z-10"></i>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-1">Dr. Rajesh Sharma</h3>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-6 right-6 bg-white p-2 rounded-full shadow-lg">
+                            <i class="fas fa-dna text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 heading-font">Dr. Rajesh Sharma</h3>
                         <p class="text-blue-600 font-medium mb-3">Professor of Biotechnology</p>
-                        <p class="text-gray-600 mb-4">Specialization in Enzymology and Metabolic Pathways with 15+ years of teaching experience.</p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-envelope text-xl"></i></a>
-                            <a href="#" class="text-purple-500 hover:text-purple-700"><i class="fas fa-file-pdf text-xl"></i></a>
+                        <p class="text-gray-600 mb-4">Specialization in Enzymology and Metabolic Pathways with 15+ years of teaching experience. Published over 50 research papers in international journals.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition" title="LinkedIn Profile">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700 transition" title="Send Email">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                            <a href="#" class="text-purple-500 hover:text-purple-700 transition" title="Research Papers">
+                                <i class="fas fa-file-pdf text-xl"></i>
+                            </a>
+                            <a href="#" class="text-green-500 hover:text-green-700 transition" title="Schedule Meeting">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-48 bg-green-600 flex items-center justify-center">
-                        <i class="fas fa-user-md text-white text-6xl"></i>
+                <!-- Faculty Card 2 -->
+                <div class="faculty-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-green-700 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black opacity-10"></div>
+                        <i class="fas fa-user-md text-white text-6xl relative z-10"></i>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-1">Dr. Priya Patel</h3>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-6 right-6 bg-white p-2 rounded-full shadow-lg">
+                            <i class="fas fa-microscope text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 heading-font">Dr. Priya Patel</h3>
                         <p class="text-green-600 font-medium mb-3">Associate Professor of Microbiology</p>
-                        <p class="text-gray-600 mb-4">Expertise in Medical Microbiology and Immunology with numerous research publications.</p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-envelope text-xl"></i></a>
-                            <a href="#" class="text-purple-500 hover:text-purple-700"><i class="fas fa-file-pdf text-xl"></i></a>
+                        <p class="text-gray-600 mb-4">Expertise in Medical Microbiology and Immunology with numerous research publications. Recipient of the Young Scientist Award 2022.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition" title="LinkedIn Profile">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700 transition" title="Send Email">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                            <a href="#" class="text-purple-500 hover:text-purple-700 transition" title="Research Papers">
+                                <i class="fas fa-file-pdf text-xl"></i>
+                            </a>
+                            <a href="#" class="text-green-500 hover:text-green-700 transition" title="Schedule Meeting">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-48 bg-purple-600 flex items-center justify-center">
-                        <i class="fas fa-user-graduate text-white text-6xl"></i>
+                <!-- Faculty Card 3 -->
+                <div class="faculty-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black opacity-10"></div>
+                        <i class="fas fa-user-graduate text-white text-6xl relative z-10"></i>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-1">Dr. Amit Singh</h3>
+                    <div class="p-6 relative">
+                        <div class="absolute -top-6 right-6 bg-white p-2 rounded-full shadow-lg">
+                            <i class="fas fa-dna text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 heading-font">Dr. Amit Singh</h3>
                         <p class="text-purple-600 font-medium mb-3">Assistant Professor of Biotechnology</p>
-                        <p class="text-gray-600 mb-4">Specialized in Genetic Engineering and Molecular Biology techniques.</p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-envelope text-xl"></i></a>
-                            <a href="#" class="text-purple-500 hover:text-purple-700"><i class="fas fa-file-pdf text-xl"></i></a>
+                        <p class="text-gray-600 mb-4">Specialized in Genetic Engineering and Molecular Biology techniques. Currently leading research on CRISPR applications in agriculture.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition" title="LinkedIn Profile">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-700 transition" title="Send Email">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                            <a href="#" class="text-purple-500 hover:text-purple-700 transition" title="Research Papers">
+                                <i class="fas fa-file-pdf text-xl"></i>
+                            </a>
+                            <a href="#" class="text-green-500 hover:text-green-700 transition" title="Schedule Meeting">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-10">
-                <a href="#" class="inline-block bg-gray-800 hover:bg-black text-white font-medium py-3 px-8 rounded-lg transition duration-300">
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                     View Full Faculty Directory <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -876,91 +1815,111 @@
 
         <!-- Contact Section -->
         <section id="contact" class="page-section">
-            <h2 class="text-3xl font-bold mb-8 section-title">Contact Us</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 section-title heading-font">Get In Touch</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-white rounded-xl shadow-md p-8">
-                    <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
-                    <form>
-                        <div class="mb-5">
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div class="mb-5">
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div class="mb-5">
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>General Inquiry</option>
-                                <option>Course Information</option>
-                                <option>Admission Query</option>
-                                <option>Feedback</option>
-                            </select>
-                        </div>
-                        <div class="mb-5">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300">
-                            Send Message <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
+                <div class="bg-white rounded-xl shadow-xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full transform translate-x-16 -translate-y-16 opacity-20"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-green-100 rounded-full transform -translate-x-16 translate-y-16 opacity-20"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6 heading-font">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-5">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-input">
+                            </div>
+                            <div class="mb-5">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-input">
+                            </div>
+                            <div class="mb-5">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-input">
+                                    <option>General Inquiry</option>
+                                    <option>Course Information</option>
+                                    <option>Admission Query</option>
+                                    <option>Feedback</option>
+                                    <option>Research Collaboration</option>
+                                </select>
+                            </div>
+                            <div class="mb-5">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-input"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-medium py-3 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 
                 <div>
-                    <div class="bg-white rounded-xl shadow-md p-8 mb-6">
-                        <h3 class="text-2xl font-bold mb-6">Department Information</h3>
-                        <div class="space-y-5">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Address</h4>
-                                    <p class="text-gray-600">Department of Biotechnology and Microbiology<br>Science Building </p>
+                    <div class="bg-white rounded-xl shadow-xl p-8 mb-6 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green-100 rounded-full transform translate-x-16 -translate-y-16 opacity-20"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-6 heading-font">Department Information</h3>
+                            <div class="space-y-5">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Address</h4>
+                                        <p class="text-gray-600">Department of Biotechnology and Microbiology<br>Science Building, Room 205<br>University Campus</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt text-blue-500 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Phone</h4>
-                                    <p class="text-gray-600"> (Office)<br>  (HOD)</p>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Phone</h4>
+                                        <p class="text-gray-600">+91-XXX-XXXXXXX (Office)<br>+91-XXX-XXXXXXX (HOD)</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-blue-500 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Email</h4>
-                                    <p class="text-gray-600">fix@yashify.fun <br>admin@yashify.fun</p>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
+                                        <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Email</h4>
+                                        <p class="text-gray-600">biotech@yashify.fun<br>microbio@yashify.fun</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-clock text-blue-500 text-xl mt-1 mr-4"></i>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Office Hours</h4>
-                                    <p class="text-gray-600">Monday to Friday: 9:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-4 flex-shrink-0">
+                                        <i class="fas fa-clock text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Office Hours</h4>
+                                        <p class="text-gray-600">Monday to Friday: 9:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="bg-blue-50 rounded-xl shadow-md p-6">
-                        <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
-                        <div class="flex space-x-4">
-                            <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="bg-blue-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="bg-blue-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-900 transition">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-700 transition">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl shadow-xl p-6 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full transform translate-x-16 -translate-y-16 opacity-10"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl font-bold mb-4 text-white">Connect With Us</h3>
+                            <p class="text-blue-100 mb-4">Follow us on social media for updates, events, and announcements.</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="social-icon bg-blue-600 text-white hover:bg-blue-700" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon bg-blue-400 text-white hover:bg-blue-500" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon bg-red-600 text-white hover:bg-red-700" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon bg-blue-800 text-white hover:bg-blue-900" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon bg-purple-600 text-white hover:bg-purple-700" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -972,14 +1931,14 @@
     <div id="subjectCodeModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2 id="modalTitle" class="text-2xl font-bold mb-4">Select Subject Code</h2>
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4 heading-font">Select Subject Code</h2>
             <p id="modalSubtitle" class="text-gray-600 mb-5">Choose a subject code to download the resource</p>
             
-            <div id="subjectCodeOptions" class="max-h-96 overflow-y-auto">
+            <div id="subjectCodeOptions" class="max-h-96 overflow-y-auto pr-2">
                 <!-- Options will be dynamically generated here -->
             </div>
             
-            <div id="subjectListContainer" class="max-h-96 overflow-y-auto mt-4">
+            <div id="subjectListContainer" class="max-h-96 overflow-y-auto mt-4 hidden">
                 <!-- Subject lists will be shown here based on selection -->
             </div>
             
@@ -1000,54 +1959,67 @@
     </div>
 
     <!-- Floating Action Button -->
-    <a href="#" class="floating-icon bg-blue-600 text-white text-2xl shadow-lg hover:bg-blue-700 transition">
+    <a href="#contact" class="floating-icon bg-gradient-to-r from-blue-600 to-blue-800 text-white text-2xl shadow-lg hover:from-blue-700 hover:to-blue-900 transition transform hover:scale-110">
         <i class="fas fa-question"></i>
     </a>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-900 transition">
+    <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Department</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Faculty</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Research</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Facilities</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">News & Events</a></li>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-dna text-2xl mr-2 text-blue-400"></i>
+                        <h3 class="text-xl font-bold heading-font">BioMicro Hub</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        The premier academic portal for Biotechnology and Microbiology students, providing comprehensive resources and support.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 heading-font">Department</h3>
+                    <ul class="space-y-2 footer-links">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Faculty</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Research</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Facilities</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">News & Events</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Academics</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Courses</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Syllabus</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Academic Calendar</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Examinations</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Student Resources</a></li>
+                    <h3 class="text-lg font-bold mb-4 heading-font">Academics</h3>
+                    <ul class="space-y-2 footer-links">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Syllabus</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Academic Calendar</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Examinations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Student Resources</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">University Website</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Library</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Student Portal</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Alumni</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <h3 class="text-lg font-bold mb-4 heading-font">Newsletter</h3>
                     <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates and announcements.</p>
                     <form class="flex">
                         <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
@@ -1058,8 +2030,10 @@
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Department of Biotechnology and Microbiology. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    © 2025 Department of Biotechnology and Microbiology. All rights reserved.
+                </p>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
                     <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
@@ -1075,7 +2049,7 @@
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                backToTopButton.style.display = 'block';
+                backToTopButton.style.display = 'flex';
             } else {
                 backToTopButton.style.display = 'none';
             }
@@ -1149,7 +2123,27 @@
             '107': 'Immunology',
             '108': 'Biotechnology Applications',
             '109': 'Biostatistics',
-            '110': 'Research Methodology'
+            '110': 'Research Methodology',
+            '201': 'Molecular Biology',
+            '202': 'Immunology',
+            '203': 'Bioprocess Technology',
+            '204': 'Genetic Engineering',
+            '205': 'Bioinformatics',
+            '206': 'Enzyme Technology',
+            '207': 'Plant Biotechnology',
+            '208': 'Animal Biotechnology',
+            '209': 'Environmental Biotechnology',
+            '210': 'Pharmaceutical Biotechnology',
+            '301': 'Recombinant DNA Technology',
+            '302': 'Plant Biotechnology',
+            '303': 'Animal Biotechnology',
+            '304': 'Environmental Biotechnology',
+            '305': 'Pharmaceutical Biotechnology',
+            '306': 'Stem Cell Technology',
+            '307': 'Cancer Biology',
+            '308': 'Bioethics',
+            '309': 'Project Work',
+            '310': 'Industrial Training'
         };
         
         // Generate subject list HTML
@@ -1164,9 +2158,9 @@
             for (let i = 1; i <= 10; i++) {
                 const code = `${year}0${i}`;
                 html += `
-                <li><strong>${code}</strong> — 
+                <li><strong>${code} — ${subjectDescriptions[code] || `Subject ${code}`}</strong>
                     <a href="${course.toLowerCase()}/${type}/${course}${year}${type}${code}.${ext}" download class="hover:bg-${accentColor}-100">
-                        ${resourceDescriptions[type].title}
+                        <i class="fas ${resourceDescriptions[type].icon} mr-1"></i> ${resourceDescriptions[type].title}
                     </a>
                 </li>`;
             }
@@ -1194,19 +2188,18 @@
                 
                 // Clear previous options
                 subjectCodeOptions.innerHTML = "";
-                
-                // Generate subject list
-                subjectListContainer.innerHTML = generateSubjectList(course, year, type, fileExt);
+                subjectListContainer.innerHTML = "";
+                subjectListContainer.classList.add("hidden");
                 
                 // Add subject code options from 101 to 110 (or appropriate range for the year)
                 for (let i = 1; i <= 10; i++) {
-                    const subjectCode = parseInt(`${year}0${i}`);
+                    const subjectCode = `${year}0${i}`;
                     const option = document.createElement("div");
                     option.className = `subject-code-option ${course === 'M' ? 'microbiology' : ''}`;
                     option.innerHTML = `
                         <i class="fas ${resourceDescriptions[type].icon}"></i>
                         <div>
-                            <h4 class="font-semibold">${subjectCode} - ${subjectDescriptions[`10${i}`] || `Subject ${subjectCode}`}</h4>
+                            <h4 class="font-semibold">${subjectCode} — ${subjectDescriptions[subjectCode] || `Subject ${subjectCode}`}</h4>
                             <p class="text-sm text-gray-600">${resourceDescriptions[type].description}</p>
                         </div>
                     `;
@@ -1259,29 +2252,100 @@
                 
                 // Show the modal
                 modal.style.display = "block";
+                setTimeout(() => {
+                    modal.classList.add("show");
+                    document.querySelector(".modal-content").style.transform = "translateY(0)";
+                    document.querySelector(".modal-content").style.opacity = "1";
+                }, 10);
             });
         });
         
         // When user clicks on close button
         closeBtn.addEventListener("click", function() {
-            modal.style.display = "none";
-            loadingIndicator.classList.add("hidden");
+            modal.classList.remove("show");
+            document.querySelector(".modal-content").style.transform = "translateY(20px)";
+            document.querySelector(".modal-content").style.opacity = "0";
+            setTimeout(() => {
+                modal.style.display = "none";
+                loadingIndicator.classList.add("hidden");
+            }, 300);
         });
         
         // When user clicks anywhere outside the modal, close it
         window.addEventListener("click", function(event) {
             if (event.target == modal) {
-                modal.style.display = "none";
-                loadingIndicator.classList.add("hidden");
+                modal.classList.remove("show");
+                document.querySelector(".modal-content").style.transform = "translateY(20px)";
+                document.querySelector(".modal-content").style.opacity = "0";
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    loadingIndicator.classList.add("hidden");
+                }, 300);
             }
         });
         
         // Mobile menu toggle (simplified for this demo)
         const menuButton = document.querySelector("nav button");
+        const mobileMenu = document.createElement("div");
+        mobileMenu.className = "hidden fixed inset-0 bg-gray-900 bg-opacity-90 z-50 flex items-center justify-center";
+        mobileMenu.innerHTML = `
+            <div class="text-center">
+                <button class="absolute top-4 right-4 text-white text-3xl">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="space-y-8">
+                    <a href="#courses" class="block text-white text-2xl font-medium hover:text-blue-300 transition">Courses</a>
+                    <a href="#notes" class="block text-white text-2xl font-medium hover:text-blue-300 transition">Resources</a>
+                    <a href="#faculty" class="block text-white text-2xl font-medium hover:text-blue-300 transition">Faculty</a>
+                    <a href="#contact" class="block text-white text-2xl font-medium hover:text-blue-300 transition">Contact</a>
+                    <a href="#" class="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition mt-4">
+                        Student Portal
+                    </a>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(mobileMenu);
+        
         menuButton.addEventListener("click", function() {
-            // In a real implementation, this would toggle a mobile menu
-            alert("Mobile menu would open here");
+            mobileMenu.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
         });
+        
+        mobileMenu.querySelector("button").addEventListener("click", function() {
+            mobileMenu.classList.add("hidden");
+            document.body.style.overflow = "";
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.course-card, .faculty-card, .subject-list li');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.course-card, .faculty-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+        });
+        
+        document.querySelectorAll('.subject-list li').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(-20px)';
+            el.style.transition = `all 0.3s ease ${index * 0.1}s`;
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
