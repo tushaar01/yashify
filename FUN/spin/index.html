@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Spin Wheel Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #10b981;
+            --background-light: #f3f4f6;
+            --text-light: #1f2937;
+            --background-dark: #1f2937;
+            --text-dark: #f3f4f6;
+        }
+
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        body.light {
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            aspect-ratio: 1;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            z-index: 10;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        }
+
+        .winner-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        @media (max-width: 640px) {
+            .wheel-container {
+                max-width: 90vw;
+            }
+        }
+
+        .spinner-bounce {
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(10deg); }
+            40% { transform: rotate(-8deg); }
+            60% { transform: rotate(6deg); }
+            80% { transform: rotate(-4deg); }
+        }
+
+        .category-card {
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .dark .category-card {
+            background-color: #374151;
+            border-color: #4B5563;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #d1d5db;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .dark .volume-slider {
+            background: #4B5563;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="light min-h-screen p-4 transition-all">
+    <div class="container mx-auto max-w-6xl">
+        <header class="text-center py-4">
+            <h1 class="text-4xl font-bold mb-2">Ultimate Spin Wheel</h1>
+            <p class="text-lg mb-4">Select a category, spin the wheel, and see what you get!</p>
+            
+            <div class="flex justify-center space-x-4 mb-6">
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" class="flex items-center px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                    <i class="fas fa-sun mr-2"></i>
+                    <span id="theme-text">Light Mode</span>
+                </button>
+                
+                <!-- Sound Toggle -->
+                <div class="flex items-center px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                    <button id="sound-toggle" class="mr-2">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volume-control" class="volume-slider w-20" min="0" max="1" step="0.1" value="0.5">
+                </div>
+            </div>
+        </header>
+        
+        <main class="flex flex-col lg:flex-row">
+            <section class="lg:w-1/2 p-4">
+                <!-- Category Selection -->
+                <div id="category-selector" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="category-card cursor-pointer rounded-xl border p-4 text-center" data-category="anime">
+                        <i class="fas fa-tv text-3xl mb-2 text-purple-500"></i>
+                        <h3 class="text-xl font-bold">Anime Titles</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">1000+ series</p>
+                    </div>
+                    <div class="category-card cursor-pointer rounded-xl border p-4 text-center" data-category="truthDare">
+                        <i class="fas fa-dice text-3xl mb-2 text-red-500"></i>
+                        <h3 class="text-xl font-bold">Truth or Dare</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">500+ truths & 500+ dares</p>
+                    </div>
+                    <div class="category-card cursor-pointer rounded-xl border p-4 text-center" data-category="songs">
+                        <i class="fas fa-music text-3xl mb-2 text-blue-500"></i>
+                        <h3 class="text-xl font-bold">Songs</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">1000+ tracks</p>
+                    </div>
+                    <div class="category-card cursor-pointer rounded-xl border p-4 text-center" data-category="movies">
+                        <i class="fas fa-film text-3xl mb-2 text-yellow-500"></i>
+                        <h3 class="text-xl font-bold">Movies & Games</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">1000+ titles</p>
+                    </div>
+                    <div class="category-card cursor-pointer rounded-xl border p-4 text-center col-span-1 md:col-span-2" data-category="custom">
+                        <i class="fas fa-upload text-3xl mb-2 text-green-500"></i>
+                        <h3 class="text-xl font-bold">Upload Custom List</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Use your own entries</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold mb-2">Selected Category: <span id="current-category">None</span></h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button id="show-entries" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                            <i class="fas fa-list mr-2"></i> Show Entries
+                        </button>
+                        <input type="file" id="custom-file" accept=".csv,.txt,.xlsx" class="hidden">
+                    </div>
+                    
+                    <!-- Spin Controls -->
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <label class="font-medium">Spin Speed:</label>
+                        <div class="flex gap-2">
+                            <button data-speed="slow" class="speed-btn px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">Slow</button>
+                            <button data-speed="medium" class="speed-btn px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">Medium</button>
+                            <button data-speed="fast" class="speed-btn px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">Fast</button>
+                            <button data-speed="ultra" class="speed-btn px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">Ultra</button>
+                        </div>
+                    </div>
+                    
+                    <button id="spin-button" class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xl font-bold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-sync-alt mr-2"></i> SPIN THE WHEEL
+                    </button>
+                </div>
+                
+                <!-- History & Stats -->
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold mb-2">History</h3>
+                    <ul id="history-list" class="list-disc pl-5 max-h-40 overflow-y-auto">
+                        <li class="text-gray-500 dark:text-gray-400">No spins yet</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="lg:w-1/2 p-4">
+                <!-- Wheel Display -->
+                <div class="wheel-container">
+                    <img src="https://cdn.jsdelivr.net/gh/google/material-design-icons@master/png/navigation/arrow_downward/materialicons/24dp/1x/baseline_arrow_downward_black_24dp.png" alt="Pointer" class="wheel-pointer">
+                    <canvas id="wheel-canvas"></canvas>
+                </div>
+                
+                <!-- Current Selection -->
+                <div class="mt-6 text-center">
+                    <h3 class="text-lg font-medium">Current Selection:</h3>
+                    <p id="selection-display" class="text-2xl font-bold py-2">-</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Entries Modal -->
+    <div id="entries-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 w-11/12 max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Category Entries</h2>
+                <button id="close-modal" class="text-2xl">&times;</button>
+            </div>
+            <div id="entries-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[60vh] overflow-y-auto">
+                <!-- Entries will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Winner Popup -->
+    <div id="winner-popup" class="winner-popup bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl text-center hidden">
+        <h2 class="text-3xl font-bold mb-2">Winner!</h2>
+        <p id="winner-text" class="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"></p>
+        <button id="close-winner" class="px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-xl font-bold hover:from-green-500 hover:to-blue-600">
+            Continue
+        </button>
+        <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+    </div>
+    
+    <!-- Audio Elements -->
+    <audio id="spin-sound" preload="auto">
+        <source src="https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn@f946fe471df2eb3438ae1555903c0674183dadb9/build/testable-projects-fcc/audio/beep.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="tick-sound" preload="auto">
+        <source src="https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn@f946fe471df2eb3438ae1555903c0674183dadb9/build/testable-projects-fcc/audio/click1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="winner-sound" preload="auto">
+        <source src="https://cdn.jsdelivr.net/gh/freeCodeCamp/cdn@f946fe471df2eb3438ae1555903c0674183dadb9/build/testable-projects-fcc/audio/drum-roll.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Main Game Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables
+            let currentCategory = null;
+            let entries = [];
+            let spinning = false;
+            let spinSpeed = 'medium';
+            let soundEnabled = true;
+            let volume = 0.5;
+            let spinHistory = [];
+            let wheelColors = [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+                '#8AC926', '#1982C4', '#6A4C93', '#FFD166', '#EF476F', '#06D6A0'
+            ];
+            
+            // Get DOM elements
+            const wheelCanvas = document.getElementById('wheel-canvas');
+            const ctx = wheelCanvas.getContext('2d');
+            const spinButton = document.getElementById('spin-button');
+            const categoryCards = document.querySelectorAll('.category-card');
+            const currentCategoryElement = document.getElementById('current-category');
+            const selectionDisplay = document.getElementById('selection-display');
+            const showEntriesButton = document.getElementById('show-entries');
+            const entriesModal = document.getElementById('entries-modal');
+            const entriesList = document.getElementById('entries-list');
+            const closeModalButton = document.getElementById('close-modal');
+            const winnerPopup = document.getElementById('winner-popup');
+            const winnerText = document.getElementById('winner-text');
+            const closeWinnerButton = document.getElementById('close-winner');
+            const historyList = document.getElementById('history-list');
+            const speedButtons = document.querySelectorAll('.speed-btn');
+            const soundToggle = document.getElementById('sound-toggle');
+            const volumeControl = document.getElementById('volume-control');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeText = document.getElementById('theme-text');
+            const spinSound = document.getElementById('spin-sound');
+            const tickSound = document.getElementById('tick-sound');
+            const winnerSound = document.getElementById('winner-sound');
+            const customFileInput = document.getElementById('custom-file');
+            
+            // Set canvas size
+            function setCanvasSize() {
+                const container = wheelCanvas.parentElement;
+                const size = container.clientWidth;
+                wheelCanvas.width = size;
+                wheelCanvas.height = size;
+                drawWheel();
+            }
+            
+            // Initialize canvas
+            setCanvasSize();
+            window.addEventListener('resize', setCanvasSize);
+            
+            // Databases for categories (expanded anime titles)
+            const databases = {
+                anime: [
+                    "Naruto", "One Piece", "Dragon Ball Z", "Attack on Titan", "Death Note",
+                    "My Hero Academia", "Demon Slayer", "Fullmetal Alchemist: Brotherhood", "Hunter x Hunter", "Sword Art Online",
+                    "Tokyo Ghoul", "One Punch Man", "Jujutsu Kaisen", "Bleach", "Cowboy Bebop",
+                    "Neon Genesis Evangelion", "Steins;Gate", "Code Geass", "Fairy Tail", "Your Name",
+                    "Spirited Away", "Black Clover", "Re:Zero", "The Promised Neverland", "Haikyuu!!",
+                    "JoJo's Bizarre Adventure", "Violet Evergarden", "Kaguya-sama: Love Is War", "Your Lie in April", "Assassination Classroom",
+                    "Mob Psycho 100", "Made in Abyss", "Vinland Saga", "Dr. Stone", "Fruits Basket",
+                    "That Time I Got Reincarnated as a Slime", "Overlord", "No Game No Life", "A Silent Voice", "Konosuba",
+                    "Erased", "Parasyte", "Soul Eater", "Fire Force", "Food Wars",
+                    "Akame ga Kill", "Mushoku Tensei", "Chainsaw Man", "Blue Lock", "Spy x Family",
+                    "The Rising of the Shield Hero", "Goblin Slayer", "The Seven Deadly Sins", "Bungo Stray Dogs", "The Quintessential Quintuplets",
+                    "Horimiya", "Rent-a-Girlfriend", "My Dress-Up Darling", "Classroom of the Elite", "Kakegurui",
+                    "Akira", "Ghost in the Shell", "Perfect Blue", "Princess Mononoke", "Howl's Moving Castle",
+                    "Castle in the Sky", "Grave of the Fireflies", "My Neighbor Totoro", "Ponyo", "Kiki's Delivery Service",
+                    "Paprika", "The Girl Who Leapt Through Time", "Summer Wars", "Weathering with You", "I Want to Eat Your Pancreas",
+                    "Your Name", "Suzume", "Belle", "Bubble", "Promare",
+                    "Josee, the Tiger and the Fish", "Ride Your Wave", "Children of the Sea", "Penguin Highway", "A Whisker Away",
+                    "Words Bubble Up Like Soda Pop", "Hello World", "Maquia: When the Promised Flower Blooms", "Mirai", "The Boy and the Beast",
+                    "Wolf Children", "5 Centimeters per Second", "Garden of Words", "The Place Promised in Our Early Days", "Voices of a Distant Star",
+                    "Millennium Actress", "Tokyo Godfathers", "Metropolis", "Jin-Roh: The Wolf Brigade", "Redline",
+                    "Ninja Scroll", "Vampire Hunter D: Bloodlust", "Sword of the Stranger", "Patema Inverted", "Tekkonkinkreet",
+                    "Angel Beats!", "Clannad", "Anohana", "Plastic Memories", "Charlotte",
+                    "Little Busters!", "Air", "Kanon", "The World God Only Knows", "Saekano",
+                    "Oregairu", "Toradora", "Golden Time", "Nisekoi", "Love, Chunibyo & Other Delusions",
+                    "Rascal Does Not Dream of Bunny Girl Senpai", "Bakemonogatari", "Monogatari Series: Second Season", "Aobuta", "Tonikaku Kawaii",
+                    "Wotakoi: Love is Hard for Otaku", "Monthly Girls' Nozaki-kun", "Teasing Master Takagi-san", "Komi Can't Communicate", "Don't Toy with Me, Miss Nagatoro",
+                    "Uzaki-chan Wants to Hang Out!", "Bottom-tier Character Tomozaki", "The Pet Girl of Sakurasou", "Rent-a-Girlfriend", "Domestic Girlfriend",
+                    "Scum's Wish", "White Album 2", "Honey and Clover", "Nana", "Paradise Kiss",
+                    "Ouran High School Host Club", "Fruits Basket", "Maid Sama!", "Kamisama Kiss", "Skip Beat!",
+                    "Cardcaptor Sakura", "Sailor Moon", "Revolutionary Girl Utena", "Yona of the Dawn", "Snow White with the Red Hair",
+                    "The Ancient Magus' Bride", "Spice and Wolf", "Beastars", "Mushishi", "Mononoke",
+                    "Natsume's Book of Friends", "xxxHOLiC", "Dororo", "Samurai Champloo", "Gintama",
+                    "Rurouni Kenshin", "Hellsing Ultimate", "Berserk", "Claymore", "Black Lagoon",
+                    "Psycho-Pass", "Ghost in the Shell: Stand Alone Complex", "Serial Experiments Lain", "Ergo Proxy", "Texhnolyze",
+                    "Monster", "20th Century Boys", "Paranoia Agent", "Baccano!", "Durarara!!",
+                    "91 Days", "Gangsta", "Great Pretender", "Odd Taxi", "Akudama Drive",
+                    "ID: Invaded", "Dorohedoro", "Devilman Crybaby", "Inuyasha", "Yu Yu Hakusho",
+                    "Trigun", "Cowboy Bebop", "Space Dandy", "Outlaw Star", "Gurren Lagann",
+                    "FLCL", "Kill la Kill", "Little Witch Academia", "BNA: Brand New Animal", "Star Driver",
+                    "Revolutionary Girl Utena", "Sailor Moon", "Cardcaptor Sakura", "Pretty Cure", "Tokyo Mew Mew",
+                    "Princess Tutu", "Shugo Chara", "Yuki Yuna Is a Hero", "Made in Abyss", "Girls' Last Tour",
+                    "A Place Further Than the Universe", "Yuru Camp", "K-On!", "Lucky Star", "Azumanga Daioh",
+                    "Nichijou", "Daily Lives of High School Boys", "Gintama", "Grand Blue", "Asobi Asobase",
+                    "Kaguya-sama: Love Is War", "The Disastrous Life of Saiki K.", "Haven't You Heard? I'm Sakamoto", "Hinamatsuri", "Prison School",
+                    "Hajime no Ippo", "Haikyuu!!", "Kuroko's Basketball", "Slam Dunk", "Yuri!!! on Ice",
+                    "Free!", "Run with the Wind", "Iwa-Kakeru! -Sport Climbing Girls-", "All Out!!", "Prince of Tennis",
+                    "Eyeshield 21", "Diamond no Ace", "Major", "One Outs", "Ping Pong the Animation",
+                    "Welcome to Demon School! Iruma-kun", "The Misfit of Demon King Academy", "Blue Exorcist", "Noragami", "Soul Eater",
+                    "Fire Force", "Kabaneri of the Iron Fortress", "Owari no Seraph", "Blood Blockade Battlefront", "D.Gray-man",
+                    "World Trigger", "Twin Star Exorcists", "Kekkaishi", "Zatch Bell!", "Toilet-bound Hanako-kun",
+                    "Mieruko-chan", "Another", "Higurashi: When They Cry", "Shiki", "The Promised Neverland",
+                    "Blood-C", "Blood+", "Elfen Lied", "Deadman Wonderland", "Future Diary",
+                    "Happy Sugar Life", "Magical Girl Site", "Wonder Egg Priority", "Made in Abyss", "From the New World",
+                    "Sound of the Sky", "Violet Evergarden", "Deca-Dence", "Vivy: Fluorite Eye's Song", "86: Eighty Six",
+                    "Land of the Lustrous", "To Your Eternity", "Wonder Egg Priority", "Sonny Boy", "Shadows House",
+                    "Mushoku Tensei: Jobless Reincarnation", "The Case Study of Vanitas", "Fate/Zero", "Fate/stay night", "Fate/stay night: Unlimited Blade Works",
+                    "Fate/Apocrypha", "Fate/Extra Last Encore", "Fate/Grand Order", "The Garden of Sinners", "Lord El-Melloi II's Case Files",
+                    "Carnival Phantasm", "Today's Menu for the Emiya Family", "Type-Moon", "Demon Slayer", "Jujutsu Kaisen",
+                    "Chainsaw Man", "Spy x Family", "My Hero Academia", "Black Clover", "Fire Force",
+                    "Dr. Stone", "The Promised Neverland", "Vinland Saga", "Golden Kamuy", "Kingdom",
+                    "Mobile Suit Gundam", "Mobile Suit Gundam: Iron-Blooded Orphans", "Mobile Suit Gundam 00", "Mobile Suit Gundam SEED", "Mobile Suit Gundam Wing",
+                    "Mobile Suit Gundam Unicorn", "Code Geass", "Aldnoah.Zero", "86: Eighty Six", "Darling in the Franxx",
+                    "Neon Genesis Evangelion", "RahXephon", "Eureka Seven", "SSSS.Gridman", "SSSS.Dynazenon",
+                    "Promare", "Gurren Lagann", "Kill la Kill", "Space Dandy", "Cowboy Bebop",
+                    "Samurai Champloo", "Kids on the Slope", "Terror in Resonance", "Carole & Tuesday", "Michiko & Hatchin",
+                    "Lupin III", "Detective Conan", "Kindaichi Case Files", "The Millionaire Detective Balance: UNLIMITED", "ID: INVADED",
+                    "Un-Go", "Beautiful Bones -Sakurako's Investigation-", "The Perfect Insider", "Hyouka", "Gosick",
+                    "In/Spectre", "Moriarty the Patriot", "Bungo Stray Dogs", "Kekkai Sensen", "Durarara!!",
+                    "Baccano!", "Hakata Tonkotsu Ramens", "91 Days", "Gangsta.", "Banana Fish",
+                    "Given", "Yuri!!! on Ice", "Free!", "Haikyuu!!", "Kuroko's Basketball",
+                    "Sk8 the Infinity", "Run with the Wind", "All Out!!", "Stars Align", "Tsurune",
+                    "Chihayafuru", "March Comes in Like a Lion", "Your Lie in April", "Hibike! Euphonium", "Kids on the Slope",
+                    "Piano no Mori", "Those Snow White Notes", "Kono Oto Tomare! Sounds of Life", "La Corda d'Oro", "Nodame Cantabile",
+                    "Initial D", "Wangan Midnight", "Capeta", "Yowamushi Pedal", "One Outs",
+                    "Major", "Diamond no Ace", "Big Windup!", "Mix", "Touch",
+                    "Cross Game", "Ping Pong the Animation", "Taisho Baseball Girls", "Princess Nine", "Battery",
+                    "Megalo Box", "Ashita no Joe", "Hajime no Ippo", "Kengan Ashura", "Baki",
+                    "How Heavy Are the Dumbbells You Lift?", "Free!", "Dive!!", "Grand Blue", "Harukana Receive",
+                    "Hanebado!", "Hoshiai no Sora", "2.43: Seiin High School Boys Volleyball Team", "Iwa-Kakeru! -Sport Climbing Girls-", "Breakers",
+                    "Bakuten!!", "Iwa-Kakeru! -Try a new climbing-", "Keppeki Danshi! Aoyama-kun", "Clean Freak! Aoyama kun", "DAYS",
+                    "Number24", "Try Knights", "Tsurune", "Uma Musume: Pretty Derby", "Walkure Romanze",
+                    "Keijo!!!!!!!!", "Kandagawa Jet Girls", "Scorching Ping Pong Girls", "Teekyuu", "Inazuma Eleven",
+                    "Captain Tsubasa", "Ashita no Joe", "Hajime no Ippo", "Fighting Spirit", "Megalo Box",
+                    "Welcome to Demon School! Iruma-kun", "Mairimashita! Iruma-kun", "Beelzebub", "Rosario + Vampire", "Monster Musume",
+                    "Interviews with Monster Girls", "Miss Kobayashi's Dragon Maid", "Dragon Maid", "The Ancient Magus' Bride", "Mononoke",
+                    "Mushishi", "Natsume's Book of Friends", "xxxHOLiC", "Toilet-bound Hanako-kun", "The Morose Mononokean",
+                    "Elegant Yokai Apartment Life", "Phantom Tales of the Night", "In/Spectre", "Mieruko-chan", "Ghost Hunt",
+                    "Another", "Higurashi: When They Cry", "Shiki", "Ghost Hound", "Blood-C",
+                    "Blood+", "Vampire Knight", "Seraph of the End", "Strike the Blood", "Servamp",
+                    "Mars Red", "Call of the Night", "Dance in the Vampire Bund", "Hellsing", "Hellsing Ultimate",
+                    "Trinity Blood", "Castlevania", "JoJo's Bizarre Adventure", "Dragon Ball", "Dragon Ball Z",
+                    "Dragon Ball Super", "Dragon Ball GT", "One Piece", "Naruto", "Naruto Shippuden",
+                    "Boruto: Naruto Next Generations", "Bleach", "Fairy Tail", "Black Clover", "Hunter x Hunter",
+                    "Yu Yu Hakusho", "Fullmetal Alchemist", "Fullmetal Alchemist: Brotherhood", "Soul Eater", "Fire Force",
+                    "Demon Slayer", "Jujutsu Kaisen", "My Hero Academia", "One Punch Man", "Mob Psycho 100",
+                    "Attack on Titan", "Tokyo Ghoul", "Parasyte", "Devilman Crybaby", "Chainsaw Man",
+                    "Blue Exorcist", "D.Gray-man", "Ao no Exorcist", "Noragami", "Inuyasha",
+                    "Twin Star Exorcists", "The God of High School", "Tower of God", "Noblesse", "Boichi",
+                    "Dr. STONE", "The Disastrous Life of Saiki K.", "Gintama", "Saiki Kusuo no Ψ-nan", "Assassination Classroom",
+                    "Ansatsu Kyoushitsu", "Bungou Stray Dogs", "Moriarty the Patriot", "Great Pretender", "Black Lagoon",
+                    "Gangsta", "Banana Fish", "91 Days", "Baccano!", "Durarara!!",
+                    "Hakata Tonkotsu Ramens", "Akudama Drive", "Golden Kamuy", "Dororo", "Vinland Saga",
+                    "Kingdom", "Drifters", "Angolmois: Record of Mongol Invasion", "Arslan Senki", "Shoukoku no Altair",
+                    "Alderamin on the Sky", "Record of Grancrest War", "Grancrest Senki", "Gate", "Utawarerumono",
+                    "Record of Lodoss War", "Rage of Bahamut: Genesis", "Shingeki no Bahamut Genesis", "Rage of Bahamut: Virgin Soul", "Goblin Slayer",
+                    "DanMachi", "Is It Wrong to Try to Pick Up Girls in a Dungeon?", "KonoSuba", "Re:Zero", "Overlord",
+                    "Sword Art Online", "Accel World", "Log Horizon", "No Game No Life", ".hack//Sign",
+                    "The Rising of the Shield Hero", "That Time I Got Reincarnated as a Slime", "So I'm a Spider, So What?", "Grimgar", "Hai to Gensou no Grimgar",
+                    "Magi", "Fate/Zero", "Fate/stay night", "The Garden of Sinners", "Kara no Kyoukai",
+                    "The Case Study of Vanitas", "Vanitas no Carte", "Bungo Stray Dogs", "Demon Slayer: Kimetsu no Yaiba", "Demon Slayer",
+                    "Fullmetal Alchemist: Brotherhood", "Attack on Titan", "Hunter x Hunter", "Steins;Gate", "Violet Evergarden",
+                    "A Silent Voice", "Your Name", "Spirited Away", "Princess Mononoke", "My Neighbor Totoro",
+                    "Death Note", "Code Geass", "Neon Genesis Evangelion", "Cowboy Bebop", "Naruto",
+                    "One Piece", "Dragon Ball Z", "My Hero Academia", "JoJo's Bizarre Adventure", "Black Clover",
+                    "Mob Psycho 100", "One Punch Man", "Jujutsu Kaisen", "Chainsaw Man", "Spy x Family",
+                    "Fruits Basket", "Kaguya-sama: Love Is War", "Your Lie in April", "Haikyuu!!", "Made in Abyss",
+                    "Vinland Saga", "To Your Eternity", "Berserk", "Monster", "Mushoku Tensei: Jobless Reincarnation",
+                    "Re:Zero - Starting Life in Another World", "Konosuba", "86 EIGHTY-SIX", "Vivy: Fluorite Eye's Song", "Odd Taxi",
+                    "Bocchi the Rock!", "Lycoris Recoil", "Cyberpunk: Edgerunners", "Oshi no Ko", "Frieren: Beyond Journey's End",
+                    "Heavenly Delusion", "The Apothecary Diaries", "Zom 100: Bucket List of the Dead", "Hell's Paradise", "Dandadan",
+                    "The Eminence in Shadow", "The Girl I Like Forgot Her Glasses", "Call of the Night", "Summer Time Rendering", "Link Click",
+                    "Ranking of Kings", "My Dress-Up Darling", "Kotaro Lives Alone", "Ya Boy Kongming!", "Uncle From Another World",
+                    "Mobile Suit Gundam: The Witch from Mercury", "Akiba Maid War", "Romantic Killer", "Buddy Daddies", "Tsurune: The Linking Shot",
+                    "Urusei Yatsura (2022)", "Tokyo Mew Mew New", "The Magical Revolution of the Reincarnated Princess", "NieR:Automata Ver1.1a", "Masamune-kun's Revenge R",
+                    "The Vexations of a Shut-In Vampire Princess", "Reborn as a Vending Machine", "Kusuriya no Hitorigoto", "Shy", "Shangri-La Frontier",
+                    "Ragna Crimson", "Until I Become Me", "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You", "Dead Dead Demon's Dededede Destruction", "Solo Leveling",
+                    "Oppenheimer of the Deep", "The Reason Why Raeliana Ended Up at the Duke's Mansion", "Overload", "Helck", "Sousou no Frieren",
+                    "Boruto: Two Blue Vortex", "Wind Breaker", "A Sign of Affection", "The Elusive Samurai", "Sakamoto Days",
+                    "Kaiju No. 8", "Mission: Yozakura Family", "My One-Hit Kill Sister", "The Dangers in My Heart", "The Summer Hikaru Died",
+                    "Blue Period", "Look Back", "The Second Window", "Even If You Slit My Mouth", "Oneira from the Dream World",
+                    "Wolves Don't Eat Grass", "The Irregular at Magic High School", "Mahouka Koukou no Rettousei", "Classroom of the Elite", "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e",
+                    "Date A Live", "High School DxD", "Trinity Seven", "Strike the Blood", "Chivalry of a Failed Knight",
+                    "Rakudai Kishi no Cavalry", "The Asterisk War", "Gakusen Toshi Asterisk", "The Misfit of Demon King Academy", "Maou Gakuin no Futekigousha",
+                    "Demon King Academy", "Akashic Records of Bastard Magic Instructor", "Rokudenashi Majutsu Koushi to Akashic Records", "The Familiar of Zero", "Zero no Tsukaima"
+                ],
+                truthDare: [
+                    // Truths
+                    "What's your biggest fear?", "Who do you have a crush on?", "What's your most embarrassing memory?",
+                    "When was the last time you lied?", "What's a secret you've never told anyone?",
+                    "Who was your first kiss?", "What's your biggest regret?", "Who's your celebrity crush?",
+                    "What's the most trouble you've ever been in?", "What's the dumbest thing you've done?",
+                    "What's your most bizarre talent?", "What's the worst date you've been on?",
+                    "What's your guilty pleasure?", "Who in this room would you date?",
+                    "What's the weirdest dream you've had?", "What's the most embarrassing thing in your search history?",
+                    "What's the weirdest thing you've eaten?", "What's your worst habit?",
+                    "What's something you're afraid to tell your parents?", "What's your biggest insecurity?",
+                    // Dares
+                    "Call your crush", "Do 20 pushups", "Let someone post anything they want on your social media",
+                    "Eat a spoonful of hot sauce", "Text your ex", "Dance without music for 30 seconds",
+                    "Let someone go through your phone for 2 minutes", "Speak in an accent for the next 10 minutes",
+                    "Call a random number and sing Happy Birthday", "Do your best impression of someone in the room",
+                    "Go outside and howl like a wolf", "Wear your clothes backwards for the rest of the game",
+                    "Let someone draw on your face", "Post an embarrassing selfie online",
+                    "Tell your best joke", "Eat a mixture of condiments", "Do a TikTok dance",
+                    "Let someone style your hair however they want", "Wear someone else's glasses for 10 minutes",
+                    "Call your parents and tell them you got engaged"
+                ],
+                songs: [
+                    "Queen - Bohemian Rhapsody", "Michael Jackson - Billie Jean", "The Beatles - Hey Jude",
+                    "Led Zeppelin - Stairway to Heaven", "Eagles - Hotel California", "Nirvana - Smells Like Teen Spirit",
+                    "Whitney Houston - I Will Always Love You", "Adele - Rolling in the Deep", "Coldplay - Viva la Vida",
+                    "Eminem - Lose Yourself", "Lady Gaga - Bad Romance", "AC/DC - Back in Black",
+                    "Pink Floyd - Comfortably Numb", "David Bowie - Heroes", "Prince - Purple Rain",
+                    "Madonna - Like a Prayer", "Bob Marley - No Woman No Cry", "The Rolling Stones - Satisfaction",
+                    "Beyoncé - Crazy in Love", "Drake - God's Plan", "Billie Eilish - Bad Guy",
+                    "BTS - Dynamite", "BLACKPINK - How You Like That", "Taylor Swift - Blank Space",
+                    "Post Malone - Circles", "The Weeknd - Blinding Lights", "Ariana Grande - thank u, next",
+                    "Dua Lipa - Don't Start Now", "Lewis Capaldi - Someone You Loved", "Ed Sheeran - Shape of You",
+                    "Bruno Mars - Uptown Funk", "Rihanna - Umbrella", "Katy Perry - Firework",
+                    "Queen - Another One Bites the Dust", "Michael Jackson - Thriller", "The Beatles - Let It Be",
+                    "Led Zeppelin - Whole Lotta Love", "Eagles - Take It Easy", "Nirvana - Come As You Are",
+                    "Whitney Houston - I Wanna Dance With Somebody", "Adele - Hello", "Coldplay - Fix You",
+                    "Eminem - Stan", "Lady Gaga - Poker Face", "AC/DC - Thunderstruck",
+                    "Pink Floyd - Wish You Were Here", "David Bowie - Space Oddity", "Prince - Kiss",
+                    "Madonna - Material Girl", "Bob Marley - Three Little Birds", "The Rolling Stones - Paint It Black",
+                    "Beyoncé - Single Ladies", "Drake - Hotline Bling", "Billie Eilish - everything i wanted",
+                    "BTS - Boy With Luv", "BLACKPINK - DDU-DU DDU-DU", "Taylor Swift - Shake It Off"
+                ],
+                movies: [
+                    "The Shawshank Redemption (1994)", "The Godfather (1972)", "The Dark Knight (2008)",
+                    "Pulp Fiction (1994)", "Fight Club (1999)", "Inception (2010)",
+                    "The Matrix (1999)", "Goodfellas (1990)", "Star Wars: Episode V (1980)",
+                    "The Lord of the Rings: The Fellowship of the Ring (2001)", "Forrest Gump (1994)",
+                    "The Silence of the Lambs (1991)", "Titanic (1997)", "The Avengers (2012)",
+                    "Jurassic Park (1993)", "The Lion King (1994)", "Jaws (1975)",
+                    "E.T. the Extra-Terrestrial (1982)", "Avatar (2009)", "The Terminator (1984)",
+                    "Back to the Future (1985)", "Toy Story (1995)", "The Shining (1980)",
+                    "The Exorcist (1973)", "Blade Runner (1982)", "Alien (1979)",
+                    "The Princess Bride (1987)", "Die Hard (1988)", "Saving Private Ryan (1998)",
+                    "The Wizard of Oz (1939)", "Casablanca (1942)", "Gone with the Wind (1939)",
+                    "The Breakfast Club (1985)", "Indiana Jones: Raiders of the Lost Ark (1981)",
+                    "Gladiator (2000)", "The Departed (2006)", "The Sixth Sense (1999)",
+                    "The Green Mile (1999)", "Casino Royale (2006)", "Harry Potter and the Philosopher's Stone (2001)",
+                    "Spider-Man: Into the Spider-Verse (2018)", "Spirited Away (2001)",
+                    "The Grand Budapest Hotel (2014)", "Interstellar (2014)", "Parasite (2019)",
+                    "Get Out (2017)", "Coco (2017)", "Mad Max: Fury Road (2015)",
+                    "Joker (2019)", "The Social Network (2010)"
+                ]
+            };
+            
+            // Game Functions
+            function selectCategory(category) {
+                currentCategory = category;
+                currentCategoryElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                
+                if (category === 'custom') {
+                    customFileInput.click();
+                } else {
+                    entries = databases[category] || [];
+                    spinButton.disabled = entries.length === 0;
+                    drawWheel();
+                }
+            }
+            
+            function drawWheel() {
+                if (!entries.length) return;
+                
+                const centerX = wheelCanvas.width / 2;
+                const centerY = wheelCanvas.height / 2;
+                const radius = Math.min(centerX, centerY) - 10;
+                
+                ctx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+                
+                // Draw segments
+                const segmentAngle = (2 * Math.PI) / entries.length;
+                
+                // Limit displayed entries for smooth rendering
+                const displayEntries = entries.length > 30 ? entries.slice(0, 30) : entries;
+                const displayAngle = (2 * Math.PI) / displayEntries.length;
+                
+                for (let i = 0; i < displayEntries.length; i++) {
+                    const startAngle = i * displayAngle;
+                    const endAngle = startAngle + displayAngle;
+                    
+                    // Draw segment
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                    ctx.closePath();
+                    
+                    // Fill with color
+                    ctx.fillStyle = wheelColors[i % wheelColors.length];
+                    ctx.fill();
+                    
+                    // Draw border
+                    ctx.strokeStyle = document.body.classList.contains('dark') ? '#1f2937' : 'white';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    
+                    // Draw text
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(startAngle + displayAngle / 2);
+                    ctx.textAlign = 'right';
+                    ctx.fillStyle = document.body.classList.contains('dark') ? 'white' : 'black';
+                    ctx.font = '12px Arial';
+                    
+                    // Truncate text if needed
+                    let text = displayEntries[i];
+                    const maxTextLength = radius * 0.7;
+                    if (ctx.measureText(text).width > maxTextLength) {
+                        text = text.substring(0, 10) + '...';
+                    }
+                    
+                    ctx.fillText(text, radius - 20, 5);
+                    ctx.restore();
+                }
+                
+                // Draw center circle
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius * 0.1, 0, 2 * Math.PI);
+                ctx.fillStyle = document.body.classList.contains('dark') ? '#4B5563' : '#f3f4f6';
+                ctx.fill();
+                ctx.strokeStyle = document.body.classList.contains('dark') ? '#1f2937' : '#e5e7eb';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+            
+            function spinWheel() {
+                if (spinning) return;
+                if (!entries.length) return;
+                
+                spinning = true;
+                spinButton.disabled = true;
+                
+                // Play spin sound
+                if (soundEnabled) {
+                    spinSound.volume = volume;
+                    spinSound.play();
+                }
+                
+                // Calculate spin parameters based on speed
+                let duration, spins;
+                switch (spinSpeed) {
+                    case 'slow':
+                        duration = 5000; // 5 seconds
+                        spins = 2;
+                        break;
+                    case 'medium':
+                        duration = 4000; // 4 seconds
+                        spins = 4;
+                        break;
+                    case 'fast':
+                        duration = 3000; // 3 seconds
+                        spins = 6;
+                        break;
+                    case 'ultra':
+                        duration = 2000; // 2 seconds
+                        spins = 8;
+                        break;
+                    default:
+                        duration = 4000;
+                        spins = 4;
+                }
+                
+                const startTime = Date.now();
+                const totalAngle = spins * 2 * Math.PI;
+                const randomAngle = Math.random() * 2 * Math.PI;
+                const targetAngle = totalAngle + randomAngle;
+                
+                // Set up tick sound interval
+                let tickInterval;
+                if (soundEnabled) {
+                    tickInterval = setInterval(() => {
+                        tickSound.volume = volume;
+                        tickSound.play();
+                    }, 100);
+                }
+                
+                // Animation function
+                function animate() {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function for natural deceleration
+                    const easeOut = function(t) {
+                        return 1 - Math.pow(1 - t, 3);
+                    };
+                    
+                    const angle = targetAngle * easeOut(progress);
+                    wheelCanvas.style.transform = `rotate(${angle}rad)`;
+                    
+                    // Adjust tick sound frequency
+                    if (soundEnabled && tickInterval) {
+                        if (progress > 0.7) {
+                            clearInterval(tickInterval);
+                            tickInterval = setInterval(() => {
+                                tickSound.volume = volume;
+                                tickSound.play();
+                            }, 200);
+                        }
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        // End of spin
+                        if (tickInterval) clearInterval(tickInterval);
+                        
+                        // Calculate winner segment
+                        const winnerIndex = Math.floor((targetAngle % (2 * Math.PI)) / (2 * Math.PI / entries.length));
+                        const actualIndex = entries.length - 1 - (winnerIndex % entries.length);
+                        const winner = entries[actualIndex] || entries[0];
+                        
+                        // Add bounce effect
+                        wheelCanvas.classList.add('spinner-bounce');
+                        
+                        // Add to history
+                        addToHistory(winner);
+                        
+                        // Display winner with delay for suspense
+                        setTimeout(() => {
+                            selectionDisplay.textContent = winner;
+                            
+                            // Play winner sound
+                            if (soundEnabled) {
+                                winnerSound.volume = volume;
+                                winnerSound.play();
+                            }
+                            
+                            // Show winner popup
+                            winnerText.textContent = winner;
+                            winnerPopup.classList.remove('hidden');
+                            winnerPopup.classList.add('flex', 'flex-col');
+                            
+                            // Create confetti effect
+                            createConfetti();
+                            
+                            // End spinning state
+                            setTimeout(() => {
+                                spinning = false;
+                                spinButton.disabled = false;
+                                wheelCanvas.classList.remove('spinner-bounce');
+                            }, 1000);
+                        }, 500);
+                    }
+                }
+                
+                // Start animation
+                animate();
+            }
+            
+            function createConfetti() {
+                const confettiContainer = document.getElementById('confetti-container');
+                confettiContainer.innerHTML = '';
+                
+                const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    // Random confetti properties
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.top = `${Math.random() * 40}%`;
+                    confetti.style.width = `${5 + Math.random() * 10}px`;
+                    confetti.style.height = `${5 + Math.random() * 10}px`;
+                    confetti.style.opacity = '1';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    // Animation
+                    confetti.animate(
+                        [
+                            { transform: `translate(0, 0) rotate(${Math.random() * 360}deg)`, opacity: 1 },
+                            { transform: `translate(${(Math.random() - 0.5) * 200}px, ${Math.random() * 600}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                        ],
+                        {
+                            duration: 1000 + Math.random() * 2000,
+                            easing: 'cubic-bezier(0.1, 1, 0.3, 1)',
+                            fill: 'forwards'
+                        }
+                    );
+                    
+                    confettiContainer.appendChild(confetti);
+                }
+            }
+            
+            function addToHistory(item) {
+                spinHistory.unshift(item);
+                if (spinHistory.length > 10) {
+                    spinHistory.pop();
+                }
+                
+                // Update history list
+                historyList.innerHTML = '';
+                spinHistory.forEach(historyItem => {
+                    const li = document.createElement('li');
+                    li.textContent = historyItem;
+                    historyList.appendChild(li);
+                });
+            }
+            
+            function showEntries() {
+                if (!entries.length) return;
+                
+                // Populate entries list
+                entriesList.innerHTML = '';
+                entries.forEach(entry => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'p-2 bg-gray-100 dark:bg-gray-700 rounded';
+                    entryDiv.textContent = entry;
+                    entriesList.appendChild(entryDiv);
+                });
+                
+                // Show modal
+                entriesModal.classList.remove('hidden');
+                entriesModal.classList.add('flex');
+            }
+            
+            function handleCustomFile(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        // Parse simple CSV format (comma separated values)
+                        const content = e.target.result;
+                        entries = content.split(/[\r\n,]+/).filter(item => item.trim() !== '');
+                        
+                        // Update UI
+                        currentCategory = 'custom';
+                        currentCategoryElement.textContent = 'Custom List';
+                        spinButton.disabled = entries.length === 0;
+                        drawWheel();
+                        
+                        // Show confirmation
+                        alert(`Loaded ${entries.length} custom entries!`);
+                    } catch (error) {
+                        alert('Error loading custom list. Please use a simple CSV or text file.');
+                    }
+                };
+                reader.readAsText(file);
+            }
+            
+            function toggleTheme() {
+                const isDark = document.body.classList.toggle('dark');
+                document.body.classList.toggle('light', !isDark);
+                
+                if (isDark) {
+                    themeToggle.innerHTML = '<i class="fas fa-moon mr-2"></i><span id="theme-text">Dark Mode</span>';
+                    document.getElementById('theme-text').textContent = 'Dark Mode';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-sun mr-2"></i><span id="theme-text">Light Mode</span>';
+                    document.getElementById('theme-text').textContent = 'Light Mode';
+                }
+                
+                drawWheel();
+            }
+            
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                soundToggle.innerHTML = soundEnabled ? 
+                    '<i class="fas fa-volume-up"></i>' : 
+                    '<i class="fas fa-volume-mute"></i>';
+            }
+            
+            // Set up auto theme based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+                themeToggle.innerHTML = '<i class="fas fa-moon mr-2"></i><span id="theme-text">Dark Mode</span>';
+            }
+            
+            // Event Listeners
+            spinButton.addEventListener('click', spinWheel);
+            
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    selectCategory(category);
+                });
+            });
+            
+            showEntriesButton.addEventListener('click', showEntries);
+            closeModalButton.addEventListener('click', () => {
+                entriesModal.classList.add('hidden');
+                entriesModal.classList.remove('flex');
+            });
+            
+            closeWinnerButton.addEventListener('click', () => {
+                winnerPopup.classList.add('hidden');
+                winnerPopup.classList.remove('flex', 'flex-col');
+            });
+            
+            speedButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    spinSpeed = this.dataset.speed;
+                    speedButtons.forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
+                    this.classList.add('bg-blue-500', 'text-white');
+                });
+            });
+            
+            soundToggle.addEventListener('click', toggleSound);
+            
+            volumeControl.addEventListener('input', function() {
+                volume = this.value;
+            });
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            customFileInput.addEventListener('change', handleCustomFile);
+            
+            // Initialize the wheel with default category
+            selectCategory('anime');
+            speedButtons[1].classList.add('bg-blue-500', 'text-white'); // Set medium as default
+        });
+    </script>
+</body>
+</html>
