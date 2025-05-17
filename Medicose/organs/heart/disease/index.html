@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioCare | Advanced Heart Health Management</title>
+    <meta name="description" content="Comprehensive resource for heart disease prevention, symptoms detection, and treatment options">
+    <style>
+        :root {
+            --primary: #e63946;
+            --primary-dark: #c1121f;
+            --secondary: #f1faee;
+            --accent: #457b9d;
+            --dark: #1d3557;
+            --light: #a8dadc;
+            --success: #2a9d8f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--accent));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+        
+        h2 {
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-size: 2.3rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            text-align: center;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background-color: var(--primary);
+            border-radius: 5px;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.8rem;
+        }
+        
+        .card h3 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-link:hover {
+            color: var(--primary);
+            gap: 10px;
+        }
+        
+        .emergency-banner {
+            background-color: #fff3f3;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 4rem 0;
+            border-left: 6px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.2); }
+            70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+        }
+        
+        .emergency-banner h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .emergency-banner p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .emergency-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-decoration: none;
+        }
+        
+        .testimonial-section {
+            background-color: var(--secondary);
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin: 4rem 0;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+        }
+        
+        .author-info {
+            text-align: left;
+        }
+        
+        .author-name {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .author-title {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .appointment-section {
+            background: linear-gradient(135deg, var(--dark), var(--accent));
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .appointment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .appointment-content h2 {
+            color: white;
+            text-align: left;
+            padding-bottom: 0;
+        }
+        
+        .appointment-content h2::after {
+            display: none;
+        }
+        
+        .appointment-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .appointment-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.2rem 1.5rem;
+            background: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            background-color: #f9f9f9;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer-inner {
+            padding: 1.5rem 0;
+        }
+        
+        .newsletter-section {
+            background-color: var(--light);
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.3);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark), #14213d);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .appointment-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .appointment-content {
+                text-align: center;
+            }
+            
+            .appointment-content h2 {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>CardioCare</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#conditions">Conditions</a></li>
+                    <li><a href="#symptoms">Symptoms</a></li>
+                    <li><a href="#prevention">Prevention</a></li>
+                    <li><a href="#treatment">Treatment</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Advanced Heart Health Management</h1>
+            <p>Comprehensive resources for prevention, early detection, and treatment of cardiovascular diseases</p>
+            <div class="btn-group">
+                <a href="#risk-calculator" class="btn">Assess Your Risk</a>
+                <a href="#appointment" class="btn btn-outline">Book Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <section id="conditions">
+            <h2>Cardiac Conditions</h2>
+            <p class="section-intro">Understanding different heart conditions is the first step toward prevention and treatment. Here are the most common cardiovascular diseases.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <span class="card-badge">Most Common</span>
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coronary Artery Disease">
+                    <div class="card-content">
+                        <h3>Coronary Artery Disease</h3>
+                        <p>Plaque buildup in coronary arteries reduces blood flow to the heart, potentially leading to angina or heart attack.</p>
+                        <a href="#" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Heart Failure">
+                    <div class="card-content">
+                        <h3>Heart Failure</h3>
+                        <p>The heart can't pump enough blood to meet the body's needs, causing fatigue, shortness of breath, and swelling.</p>
+                        <a href="#" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Arrhythmia">
+                    <div class="card-content">
+                        <h3>Arrhythmia</h3>
+                        <p>Abnormal heart rhythms that can be too fast, slow, or irregular, potentially leading to serious complications.</p>
+                        <a href="#" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="symptoms">
+            <h2>Warning Signs</h2>
+            <p class="section-intro">Recognizing these symptoms early can save lives. Don't ignore these potential signs of heart trouble.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chest Pain">
+                    <div class="card-content">
+                        <h3>Chest Discomfort</h3>
+                        <p>Pressure, tightness, or pain in the chest that may come and go (angina) or be constant (heart attack).</p>
+                        <a href="#" class="card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Shortness of Breath">
+                    <div class="card-content">
+                        <h3>Breathing Difficulties</h3>
+                        <p>Shortness of breath during routine activities or while at rest may indicate heart problems.</p>
+                        <a href="#" class="card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fatigue">
+                    <div class="card-content">
+                        <h3>Unexplained Fatigue</h3>
+                        <p>Extreme tiredness that isn't relieved by rest can be a sign of heart disease, especially in women.</p>
+                        <a href="#" class="card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="emergency-banner">
+            <h2>Cardiac Emergency?</h2>
+            <p>If you or someone else experiences these symptoms for more than 5 minutes:</p>
+            <ul style="list-style: none; margin: 1.5rem 0;">
+                <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Chest pain or discomfort</li>
+                <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Shortness of breath</li>
+                <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Cold sweat, nausea, or lightheadedness</li>
+            </ul>
+            <a href="tel:911" class="emergency-number">
+                <i class="fas fa-phone-alt"></i> CALL 911
+            </a>
+            <p>Immediate treatment can save lives - don't delay!</p>
+        </div>
+        
+        <section id="risk-calculator">
+            <h2>Heart Disease Risk Assessment</h2>
+            <p class="section-intro">Take this quick assessment to understand your risk factors for cardiovascular disease.</p>
+            
+            <div style="background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto;">
+                <form id="riskCalculatorForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" class="form-control" min="18" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bp">Blood Pressure Status</label>
+                        <select id="bp" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="normal">Normal (<120/80 mmHg)</option>
+                            <option value="elevated">Elevated (120-129/<80 mmHg)</option>
+                            <option value="high1">High Stage 1 (130-139/80-89 mmHg)</option>
+                            <option value="high2">High Stage 2 (≥140/90 mmHg)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cholesterol">Cholesterol Levels</label>
+                        <select id="cholesterol" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="normal">Normal (Total <200 mg/dL)</option>
+                            <option value="borderline">Borderline High (200-239 mg/dL)</option>
+                            <option value="high">High (≥240 mg/dL)</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <p style="margin-bottom: 1rem; font-weight: 500;">Check all that apply:</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <input type="checkbox" id="smoker" style="margin-right: 0.5rem;">
+                                <label for="smoker">Smoker</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="diabetes" style="margin-right: 0.5rem;">
+                                <label for="diabetes">Diabetes</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="obesity" style="margin-right: 0.5rem;">
+                                <label for="obesity">Obesity (BMI ≥30)</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="family-history" style="margin-right: 0.5rem;">
+                                <label for="family-history">Family History</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sedentary" style="margin-right: 0.5rem;">
+                                <label for="sedentary">Sedentary Lifestyle</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="stress" style="margin-right: 0.5rem;">
+                                <label for="stress">Chronic Stress</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" onclick="calculateRisk()" class="btn" style="width: 100%;">
+                        Calculate My Risk
+                    </button>
+                </form>
+                
+                <div id="riskResult" style="margin-top: 2rem; padding: 1.5rem; background: #f5f5f5; border-radius: 8px; display: none;">
+                    <h3 style="margin-bottom: 1rem; color: var(--dark);">Your Results</h3>
+                    <div id="riskScore" style="font-size: 1.2rem; margin-bottom: 1rem;"></div>
+                    <div id="riskRecommendation"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="prevention">
+            <h2>Prevention Strategies</h2>
+            <p class="section-intro">Up to 80% of premature heart disease can be prevented through lifestyle changes. Here's how to protect your heart.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Diet">
+                    <div class="card-content">
+                        <h3>Heart-Healthy Nutrition</h3>
+                        <p>Focus on fruits, vegetables, whole grains, lean proteins and healthy fats. Limit sodium, added sugars and processed foods.</p>
+                        <a href="#" class="card-link">View Meal Plans <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Exercise">
+                    <div class="card-content">
+                        <h3>Physical Activity</h3>
+                        <p>150 minutes weekly of moderate exercise strengthens your heart, improves circulation and helps maintain healthy weight.</p>
+                        <a href="#" class="card-link">Exercise Guides <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Stress Management">
+                    <div class="card-content">
+                        <h3>Stress Reduction</h3>
+                        <p>Chronic stress contributes to heart disease. Practice mindfulness, meditation, yoga or other relaxation techniques.</p>
+                        <a href="#" class="card-link">Stress Relief Tips <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="treatment">
+            <h2>Treatment Options</h2>
+            <p class="section-intro">Modern medicine offers various effective treatments for heart disease depending on your specific condition.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Medications">
+                    <div class="card-content">
+                        <h3>Medications</h3>
+                        <p>Various drugs can help manage heart disease, including blood thinners, beta-blockers, ACE inhibitors, and statins.</p>
+                        <a href="#" class="card-link">Learn About Medications <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Surgical Procedures">
+                    <div class="card-content">
+                        <h3>Surgical Procedures</h3>
+                        <p>Options include angioplasty with stenting, coronary artery bypass grafting (CABG), or valve repair/replacement.</p>
+                        <a href="#" class="card-link">Procedure Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lifestyle Changes">
+                    <div class="card-content">
+                        <h3>Cardiac Rehabilitation</h3>
+                        <p>Supervised programs combining exercise training, education and counseling to improve heart health.</p>
+                        <a href="#" class="card-link">Find Programs <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonial-section">
+            <div class="testimonial-container">
+                <h2>Success Stories</h2>
+                <div class="testimonial">
+                    <p>"After my bypass surgery, I thought my active life was over. The cardiac rehabilitation program at CardioCare gave me back my confidence. Today, I'm hiking, traveling, and enjoying time with my grandchildren. The education about nutrition and exercise made all the difference."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Robert Johnson" class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Robert Johnson</div>
+                            <div class="author-title">Cardiac Rehabilitation Graduate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-intro">Find answers to common questions about heart health and cardiovascular conditions.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">What are the early warning signs of heart disease?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Early warning signs can include:</p>
+                            <ul>
+                                <li>Chest discomfort (pressure, tightness, pain)</li>
+                                <li>Shortness of breath during routine activities</li>
+                                <li>Palpitations or irregular heartbeat</li>
+                                <li>Unexplained fatigue or weakness</li>
+                                <li>Swelling in feet, ankles or legs</li>
+                                <li>Dizziness or lightheadedness</li>
+                            </ul>
+                            <p>Many people experience no symptoms until a serious event occurs, which is why regular check-ups are important.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">How often should I get my heart checked?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Recommendations vary by age and risk factors:</p>
+                            <ul>
+                                <li><strong>Age 20-39:</strong> Every 4-6 years if low risk</li>
+                                <li><strong>Age 40-54:</strong> Every 2-4 years</li>
+                                <li><strong>Age 55+:</strong> Every 1-2 years</li>
+                                <li><strong>High risk individuals:</strong> Annually or as recommended by your doctor</li>
+                            </ul>
+                            <p>Risk factors include high blood pressure, diabetes, smoking, obesity, family history of heart disease, and sedentary lifestyle.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">Can heart disease be reversed?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>While existing damage to the heart muscle cannot be completely reversed, the progression of heart disease can often be slowed, stopped, or even partially reversed through:</p>
+                            <ul>
+                                <li>Comprehensive lifestyle changes (diet, exercise, stress management)</li>
+                                <li>Medications to control risk factors</li>
+                                <li>Cardiac rehabilitation programs</li>
+                                <li>In some cases, surgical interventions</li>
+                            </ul>
+                            <p>Studies show that aggressive lifestyle modifications can reduce plaque buildup in some patients.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">What's the difference between a heart attack and cardiac arrest?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>Heart Attack (Myocardial Infarction):</strong></p>
+                            <ul>
+                                <li>Occurs when blood flow to part of the heart is blocked</li>
+                                <li>The heart usually continues to beat</li>
+                                <li>Symptoms include chest pain, shortness of breath, nausea</li>
+                                <li>Medical emergency requiring immediate treatment</li>
+                            </ul>
+                            
+                            <p><strong>Cardiac Arrest:</strong></p>
+                            <ul>
+                                <li>Occurs when the heart suddenly stops beating effectively</li>
+                                <li>Patient loses consciousness and stops breathing</li>
+                                <li>Requires immediate CPR and defibrillation</li>
+                                <li>Can be caused by a heart attack but is a distinct event</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="appointment-section" id="appointment">
+            <div class="appointment-container">
+                <div class="appointment-content">
+                    <h2>Schedule a Cardiac Consultation</h2>
+                    <p>Our team of board-certified cardiologists provides comprehensive evaluations and personalized treatment plans.</p>
+                    <p>Early detection and prevention are key to maintaining optimal heart health.</p>
+                    <ul style="margin: 1.5rem 0; list-style: none;">
+                        <li><i class="fas fa-check" style="margin-right: 0.5rem;"></i> Same-week appointments available</li>
+                        <li><i class="fas fa-check" style="margin-right: 0.5rem;"></i> Advanced diagnostic testing</li>
+                        <li><i class="fas fa-check" style="margin-right: 0.5rem;"></i> Personalized treatment plans</li>
+                    </ul>
+                </div>
+                
+                <div class="appointment-form">
+                    <h3 style="color: var(--dark); margin-bottom: 1.5rem; text-align: center;">Request Appointment</h3>
+                    <form id="consultForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialist">Specialist Needed</label>
+                            <select id="specialist" class="form-control" required>
+                                <option value="">Select Specialist</option>
+                                <option>General Cardiologist</option>
+                                <option>Interventional Cardiologist</option>
+                                <option>Electrophysiologist</option>
+                                <option>Cardiac Surgeon</option>
+                                <option>Preventive Cardiology</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferred-date">Preferred Date</label>
+                            <input type="date" id="preferred-date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Briefly describe your concerns</label>
+                            <textarea id="message" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">
+                            Request Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter-section">
+            <h2>Stay Informed About Heart Health</h2>
+            <p style="max-width: 600px; margin: 0 auto 1.5rem;">Subscribe to our monthly newsletter for the latest research, prevention tips, and healthy recipes.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+            
+            <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.7;">We respect your privacy. Unsubscribe at any time.</p>
+        </section>
+    </div>
+    
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>CardioCare</span>
+                </div>
+                <p>Providing comprehensive, compassionate cardiac care through education, prevention, and advanced treatment options.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#conditions">Heart Conditions</a></li>
+                    <li><a href="#symptoms">Symptoms</a></li>
+                    <li><a href="#prevention">Prevention</a></li>
+                    <li><a href="#treatment">Treatment</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Heart-Healthy Recipes</a></li>
+                    <li><a href="#">Exercise Guides</a></li>
+                    <li><a href="#">Risk Calculators</a></li>
+                    <li><a href="#">Medication Information</a></li>
+                    <li><a href="#">Research & Innovations</a></li>
+                    <li><a href="#">Support Groups</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Cardiac Way, Health City, HC 12345</p>
+                <p><i class="fas fa-phone-alt"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> support@yashify.fun </p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 6:00 PM</p>
+                <p><i class="fas fa-ambulance"></i> Emergency: 24/7 Cardiac Care</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 CardioCare. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Disclaimer: This website provides educational information and is not a substitute for professional medical advice, diagnosis or treatment.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                const answer = question.nextElementSibling;
+                answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + 'px';
+            });
+        });
+        
+        // Risk calculator
+        function calculateRisk() {
+            let score = 0;
+            const age = parseInt(document.getElementById('age').value);
+            const bp = document.getElementById('bp').value;
+            const cholesterol = document.getElementById('cholesterol').value;
+            const gender = document.getElementById('gender').value;
+            
+            // Age scoring
+            if (age >= 65) score += 3;
+            else if (age >= 55) score += 2;
+            else if (age >= 45) score += 1;
+            
+            // Blood pressure scoring
+            if (bp === 'high2') score += 3;
+            else if (bp === 'high1') score += 2;
+            else if (bp === 'elevated') score += 1;
+            
+            // Cholesterol scoring
+            if (cholesterol === 'high') score += 3;
+            else if (cholesterol === 'borderline') score += 1;
+            
+            // Gender (male is higher risk)
+            if (gender === 'male') score += 1;
+            
+            // Lifestyle factors
+            if (document.getElementById('smoker').checked) score += 3;
+            if (document.getElementById('diabetes').checked) score += 3;
+            if (document.getElementById('obesity').checked) score += 2;
+            if (document.getElementById('family-history').checked) score += 2;
+            if (document.getElementById('sedentary').checked) score += 1;
+            if (document.getElementById('stress').checked) score += 1;
+            
+            // Display results
+            const riskResult = document.getElementById('riskResult');
+            const riskScore = document.getElementById('riskScore');
+            const riskRecommendation = document.getElementById('riskRecommendation');
+            
+            let riskLevel, recommendation;
+            
+            if (score <= 4) {
+                riskLevel = "Low Risk";
+                recommendation = "You have a low risk of developing heart disease. Maintain healthy habits with regular exercise and a balanced diet.";
+            } else if (score <= 8) {
+                riskLevel = "Moderate Risk";
+                recommendation = "You have moderate risk factors. Consider lifestyle changes and discuss your risk with a healthcare provider.";
+            } else if (score <= 12) {
+                riskLevel = "High Risk";
+                recommendation = "You have several risk factors for heart disease. Please consult a cardiologist for evaluation and preventive strategies.";
+            } else {
+                riskLevel = "Very High Risk";
+                recommendation = "You have multiple significant risk factors. Immediate consultation with a cardiologist is recommended for comprehensive evaluation and management.";
+            }
+            
+            riskScore.innerHTML = `<strong>Risk Level:</strong> ${riskLevel} (Score: ${score}/20)`;
+            riskRecommendation.innerHTML = `<p>${recommendation}</p>`;
+            riskResult.style.display = 'block';
+            
+            // Scroll to results
+            riskResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Form submission
+        document.getElementById('consultForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your appointment request. We will contact you shortly to confirm your consultation.');
+            this.reset();
+        });
+        
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
