@@ -7,90 +7,82 @@
     <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
         
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B5X5RJM3XH');
+    </script>
 
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Base Styles */
         :root {
-            --bg-gradient-day: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --bg-gradient-night: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            --text-color-day: #4a4a4a;
-            --text-color-night: #f0f0f0;
-            --card-bg-day: rgba(255, 255, 255, 0.7);
-            --card-bg-night: rgba(30, 30, 60, 0.7);
-            --card-shadow-day: 8px 8px 15px rgba(163,177,198,0.6), -8px -8px 15px rgba(255,255,255,0.7);
-            --card-shadow-night: 8px 8px 15px rgba(0,0,0,0.6), -8px -8px 15px rgba(50,50,80,0.7);
-            --card-hover-shadow-day: 12px 12px 25px rgba(163,177,198,0.8), -12px -12px 25px rgba(255,255,255,0.9);
-            --card-hover-shadow-night: 12px 12px 25px rgba(0,0,0,0.8), -12px -12px 25px rgba(50,50,80,0.9);
-            --footer-color-day: #666;
-            --footer-color-night: #aaa;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --neon-blue: #00d4ff;
+            --neon-purple: #8b5cf6;
+            --neon-pink: #ff006e;
+            --neon-gold: #ffd700;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --dark-glass-bg: rgba(0, 0, 0, 0.2);
+            --dark-glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            color: var(--text-color-day);
-            background: var(--bg-gradient-day);
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             overflow-x: hidden;
-            transition: all 0.5s ease;
-        }
-
-        body.dark-mode {
-            color: var(--text-color-night);
-            background: var(--bg-gradient-night);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Animated Title with Glow */
-        .title {
-            font-size: 3.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-color-day);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: glow 2s ease-in-out infinite alternate;
+            min-height: 100vh;
             position: relative;
         }
 
-        body.dark-mode .title {
-            color: var(--text-color-night);
-            animation: glow-dark 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073;
-            }
-            to {
-                text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
-            }
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #a8caba 100%);
+            color: #333;
         }
 
-        @keyframes glow-dark {
-            from {
-                text-shadow: 0 0 5px #000, 0 0 10px #1a1a2e, 0 0 15px #e60073, 0 0 20px #e60073;
-            }
-            to {
-                text-shadow: 0 0 10px #000, 0 0 20px #4a148c, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
-            }
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
         }
-        
+
+        .floating-shapes {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-shapes:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-shapes:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .floating-shapes:nth-child(3) { top: 80%; left: 30%; animation-delay: 4s; }
+        .floating-shapes:nth-child(4) { top: 30%; left: 70%; animation-delay: 6s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
         /* Particles Background */
         #particles-js {
             position: fixed;
@@ -99,173 +91,250 @@
             top: 0;
             left: 0;
             z-index: -1;
-            opacity: 0.5;
         }
 
-        body.dark-mode #particles-js {
-            opacity: 0.3;
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8)); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 0.8; transform: translateY(0); }
+        }
+
         /* Cards Container */
         .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 4rem;
             perspective: 1000px;
         }
-        
-        /* Glassmorphism Card Styles */
+
+        /* Enhanced Card Styles */
         .card {
-            background: var(--card-bg-day);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            width: 280px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow-day);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform-style: preserve-3d;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
             text-decoration: none;
             color: inherit;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .card {
-            background: var(--card-bg-night);
-            box-shadow: var(--card-shadow-night);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: var(--card-hover-shadow-day);
+        body.light-mode .card {
+            background: var(--dark-glass-bg);
+            border: 1px solid var(--dark-glass-border);
+            color: white;
         }
 
-        body.dark-mode .card:hover {
-            box-shadow: var(--card-hover-shadow-night);
-        }
-        
         .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #23a6d5);
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
         }
 
-        body.dark-mode .card::before {
-            background: linear-gradient(90deg, #ff8a00, #9c27b0, #2196f3);
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(0, 212, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
-        
-        /* Card Content */
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        /* Special styling for Krishna card */
+        .krishna-card {
+            position: relative;
+        }
+
+        .krishna-card::before {
+            background: linear-gradient(90deg, #ff9933, #138808, #000080);
+            background-size: 200% 100%;
+        }
+
+        .krishna-card .peacock-feather {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            animation: sway 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .krishna-card .sanskrit-text {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            color: var(--neon-gold);
+            text-align: center;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Card Image */
         .card-img {
             width: 100%;
-            max-width: 250px;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+            filter: brightness(0.9) contrast(1.1);
         }
 
         .card:hover .card-img {
             transform: scale(1.05);
+            filter: brightness(1.1) contrast(1.2);
         }
-        
+
+        /* Card Title */
         .card-title {
-            font-size: 1.6rem;
-            margin-bottom: 1.2rem;
-            color: var(--text-color-day);
+            font-size: 1.4rem;
             font-weight: 600;
+            margin-bottom: 1rem;
             line-height: 1.4;
+            text-align: center;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        body.dark-mode .card-title {
-            color: var(--text-color-night);
-        }
-        
-        /* Krishna Card Special Styling */
-        .krishna-card::before {
-            background: linear-gradient(90deg, #ff9933, #138808, #000080);
+        body.light-mode .card-title {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        body.dark-mode .krishna-card::before {
-            background: linear-gradient(90deg, #ff9933, #4caf50, #3f51b5);
-        }
-        
-        .peacock-feather {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 1.5rem;
-            color: #138808;
-        }
-
-        body.dark-mode .peacock-feather {
-            color: #4caf50;
-        }
-
-        /* Comments Section Styles */
+        /* Comments Section */
         .comments-section {
-            margin-top: 4rem;
-            background: var(--card-bg-day);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
             padding: 2rem;
-            box-shadow: var(--card-shadow-day);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: left;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        body.dark-mode .comments-section {
-            background: var(--card-bg-night);
-            box-shadow: var(--card-shadow-night);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        body.light-mode .comments-section {
+            background: var(--dark-glass-bg);
+            border: 1px solid var(--dark-glass-border);
+            color: white;
         }
 
         .comments-section h2 {
             font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-color-day);
+            font-weight: 700;
             text-align: center;
-        }
-
-        body.dark-mode .comments-section h2 {
-            color: var(--text-color-night);
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
-            position: relative;
         }
 
         #comment-name, #comment-text {
             width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.8);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
             font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
-        body.dark-mode #comment-name,
-        body.dark-mode #comment-text {
-            background: rgba(30,30,60,0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #f0f0f0;
+        #comment-name:focus, #comment-text:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
         #comment-text {
@@ -273,56 +342,41 @@
             resize: vertical;
         }
 
-        #comment-name:focus, #comment-text:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(229, 46, 113, 0.3);
-        }
-
         .char-counter {
             text-align: right;
             font-size: 0.8rem;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        body.dark-mode .char-counter {
-            color: #aaa;
+            opacity: 0.7;
+            margin-top: 0.5rem;
         }
 
         #comment-form button {
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 1rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: block;
             margin: 0 auto;
-        }
-
-        body.dark-mode #comment-form button {
-            background: linear-gradient(90deg, #ff8a00, #9c27b0);
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
         }
 
         #comment-form button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(229, 46, 113, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
         }
 
         .comment {
-            background: rgba(255,255,255,0.7);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
             padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-        }
-
-        body.dark-mode .comment {
-            background: rgba(30,30,60,0.7);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
 
         .comment::before {
@@ -330,14 +384,10 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            border-radius: 15px 15px 0 0;
-        }
-
-        body.dark-mode .comment::before {
-            background: linear-gradient(90deg, #ff8a00, #9c27b0);
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 16px 16px 0 0;
         }
 
         .comment-header {
@@ -349,191 +399,199 @@
 
         .comment-author {
             font-weight: 600;
-            color: #e52e71;
-        }
-
-        body.dark-mode .comment-author {
-            color: #9c27b0;
+            color: var(--neon-blue);
         }
 
         .comment-date {
             font-size: 0.8rem;
-            color: #666;
-        }
-
-        body.dark-mode .comment-date {
-            color: #aaa;
+            opacity: 0.7;
         }
 
         .comment-content {
             line-height: 1.6;
         }
-        
+
         /* Footer */
         footer {
-            margin-top: 4rem;
-            color: var(--footer-color-day);
-            font-size: 0.95rem;
+            text-align: center;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            margin-top: 2rem;
         }
 
-        body.dark-mode footer {
-            color: var(--footer-color-night);
+        body.light-mode footer {
+            background: var(--dark-glass-bg);
+            border: 1px solid var(--dark-glass-border);
+            color: white;
         }
-        
+
         footer p {
             margin: 0.5rem 0;
+            opacity: 0.8;
         }
-        
+
         .social-links {
             margin-top: 1rem;
         }
-        
+
         .social-links a {
-            color: var(--footer-color-day);
-            margin: 0 10px;
-            font-size: 1.2rem;
-            transition: color 0.3s;
+            color: var(--neon-pink);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        body.dark-mode .social-links a {
-            color: var(--footer-color-night);
-        }
-        
         .social-links a:hover {
-            color: #e52e71;
+            transform: translateY(-3px);
+            filter: drop-shadow(0 5px 15px rgba(255, 0, 110, 0.4));
         }
 
         /* Dark Mode Toggle */
         .dark-mode-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            width: 50px;
-            height: 50px;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 100;
             transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        body.dark-mode .dark-mode-toggle {
-            background: #f5f5f5;
-            color: #333;
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 212, 255, 0.4);
         }
 
         .dark-mode-toggle i {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
             transition: all 0.3s ease;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                padding: 1.5rem;
-            }
-            
-            .title {
-                font-size: 2.8rem;
-                margin-bottom: 1.5rem;
+                padding: 1rem;
             }
             
             .cards-container {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
             .card {
-                width: 100%;
-                max-width: 350px;
+                padding: 1.5rem;
             }
-
+            
+            .dark-mode-toggle {
+                width: 50px;
+                height: 50px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
             .comments-section {
                 padding: 1.5rem;
             }
-            
-            .comments-section h2 {
-                font-size: 1.8rem;
-            }
         }
-        
-        @media (max-width: 480px) {
-            .title {
-                font-size: 2.2rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
 
-            .dark-mode-toggle {
-                width: 40px;
-                height: 40px;
-                bottom: 15px;
-                right: 15px;
-            }
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="loading">
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-shapes"></div>
+        <div class="floating-shapes"></div>
+        <div class="floating-shapes"></div>
+        <div class="floating-shapes"></div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
     <!-- Dark Mode Toggle -->
     <div class="dark-mode-toggle" id="darkModeToggle">
         <i class="fas fa-moon"></i>
     </div>
-    
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-    
+
     <div class="container">
-        <h1 class="title">yashify.fun ✨</h1>
-        
-        <div class="cards-container">
+        <!-- Header Section -->
+        <div class="header-section scroll-animate">
+            <h1 class="title">yashify.fun</h1>
+            <p class="subtitle">Where Curiosity Meets Creativity ✨</p>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="cards-container scroll-animate">
             <!-- Lord Krishna Card -->
             <a href="LordKrishna/index.html" class="card krishna-card">
                 <div class="peacock-feather">🦚</div>
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/LordKrishna/I.jpeg" alt="LordKrishna" class="card-img">
-                <h3 class="card-title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna 🦚</h3>
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/LordKrishna/I.jpeg" alt="Lord Krishna" class="card-img">
+                <h3 class="card-title">THE SUPREME PERSONALITY OF GODHEAD LORD Sri Krsna</h3>
+                <div class="sanskrit-text">श्रीमद्भगवद्गीता - The Divine Song</div>
             </a>
-            
+
             <!-- Medicose Card -->
             <a href="Medicose/index.html" class="card">
                 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/m.PNG" alt="Medicose" class="card-img">
-                <h3 class="card-title">Medicose</h3>
+                <h3 class="card-title">Medicose 💊</h3>
             </a>
-            
+
             <!-- FUN Card -->
             <a href="FUN/index.html" class="card">
                 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/F.PNG" alt="FUN" class="card-img">
-                <h3 class="card-title">FUN</h3>
+                <h3 class="card-title">FUN! 🎉</h3>
             </a>
-            
-            
-        
-        
-                    <!--  course Card -->
+
+            <!-- Course Card -->
             <a href="course/index.html" class="card">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/course/cc.PNG" alt="course" class="card-img">
-                <h3 class="card-title">course</h3>
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/course/cc.PNG" alt="Course" class="card-img">
+                <h3 class="card-title">Course 📚</h3>
             </a>
         </div>
-        
-        
 
         <!-- Comments Section -->
-        <div class="comments-section">
+        <div class="comments-section scroll-animate">
             <h2>Share Your Thoughts</h2>
             <form id="comment-form">
                 <div class="form-group">
                     <input type="text" id="comment-name" placeholder="Your name" required>
                 </div>
                 <div class="form-group">
-                    <textarea id="comment-text" placeholder="Write your comment here..." required></textarea>
+                    <textarea id="comment-text" placeholder="Write your comment here..." required maxlength="250"></textarea>
                     <div class="char-counter"><span id="char-count">0</span>/250</div>
                 </div>
                 <button type="submit">Post Comment</button>
@@ -543,309 +601,219 @@
                 <!-- Comments will appear here -->
             </div>
         </div>
-        
-        <footer>
+
+        <!-- Footer -->
+        <footer class="scroll-animate">
             <p>Made with ❤️ by Yashify</p>
-            <p>© <span id="current-year">2023</span> yashify.fun | Keep Creating ✨</p>
+            <p>© <span id="current-year">2024</span> yashify.fun | Keep Creating ✨</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/yashify.fun?igsh=cXMzd2FxZTNtamls"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/yashify.fun?igsh=cXMzd2FxZTNtamls" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </footer>
     </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     
     <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         // Initialize Particles.js
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#e52e71"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": {
                         "enable": true,
-                        "distance": 150,
-                        "color": "#e52e71",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
+                        "value_area": 800
                     }
                 },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
+                "color": {
+                    "value": ["#00d4ff", "#8b5cf6", "#ff006e"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
                     }
                 },
-                "retina_detect": true
-            });
-            
-            // Initialize Vanilla Tilt for cards
-            VanillaTilt.init(document.querySelectorAll(".card"), {
-                max: 15,
-                speed: 400,
-                glare: true,
-                "max-glare": 0.2,
-                gyroscope: true
-            });
-            
-            // Update current year
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-
-            // Dark Mode Toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const body = document.body;
-            const icon = darkModeToggle.querySelector('i');
-
-            // Check for saved user preference or time-based preference
-            const currentHour = new Date().getHours();
-            const isNightTime = currentHour < 6 || currentHour >= 18; // 6pm to 6am is night
-            const savedMode = localStorage.getItem('darkMode');
-
-            // Set initial mode
-            if (savedMode === 'dark' || (savedMode === null && isNightTime)) {
-                body.classList.add('dark-mode');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-
-            // Toggle function
-            darkModeToggle.addEventListener('click', function() {
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                    localStorage.setItem('darkMode', 'dark');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                    localStorage.setItem('darkMode', 'light');
+                "opacity": {
+                    "value": 0.3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 3,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00d4ff",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
                 }
-            });
-
-            // Automatic time-based switching (every minute)
-            function checkTimeAndToggle() {
-                const now = new Date();
-                const currentHour = now.getHours();
-                const isNight = currentHour < 6 || currentHour >= 18;
-                
-                // Only auto-toggle if user hasn't set a preference
-                if (localStorage.getItem('darkMode') === null) {
-                    if (isNight && !body.classList.contains('dark-mode')) {
-                        body.classList.add('dark-mode');
-                        icon.classList.remove('fa-moon');
-                        icon.classList.add('fa-sun');
-                    } else if (!isNight && body.classList.contains('dark-mode')) {
-                        body.classList.remove('dark-mode');
-                        icon.classList.remove('fa-sun');
-                        icon.classList.add('fa-moon');
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
                     }
                 }
-            }
+            },
+            "retina_detect": true
+        });
 
-            // Check every minute
-            setInterval(checkTimeAndToggle, 60000);
-            checkTimeAndToggle(); // Initial check
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const toggleIcon = darkModeToggle.querySelector('i');
 
-            // Comments System
-            const commentForm = document.getElementById('comment-form');
-            const commentsList = document.getElementById('comments-list');
-            const commentText = document.getElementById('comment-text');
-            const charCount = document.getElementById('char-count');
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            toggleIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
             
-            // Server URL for comments (you'll need to create this PHP file)
-            const COMMENTS_API_URL = 'comments_api.php';
-            
-            // Load saved name from localStorage
-            const savedName = localStorage.getItem('commentName');
-            if (savedName) {
-                document.getElementById('comment-name').value = savedName;
+            if (body.classList.contains('light-mode')) {
+                toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                toggleIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
             }
+        });
+
+        // Comment System
+        const commentForm = document.getElementById('comment-form');
+        const commentText = document.getElementById('comment-text');
+        const charCount = document.getElementById('char-count');
+        const commentsList = document.getElementById('comments-list');
+
+        // Character counter
+        commentText.addEventListener('input', () => {
+            charCount.textContent = commentText.value.length;
+        });
+
+        // Load comments from localStorage
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('yashify-comments') || '[]');
+            commentsList.innerHTML = '';
             
-            // Load comments from server
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${comment.name}</span>
+                        <span class="comment-date">${comment.date}</span>
+                    </div>
+                    <div class="comment-content">${comment.text}</div>
+                `;
+                commentsList.appendChild(commentDiv);
+            });
+        }
+
+        // Save comment
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('comment-name').value.trim();
+            const text = commentText.value.trim();
+            
+            if (name && text) {
+                const comments = JSON.parse(localStorage.getItem('yashify-comments') || '[]');
+                const newComment = {
+                    name: name,
+                    text: text,
+                    date: new Date().toLocaleDateString()
+                };
+                
+                comments.unshift(newComment);
+                localStorage.setItem('yashify-comments', JSON.stringify(comments));
+                
+                commentForm.reset();
+                charCount.textContent = '0';
+                loadComments();
+            }
+        });
+
+        // Scroll Animation
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.scroll-animate');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.8) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Initial load
+        window.addEventListener('load', () => {
             loadComments();
-            
-            // Character counter
-            commentText.addEventListener('input', function() {
-                const currentLength = this.value.length;
-                charCount.textContent = currentLength;
-                
-                if (currentLength > 250) {
-                    charCount.style.color = '#e52e71';
-                } else {
-                    charCount.style.color = '';
-                }
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Card hover effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.02)';
             });
             
-            // Form submission
-            commentForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('comment-name').value.trim();
-                const text = commentText.value.trim();
-                
-                if (name && text) {
-                    // Save name for future
-                    localStorage.setItem('commentName', name);
-                    
-                    try {
-                        // Send comment to server
-                        const response = await fetch(COMMENTS_API_URL, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                name: name,
-                                text: text
-                            })
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (result.success) {
-                            // Refresh comments display
-                            loadComments();
-                            
-                            // Reset form
-                            commentText.value = '';
-                            charCount.textContent = '0';
-                        } else {
-                            alert('Error: ' + (result.error || 'Could not save comment'));
-                        }
-                    } catch (error) {
-                        alert('Error: ' + error.message);
-                    }
-                }
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
             });
-            
-            async function loadComments() {
-                try {
-                    const response = await fetch(COMMENTS_API_URL);
-                    const comments = await response.json();
-                    
-                    commentsList.innerHTML = '';
-                    
-                    if (comments.length === 0) {
-                        commentsList.innerHTML = '<p style="text-align: center;">No comments yet. Be the first to share your thoughts!</p>';
-                        return;
-                    }
-                    
-                    comments.forEach(comment => {
-                        const commentElement = document.createElement('div');
-                        commentElement.className = 'comment';
-                        
-                        const date = new Date(comment.date);
-                        const formattedDate = date.toLocaleString('en-IN', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
-                        
-                        commentElement.innerHTML = `
-                            <div class="comment-header">
-                                <span class="comment-author">${comment.name}</span>
-                                <span class="comment-date">${formattedDate}</span>
-                            </div>
-                            <div class="comment-content">${comment.text}</div>
-                        `;
-                        
-                        commentsList.appendChild(commentElement);
-                    });
-                } catch (error) {
-                    commentsList.innerHTML = '<p style="text-align: center; color: #e52e71;">Error loading comments. Please try again later.</p>';
-                    console.error('Error loading comments:', error);
-                }
-            }
         });
     </script>
 </body>
