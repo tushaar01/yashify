@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Microbiology and Biotechnology - Research Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+        }
+        
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(79, 70, 229, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-nav.scrolled {
+            background: rgba(79, 70, 229, 0.98);
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chart-container {
+            height: 400px;
+        }
+        
+        .facility-card {
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .research-card {
+            background: linear-gradient(135deg, #fef7ff, #f3e8ff);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        
+        .typewriter {
+            border-right: 3px solid;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .animated-border {
+            position: relative;
+        }
+        
+        .animated-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.5s ease;
+        }
+        
+        .animated-border:hover::after {
+            width: 100%;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .mouse {
+            width: 25px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .mouse-wheel {
+            width: 4px;
+            height: 8px;
+            background-color: white;
+            border-radius: 2px;
+            margin-top: 5px;
+            animation: scroll-wheel 1.5s ease infinite;
+        }
+        
+        @keyframes scroll-wheel {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(10px); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Header with Particle Background -->
+    <header class="gradient-bg text-white py-24 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div id="particles-js" class="absolute inset-0 opacity-30"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-center mb-8 animate__animated animate__fadeIn">
+                <div class="floating mb-6 md:mb-0 md:mr-8">
+                    <i class="fas fa-microscope text-7xl text-yellow-300"></i>
+                </div>
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4 glow">
+                        Research Project Portal
+                    </h1>
+                    <p class="text-xl md:text-2xl opacity-90 mb-4">
+                        <span id="typewriter" class="typewriter"></span>
+                    </p>
+                    <p class="text-lg opacity-90">
+                        Department of Microbiology and Biotechnology
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 animate__animated animate__fadeInUp animate__delay-1s">
+                <a href="#research-areas" class="inline-block bg-white text-indigo-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-flask mr-2"></i> Explore Research
+                </a>
+                <a href="#contact" class="inline-block border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-700 transition duration-300 ml-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-envelope mr-2"></i> Contact Us
+                </a>
+            </div>
+        </div>
+        
+        <div class="wave-shape">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        
+        <div class="scroll-indicator animate__animated animate__fadeIn animate__delay-2s">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav id="navbar" class="sticky-nav shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center">
+                    <a href="#" class="text-white text-xl font-bold flex items-center">
+                        <i class="fas fa-microscope mr-2"></i> MicroBioTech
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-info-circle mr-1"></i> About
+                    </a>
+                    <a href="#research-areas" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-flask mr-1"></i> Research Areas
+                    </a>
+                    <a href="#statistics" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-chart-bar mr-1"></i> Statistics
+                    </a>
+                    <a href="#focus-areas" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-bullseye mr-1"></i> Focus Areas
+                    </a>
+                    <a href="#facilities" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-building mr-1"></i> Facilities
+                    </a>
+                    <a href="#contact" class="text-white hover:text-yellow-300 transition duration-300 font-medium animated-border">
+                        <i class="fas fa-envelope mr-1"></i> Contact
+                    </a>
+                </div>
+                
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search research areas..." class="bg-white bg-opacity-20 text-white placeholder-gray-200 px-4 py-2 rounded-full border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:bg-opacity-30 transition duration-300 w-64">
+                    <i class="fas fa-search absolute right-3 top-3 text-gray-200"></i>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-indigo-900 mt-2 rounded-lg p-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#about" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-info-circle mr-2"></i> About
+                    </a>
+                    <a href="#research-areas" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-flask mr-2"></i> Research Areas
+                    </a>
+                    <a href="#statistics" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-chart-bar mr-2"></i> Statistics
+                    </a>
+                    <a href="#focus-areas" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-bullseye mr-2"></i> Focus Areas
+                    </a>
+                    <a href="#facilities" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-building mr-2"></i> Facilities
+                    </a>
+                    <a href="#contact" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fas fa-envelope mr-2"></i> Contact
+                    </a>
+                </div>
+                <div class="relative mt-4">
+                    <input type="text" placeholder="Search..." class="bg-white bg-opacity-20 text-white placeholder-gray-200 px-4 py-2 rounded-full border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-yellow-300 w-full">
+                    <i class="fas fa-search absolute right-3 top-3 text-gray-200"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 animate__animated animate__fadeIn">
+                    <i class="fas fa-university text-indigo-600 mr-3"></i>About Our Department
+                </h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mb-6 animate__animated animate__fadeIn animate__delay-1s"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                    Pioneering research and innovation in microbial sciences and biotechnology applications
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center animate__animated animate__fadeIn">
+                <div class="relative">
+                    <div class="bg-indigo-100 p-8 rounded-xl shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Research Lab" class="rounded-lg shadow-md w-full h-auto">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-award text-indigo-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">25+ Years</h4>
+                                <p class="text-sm text-gray-600">Research Excellence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-600">
+                        <i class="fas fa-bullseye mr-2"></i>Our Mission
+                    </h3>
+                    <p class="text-lg leading-relaxed mb-6">
+                        The Department of Microbiology and Biotechnology is dedicated to advancing scientific knowledge through cutting-edge research in microbial sciences, biotechnology applications, and innovative biological solutions. We strive to bridge the gap between fundamental research and practical applications that benefit society.
+                    </p>
+                    <div class="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
+                        <h4 class="font-semibold text-indigo-800 mb-3">Key Objectives:</h4>
+                        <ul class="space-y-2 text-indigo-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                <span>Excellence in microbiology and biotechnology research</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                <span>Innovation in biological solutions and applications</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                <span>Collaboration with industry and academia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                <span>Training future scientists and researchers</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-lightbulb text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Innovation</h3>
+                        <p class="text-gray-600">Developing novel solutions to complex biological challenges</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Education</h3>
+                        <p class="text-gray-600">Training the next generation of scientific leaders</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Collaboration</h3>
+                        <p class="text-gray-600">Partnering with industry and research institutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Research Areas -->
+    <section id="research-areas" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-flask text-purple-600 mr-3"></i>Specialized Research Areas
+                </h2>
+                <div class="w-24 h-1 bg-purple-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive overview of our research domains and ongoing projects
+                </p>
+            </div>
+
+            <div class="mb-8 flex justify-center">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button type="button" class="px-4 py-2 text-sm font-medium rounded-l-lg bg-indigo-600 text-white focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        All Areas
+                    </button>
+                    <button type="button" class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        Microbiology
+                    </button>
+                    <button type="button" class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        Biotechnology
+                    </button>
+                    <button type="button" class="px-4 py-2 text-sm font-medium rounded-r-lg bg-white text-gray-700 hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        Emerging Fields
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+                <table class="w-full text-left">
+                    <thead class="gradient-bg text-white">
+                        <tr>
+                            <th class="px-6 py-4 font-bold">S.No.</th>
+                            <th class="px-6 py-4 font-bold">Specialized Subject</th>
+                            <th class="px-6 py-4 font-bold">Research Area</th>
+                            <th class="px-6 py-4 font-bold">CODE</th>
+                            <th class="px-6 py-4 font-bold">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">1</td>
+                            <td class="px-6 py-4">Animal Biotechnology</td>
+                            <td class="px-6 py-4">Animal cell culture and related techniques</td>
+                            <td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">RA1</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">2</td>
+                            <td class="px-6 py-4">Microbiology</td>
+                            <td class="px-6 py-4">Mycological and microbiological applications; Bioremediation</td>
+                            <td class="px-6 py-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">RA2</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">3</td>
+                            <td class="px-6 py-4">Medical Microbiology</td>
+                            <td class="px-6 py-4">Microbial isolation and Culture sensitivity testing, microfertilizer and microdegradation</td>
+                            <td class="px-6 py-4"><span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">RA3</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">4</td>
+                            <td class="px-6 py-4">Plant Biotechnology/Tissue Culture</td>
+                            <td class="px-6 py-4">Plant tissue culture of medicinal plants, antimicrobial activity of essential oils, Plant secondary metabolites & medicinal plant</td>
+                            <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">RA4</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">5</td>
+                            <td class="px-6 py-4">Plant Biotechnology/Industrial Biotech</td>
+                            <td class="px-6 py-4">Plant Biotechnology, Medicinal and aromatic plant, fermentation technology, Tissue Culture/Industrial Biotech</td>
+                            <td class="px-6 py-4"><span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">RA5</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">6</td>
+                            <td class="px-6 py-4">Plant Stress Physiology</td>
+                            <td class="px-6 py-4">Plant tissue culture from nodal explant of potato (Solanum tuberosum L.)</td>
+                            <td class="px-6 py-4"><span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">RA6</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">7</td>
+                            <td class="px-6 py-4">Plant Molecular Biology & Biotechnology</td>
+                            <td class="px-6 py-4">Food microbiology</td>
+                            <td class="px-6 py-4"><span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">RA7</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">8</td>
+                            <td class="px-6 py-4">Medical Microbiology</td>
+                            <td class="px-6 py-4">Clinical microbiology and diagnostic applications</td>
+                            <td class="px-6 py-4"><span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">RA8</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">9</td>
+                            <td class="px-6 py-4">Biotechnology</td>
+                            <td class="px-6 py-4">Enzyme assay from microfungi, nematology, Bioagents multiplication</td>
+                            <td class="px-6 py-4"><span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">RA9</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition duration-200">
+                            <td class="px-6 py-4 font-medium">10</td>
+                            <td class="px-6 py-4">Bio-Nanotechnology</td>
+                            <td class="px-6 py-4">Nanomedicine and Bio-sensor related works</td>
+                            <td class="px-6 py-4"><span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">RA10</span></td>
+                            <td class="px-6 py-4">
+                                <button class="text-indigo-600 hover:text-indigo-800">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition duration-300 shadow-lg hover:shadow-xl">
+                    View All Research Areas <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Statistics -->
+    <section id="statistics" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-chart-bar text-green-600 mr-3"></i>Research Statistics
+                </h2>
+                <div class="w-24 h-1 bg-green-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Data-driven insights into our research performance and achievements
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="stats-card p-8 rounded-xl text-center card-hover transition duration-300">
+                    <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-flask text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">20+</h3>
+                    <p class="text-gray-600 font-medium">Active Research Areas</p>
+                </div>
+                <div class="stats-card p-8 rounded-xl text-center card-hover transition duration-300">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">45</h3>
+                    <p class="text-gray-600 font-medium">Research Personnel</p>
+                </div>
+                <div class="stats-card p-8 rounded-xl text-center card-hover transition duration-300">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">125</h3>
+                    <p class="text-gray-600 font-medium">Publications</p>
+                </div>
+                <div class="stats-card p-8 rounded-xl text-center card-hover transition duration-300">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">28</h3>
+                    <p class="text-gray-600 font-medium">Industry Partners</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+                        <i class="fas fa-pie-chart text-indigo-600 mr-2"></i>Research Areas Distribution
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="researchAreasChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+                        <i class="fas fa-chart-line text-blue-600 mr-2"></i>Publication Trends (2019-2024)
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="publicationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gray-50 p-8 rounded-xl shadow-inner">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+                    <i class="fas fa-trophy text-yellow-500 mr-2"></i>Recent Achievements
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-medal text-red-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">National Award</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">Best Research Paper in Biotechnology (2023)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-graduation-cap text-green-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Patent Granted</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">Novel Microbial Strain for Waste Treatment (2024)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-flask text-blue-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Research Grant</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">$1.2M for Nanomedicine Research (2024-2027)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Research Focus Areas -->
+    <section id="focus-areas" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-bullseye text-red-600 mr-3"></i>Key Research Focus Areas
+                </h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our primary research domains driving innovation and discovery
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-dna text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Molecular Biology</h3>
+                        <p class="text-gray-600 mb-4">Advanced studies in genetic engineering and molecular diagnostics</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>DNA/RNA Analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>Gene Expression Studies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>Genetic Engineering</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>Molecular Diagnostics</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-purple-600 font-medium hover:text-purple-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-seedling text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Plant Biotechnology</h3>
+                        <p class="text-gray-600 mb-4">Innovative approaches to plant science and agriculture</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Tissue Culture</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Medicinal Plants</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Essential Oils</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Stress Physiology</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-green-600 font-medium hover:text-green-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-virus text-3xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Medical Microbiology</h3>
+                        <p class="text-gray-600 mb-4">Cutting-edge research in pathogens and disease control</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                            <span>Pathogen Detection</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                            <span>Antimicrobial Testing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                            <span>Clinical Diagnostics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                            <span>Drug Resistance</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-red-600 font-medium hover:text-red-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-atom text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Nanotechnology</h3>
+                        <p class="text-gray-600 mb-4">Pioneering applications of nanotechnology in biology</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>Nanoparticle Synthesis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>Biosensors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>Drug Delivery</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>Nanomedicine</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-teal-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-leaf text-3xl text-teal-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Environmental Biotech</h3>
+                        <p class="text-gray-600 mb-4">Sustainable solutions for environmental challenges</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                            <span>Bioremediation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                            <span>Waste Treatment</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                            <span>Pollution Control</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-2"></i>
+                            <span>Sustainable Solutions</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-teal-600 font-medium hover:text-teal-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card p-8 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-6">
+                        <div class="bg-indigo-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-laptop-code text-3xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Bioinformatics</h3>
+                        <p class="text-gray-600 mb-4">Computational approaches to biological problems</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                            <span>Sequence Analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                            <span>Phylogenetic Studies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                            <span>Database Development</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                            <span>Computational Biology</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Facilities -->
+    <section id="facilities" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-building text-orange-600 mr-3"></i>Research Facilities
+                </h2>
+                <div class="w-24 h-1 bg-orange-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    State-of-the-art infrastructure supporting cutting-edge research
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-microscope text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Advanced Microscopy Lab</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                            <span>Confocal Microscopy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                            <span>Electron Microscopy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                            <span>Fluorescence Imaging</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                            <span>Live Cell Imaging</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-blue-600 text-sm font-medium hover:text-blue-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-flask text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Cell Culture Facility</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                            <span>Sterile Work Environment</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                            <span>CO2 Incubators</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                            <span>Biosafety Cabinets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                            <span>Cryopreservation</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-green-600 text-sm font-medium hover:text-green-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-dna text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Molecular Biology Lab</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-purple-500 mt-1 mr-2"></i>
+                            <span>PCR Systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-purple-500 mt-1 mr-2"></i>
+                            <span>DNA Sequencing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-purple-500 mt-1 mr-2"></i>
+                            <span>Gel Electrophoresis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-purple-500 mt-1 mr-2"></i>
+                            <span>Real-time PCR</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-purple-600 text-sm font-medium hover:text-purple-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-seedling text-2xl text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Plant Tissue Culture Lab</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-teal-500 mt-1 mr-2"></i>
+                            <span>Growth Chambers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-teal-500 mt-1 mr-2"></i>
+                            <span>Laminar Flow Hoods</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-teal-500 mt-1 mr-2"></i>
+                            <span>Media Preparation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-teal-500 mt-1 mr-2"></i>
+                            <span>Micropropagation</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-teal-600 text-sm font-medium hover:text-teal-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-laptop-code text-2xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Bioinformatics Center</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1 mr-2"></i>
+                            <span>High-Performance Computing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1 mr-2"></i>
+                            <span>Specialized Software</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1 mr-2"></i>
+                            <span>Database Access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1 mr-2"></i>
+                            <span>Analysis Tools</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-indigo-600 text-sm font-medium hover:text-indigo-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="facility-card p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="text-center mb-4">
+                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-atom text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Nanotechnology Lab</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-red-500 mt-1 mr-2"></i>
+                            <span>Nanoparticle Synthesis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-red-500 mt-1 mr-2"></i>
+                            <span>Characterization Tools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-red-500 mt-1 mr-2"></i>
+                            <span>Clean Room Facility</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-red-500 mt-1 mr-2"></i>
+                            <span>Biosensor Development</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-center">
+                        <button class="text-red-600 text-sm font-medium hover:text-red-800">
+                            View Equipment List <i class="fas fa-external-link-alt ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-50 p-8 rounded-xl shadow-inner">
+                <h3 class="text-2xl font-semibold text-center mb-6 text-gray-800">
+                    <i class="fas fa-tools text-orange-600 mr-2"></i>Shared Instrumentation
+                </h3>
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-balance-scale text-blue-600"></i>
+                        </div>
+                        <p class="text-sm font-medium">Analytical Balance</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-thermometer-half text-red-600"></i>
+                        </div>
+                        <p class="text-sm font-medium">Spectrophotometer</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="bg-orange-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-fire text-orange-600"></i>
+                        </div>
+                        <p class="text-sm font-medium">Autoclave Systems</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="bg-cyan-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-snowflake text-cyan-600"></i>
+                        </div>
+                        <p class="text-sm font-medium">Ultra-low Freezers</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button class="bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-calendar-alt mr-2"></i> Book Equipment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-quote-left text-indigo-600 mr-3"></i>Testimonials
+                </h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    What our collaborators and students say about our research
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Dr. Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Dr. Sarah Johnson</h4>
+                            <p class="text-sm text-gray-600">Industry Partner, BioTech Solutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "The collaborative research projects with this department have led to breakthrough innovations in microbial applications that have transformed our production processes."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Michael Chen" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Prof. Michael Chen</h4>
+                            <p class="text-sm text-gray-600">Visiting Researcher, MIT</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "The research facilities here rival those at top international institutions. The team's work in nanotechnology applications is particularly impressive."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Patel" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Priya Patel</h4>
+                            <p class="text-sm text-gray-600">PhD Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "The mentorship and research opportunities here have been transformative for my career. The department truly fosters innovation and independent thinking."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">
+                <i class="fas fa-envelope mr-2"></i> Stay Updated
+            </h2>
+            <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                Subscribe to our newsletter for the latest research news, publications, and events
+            </p>
+            
+            <div class="max-w-md mx-auto">
+                <div class="flex">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
+                    <button class="bg-yellow-500 text-gray-800 px-6 py-3 rounded-r-lg font-semibold hover:bg-yellow-400 transition duration-300">
+                        Subscribe
+                    </button>
+                </div>
+                <p class="text-sm opacity-75 mt-2">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-envelope text-indigo-600 mr-3"></i>Contact Information
+                </h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get in touch with our research team
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-600">
+                        <i class="fas fa-university mr-2"></i>Department Information
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Address</h4>
+                                <p class="text-gray-600">
+                                    Department of Microbiology and Biotechnology<br>
+                                    University Campus, Research Building<br>
+                                    City, State - 123456
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-phone text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">+91-XXX-XXX-XXXX</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-envelope text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email</h4>
+                                <p class="text-gray-600">contact@microbiology.university.edu</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-globe text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Website</h4>
+                                <p class="text-gray-600">www.microbiology.university.edu</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-800 mb-3">Office Hours</h4>
+                        <p class="text-gray-600">
+                            Monday - Friday: 9:00 AM - 5:00 PM<br>
+                            Saturday: 10:00 AM - 2:00 PM<br>
+                            Sunday: Closed
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-600">
+                        <i class="fas fa-users mr-2"></i>Key Personnel
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-indigo-50 p-6 rounded-lg">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Dr. Rajesh Kumar" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-indigo-800">Dr. Rajesh Kumar</h4>
+                                    <p class="text-sm text-gray-600">Head of Department</p>
+                                    <p class="text-sm text-indigo-600">email@university.edu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-50 p-6 rounded-lg">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Priya Sharma" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-indigo-800">Dr. Priya Sharma</h4>
+                                    <p class="text-sm text-gray-600">Research Coordinator</p>
+                                    <p class="text-sm text-indigo-600">research@university.edu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-50 p-6 rounded-lg">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Prof. Amit Patel" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-indigo-800">Prof. Amit Patel</h4>
+                                    <p class="text-sm text-gray-600">Laboratory Manager</p>
+                                    <p class="text-sm text-indigo-600">lab@university.edu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gray-50 p-8 rounded-xl">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+                    <i class="fas fa-map-marker-alt text-indigo-600 mr-2"></i>Find Us on Campus
+                </h3>
+                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.779622285173!2d77.2098653150823!3d28.61484498242651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2a99b6f9fa7%3A0x83a25e55f0af4c82!2sUniversity%20of%20Delhi!5e0!3m2!1sen!2sin!4v1625555555555!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+                    <i class="fas fa-handshake text-indigo-600 mr-2"></i>Collaboration Opportunities
+                </h3>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+                    We welcome collaborations with academic institutions, research organizations, and industry partners. 
+                    Contact us to explore joint research projects, student exchange programs, or technology transfer opportunities.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-handshake mr-2"></i>Partner With Us
+                    </a>
+                    <a href="#" class="bg-white border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-download mr-2"></i>Download Brochure
+                    </a>
+                    <a href="#" class="bg-white border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-briefcase mr-2"></i>Careers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-microscope text-2xl mr-2 text-indigo-400"></i>
+                        <span class="text-xl font-semibold">MicroBioTech</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Advancing Scientific Research Through Innovation and Discovery in Microbiology and Biotechnology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-researchgate"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#research-areas" class="text-gray-400 hover:text-white transition duration-300">Research Areas</a></li>
+                        <li><a href="#facilities" class="text-gray-400 hover:text-white transition duration-300">Facilities</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Research</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Publications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Projects</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Collaborations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">News</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Contact</h4>
+                    <address class="not-italic text-gray-400">
+                        Department of Microbiology and Biotechnology<br>
+                        University Campus<br>
+                        Research Building<br>
+                        City, State - 123456<br>
+                        <br>
+                        <i class="fas fa-phone mr-2"></i> +91-XXX-XXX-XXXX<br>
+                        <i class="fas fa-envelope mr-2"></i> contact@microbiology.university.edu
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2024 Department of Microbiology and Biotechnology. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Typewriter Effect
+        const typewriter = new Typewriter('#typewriter', {
+            loop: true,
+            delay: 75,
+        });
+        
+        typewriter
+            .typeString('Advancing Scientific Research')
+            .pauseFor(1500)
+            .deleteAll()
+            .typeString('Innovating Biotechnology Solutions')
+            .pauseFor(1500)
+            .deleteAll()
+            .typeString('Exploring Microbial Frontiers')
+            .pauseFor(1500)
+            .start();
+        
+        // Particles.js Configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // Chart.js Configuration
+        // Research Areas Distribution Chart
+        const ctx1 = document.getElementById('researchAreasChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Plant Biotechnology', 'Medical Microbiology', 'Nanotechnology', 'Environmental', 'Others'],
+                datasets: [{
+                    data: [25, 20, 15, 18, 22],
+                    backgroundColor: [
+                        '#10B981',
+                        '#EF4444',
+                        '#3B82F6',
+                        '#F59E0B',
+                        '#8B5CF6'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Publication Trends Chart
+        const ctx2 = document.getElementById('publicationChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Publications',
+                    data: [15, 18, 22, 28, 32, 35],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#3B82F6',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        ticks: {
+                            stepSize: 5
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1F2937',
+                        titleFont: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 12
+                        },
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return `Publications: ${context.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const tableRows = document.querySelectorAll('tbody tr');
+                
+                tableRows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                this.innerHTML = mobileMenu.classList.contains('hidden') ? 
+                    '<i class="fas fa-bars text-2xl"></i>' : 
+                    '<i class="fas fa-times text-2xl"></i>';
+            });
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.animate__animated');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    const animationClass = element.getAttribute('data-animation');
+                    element.classList.add(animationClass);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
