@@ -1,7 +1,10 @@
 
 
 
-<!DOCTYPE html>
+
+   
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +12,7 @@
   <title>Yashify - FUN Zone</title>
   <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
     
-   <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,6 +20,9 @@
     gtag('js', new Date());
     gtag('config', 'G-B5X5RJM3XH');
   </script>
+
+  <!-- Font Awesome for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
     body {
@@ -30,24 +36,52 @@
       justify-content: flex-start;
       min-height: 100vh;
       overflow: auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Mail Button Styles */
+    .mail-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #7c3aed;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 100;
+      text-decoration: none;
+    }
+
+    .mail-btn:hover {
+      transform: scale(1.1);
+      background: #6d28d9;
     }
 
     .title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       text-align: center;
-      margin: 30px 0;
+      margin: 20px 0 30px 0;
       color: #7c3aed;
       font-weight: 700;
+      padding-top: 10px;
     }
 
     .container {
       display: grid;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
       max-width: 1200px;
       width: 100%;
-      padding: 30px;
+      padding: 20px;
       box-sizing: border-box;
     }
 
@@ -60,26 +94,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       overflow: hidden;
-      max-width: 300px;
-      height: 250px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       border: 1px solid #e5e7eb;
+      padding: 10px;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
     .card-img {
       width: 80%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      margin: 15px 0 10px 0;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 10px;
       transition: all 0.3s ease;
     }
 
@@ -89,31 +124,45 @@
 
     .card h2 {
       margin: 0;
-      padding: 0 15px 15px 15px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #333;
+      padding: 0 5px;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 20px;
+      margin-top: 30px;
+      padding: 15px;
       text-align: center;
       color: #6b7280;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 768px) {
       .container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+        gap: 12px;
+      }
+      .card {
+        width: 150px;
+        height: 150px;
+      }
+      .card-img {
+        height: 80px;
       }
       .title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+      }
+      .mail-btn {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
       }
     }
 
     @media (max-width: 480px) {
       .container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
       .title {
         font-size: 1.5rem;
@@ -123,7 +172,14 @@
 </head>
 <body>
 
-  <h1 class="title">Welcome to Yashify FUN Zone</h1>
+  <!-- Mail Button (Top Right Corner) -->
+  <a href="mailto:admin@yashify.fun?subject=Feedback%20on%20Yashify%20FUN%20Zone&body=Hello%20Yashify%20Team," 
+     class="mail-btn" 
+     title="Send Feedback">
+    <i class="fas fa-envelope"></i>
+  </a>
+
+  <h1 class="title">Yashify FUN Zone</h1>
 
   <div class="container">
     
@@ -139,7 +195,7 @@
 
     <a href="ElonMusk/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
-      <h2>Elon Musk Money</h2>
+      <h2>Elon Musk</h2>
     </a>
 
     <a href="SpaceX/index.html" class="card">
@@ -159,7 +215,7 @@
 
     <a href="stopat00.00sec/index.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
-      <h2>Stop at 00:00 sec</h2>
+      <h2>Stop at 00:00</h2>
     </a>
 
     <a href="rock/index.html" class="card">
@@ -174,18 +230,17 @@
   </div>
 
   <footer>
-    <p>© 2025 Yashify FUN Zone | All Rights Reserved</p>
+    <p>© 2025 Yashify | All Rights Reserved</p>
   </footer>
 
   <script>
     // Game count display
     window.onload = function() {
       const gameCount = document.querySelectorAll('.card').length;
-      const countElement = document.createElement('h2');
-      countElement.textContent = `${gameCount} Awesome Games Available`;
+      const countElement = document.createElement('p');
+      countElement.textContent = `${gameCount} games available`;
       countElement.style.textAlign = 'center';
-      countElement.style.marginTop = '-20px';
-      countElement.style.marginBottom = '20px';
+      countElement.style.margin = '-15px 0 20px 0';
       countElement.style.color = '#6b7280';
       document.querySelector('.title').insertAdjacentElement('afterend', countElement);
     };
