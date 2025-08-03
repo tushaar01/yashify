@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Research Domains - Department Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --secondary-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            letter-spacing: -0.025em;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .research-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .research-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        .card-code {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .card-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .card-button {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .stat-icon {
+            margin-right: 0.25rem;
+            color: #8b5cf6;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .department-info {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .info-text {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-button.active, .filter-button:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-purple {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .badge-green {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-orange {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-gradient py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="main-title text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Advanced Research Domains</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                Exploring the frontiers of Microbiology & Biotechnology through interdisciplinary research
+            </p>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search research areas...">
+        <div class="category-filter">
+            <button class="filter-button active">All</button>
+            <button class="filter-button">Biotechnology</button>
+            <button class="filter-button">Microbiology</button>
+            <button class="filter-button">Molecular</button>
+            <button class="filter-button">Applied</button>
+        </div>
+    </div>
+
+    <div class="department-info">
+        <h2 class="section-title text-2xl md:text-3xl font-bold mb-6">Research Excellence & Innovation</h2>
+        <p class="info-text">
+            Our department leads pioneering research across 12 specialized domains, each contributing to scientific advancement
+            and technological innovation. From molecular biology to industrial applications, our work addresses global challenges
+            through rigorous inquiry and interdisciplinary collaboration.
+        </p>
+    </div>
+
+    <div class="research-grid">
+        <div class="research-card animate__animated">
+            <div class="card-header">
+                <div class="card-code">RA01</div>
+                <div class="card-title">Animal Biotechnology</div>
+                <span class="badge">Biotech</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Advanced studies in animal cell culture, genetic engineering, and therapeutic applications 
+                    for veterinary and medical sciences.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 8 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 24 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);">
+                <div class="card-code">RA02</div>
+                <div class="card-title">Microbiology</div>
+                <span class="badge badge-purple">Microbiology</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Cutting-edge research in mycological applications, environmental bioremediation, 
+                    and microbial ecology for sustainable solutions.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 12 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 42 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 100%);">
+                <div class="card-code">RA03</div>
+                <div class="card-title">Medical Microbiology</div>
+                <span class="badge">Clinical</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Pathogen isolation, antimicrobial resistance profiling, and development of novel 
+                    diagnostic techniques for clinical applications.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 9 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 31 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">
+                <div class="card-code">RA04</div>
+                <div class="card-title">Plant Biotechnology</div>
+                <span class="badge badge-green">Biotech</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Innovative approaches in medicinal plant tissue culture, genetic transformation, 
+                    and phytochemical analysis for pharmaceutical applications.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 7 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 28 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);">
+                <div class="card-code">RA05</div>
+                <div class="card-title">Industrial Biotechnology</div>
+                <span class="badge badge-orange">Applied</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Optimization of fermentation processes, enzyme technology, and bioprocess 
+                    engineering for industrial scale applications.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 6 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 19 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #84cc16 0%, #10b981 100%);">
+                <div class="card-code">RA06</div>
+                <div class="card-title">Plant Stress Physiology</div>
+                <span class="badge badge-green">Molecular</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Investigating plant adaptation mechanisms to abiotic and biotic stresses 
+                    at physiological, biochemical and molecular levels.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 5 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 22 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">
+                <div class="card-code">RA07</div>
+                <div class="card-title">Molecular Biology</div>
+                <span class="badge">Molecular</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Advanced genomic and proteomic approaches in food microbiology, 
+                    molecular diagnostics, and genetic engineering.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 10 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 37 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);">
+                <div class="card-code">RA08</div>
+                <div class="card-title">Clinical Microbiology</div>
+                <span class="badge badge-purple">Clinical</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Research on emerging pathogens, hospital-acquired infections, 
+                    and rapid diagnostic methods for clinical microbiology.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 8 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 29 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                <div class="card-code">RA09</div>
+                <div class="card-title">Biotechnology</div>
+                <span class="badge">Biotech</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Enzyme technology, nematode biocontrol, and development of 
+                    biological agents for agricultural and industrial applications.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 7 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 25 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #64748b 0%, #475569 100%);">
+                <div class="card-code">RA10</div>
+                <div class="card-title">Bio-Nanotechnology</div>
+                <span class="badge">Molecular</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Development of nanobiomaterials, targeted drug delivery systems, 
+                    and nanoscale diagnostic tools for biomedical applications.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 6 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 18 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);">
+                <div class="card-code">RA11</div>
+                <div class="card-title">Nanomaterials</div>
+                <span class="badge">Applied</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Synthesis and characterization of metallic nanoparticles, nanocomposites, 
+                    and their applications in medicine, agriculture and industry.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 5 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 21 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+
+        <div class="research-card animate__animated">
+            <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);">
+                <div class="card-code">RA12</div>
+                <div class="card-title">Bioinformatics</div>
+                <span class="badge">Molecular</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">
+                    Computational biology, molecular phylogenetics, genomic data analysis, 
+                    and development of bioinformatics tools and algorithms.
+                </p>
+                <div class="card-stats">
+                    <span class="stat-item"><i class="stat-icon">👨‍🔬</i> 4 Researchers</span>
+                    <span class="stat-item"><i class="stat-icon">📄</i> 16 Publications</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="section-title text-2xl md:text-3xl font-bold mb-6">Collaborate With Us</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto mb-8">
+                    Interested in collaborating on research projects or learning more about our work?
+                    Contact our department to explore partnership opportunities.
+                </p>
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
+                    Contact Research Office
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white py-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-500 text-sm">
+                © 2024 Department of Microbiology and Biotechnology. All rights reserved.
+            </p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="text-slate-400 hover:text-indigo-600">
+                    <span class="sr-only">Twitter</span>
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600">
+                    <span class="sr-only">LinkedIn</span>
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600">
+                    <span class="sr-only">ResearchGate</span>
+                    <i class="fab fa-researchgate"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const cards = document.querySelectorAll('.research-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.classList.add('animate__fadeInUp');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach((card, index) => {
+                observer.observe(card);
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const searchInput = document.querySelector('.search-input');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterCards(button.textContent, searchInput.value);
+                });
+            });
+
+            searchInput.addEventListener('input', () => {
+                const activeFilter = document.querySelector('.filter-button.active').textContent;
+                filterCards(activeFilter, searchInput.value);
+            });
+
+            function filterCards(filter, searchTerm) {
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const description = card.querySelector('.card-description').textContent.toLowerCase();
+                    const badge = card.querySelector('.badge').textContent.toLowerCase();
+                    
+                    const matchesFilter = filter === 'All' || badge.includes(filter.toLowerCase());
+                    const matchesSearch = searchTerm === '' || 
+                        title.includes(searchTerm.toLowerCase()) || 
+                        description.includes(searchTerm.toLowerCase());
+                    
+                    if (matchesFilter && matchesSearch) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Add hover effects to cards
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.05)';
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
