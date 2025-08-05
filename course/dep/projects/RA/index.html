@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    
-     <!-- Google tag (gtag.js) -->
+   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,9 +22,6 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-    
-    
-    
     
     <style>
         :root {
@@ -99,6 +100,7 @@
             border: 1px solid rgba(226, 232, 240, 0.5);
             opacity: 0;
             transform: translateY(20px);
+            cursor: pointer;
         }
 
         .research-card.visible {
@@ -303,6 +305,165 @@
             background: #ffedd5;
             color: #c2410c;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2rem;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .modal-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .topics-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .topic-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .topic-item:hover {
+            background: #e0f2fe;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-number {
+            background: var(--primary-gradient);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .topic-text {
+            color: #334155;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 1rem;
+                width: calc(100% - 2rem);
+                max-height: 85vh;
+            }
+            
+            .modal-header {
+                padding: 1.5rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -336,7 +497,8 @@
     </div>
 
     <div class="research-grid">
-        <div class="research-card animate__animated">
+        <!-- RA01 Card -->
+        <div class="research-card animate__animated" data-ra="RA01">
             <div class="card-header">
                 <div class="card-code">RA01</div>
                 <div class="card-title">Animal Biotechnology</div>
@@ -357,7 +519,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA02 Card -->
+        <div class="research-card animate__animated" data-ra="RA02">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);">
                 <div class="card-code">RA02</div>
                 <div class="card-title">Microbiology</div>
@@ -378,7 +541,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA03 Card -->
+        <div class="research-card animate__animated" data-ra="RA03">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 100%);">
                 <div class="card-code">RA03</div>
                 <div class="card-title">Medical Microbiology</div>
@@ -399,7 +563,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA04 Card -->
+        <div class="research-card animate__animated" data-ra="RA04">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">
                 <div class="card-code">RA04</div>
                 <div class="card-title">Plant Biotechnology</div>
@@ -420,7 +585,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA05 Card -->
+        <div class="research-card animate__animated" data-ra="RA05">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);">
                 <div class="card-code">RA05</div>
                 <div class="card-title">Industrial Biotechnology</div>
@@ -441,7 +607,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA06 Card -->
+        <div class="research-card animate__animated" data-ra="RA06">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #84cc16 0%, #10b981 100%);">
                 <div class="card-code">RA06</div>
                 <div class="card-title">Plant Stress Physiology</div>
@@ -462,7 +629,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA07 Card -->
+        <div class="research-card animate__animated" data-ra="RA07">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">
                 <div class="card-code">RA07</div>
                 <div class="card-title">Molecular Biology</div>
@@ -483,7 +651,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA08 Card -->
+        <div class="research-card animate__animated" data-ra="RA08">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);">
                 <div class="card-code">RA08</div>
                 <div class="card-title">Clinical Microbiology</div>
@@ -504,7 +673,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA09 Card -->
+        <div class="research-card animate__animated" data-ra="RA09">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
                 <div class="card-code">RA09</div>
                 <div class="card-title">Biotechnology</div>
@@ -525,7 +695,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA10 Card -->
+        <div class="research-card animate__animated" data-ra="RA10">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #64748b 0%, #475569 100%);">
                 <div class="card-code">RA10</div>
                 <div class="card-title">Bio-Nanotechnology</div>
@@ -546,7 +717,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA11 Card -->
+        <div class="research-card animate__animated" data-ra="RA11">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);">
                 <div class="card-code">RA11</div>
                 <div class="card-title">Nanomaterials</div>
@@ -567,7 +739,8 @@
             </div>
         </div>
 
-        <div class="research-card animate__animated">
+        <!-- RA12 Card -->
+        <div class="research-card animate__animated" data-ra="RA12">
             <div class="card-header" style="--primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);">
                 <div class="card-code">RA12</div>
                 <div class="card-title">Bioinformatics</div>
@@ -585,6 +758,22 @@
             </div>
             <div class="card-footer">
                 <button class="card-button">Explore Research</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="topicsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 class="modal-title" id="modalTitle">Research Topics</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Detailed research areas and specializations</p>
+            </div>
+            <div class="modal-body">
+                <ul class="topics-list" id="topicsList">
+                    <!-- Topics will be populated by JavaScript -->
+                </ul>
             </div>
         </div>
     </div>
@@ -627,10 +816,199 @@
     </footer>
 
     <script>
+        // Research topics data
+        const researchTopics = {
+            'RA01': {
+                title: '🧬 RA01: Animal Biotechnology',
+                topics: [
+                    'Animal cell line development (CHO, Vero)',
+                    'Stem cell culture and differentiation',
+                    'Somatic Cell Nuclear Transfer (SCNT)',
+                    'Transgenic animal production',
+                    'Animal cloning techniques',
+                    'Embryo transfer technology',
+                    'In vitro fertilization (IVF) in animals',
+                    'Recombinant protein production',
+                    'Gene editing using CRISPR in animals',
+                    'Vaccine production using animal cells'
+                ]
+            },
+            'RA02': {
+                title: '🧫 RA02: Microbiology',
+                topics: [
+                    'Mycotoxin production by fungi',
+                    'Biodegradation of hydrocarbons',
+                    'Fungal biofertilizers (Trichoderma, Aspergillus)',
+                    'Antibiotic-producing microorganisms',
+                    'Microbial fuel cells',
+                    'Heavy metal detoxification by microbes',
+                    'Soil microbial diversity',
+                    'Microbial role in composting',
+                    'Biofilm formation and resistance',
+                    'Mushroom cultivation and mycoremediation'
+                ]
+            },
+            'RA03': {
+                title: '🧪 RA03: Medical Microbiology',
+                topics: [
+                    'Antibiotic resistance in pathogens',
+                    'Culture sensitivity testing',
+                    'Hospital-acquired infections',
+                    'Microbial degradation of plastics',
+                    'Pathogen detection using PCR',
+                    'Blood and urine culture techniques',
+                    'MRSA and VRE infections',
+                    'Tuberculosis diagnosis methods',
+                    'Microbial load testing',
+                    'Zoonotic diseases'
+                ]
+            },
+            'RA04': {
+                title: '🌿 RA04: Plant Biotechnology / Tissue Culture',
+                topics: [
+                    'Micropropagation of medicinal plants',
+                    'Shoot tip and meristem culture',
+                    'Antimicrobial assay of essential oils',
+                    'Production of secondary metabolites',
+                    'Callus and suspension cultures',
+                    'Hairy root culture using Agrobacterium rhizogenes',
+                    'Somatic embryogenesis',
+                    'Synthetic seed development',
+                    'Cryopreservation of plant cells',
+                    'GC-MS analysis of plant extracts'
+                ]
+            },
+            'RA05': {
+                title: '🌱 RA05: Plant Biotech / Industrial Biotech',
+                topics: [
+                    'Fermentation of medicinal plants',
+                    'Scaling up plant cell cultures',
+                    'Bioreactor design for plant tissue culture',
+                    'Aroma compound extraction',
+                    'Fermented product optimization',
+                    'Plant cell fermentation for pharmaceuticals',
+                    'Clonal propagation of elite varieties',
+                    'Artificial seed technology',
+                    'Genetic transformation of plants',
+                    'Production of aroma oils from plant tissues'
+                ]
+            },
+            'RA06': {
+                title: '☀️ RA06: Plant Stress Physiology',
+                topics: [
+                    'Salinity stress response in potato',
+                    'Drought stress markers (proline, ABA)',
+                    'Cold stress and cryoprotectants',
+                    'ROS and antioxidant enzyme assay',
+                    'In vitro stress simulation',
+                    'Heat shock protein expression',
+                    'Physiological changes under waterlogging',
+                    'Osmoprotectant accumulation',
+                    'Stress-induced gene expression',
+                    'Shoot and root biomass under stress'
+                ]
+            },
+            'RA07': {
+                title: '🌾 RA07: Plant Molecular Biology & Biotechnology',
+                topics: [
+                    'Pathogen detection in food (E. coli, Salmonella)',
+                    'Genetic modification of crops',
+                    'GM food safety analysis',
+                    'Food preservation using plant antimicrobials',
+                    'Plant DNA barcoding',
+                    'Plant gene expression analysis',
+                    'RNA interference in crop improvement',
+                    'CRISPR/Cas9 in plants',
+                    'Plant-based edible vaccines',
+                    'Biotech crops and food security'
+                ]
+            },
+            'RA08': {
+                title: '🧬 RA08: Medical Microbiology',
+                topics: [
+                    'Biofilm-forming bacteria in infections',
+                    'Immunological diagnosis of diseases',
+                    'Microbial etiology of UTI',
+                    'Molecular diagnostics for TB',
+                    'Emerging viral infections (e.g., Nipah, Zika)',
+                    'Fungal infections in immunocompromised',
+                    'PCR vs culture sensitivity comparison',
+                    'Pathogen survival in hospital settings',
+                    'Nosocomial infection control',
+                    'Opportunistic pathogens in AIDS'
+                ]
+            },
+            'RA09': {
+                title: '🧬 RA09: Biotechnology',
+                topics: [
+                    'Enzyme production from fungi',
+                    'Enzyme assay standardization',
+                    'Nematode-resistant microbes',
+                    'Biocontrol agent formulation',
+                    'Genetic transformation in microbes',
+                    'DNA extraction from microbes',
+                    'Soil enzyme activity monitoring',
+                    'Plant growth-promoting fungi',
+                    'Microbial toxins as biopesticides',
+                    'Nematode bioagent delivery system'
+                ]
+            },
+            'RA10': {
+                title: '⚛️ RA10: Bio-Nanotechnology',
+                topics: [
+                    'Green synthesis of nanoparticles',
+                    'Drug delivery using nano-carriers',
+                    'Nano-sensors for glucose detection',
+                    'Nano-enabled water purification',
+                    'Biofunctionalized nanoparticles',
+                    'Antibacterial silver nanoparticles',
+                    'DNA-based nano devices',
+                    'Toxicity analysis of nanoparticles',
+                    'Magnetic nanoparticles for therapy',
+                    'Quantum dots in diagnostics'
+                ]
+            },
+            'RA11': {
+                title: '🧲 RA11: Biotechnology (Nanoparticles)',
+                topics: [
+                    'Synthesis of gold nanoparticles',
+                    'Characterization using SEM/TEM',
+                    'Metal oxide nanoparticles for cancer therapy',
+                    'Bacterial synthesis of nanoparticles',
+                    'Antimicrobial tests of nanoparticles',
+                    'Synergistic effect with antibiotics',
+                    'Nanoparticles for food preservation',
+                    'Cytotoxicity assays (MTT, LDH)',
+                    'Application in agriculture (nano-fertilizers)',
+                    'Nanoparticle degradation studies'
+                ]
+            },
+            'RA12': {
+                title: '💻 RA12: Bioinformatics',
+                topics: [
+                    'DNA sequence alignment (BLAST)',
+                    'Phylogenetic tree building (MEGA)',
+                    'Protein structure prediction (SWISS-MODEL)',
+                    'RNA-seq data analysis',
+                    'Genome annotation tools (Prokka, RAST)',
+                    'Molecular docking (AutoDock)',
+                    'Multiple sequence alignment',
+                    'Identification of SNPs',
+                    'Pathway analysis using KEGG',
+                    'Database design for biological data'
+                ]
+            }
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate cards on scroll
+            const modal = document.getElementById('topicsModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const topicsList = document.getElementById('topicsList');
+            const closeBtn = document.querySelector('.close');
             const cards = document.querySelectorAll('.research-card');
-            
+
+            // Animate cards on scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -644,6 +1022,58 @@
             cards.forEach((card, index) => {
                 observer.observe(card);
                 card.style.transitionDelay = `${index * 0.1}s`;
+
+                // Add click event to each card
+                card.addEventListener('click', function() {
+                    const raCode = this.getAttribute('data-ra');
+                    if (researchTopics[raCode]) {
+                        showModal(raCode);
+                    }
+                });
+            });
+
+            function showModal(raCode) {
+                const data = researchTopics[raCode];
+                modalTitle.textContent = data.title;
+                modalSubtitle.textContent = `Detailed research areas and specializations for ${raCode}`;
+                
+                // Clear previous topics
+                topicsList.innerHTML = '';
+                
+                // Add new topics
+                data.topics.forEach((topic, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'topic-item';
+                    li.innerHTML = `
+                        <div class="topic-number">${index + 1}</div>
+                        <div class="topic-text">${topic}</div>
+                    `;
+                    topicsList.appendChild(li);
+                });
+                
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideModal() {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Close modal events
+            closeBtn.addEventListener('click', hideModal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+
+            // ESC key to close modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('show')) {
+                    hideModal();
+                }
             });
 
             // Filter functionality
