@@ -1,3 +1,6 @@
+
+   
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Course Selection</title>
     
-    
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -16,22 +18,16 @@
   gtag('config', 'G-B5X5RJM3XH');
 </script>
     
-    
     <style>
         /* Base Styles */
         :root {
-            --bg-gradient-day: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --bg-gradient-night: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            --text-color-day: #4a4a4a;
-            --text-color-night: #f0f0f0;
-            --card-bg-day: rgba(255, 255, 255, 0.7);
-            --card-bg-night: rgba(30, 30, 60, 0.7);
-            --card-shadow-day: 8px 8px 15px rgba(163,177,198,0.6), -8px -8px 15px rgba(255,255,255,0.7);
-            --card-shadow-night: 8px 8px 15px rgba(0,0,0,0.6), -8px -8px 15px rgba(50,50,80,0.7);
-            --card-hover-shadow-day: 12px 12px 25px rgba(163,177,198,0.8), -12px -12px 25px rgba(255,255,255,0.9);
-            --card-hover-shadow-night: 12px 12px 25px rgba(0,0,0,0.8), -12px -12px 25px rgba(50,50,80,0.9);
-            --footer-color-day: #666;
-            --footer-color-night: #aaa;
+            --bg-color: #ffffff; /* White background */
+            --text-color: #333333; /* Dark text for contrast */
+            --card-bg: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            --card-hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+            --footer-color: #666666;
+            --accent-color: #4a6fa5; /* Nice blue accent color */
         }
 
         body {
@@ -41,15 +37,10 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: var(--text-color-day);
-            background: var(--bg-gradient-day);
-            transition: all 0.5s ease;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
             margin: 0;
-        }
-
-        body.dark-mode {
-            color: var(--text-color-night);
-            background: var(--bg-gradient-night);
         }
         
         .card-container {
@@ -60,12 +51,11 @@
             max-width: 1200px;
         }
         
-        /* Glassmorphism Card Styles */
+        /* Clean Card Styles */
         .main-card {
-            background: var(--card-bg-day);
-            backdrop-filter: blur(10px);
-            color: var(--text-color-day);
-            border-radius: 20px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 16px;
             width: 300px;
             height: 200px;
             display: flex;
@@ -73,28 +63,17 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: var(--card-shadow-day);
+            box-shadow: var(--card-shadow);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             text-decoration: none;
-        }
-
-        body.dark-mode .main-card {
-            background: var(--card-bg-night);
-            box-shadow: var(--card-shadow-night);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-color-night);
         }
         
         .main-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: var(--card-hover-shadow-day);
-        }
-
-        body.dark-mode .main-card:hover {
-            box-shadow: var(--card-hover-shadow-night);
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover-shadow);
         }
         
         .main-card::before {
@@ -103,20 +82,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #23a6d5);
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
-        }
-
-        body.dark-mode .main-card::before {
-            background: linear-gradient(90deg, #ff8a00, #9c27b0, #2196f3);
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            height: 5px;
+            background: var(--accent-color);
         }
         
         .main-card img {
@@ -124,12 +91,11 @@
             height: 80px;
             object-fit: contain;
             margin-bottom: 15px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
             transition: transform 0.3s ease;
         }
 
         .main-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .main-card h2 {
@@ -141,37 +107,26 @@
         
         /* Department Card Styles */
         .department-card {
-            background: var(--card-bg-day);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
             width: 280px;
             padding: 2rem;
-            box-shadow: var(--card-shadow-day);
+            box-shadow: var(--card-shadow);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             text-decoration: none;
             color: inherit;
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0.9);
             cursor: pointer;
             text-align: center;
         }
-
-        body.dark-mode .department-card {
-            background: var(--card-bg-night);
-            box-shadow: var(--card-shadow-night);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
         
         .department-card:hover {
-            transform: translateY(-10px) scale(1.03) !important;
-            box-shadow: var(--card-hover-shadow-day);
-        }
-
-        body.dark-mode .department-card:hover {
-            box-shadow: var(--card-hover-shadow-night);
+            transform: translateY(-8px) scale(1) !important;
+            box-shadow: var(--card-hover-shadow);
         }
         
         .department-card::before {
@@ -180,23 +135,18 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #23a6d5);
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
-        }
-
-        body.dark-mode .department-card::before {
-            background: linear-gradient(90deg, #ff8a00, #9c27b0, #2196f3);
+            height: 5px;
+            background: var(--accent-color);
         }
         
         .department-card .card-image {
             width: 100%;
             max-width: 250px;
             height: auto;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .department-card:hover .card-image {
@@ -204,25 +154,18 @@
         }
         
         .department-card h3 {
-            color: var(--text-color-day);
+            color: var(--text-color);
             margin-bottom: 10px;
             font-size: 1.4rem;
             font-weight: 600;
         }
-
-        body.dark-mode .department-card h3 {
-            color: var(--text-color-night);
-        }
         
         .department-card p {
-            color: var(--text-color-day);
+            color: var(--text-color);
             font-size: 0.9rem;
             margin: 0;
             line-height: 1.5;
-        }
-
-        body.dark-mode .department-card p {
-            color: var(--text-color-night);
+            opacity: 0.8;
         }
         
         .visible {
@@ -235,42 +178,13 @@
             display: none;
         }
         
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .dark-mode-toggle {
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        .dark-mode-toggle i {
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
         .back-button {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(0, 0, 0, 0.05);
             border: none;
-            color: white;
+            color: var(--text-color);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -280,15 +194,16 @@
             align-items: center;
             font-size: 20px;
             z-index: 10;
+            transition: all 0.3s ease;
         }
         
         .back-button:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(0, 0, 0, 0.1);
         }
         
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
         
@@ -312,24 +227,12 @@
             .main-card, .department-card {
                 padding: 1.5rem;
             }
-
-            .dark-mode-toggle {
-                width: 40px;
-                height: 40px;
-                bottom: 15px;
-                right: 15px;
-            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
-    
     <div class="card-container" id="cardContainer">
         <div class="main-card floating" id="mainCard">
             <img src="https://img.icons8.com/color/96/000000/courses.png" alt="Courses">
@@ -356,38 +259,6 @@
         const cardContainer = document.getElementById('cardContainer');
         const biotechCard = document.getElementById('biotechCard');
         
-        // Dark Mode Toggle Functionality
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-        const icon = darkModeToggle.querySelector('i');
-
-        // Check for saved user preference or time-based preference
-        const currentHour = new Date().getHours();
-        const isNightTime = currentHour < 6 || currentHour >= 18; // 6pm to 6am is night
-        const savedMode = localStorage.getItem('darkMode');
-
-        // Set initial mode
-        if (savedMode === 'dark' || (savedMode === null && isNightTime)) {
-            body.classList.add('dark-mode');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-
-        // Toggle function
-        darkModeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('darkMode', 'dark');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('darkMode', 'light');
-            }
-        });
-
         // Check if we should show department card on page load
         document.addEventListener('DOMContentLoaded', function() {
             const currentView = localStorage.getItem('currentView');
