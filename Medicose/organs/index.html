@@ -1,10 +1,12 @@
+
+  
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Heart - Organs</title>
-  
+  <title>Organs Explorer</title>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
@@ -14,131 +16,83 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-  
   <style>
     :root {
-      --neon-pink: #ff00cc;
-      --neon-blue: #00ffff;
-      --neon-purple: #9d00ff;
-      --dark-bg: #0a0a12;
+      --accent-blue: #00a8ff;
+      --accent-pink: #ff00cc;
     }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: var(--dark-bg);
-      color: white;
+      background: #ffffff;
+      color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      overflow-x: hidden;
       padding: 20px;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin: 30px 0;
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-size: 1.8rem;
+      margin: 20px 0 10px;
+      color: #333;
       text-align: center;
-      position: relative;
-      animation: pulse 2s infinite alternate;
     }
 
-    @keyframes pulse {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; text-shadow: 0 0 15px var(--neon-blue); }
+    .quote {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+      max-width: 300px;
     }
 
-    .container {
+    .card-container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      perspective: 1000px;
+      gap: 15px;
+      max-width: 800px;
     }
 
     .card {
-      background: rgba(20, 20, 30, 0.8);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      width: 280px;
-      height: 320px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      width: 120px;
+      height: 140px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid transparent;
-      background-clip: padding-box;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
-      z-index: -1;
-      border-radius: 16px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .card:hover::before {
-      opacity: 0.7;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #eee;
     }
 
     .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,168,255,0.2);
     }
 
     .card-img {
-      width: 100%;
-      max-width: 200px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
-      transition: transform 0.3s;
-    }
-
-    .card:hover .card-img {
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 15px var(--neon-pink));
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
     }
 
     .card-title {
-      font-size: 1.5rem;
-      margin: 10px 0;
-      color: white;
+      font-size: 0.9rem;
       font-weight: 600;
+      text-align: center;
     }
 
-    .card-subtitle {
-      font-size: 1rem;
-      opacity: 0.8;
-      margin-top: auto;
-    }
-
-    /* Floating particles background */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    /* Heartbeat animation for the heart card */
     .heartbeat {
       animation: heartbeat 1.5s infinite;
     }
@@ -154,68 +108,38 @@
 </head>
 
 <body>
-  <!-- Particles Background -->
-  <div id="particles-js"></div>
+  <h1>ORGANS EXPLORER</h1>
+  <p class="quote">"The human body is nature's masterpiece"</p>
 
-  <h1>HUMAN HEART</h1>
-
-  <div class="container">
+  <div class="card-container">
     <a href="heart/heart.html" class="card">
       <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/Medicose/organs/heart/H.PNG" 
            alt="Heart" 
            class="card-img heartbeat">
-      <h2 class="card-title">CARDIOVASCULAR SYSTEM</h2>
-      <p class="card-subtitle">Click to explore 🫀</p>
+      <div class="card-title">Heart</div>
+    </a>
+    
+    <!-- Add more small cards like this -->
+    <a href="#" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/942/942192.png" 
+           alt="Brain" 
+           class="card-img">
+      <div class="card-title">Brain</div>
+    </a>
+    
+    <a href="#" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3052/3052032.png" 
+           alt="Lungs" 
+           class="card-img">
+      <div class="card-title">Lungs</div>
+    </a>
+    
+    <a href="#" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3052/3052071.png" 
+           alt="Liver" 
+           class="card-img">
+      <div class="card-title">Liver</div>
     </a>
   </div>
-
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    // Particles config
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#00ffff", "#ff00cc"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": { 
-          "enable": true, 
-          "distance": 150, 
-          "color": "#00ffff", 
-          "opacity": 0.2, 
-          "width": 1 
-        },
-        "move": { 
-          "enable": true, 
-          "speed": 2, 
-          "direction": "none", 
-          "random": true, 
-          "straight": false, 
-          "out_mode": "out" 
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        }
-      }
-    });
-
-    // 3D tilt effect
-    const card = document.querySelector('.card');
-    card.addEventListener('mousemove', (e) => {
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-      card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-10px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(-10px)';
-    });
-  </script>
 </body>
 </html>
