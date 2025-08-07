@@ -1,14 +1,16 @@
 
    
     
+
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Course Selection</title>
+    <title>University Course Explorer</title>
     
-     <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -21,58 +23,93 @@
     <style>
         /* Base Styles */
         :root {
-            --bg-color: #ffffff; /* White background */
-            --text-color: #333333; /* Dark text for contrast */
-            --card-bg: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            --card-hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
-            --footer-color: #666666;
-            --accent-color: #4a6fa5; /* Nice blue accent color */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #4a6fa5;
+            --secondary-color: #6d8cc0;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --card-hover-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            --in-process-color: #ff9800;
+            --inactive-color: #9e9e9e;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
             color: var(--text-color);
             background-color: var(--bg-color);
-            transition: all 0.3s ease;
             margin: 0;
         }
         
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 15px 0 0;
+            line-height: 1.6;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            margin: 25px auto;
+            border-radius: 2px;
+        }
+        
+        /* Card Container */
         .card-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            max-width: 1200px;
+            gap: 20px;
+            max-width: 1000px;
         }
         
-        /* Clean Card Styles */
+        /* Main Card Style */
         .main-card {
             background: var(--card-bg);
             color: var(--text-color);
-            border-radius: 16px;
-            width: 300px;
-            height: 200px;
+            border-radius: 12px;
+            width: 280px;
+            height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             box-shadow: var(--card-shadow);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            text-decoration: none;
         }
         
         .main-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--card-hover-shadow);
         }
         
@@ -82,50 +119,52 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--accent-color);
         }
         
         .main-card img {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             transition: transform 0.3s ease;
         }
 
         .main-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
         
         .main-card h2 {
-            font-size: 24px;
+            font-size: 20px;
             margin: 0;
             text-align: center;
             font-weight: 600;
         }
         
-        /* Department Card Styles */
+        /* Mini Department Card Styles */
         .department-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            width: 280px;
-            padding: 2rem;
+            border-radius: 12px;
+            width: 220px;
+            height: 160px;
+            padding: 1.2rem;
             box-shadow: var(--card-shadow);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            text-decoration: none;
-            color: inherit;
             opacity: 0;
             transform: scale(0.9);
             cursor: pointer;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .department-card:hover {
-            transform: translateY(-8px) scale(1) !important;
+            transform: translateY(-5px) scale(1) !important;
             box-shadow: var(--card-hover-shadow);
         }
         
@@ -135,43 +174,65 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--accent-color);
         }
         
         .department-card .card-image {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin: 0 auto 10px;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .department-card:hover .card-image {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .department-card h3 {
             color: var(--text-color);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+            margin: 5px 0;
+            font-size: 1rem;
             font-weight: 600;
         }
         
         .department-card p {
             color: var(--text-color);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.4;
             opacity: 0.8;
+        }
+        
+        /* Status Tag Styles */
+        .status-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .in-process {
+            background-color: rgba(255, 152, 0, 0.15);
+            color: var(--in-process-color);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+        
+        .inactive {
+            background-color: rgba(158, 158, 158, 0.15);
+            color: var(--inactive-color);
+            border: 1px solid rgba(158, 158, 158, 0.3);
         }
         
         .visible {
             opacity: 1;
             transform: scale(1);
-            position: relative;
         }
         
         .hidden {
@@ -185,16 +246,16 @@
             background: rgba(0, 0, 0, 0.05);
             border: none;
             color: var(--text-color);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             display: none;
             justify-content: center;
             align-items: center;
-            font-size: 20px;
+            font-size: 16px;
             z-index: 10;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         
         .back-button:hover {
@@ -203,7 +264,7 @@
         
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-5px); }
             100% { transform: translateY(0px); }
         }
         
@@ -213,19 +274,27 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .card-container {
-                gap: 1.5rem;
+            .header h1 {
+                font-size: 2rem;
             }
             
-            .main-card, .department-card {
-                width: 100%;
-                max-width: 350px;
+            .header p {
+                font-size: 1rem;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .main-card, .department-card {
-                padding: 1.5rem;
+            
+            .card-container {
+                gap: 15px;
+            }
+            
+            .main-card {
+                width: 240px;
+                height: 160px;
+            }
+            
+            .department-card {
+                width: 160px;
+                height: 140px;
+                padding: 1rem;
             }
         }
     </style>
@@ -233,6 +302,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="header">
+        <h1>Discover Your Academic Journey</h1>
+        <div class="divider"></div>
+        <p>Explore our diverse range of programs designed to shape your future. Click below to discover each department's unique offerings and find your perfect academic path.</p>
+    </div>
+    
     <div class="card-container" id="cardContainer">
         <div class="main-card floating" id="mainCard">
             <img src="https://img.icons8.com/color/96/000000/courses.png" alt="Courses">
@@ -243,12 +318,42 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         
-        <!-- Only Biotechnology & Microbiology Card -->
+        <!-- Biotechnology & Microbiology Card (No Tag) -->
         <div class="department-card hidden" id="biotechCard">
-            <img class="card-image" src="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/ii.PNG" alt="Biotechnology">
+            <img class="card-image" src="https://img.icons8.com/color/48/000000/microscope.png" alt="Biotechnology">
             <div class="card-content">
-                <h3>Department of Biotechnology & Microbiology</h3>
-                <p>Cutting-edge research in genetic engineering and bioprocessing</p>
+                <h3>Biotechnology & Microbiology</h3>
+                <p>Genetic engineering and bioprocessing research</p>
+            </div>
+        </div>
+        
+        <!-- B.Tech Card (In Process) -->
+        <div class="department-card hidden" id="btechCard">
+            <span class="status-tag in-process">In Process</span>
+            <img class="card-image" src="https://img.icons8.com/color/48/000000/engineer.png" alt="B.Tech">
+            <div class="card-content">
+                <h3>B.Tech</h3>
+                <p>Industry-focused engineering programs</p>
+            </div>
+        </div>
+        
+        <!-- Pharmacy Card (Inactive) -->
+        <div class="department-card hidden" id="pharmacyCard">
+            <span class="status-tag inactive">Inactive</span>
+            <img class="card-image" src="https://img.icons8.com/color/48/000000/medicine-bottle.png" alt="Pharmacy">
+            <div class="card-content">
+                <h3>Pharmacy</h3>
+                <p>Pharmaceutical sciences and drug development</p>
+            </div>
+        </div>
+        
+        <!-- LLB Card (In Process) -->
+        <div class="department-card hidden" id="llbCard">
+            <span class="status-tag in-process">In Process</span>
+            <img class="card-image" src="https://img.icons8.com/color/48/000000/law.png" alt="LLB">
+            <div class="card-content">
+                <h3>LLB</h3>
+                <p>Legal expertise and advocacy skills</p>
             </div>
         </div>
     </div>
@@ -258,8 +363,10 @@
         const backButton = document.getElementById('backButton');
         const cardContainer = document.getElementById('cardContainer');
         const biotechCard = document.getElementById('biotechCard');
+        const btechCard = document.getElementById('btechCard');
+        const pharmacyCard = document.getElementById('pharmacyCard');
+        const llbCard = document.getElementById('llbCard');
         
-        // Check if we should show department card on page load
         document.addEventListener('DOMContentLoaded', function() {
             const currentView = localStorage.getItem('currentView');
             
@@ -269,53 +376,73 @@
         });
         
         function showDepartmentView() {
-            // Hide main card
             mainCard.classList.remove('floating');
             mainCard.classList.add('hidden');
             
-            // Show back button
             backButton.style.display = 'flex';
             
-            // Show department card with animation
             setTimeout(() => {
                 biotechCard.classList.remove('hidden');
                 biotechCard.classList.add('visible');
+                
+                btechCard.classList.remove('hidden');
+                btechCard.classList.add('visible');
+                
+                pharmacyCard.classList.remove('hidden');
+                pharmacyCard.classList.add('visible');
+                
+                llbCard.classList.remove('hidden');
+                llbCard.classList.add('visible');
             }, 100);
             
-            // Adjust container layout
-            cardContainer.style.gap = '20px';
-            
-            // Save state
+            cardContainer.style.gap = '15px';
             localStorage.setItem('currentView', 'department');
         }
         
         function showMainView() {
-            // Hide department card
             biotechCard.classList.remove('visible');
             biotechCard.classList.add('hidden');
             
-            // Show main card
+            btechCard.classList.remove('visible');
+            btechCard.classList.add('hidden');
+            
+            pharmacyCard.classList.remove('visible');
+            pharmacyCard.classList.add('hidden');
+            
+            llbCard.classList.remove('visible');
+            llbCard.classList.add('hidden');
+            
             setTimeout(() => {
                 mainCard.classList.remove('hidden');
                 mainCard.classList.add('floating');
-            }, 300);
+            }, 200);
             
-            // Hide back button
             backButton.style.display = 'none';
-            
-            // Reset container layout
-            cardContainer.style.gap = '30px';
-            
-            // Save state
+            cardContainer.style.gap = '20px';
             localStorage.setItem('currentView', 'main');
         }
         
         mainCard.addEventListener('click', showDepartmentView);
         backButton.addEventListener('click', showMainView);
         
-        // Add click handler for department card
+        // Add click handlers for department cards
         biotechCard.addEventListener('click', function() {
             window.location.href = "dep/index.html";
+        });
+        
+        btechCard.addEventListener('click', function(e) {
+            if (e.target.classList.contains('status-tag')) return;
+            alert("B.Tech program is currently in development");
+        });
+        
+        pharmacyCard.addEventListener('click', function(e) {
+            if (e.target.classList.contains('status-tag')) return;
+            alert("Pharmacy program is currently inactive");
+        });
+        
+        llbCard.addEventListener('click', function(e) {
+            if (e.target.classList.contains('status-tag')) return;
+            alert("LLB program is currently in development");
         });
     </script>
 </body>
