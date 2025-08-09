@@ -3,6 +3,8 @@
     
 
     
+
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -262,6 +264,32 @@
             background: rgba(0, 0, 0, 0.1);
         }
         
+        /* Mail Icon Button */
+        .mailbox-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            z-index: 100;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .mailbox-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-5px); }
@@ -296,12 +324,25 @@
                 height: 140px;
                 padding: 1rem;
             }
+            
+            .mailbox-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Mail Icon Button -->
+    <a href="mailto:contact@university.edu?subject=University%20Inquiry&body=Hello%20University%20Team," 
+       class="mailbox-btn" 
+       id="mailboxBtn">
+        <i class="fas fa-envelope"></i>
+    </a>
+
     <div class="header">
         <h1>Discover Your Academic Journey</h1>
         <div class="divider"></div>
@@ -366,6 +407,7 @@
         const btechCard = document.getElementById('btechCard');
         const pharmacyCard = document.getElementById('pharmacyCard');
         const llbCard = document.getElementById('llbCard');
+        const mailboxBtn = document.getElementById('mailboxBtn');
         
         document.addEventListener('DOMContentLoaded', function() {
             const currentView = localStorage.getItem('currentView');
@@ -443,6 +485,17 @@
         llbCard.addEventListener('click', function(e) {
             if (e.target.classList.contains('status-tag')) return;
             alert("LLB program is currently in development");
+        });
+        
+        // Mail button hover effect
+        mailboxBtn.addEventListener('mouseenter', () => {
+            mailboxBtn.style.transform = 'scale(1.1)';
+            mailboxBtn.style.background = 'var(--secondary-color)';
+        });
+        
+        mailboxBtn.addEventListener('mouseleave', () => {
+            mailboxBtn.style.transform = 'scale(1)';
+            mailboxBtn.style.background = 'var(--accent-color)';
         });
     </script>
 </body>
