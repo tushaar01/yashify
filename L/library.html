@@ -6,17 +6,14 @@
     <title>Wisdom Vault | yashify.fun</title>
     <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icon.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --primary: #7c3aed;
-            --secondary: #2563eb;
             --accent: #db2777;
             --text: #1f2937;
             --bg: #f9fafb;
             --card-bg: #ffffff;
             --border: #e5e7eb;
-            --shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -24,71 +21,94 @@
             color: var(--text);
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 600px;
+            width: 100%;
             padding: 20px;
         }
         .header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
         .title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--primary);
+            background: linear-gradient(to right, #7c3aed, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
         .quote {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #6b7280;
             font-style: italic;
-            margin-bottom: 2rem;
         }
         .mini-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
         .mini-card {
             background: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
             border: 1px solid var(--border);
             text-decoration: none;
             color: inherit;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
         .mini-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+        .mini-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
         }
         .mini-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem 0;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 600;
         }
         .mini-card p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #6b7280;
+            margin: 0;
+            padding: 0 0.8rem;
+            line-height: 1.4;
         }
         .back-btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.6rem 1.2rem;
-            background: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: background 0.3s;
+            font-weight: 500;
+            width: 150px;
+            transition: transform 0.3s;
         }
         .back-btn:hover {
-            background: var(--accent);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -100,40 +120,38 @@
         </header>
 
         <div class="mini-cards">
-            <!-- Lord Krishna Mini-Card -->
-            <a href="LordKrishna/index.html" class="mini-card">
-                <h3><span>Lord Krishna</span> 🦚</h3>
-                <p>Divine teachings, stories, and wisdom from the Bhagavad Gita.</p>
+            <!-- Spiritual -->
+            <a href="#" class="mini-card">
+                <div class="emoji">📿</div>
+                <h3>Spiritual</h3>
+                <p>Sacred texts from all religions and traditions</p>
             </a>
 
-            <!-- Add other mini-cards here (examples below) -->
+            <!-- Philosophy -->
             <a href="#" class="mini-card">
-                <h3><span>Spiritual Books</span> 📖</h3>
-                <p>Sacred texts from Vedas, Upanishads, and more.</p>
+                <div class="emoji">🧠</div>
+                <h3>Philosophy</h3>
+                <p>Wisdom of great thinkers through ages</p>
             </a>
 
+            <!-- Literature -->
             <a href="#" class="mini-card">
-                <h3><span>Science Hub</span> 🔬</h3>
-                <p>Explore physics, biology, and astronomy.</p>
+                <div class="emoji">📚</div>
+                <h3>Literature</h3>
+                <p>Timeless classics and modern masterpieces</p>
             </a>
 
+            <!-- Science Hub -->
             <a href="#" class="mini-card">
-                <h3><span>History Archive</span> 🏛️</h3>
-                <p>Ancient civilizations, empires, and cultures.</p>
-            </a>
-
-            <a href="#" class="mini-card">
-                <h3><span>Literature</span> ✍️</h3>
-                <p>Classic and modern literary works.</p>
-            </a>
-
-            <a href="#" class="mini-card">
-                <h3><span>Meditation</span> 🧘</h3>
-                <p>Guides for mindfulness and inner peace.</p>
+                <div class="emoji">🔬</div>
+                <h3>Science Hub</h3>
+                <p>Exploring the mysteries of the universe</p>
             </a>
         </div>
 
-        <a href="index.html" class="back-btn">← Back to Home</a>
+        <center>
+            <a href="index.html" class="back-btn">Back to Home</a>
+        </center>
     </div>
 </body>
 </html>
