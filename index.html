@@ -7,7 +7,8 @@
 
 
     
-<!DOCTYPE html>
+    
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +41,7 @@
             --card-bg: #ffffff;
             --border: #e5e7eb;
             --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --library-bg: #f0f7ff;
         }
 
         * {
@@ -135,7 +137,9 @@
         .card-img {
             width: 100%;
             height: 140px;
-            object-fit: cover;
+            object-fit: contain;
+            background: var(--library-bg);
+            padding: 20px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -150,15 +154,20 @@
             color: var(--text);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
         }
 
         .card-desc {
             font-size: 0.85rem;
             color: #6b7280;
+            text-align: center;
         }
 
         /* Library Card Special */
+        .library-card {
+            background: var(--library-bg);
+        }
         .library-card .card-title {
             color: var(--secondary);
         }
@@ -213,17 +222,16 @@
         <!-- Cards Grid -->
         <div class="cards">
             <!-- Library Card (replaces Krishna card) -->
-            
-<a href="L/library.html" class="card library-card">
-    <img src="https://cdn-icons-png.flaticon.com/512/12023/12023602.png" alt="Library" class="card-img" loading="lazy">
-    <div class="card-content">
-        <h3 class="card-title">
-            <span>Wisdom Vault</span>
-            <span>📚</span>
-        </h3>
-        <p class="card-desc">Where Knowledge Meets Devotion</p>
-    </div>
-</a>
+            <a href="library.html" class="card library-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/12023/12023602.png" alt="Library" class="card-img" loading="lazy">
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <span>Wisdom Vault</span>
+                        <span>📚</span>
+                    </h3>
+                    <p class="card-desc">Where Knowledge Meets Devotion</p>
+                </div>
+            </a>
 
             <!-- Medicose Card -->
             <a href="Medicose/index.html" class="card">
