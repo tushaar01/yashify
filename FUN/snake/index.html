@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+
+
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Snake Game with Correct Scoring</title>
+
 
 
 <!-- Google tag (gtag.js) -->
@@ -15,6 +19,9 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
+
+
+
 
     <style>
         body {
@@ -585,4 +592,30 @@
             gameSpeed = parseInt(speedSelect.value);
             if (gameRunning && !isPaused) {
                 clearInterval(gameInterval);
-         
+                gameInterval = setInterval(gameLoop, gameSpeed);
+            }
+        });
+
+        pauseBtn.addEventListener('click', togglePause);
+        restartBtn.addEventListener('click', initGame);
+        playAgainBtn.addEventListener('click', () => {
+            gameOverScreen.style.display = 'none';
+            initGame();
+        });
+
+        function togglePause() {
+            isPaused = !isPaused;
+            pauseBtn.textContent = isPaused ? 'Resume' : 'Pause';
+            
+            if (isPaused) {
+                backgroundMusic.pause();
+            } else {
+                backgroundMusic.play();
+            }
+        }
+
+        // Start the game
+        initGame();
+    </script>
+</body>
+</html>
