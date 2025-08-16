@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe with AI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+        }
+
+        .game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .light-mode .game {
+            --bg-color: white;
+        }
+
+        .dark-mode .game {
+            --bg-color: #2d2d2d;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .controls button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .light-mode .controls button {
+            background-color: #e0e0e0;
+        }
+
+        .dark-mode .controls button {
+            background-color: #444;
+            color: white;
+        }
+
+        .status {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .board-row {
+            display: flex;
+            gap: 5px;
+        }
+
+        .square {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        .square:hover {
+            transform: scale(1.05);
+        }
+
+        .light {
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark {
+            background-color: #444;
+            color: white;
+        }
+
+        .winning {
+            animation: pulse 1s infinite;
+            background-color: #4caf50;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .game-footer {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .reset {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .light-mode .reset {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .dark-mode .reset {
+            background-color: #388e3c;
+            color: white;
+        }
+
+        .reset:hover {
+            background-color: #388e3c;
+        }
+
+        .scoreboard {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .light-mode .scoreboard {
+            background-color: #f0f0f0;
+        }
+
+        .dark-mode .scoreboard {
+            background-color: #333;
+        }
+
+        .difficulty-selector {
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .square {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="game">
+        <div class="game-header">
+            <h1>Tic Tac Toe</h1>
+            <div class="controls">
+                <button id="modeToggle">Switch to Player vs Computer</button>
+                <button id="themeToggle">Dark Mode</button>
+            </div>
+            <div class="difficulty-selector" id="difficultyContainer" style="display: none;">
+                <label for="difficulty">AI Difficulty: </label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard" selected>Hard (Unbeatable)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="status" id="status">Next player: X</div>
+        
+        <div class="board" id="board">
+            <div class="board-row">
+                <button class="square light" data-index="0"></button>
+                <button class="square light" data-index="1"></button>
+                <button class="square light" data-index="2"></button>
+            </div>
+            <div class="board-row">
+                <button class="square light" data-index="3"></button>
+                <button class="square light" data-index="4"></button>
+                <button class="square light" data-index="5"></button>
+            </div>
+            <div class="board-row">
+                <button class="square light" data-index="6"></button>
+                <button class="square light" data-index="7"></button>
+                <button class="square light" data-index="8"></button>
+            </div>
+        </div>
+        
+        <div class="game-footer">
+            <button class="reset" id="reset">Restart Game</button>
+            <div class="scoreboard">
+                <h3>Scoreboard</h3>
+                <p>Player X: <span id="scoreX">0</span></p>
+                <p id="playerOLabel">Player O: <span id="scoreO">0</span></p>
+                <p>Draws: <span id="scoreDraw">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Game state
+            let board = Array(9).fill(null);
+            let xIsNext = true;
+            let winner = null;
+            let winningLine = [];
+            let gameMode = 'pvp'; // 'pvp' or 'pvc'
+            let scores = { x: 0, o: 0, draws: 0 };
+            let darkMode = false;
+            let difficulty = 'hard';
+
+            // Sound effects
+            const moveSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'); // Short click sound
+            const winSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'); // Victory sound
+            const drawSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'); // Draw sound
+
+            // DOM elements
+            const squares = document.querySelectorAll('.square');
+            const statusElement = document.getElementById('status');
+            const resetButton = document.getElementById('reset');
+            const modeToggle = document.getElementById('modeToggle');
+            const themeToggle = document.getElementById('themeToggle');
+            const scoreX = document.getElementById('scoreX');
+            const scoreO = document.getElementById('scoreO');
+            const playerOLabel = document.getElementById('playerOLabel');
+            const scoreDraw = document.getElementById('scoreDraw');
+            const body = document.body;
+            const difficultyContainer = document.getElementById('difficultyContainer');
+            const difficultySelect = document.getElementById('difficulty');
+
+            // Load saved state
+            loadGameState();
+
+            // Initialize game
+            initGame();
+
+            function initGame() {
+                // Add event listeners
+                squares.forEach(square => {
+                    square.addEventListener('click', handleSquareClick);
+                });
+                resetButton.addEventListener('click', resetGame);
+                modeToggle.addEventListener('click', toggleGameMode);
+                themeToggle.addEventListener('click', toggleTheme);
+                difficultySelect.addEventListener('change', updateDifficulty);
+
+                // Initial render
+                render();
+            }
+
+            function playSound(sound) {
+                sound.currentTime = 0; // Rewind to start
+                sound.play().catch(e => console.log("Audio play prevented:", e));
+            }
+
+            function handleSquareClick(e) {
+                const index = parseInt(e.target.getAttribute('data-index'));
+                
+                if (winner || board[index]) return;
+
+                // Human move
+                makeMove(index);
+                playSound(moveSound);
+
+                // AI move in PVC mode
+                if (gameMode === 'pvc' && !xIsNext && !winner) {
+                    setTimeout(() => {
+                        const bestMove = findBestMove([...board]);
+                        makeMove(bestMove);
+                        playSound(moveSound);
+                    }, 500);
+                }
+            }
+
+            function makeMove(index) {
+                board[index] = xIsNext ? 'X' : 'O';
+                xIsNext = !xIsNext;
+                
+                // Check for winner
+                const gameResult = calculateWinner(board);
+                if (gameResult) {
+                    winner = gameResult.winner;
+                    winningLine = gameResult.line;
+                    if (winner === 'X') {
+                        scores.x++;
+                        playSound(winSound);
+                    } else if (winner === 'O') {
+                        scores.o++;
+                        playSound(winSound);
+                    }
+                } else if (!board.includes(null)) {
+                    winner = 'draw';
+                    scores.draws++;
+                    playSound(drawSound);
+                }
+                
+                saveGameState();
+                render();
+            }
+
+            function calculateWinner(squares) {
+                const lines = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                    [0, 4, 8], [2, 4, 6]             // diagonals
+                ];
+
+                for (let i = 0; i < lines.length; i++) {
+                    const [a, b, c] = lines[i];
+                    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                        return { winner: squares[a], line: lines[i] };
+                    }
+                }
+                return null;
+            }
+
+            // Minimax algorithm for AI
+            function minimax(board, depth, isMaximizing) {
+                const result = calculateWinner(board);
+                
+                if (result) {
+                    if (result.winner === 'X') return -10 + depth;
+                    if (result.winner === 'O') return 10 - depth;
+                    return 0;
+                }
+
+                if (isMaximizing) {
+                    let bestScore = -Infinity;
+                    for (let i = 0; i < board.length; i++) {
+                        if (board[i] === null) {
+                            board[i] = 'O';
+                            const score = minimax(board, depth + 1, false);
+                            board[i] = null;
+                            bestScore = Math.max(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                } else {
+                    let bestScore = Infinity;
+                    for (let i = 0; i < board.length; i++) {
+                        if (board[i] === null) {
+                            board[i] = 'X';
+                            const score = minimax(board, depth + 1, true);
+                            board[i] = null;
+                            bestScore = Math.min(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                }
+            }
+
+            function findBestMove(board) {
+                // Easy mode - random moves
+                if (difficulty === 'easy' && Math.random() > 0.5) {
+                    const emptyIndices = board.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
+                    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                }
+                
+                // Medium mode - mix of random and optimal
+                if (difficulty === 'medium' && Math.random() > 0.3) {
+                    const emptyIndices = board.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
+                    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+                }
+
+                // Hard mode - perfect minimax
+                let bestScore = -Infinity;
+                let bestMove = null;
+
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === null) {
+                        board[i] = 'O';
+                        const score = minimax(board, 0, false);
+                        board[i] = null;
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = i;
+                        }
+                    }
+                }
+                return bestMove;
+            }
+
+            function render() {
+                // Update board
+                squares.forEach((square, index) => {
+                    square.textContent = board[index];
+                    
+                    // Reset classes
+                    square.className = 'square';
+                    square.classList.add(darkMode ? 'dark' : 'light');
+                    
+                    // Add winning class if part of winning line
+                    if (winningLine.includes(index)) {
+                        square.classList.add('winning');
+                    }
+                });
+
+                // Update status
+                statusElement.textContent = getStatus();
+
+                // Update scores
+                scoreX.textContent = scores.x;
+                scoreO.textContent = scores.o;
+                scoreDraw.textContent = scores.draws;
+            }
+
+            function getStatus() {
+                if (winner === 'X') return 'Player X wins!';
+                if (winner === 'O') return gameMode === 'pvp' ? 'Player O wins!' : 'Computer wins!';
+                if (winner === 'draw') return "It's a Draw!";
+                return `Next player: ${xIsNext ? 'X' : gameMode === 'pvp' ? 'O' : 'Computer'}`;
+            }
+
+            function resetGame() {
+                board = Array(9).fill(null);
+                xIsNext = true;
+                winner = null;
+                winningLine = [];
+                saveGameState();
+                render();
+            }
+
+            function toggleGameMode() {
+                gameMode = gameMode === 'pvp' ? 'pvc' : 'pvp';
+                modeToggle.textContent = gameMode === 'pvp' 
+                    ? 'Switch to Player vs Computer' 
+                    : 'Switch to Player vs Player';
+                
+                // Show/hide difficulty selector
+                difficultyContainer.style.display = gameMode === 'pvc' ? 'block' : 'none';
+                
+                // Update player O label
+                playerOLabel.textContent = gameMode === 'pvp' ? 'Player O: ' : 'Computer: ';
+                
+                resetGame();
+            }
+
+            function toggleTheme() {
+                darkMode = !darkMode;
+                body.className = darkMode ? 'dark-mode' : 'light-mode';
+                themeToggle.textContent = darkMode ? 'Light Mode' : 'Dark Mode';
+                saveGameState();
+                render();
+            }
+
+            function updateDifficulty() {
+                difficulty = difficultySelect.value;
+            }
+
+            function saveGameState() {
+                const gameState = {
+                    scores,
+                    darkMode,
+                    gameMode,
+                    difficulty
+                };
+                localStorage.setItem('ticTacToeState', JSON.stringify(gameState));
+            }
+
+            function loadGameState() {
+                const savedState = localStorage.getItem('ticTacToeState');
+                if (savedState) {
+                    const state = JSON.parse(savedState);
+                    scores = state.scores || { x: 0, o: 0, draws: 0 };
+                    darkMode = state.darkMode || false;
+                    gameMode = state.gameMode || 'pvp';
+                    difficulty = state.difficulty || 'hard';
+                    
+                    // Apply loaded state
+                    body.className = darkMode ? 'dark-mode' : 'light-mode';
+                    themeToggle.textContent = darkMode ? 'Light Mode' : 'Dark Mode';
+                    difficultySelect.value = difficulty;
+                    playerOLabel.textContent = gameMode === 'pvp' ? 'Player O: ' : 'Computer: ';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
