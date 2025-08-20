@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookFlix - Netflix Style Book Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #141414;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 4%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, transparent);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+        
+        .navbar.scrolled {
+            background-color: #141414;
+        }
+        
+        .logo {
+            color: #e50914;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-right: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 18px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #b3b3b3;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .nav-icons i {
+            margin-left: 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            margin-left: 20px;
+            background-color: #e50914;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .hero {
+            height: 80vh;
+            position: relative;
+            margin-bottom: 20px;
+            background: linear-gradient(to top, #141414, transparent 50%), 
+                       url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3') no-repeat center center/cover;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .hero-content {
+            padding: 4%;
+            width: 40%;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .hero-btn {
+            padding: 10px 24px;
+            border-radius: 4px;
+            border: none;
+            font-weight: bold;
+            margin-right: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-btn i {
+            margin-right: 8px;
+        }
+        
+        .play-btn {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .info-btn {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: #fff;
+        }
+        
+        .container {
+            padding: 0 4%;
+        }
+        
+        .row {
+            margin-bottom: 40px;
+        }
+        
+        .row-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .book-cards {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none;
+        }
+        
+        .book-cards::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .book-card {
+            flex: 0 0 auto;
+            width: 200px;
+            margin-right: 10px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .book-card:hover {
+            transform: scale(1.08);
+            z-index: 2;
+        }
+        
+        .book-info {
+            padding: 10px 0;
+        }
+        
+        .book-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .book-author {
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+        
+        .more-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+        }
+        
+        .more-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .footer {
+            padding: 40px 4%;
+            color: #b3b3b3;
+            margin-top: 50px;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons i {
+            font-size: 24px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        /* Search Modal Styles */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 80px 4% 20px;
+        }
+        
+        .search-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5rem;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid #e50914;
+            color: white;
+            outline: none;
+        }
+        
+        .search-results {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .close-search {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                width: 100%;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .search-input {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fas fa-book-open"></i> BOOKFLIX
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Genres</a></li>
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">My List</a></li>
+        </ul>
+        
+        <div class="nav-icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-bell"></i>
+            <div class="profile">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="search-modal">
+        <button class="close-search" id="close-search">&times;</button>
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Search for books...">
+            <div class="search-results" id="search-results">
+                <!-- Search results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Atomic Habits</h1>
+            <p>An Easy & Proven Way to Build Good Habits & Break Bad Ones. Transform your life with tiny changes that lead to remarkable results.</p>
+            <div class="hero-buttons">
+                <button class="hero-btn play-btn"><i class="fas fa-play"></i> Read Now</button>
+                <button class="hero-btn info-btn"><i class="fas fa-info-circle"></i> More Info</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Productivity Row -->
+        <div class="row">
+            <h2 class="row-title">Productivity</h2>
+            <div class="book-cards">
+                <!-- First 7 books (visible by default) -->
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81wgcld4wxL._AC_UF1000,1000_QL80_.jpg" alt="Atomic Habits">
+                    <div class="book-info">
+                        <div class="book-title">Atomic Habits</div>
+                        <div class="book-author">James Clear</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Deep Work">
+                    <div class="book-info">
+                        <div class="book-title">Deep Work</div>
+                        <div class="book-author">Cal Newport</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/91VjHpu7jML._AC_UF1000,1000_QL80_.jpg" alt="7 Habits">
+                    <div class="book-info">
+                        <div class="book-title">The 7 Habits of Highly Effective People</div>
+                        <div class="book-author">Stephen R. Covey</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Eat That Frog">
+                    <div class="book-info">
+                        <div class="book-title">Eat That Frog</div>
+                        <div class="book-author">Brian Tracy</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71f5Qvn6nzL._AC_UF1000,1000_QL80_.jpg" alt="Getting Things Done">
+                    <div class="book-info">
+                        <div class="book-title">Getting Things Done</div>
+                        <div class="book-author">David Allen</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71rAzDXuMeL._AC_UF1000,1000_QL80_.jpg" alt="The One Thing">
+                    <div class="book-info">
+                        <div class="book-title">The One Thing</div>
+                        <div class="book-author">Gary Keller</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71wKPKUMHiL._AC_UF1000,1000_QL80_.jpg" alt="Do It Today">
+                    <div class="book-info">
+                        <div class="book-title">Do It Today</div>
+                        <div class="book-author">Darius Foroux</div>
+                    </div>
+                </div>
+                
+                <!-- Next 13 books (hidden by default) -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=8" alt="The Art of Laziness">
+                    <div class="book-info">
+                        <div class="book-title">The Art of Laziness</div>
+                        <div class="book-author">James Clear</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=9" alt="Make Time">
+                    <div class="book-info">
+                        <div class="book-title">Make Time</div>
+                        <div class="book-author">Jake Knapp & John Zeratsky</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=10" alt="Hyperfocus">
+                    <div class="book-info">
+                        <div class="book-title">Hyperfocus</div>
+                        <div class="book-author">Chris Bailey</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=11" alt="Finish What You Start">
+                    <div class="book-info">
+                        <div class="book-title">Finish What You Start</div>
+                        <div class="book-author">Peter Hollins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=12" alt="Indistractable">
+                    <div class="book-info">
+                        <div class="book-title">Indistractable</div>
+                        <div class="book-author">Nir Eyal</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=13" alt="The Productivity Project">
+                    <div class="book-info">
+                        <div class="book-title">The Productivity Project</div>
+                        <div class="book-author">Chris Bailey</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71Y4wiGwW7L._AC_UF1000,1000_QL80_.jpg" alt="Essentialism">
+                    <div class="book-info">
+                        <div class="book-title">Essentialism</div>
+                        <div class="book-author">Greg McKeown</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=15" alt="The Power of Full Engagement">
+                    <div class="book-info">
+                        <div class="book-title">The Power of Full Engagement</div>
+                        <div class="book-author">Jim Loehr & Tony Schwartz</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=16" alt="Flow">
+                    <div class="book-info">
+                        <div class="book-title">Flow</div>
+                        <div class="book-author">Mihaly Csikszentmihalyi</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=17" alt="The War of Art">
+                    <div class="book-info">
+                        <div class="book-title">The War of Art</div>
+                        <div class="book-author">Steven Pressfield</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=18" alt="168 Hours">
+                    <div class="book-info">
+                        <div class="book-title">168 Hours</div>
+                        <div class="book-author">Laura Vanderkam</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=19" alt="Your Best Year Ever">
+                    <div class="book-info">
+                        <div class="book-title">Your Best Year Ever</div>
+                        <div class="book-author">Michael Hyatt</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=20" alt="Smarter Faster Better">
+                    <div class="book-info">
+                        <div class="book-title">Smarter Faster Better</div>
+                        <div class="book-author">Charles Duhigg</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Communication Row -->
+        <div class="row">
+            <h2 class="row-title">Communication</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71vK0WVQ4rL._AC_UF1000,1000_QL80_.jpg" alt="How to Win Friends">
+                    <div class="book-info">
+                        <div class="book-title">How to Win Friends and Influence People</div>
+                        <div class="book-author">Dale Carnegie</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UF1000,1000_QL80_.jpg" alt="Talk Like TED">
+                    <div class="book-info">
+                        <div class="book-title">Talk Like TED</div>
+                        <div class="book-author">Carmine Gallo</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=23" alt="The Communication Book">
+                    <div class="book-info">
+                        <div class="book-title">The Communication Book</div>
+                        <div class="book-author">Krogerus & Tschäppeler</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81FuTTmhJlL._AC_UF1000,1000_QL80_.jpg" alt="Crucial Conversations">
+                    <div class="book-info">
+                        <div class="book-title">Crucial Conversations</div>
+                        <div class="book-author">Patterson, Grenny, McMillan, Switzler</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Never Split the Difference">
+                    <div class="book-info">
+                        <div class="book-title">Never Split the Difference</div>
+                        <div class="book-author">Chris Voss</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/712CvKS0GWL._AC_UF1000,1000_QL80_.jpg" alt="Influence">
+                    <div class="book-info">
+                        <div class="book-title">Influence</div>
+                        <div class="book-author">Robert B. Cialdini</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=27" alt="Everyone Communicates">
+                    <div class="book-info">
+                        <div class="book-title">Everyone Communicates, Few Connect</div>
+                        <div class="book-author">John C. Maxwell</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=28" alt="Just Listen">
+                    <div class="book-info">
+                        <div class="book-title">Just Listen</div>
+                        <div class="book-author">Mark Goulston</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=29" alt="Words That Change Minds">
+                    <div class="book-info">
+                        <div class="book-title">Words That Change Minds</div>
+                        <div class="book-author">Shelle Rose Charvet</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=30" alt="The Charisma Myth">
+                    <div class="book-info">
+                        <div class="book-title">The Charisma Myth</div>
+                        <div class="book-author">Olivia Fox Cabane</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=31" alt="Thank You for Arguing">
+                    <div class="book-info">
+                        <div class="book-title">Thank You for Arguing</div>
+                        <div class="book-author">Jay Heinrichs</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=32" alt="Communication Skills Training">
+                    <div class="book-info">
+                        <div class="book-title">Communication Skills Training</div>
+                        <div class="book-author">Ian Tuhovsky</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=33" alt="Power Questions">
+                    <div class="book-info">
+                        <div class="book-title">Power Questions</div>
+                        <div class="book-author">Andrew Sobel</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=34" alt="Difficult Conversations">
+                    <div class="book-info">
+                        <div class="book-title">Difficult Conversations</div>
+                        <div class="book-author">Douglas Stone</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=35" alt="People Skills">
+                    <div class="book-info">
+                        <div class="book-title">People Skills</div>
+                        <div class="book-author">Robert Bolton</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=36" alt="Presence">
+                    <div class="book-info">
+                        <div class="book-title">Presence</div>
+                        <div class="book-author">Amy Cuddy</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=37" alt="Made to Stick">
+                    <div class="book-info">
+                        <div class="book-title">Made to Stick</div>
+                        <div class="book-author">Chip & Dan Heath</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=38" alt="The Art of Communicating">
+                    <div class="book-info">
+                        <div class="book-title">The Art of Communicating</div>
+                        <div class="book-author">Thich Nhat Hanh</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=39" alt="You're Not Listening">
+                    <div class="book-info">
+                        <div class="book-title">You're Not Listening</div>
+                        <div class="book-author">Kate Murphy</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=40" alt="Storyworthy">
+                    <div class="book-info">
+                        <div class="book-title">Storyworthy</div>
+                        <div class="book-author">Matthew Dicks</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Personal Finance Row -->
+        <div class="row">
+            <h2 class="row-title">Personal Finance</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71g2ednj0JL._AC_UF1000,1000_QL80_.jpg" alt="The Psychology of Money">
+                    <div class="book-info">
+                        <div class="book-title">The Psychology of Money</div>
+                        <div class="book-author">Morgan Housel</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg" alt="Rich Dad Poor Dad">
+                    <div class="book-info">
+                        <div class="book-title">Rich Dad Poor Dad</div>
+                        <div class="book-author">Robert Kiyosaki</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71sOjOhpg2L._AC_UF1000,1000_QL80_.jpg" alt="The Millionaire Fastlane">
+                    <div class="book-info">
+                        <div class="book-title">The Millionaire Fastlane</div>
+                        <div class="book-author">MJ DeMarco</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71UypkUjStL._AC_UF1000,1000_QL80_.jpg" alt="Think and Grow Rich">
+                    <div class="book-info">
+                        <div class="book-title">Think and Grow Rich</div>
+                        <div class="book-author">Napoleon Hill</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/91VjHpu7jML._AC_UF1000,1000_QL80_.jpg" alt="The Intelligent Investor">
+                    <div class="book-info">
+                        <div class="book-title">The Intelligent Investor</div>
+                        <div class="book-author">Benjamin Graham</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=46" alt="Your Money or Your Life">
+                    <div class="book-info">
+                        <div class="book-title">Your Money or Your Life</div>
+                        <div class="book-author">Vicki Robin</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71b92PgNHGL._AC_UF1000,1000_QL80_.jpg" alt="I Will Teach You to Be Rich">
+                    <div class="book-info">
+                        <div class="book-title">I Will Teach You to Be Rich</div>
+                        <div class="book-author">Ramit Sethi</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=48" alt="The Richest Man in Babylon">
+                    <div class="book-info">
+                        <div class="book-title">The Richest Man in Babylon</div>
+                        <div class="book-author">George S. Clason</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=49" alt="The Simple Path to Wealth">
+                    <div class="book-info">
+                        <div class="book-title">The Simple Path to Wealth</div>
+                        <div class="book-author">JL Collins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=50" alt="Unshakeable">
+                    <div class="book-info">
+                        <div class="book-title">Unshakeable</div>
+                        <div class="book-author">Tony Robbins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=51" alt="Money: Master the Game">
+                    <div class="book-info">
+                        <div class="book-title">Money: Master the Game</div>
+                        <div class="book-author">Tony Robbins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=52" alt="The Little Book of Common Sense Investing">
+                    <div class="book-info">
+                        <div class="book-title">The Little Book of Common Sense Investing</div>
+                        <div class="book-author">John C. Bogle</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=53" alt="The Barefoot Investor">
+                    <div class="book-info">
+                        <div class="book-title">The Barefoot Investor</div>
+                        <div class="book-author">Scott Pape</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=54" alt="Financial Freedom">
+                    <div class="book-info">
+                        <div class="book-title">Financial Freedom</div>
+                        <div class="book-author">Grant Sabatier</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=55" alt="Quit Like a Millionaire">
+                    <div class="book-info">
+                        <div class="book-title">Quit Like a Millionaire</div>
+                        <div class="book-author">Kristy Shen</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=56" alt="Broke Millennial">
+                    <div class="book-info">
+                        <div class="book-title">Broke Millennial</div>
+                        <div class="book-author">Erin Lowry</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=57" alt="Everyday Millionaires">
+                    <div class="book-info">
+                        <div class="book-title">Everyday Millionaires</div>
+                        <div class="book-author">Chris Hogan</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=58" alt="The Total Money Makeover">
+                    <div class="book-info">
+                        <div class="book-title">The Total Money Makeover</div>
+                        <div class="book-author">Dave Ramsey</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=59" alt="Die With Zero">
+                    <div class="book-info">
+                        <div class="book-title">Die With Zero</div>
+                        <div class="book-author">Bill Perkins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=60" alt="The Automatic Millionaire">
+                    <div class="book-info">
+                        <div class="book-title">The Automatic Millionaire</div>
+                        <div class="book-author">David Bach</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Business Row -->
+        <div class="row">
+            <h2 class="row-title">Business</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81N7UDP5YTL._AC_UF1000,1000_QL80_.jpg" alt="Good to Great">
+                    <div class="book-info">
+                        <div class="book-title">Good to Great</div>
+                        <div class="book-author">Jim Collins</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81vvgZqCskL._AC_UF1000,1000_QL80_.jpg" alt="The Lean Startup">
+                    <div class="book-info">
+                        <div class="book-title">The Lean Startup</div>
+                        <div class="book-author">Eric Ries</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71m+p2X5ndL._AC_UF1000,1000_QL80_.jpg" alt="Zero to One">
+                    <div class="book-info">
+                        <div class="book-title">Zero to One</div>
+                        <div class="book-author">Peter Thiel</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="The Hard Thing About Hard Things">
+                    <div class="book-info">
+                        <div class="book-title">The Hard Thing About Hard Things</div>
+                        <div class="book-author">Ben Horowitz</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=65" alt="The Personal MBA">
+                    <div class="book-info">
+                        <div class="book-title">The Personal MBA</div>
+                        <div class="book-author">Josh Kaufman</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=66" alt="The Innovator's Dilemma">
+                    <div class="book-info">
+                        <div class="book-title">The Innovator's Dilemma</div>
+                        <div class="book-author">Clayton Christensen</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=67" alt="The E-Myth Revisited">
+                    <div class="book-info">
+                        <div class="book-title">The E-Myth Revisited</div>
+                        <div class="book-author">Michael E. Gerber</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=68" alt="Blue Ocean Strategy">
+                    <div class="book-info">
+                        <div class="book-title">Blue Ocean Strategy</div>
+                        <div class="book-author">W. Chan Kim</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=69" alt="Measure What Matters">
+                    <div class="book-info">
+                        <div class="book-title">Measure What Matters</div>
+                        <div class="book-author">John Doerr</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=70" alt="The Startup Owner's Manual">
+                    <div class="book-info">
+                        <div class="book-title">The Startup Owner's Manual</div>
+                        <div class="book-author">Steve Blank</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71f5Qvn6nzL._AC_UF1000,1000_QL80_.jpg" alt="Principles">
+                    <div class="book-info">
+                        <div class="book-title">Principles</div>
+                        <div class="book-author">Ray Dalio</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/81Lst3aKBJL._AC_UF1000,1000_QL80_.jpg" alt="Shoe Dog">
+                    <div class="book-info">
+                        <div class="book-title">Shoe Dog</div>
+                        <div class="book-author">Phil Knight</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=73" alt="Delivering Happiness">
+                    <div class="book-info">
+                        <div class="book-title">Delivering Happiness</div>
+                        <div class="book-author">Tony Hsieh</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Leaders Eat Last">
+                    <div class="book-info">
+                        <div class="book-title">Leaders Eat Last</div>
+                        <div class="book-author">Simon Sinek</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71rAzDXuMeL._AC_UF1000,1000_QL80_.jpg" alt="Start with Why">
+                    <div class="book-info">
+                        <div class="book-title">Start with Why</div>
+                        <div class="book-author">Simon Sinek</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=76" alt="Built to Last">
+                    <div class="book-info">
+                        <div class="book-title">Built to Last</div>
+                        <div class="book-author">Jim Collins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=77" alt="The Diary of a CEO">
+                    <div class="book-info">
+                        <div class="book-title">The Diary of a CEO</div>
+                        <div class="book-author">Steven Bartlett</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=78" alt="The Lean CEO">
+                    <div class="book-info">
+                        <div class="book-title">The Lean CEO</div>
+                        <div class="book-author">Jacob Stoller</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=79" alt="Crossing the Chasm">
+                    <div class="book-info">
+                        <div class="book-title">Crossing the Chasm</div>
+                        <div class="book-author">Geoffrey A. Moore</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=80" alt="Rework">
+                    <div class="book-info">
+                        <div class="book-title">Rework</div>
+                        <div class="book-author">Jason Fried & David Heinemeier Hansson</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Discipline Row -->
+        <div class="row">
+            <h2 class="row-title">Discipline</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81h2gWPTYJL._AC_UF1000,1000_QL80_.jpg" alt="Can't Hurt Me">
+                    <div class="book-info">
+                        <div class="book-title">Can't Hurt Me</div>
+                        <div class="book-author">David Goggins</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71wKPKUMHiL._AC_UF1000,1000_QL80_.jpg" alt="Discipline Equals Freedom">
+                    <div class="book-info">
+                        <div class="book-title">Discipline Equals Freedom</div>
+                        <div class="book-author">Jocko Willink</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=83" alt="Make Your Bed">
+                    <div class="book-info">
+                        <div class="book-title">Make Your Bed</div>
+                        <div class="book-author">Admiral William H. McRaven</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=84" alt="Power of Discipline">
+                    <div class="book-info">
+                        <div class="book-title">Power of Discipline</div>
+                        <div class="book-author">Daniel Walter</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81wgcld4wxL._AC_UF1000,1000_QL80_.jpg" alt="Atomic Habits">
+                    <div class="book-info">
+                        <div class="book-title">Atomic Habits</div>
+                        <div class="book-author">James Clear</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=86" alt="The War of Art">
+                    <div class="book-info">
+                        <div class="book-title">The War of Art</div>
+                        <div class="book-author">Steven Pressfield</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81h2gWPTYJL._AC_UF1000,1000_QL80_.jpg" alt="Grit">
+                    <div class="book-info">
+                        <div class="book-title">Grit</div>
+                        <div class="book-author">Angela Duckworth</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=88" alt="Mastery">
+                    <div class="book-info">
+                        <div class="book-title">Mastery</div>
+                        <div class="book-author">Robert Greene</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=89" alt="The Compound Effect">
+                    <div class="book-info">
+                        <div class="book-title">The Compound Effect</div>
+                        <div class="book-author">Darren Hardy</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=90" alt="Extreme Ownership">
+                    <div class="book-info">
+                        <div class="book-title">Extreme Ownership</div>
+                        <div class="book-author">Jocko Willink & Leif Babin</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="12 Rules for Life">
+                    <div class="book-info">
+                        <div class="book-title">12 Rules for Life</div>
+                        <div class="book-author">Jordan B. Peterson</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=92" alt="Relentless">
+                    <div class="book-info">
+                        <div class="book-title">Relentless</div>
+                        <div class="book-author">Tim Grover</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=93" alt="Living with a SEAL">
+                    <div class="book-info">
+                        <div class="book-title">Living with a SEAL</div>
+                        <div class="book-author">Jesse Itzler</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=94" alt="Finish What You Start">
+                    <div class="book-info">
+                        <div class="book-title">Finish What You Start</div>
+                        <div class="book-author">Peter Hollins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=95" alt="Daily Stoic">
+                    <div class="book-info">
+                        <div class="book-title">Daily Stoic</div>
+                        <div class="book-author">Ryan Holiday</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=96" alt="Ego is the Enemy">
+                    <div class="book-info">
+                        <div class="book-title">Ego is the Enemy</div>
+                        <div class="book-author">Ryan Holiday</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=97" alt="The Obstacle Is the Way">
+                    <div class="book-info">
+                        <div class="book-title">The Obstacle Is the Way</div>
+                        <div class="book-author">Ryan Holiday</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Deep Work">
+                    <div class="book-info">
+                        <div class="book-title">Deep Work</div>
+                        <div class="book-author">Cal Newport</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=99" alt="No Excuses!">
+                    <div class="book-info">
+                        <div class="book-title">No Excuses!</div>
+                        <div class="book-author">Brian Tracy</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=100" alt="The 5 AM Club">
+                    <div class="book-info">
+                        <div class="book-title">The 5 AM Club</div>
+                        <div class="book-author">Robin Sharma</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Critical Thinking Row -->
+        <div class="row">
+            <h2 class="row-title">Critical Thinking</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71zW5QLGgWL._AC_UF1000,1000_QL80_.jpg" alt="Thinking, Fast and Slow">
+                    <div class="book-info">
+                        <div class="book-title">Thinking, Fast and Slow</div>
+                        <div class="book-author">Daniel Kahneman</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=102" alt="The Art of Thinking Clearly">
+                    <div class="book-info">
+                        <div class="book-title">The Art of Thinking Clearly</div>
+                        <div class="book-author">Rolf Dobelli</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=103" alt="Super Thinking">
+                    <div class="book-info">
+                        <div class="book-title">Super Thinking</div>
+                        <div class="book-author">Gabriel Weinberg</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=104" alt="The Great Mental Models">
+                    <div class="book-info">
+                        <div class="book-title">The Great Mental Models</div>
+                        <div class="book-author">Shane Parrish</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=105" alt="Predictably Irrational">
+                    <div class="book-info">
+                        <div class="book-title">Predictably Irrational</div>
+                        <div class="book-author">Dan Ariely</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="The Black Swan">
+                    <div class="book-info">
+                        <div class="book-title">The Black Swan</div>
+                        <div class="book-author">Nassim Nicholas Taleb</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=107" alt="Fooled by Randomness">
+                    <div class="book-info">
+                        <div class="book-title">Fooled by Randomness</div>
+                        <div class="book-author">Nassim Nicholas Taleb</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=108" alt="Antifragile">
+                    <div class="book-info">
+                        <div class="book-title">Antifragile</div>
+                        <div class="book-author">Nassim Nicholas Taleb</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=109" alt="The Signal and the Noise">
+                    <div class="book-info">
+                        <div class="book-title">The Signal and the Noise</div>
+                        <div class="book-author">Nate Silver</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=110" alt="How Not to Be Wrong">
+                    <div class="book-info">
+                        <div class="book-title">How Not to Be Wrong</div>
+                        <div class="book-author">Jordan Ellenberg</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=111" alt="The Art of Reasoning">
+                    <div class="book-info">
+                        <div class="book-title">The Art of Reasoning</div>
+                        <div class="book-author">David Kelley</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=112" alt="The Demon-Haunted World">
+                    <div class="book-info">
+                        <div class="book-title">The Demon-Haunted World</div>
+                        <div class="book-author">Carl Sagan</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=113" alt="The Inquisitive Mind">
+                    <div class="book-info">
+                        <div class="book-title">The Inquisitive Mind</div>
+                        <div class="book-author">Jonathan Baron</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/712CvKS0GWL._AC_UF1000,1000_QL80_.jpg" alt="Influence">
+                    <div class="book-info">
+                        <div class="book-title">Influence</div>
+                        <div class="book-author">Robert B. Cialdini</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=115" alt="Nudge">
+                    <div class="book-info">
+                        <div class="book-title">Nudge</div>
+                        <div class="book-author">Richard H. Thaler & Cass R. Sunstein</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=116" alt="The Righteous Mind">
+                    <div class="book-info">
+                        <div class="book-title">The Righteous Mind</div>
+                        <div class="book-author">Jonathan Haidt</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=117" alt="Lateral Thinking">
+                    <div class="book-info">
+                        <div class="book-title">Lateral Thinking</div>
+                        <div class="book-author">Edward de Bono</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=118" alt="Clear Thinking">
+                    <div class="book-info">
+                        <div class="book-title">Clear Thinking</div>
+                        <div class="book-author">Shane Parrish</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=119" alt="Think Again">
+                    <div class="book-info">
+                        <div class="book-title">Think Again</div>
+                        <div class="book-author">Adam Grant</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=120" alt="The Scout Mindset">
+                    <div class="book-info">
+                        <div class="book-title">The Scout Mindset</div>
+                        <div class="book-author">Julia Galef</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Relationships Row -->
+        <div class="row">
+            <h2 class="row-title">Relationships</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=121" alt="Men Are from Mars">
+                    <div class="book-info">
+                        <div class="book-title">Men Are from Mars, Women Are from Venus</div>
+                        <div class="book-author">John Gray</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=122" alt="Attached">
+                    <div class="book-info">
+                        <div class="book-title">Attached</div>
+                        <div class="book-author">Amir Levine & Rachel Heller</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/81rPDrjGKaL._AC_UF1000,1000_QL80_.jpg" alt="The 5 Love Languages">
+                    <div class="book-info">
+                        <div class="book-title">The 5 Love Languages</div>
+                        <div class="book-author">Gary Chapman</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=124" alt="Hold Me Tight">
+                    <div class="book-info">
+                        <div class="book-title">Hold Me Tight</div>
+                        <div class="book-author">Dr. Sue Johnson</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=125" alt="Mating in Captivity">
+                    <div class="book-info">
+                        <div class="book-title">Mating in Captivity</div>
+                        <div class="book-author">Esther Perel</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=126" alt="The State of Affairs">
+                    <div class="book-info">
+                        <div class="book-title">The State of Affairs</div>
+                        <div class="book-author">Esther Perel</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=127" alt="Modern Romance">
+                    <div class="book-info">
+                        <div class="book-title">Modern Romance</div>
+                        <div class="book-author">Aziz Ansari</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=128" alt="Models">
+                    <div class="book-info">
+                        <div class="book-title">Models: Attract Women Through Honesty</div>
+                        <div class="book-author">Mark Manson</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=129" alt="How to Not Die Alone">
+                    <div class="book-info">
+                        <div class="book-title">How to Not Die Alone</div>
+                        <div class="book-author">Logan Ury</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=130" alt="The Art of Loving">
+                    <div class="book-info">
+                        <div class="book-title">The Art of Loving</div>
+                        <div class="book-author">Erich Fromm</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=131" alt="The Road Less Traveled">
+                    <div class="book-info">
+                        <div class="book-title">The Road Less Traveled</div>
+                        <div class="book-author">M. Scott Peck</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=132" alt="Getting the Love You Want">
+                    <div class="book-info">
+                        <div class="book-title">Getting the Love You Want</div>
+                        <div class="book-author">Harville Hendrix</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=133" alt="Men Don't Love Women Like You">
+                    <div class="book-info">
+                        <div class="book-title">Men Don't Love Women Like You</div>
+                        <div class="book-author">G.L. Lambert</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=134" alt="If the Buddha Dated">
+                    <div class="book-info">
+                        <div class="book-title">If the Buddha Dated</div>
+                        <div class="book-author">Charlotte Kasl</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=135" alt="Conscious Loving">
+                    <div class="book-info">
+                        <div class="book-title">Conscious Loving</div>
+                        <div class="book-author">Gay & Kathlyn Hendricks</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=136" alt="Passionate Marriage">
+                    <div class="book-info">
+                        <div class="book-title">Passionate Marriage</div>
+                        <div class="book-author">David Schnarch</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=137" alt="Love Sense">
+                    <div class="book-info">
+                        <div class="book-title">Love Sense</div>
+                        <div class="book-author">Sue Johnson</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=138" alt="Why Men Love Bitches">
+                    <div class="book-info">
+                        <div class="book-title">Why Men Love Bitches</div>
+                        <div class="book-author">Sherry Argov</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=139" alt="Boundaries in Marriage">
+                    <div class="book-info">
+                        <div class="book-title">Boundaries in Marriage</div>
+                        <div class="book-author">Henry Cloud & John Townsend</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=140" alt="Closer to Love">
+                    <div class="book-info">
+                        <div class="book-title">Closer to Love</div>
+                        <div class="book-author">Vex King</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Philosophy Row -->
+        <div class="row">
+            <h2 class="row-title">Philosophy</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UF1000,1000_QL80_.jpg" alt="Meditations">
+                    <div class="book-info">
+                        <div class="book-title">Meditations</div>
+                        <div class="book-author">Marcus Aurelius</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=142" alt="Beyond Good and Evil">
+                    <div class="book-info">
+                        <div class="book-title">Beyond Good and Evil</div>
+                        <div class="book-author">Friedrich Nietzsche</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=143" alt="The Republic">
+                    <div class="book-info">
+                        <div class="book-title">The Republic</div>
+                        <div class="book-author">Plato</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=144" alt="Nicomachean Ethics">
+                    <div class="book-info">
+                        <div class="book-title">Nicomachean Ethics</div>
+                        <div class="book-author">Aristotle</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=145" alt="Letters from a Stoic">
+                    <div class="book-info">
+                        <div class="book-title">Letters from a Stoic</div>
+                        <div class="book-author">Seneca</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=146" alt="The Consolation of Philosophy">
+                    <div class="book-info">
+                        <div class="book-title">The Consolation of Philosophy</div>
+                        <div class="book-author">Boethius</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=147" alt="Tao Te Ching">
+                    <div class="book-info">
+                        <div class="book-title">Tao Te Ching</div>
+                        <div class="book-author">Lao Tzu</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=148" alt="The Analects">
+                    <div class="book-info">
+                        <div class="book-title">The Analects</div>
+                        <div class="book-author">Confucius</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=149" alt="The Art of War">
+                    <div class="book-info">
+                        <div class="book-title">The Art of War</div>
+                        <div class="book-author">Sun Tzu</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=150" alt="Critique of Pure Reason">
+                    <div class="book-info">
+                        <div class="book-title">Critique of Pure Reason</div>
+                        <div class="book-author">Immanuel Kant</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=151" alt="Being and Time">
+                    <div class="book-info">
+                        <div class="book-title">Being and Time</div>
+                        <div class="book-author">Martin Heidegger</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=152" alt="The Prince">
+                    <div class="book-info">
+                        <div class="book-title">The Prince</div>
+                        <div class="book-author">Niccolò Machiavelli</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=153" alt="Thus Spoke Zarathustra">
+                    <div class="book-info">
+                        <div class="book-title">Thus Spoke Zarathustra</div>
+                        <div class="book-author">Nietzsche</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=154" alt="What Does It All Mean?">
+                    <div class="book-info">
+                        <div class="book-title">What Does It All Mean?</div>
+                        <div class="book-author">Thomas Nagel</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=155" alt="The Myth of Sisyphus">
+                    <div class="book-info">
+                        <div class="book-title">The Myth of Sisyphus</div>
+                        <div class="book-author">Albert Camus</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=156" alt="The Stranger">
+                    <div class="book-info">
+                        <div class="book-title">The Stranger</div>
+                        <div class="book-author">Albert Camus</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="Man's Search for Meaning">
+                    <div class="book-info">
+                        <div class="book-title">Man's Search for Meaning</div>
+                        <div class="book-author">Viktor Frankl</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=158" alt="Sophie's World">
+                    <div class="book-info">
+                        <div class="book-title">Sophie's World</div>
+                        <div class="book-author">Jostein Gaarder</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=159" alt="The Problems of Philosophy">
+                    <div class="book-info">
+                        <div class="book-title">The Problems of Philosophy</div>
+                        <div class="book-author">Bertrand Russell</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=160" alt="What Are You Doing With Your Life?">
+                    <div class="book-info">
+                        <div class="book-title">What Are You Doing With Your Life?</div>
+                        <div class="book-author">J. Krishnamurti</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+
+        <!-- Self-Help Row -->
+        <div class="row">
+            <h2 class="row-title">Self-Help</h2>
+            <div class="book-cards">
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="The Subtle Art of Not Giving a F*ck">
+                    <div class="book-info">
+                        <div class="book-title">The Subtle Art of Not Giving a F*ck</div>
+                        <div class="book-author">Mark Manson</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=162" alt="Everything Is F*cked">
+                    <div class="book-info">
+                        <div class="book-title">Everything Is F*cked</div>
+                        <div class="book-author">Mark Manson</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71gjJlnfOWL._AC_UF1000,1000_QL80_.jpg" alt="Mindset">
+                    <div class="book-info">
+                        <div class="book-title">Mindset</div>
+                        <div class="book-author">Carol S. Dweck</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=164" alt="The Magic of Thinking Big">
+                    <div class="book-info">
+                        <div class="book-title">The Magic of Thinking Big</div>
+                        <div class="book-author">David J. Schwartz</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://m.media-amazon.com/images/I/71wKPKUMHiL._AC_UF1000,1000_QL80_.jpg" alt="The Power of Now">
+                    <div class="book-info">
+                        <div class="book-title">The Power of Now</div>
+                        <div class="book-author">Eckhart Tolle</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=166" alt="Awaken the Giant Within">
+                    <div class="book-info">
+                        <div class="book-title">Awaken the Giant Within</div>
+                        <div class="book-author">Tony Robbins</div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://picsum.photos/200/300?random=167" alt="Unlimited Power">
+                    <div class="book-info">
+                        <div class="book-title">Unlimited Power</div>
+                        <div class="book-author">Tony Robbins</div>
+                    </div>
+                </div>
+                
+                <!-- Hidden books -->
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=168" alt="You Are a Badass">
+                    <div class="book-info">
+                        <div class="book-title">You Are a Badass</div>
+                        <div class="book-author">Jen Sincero</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=169" alt="Good Vibes, Good Life">
+                    <div class="book-info">
+                        <div class="book-title">Good Vibes, Good Life</div>
+                        <div class="book-author">Vex King</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71f5Qvn6nzL._AC_UF1000,1000_QL80_.jpg" alt="Think Like a Monk">
+                    <div class="book-info">
+                        <div class="book-title">Think Like a Monk</div>
+                        <div class="book-author">Jay Shetty</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UF1000,1000_QL80_.jpg" alt="The Alchemist">
+                    <div class="book-info">
+                        <div class="book-title">The Alchemist</div>
+                        <div class="book-author">Paulo Coelho</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=172" alt="Win Your Inner Battles">
+                    <div class="book-info">
+                        <div class="book-title">Win Your Inner Battles</div>
+                        <div class="book-author">Darius Foroux</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=173" alt="Who Moved My Cheese">
+                    <div class="book-info">
+                        <div class="book-title">Who Moved My Cheese</div>
+                        <div class="book-author">Spencer Johnson</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/81h2gWPTYJL._AC_UF1000,1000_QL80_.jpg" alt="Can't Hurt Me">
+                    <div class="book-info">
+                        <div class="book-title">Can't Hurt Me</div>
+                        <div class="book-author">David Goggins</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UF1000,1000_QL80_.jpg" alt="12 Rules for Life">
+                    <div class="book-info">
+                        <div class="book-title">12 Rules for Life</div>
+                        <div class="book-author">Jordan B. Peterson</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=176" alt="The Courage to Be Disliked">
+                    <div class="book-info">
+                        <div class="book-title">The Courage to Be Disliked</div>
+                        <div class="book-author">Ichiro Kishimi</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=177" alt="Feel the Fear and Do It Anyway">
+                    <div class="book-info">
+                        <div class="book-title">Feel the Fear and Do It Anyway</div>
+                        <div class="book-author">Susan Jeffers</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=178" alt="Big Magic">
+                    <div class="book-info">
+                        <div class="book-title">Big Magic</div>
+                        <div class="book-author">Elizabeth Gilbert</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=179" alt="Daring Greatly">
+                    <div class="book-info">
+                        <div class="book-title">Daring Greatly</div>
+                        <div class="book-author">Brené Brown</div>
+                    </div>
+                </div>
+                <div class="book-card hidden more-books">
+                    <img src="https://picsum.photos/200/300?random=180" alt="The Untethered Soul">
+                    <div class="book-info">
+                        <div class="book-title">The Untethered Soul</div>
+                        <div class="book-author">Michael A. Singer</div>
+                    </div>
+                </div>
+            </div>
+            <button class="more-btn" onclick="toggleMoreBooks(this)">More</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">Audio and Subtitles</a>
+            <a href="#">Audio Description</a>
+            <a href="#">Help Center</a>
+            <a href="#">Gift Cards</a>
+            <a href="#">Media Center</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Jobs</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy</a>
+            <a href="#">Legal Notices</a>
+            <a href="#">Cookie Preferences</a>
+            <a href="#">Corporate Information</a>
+            <a href="#">Contact Us</a>
+        </div>
+        
+        <div class="copyright">
+            © 2025 BookFlix. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Toggle more books functionality
+        function toggleMoreBooks(btn) {
+            const row = btn.parentElement;
+            const hiddenBooks = row.querySelectorAll('.more-books');
+            const bookCards = row.querySelector('.book-cards');
+            
+            hiddenBooks.forEach(book => {
+                book.classList.toggle('hidden');
+            });
+            
+            if (btn.textContent === 'More') {
+                btn.textContent = 'Less';
+                // Auto scroll to the end of the row to show new books
+                setTimeout(() => {
+                    bookCards.scrollTo({
+                        left: bookCards.scrollWidth,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            } else {
+                btn.textContent = 'More';
+                // Scroll back to start of row when hiding books
+                bookCards.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Book card hover effect
+        const bookCards = document.querySelectorAll('.book-card');
+        bookCards.forEach(card => {
+            card.addEventListener('mouseover', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseout', function() {
+                this.style.zIndex = '1';
+            });
+        });
+        
+        // Search functionality
+        const searchBtn = document.getElementById('search-btn');
+        const searchModal = document.getElementById('search-modal');
+        const closeSearch = document.getElementById('close-search');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        
+        // Open search modal
+        searchBtn.addEventListener('click', function() {
+            searchModal.style.display = 'block';
+            searchInput.focus();
+        });
+        
+        // Close search modal
+        closeSearch.addEventListener('click', function() {
+            searchModal.style.display = 'none';
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === searchModal) {
+                searchModal.style.display = 'none';
+                searchInput.value = '';
+                searchResults.innerHTML = '';
+            }
+        });
+        
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (query.length < 2) return;
+            
+            // Get all books
+            const allBooks = document.querySelectorAll('.book-card');
+            let resultsFound = false;
+            
+            allBooks.forEach(book => {
+                const title = book.querySelector('.book-title').textContent.toLowerCase();
+                const author = book.querySelector('.book-author').textContent.toLowerCase();
+                
+                if (title.includes(query) || author.includes(query)) {
+                    resultsFound = true;
+                    const bookClone = book.cloneNode(true);
+                    bookClone.classList.remove('hidden');
+                    searchResults.appendChild(bookClone);
+                }
+            });
+            
+            if (!resultsFound) {
+                searchResults.innerHTML = '<p class="text-white text-center">No books found. Try a different search term.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
