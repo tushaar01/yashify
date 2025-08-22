@@ -13,6 +13,10 @@
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             font-family: 'Arial', sans-serif;
             overflow: hidden;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
         #gameCanvas {
@@ -29,6 +33,7 @@
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             border: 2px solid rgba(255,255,255,0.3);
+            touch-action: none;
         }
         
         .joystick-knob {
@@ -40,8 +45,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: all 0.1s ease;
+            transition: transform 0.1s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            touch-action: none;
         }
         
         .game-ui {
@@ -72,6 +78,7 @@
             justify-content: center;
             flex-direction: column;
             color: white;
+            z-index: 10;
         }
         
         .btn {
@@ -190,8 +197,9 @@
                     active: false,
                     x: 0,
                     y: 0,
-                    centerX: 60,
-                    centerY: 60
+                    centerX: 0,
+                    centerY: 0,
+                    radius: 60
                 };
                 
                 // Audio
@@ -236,39 +244,75 @@
                 const joystickContainer = document.getElementById('joystickContainer');
                 const joystickKnob = document.getElementById('joystickKnob');
                 
-                const handleTouch = (e) => {
-                    e.preventDefault();
+                // Get joystick center position
+                const updateJoystickCenter = () => {
                     const rect = joystickContainer.getBoundingClientRect();
-                    const touch = e.touches[0] || e.changedTouches[0];
-                    const x = touch.clientX - rect.left - 60;
-                    const y = touch.clientY - rect.top - 60;
-                    
-                    const distance = Math.sqrt(x * x + y * y);
-                    const maxDistance = 30;
-                    
-                    if (distance <= maxDistance) {
-                        this.joystick.x = x / maxDistance;
-                        joystickKnob.style.transform = `translate(${x}px, ${y}px)`;
-                    } else {
-                        const angle = Math.atan2(y, x);
-                        const limitedX = Math.cos(angle) * maxDistance;
-                        const limitedY = Math.sin(angle) * maxDistance;
-                        this.joystick.x = limitedX / maxDistance;
-                        joystickKnob.style.transform = `translate(${limitedX}px, ${limitedY}px)`;
-                    }
-                    
-                    this.joystick.active = true;
+                    this.joystick.centerX = rect.left + rect.width / 2;
+                    this.joystick.centerY = rect.top + rect.height / 2;
                 };
                 
-                const handleTouchEnd = () => {
+                // Update center position initially and on resize
+                updateJoystickCenter();
+                window.addEventListener('resize', updateJoystickCenter);
+                
+                const handleTouchStart = (e) => {
+                    e.preventDefault();
+                    this.joystick.active = true;
+                    updateJoystickCenter();
+                    handleTouchMove(e);
+                };
+                
+                const handleTouchMove = (e) => {
+                    if (!this.joystick.active) return;
+                    e.preventDefault();
+                    
+                    const touch = e.touches[0] || e.changedTouches[0];
+                    const touchX = touch.clientX;
+                    const touchY = touch.clientY;
+                    
+                    // Calculate distance from center
+                    const deltaX = touchX - this.joystick.centerX;
+                    const deltaY = touchY - this.joystick.centerY;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    
+                    // Limit movement to joystick radius
+                    const limitedDistance = Math.min(distance, this.joystick.radius);
+                    
+                    if (limitedDistance > 0) {
+                        const angle = Math.atan2(deltaY, deltaX);
+                        const moveX = Math.cos(angle) * limitedDistance;
+                        const moveY = Math.sin(angle) * limitedDistance;
+                        
+                        // Update joystick position
+                        joystickKnob.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                        
+                        // Normalize for game input (-1 to 1)
+                        this.joystick.x = moveX / this.joystick.radius;
+                    } else {
+                        joystickKnob.style.transform = 'translate(0px, 0px)';
+                        this.joystick.x = 0;
+                    }
+                };
+                
+                const handleTouchEnd = (e) => {
+                    e.preventDefault();
                     this.joystick.active = false;
                     this.joystick.x = 0;
                     joystickKnob.style.transform = 'translate(0px, 0px)';
                 };
                 
-                joystickContainer.addEventListener('touchstart', handleTouch);
-                joystickContainer.addEventListener('touchmove', handleTouch);
+                // Add event listeners with passive: false for better control
+                joystickContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+                joystickContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
                 joystickContainer.addEventListener('touchend', handleTouchEnd);
+                joystickContainer.addEventListener('touchcancel', handleTouchEnd);
+                
+                // Prevent default touch behavior on the game container
+                document.getElementById('gameContainer').addEventListener('touchmove', (e) => {
+                    if (e.target === joystickContainer || e.target === joystickKnob) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
                 
                 // UI buttons
                 document.getElementById('startBtn').addEventListener('click', () => this.startGame());
@@ -383,9 +427,9 @@
                     moveSpeed = 5;
                 }
                 
-                // Joystick input
+                // Joystick input - more responsive
                 if (this.joystick.active) {
-                    moveSpeed = this.joystick.x * 5;
+                    moveSpeed = this.joystick.x * 8; // Increased sensitivity
                 }
                 
                 this.player.x += moveSpeed;
