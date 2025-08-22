@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Racing Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        
+        #gameCanvas {
+            border: 3px solid #333;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .joystick-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .joystick-knob {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .game-ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .controls-ui {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+        }
+        
+        .menu-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .joystick-container {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .joystick-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer" class="flex items-center justify-center min-h-screen">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <!-- Game UI -->
+        <div class="game-ui">
+            <div id="scoreDisplay">Distance: 0m</div>
+            <div id="speedDisplay">Speed: 0 km/h</div>
+            <div id="timeDisplay">Time: 0s</div>
+        </div>
+        
+        <!-- Controls UI -->
+        <div class="controls-ui">
+            <button id="fullscreenBtn" class="btn text-sm">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button id="muteBtn" class="btn text-sm">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+        
+        <!-- Virtual Joystick -->
+        <div id="joystickContainer" class="joystick-container">
+            <div id="joystickKnob" class="joystick-knob"></div>
+        </div>
+        
+        <!-- Menu Overlay -->
+        <div id="menuOverlay" class="menu-overlay">
+            <h1 class="text-4xl font-bold mb-4">🏎️ Mini Racing Game</h1>
+            <p class="text-lg mb-6">Steer left and right to avoid obstacles!</p>
+            <div class="mb-4">
+                <p><strong>Desktop:</strong> Use Arrow Keys ← →</p>
+                <p><strong>Mobile:</strong> Use Virtual Joystick</p>
+            </div>
+            <button id="startBtn" class="btn">
+                <i class="fas fa-play"></i> Start Game
+            </button>
+        </div>
+        
+        <!-- Game Over Overlay -->
+        <div id="gameOverOverlay" class="menu-overlay" style="display: none;">
+            <h1 class="text-4xl font-bold mb-4">🏁 Game Over!</h1>
+            <div id="finalStats" class="text-xl mb-6"></div>
+            <button id="restartBtn" class="btn">
+                <i class="fas fa-redo"></i> Play Again
+            </button>
+            <button id="menuBtn" class="btn">
+                <i class="fas fa-home"></i> Main Menu
+            </button>
+        </div>
+    </div>
+
+    <script>
+        class RacingGame {
+            constructor() {
+                this.canvas = document.getElementById('gameCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.gameState = 'menu'; // menu, playing, gameOver
+                
+                // Game variables
+                this.player = {
+                    x: 400,
+                    y: 500,
+                    width: 40,
+                    height: 70,
+                    speed: 0,
+                    maxSpeed: 8
+                };
+                
+                this.obstacles = [];
+                this.roadOffset = 0;
+                this.score = 0;
+                this.gameTime = 0;
+                this.lastTime = 0;
+                
+                // Controls
+                this.keys = {};
+                this.joystick = {
+                    active: false,
+                    x: 0,
+                    y: 0,
+                    centerX: 60,
+                    centerY: 60
+                };
+                
+                // Audio
+                this.initAudio();
+                this.muted = false;
+                
+                // Setup
+                this.setupEventListeners();
+                this.resizeCanvas();
+                
+                // Start game loop
+                this.gameLoop();
+            }
+            
+            initAudio() {
+                this.audio = {
+                    engine: new Audio('https://cdn1.genspark.ai/user-upload-image/2/4b41c219-6d0d-4a98-a851-cb05e9f5677e.mp3'),
+                    collision: new Audio('https://cdn1.genspark.ai/user-upload-image/2/d34b7e94-c6e4-40a7-a135-77b1e8a5eb07.mp3'),
+                    background: new Audio('https://cdn1.genspark.ai/user-upload-image/3/67564d47-6554-4e38-ae4e-e6adc6f3e99b.mp3')
+                };
+                
+                this.audio.engine.loop = true;
+                this.audio.background.loop = true;
+                
+                // Set volumes
+                this.audio.engine.volume = 0.3;
+                this.audio.collision.volume = 0.7;
+                this.audio.background.volume = 0.4;
+            }
+            
+            setupEventListeners() {
+                // Keyboard controls
+                document.addEventListener('keydown', (e) => {
+                    this.keys[e.key] = true;
+                });
+                
+                document.addEventListener('keyup', (e) => {
+                    this.keys[e.key] = false;
+                });
+                
+                // Touch controls for joystick
+                const joystickContainer = document.getElementById('joystickContainer');
+                const joystickKnob = document.getElementById('joystickKnob');
+                
+                const handleTouch = (e) => {
+                    e.preventDefault();
+                    const rect = joystickContainer.getBoundingClientRect();
+                    const touch = e.touches[0] || e.changedTouches[0];
+                    const x = touch.clientX - rect.left - 60;
+                    const y = touch.clientY - rect.top - 60;
+                    
+                    const distance = Math.sqrt(x * x + y * y);
+                    const maxDistance = 30;
+                    
+                    if (distance <= maxDistance) {
+                        this.joystick.x = x / maxDistance;
+                        joystickKnob.style.transform = `translate(${x}px, ${y}px)`;
+                    } else {
+                        const angle = Math.atan2(y, x);
+                        const limitedX = Math.cos(angle) * maxDistance;
+                        const limitedY = Math.sin(angle) * maxDistance;
+                        this.joystick.x = limitedX / maxDistance;
+                        joystickKnob.style.transform = `translate(${limitedX}px, ${limitedY}px)`;
+                    }
+                    
+                    this.joystick.active = true;
+                };
+                
+                const handleTouchEnd = () => {
+                    this.joystick.active = false;
+                    this.joystick.x = 0;
+                    joystickKnob.style.transform = 'translate(0px, 0px)';
+                };
+                
+                joystickContainer.addEventListener('touchstart', handleTouch);
+                joystickContainer.addEventListener('touchmove', handleTouch);
+                joystickContainer.addEventListener('touchend', handleTouchEnd);
+                
+                // UI buttons
+                document.getElementById('startBtn').addEventListener('click', () => this.startGame());
+                document.getElementById('restartBtn').addEventListener('click', () => this.startGame());
+                document.getElementById('menuBtn').addEventListener('click', () => this.showMenu());
+                document.getElementById('fullscreenBtn').addEventListener('click', () => this.toggleFullscreen());
+                document.getElementById('muteBtn').addEventListener('click', () => this.toggleMute());
+                
+                // Window resize
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+            
+            resizeCanvas() {
+                const container = document.getElementById('gameContainer');
+                const maxWidth = Math.min(800, window.innerWidth - 40);
+                const maxHeight = Math.min(600, window.innerHeight - 40);
+                
+                this.canvas.width = maxWidth;
+                this.canvas.height = maxHeight;
+                
+                // Adjust player position
+                this.player.x = maxWidth / 2;
+                this.player.y = maxHeight - 100;
+            }
+            
+            startGame() {
+                this.gameState = 'playing';
+                this.score = 0;
+                this.gameTime = 0;
+                this.obstacles = [];
+                this.player.x = this.canvas.width / 2;
+                this.player.speed = 0;
+                this.roadOffset = 0;
+                
+                document.getElementById('menuOverlay').style.display = 'none';
+                document.getElementById('gameOverOverlay').style.display = 'none';
+                
+                if (!this.muted) {
+                    this.audio.background.play();
+                    this.audio.engine.play();
+                }
+            }
+            
+            showMenu() {
+                this.gameState = 'menu';
+                document.getElementById('menuOverlay').style.display = 'flex';
+                document.getElementById('gameOverOverlay').style.display = 'none';
+                this.stopAllAudio();
+            }
+            
+            gameOver() {
+                this.gameState = 'gameOver';
+                this.stopAllAudio();
+                
+                if (!this.muted) {
+                    this.audio.collision.play();
+                }
+                
+                document.getElementById('finalStats').innerHTML = `
+                    <div>Distance: ${Math.floor(this.score)}m</div>
+                    <div>Time: ${Math.floor(this.gameTime)}s</div>
+                    <div>Top Speed: ${Math.floor(this.player.maxSpeed * 20)} km/h</div>
+                `;
+                
+                document.getElementById('gameOverOverlay').style.display = 'flex';
+            }
+            
+            stopAllAudio() {
+                Object.values(this.audio).forEach(audio => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                });
+            }
+            
+            toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                    document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    document.exitFullscreen();
+                    document.getElementById('fullscreenBtn').innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            }
+            
+            toggleMute() {
+                this.muted = !this.muted;
+                const btn = document.getElementById('muteBtn');
+                
+                if (this.muted) {
+                    this.stopAllAudio();
+                    btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    if (this.gameState === 'playing') {
+                        this.audio.background.play();
+                        this.audio.engine.play();
+                    }
+                }
+            }
+            
+            update(deltaTime) {
+                if (this.gameState !== 'playing') return;
+                
+                this.gameTime += deltaTime;
+                
+                // Update player movement
+                let moveSpeed = 0;
+                
+                if (this.keys['ArrowLeft'] || this.keys['a'] || this.keys['A']) {
+                    moveSpeed = -5;
+                } else if (this.keys['ArrowRight'] || this.keys['d'] || this.keys['D']) {
+                    moveSpeed = 5;
+                }
+                
+                // Joystick input
+                if (this.joystick.active) {
+                    moveSpeed = this.joystick.x * 5;
+                }
+                
+                this.player.x += moveSpeed;
+                this.player.x = Math.max(50, Math.min(this.canvas.width - 50, this.player.x));
+                
+                // Update road animation
+                this.roadOffset += 8;
+                if (this.roadOffset > 40) {
+                    this.roadOffset = 0;
+                }
+                
+                // Spawn obstacles
+                if (Math.random() < 0.02) {
+                    this.obstacles.push({
+                        x: Math.random() * (this.canvas.width - 100) + 50,
+                        y: -50,
+                        width: 40,
+                        height: 70,
+                        speed: 6 + Math.random() * 3
+                    });
+                }
+                
+                // Update obstacles
+                this.obstacles = this.obstacles.filter(obstacle => {
+                    obstacle.y += obstacle.speed;
+                    return obstacle.y < this.canvas.height + 50;
+                });
+                
+                // Collision detection
+                this.obstacles.forEach(obstacle => {
+                    if (this.checkCollision(this.player, obstacle)) {
+                        this.gameOver();
+                    }
+                });
+                
+                // Update score
+                this.score += deltaTime * 10;
+                
+                // Update UI
+                document.getElementById('scoreDisplay').textContent = `Distance: ${Math.floor(this.score)}m`;
+                document.getElementById('speedDisplay').textContent = `Speed: ${Math.floor(60 + Math.random() * 40)} km/h`;
+                document.getElementById('timeDisplay').textContent = `Time: ${Math.floor(this.gameTime)}s`;
+            }
+            
+            checkCollision(a, b) {
+                return a.x < b.x + b.width &&
+                       a.x + a.width > b.x &&
+                       a.y < b.y + b.height &&
+                       a.y + a.height > b.y;
+            }
+            
+            render() {
+                // Clear canvas
+                this.ctx.fillStyle = '#2d5a27';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw road
+                this.drawRoad();
+                
+                if (this.gameState === 'playing') {
+                    // Draw obstacles
+                    this.obstacles.forEach(obstacle => {
+                        this.drawCar(obstacle.x, obstacle.y, '#dc3545', obstacle.width, obstacle.height);
+                    });
+                    
+                    // Draw player car
+                    this.drawCar(this.player.x, this.player.y, '#007bff', this.player.width, this.player.height);
+                }
+            }
+            
+            drawRoad() {
+                const roadWidth = this.canvas.width * 0.6;
+                const roadX = (this.canvas.width - roadWidth) / 2;
+                
+                // Road surface
+                this.ctx.fillStyle = '#333';
+                this.ctx.fillRect(roadX, 0, roadWidth, this.canvas.height);
+                
+                // Road edges
+                this.ctx.fillStyle = '#fff';
+                this.ctx.fillRect(roadX - 5, 0, 5, this.canvas.height);
+                this.ctx.fillRect(roadX + roadWidth, 0, 5, this.canvas.height);
+                
+                // Center line
+                this.ctx.fillStyle = '#ffd700';
+                const lineHeight = 20;
+                const gap = 20;
+                for (let y = -lineHeight + this.roadOffset; y < this.canvas.height; y += lineHeight + gap) {
+                    this.ctx.fillRect(this.canvas.width / 2 - 2, y, 4, lineHeight);
+                }
+                
+                // Lane markers
+                const laneWidth = roadWidth / 3;
+                this.ctx.fillStyle = '#fff';
+                for (let i = 1; i < 3; i++) {
+                    const x = roadX + laneWidth * i;
+                    for (let y = -10 + this.roadOffset / 2; y < this.canvas.height; y += 30) {
+                        this.ctx.fillRect(x - 1, y, 2, 15);
+                    }
+                }
+            }
+            
+            drawCar(x, y, color, width, height) {
+                this.ctx.save();
+                this.ctx.translate(x + width/2, y + height/2);
+                
+                // Car body
+                this.ctx.fillStyle = color;
+                this.ctx.fillRect(-width/2, -height/2, width, height);
+                
+                // Car details
+                this.ctx.fillStyle = '#222';
+                this.ctx.fillRect(-width/2 + 5, -height/2 + 10, width - 10, 15); // Windshield
+                this.ctx.fillRect(-width/2 + 5, height/2 - 25, width - 10, 15); // Rear window
+                
+                // Wheels
+                this.ctx.fillStyle = '#000';
+                this.ctx.fillRect(-width/2 - 3, -height/2 + 5, 6, 8);
+                this.ctx.fillRect(width/2 - 3, -height/2 + 5, 6, 8);
+                this.ctx.fillRect(-width/2 - 3, height/2 - 13, 6, 8);
+                this.ctx.fillRect(width/2 - 3, height/2 - 13, 6, 8);
+                
+                this.ctx.restore();
+            }
+            
+            gameLoop(currentTime = 0) {
+                const deltaTime = (currentTime - this.lastTime) / 1000;
+                this.lastTime = currentTime;
+                
+                this.update(deltaTime);
+                this.render();
+                
+                requestAnimationFrame((time) => this.gameLoop(time));
+            }
+        }
+        
+        // Initialize game when page loads
+        window.addEventListener('load', () => {
+            new RacingGame();
+        });
+    </script>
+</body>
+</html>
