@@ -1,12 +1,15 @@
+
+      
+        
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Racing Game</title>
+    <title>Mini Racing Game - Touch Controls</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-        
+      
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
@@ -16,7 +19,7 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-        
+      
     <style>
         body {
             margin: 0;
@@ -33,32 +36,6 @@
         #gameCanvas {
             border: 3px solid #333;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-        
-        .joystick-container {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 120px;
-            height: 120px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.3);
-            touch-action: none;
-        }
-        
-        .joystick-knob {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            touch-action: none;
         }
         
         .game-ui {
@@ -114,13 +91,20 @@
             transform: translateY(0);
         }
         
-        @media (max-width: 768px) {
-            .joystick-container {
-                display: block;
-            }
+        .touch-indicator {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 5;
         }
         
-        @media (min-width: 769px) {
+        @media (max-width: 768px) {
             .joystick-container {
                 display: none;
             }
@@ -130,6 +114,9 @@
 <body>
     <div id="gameContainer" class="flex items-center justify-center min-h-screen">
         <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <!-- Touch indicator (for visual feedback) -->
+        <div id="touchIndicator" class="touch-indicator"></div>
         
         <!-- Game UI -->
         <div class="game-ui">
@@ -148,18 +135,13 @@
             </button>
         </div>
         
-        <!-- Virtual Joystick -->
-        <div id="joystickContainer" class="joystick-container">
-            <div id="joystickKnob" class="joystick-knob"></div>
-        </div>
-        
         <!-- Menu Overlay -->
         <div id="menuOverlay" class="menu-overlay">
             <h1 class="text-4xl font-bold mb-4">🏎️ Mini Racing Game</h1>
-            <p class="text-lg mb-6">Steer left and right to avoid obstacles!</p>
+            <p class="text-lg mb-6">Touch anywhere on the screen to steer left and right!</p>
             <div class="mb-4">
                 <p><strong>Desktop:</strong> Use Arrow Keys ← →</p>
-                <p><strong>Mobile:</strong> Use Virtual Joystick</p>
+                <p><strong>Mobile:</strong> Touch anywhere to steer</p>
             </div>
             <button id="startBtn" class="btn">
                 <i class="fas fa-play"></i> Start Game
@@ -204,14 +186,15 @@
                 
                 // Controls
                 this.keys = {};
-                this.joystick = {
+                this.touchControls = {
                     active: false,
-                    x: 0,
-                    y: 0,
-                    centerX: 0,
-                    centerY: 0,
-                    radius: 60
+                    startX: 0,
+                    currentX: 0,
+                    sensitivity: 0.8
                 };
+                
+                // Touch indicator
+                this.touchIndicator = document.getElementById('touchIndicator');
                 
                 // Audio
                 this.initAudio();
@@ -251,79 +234,48 @@
                     this.keys[e.key] = false;
                 });
                 
-                // Touch controls for joystick
-                const joystickContainer = document.getElementById('joystickContainer');
-                const joystickKnob = document.getElementById('joystickKnob');
-                
-                // Get joystick center position
-                const updateJoystickCenter = () => {
-                    const rect = joystickContainer.getBoundingClientRect();
-                    this.joystick.centerX = rect.left + rect.width / 2;
-                    this.joystick.centerY = rect.top + rect.height / 2;
-                };
-                
-                // Update center position initially and on resize
-                updateJoystickCenter();
-                window.addEventListener('resize', updateJoystickCenter);
-                
+                // Touch controls for the entire game area
                 const handleTouchStart = (e) => {
+                    if (this.gameState !== 'playing') return;
+                    
                     e.preventDefault();
-                    this.joystick.active = true;
-                    updateJoystickCenter();
-                    handleTouchMove(e);
+                    this.touchControls.active = true;
+                    
+                    const touch = e.touches[0];
+                    this.touchControls.startX = touch.clientX;
+                    this.touchControls.currentX = touch.clientX;
+                    
+                    // Show touch indicator
+                    this.touchIndicator.style.left = touch.clientX + 'px';
+                    this.touchIndicator.style.top = touch.clientY + 'px';
+                    this.touchIndicator.style.opacity = '1';
                 };
                 
                 const handleTouchMove = (e) => {
-                    if (!this.joystick.active) return;
+                    if (!this.touchControls.active) return;
                     e.preventDefault();
                     
-                    const touch = e.touches[0] || e.changedTouches[0];
-                    const touchX = touch.clientX;
-                    const touchY = touch.clientY;
+                    const touch = e.touches[0];
+                    this.touchControls.currentX = touch.clientX;
                     
-                    // Calculate distance from center
-                    const deltaX = touchX - this.joystick.centerX;
-                    const deltaY = touchY - this.joystick.centerY;
-                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                    
-                    // Limit movement to joystick radius
-                    const limitedDistance = Math.min(distance, this.joystick.radius);
-                    
-                    if (limitedDistance > 0) {
-                        const angle = Math.atan2(deltaY, deltaX);
-                        const moveX = Math.cos(angle) * limitedDistance;
-                        const moveY = Math.sin(angle) * limitedDistance;
-                        
-                        // Update joystick position
-                        joystickKnob.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                        
-                        // Normalize for game input (-1 to 1)
-                        this.joystick.x = moveX / this.joystick.radius;
-                    } else {
-                        joystickKnob.style.transform = 'translate(0px, 0px)';
-                        this.joystick.x = 0;
-                    }
+                    // Update touch indicator position
+                    this.touchIndicator.style.left = touch.clientX + 'px';
+                    this.touchIndicator.style.top = touch.clientY + 'px';
                 };
                 
                 const handleTouchEnd = (e) => {
                     e.preventDefault();
-                    this.joystick.active = false;
-                    this.joystick.x = 0;
-                    joystickKnob.style.transform = 'translate(0px, 0px)';
+                    this.touchControls.active = false;
+                    
+                    // Hide touch indicator
+                    this.touchIndicator.style.opacity = '0';
                 };
                 
-                // Add event listeners with passive: false for better control
-                joystickContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
-                joystickContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-                joystickContainer.addEventListener('touchend', handleTouchEnd);
-                joystickContainer.addEventListener('touchcancel', handleTouchEnd);
-                
-                // Prevent default touch behavior on the game container
-                document.getElementById('gameContainer').addEventListener('touchmove', (e) => {
-                    if (e.target === joystickContainer || e.target === joystickKnob) {
-                        e.preventDefault();
-                    }
-                }, { passive: false });
+                // Add event listeners to the canvas
+                this.canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+                this.canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+                this.canvas.addEventListener('touchend', handleTouchEnd);
+                this.canvas.addEventListener('touchcancel', handleTouchEnd);
                 
                 // UI buttons
                 document.getElementById('startBtn').addEventListener('click', () => this.startGame());
@@ -438,13 +390,32 @@
                     moveSpeed = 5;
                 }
                 
-                // Joystick input - more responsive
-                if (this.joystick.active) {
-                    moveSpeed = this.joystick.x * 8; // Increased sensitivity
+                // Touch input - direct position control
+                if (this.touchControls.active) {
+                    const deltaX = this.touchControls.currentX - this.touchControls.startX;
+                    moveSpeed = deltaX * this.touchControls.sensitivity * deltaTime * 60;
+                    
+                    // Update player position directly based on touch position
+                    const canvasRect = this.canvas.getBoundingClientRect();
+                    const relativeX = this.touchControls.currentX - canvasRect.left;
+                    
+                    // Keep the car within road boundaries
+                    const roadWidth = this.canvas.width * 0.6;
+                    const minX = (this.canvas.width - roadWidth) / 2 + 30;
+                    const maxX = this.canvas.width - minX;
+                    
+                    this.player.x = Math.max(minX, Math.min(maxX, relativeX));
+                } else {
+                    // Apply keyboard movement if no touch
+                    this.player.x += moveSpeed;
+                    
+                    // Keep the car within road boundaries
+                    const roadWidth = this.canvas.width * 0.6;
+                    const minX = (this.canvas.width - roadWidth) / 2 + 30;
+                    const maxX = this.canvas.width - minX;
+                    
+                    this.player.x = Math.max(minX, Math.min(maxX, this.player.x));
                 }
-                
-                this.player.x += moveSpeed;
-                this.player.x = Math.max(50, Math.min(this.canvas.width - 50, this.player.x));
                 
                 // Update road animation
                 this.roadOffset += 8;
@@ -454,8 +425,12 @@
                 
                 // Spawn obstacles
                 if (Math.random() < 0.02) {
+                    const roadWidth = this.canvas.width * 0.6;
+                    const minX = (this.canvas.width - roadWidth) / 2 + 30;
+                    const maxX = this.canvas.width - minX;
+                    
                     this.obstacles.push({
-                        x: Math.random() * (this.canvas.width - 100) + 50,
+                        x: Math.random() * (maxX - minX) + minX,
                         y: -50,
                         width: 40,
                         height: 70,
@@ -545,7 +520,7 @@
             
             drawCar(x, y, color, width, height) {
                 this.ctx.save();
-                this.ctx.translate(x + width/2, y + height/2);
+                this.ctx.translate(x, y);
                 
                 // Car body
                 this.ctx.fillStyle = color;
