@@ -3,8 +3,8 @@
   "short_name": "Yashify",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#8C52FF",
+  "theme_color": "#8C52FF",
   "icons": [
     {
       "src": "192.png",
