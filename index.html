@@ -1,5 +1,4 @@
 
-  
 
     
 <!DOCTYPE html>
@@ -29,11 +28,17 @@
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
+        /* ✅ Custom Bristol Font */
+        @font-face {
+            font-family: 'Bristol';
+            src: url('https://raw.githubusercontent.com/tushaar01/yashify/main/Bristol.otf') format('opentype');
+        }
+
         /* ===== Splash Screen Animation ===== */
         .splash {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: #8C52FF; /* Your requested background color */
+            background: #8C52FF;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -52,15 +57,15 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.25);
         }
         .splash .text {
-            font-size: 1.5rem;
+            font-family: 'Bristol', sans-serif;
+            font-size: 2rem;
             margin-top: 1rem;
             color: white;
-            font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             border-right: 2px solid white;
             width: 0;
-            animation: typing 2s steps(20,end) forwards, blink 0.8s infinite;
+            animation: typing 2.5s steps(20,end) forwards, blink 0.8s infinite;
         }
         @keyframes typing {
             from { width: 0 }
@@ -132,8 +137,8 @@
         }
 
         .title {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-family: 'Bristol', sans-serif;
+            font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
             animation: slideInFromTop 0.8s ease-out;
@@ -288,7 +293,7 @@
             }
             
             .title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .icon-fixed {
@@ -308,7 +313,7 @@
     <!-- Floating Icon -->
     <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" class="icon-fixed" id="fixedIcon">
 
-    <!-- Mailbox Button - Now opens Gmail directly -->
+    <!-- Mailbox Button -->
     <a href="mailto:admin@yashify.fun?subject=Problem%20Report&body=Please%20describe%20your%20issue%20here..." 
        class="mailbox-btn" 
        id="mailboxBtn">
@@ -324,7 +329,6 @@
 
         <!-- Cards Grid -->
         <div class="cards">
-            <!-- Library Card (replaces Krishna card) -->
             <a href="L/library.html" class="card library-card">
                 <img src="https://cdn-icons-png.flaticon.com/512/12023/12023602.png" alt="Library" class="card-img" loading="lazy">
                 <div class="card-content">
@@ -336,7 +340,6 @@
                 </div>
             </a>
 
-            <!-- Medicose Card -->
             <a href="Medicose/index.html" class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4861/4861800.png" alt="Medicose" class="card-img" loading="lazy">
                 <div class="card-content">
@@ -348,7 +351,6 @@
                 </div>
             </a>
 
-            <!-- FUN Card -->
             <a href="FUN/index.html" class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/5115/5115259.png" alt="FUN" class="card-img" loading="lazy">
                 <div class="card-content">
@@ -360,7 +362,6 @@
                 </div>
             </a>
 
-            <!-- Course Card -->
             <a href="course/index.html" class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4819/4819809.png" alt="Courses" class="card-img" loading="lazy">
                 <div class="card-content">
@@ -394,37 +395,11 @@
             setTimeout(() => {
                 splash.classList.add('hide');
                 fixedIcon.style.display = "block";
-            }, 3000); // after 3 sec hide splash
+            }, 3000); 
         });
 
         // Current Year
         document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Simple hover effect
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-                card.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-            });
-        });
-
-        // Mailbox button hover effect
-        const mailboxBtn = document.getElementById('mailboxBtn');
-        mailboxBtn.addEventListener('mouseenter', () => {
-            mailboxBtn.style.transform = 'scale(1.1)';
-            mailboxBtn.style.background = 'var(--accent)';
-        });
-        
-        mailboxBtn.addEventListener('mouseleave', () => {
-            mailboxBtn.style.transform = 'scale(1)';
-            mailboxBtn.style.background = 'var(--primary)';
-        });
     </script>
 </body>
 </html>
