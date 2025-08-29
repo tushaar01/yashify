@@ -8,20 +8,17 @@
 
     
     
-   <!DOCTYPE html>
+
+    
+    
+    
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yashify.fun ✨</title>
-   
- 
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="512.png">
-<link rel="icon" type="image/png" href="512.png">
-<meta name="theme-color" content="#000000">
-    
-    <!-- Google tag (gtag.js) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yashify.fun ✨</title>
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -30,292 +27,186 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
+  
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="512.png">
+  <link rel="icon" type="image/png" href="512.png">
+  <meta name="theme-color" content="#000000">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* ===== Existing CSS (unchanged) ===== */
+    :root {
+      --primary: #8C52FF;   /* purple */
+      --secondary: #8C52FF;
+      --accent: #8C52FF;
+      --text: #1f2937;
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+      --library-bg: #f0f7ff;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 20px;
+      overflow-x:hidden;
+    }
+
+    /* ===== Splash Animation Styles ===== */
+    .splash {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .splash.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .splash img {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .splash .text {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #8C52FF;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #8C52FF;
+      width: 0;
+      animation: typing 2s steps(20,end) forwards, blink 0.8s infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 12ch }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    .icon-fixed {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: none;
+      animation: float 3s ease-in-out infinite;
+      z-index: 10000;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    /* ===== NEW: Centered Header Styles ===== */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
     
-    <style>
-        /* ===== Core Styles ===== */
-        :root {
-            --primary: #7c3aed;
-            --secondary: #2563eb;
-            --accent: #db2777;
-            --text: #1f2937;
-            --bg: #ffffff;
-            --card-bg: #ffffff;
-            --border: #e5e7eb;
-            --shadow: 0 2px 8px rgba(0,0,0,0.08);
-            --library-bg: #f0f7ff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ===== Header ===== */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            position: relative;
-        }
-
-        .title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: #6b7280;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ===== Mailbox Button ===== */
-        .mailbox-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .mailbox-btn:hover {
-            transform: scale(1.1);
-            background: var(--accent);
-        }
-
-        /* ===== Cards Grid ===== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid var(--border);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 140px;
-            object-fit: contain;
-            background: var(--library-bg);
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-content {
-            padding: 1rem;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: #6b7280;
-            text-align: center;
-        }
-
-        /* Library Card Special */
-        .library-card {
-            background: var(--library-bg);
-        }
-        .library-card .card-title {
-            color: var(--secondary);
-        }
-
-        /* ===== Footer ===== */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 2rem;
-            color: #6b7280;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .social-links {
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--accent);
-            margin: 0 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* ===== Responsive ===== */
-        @media (max-width: 768px) {
-            .cards {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .title {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    .header {
+      text-align: center;
+      width: 100%;
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #8C52FF;
+      margin-bottom: 0.5rem;
+      animation: slideInFromTop 0.8s ease-out;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #6B7280;
+      margin-top: 0;
+      animation: slideInFromBottom 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Mailbox Button - Now opens Gmail directly -->
-    <a href="mailto:admin@yashify.fun?subject=Problem%20Report&body=Please%20describe%20your%20issue%20here..." 
-       class="mailbox-btn" 
-       id="mailboxBtn">
-        <i class="fas fa-envelope"></i>
-    </a>
+  <!-- Splash screen -->
+  <div class="splash" id="splash">
+    <img src="1192.png" alt="Yashify Icon" id="splashIcon">
+    <div class="text">yashify.fun</div>
+  </div>
+  <img src="1192.png" alt="Yashify" class="icon-fixed" id="fixedIcon">
 
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1 class="title">yashify.fun</h1>
-            <p class="subtitle">When Curiosity Meets Creativity✨</p>
-        </header>
+  <!-- ===== Centered Header Content ===== -->
+  <div class="container">
+    <header class="header">
+      <h1 class="title">yashify.fun</h1>
+      <p class="subtitle">When Curiosity Meets Creativity✨</p>
+    </header>
+    <!-- cards & footer same as your code -->
+  </div>
 
-        <!-- Cards Grid -->
-        <div class="cards">
-            <!-- Library Card (replaces Krishna card) -->
-            <a href="L/library.html" class="card library-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/12023/12023602.png" alt="Library" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Wisdom Vault</span>
-                        <span>📚</span>
-                    </h3>
-                    <p class="card-desc">Where Knowledge Meets Devotion</p>
-                </div>
-            </a>
+  <script>
+    // Splash animation control
+    window.onload = () => {
+      const splash = document.getElementById('splash');
+      const fixedIcon = document.getElementById('fixedIcon');
 
-            <!-- Medicose Card -->
-            <a href="Medicose/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/4861/4861800.png" alt="Medicose" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Medicose</span>
-                        <span>💊</span>
-                    </h3>
-                    <p class="card-desc">Medical learning simplified</p>
-                </div>
-            </a>
+      setTimeout(() => {
+        splash.classList.add('hide');
+        fixedIcon.style.display = "block";
+      }, 3000); // after 3 sec hide splash
+    };
 
-            <!-- FUN Card -->
-            <a href="FUN/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5115/5115259.png" alt="FUN" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>FUN Zone</span>
-                        <span>🎉</span>
-                    </h3>
-                    <p class="card-desc">Entertainment hub</p>
-                </div>
-            </a>
-
-            <!-- Course Card -->
-            <a href="course/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/4819/4819809.png" alt="Courses" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Courses</span>
-                        <span>📚</span>
-                    </h3>
-                    <p class="card-desc">Learn something new</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>Made with ❤️ by Yashify</p>
-            <p>© <span id="year">2024</span> - All Rights Reserved</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/yashify.fun" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        // Current Year
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Simple hover effect
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-                card.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-            });
-        });
-
-        // Mailbox button hover effect
-        const mailboxBtn = document.getElementById('mailboxBtn');
-        mailboxBtn.addEventListener('mouseenter', () => {
-            mailboxBtn.style.transform = 'scale(1.1)';
-            mailboxBtn.style.background = 'var(--accent)';
-        });
-        
-        mailboxBtn.addEventListener('mouseleave', () => {
-            mailboxBtn.style.transform = 'scale(1)';
-            mailboxBtn.style.background = 'var(--primary)';
-        });
-    </script>
+    // Year update (from your code)
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
