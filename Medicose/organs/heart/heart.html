@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,16 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B5X5RJM3XH');
+  </script>
 
   <style>
     :root {
@@ -175,24 +172,10 @@
       100% { transform: scale(1); }
     }
     
-    .heart-beat::before,
-    .heart-beat::after {
-      content: "";
-      background-color: var(--primary);
-      border-radius: 50%;
-      height: 180px;
-      position: absolute;
-      width: 180px;
-    }
-    
-    .heart-beat::before {
-      top: -90px;
-      left: 0;
-    }
-    
-    .heart-beat::after {
-      left: 90px;
-      top: 0;
+    .heart-beat img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     
     .heart-rate {
@@ -485,11 +468,11 @@
   <div class="main-container">
     <!-- Sidebar -->
     <div class="sidebar">
-      <a href="basicinfo/index.html" class="menu-item" data-target="basic-anatomy">
+      <a href="#" class="menu-item active" data-target="basic-anatomy">
         <i class="fas fa-brain"></i>
         <span>Basic Anatomy</span>
       </a>
-      <a href="disease/index.html" class="menu-item" data-target="heart-condition">
+      <a href="#" class="menu-item" data-target="heart-condition">
         <i class="fas fa-heart"></i>
         <span>Heart Condition</span>
       </a>
@@ -510,7 +493,9 @@
         <h2>Heart Explorer</h2>
         <div class="heart-visual-container">
           <div class="heart-animation">
-            <div class="heart-beat"></div>
+            <div class="heart-beat">
+              <img src="https://cdn-icons-png.flaticon.com/512/4848/4848971.png" alt="Heart">
+            </div>
             <div class="heart-rate">
               <i class="fas fa-heart"></i>
               <span>72 bpm</span>
@@ -610,24 +595,69 @@
         <h2>Basic Heart Anatomy</h2>
         <p>The heart is a muscular organ about the size of a fist, located just behind and slightly left of the breastbone. The heart pumps blood through the network of arteries and veins called the cardiovascular system.</p>
         <p>It has four chambers: the right and left atria, and the right and left ventricles. Valves between the chambers keep blood flowing in the right direction.</p>
+        <div style="text-align: center; margin-top: 20px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Diagram_of_the_human_heart_%28cropped%29.svg/800px-Diagram_of_the_human_heart_%28cropped%29.svg.png" alt="Heart Anatomy" style="max-width: 100%; height: auto; border-radius: 10px;">
+        </div>
       </div>
 
       <div id="heart-condition" class="content-area">
         <h2>Heart Conditions</h2>
         <p>Common heart conditions include coronary artery disease, arrhythmias, heart valve disease, and heart failure. Symptoms can vary but often include chest pain, shortness of breath, palpitations, and fatigue.</p>
         <p>Regular check-ups and maintaining a healthy lifestyle can help prevent many heart conditions.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Coronary Artery Disease</h3>
+            <p>Build-up of plaque in the heart's arteries, which can lead to reduced blood flow.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Arrhythmia</h3>
+            <p>Abnormal heart rhythms that can cause the heart to beat too fast, too slow, or irregularly.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Heart Failure</h3>
+            <p>The heart doesn't pump blood as well as it should, leading to fatigue and shortness of breath.</p>
+          </div>
+        </div>
       </div>
 
       <div id="treatment" class="content-area">
         <h2>Treatment Options</h2>
         <p>Treatment for heart conditions depends on the specific condition and its severity. Options may include lifestyle changes, medications, medical procedures, or surgery.</p>
         <p>Common procedures include angioplasty, stent placement, pacemaker implantation, and bypass surgery.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Lifestyle Changes</h3>
+            <p>Healthy diet, regular exercise, quitting smoking, and stress management.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Medications</h3>
+            <p>Blood thinners, beta-blockers, ACE inhibitors, and cholesterol-lowering drugs.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Surgical Procedures</h3>
+            <p>Angioplasty, bypass surgery, valve repair/replacement, and pacemaker implantation.</p>
+          </div>
+        </div>
       </div>
 
       <div id="latest-research" class="content-area">
         <h2>Latest Research</h2>
         <p>Recent advances in cardiology include new anticoagulant medications, improved stent technology, minimally invasive surgical techniques, and advancements in artificial intelligence for early detection of heart conditions.</p>
         <p>Researchers are also exploring regenerative therapies to repair damaged heart tissue.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">AI in Cardiology</h3>
+            <p>Machine learning algorithms are being developed to predict heart disease risk and interpret ECGs.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Regenerative Medicine</h3>
+            <p>Stem cell therapy and tissue engineering show promise for repairing damaged heart tissue.</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Minimally Invasive Procedures</h3>
+            <p>New techniques allow for complex heart procedures with smaller incisions and faster recovery.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
