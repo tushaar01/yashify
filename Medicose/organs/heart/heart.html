@@ -1,15 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Heart Explorer | Medicose</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
-    
-    <!-- Google tag (gtag.js) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,409 +17,760 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-    
-    
+
+
   <style>
     :root {
       --primary: #ff4d6d;
-      --secondary: #ff8fa3;
-      --accent: #ffccd5;
-      --dark: #0f0a1e;
-      --light: #f8f9fa;
+      --primary-light: #ffccd5;
+      --secondary: #5d6dff;
+      --secondary-light: #ccd0ff;
+      --light: #f9f9f9;
+      --dark: #1b1d29;
+      --gray: #6c757d;
+      --card-bg: rgba(255,255,255,0.7);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: var(--dark);
-      color: white;
-      display: flex;
+      background: var(--light);
+      color:#222;
+      display:flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 20px;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 77, 109, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 80% 70%, rgba(255, 143, 163, 0.15) 0%, transparent 20%);
+      min-height:100vh;
     }
 
-    h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3.5rem;
-      margin: 20px 0 60px;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      position: relative;
-      text-align: center;
-      animation: float 3s ease-in-out infinite;
-      letter-spacing: 1px;
-    }
-    
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 2px;
-      animation: widthPulse 2s infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    @keyframes widthPulse {
-      0%, 100% { width: 120px; opacity: 1; }
-      50% { width: 150px; opacity: 0.7; }
-    }
-
-    .container-wrapper {
+    /* Header */
+    .header {
+      background: white;
+      padding: 15px 30px;
       display: flex;
-      justify-content: center;
-      width: 100%;
-      max-width: 1200px;
-      position: relative;
-      perspective: 1000px;
-    }
-    
-    .container-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    }
-
-    .container {
-      display: grid;
-      gap: 30px;
-      justify-content: center;
-      width: 100%;
-      padding: 20px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(8px);
-      padding: 30px 20px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      min-height: 180px;
-      transform-style: preserve-3d;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: 0.5s;
-    }
-    
-    .card:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 40px rgba(255, 77, 109, 0.4);
-      border-color: rgba(255, 77, 109, 0.7);
-    }
-    
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card span {
-      font-size: 1.3rem;
-      margin-top: 15px;
-      position: relative;
-      z-index: 1;
-      transition: all 0.3s ease;
-    }
-    
-    .card:hover span {
-      color: var(--accent);
-      text-shadow: 0 0 15px rgba(255, 204, 213, 0.7);
-    }
-    
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 700;
       color: var(--primary);
-      transition: all 0.4s ease;
-      filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.5));
     }
     
-    .card:hover .card-icon {
-      transform: scale(1.3) rotate(10deg);
-      color: var(--secondary);
+    .header-icons {
+      display: flex;
+      gap: 20px;
     }
     
-    .pulse {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-      opacity: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      transform: scale(0);
+    .header-icons i {
+      font-size: 20px;
+      color: var(--gray);
+      cursor: pointer;
+      transition: 0.3s;
     }
     
-    .card:hover .pulse {
-      animation: pulse 1.5s infinite;
-    }
-    
-    @keyframes pulse {
-      0% {
-        transform: scale(0.8);
-        opacity: 0.7;
-      }
-      100% {
-        transform: scale(1.5);
-        opacity: 0;
-      }
+    .header-icons i:hover {
+      color: var(--primary);
     }
 
-    /* Beating Heart Animation */
-    .heart-beat {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 80px;
-      height: 80px;
-      background-color: var(--primary);
-      border-radius: 50%;
+    /* Main layout */
+    .main-container {
+      display: flex;
+      flex: 1;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #eee;
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .menu-item {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 15px;
+      padding: 15px 25px;
       cursor: pointer;
-      box-shadow: 0 0 30px rgba(255, 77, 109, 0.7);
-      animation: beat 1.5s infinite;
-      z-index: 10;
-      transition: all 0.3s ease;
+      transition: 0.3s;
+      color: var(--gray);
+      text-decoration: none;
     }
     
-    .heart-beat:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px rgba(255, 77, 109, 0.9);
+    .menu-item:hover {
+      background: var(--primary-light);
+      color: var(--primary);
     }
     
-    .heart-beat::before {
-      content: '❤️';
-      font-size: 2.5rem;
+    .menu-item.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-right: 3px solid var(--primary);
     }
     
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
+    .menu-item i {
+      font-size: 20px;
+      width: 25px;
+      text-align: center;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Heart Explorer Section */
+    .heart-explorer {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .heart-explorer h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .heart-visual-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    
+    .heart-animation {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .heart-beat {
+      width: 180px;
+      height: 180px;
+      animation: heartbeat 1.2s infinite;
+      position: relative;
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
       25% { transform: scale(1.1); }
       50% { transform: scale(1); }
       75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
-
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 40px;
-      }
-      
-      .heart-beat {
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-      }
+    
+    .heart-beat::before,
+    .heart-beat::after {
+      content: "";
+      background-color: var(--primary);
+      border-radius: 50%;
+      height: 180px;
+      position: absolute;
+      width: 180px;
     }
-
-    @media (min-width: 769px) {
-      .container {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
+    
+    .heart-beat::before {
+      top: -90px;
+      left: 0;
     }
-
-    /* Floating hearts background */
-    .floating-hearts {
-      position: fixed;
+    
+    .heart-beat::after {
+      left: 90px;
       top: 0;
+    }
+    
+    .heart-rate {
+      position: absolute;
+      bottom: 30px;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .heart-rate i {
+      color: var(--primary);
+      font-size: 20px;
+    }
+    
+    .heart-rate span {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .heart-info {
+      flex: 1;
+    }
+    
+    .heart-info h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .heart-info p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* ECG Wave Section */
+    .ecg-wave {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    
+    .ecg-wave h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .ecg-wave h3 i {
+      color: var(--primary);
+    }
+    
+    .ecg-container {
+      height: 120px;
+      background: #1b1d29;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .ecg-line {
+      position: absolute;
+      top: 50%;
       left: 0;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-50%);
     }
     
-    .heart {
-      position: absolute;
-      opacity: 0.2;
-      animation: float-up linear infinite;
-      filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.5));
-    }
-    
-    @keyframes float-up {
-      0% {
-        transform: translateY(100vh) rotate(0deg) scale(0.5);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.2;
-      }
-      90% {
-        opacity: 0.2;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg) scale(1);
-        opacity: 0;
-      }
-    }
-    
-    /* Glow effect for cards */
-    .glow {
-      position: absolute;
+    #ecg-canvas {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
-      background: radial-gradient(circle at center, rgba(255, 77, 109, 0.3), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
     
-    .card:hover .glow {
-      opacity: 1;
+    .ecg-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    
+    .ecg-stat {
+      text-align: center;
+    }
+    
+    .ecg-stat .value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .ecg-stat .label {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* Square Vitals Section */
+    .square-vitals {
+      display: grid;
+      grid-template-columns: repeat(4, 120px);
+      gap: 15px;
+      margin-top: 20px;
+      justify-content: start;
+    }
+    
+    .square-card {
+      width: 120px;
+      height: 120px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+    
+    .square-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .square-card .value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+    }
+    
+    .square-card .label {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
+    }
+    
+    .square-card .icon {
+      text-align: center;
+      font-size: 24px;
+      color: var(--secondary);
+    }
+
+    /* ECG Condition Section */
+    .ecg-condition {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .ecg-condition h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .ecg-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
+    }
+    
+    .ecg-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    
+    .ecg-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .ecg-card img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    
+    .ecg-card p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* Content Area for Menu Items */
+    .content-area {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      margin-top: 30px;
+      display: none;
+    }
+    
+    .content-area.active {
+      display: block;
+    }
+    
+    .content-area h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .content-area p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .square-vitals {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .heart-visual-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .square-vitals {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 15px 0;
+      }
+      
+      .menu-item {
+        flex-direction: column;
+        padding: 10px 15px;
+        font-size: 13px;
+        gap: 8px;
+      }
+      
+      .menu-item span {
+        text-align: center;
+      }
+      
+      .square-vitals {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="floating-hearts" id="hearts-container"></div>
-  
-  <h1>Heart Explorer</h1>
-
-  <div class="container-wrapper">
-    <div class="container">
-      <a href="basicinfo/index.html" class="card">
-        <div class="glow"></div>
-        <div class="card-icon">❤️</div>
-        <span>Basic Anatomy</span>
-        <div class="pulse"></div>
-      </a>
-
-      <a href="disease/index.html" class="card">
-        <div class="glow"></div>
-        <div class="card-icon">🫀</div>
-        <span>Heart Conditions</span>
-        <div class="pulse"></div>
-      </a>
-      
-      <a href="#" class="card">
-        <div class="glow"></div>
-        <div class="card-icon">💊</div>
-        <span>Treatments</span>
-        <div class="pulse"></div>
-      </a>
-
-      <a href="#" class="card">
-        <div class="glow"></div>
-        <div class="card-icon">🔬</div>
-        <span>Latest Research</span>
-        <div class="pulse"></div>
-      </a>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <i class="fas fa-heartbeat"></i>
+      <span>Medicose</span>
+    </div>
+    <div class="header-icons">
+      <i class="fas fa-envelope"></i>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-user-circle"></i>
     </div>
   </div>
-  
-  <div class="heart-beat" id="heartBeat"></div>
-  
-  <script>
-    // Create floating hearts
-    const heartsContainer = document.getElementById('hearts-container');
-    const heartCount = 20;
-    
-    const heartEmojis = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💞', '💕'];
-    
-    for (let i = 0; i < heartCount; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-      heart.style.animationDuration = `${Math.random() * 15 + 10}s`;
-      heart.style.animationDelay = `${Math.random() * 5}s`;
-      heartsContainer.appendChild(heart);
-    }
-    
-    // Heart beat interaction
-    const heartBeat = document.getElementById('heartBeat');
-    heartBeat.addEventListener('click', function() {
-      // Create burst effect
-      for (let i = 0; i < 15; i++) {
-        const burstHeart = document.createElement('div');
-        burstHeart.classList.add('heart');
-        burstHeart.innerHTML = '❤️';
-        burstHeart.style.left = `${50 + (Math.random() * 20 - 10)}%`;
-        burstHeart.style.top = `${50 + (Math.random() * 20 - 10)}%`;
-        burstHeart.style.fontSize = `${Math.random() * 20 + 10}px`;
-        burstHeart.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        burstHeart.style.opacity = '0.8';
-        document.body.appendChild(burstHeart);
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="basicinfo/index.html" class="menu-item active" data-target="basic-anatomy">
+        <i class="fas fa-brain"></i>
+        <span>Basic Anatomy</span>
+      </a>
+      <a href="disease/index.html“ class="menu-item" data-target="heart-condition">
+        <i class="fas fa-heart"></i>
+        <span>Heart Condition</span>
+      </a>
+      <a href="#" class="menu-item" data-target="treatment">
+        <i class="fas fa-stethoscope"></i>
+        <span>Treatment</span>
+      </a>
+      <a href="#" class="menu-item" data-target="latest-research">
+        <i class="fas fa-flask"></i>
+        <span>Latest Research</span>
+      </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Heart Explorer Section -->
+      <div class="heart-explorer">
+        <h2>Heart Explorer</h2>
+        <div class="heart-visual-container">
+          <div class="heart-animation">
+            <div class="heart-beat"></div>
+            <div class="heart-rate">
+              <i class="fas fa-heart"></i>
+              <span>72 bpm</span>
+            </div>
+          </div>
+          <div class="heart-info">
+            <h3>Real-time Heart Monitoring</h3>
+            <p>Your heart is beating at a normal rate. The animation shows a real-time representation of your heart's pumping action. A healthy resting heart rate for adults is between 60-100 beats per minute.</p>
+          </div>
+        </div>
         
-        // Remove after animation
-        setTimeout(() => {
-          burstHeart.remove();
-        }, 3000);
+        <!-- ECG Wave -->
+        <div class="ecg-wave">
+          <h3><i class="fas fa-wave-square"></i> Real-time ECG Monitoring</h3>
+          <div class="ecg-container">
+            <div class="ecg-line"></div>
+            <canvas id="ecg-canvas"></canvas>
+          </div>
+          <div class="ecg-stats">
+            <div class="ecg-stat">
+              <div class="value">72 bpm</div>
+              <div class="label">Heart Rate</div>
+            </div>
+            <div class="ecg-stat">
+              <div class="value">Normal</div>
+              <div class="label">Rhythm</div>
+            </div>
+            <div class="ecg-stat">
+              <div class="value">98%</div>
+              <div class="label">Signal Quality</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Square Vitals -->
+        <div class="square-vitals">
+          <div class="square-card">
+            <div class="icon">
+              <i class="fas fa-tint"></i>
+            </div>
+            <div class="value">116/70</div>
+            <div class="label">Blood Pressure</div>
+          </div>
+          <div class="square-card">
+            <div class="icon">
+              <i class="fas fa-syringe"></i>
+            </div>
+            <div class="value">98</div>
+            <div class="label">Glucose mg/dL</div>
+          </div>
+          <div class="square-card">
+            <div class="icon">
+              <i class="fas fa-wind"></i>
+            </div>
+            <div class="value">98%</div>
+            <div class="label">Blood Oxygen</div>
+          </div>
+          <div class="square-card">
+            <div class="icon">
+              <i class="fas fa-vial"></i>
+            </div>
+            <div class="value">180</div>
+            <div class="label">Cholesterol</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ECG Condition Section -->
+      <div class="ecg-condition">
+        <h2>ECG Condition Monitoring</h2>
+        <div class="ecg-cards">
+          <div class="ecg-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" alt="Normal ECG">
+            <p>Normal ECG</p>
+          </div>
+          <div class="ecg-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602153.png" alt="Arrhythmia">
+            <p>Arrhythmia</p>
+          </div>
+          <div class="ecg-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602136.png" alt="Tachycardia">
+            <p>Tachycardia</p>
+          </div>
+          <div class="ecg-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602148.png" alt="Bradycardia">
+            <p>Bradycardia</p>
+          </div>
+          <div class="ecg-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602142.png" alt="Atrial Fibrillation">
+            <p>Atrial Fibrillation</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Areas -->
+      <div id="basic-anatomy" class="content-area active">
+        <h2>Basic Heart Anatomy</h2>
+        <p>The heart is a muscular organ about the size of a fist, located just behind and slightly left of the breastbone. The heart pumps blood through the network of arteries and veins called the cardiovascular system.</p>
+        <p>It has four chambers: the right and left atria, and the right and left ventricles. Valves between the chambers keep blood flowing in the right direction.</p>
+      </div>
+
+      <div id="heart-condition" class="content-area">
+        <h2>Heart Conditions</h2>
+        <p>Common heart conditions include coronary artery disease, arrhythmias, heart valve disease, and heart failure. Symptoms can vary but often include chest pain, shortness of breath, palpitations, and fatigue.</p>
+        <p>Regular check-ups and maintaining a healthy lifestyle can help prevent many heart conditions.</p>
+      </div>
+
+      <div id="treatment" class="content-area">
+        <h2>Treatment Options</h2>
+        <p>Treatment for heart conditions depends on the specific condition and its severity. Options may include lifestyle changes, medications, medical procedures, or surgery.</p>
+        <p>Common procedures include angioplasty, stent placement, pacemaker implantation, and bypass surgery.</p>
+      </div>
+
+      <div id="latest-research" class="content-area">
+        <h2>Latest Research</h2>
+        <p>Recent advances in cardiology include new anticoagulant medications, improved stent technology, minimally invasive surgical techniques, and advancements in artificial intelligence for early detection of heart conditions.</p>
+        <p>Researchers are also exploring regenerative therapies to repair damaged heart tissue.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Handle menu item clicks
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all items
+        document.querySelectorAll('.menu-item').forEach(i => {
+          i.classList.remove('active');
+        });
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Hide all content areas
+        document.querySelectorAll('.content-area').forEach(area => {
+          area.classList.remove('active');
+        });
+        
+        // Show the targeted content area
+        const targetId = this.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // Real-time ECG Wave Animation
+    const canvas = document.getElementById('ecg-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    
+    // ECG data simulation
+    let data = [];
+    let position = 0;
+    
+    // Generate ECG-like waveform data
+    function generateECGData() {
+      const dataPoints = [];
+      
+      // Flat line
+      for (let i = 0; i < 20; i++) {
+        dataPoints.push(0);
       }
       
-      // Intensify beat
-      this.style.animation = 'beat 0.5s 3';
-      setTimeout(() => {
-        this.style.animation = 'beat 1.5s infinite';
-      }, 1500);
-    });
-    
-    // 3D tilt effect for cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
-        const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
-        card.style.transform = `translateY(-10px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-      });
+      // P wave
+      for (let i = 0; i < 5; i++) {
+        dataPoints.push(i * 10);
+      }
+      for (let i = 5; i > 0; i--) {
+        dataPoints.push(i * 10);
+      }
       
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(-10px) rotateY(0) rotateX(0)';
-      });
+      // Flat line
+      for (let i = 0; i < 10; i++) {
+        dataPoints.push(0);
+      }
+      
+      // QRS complex
+      for (let i = 0; i < 3; i++) {
+        dataPoints.push(-i * 30);
+      }
+      dataPoints.push(-90);
+      for (let i = 3; i > 0; i--) {
+        dataPoints.push(-i * 30);
+      }
+      for (let i = 0; i < 3; i++) {
+        dataPoints.push(i * 30);
+      }
+      dataPoints.push(90);
+      for (let i = 3; i > 0; i--) {
+        dataPoints.push(i * 30);
+      }
+      
+      // Flat line
+      for (let i = 0; i < 10; i++) {
+        dataPoints.push(0);
+      }
+      
+      // T wave
+      for (let i = 0; i < 10; i++) {
+        dataPoints.push(i * 15);
+      }
+      for (let i = 10; i > 0; i--) {
+        dataPoints.push(i * 15);
+      }
+      
+      // Flat line
+      for (let i = 0; i < 20; i++) {
+        dataPoints.push(0);
+      }
+      
+      return dataPoints;
+    }
+    
+    // Initialize data
+    const ecgPattern = generateECGData();
+    
+    // Draw ECG wave
+    function drawECG() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw the wave
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#ff4d6d';
+      
+      const centerY = canvas.height / 2;
+      const step = canvas.width / 100;
+      
+      for (let i = 0; i < 100; i++) {
+        const x = i * step;
+        const dataIndex = (position + i) % ecgPattern.length;
+        const y = centerY - ecgPattern[dataIndex] / 3;
+        
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      
+      ctx.stroke();
+      
+      // Update position for next frame
+      position = (position + 1) % ecgPattern.length;
+      
+      // Request next frame
+      requestAnimationFrame(drawECG);
+    }
+    
+    // Start animation
+    drawECG();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     });
   </script>
 </body>
