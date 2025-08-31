@@ -1,10 +1,12 @@
 {
   "name": "Yashify",
   "short_name": "Yashify",
+    "description": "Yashify Progressive Web App",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#8C52FF",
   "theme_color": "#8C52FF",
+    "orientation": "portrait",
   "icons": [
     {
       "src": "/1192.png",
