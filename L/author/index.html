@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literary Legends - Book Quotes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 320px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Left Side - Fixed Circular Author Cards */
+        .authors-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 100px 20px 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .author-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .author-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-circle.active {
+            transform: scale(1.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            border: 3px solid #764ba2;
+        }
+
+        .author-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .author-circle:hover .author-image {
+            transform: scale(1.1);
+        }
+
+        .author-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px 10px 10px;
+            text-align: center;
+            border-radius: 0 0 50% 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .author-circle:hover .author-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .author-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .author-era {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Right Side - Default Quote Section */
+        .content-main {
+            margin-left: 300px;
+            margin-top: 100px;
+            padding: 40px;
+            min-height: calc(100vh - 100px);
+            width: calc(100% - 300px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .default-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .default-content.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            display: none;
+        }
+
+        .book-icon {
+            font-size: 5rem;
+            color: #764ba2;
+            margin-bottom: 30px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Right Side - Books Section */
+        .books-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease;
+            display: none;
+        }
+
+        .books-content.active {
+            opacity: 1;
+            transform: translateX(0);
+            display: block;
+        }
+
+        .books-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #764ba2;
+        }
+
+        .books-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .author-bio {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #764ba2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            flex-grow: 0;
+        }
+
+        .book-year {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: #f0e6ff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            flex-grow: 0;
+        }
+
+        .book-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        /* Author Color Themes */
+        .kafka-color { border: 5px solid #ff6b6b; }
+        .dostoevsky-color { border: 5px solid #5f27cd; }
+        .camus-color { border: 5px solid #00d2d3; }
+        .nguyen-color { border: 5px solid #2ed573; }
+        .twain-color { border: 5px solid #ffa502; }
+
+        /* Back Button */
+        .back-button {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: #5a3d8a;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .authors-sidebar {
+                width: 250px;
+            }
+            
+            .author-circle {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .content-main {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+            }
+            
+            .header {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .authors-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 80px 20px 20px;
+            }
+            
+            .author-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .content-main {
+                margin-left: 0;
+                margin-top: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .header {
+                position: relative;
+                left: 0;
+                padding: 15px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .default-content, .books-content {
+                padding: 25px;
+            }
+            
+            .books-title {
+                font-size: 2rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .authors-sidebar {
+                gap: 15px;
+                padding: 70px 15px 15px;
+            }
+            
+            .author-circle {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .author-name {
+                font-size: 1.1rem;
+            }
+            
+            .default-content, .books-content {
+                padding: 20px;
+            }
+            
+            .books-title {
+                font-size: 1.8rem;
+            }
+            
+            .book-card {
+                padding: 20px;
+            }
+            
+            .book-title {
+                font-size: 1.3rem;
+            }
+            
+            .quote-text {
+                font-size: 1.3rem;
+            }
+            
+            .book-icon {
+                font-size: 4rem;
+            }
+        }
+
+        /* Scrollbar for sidebar */
+        .authors-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .authors-sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .authors-sidebar::-webkit-scrollbar-thumb {
+            background: #764ba2;
+            border-radius: 10px;
+        }
+
+        .authors-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #5a3d8a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Side - Fixed Circular Author Cards -->
+    <div class="authors-sidebar">
+        <!-- Franz Kafka -->
+        <div class="author-circle kafka-color" data-author="kafka">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop&crop=face" alt="Franz Kafka" class="author-image">
+            <div class="author-overlay">
+                <div class="author-name">Franz Kafka</div>
+                <div class="author-era">1883-1924</div>
+            </div>
+        </div>
+
+        <!-- Fyodor Dostoevsky -->
+        <div class="author-circle dostoevsky-color" data-author="dostoevsky">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Fyodor Dostoevsky" class="author-image">
+            <div class="author-overlay">
+                <div class="author-name">Fyodor Dostoevsky</div>
+                <div class="author-era">1821-1881</div>
+            </div>
+        </div>
+
+        <!-- Albert Camus -->
+        <div class="author-circle camus-color" data-author="camus">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" alt="Albert Camus" class="author-image">
+            <div class="author-overlay">
+                <div class="author-name">Albert Camus</div>
+                <div class="author-era">1913-1960</div>
+            </div>
+        </div>
+
+        <!-- Joseph Nguyen -->
+        <div class="author-circle nguyen-color" data-author="nguyen">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop&crop=face" alt="Joseph Nguyen" class="author-image">
+            <div class="author-overlay">
+                <div class="author-name">Joseph Nguyen</div>
+                <div class="author-era">Contemporary</div>
+            </div>
+        </div>
+
+        <!-- Mark Twain -->
+        <div class="author-circle twain-color" data-author="twain">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" alt="Mark Twain" class="author-image">
+            <div class="author-overlay">
+                <div class="author-name">Mark Twain</div>
+                <div class="author-era">1835-1910</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>Literary Legends</h1>
+        <p>Click on an author to explore their famous works</p>
+    </div>
+    
+    <!-- Right Side - Content Area -->
+    <div class="content-main">
+        <!-- Default Quote Section -->
+        <div class="default-content" id="default-content">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="quote-text">"A reader lives a thousand lives before he dies. The man who never reads lives only one."</p>
+            <p class="quote-author">- George R.R. Martin</p>
+            <p class="instruction">Select an author from the left to discover their literary masterpieces</p>
+        </div>
+        
+        <!-- Books Section (Hidden by default) -->
+        <div class="books-content" id="books-content">
+            <button class="back-button" id="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Quotes
+            </button>
+            <!-- Books content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Author Data
+        const authorsData = {
+            kafka: {
+                name: "Franz Kafka",
+                era: "1883-1924, Czech Writer",
+                biography: "Franz Kafka was a German-speaking Bohemian novelist and short-story writer, widely regarded as one of the major figures of 20th-century literature. His work fuses elements of realism and the fantastic, featuring isolated protagonists facing bizarre or surrealistic predicaments and incomprehensible socio-bureaucratic powers.",
+                works: [
+                    { 
+                        title: "The Metamorphosis", 
+                        year: "1915", 
+                        description: "A man transforms into a giant insect in this surreal exploration of alienation and identity." 
+                    },
+                    { 
+                        title: "The Trial", 
+                        year: "1925", 
+                        description: "A man is arrested and prosecuted by a remote, inaccessible authority in a nightmarish bureaucracy." 
+                    },
+                    { 
+                        title: "The Castle", 
+                        year: "1926", 
+                        description: "A land surveyor struggles to gain access to a mysterious castle and understand its purpose." 
+                    },
+                    { 
+                        title: "In the Penal Colony", 
+                        year: "1919", 
+                        description: "A disturbing tale of justice and punishment set in a remote penal colony." 
+                    }
+                ]
+            },
+            dostoevsky: {
+                name: "Fyodor Dostoevsky",
+                era: "1821-1881, Russian Novelist",
+                biography: "Fyodor Mikhailovich Dostoevsky was a Russian novelist, philosopher, short story writer, essayist, and journalist. His literary works explore human psychology in the troubled political, social, and spiritual atmospheres of 19th-century Russia. Many of his novels involve characters living in poor conditions with disparate and conflicting philosophical beliefs.",
+                works: [
+                    { 
+                        title: "Crime and Punishment", 
+                        year: "1866", 
+                        description: "A psychological exploration of guilt and redemption following a murder committed by a desperate former student." 
+                    },
+                    { 
+                        title: "The Brothers Karamazov", 
+                        year: "1880", 
+                        description: "A philosophical novel about faith, doubt, and morality through the story of three brothers and their father's murder." 
+                    },
+                    { 
+                        title: "The Idiot", 
+                        year: "1869", 
+                        description: "The story of Prince Myshkin, a Christ-like figure navigating the complexities of Russian society." 
+                    },
+                    { 
+                        title: "Demons", 
+                        year: "1872", 
+                        description: "A political novel about revolutionary nihilism and its destructive consequences." 
+                    }
+                ]
+            },
+            camus: {
+                name: "Albert Camus",
+                era: "1913-1960, French Philosopher",
+                biography: "Albert Camus was a French philosopher, author, and journalist. He won the Nobel Prize in Literature at the age of 44 in 1957, the second-youngest recipient in history. Camus was born in Algeria during the French occupation to a Pied-Noir family, and his experiences there influenced much of his work. He is most closely associated with the philosophy of absurdism.",
+                works: [
+                    { 
+                        title: "The Stranger", 
+                        year: "1942", 
+                        description: "A novel exploring absurdism through Meursault's detached response to his mother's death and a murder he commits." 
+                    },
+                    { 
+                        title: "The Plague", 
+                        year: "1947", 
+                        description: "An allegorical novel about an epidemic in Algeria and humanity's response to suffering." 
+                    },
+                    { 
+                        title: "The Myth of Sisyphus", 
+                        year: "1942", 
+                        description: "A philosophical essay arguing that life is inherently meaningless but we must imagine Sisyphus happy." 
+                    },
+                    { 
+                        title: "The Fall", 
+                        year: "1956", 
+                        description: "A philosophical novel about guilt and judgment narrated by a former Parisian lawyer." 
+                    }
+                ]
+            },
+            nguyen: {
+                name: "Joseph Nguyen",
+                era: "Contemporary Author",
+                biography: "Joseph Nguyen is a contemporary author known for his work in personal development and mindfulness. He focuses on practical philosophy for modern living, combining Eastern wisdom with Western psychology. His writing explores themes of self-discovery, mindfulness, and personal growth, making complex philosophical concepts accessible to a broad audience.",
+                works: [
+                    { 
+                        title: "Don't Believe Everything You Think", 
+                        year: "2022", 
+                        description: "A guide to overcoming negative thought patterns and cultivating mental clarity." 
+                    },
+                    { 
+                        title: "The Art of Letting Go", 
+                        year: "2022", 
+                        description: "Practical philosophy on releasing attachment and finding freedom in the present moment." 
+                    },
+                    { 
+                        title: "Mindful Living in the Digital Age", 
+                        year: "2023", 
+                        description: "Strategies for balancing technology use with mindfulness and presence." 
+                    },
+                    { 
+                        title: "Modern Wisdom for Ancient Souls", 
+                        year: "2023", 
+                        description: "Bridging traditional wisdom with contemporary challenges for personal growth." 
+                    }
+                ]
+            },
+            twain: {
+                name: "Mark Twain",
+                era: "1835-1910, American Humorist",
+                biography: "Mark Twain, born Samuel Langhorne Clemens, was an American writer, humorist, entrepreneur, publisher, and lecturer. He was lauded as the 'greatest humorist the United States has produced,' and William Faulkner called him 'the father of American literature.' His wit and satire in prose and in speech earned praise from critics and peers.",
+                works: [
+                    { 
+                        title: "The Adventures of Tom Sawyer", 
+                        year: "1876", 
+                        description: "A coming-of-age story following a young boy's adventures in a small town along the Mississippi River." 
+                    },
+                    { 
+                        title: "Adventures of Huckleberry Finn", 
+                        year: "1884", 
+                        description: "Often called the 'Great American Novel,' following Huck's journey with the escaped slave Jim." 
+                    },
+                    { 
+                        title: "The Prince and the Pauper", 
+                        year: "1881", 
+                        description: "A tale of mistaken identity between a prince and a pauper in Tudor England." 
+                    },
+                    { 
+                        title: "A Connecticut Yankee in King Arthur's Court", 
+                        year: "1889", 
+                        description: "A satirical time-travel story about a modern man in medieval England." 
+                    }
+                ]
+            }
+        };
+
+        // DOM Elements
+        const authorCircles = document.querySelectorAll('.author-circle');
+        const defaultContent = document.getElementById('default-content');
+        const booksContent = document.getElementById('books-content');
+        const backButton = document.getElementById('back-button');
+        let activeAuthor = null;
+
+        // Add click event to each author circle
+        authorCircles.forEach(circle => {
+            circle.addEventListener('click', function() {
+                const authorKey = this.getAttribute('data-author');
+                showAuthorBooks(authorKey);
+            });
+        });
+
+        // Back button functionality
+        backButton.addEventListener('click', function() {
+            showDefaultContent();
+        });
+
+        // Function to show default content
+        function showDefaultContent() {
+            // Hide books content
+            booksContent.classList.remove('active');
+            
+            // Show default content after a delay for smooth transition
+            setTimeout(() => {
+                defaultContent.classList.remove('hidden');
+            }, 300);
+            
+            // Remove active class from author circles
+            if (activeAuthor) {
+                activeAuthor.classList.remove('active');
+                activeAuthor = null;
+            }
+        }
+
+        // Function to display author's books
+        function showAuthorBooks(authorKey) {
+            const author = authorsData[authorKey];
+            
+            if (!author) return;
+            
+            // Hide default content
+            defaultContent.classList.add('hidden');
+            
+            // Update active author circle
+            if (activeAuthor) {
+                activeAuthor.classList.remove('active');
+            }
+            document.querySelector(`.author-circle[data-author="${authorKey}"]`).classList.add('active');
+            activeAuthor = document.querySelector(`.author-circle[data-author="${authorKey}"]`);
+            
+            // Create books content
+            let booksHTML = `
+                <div class="books-header">
+                    <h2 class="books-title">${author.name}</h2>
+                    <p class="author-bio">${author.biography}</p>
+                </div>
+                <div class="books-grid">
+            `;
+            
+            // Add books
+            author.works.forEach(book => {
+                booksHTML += `
+                    <div class="book-card">
+                        <h3 class="book-title">${book.title}</h3>
+                        <span class="book-year">${book.year}</span>
+                        <p class="book-description">${book.description}</p>
+                    </div>
+                `;
+            });
+            
+            booksHTML += `</div>`;
+            
+            // Update books content
+            booksContent.innerHTML = booksHTML;
+            
+            // Show books section with animation after a short delay
+            setTimeout(() => {
+                booksContent.classList.add('active');
+            }, 300);
+        }
+
+        // Initialize with default content
+        document.addEventListener('DOMContentLoaded', function() {
+            // Default content is already visible
+        });
+    </script>
+</body>
+</html>
