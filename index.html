@@ -1,19 +1,15 @@
 
 
     
-<!DOCTYPE html>
+    
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yashify.fun ✨</title>
-   
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="512.png">
-    <link rel="icon" type="image/png" href="512.png">
-    <meta name="theme-color" content="#8C52FF">
+    <title>YASHIFY - A World for Curious Minds</title>
     
- <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,395 +19,267 @@
   gtag('config', 'G-B5X5RJM3XH');
 </script>
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="512.png">
+    <link rel="icon" type="image/png" href="512.png">
+    <meta name="theme-color" content="#8C52FF">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* ✅ Custom Bristol Font */
-        @font-face {
-            font-family: 'Bristol';
-            src: url('https://raw.githubusercontent.com/tushaar01/yashify/main/Bristol.otf') format('opentype');
-        }
-
-        /* ===== Splash Screen Animation ===== */
-        .splash {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: #8C52FF;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .splash.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .splash img {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        }
-        .splash .text {
-            font-family: 'Bristol', sans-serif;
-            font-size: 2rem;
-            margin-top: 1rem;
-            color: white;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid white;
-            width: 0;
-            animation: typing 2.5s steps(20,end) forwards, blink 0.8s infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 12ch }
-        }
-        @keyframes blink {
-            50% { border-color: transparent }
-        }
-        
-        /* Floating Icon */
-        .icon-fixed {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: none;
-            animation: float 3s ease-in-out infinite;
-            z-index: 10000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0); }
-        }
-
-        /* ===== Core Styles ===== */
+        /* ===== VARIABLES (The Colors from your Image) ===== */
         :root {
-            --primary: #7c3aed;
-            --secondary: #2563eb;
-            --accent: #db2777;
-            --text: #1f2937;
-            --bg: #ffffff;
-            --card-bg: #ffffff;
-            --border: #e5e7eb;
-            --shadow: 0 2px 8px rgba(0,0,0,0.08);
-            --library-bg: #f0f7ff;
+            --bg-color: #F4F7FB; /* Very light blue-ish white */
+            --text-main: #111827;
+            --text-sub: #6B7280;
+            
+            /* Card Colors */
+            --color-medicose: #3ABFF8; /* Cyan/Blue */
+            --color-library: #FBBF24;  /* Orange/Gold */
+            --color-fun: #A855F7;      /* Purple */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
-            line-height: 1.5;
-            padding: 20px;
+            padding: 0 20px;
+            overflow-x: hidden;
         }
 
-        .container {
+        /* ===== 1. TOP NAVIGATION ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* ===== Header ===== */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            position: relative;
-            animation: fadeIn 1s ease-in-out;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: black;
         }
 
-        .title {
-            font-family: 'Bristol', sans-serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            animation: slideInFromTop 0.8s ease-out;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: #6b7280;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: slideInFromBottom 0.8s ease-out;
-        }
-        
-        /* Title animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideInFromTop {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInFromBottom {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== Mailbox Button ===== */
-        .mailbox-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
+        .nav-icons {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: 20px;
+            font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: var(--shadow);
-            z-index: 100;
-            transition: all 0.3s ease;
         }
 
-        .mailbox-btn:hover {
-            transform: scale(1.1);
-            background: var(--accent);
+        /* ===== 2. HERO SECTION ===== */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            animation: fadeIn 1s ease-out;
         }
 
-        /* ===== Cards Grid ===== */
-        .cards {
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        /* ===== 3. THE CARDS (Magic Happens Here) ===== */
+        .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding-bottom: 50px;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: white;
+            border-radius: 30px; /* Very Round corners like image */
+            padding: 40px 20px;
+            text-align: center;
             text-decoration: none;
             color: inherit;
-            border: 1px solid var(--border);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 140px;
-            object-fit: contain;
-            background: var(--library-bg);
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-content {
-            padding: 1rem;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text);
+            transition: all 0.3s ease;
+            position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
+            height: 100%;
         }
 
-        .card-desc {
-            font-size: 0.85rem;
-            color: #6b7280;
-            text-align: center;
+        /* Icons styling */
+        .card-icon-img {
+            width: 80px; 
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
         }
 
-        /* Library Card Special */
-        .library-card {
-            background: var(--library-bg);
-        }
-        .library-card .card-title {
-            color: var(--secondary);
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
-        /* ===== Footer ===== */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 2rem;
-            color: #6b7280;
+        .underline {
+            width: 40px;
+            height: 4px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        .card p {
             font-size: 0.9rem;
-            border-top: 1px solid var(--border);
+            color: var(--text-sub);
+            line-height: 1.4;
+            max-width: 80%;
         }
 
-        .social-links {
-            margin-top: 1rem;
+        /* --- Specific Card Styles (The Glow & Border) --- */
+        
+        /* Blue Card (Medicose) */
+        .card.medicose {
+            border: 3px solid var(--color-medicose);
+            box-shadow: 0 10px 30px -10px rgba(58, 191, 248, 0.3); /* Blue Glow */
+        }
+        .card.medicose:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(58, 191, 248, 0.5);
+        }
+        .card.medicose .underline { background: var(--color-medicose); }
+
+        /* Orange Card (Library) */
+        .card.library {
+            border: 3px solid var(--color-library);
+            box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.3); /* Orange Glow */
+        }
+        .card.library:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(251, 191, 36, 0.5);
+        }
+        .card.library .underline { background: var(--color-library); }
+
+        /* Purple Card (Fun Zone) */
+        .card.fun {
+            border: 3px solid var(--color-fun);
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3); /* Purple Glow */
+        }
+        .card.fun:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.5);
+        }
+        .card.fun .underline { background: var(--color-fun); }
+
+
+        /* ===== UTILS & ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .social-links a {
-            color: var(--accent);
-            margin: 0 0.5rem;
-            font-size: 1.1rem;
+        /* Splash Screen (Kept from your code) */
+        .splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #8C52FF; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            color: white; font-size: 2rem; font-weight: bold;
         }
+        .splash.hide { opacity: 0; visibility: hidden; }
 
-        /* ===== Responsive ===== */
+        /* Responsive */
         @media (max-width: 768px) {
-            .cards {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .title {
-                font-size: 2rem;
-            }
-            
-            .icon-fixed {
-                width: 36px;
-                height: 36px;
-            }
+            .hero h1 { font-size: 2.2rem; }
+            .cards-container { grid-template-columns: 1fr; max-width: 400px; }
         }
     </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B5X5RJM3XH');
+    </script>
 </head>
+
 <body>
-    <!-- Splash screen -->
+
     <div class="splash" id="splash">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify Icon" id="splashIcon">
-        <div class="text">yashify.fun</div>
+        <div>yashify.fun ✨</div>
     </div>
-    
-    <!-- Floating Icon -->
-    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" class="icon-fixed" id="fixedIcon">
 
-    <!-- Mailbox Button -->
-    <a href="mailto:admin@yashify.fun?subject=Problem%20Report&body=Please%20describe%20your%20issue%20here..." 
-       class="mailbox-btn" 
-       id="mailboxBtn">
-        <i class="fas fa-envelope"></i>
-    </a>
-
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1 class="title">yashify.fun</h1>
-            <p class="subtitle">When Curiosity Meets Creativity✨</p>
-        </header>
-
-        <!-- Cards Grid -->
-        <div class="cards">
-            <a href="L/library.html" class="card library-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/12023/12023602.png" alt="Library" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Wisdom Vault</span>
-                        <span>📚</span>
-                    </h3>
-                    <p class="card-desc">Where Knowledge Meets Devotion</p>
-                </div>
-            </a>
-
-            <a href="Medicose/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/4861/4861800.png" alt="Medicose" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Medicose</span>
-                        <span>💊</span>
-                    </h3>
-                    <p class="card-desc">Medical learning simplified</p>
-                </div>
-            </a>
-
-            <a href="FUN/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/5115/5115259.png" alt="FUN" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>FUN Zone</span>
-                        <span>🎉</span>
-                    </h3>
-                    <p class="card-desc">Entertainment hub</p>
-                </div>
-            </a>
-
-            <a href="course/index.html" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/4819/4819809.png" alt="Courses" class="card-img" loading="lazy">
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <span>Courses</span>
-                        <span>📚</span>
-                    </h3>
-                    <p class="card-desc">Learn something new</p>
-                </div>
-            </a>
+    <nav class="navbar">
+        <div class="logo">YASHIFY</div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-bars"></i>
         </div>
+    </nav>
 
-        <!-- Footer -->
-        <footer>
-            <p>Made with ❤️ by Yashify</p>
-            <p>© <span id="year">2024</span> - All Rights Reserved</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/yashify.fun" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </footer>
+    <section class="hero">
+        <h1>A World for<br>Curious Minds</h1>
+        <p>Learn Medicine | Read Stories | Unwind with Fun</p>
+    </section>
+
+    <div class="cards-container">
+        
+        <a href="Medicose/index.html" class="card medicose">
+            <img src="https://cdn-icons-png.flaticon.com/512/2966/2966334.png" alt="Stethoscope" class="card-icon-img">
+            <h3>Medicose</h3>
+            <div class="underline"></div>
+            <p>Aun senisn ds brpts and arte oretanfon</p> </a>
+
+        <a href="L/library.html" class="card library">
+            <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Book" class="card-icon-img">
+            <h3>Library</h3>
+            <div class="underline"></div>
+            <p>Nond wamerd bibe ts tne and yentures</p>
+        </a>
+
+        <a href="FUN/index.html" class="card fun">
+            <img src="https://cdn-icons-png.flaticon.com/512/5260/5260498.png" alt="Gamepad" class="card-icon-img">
+            <h3>Fun Zone</h3>
+            <div class="underline"></div>
+            <p>Enjoy games and unwind instantly</p>
+        </a>
+
     </div>
 
     <script>
-        // Splash animation control
+        // Splash Logic
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash');
-            const fixedIcon = document.getElementById('fixedIcon');
-
             setTimeout(() => {
                 splash.classList.add('hide');
-                fixedIcon.style.display = "block";
-            }, 3000); 
+            }, 2000); 
         });
 
-        // Current Year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                  .then(reg => console.log('Service Worker registered'))
+                  .catch(err => console.error('Service Worker failed', err));
+            });
+        }
     </script>
-    
-    
-    
-    <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('Service Worker registered:', reg))
-      .catch(err => console.error('Service Worker registration failed:', err));
-  });
-}
-</script>
+
 </body>
 </html>
