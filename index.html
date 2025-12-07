@@ -1,27 +1,25 @@
 
 
     
+   
     
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YASHIFY - A World for Curious Minds</title>
-    
-    
-    
-    
-    
+
+    <!-- PWA & Icons -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="512.png">
     <link rel="icon" type="image/png" href="512.png">
     <meta name="theme-color" content="#8C52FF">
-    
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
-      
-      
+
       <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
@@ -31,9 +29,15 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-    
+
     <style>
-        /* ===== VARIABLES (The Colors from your Image) ===== */
+        /* ===== Custom Bristol Font for Splash ===== */
+        @font-face {
+            font-family: 'Bristol';
+            src: url('https://raw.githubusercontent.com/tushaar01/yashify/main/Bristol.otf') format('opentype');
+        }
+
+        /* ===== VARIABLES ===== */
         :root {
             --bg-color: #F4F7FB; /* Very light blue-ish white */
             --text-main: #111827;
@@ -101,7 +105,7 @@
             font-weight: 400;
         }
 
-        /* ===== 3. THE CARDS (Magic Happens Here) ===== */
+        /* ===== 3. THE CARDS ===== */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -113,7 +117,7 @@
 
         .card {
             background: white;
-            border-radius: 30px; /* Very Round corners like image */
+            border-radius: 30px; /* Very Round corners */
             padding: 40px 20px;
             text-align: center;
             text-decoration: none;
@@ -154,12 +158,12 @@
             max-width: 80%;
         }
 
-        /* --- Specific Card Styles (The Glow & Border) --- */
+        /* --- Specific Card Styles --- */
         
         /* Blue Card (Medicose) */
         .card.medicose {
             border: 3px solid var(--color-medicose);
-            box-shadow: 0 10px 30px -10px rgba(58, 191, 248, 0.3); /* Blue Glow */
+            box-shadow: 0 10px 30px -10px rgba(58, 191, 248, 0.3);
         }
         .card.medicose:hover {
             transform: translateY(-10px);
@@ -170,7 +174,7 @@
         /* Orange Card (Library) */
         .card.library {
             border: 3px solid var(--color-library);
-            box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.3); /* Orange Glow */
+            box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.3);
         }
         .card.library:hover {
             transform: translateY(-10px);
@@ -181,7 +185,7 @@
         /* Purple Card (Fun Zone) */
         .card.fun {
             border: 3px solid var(--color-fun);
-            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3); /* Purple Glow */
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3);
         }
         .card.fun:hover {
             transform: translateY(-10px);
@@ -189,44 +193,94 @@
         }
         .card.fun .underline { background: var(--color-fun); }
 
-
         /* ===== UTILS & ANIMATIONS ===== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Splash Screen (Kept from your code) */
+        /* ===== SPLASH SCREEN (Pro version from old code) ===== */
         .splash {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #8C52FF; z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #8C52FF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s ease;
-            color: white; font-size: 2rem; font-weight: bold;
         }
-        .splash.hide { opacity: 0; visibility: hidden; }
+        .splash.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash img {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .splash-text {
+            font-family: 'Bristol', 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-top: 1rem;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 2.5s steps(20,end) forwards, blink 0.8s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 12ch }
+        }
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        /* Floating Icon (top-left) */
+        .icon-fixed {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: none;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .cards-container { grid-template-columns: 1fr; max-width: 400px; }
+
+            .icon-fixed {
+                width: 36px;
+                height: 36px;
+            }
         }
     </style>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-B5X5RJM3XH');
-    </script>
 </head>
 
 <body>
-
+    <!-- Splash Screen with typing effect -->
     <div class="splash" id="splash">
-        <div>yashify.fun ✨</div>
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify Icon" id="splashIcon">
+        <div class="splash-text">yashify.fun</div>
     </div>
+
+    <!-- Floating Icon (appears after splash) -->
+    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" class="icon-fixed" id="fixedIcon">
 
     <nav class="navbar">
         <div class="logo">YASHIFY</div>
@@ -242,12 +296,12 @@
     </section>
 
     <div class="cards-container">
-        
         <a href="Medicose/index.html" class="card medicose">
             <img src="https://cdn-icons-png.flaticon.com/512/2966/2966334.png" alt="Stethoscope" class="card-icon-img">
             <h3>Medicose</h3>
             <div class="underline"></div>
-            <p>Simplifying complex medical topics & notes</p> </a>
+            <p>Simplifying complex medical topics & notes</p>
+        </a>
 
         <a href="L/library.html" class="card library">
             <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Book" class="card-icon-img">
@@ -262,16 +316,18 @@
             <div class="underline"></div>
             <p>Enjoy games and unwind instantly</p>
         </a>
-
     </div>
 
     <script>
-        // Splash Logic
+        // Splash Logic with floating icon
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash');
+            const fixedIcon = document.getElementById('fixedIcon');
+
             setTimeout(() => {
                 splash.classList.add('hide');
-            }, 2000); 
+                fixedIcon.style.display = "block";
+            }, 3000); // 3 seconds splash
         });
 
         // Service Worker
