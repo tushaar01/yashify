@@ -1,8 +1,7 @@
 
+  
 
-    
-   
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 
-      <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -29,6 +28,7 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
+
 
     <style>
         /* ===== Custom Bristol Font for Splash ===== */
@@ -39,14 +39,12 @@
 
         /* ===== VARIABLES ===== */
         :root {
-            --bg-color: #F4F7FB; /* Very light blue-ish white */
+            --bg-color: #F4F7FB;
             --text-main: #111827;
             --text-sub: #6B7280;
-            
-            /* Card Colors */
-            --color-medicose: #3ABFF8; /* Cyan/Blue */
-            --color-library: #FBBF24;  /* Orange/Gold */
-            --color-fun: #A855F7;      /* Purple */
+            --color-medicose: #3ABFF8;
+            --color-library: #FBBF24;
+            --color-fun: #A855F7;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,7 +58,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== 1. TOP NAVIGATION ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -73,9 +71,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
             text-transform: uppercase;
-            color: black;
         }
 
         .nav-icons {
@@ -85,27 +81,24 @@
             cursor: pointer;
         }
 
-        /* ===== 2. HERO SECTION ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
             text-align: center;
             padding: 60px 20px 40px;
-            animation: fadeIn 1s ease-out;
         }
 
         .hero h1 {
             font-size: 3rem;
             line-height: 1.2;
             font-weight: 700;
-            margin-bottom: 15px;
         }
 
         .hero p {
             font-size: 1.1rem;
             color: var(--text-sub);
-            font-weight: 400;
         }
 
-        /* ===== 3. THE CARDS ===== */
+        /* ===== CARDS ===== */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -117,23 +110,18 @@
 
         .card {
             background: white;
-            border-radius: 30px; /* Very Round corners */
+            border-radius: 30px;
             padding: 40px 20px;
             text-align: center;
             text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100%;
         }
 
-        /* Icons styling */
         .card-icon-img {
-            width: 80px; 
-            height: 80px;
+            width: 80px; height: 80px;
             object-fit: contain;
             margin-bottom: 20px;
         }
@@ -158,90 +146,85 @@
             max-width: 80%;
         }
 
-        /* --- Specific Card Styles --- */
-        
-        /* Blue Card (Medicose) */
-        .card.medicose {
-            border: 3px solid var(--color-medicose);
-            box-shadow: 0 10px 30px -10px rgba(58, 191, 248, 0.3);
-        }
-        .card.medicose:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(58, 191, 248, 0.5);
-        }
-        .card.medicose .underline { background: var(--color-medicose); }
+        /* COLORS */
+        .medicose { border: 3px solid var(--color-medicose); }
+        .medicose .underline { background: var(--color-medicose); }
 
-        /* Orange Card (Library) */
-        .card.library {
-            border: 3px solid var(--color-library);
-            box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.3);
-        }
-        .card.library:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(251, 191, 36, 0.5);
-        }
-        .card.library .underline { background: var(--color-library); }
+        .library { border: 3px solid var(--color-library); }
+        .library .underline { background: var(--color-library); }
 
-        /* Purple Card (Fun Zone) */
-        .card.fun {
-            border: 3px solid var(--color-fun);
-            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3);
-        }
-        .card.fun:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.5);
-        }
-        .card.fun .underline { background: var(--color-fun); }
+        .fun { border: 3px solid var(--color-fun); }
+        .fun .underline { background: var(--color-fun); }
 
-        /* ===== UTILS & ANIMATIONS ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== SPLASH SCREEN (Pro version from old code) ===== */
+        /* ===== SPLASH ===== */
         .splash {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: #8C52FF;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-        .splash.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .splash img {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        }
+        .splash.hide { opacity: 0; visibility: hidden; }
+
         .splash-text {
-            font-family: 'Bristol', 'Outfit', sans-serif;
+            font-family: 'Bristol', sans-serif;
             font-size: 2rem;
-            margin-top: 1rem;
             color: white;
+            border-right: 2px solid white;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 2px solid white;
             width: 0;
-            animation: typing 2.5s steps(20,end) forwards, blink 0.8s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 12ch }
-        }
-        @keyframes blink {
-            50% { border-color: transparent }
+            animation: typing 2.5s steps(20,end) forwards, blink 0.8s infinite;
         }
 
+        @keyframes typing { from {width: 0;} to {width: 14ch;} }
+        @keyframes blink { 50% {border-color: transparent;} }
 
-  /* ===== FOOTER ===== */
+        /* Floating icon (top-left) */
+        .icon-fixed {
+            position: fixed;
+            top: 16px; left: 16px;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: none;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Floating Mailbox Button (top-right) */
+        .mailbox-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #8C52FF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            z-index: 10000;
+            transition: 0.3s ease;
+            font-size: 1.3rem;
+        }
+        .mailbox-btn:hover {
+            transform: scale(1.12);
+            background: #A855F7;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -261,29 +244,6 @@
             transform: scale(1.1);
         }
 
-       
-
-
-
-        /* Floating Icon (top-left) */
-        .icon-fixed {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: none;
-            animation: float 3s ease-in-out infinite;
-            z-index: 10000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0); }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
@@ -293,19 +253,30 @@
                 width: 36px;
                 height: 36px;
             }
+            .mailbox-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Splash Screen with typing effect -->
+    <!-- SPLASH SCREEN -->
     <div class="splash" id="splash">
-        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify Icon" id="splashIcon">
         <div class="splash-text">yashify.fun</div>
     </div>
 
-    <!-- Floating Icon (appears after splash) -->
-    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" class="icon-fixed" id="fixedIcon">
+    <!-- FLOATING ICON (left) -->
+    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg"
+         alt="Yashify" class="icon-fixed" id="fixedIcon">
+
+    <!-- FLOATING MAILBOX BUTTON (right) -->
+    <a href="mailto:admin@yashify.fun?subject=Problem%20Report&body=Please%20describe%20your%20issue%20here..."
+       class="mailbox-btn" id="mailboxBtn">
+        <i class="fas fa-envelope"></i>
+    </a>
 
     <nav class="navbar">
         <div class="logo">YASHIFY</div>
@@ -322,31 +293,28 @@
 
     <div class="cards-container">
         <a href="Medicose/index.html" class="card medicose">
-            <img src="https://cdn-icons-png.flaticon.com/512/2966/2966334.png" alt="Stethoscope" class="card-icon-img">
+            <img src="https://cdn-icons-png.flaticon.com/512/2966/2966334.png" class="card-icon-img" alt="Medicose">
             <h3>Medicose</h3>
             <div class="underline"></div>
             <p>Simplifying complex medical topics & notes</p>
         </a>
 
         <a href="L/library.html" class="card library">
-            <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Book" class="card-icon-img">
+            <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" class="card-icon-img" alt="Library">
             <h3>Library</h3>
             <div class="underline"></div>
             <p>Stories, Articles & Wisdom</p>
         </a>
 
         <a href="FUN/index.html" class="card fun">
-            <img src="https://cdn-icons-png.flaticon.com/512/5260/5260498.png" alt="Gamepad" class="card-icon-img">
+            <img src="https://cdn-icons-png.flaticon.com/512/5260/5260498.png" class="card-icon-img" alt="Fun Zone">
             <h3>Fun Zone</h3>
             <div class="underline"></div>
             <p>Enjoy games and unwind instantly</p>
         </a>
     </div>
 
-    <script>
-   
-   
-   <!-- ⭐⭐⭐ FOOTER WITH INSTAGRAM ⭐⭐⭐ -->
+    <!-- FOOTER -->
     <footer>
         <p>Made with ❤️ by Yashify</p>
         <p>© <span id="year"></span> — All Rights Reserved</p>
@@ -357,13 +325,12 @@
             </a>
         </div>
     </footer>
-   
-   
-   
-   
-   
-   
-        // Splash Logic with floating icon
+
+    <script>
+        // Auto Year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Splash Logic + Floating Icon
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash');
             const fixedIcon = document.getElementById('fixedIcon');
@@ -371,16 +338,14 @@
             setTimeout(() => {
                 splash.classList.add('hide');
                 fixedIcon.style.display = "block";
-            }, 3000); // 3 seconds splash
+            }, 3000);
         });
 
         // Service Worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                  .then(reg => console.log('Service Worker registered'))
-                  .catch(err => console.error('Service Worker failed', err));
-            });
+            navigator.serviceWorker.register('/sw.js')
+              .then(reg => console.log('Service Worker registered'))
+              .catch(err => console.error('Service Worker failed', err));
         }
     </script>
 
