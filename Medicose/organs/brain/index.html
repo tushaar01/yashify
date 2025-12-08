@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain - The Control Center | Organs Explorer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>Organs Explorer</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#structure">Structure</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#health">Health Tips</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">🧠 Human Anatomy</div>
+                    <h1 class="hero-title">BRAIN – The Control Center of Your Body</h1>
+                    <p class="hero-tagline">The brain is your body's boss, handling thoughts, memory, and movement</p>
+                    <p class="hero-description">
+                        The brain is the most complex organ in your body – ek super computer jaisa! 
+                        It controls everything from your heartbeat to your dreams. Located safely inside 
+                        your skull, this 1.4 kg marvel processes millions of signals every second, making 
+                        you who you are.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">86B+</div>
+                            <div class="stat-label">Neurons</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1.4kg</div>
+                            <div class="stat-label">Average Weight</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">Body's Oxygen</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="brain-animation">
+                        <svg viewBox="0 0 400 400" class="animated-brain">
+                            <!-- Left Hemisphere -->
+                            <path class="brain-left" d="M 200 50 Q 120 50 80 120 Q 60 160 70 200 Q 65 240 80 280 Q 100 330 160 360 Q 180 370 200 370 L 200 50 Z" 
+                                  fill="url(#gradient-left)" stroke="#6366f1" stroke-width="3"/>
+                            
+                            <!-- Right Hemisphere -->
+                            <path class="brain-right" d="M 200 50 Q 280 50 320 120 Q 340 160 330 200 Q 335 240 320 280 Q 300 330 240 360 Q 220 370 200 370 L 200 50 Z" 
+                                  fill="url(#gradient-right)" stroke="#8b5cf6" stroke-width="3"/>
+                            
+                            <!-- Cerebellum -->
+                            <ellipse class="cerebellum" cx="200" cy="360" rx="60" ry="30" 
+                                     fill="url(#gradient-cerebellum)" stroke="#a78bfa" stroke-width="2"/>
+                            
+                            <!-- Brain Stem -->
+                            <rect class="brainstem" x="185" y="370" width="30" height="50" rx="15" 
+                                  fill="url(#gradient-stem)" stroke="#c4b5fd" stroke-width="2"/>
+                            
+                            <!-- Frontal Lobe -->
+                            <path class="frontal-lobe pulse-1" d="M 120 100 Q 160 80 200 80 L 200 160 Q 160 160 140 140 Z" 
+                                  fill="rgba(99, 102, 241, 0.3)" stroke="#6366f1" stroke-width="1.5"/>
+                            
+                            <!-- Parietal Lobe -->
+                            <path class="parietal-lobe pulse-2" d="M 200 80 Q 240 80 280 100 L 260 140 Q 240 160 200 160 Z" 
+                                  fill="rgba(139, 92, 246, 0.3)" stroke="#8b5cf6" stroke-width="1.5"/>
+                            
+                            <!-- Temporal Lobe -->
+                            <path class="temporal-lobe pulse-3" d="M 100 180 Q 90 220 100 260 L 150 240 Q 160 200 150 180 Z" 
+                                  fill="rgba(167, 139, 250, 0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+                            
+                            <!-- Occipital Lobe -->
+                            <path class="occipital-lobe pulse-4" d="M 200 280 Q 160 300 140 320 L 180 340 Q 200 330 200 280 Z" 
+                                  fill="rgba(196, 181, 253, 0.3)" stroke="#c4b5fd" stroke-width="1.5"/>
+                            
+                            <!-- Neural Connections -->
+                            <g class="neural-connections">
+                                <line x1="120" y1="120" x2="160" y2="180" stroke="#a78bfa" stroke-width="1" opacity="0.6" class="neural-line"/>
+                                <line x1="280" y1="120" x2="240" y2="180" stroke="#a78bfa" stroke-width="1" opacity="0.6" class="neural-line"/>
+                                <line x1="160" y1="200" x2="240" y2="200" stroke="#a78bfa" stroke-width="1" opacity="0.6" class="neural-line"/>
+                                <line x1="200" y1="160" x2="200" y2="280" stroke="#a78bfa" stroke-width="1" opacity="0.6" class="neural-line"/>
+                            </g>
+                            
+                            <!-- Energy Particles -->
+                            <circle class="energy-particle" cx="150" cy="150" r="3" fill="#fbbf24" opacity="0"/>
+                            <circle class="energy-particle" cx="250" cy="150" r="3" fill="#fbbf24" opacity="0"/>
+                            <circle class="energy-particle" cx="200" cy="200" r="3" fill="#fbbf24" opacity="0"/>
+                            
+                            <!-- Gradients -->
+                            <defs>
+                                <linearGradient id="gradient-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#818cf8;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="gradient-right" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="gradient-cerebellum" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#c4b5fd;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="gradient-stem" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ddd6fe;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#c4b5fd;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="brain-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="overview" class="section location-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Where is the Brain?</h2>
+                <p class="section-subtitle">Location & Protection</p>
+            </div>
+            <div class="location-content">
+                <div class="location-visual">
+                    <div class="skull-diagram">
+                        <svg viewBox="0 0 300 350" class="skull-svg">
+                            <!-- Skull outline -->
+                            <ellipse cx="150" cy="150" rx="120" ry="140" fill="rgba(226, 232, 240, 0.3)" stroke="#94a3b8" stroke-width="3"/>
+                            
+                            <!-- Brain inside skull -->
+                            <path d="M 150 40 Q 90 40 60 100 Q 50 130 55 160 Q 50 190 60 220 Q 80 260 130 280 Q 145 285 150 285 L 150 40 Z" 
+                                  fill="rgba(139, 92, 246, 0.6)" stroke="#8b5cf6" stroke-width="2"/>
+                            <path d="M 150 40 Q 210 40 240 100 Q 250 130 245 160 Q 250 190 240 220 Q 220 260 170 280 Q 155 285 150 285 L 150 40 Z" 
+                                  fill="rgba(99, 102, 241, 0.6)" stroke="#6366f1" stroke-width="2"/>
+                            
+                            <!-- Meninges layers -->
+                            <ellipse cx="150" cy="150" rx="115" ry="135" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                            <ellipse cx="150" cy="150" rx="110" ry="130" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                            
+                            <!-- Spinal cord -->
+                            <rect x="135" y="285" width="30" height="60" rx="15" fill="rgba(167, 139, 250, 0.6)" stroke="#a78bfa" stroke-width="2"/>
+                            
+                            <!-- Labels -->
+                            <text x="30" y="150" font-size="12" fill="#64748b" font-weight="600">Skull (Protection)</text>
+                            <line x1="85" y1="150" x2="60" y2="150" stroke="#64748b" stroke-width="1"/>
+                            
+                            <text x="200" y="100" font-size="12" fill="#6366f1" font-weight="600">Brain</text>
+                            <line x1="195" y1="105" x2="180" y2="120" stroke="#6366f1" stroke-width="1"/>
+                            
+                            <text x="180" y="330" font-size="12" fill="#a78bfa" font-weight="600">Spinal Cord</text>
+                            <line x1="175" y1="325" x2="165" y2="315" stroke="#a78bfa" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="location-info">
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <strong>Protected by Skull:</strong> Your brain sits safely inside your skull (cranium), 
+                                which is made of strong bones that act like a helmet.
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="icon-box"><i class="fas fa-link"></i></div>
+                            <div>
+                                <strong>Connected to Spinal Cord:</strong> The brain connects to the spinal cord through 
+                                an opening at the base of the skull, forming your Central Nervous System (CNS).
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                            <div>
+                                <strong>Three Protective Layers (Meninges):</strong> Brain is covered by three membranes – 
+                                Dura mater (outer), Arachnoid (middle), and Pia mater (inner) – jo extra protection dete hain.
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="icon-box"><i class="fas fa-water"></i></div>
+                            <div>
+                                <strong>CSF (Cerebrospinal Fluid):</strong> A clear liquid cushions the brain like a shock absorber, 
+                                protecting it from injuries and providing nutrients.
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="icon-box"><i class="fas fa-feather"></i></div>
+                            <div>
+                                <strong>Soft & Delicate:</strong> Despite being the command center, the brain has a jelly-like 
+                                texture – isliye itna protection zaroori hai!
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="section structure-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Main Parts of the Brain</h2>
+                <p class="section-subtitle">Understanding Brain Architecture</p>
+            </div>
+            
+            <!-- Interactive Brain Diagram -->
+            <div class="interactive-diagram">
+                <div class="diagram-container">
+                    <svg viewBox="0 0 600 500" class="brain-diagram">
+                        <!-- Main Brain Structure -->
+                        <g class="brain-main">
+                            <!-- Cerebrum Left -->
+                            <path id="cerebrum-left" class="brain-part" 
+                                  d="M 300 80 Q 200 80 150 150 Q 120 200 130 250 Q 125 300 145 340 Q 170 380 240 410 Q 270 420 300 420 L 300 80 Z"
+                                  fill="rgba(99, 102, 241, 0.7)" stroke="#6366f1" stroke-width="3"/>
+                            
+                            <!-- Cerebrum Right -->
+                            <path id="cerebrum-right" class="brain-part"
+                                  d="M 300 80 Q 400 80 450 150 Q 480 200 470 250 Q 475 300 455 340 Q 430 380 360 410 Q 330 420 300 420 L 300 80 Z"
+                                  fill="rgba(139, 92, 246, 0.7)" stroke="#8b5cf6" stroke-width="3"/>
+                            
+                            <!-- Frontal Lobe -->
+                            <path id="frontal-lobe" class="brain-part lobe-area"
+                                  d="M 200 130 Q 250 100 300 100 Q 350 100 400 130 L 380 180 Q 340 160 300 160 Q 260 160 220 180 Z"
+                                  fill="rgba(251, 191, 36, 0.5)" stroke="#f59e0b" stroke-width="2"/>
+                            
+                            <!-- Parietal Lobe -->
+                            <path id="parietal-lobe" class="brain-part lobe-area"
+                                  d="M 220 180 Q 260 160 300 160 Q 340 160 380 180 L 360 240 Q 330 220 300 220 Q 270 220 240 240 Z"
+                                  fill="rgba(16, 185, 129, 0.5)" stroke="#10b981" stroke-width="2"/>
+                            
+                            <!-- Temporal Lobe -->
+                            <path id="temporal-lobe" class="brain-part lobe-area"
+                                  d="M 160 240 Q 150 280 160 320 L 220 300 Q 230 260 220 240 Z"
+                                  fill="rgba(239, 68, 68, 0.5)" stroke="#ef4444" stroke-width="2"/>
+                            
+                            <!-- Occipital Lobe -->
+                            <path id="occipital-lobe" class="brain-part lobe-area"
+                                  d="M 240 340 Q 270 360 300 360 Q 330 360 360 340 L 340 300 Q 320 310 300 310 Q 280 310 260 300 Z"
+                                  fill="rgba(236, 72, 153, 0.5)" stroke="#ec4899" stroke-width="2"/>
+                            
+                            <!-- Cerebellum -->
+                            <ellipse id="cerebellum" class="brain-part" cx="300" cy="410" rx="90" ry="40"
+                                     fill="rgba(167, 139, 250, 0.7)" stroke="#a78bfa" stroke-width="3"/>
+                            
+                            <!-- Brain Stem -->
+                            <rect id="brainstem" class="brain-part" x="280" y="430" width="40" height="60" rx="20"
+                                  fill="rgba(196, 181, 253, 0.7)" stroke="#c4b5fd" stroke-width="3"/>
+                        </g>
+                        
+                        <!-- Labels -->
+                        <g class="labels">
+                            <text x="150" y="120" class="label-text">Cerebrum</text>
+                            <line x1="150" y1="125" x2="180" y2="150" class="label-line"/>
+                            
+                            <text x="250" y="130" class="label-text small">Frontal</text>
+                            <text x="320" y="200" class="label-text small">Parietal</text>
+                            <text x="130" y="280" class="label-text small">Temporal</text>
+                            <text x="260" y="340" class="label-text small">Occipital</text>
+                            
+                            <text x="380" y="415" class="label-text">Cerebellum</text>
+                            <line x1="380" y1="420" x2="360" y2="415" class="label-line"/>
+                            
+                            <text x="340" y="470" class="label-text">Brainstem</text>
+                            <line x1="340" y1="475" x2="320" y2="465" class="label-line"/>
+                        </g>
+                    </svg>
+                    
+                    <div class="diagram-info" id="diagram-info">
+                        <h3>Hover over different parts to learn more!</h3>
+                        <p>Click on any brain region to see detailed information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Structure Cards -->
+            <div class="structure-cards">
+                <div class="structure-card" data-part="cerebrum">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Cerebrum</h3>
+                    <p><strong>Largest Part:</strong> Makes up about 85% of brain's weight. Divided into left and right hemispheres.</p>
+                    <p><strong>Four Lobes:</strong> Frontal (thinking, movement), Parietal (touch, spatial sense), Temporal (hearing, memory), Occipital (vision).</p>
+                    <p><strong>Role:</strong> Handles all higher functions – thinking, planning, memory, emotions, and voluntary movements.</p>
+                </div>
+
+                <div class="structure-card" data-part="cerebellum">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #a78bfa, #c4b5fd);">
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <h3>Cerebellum</h3>
+                    <p><strong>Location:</strong> Below and behind the cerebrum, at the back of the skull.</p>
+                    <p><strong>Function:</strong> Balance, coordination, and fine motor control – jaise cycling karna, dance karna.</p>
+                    <p><strong>Fact:</strong> Contains more neurons than the rest of the brain combined, but only 10% of brain volume!</p>
+                </div>
+
+                <div class="structure-card" data-part="brainstem">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #c4b5fd, #ddd6fe);">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Brainstem</h3>
+                    <p><strong>Parts:</strong> Midbrain (vision, hearing reflexes), Pons (breathing, sleep), Medulla (heart rate, blood pressure).</p>
+                    <p><strong>Critical Role:</strong> Controls all basic survival functions – breathing, heartbeat, digestion, swallowing.</p>
+                    <p><strong>Connection:</strong> Links brain to spinal cord, allowing signals to travel throughout the body.</p>
+                </div>
+
+                <div class="structure-card" data-part="protection">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Protection System</h3>
+                    <p><strong>Meninges:</strong> Three layers – Dura mater (tough outer), Arachnoid (web-like middle), Pia mater (delicate inner).</p>
+                    <p><strong>CSF:</strong> Cerebrospinal fluid acts as cushion, provides nutrients, removes waste products.</p>
+                    <p><strong>Blood-Brain Barrier:</strong> Special filter that protects brain from harmful substances in blood.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functions Section -->
+    <section id="functions" class="section functions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Does the Brain Do?</h2>
+                <p class="section-subtitle">Brain har second millions decisions leta hai!</p>
+            </div>
+
+            <div class="functions-grid">
+                <!-- Sensory Functions -->
+                <div class="function-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                        <i class="fas fa-eye"></i>
+                        <h3>Sensory Functions</h3>
+                    </div>
+                    <div class="function-items">
+                        <div class="function-item">
+                            <i class="fas fa-eye"></i>
+                            <div>
+                                <strong>Vision</strong>
+                                <p>Processes what you see (occipital lobe)</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-ear"></i>
+                            <div>
+                                <strong>Hearing</strong>
+                                <p>Understands sounds and music (temporal lobe)</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-hand-paper"></i>
+                            <div>
+                                <strong>Touch</strong>
+                                <p>Feels pressure, temperature, pain (parietal lobe)</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-pepper-hot"></i>
+                            <div>
+                                <strong>Taste & Smell</strong>
+                                <p>Identifies flavors and odors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motor Functions -->
+                <div class="function-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                        <i class="fas fa-running"></i>
+                        <h3>Motor Functions</h3>
+                    </div>
+                    <div class="function-items">
+                        <div class="function-item">
+                            <i class="fas fa-walking"></i>
+                            <div>
+                                <strong>Movement Control</strong>
+                                <p>Voluntary movements – walking, writing, dancing</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <div>
+                                <strong>Balance & Coordination</strong>
+                                <p>Maintains posture and smooth movements</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-hand-rock"></i>
+                            <div>
+                                <strong>Fine Motor Skills</strong>
+                                <p>Precise actions like typing, drawing</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-redo"></i>
+                            <div>
+                                <strong>Reflexes</strong>
+                                <p>Quick automatic responses to stimuli</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Higher Functions -->
+                <div class="function-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Higher Functions</h3>
+                    </div>
+                    <div class="function-items">
+                        <div class="function-item">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <strong>Thinking & Reasoning</strong>
+                                <p>Problem-solving, decision making, planning</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <strong>Memory</strong>
+                                <p>Stores and recalls information – short & long term</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <strong>Language</strong>
+                                <p>Understanding and producing speech, reading, writing</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-smile"></i>
+                            <div>
+                                <strong>Emotions</strong>
+                                <p>Processes feelings – happiness, fear, love, anger</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Learning</strong>
+                                <p>Acquires new skills and knowledge</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Personality</strong>
+                                <p>Makes you unique – your behaviors and traits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autonomic Functions -->
+                <div class="function-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Autonomic Functions</h3>
+                    </div>
+                    <div class="function-items">
+                        <div class="function-item">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <strong>Heartbeat</strong>
+                                <p>Regulates heart rate and blood pressure</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-lungs"></i>
+                            <div>
+                                <strong>Breathing</strong>
+                                <p>Controls respiratory rate automatically</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-thermometer-half"></i>
+                            <div>
+                                <strong>Temperature</strong>
+                                <p>Maintains body temperature around 37°C</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-utensils"></i>
+                            <div>
+                                <strong>Hunger & Thirst</strong>
+                                <p>Signals when you need food or water</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-moon"></i>
+                            <div>
+                                <strong>Sleep-Wake Cycle</strong>
+                                <p>Regulates sleep patterns and alertness</p>
+                            </div>
+                        </div>
+                        <div class="function-item">
+                            <i class="fas fa-flask"></i>
+                            <div>
+                                <strong>Hormones</strong>
+                                <p>Controls hormone release throughout body</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Brain Works Section -->
+    <section class="section how-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Does the Brain Communicate?</h2>
+                <p class="section-subtitle">Understanding Neural Signals</p>
+            </div>
+
+            <div class="neuron-animation-container">
+                <div class="neuron-info">
+                    <h3>The Neuron – Brain's Messenger</h3>
+                    <div class="neuron-parts">
+                        <div class="neuron-part-item">
+                            <div class="part-icon" style="background: #fbbf24;">1</div>
+                            <div>
+                                <strong>Cell Body (Soma)</strong>
+                                <p>Contains nucleus, main control center of neuron</p>
+                            </div>
+                        </div>
+                        <div class="neuron-part-item">
+                            <div class="part-icon" style="background: #10b981;">2</div>
+                            <div>
+                                <strong>Dendrites</strong>
+                                <p>Tree-like branches that receive signals from other neurons</p>
+                            </div>
+                        </div>
+                        <div class="neuron-part-item">
+                            <div class="part-icon" style="background: #6366f1;">3</div>
+                            <div>
+                                <strong>Axon</strong>
+                                <p>Long fiber that carries electrical signals away from cell body</p>
+                            </div>
+                        </div>
+                        <div class="neuron-part-item">
+                            <div class="part-icon" style="background: #8b5cf6;">4</div>
+                            <div>
+                                <strong>Axon Terminal</strong>
+                                <p>End branches that transmit signals to next neuron</p>
+                            </div>
+                        </div>
+                        <div class="neuron-part-item">
+                            <div class="part-icon" style="background: #ec4899;">5</div>
+                            <div>
+                                <strong>Synapse</strong>
+                                <p>Tiny gap between neurons where neurotransmitters are released</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="neuron-visual">
+                    <svg viewBox="0 0 600 400" class="neuron-svg">
+                        <!-- Dendrites -->
+                        <g class="dendrites">
+                            <path d="M 80 180 Q 70 160 60 140" stroke="#10b981" stroke-width="3" fill="none" class="dendrite"/>
+                            <path d="M 80 180 Q 60 180 40 180" stroke="#10b981" stroke-width="3" fill="none" class="dendrite"/>
+                            <path d="M 80 180 Q 70 200 60 220" stroke="#10b981" stroke-width="3" fill="none" class="dendrite"/>
+                            <path d="M 80 160 Q 65 140 50 120" stroke="#10b981" stroke-width="2" fill="none" class="dendrite"/>
+                            <path d="M 80 200 Q 65 220 50 240" stroke="#10b981" stroke-width="2" fill="none" class="dendrite"/>
+                        </g>
+                        
+                        <!-- Cell Body -->
+                        <circle cx="120" cy="180" r="40" fill="url(#grad-soma)" stroke="#fbbf24" stroke-width="3" class="soma"/>
+                        <circle cx="120" cy="180" r="15" fill="#f59e0b" opacity="0.8" class="nucleus"/>
+                        <text x="120" y="185" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Soma</text>
+                        
+                        <!-- Axon -->
+                        <line x1="160" y1="180" x2="450" y2="180" stroke="#6366f1" stroke-width="8" class="axon"/>
+                        
+                        <!-- Myelin Sheath -->
+                        <rect x="200" y="170" width="40" height="20" fill="#818cf8" rx="10" class="myelin"/>
+                        <rect x="260" y="170" width="40" height="20" fill="#818cf8" rx="10" class="myelin"/>
+                        <rect x="320" y="170" width="40" height="20" fill="#818cf8" rx="10" class="myelin"/>
+                        <rect x="380" y="170" width="40" height="20" fill="#818cf8" rx="10" class="myelin"/>
+                        
+                        <!-- Axon Terminals -->
+                        <g class="terminals">
+                            <path d="M 450 180 Q 480 170 510 160" stroke="#8b5cf6" stroke-width="4" fill="none" class="terminal"/>
+                            <path d="M 450 180 Q 490 180 530 180" stroke="#8b5cf6" stroke-width="4" fill="none" class="terminal"/>
+                            <path d="M 450 180 Q 480 190 510 200" stroke="#8b5cf6" stroke-width="4" fill="none" class="terminal"/>
+                            <circle cx="510" cy="160" r="8" fill="#a78bfa" class="terminal-bulb"/>
+                            <circle cx="530" cy="180" r="8" fill="#a78bfa" class="terminal-bulb"/>
+                            <circle cx="510" cy="200" r="8" fill="#a78bfa" class="terminal-bulb"/>
+                        </g>
+                        
+                        <!-- Next Neuron (partial) -->
+                        <circle cx="560" cy="180" r="25" fill="rgba(251, 191, 36, 0.3)" stroke="#fbbf24" stroke-width="2" class="next-neuron"/>
+                        
+                        <!-- Synapse Gap -->
+                        <line x1="538" y1="180" x2="535" y2="180" stroke="#ec4899" stroke-width="2" stroke-dasharray="5,5" class="synapse"/>
+                        
+                        <!-- Signal Animation -->
+                        <circle cx="160" cy="180" r="6" fill="#fbbf24" class="signal-pulse">
+                            <animate attributeName="cx" from="160" to="510" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.8;1" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Neurotransmitters -->
+                        <g class="neurotransmitters">
+                            <circle cx="520" cy="175" r="3" fill="#ec4899" opacity="0" class="neurotransmitter">
+                                <animate attributeName="cx" from="520" to="545" dur="1s" begin="2.8s" repeatCount="indefinite"/>
+                                <animate attributeName="cy" from="175" to="180" dur="1s" begin="2.8s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.3;0.7;1" dur="1s" begin="2.8s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="520" cy="185" r="3" fill="#ec4899" opacity="0" class="neurotransmitter">
+                                <animate attributeName="cx" from="520" to="545" dur="1s" begin="2.9s" repeatCount="indefinite"/>
+                                <animate attributeName="cy" from="185" to="180" dur="1s" begin="2.9s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.3;0.7;1" dur="1s" begin="2.9s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- Labels -->
+                        <text x="60" y="130" fill="#10b981" font-size="13" font-weight="600">Dendrites</text>
+                        <text x="300" y="150" fill="#6366f1" font-size="13" font-weight="600">Axon</text>
+                        <text x="470" y="220" fill="#8b5cf6" font-size="13" font-weight="600">Axon Terminals</text>
+                        <text x="520" y="165" fill="#ec4899" font-size="12" font-weight="600">Synapse</text>
+                        
+                        <defs>
+                            <linearGradient id="grad-soma" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="signal-process">
+                <h3>How Signals Travel – Step by Step</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Signal Reception</h4>
+                            <p>Dendrites receive chemical signals (neurotransmitters) from other neurons</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Action Potential</h4>
+                            <p>If signal is strong enough, cell body generates an electrical impulse (action potential)</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Signal Transmission</h4>
+                            <p>Electrical signal travels down the axon at speeds up to 120 m/s (like a bullet train!)</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Neurotransmitter Release</h4>
+                            <p>Signal reaches axon terminals and triggers release of chemical messengers into synapse</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Next Neuron Activated</h4>
+                            <p>Neurotransmitters cross the synapse gap and bind to receptors on next neuron, continuing the chain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cns-info">
+                <h3>Central Nervous System (CNS)</h3>
+                <div class="cns-content">
+                    <div class="cns-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Brain</h4>
+                        <p>Command center – processes information, makes decisions</p>
+                    </div>
+                    <div class="cns-connector">+</div>
+                    <div class="cns-item">
+                        <i class="fas fa-grip-lines-vertical"></i>
+                        <h4>Spinal Cord</h4>
+                        <p>Information highway – carries signals between brain and body</p>
+                    </div>
+                    <div class="cns-connector">=</div>
+                    <div class="cns-item">
+                        <i class="fas fa-network-wired"></i>
+                        <h4>CNS</h4>
+                        <p>Together they control all body functions and responses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brain Areas Section -->
+    <section class="section brain-areas-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Which Area Controls What?</h2>
+                <p class="section-subtitle">Specialized Brain Regions</p>
+            </div>
+
+            <div class="brain-areas-grid">
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Frontal Lobe</h3>
+                    <p>Thinking, decision-making, planning, problem-solving, personality, and voluntary movement (motor cortex)</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <h3>Parietal Lobe</h3>
+                    <p>Processing touch, pain, temperature, pressure, and spatial awareness (where things are in space)</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+                        <i class="fas fa-ear"></i>
+                    </div>
+                    <h3>Temporal Lobe</h3>
+                    <p>Processing hearing, understanding language, and forming long-term memories (hippocampus is here!)</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #ec4899, #f472b6);">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Occipital Lobe</h3>
+                    <p>Processing visual information – colors, shapes, movement, everything you see!</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <h3>Hypothalamus</h3>
+                    <p>Controls hunger, thirst, body temperature, sleep cycles, and hormone release (tiny but mighty!)</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #6366f1, #818cf8);">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>Hippocampus</h3>
+                    <p>Memory formation and storage – converts short-term memories into long-term memories</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #f97316, #fb923c);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Amygdala</h3>
+                    <p>Processes emotions, especially fear and anxiety – your brain's alarm system!</p>
+                </div>
+
+                <div class="brain-area-card">
+                    <div class="area-icon" style="background: linear-gradient(135deg, #06b6d4, #22d3ee);">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Thalamus</h3>
+                    <p>Relay station – forwards sensory information to appropriate brain areas for processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disorders Section -->
+    <section class="section disorders-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Some Common Brain Problems</h2>
+                <p class="section-subtitle">Understanding for awareness (not to scare!)</p>
+            </div>
+
+            <div class="disorders-grid">
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Stroke</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Blood supply to part of brain gets blocked or a blood vessel bursts</p>
+                        <p><strong>Symptoms:</strong> Sudden numbness, confusion, trouble speaking, severe headache, loss of balance</p>
+                    </div>
+                </div>
+
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-disease"></i></div>
+                    <h3>Brain Tumor</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Abnormal growth of cells in brain (can be benign or malignant)</p>
+                        <p><strong>Symptoms:</strong> Persistent headaches, seizures, vision problems, personality changes</p>
+                    </div>
+                </div>
+
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-wave-square"></i></div>
+                    <h3>Epilepsy</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Abnormal electrical activity in brain causes seizures</p>
+                        <p><strong>Symptoms:</strong> Temporary confusion, staring spells, uncontrollable jerking movements</p>
+                    </div>
+                </div>
+
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-user-clock"></i></div>
+                    <h3>Alzheimer's Disease</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Progressive brain disorder that affects memory and thinking skills</p>
+                        <p><strong>Symptoms:</strong> Memory loss, confusion, difficulty with familiar tasks, personality changes</p>
+                    </div>
+                </div>
+
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-head-side-virus"></i></div>
+                    <h3>Migraine</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Severe headache with throbbing pain, often on one side</p>
+                        <p><strong>Symptoms:</strong> Intense headache, nausea, sensitivity to light and sound, visual disturbances</p>
+                    </div>
+                </div>
+
+                <div class="disorder-card">
+                    <div class="disorder-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Parkinson's Disease</h3>
+                    <div class="disorder-content">
+                        <p><strong>What happens:</strong> Nerve cells that produce dopamine break down gradually</p>
+                        <p><strong>Symptoms:</strong> Tremors, stiff muscles, slow movement, balance problems</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-note">
+                <i class="fas fa-info-circle"></i>
+                <p><strong>Important:</strong> If you or anyone experiences these symptoms, please consult a doctor immediately. Early detection aur treatment se kaafi problems solve ho sakti hain!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tips Section -->
+    <section id="health" class="section health-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tips for a Healthy Brain</h2>
+                <p class="section-subtitle">Simple habits jo brain ko sharp rakhenge!</p>
+            </div>
+
+            <div class="health-tips-grid">
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #6366f1, #818cf8);">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3>Get Enough Sleep</h3>
+                    <p>7-9 hours roz zaroor sone chahiye. Sleep during memory consolidation and brain cleaning hota hai!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Exercise Regularly</h3>
+                    <p>Roz thoda exercise brain ko fresh rakhta hai. It increases blood flow and promotes new neuron growth!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #06b6d4, #22d3ee);">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Stay Hydrated</h3>
+                    <p>Brain is 75% water! Proper hydration improves concentration and memory. 8-10 glass pani daily!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Eat Brain Foods</h3>
+                    <p>Omega-3 (fish, walnuts), berries, green vegetables, dark chocolate – these boost brain power!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Keep Learning</h3>
+                    <p>Reading, learning new skills, studying – ye brain ko active aur young rakhta hai!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #ec4899, #f472b6);">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Solve Puzzles</h3>
+                    <p>Chess, Sudoku, crosswords – mental exercises make brain sharper and improve memory!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Avoid Drugs & Smoking</h3>
+                    <p>Alcohol, drugs, smoking damage brain cells permanently. Say no to these harmful substances!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #14b8a6, #2dd4bf);">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Manage Stress</h3>
+                    <p>Meditation, yoga, deep breathing – stress control karne se brain healthy rehta hai!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #f97316, #fb923c);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Social Connection</h3>
+                    <p>Friends aur family ke saath time spend karo. Social interaction brain health ke liye important hai!</p>
+                </div>
+
+                <div class="health-tip">
+                    <div class="tip-icon" style="background: linear-gradient(135deg, #a855f7, #c084fc);">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Listen to Music</h3>
+                    <p>Music improves mood, reduces stress, and can enhance memory and creativity!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts Section -->
+    <section class="section fun-facts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Fun Facts – Mind Blowing Brain Facts</h2>
+                <p class="section-subtitle">Prepare to be amazed! 🤯</p>
+            </div>
+
+            <div class="facts-container">
+                <div class="fact-card">
+                    <div class="fact-number">01</div>
+                    <div class="fact-content">
+                        <i class="fas fa-percentage"></i>
+                        <p>Brain makes up only <strong>2% of body weight</strong> but uses about <strong>20% of body's oxygen and energy!</strong></p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">02</div>
+                    <div class="fact-content">
+                        <i class="fas fa-network-wired"></i>
+                        <p>Your brain has about <strong>86 billion neurons</strong> – more than stars in the Milky Way galaxy!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">03</div>
+                    <div class="fact-content">
+                        <i class="fas fa-bolt"></i>
+                        <p>Information travels in your brain at <strong>268 mph (432 km/h)</strong> – faster than a Formula 1 car!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">04</div>
+                    <div class="fact-content">
+                        <i class="fas fa-laugh"></i>
+                        <p>You can't tickle yourself because <strong>brain already predicts the touch</strong> – it knows what's coming!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">05</div>
+                    <div class="fact-content">
+                        <i class="fas fa-memory"></i>
+                        <p>Human brain's storage capacity is <strong>virtually unlimited</strong> – you can never "run out of space"!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">06</div>
+                    <div class="fact-content">
+                        <i class="fas fa-moon"></i>
+                        <p>Brain is <strong>more active at night</strong> than during the day – that's when it processes and stores memories!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">07</div>
+                    <div class="fact-content">
+                        <i class="fas fa-wind"></i>
+                        <p><strong>Yawning cools the brain!</strong> It increases blood flow and helps regulate brain temperature.</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">08</div>
+                    <div class="fact-content">
+                        <i class="fas fa-brain"></i>
+                        <p>Brain feels <strong>no pain itself</strong> – it has no pain receptors! Headaches come from surrounding tissues.</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">09</div>
+                    <div class="fact-content">
+                        <i class="fas fa-baby"></i>
+                        <p>A baby's brain grows <strong>3 times in the first year</strong> of life – that's incredibly fast development!</p>
+                    </div>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">10</div>
+                    <div class="fact-content">
+                        <i class="fas fa="chart-line"></i>
+                        <p>Your brain generates about <strong>12-25 watts of electricity</strong> – enough to power an LED light bulb!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section quiz-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quick Quiz – Test Your Brain About Brain</h2>
+                <p class="section-subtitle">Kitna samajh aaya? Let's find out! 🎯</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question" data-question="1">
+                    <h3>Question 1</h3>
+                    <p class="question-text">Which is the largest part of the human brain?</p>
+                    <div class="options">
+                        <button class="option" data-answer="wrong">Cerebellum</button>
+                        <button class="option" data-answer="correct">Cerebrum</button>
+                        <button class="option" data-answer="wrong">Brainstem</button>
+                        <button class="option" data-answer="wrong">Hypothalamus</button>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="quiz-question" data-question="2">
+                    <h3>Question 2</h3>
+                    <p class="question-text">Which lobe of the brain is primarily responsible for vision?</p>
+                    <div class="options">
+                        <button class="option" data-answer="wrong">Frontal Lobe</button>
+                        <button class="option" data-answer="wrong">Parietal Lobe</button>
+                        <button class="option" data-answer="wrong">Temporal Lobe</button>
+                        <button class="option" data-answer="correct">Occipital Lobe</button>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="quiz-question" data-question="3">
+                    <h3>Question 3</h3>
+                    <p class="question-text">What is the tiny gap between two neurons called?</p>
+                    <div class="options">
+                        <button class="option" data-answer="wrong">Axon</button>
+                        <button class="option" data-answer="correct">Synapse</button>
+                        <button class="option" data-answer="wrong">Dendrite</button>
+                        <button class="option" data-answer="wrong">Myelin</button>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="quiz-question" data-question="4">
+                    <h3>Question 4</h3>
+                    <p class="question-text">Approximately how many neurons are there in the human brain?</p>
+                    <div class="options">
+                        <button class="option" data-answer="wrong">10 billion</button>
+                        <button class="option" data-answer="wrong">50 billion</button>
+                        <button class="option" data-answer="correct">86 billion</button>
+                        <button class="option" data-answer="wrong">100 billion</button>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="quiz-question" data-question="5">
+                    <h3>Question 5</h3>
+                    <p class="question-text">Which part of the brain controls balance and coordination?</p>
+                    <div class="options">
+                        <button class="option" data-answer="correct">Cerebellum</button>
+                        <button class="option" data-answer="wrong">Cerebrum</button>
+                        <button class="option" data-answer="wrong">Medulla</button>
+                        <button class="option" data-answer="wrong">Hippocampus</button>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="quiz-results">
+                    <h3>Your Score: <span id="score">0</span>/5</h3>
+                    <p id="result-message"></p>
+                    <button class="btn-retry" onclick="location.reload()">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEET Notes Section -->
+    <section class="section neet-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Exam Booster – Brain in a Nutshell</h2>
+                <p class="section-subtitle">High-yield points for NEET & exams 📝</p>
+            </div>
+
+            <div class="neet-content">
+                <div class="neet-card">
+                    <div class="neet-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Quick Revision Points</h3>
+                    <ul class="neet-list">
+                        <li><strong>Brain weight:</strong> ≈1.4 kg (adult), makes up 2% of body weight</li>
+                        <li><strong>Brain uses:</strong> 20% of body's oxygen and 25% of glucose despite small size</li>
+                        <li><strong>Total neurons:</strong> ~86 billion neurons in human brain</li>
+                        <li><strong>Main divisions:</strong> Forebrain, Midbrain, Hindbrain</li>
+                        <li><strong>Cerebrum:</strong> Largest part (85%), divided into left & right hemispheres by longitudinal fissure</li>
+                        <li><strong>Corpus callosum:</strong> Connects two cerebral hemispheres</li>
+                        <li><strong>Four lobes:</strong> Frontal, Parietal, Temporal, Occipital (remember F-P-T-O)</li>
+                        <li><strong>Cerebral cortex:</strong> Gray matter (cell bodies), controls higher functions</li>
+                        <li><strong>White matter:</strong> Myelinated axons, lies beneath gray matter</li>
+                        <li><strong>Cerebellum:</strong> Balance & coordination, located below cerebrum, has more neurons than cerebrum</li>
+                        <li><strong>Brainstem parts:</strong> Midbrain, Pons, Medulla oblongata (M-P-M)</li>
+                        <li><strong>Medulla controls:</strong> Heart rate, breathing, BP (vital centers)</li>
+                        <li><strong>CNS:</strong> Brain + Spinal Cord = Central Nervous System</li>
+                        <li><strong>Meninges layers:</strong> Dura mater → Arachnoid → Pia mater (outer to inner)</li>
+                        <li><strong>CSF functions:</strong> Cushioning, nutrient supply, waste removal</li>
+                        <li><strong>Neuron parts:</strong> Cell body (soma), Dendrites (receive), Axon (transmit), Axon terminals</li>
+                        <li><strong>Synapse:</strong> Junction between two neurons where neurotransmitters released</li>
+                        <li><strong>Action potential:</strong> Electrical signal traveling along axon</li>
+                        <li><strong>Hypothalamus:</strong> Controls hunger, thirst, body temp, circadian rhythm, hormone release</li>
+                        <li><strong>Hippocampus:</strong> Memory formation (especially declarative memory)</li>
+                        <li><strong>Amygdala:</strong> Emotional processing, fear response</li>
+                        <li><strong>Thalamus:</strong> Sensory relay station (except smell)</li>
+                        <li><strong>Motor cortex:</strong> In frontal lobe, controls voluntary movement</li>
+                        <li><strong>Sensory cortex:</strong> In parietal lobe, processes touch, pain, temperature</li>
+                        <li><strong>Broca's area:</strong> Speech production (frontal lobe, usually left hemisphere)</li>
+                        <li><strong>Wernicke's area:</strong> Language comprehension (temporal lobe, usually left)</li>
+                    </ul>
+                </div>
+
+                <div class="neet-card">
+                    <div class="neet-icon"><i class="fas fa-bookmark"></i></div>
+                    <h3>Memory Tricks</h3>
+                    <div class="memory-tricks">
+                        <div class="trick-item">
+                            <strong>🎯 Lobes (Front to Back):</strong>
+                            <p>"<em>Few People Think Often</em>" = <strong>F</strong>rontal, <strong>P</strong>arietal, <strong>T</strong>emporal, <strong>O</strong>ccipital</p>
+                        </div>
+                        <div class="trick-item">
+                            <strong>🎯 Meninges (Outer to Inner):</strong>
+                            <p>"<em>DAP</em>" = <strong>D</strong>ura mater, <strong>A</strong>rachnoid, <strong>P</strong>ia mater</p>
+                        </div>
+                        <div class="trick-item">
+                            <strong>🎯 Brainstem (Top to Bottom):</strong>
+                            <p>"<em>My Pons Medulla</em>" = <strong>M</strong>idbrain, <strong>P</strong>ons, <strong>M</strong>edulla</p>
+                        </div>
+                        <div class="trick-item">
+                            <strong>🎯 Neuron Signal Path:</strong>
+                            <p>"<em>DCAA</em>" = <strong>D</strong>endrites → <strong>C</strong>ell body → <strong>A</strong>xon → <strong>A</strong>xon terminals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="neet-card">
+                    <div class="neet-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <h3>Common Exam Questions</h3>
+                    <ul class="neet-list">
+                        <li>Which part of brain regulates body temperature? → <strong>Hypothalamus</strong></li>
+                        <li>What connects two cerebral hemispheres? → <strong>Corpus Callosum</strong></li>
+                        <li>Where is Broca's area located? → <strong>Frontal Lobe (left hemisphere)</strong></li>
+                        <li>Which part controls heartbeat and breathing? → <strong>Medulla Oblongata</strong></li>
+                        <li>What is gray matter made of? → <strong>Neuron cell bodies</strong></li>
+                        <li>Junction between two neurons called? → <strong>Synapse</strong></li>
+                        <li>Which lobe processes auditory information? → <strong>Temporal Lobe</strong></li>
+                        <li>What protects brain inside skull? → <strong>Meninges & CSF</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-brain"></i> Organs Explorer</h3>
+                    <p>Making anatomy fun and easy to understand for students!</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#structure">Structure</a></li>
+                        <li><a href="#functions">Functions</a></li>
+                        <li><a href="#quiz">Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learn More</h4>
+                    <ul>
+                        <li><a href="#">Heart</a></li>
+                        <li><a href="#">Lungs</a></li>
+                        <li><a href="#">Liver</a></li>
+                        <li><a href="#">Kidneys</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Organs Explorer. Created for educational purposes. Keep learning! 📚</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
