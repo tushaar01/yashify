@@ -1,216 +1,143 @@
-
-  
-  
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MEDICOSE EXPLORER</title>
-  
-  
-  
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-  
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      /* Exact Colors from your design */
-      --blue: #5D9CEC;
-      --orange: #F0AD4E;
-      --red: #D9534F;
-      --green: #5CB85C;
-      --purple: #9D55B8;
-      --bg-gradient: linear-gradient(180deg, #EBF4FA 0%, #ffffff 100%);
-    }
-
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: var(--bg-gradient);
+      background: #ffffff;
       min-height: 100vh;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    header {
-      text-align: center;
-      padding: 40px 20px 20px;
     }
 
     h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: 3rem; /* Large and Bold */
+      font-size: 2rem;
+      margin: 15px 0 5px;
       color: #2a5caa;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      text-align: center;
     }
 
     .subtitle {
-      color: #5c6b7f;
-      font-size: 1.1rem;
-      margin-top: 10px;
-      font-weight: 400;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 25px;
+      text-align: center;
+      max-width: 320px;
     }
 
-    /* --- The Layout Engine (Flexbox) --- */
+    /* === CARD GRID === */
     .container {
       display: flex;
-      flex-wrap: wrap; /* Allows items to drop to next line */
-      justify-content: center; /* Centers the items horizontally */
-      gap: 25px; /* Space between cards */
-      width: 100%;
-      max-width: 1000px;
-      padding: 40px 20px;
-      box-sizing: border-box;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      max-width: 800px;
     }
 
-    /* --- Card Styling --- */
     .card-link {
       text-decoration: none;
-      /* Desktop: approx 1/3 width minus gap. Ensures 3 per row. */
-      flex: 0 1 300px; 
-      display: flex; /* Fixes anchor tag height issues */
     }
 
+    /* === CARD DESIGN (SAME AS ORGANS EXPLORER) === */
     .card {
-      width: 100%;
-      border-radius: 30px; /* Very round corners like the image */
-      padding: 30px 20px;
-      text-align: center;
-      color: white;
-      transition: all 0.3s ease;
-      
-      /* The "Sticker" Double Border Effect */
-      border: 5px solid rgba(255, 255, 255, 0.25); 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      
-      height: 220px; /* Fixed height for uniformity */
+      background: #ffffff;
+      width: 120px;
+      height: 140px;
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      top: 0;
+      justify-content: space-between;
+      color: #333;
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
     }
 
-    /* Hover Effects */
     .card:hover {
-      top: -10px; /* Physical lift effect */
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,168,255,0.25);
     }
 
-    /* Icon Styling */
     .card-img {
-      width: 65px; 
-      height: 65px;
+      width: 75px;
+      height: 75px;
       object-fit: contain;
-      margin-bottom: 15px;
-      /* Forces icons to be White */
-      filter: brightness(0) invert(1); 
-      transition: transform 0.3s ease;
-    }
-
-    /* Icon bounces slightly on hover */
-    .card:hover .card-img {
-      transform: scale(1.1);
     }
 
     .card h2 {
-      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
       margin: 0;
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
+      font-weight: 600;
     }
 
-    .card span {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-top: 8px;
-      font-weight: 400;
-      display: block;
-    }
-
-    /* --- Card Colors --- */
-    .bg-blue { background-color: var(--blue); }
-    .bg-orange { background-color: var(--orange); }
-    .bg-red { background-color: var(--red); }
-    .bg-green { background-color: var(--green); }
-    .bg-purple { background-color: var(--purple); }
-
-    /* --- Mobile Responsiveness --- */
-    @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      .container { gap: 15px; padding: 20px; }
-      
-      /* On mobile, cards take full width */
-      .card-link { flex: 0 1 100%; } 
-      .card { height: 180px; border-radius: 20px; }
-      .card h2 { font-size: 1.3rem; }
+    /* Mobile tweak */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>MEDICOSE EXPLORER</h1>
-    <div class="subtitle">Explore the marvels of human anatomy and science</div>
-  </header>
+  <h1>MEDICOSE EXPLORER</h1>
+  <div class="subtitle">
+    Explore the marvels of human anatomy & medical science
+  </div>
 
   <div class="container">
-    
+
+    <!-- Human Anatomy -->
     <a href="organs/index.html" class="card-link">
-      <div class="card bg-blue">
-        <img src="https://cdn-icons-png.flaticon.com/512/763/763812.png" alt="Skeleton Hand" class="card-img">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img" alt="Human Anatomy">
         <h2>Human Anatomy</h2>
-        <span>Structure of the Body</span>
       </div>
     </a>
 
+    <!-- Human Physiology -->
     <a href="physiology/index.html" class="card-link">
-      <div class="card bg-orange">
-        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081530.png" alt="Flasks" class="card-img">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img" alt="Human Physiology">
         <h2>Human Physiology</h2>
-        <span>How the Body Works</span>
       </div>
     </a>
 
+    <!-- Pharmacy -->
     <a href="pharmacology/index.html" class="card-link">
-      <div class="card bg-red">
-        <img src="https://cdn-icons-png.flaticon.com/512/883/883407.png" alt="Pharmacy Bowl" class="card-img">
-        <h2>Pharmacology</h2>
-        <span>Drugs & Medicines</span>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img" alt="Pharmacy">
+        <h2>Pharmacy</h2>
       </div>
     </a>
 
+    <!-- Microbiology & Biotechnology -->
     <a href="/course/dep/index.html" class="card-link">
-      <div class="card bg-green">
-        <img src="https://cdn-icons-png.flaticon.com/512/2392/2392455.png" alt="DNA Strand" class="card-img">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img" alt="Microbio & Biotech">
         <h2>Microbio & Biotech</h2>
-        <span>Microbes, Genes & Cells</span>
       </div>
     </a>
 
+    <!-- 3D Models -->
     <a href="models/index.html" class="card-link">
-      <div class="card bg-purple">
-        <img src="https://cdn-icons-png.flaticon.com/512/865/865969.png" alt="Heart 3D" class="card-img">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img" alt="3D Models">
         <h2>3D Models</h2>
-        <span>Interactive Anatomy</span>
       </div>
     </a>
 
