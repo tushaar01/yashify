@@ -1,243 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MEDICOSE EXPLORER</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MEDICOSE EXPLORER</title>
 
-  
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+/* ===== BLUR ===== */
+#page-content.blur {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.3s ease;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      min-height: 100vh;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 18px 0 6px;
+  color: #1f3c88;
+  text-align: center;
+}
 
-    /* ===== BLUR ONLY PAGE CONTENT ===== */
-    #page-content.blur {
-      filter: blur(6px);
-      pointer-events: none;
-      user-select: none;
-      transition: filter 0.3s ease;
-    }
+/* ✅ FIXED CENTER */
+.subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 auto 34px;
+  text-align: center;
+  max-width: 360px;
+}
 
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin: 18px 0 6px;
-      color: #1f3c88;
-      text-align: center;
-    }
+/* ===== DESKTOP LAYOUT ===== */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
 
-    .subtitle {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 34px;
-      text-align: center;
-      max-width: 360px;
-    }
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+}
 
-    .main-container {
-      display: flex;
-      flex-direction: column;
-      gap: 26px;
-    }
+/* ===== CARD ===== */
+.card {
+  background: #fff;
+  width: 165px;
+  height: 185px;
+  border-radius: 14px;
+  padding: 14px 16px 16px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
 
-    .row {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-    }
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
 
-    /* ===== CARD ===== */
-    .card {
-      background: #ffffff;
-      width: 165px;
-      height: 185px;
-      border-radius: 14px;
-      padding: 14px 16px 16px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-      border: 1px solid #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
+.card-img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
 
-    .card:hover {
-      transform: translateY(-6px) scale(1.03);
-    }
+.card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #1b1b1b;
+}
 
-    .card-img {
-      width: 110px;
-      height: 110px;
-      object-fit: contain;
-    }
+.coming-soon {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 14px;
+  letter-spacing: 0.6px;
+  animation: pulse 2s infinite;
+}
 
-    .card h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: #1b1b1b;
-    }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
 
-    .coming-soon {
-      background: linear-gradient(135deg, #ff9800, #ff5722);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 14px;
-      letter-spacing: 0.6px;
-      animation: pulse 2s infinite;
-    }
+a { text-decoration: none; color: inherit; }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
+/* ===== MOBILE MAGIC ===== */
+@media (max-width: 600px) {
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+  /* switch to grid */
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
 
-    /* ===== OVERLAY (CLEAR, NOT BLURRED) ===== */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.25);
-      backdrop-filter: blur(12px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
+  /* remove rows effect */
+  .row {
+    display: contents;
+  }
 
-    .countdown-box {
-      background: #ffffff;
-      padding: 32px 36px;
-      border-radius: 18px;
-      text-align: center;
-      max-width: 340px;
-      width: 90%;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-    }
+  .card {
+    width: 100%;
+    height: 175px;
+  }
+}
 
-    .countdown-box h2 {
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 6px;
-      color: #1f3c88;
-    }
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
-    .launch-msg {
-      font-size: 0.9rem;
-      color: #444;
-      margin-bottom: 14px;
-    }
+.countdown-box {
+  background: #fff;
+  padding: 32px 36px;
+  border-radius: 18px;
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
 
-    .timer {
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-top: 10px;
-      color: #000;
-    }
+.countdown-box h2 {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 6px;
+  color: #1f3c88;
+}
 
-    .close-btn {
-      margin-top: 20px;
-      padding: 9px 18px;
-      border: none;
-      background: #1f3c88;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
+.launch-msg {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 14px;
+}
 
-    @media (max-width: 600px) {
-      .row {
-        flex-wrap: wrap;
-      }
-    }
-  </style>
+.timer {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.close-btn {
+  margin-top: 20px;
+  padding: 9px 18px;
+  border: none;
+  background: #1f3c88;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
-<!-- ===== PAGE CONTENT (BLUR TARGET) ===== -->
 <div id="page-content">
 
-  <h1>MEDICOSE EXPLORER</h1>
-  <div class="subtitle">
-    Explore the marvels of human anatomy & medical science
-  </div>
-
-  <div class="main-container">
-
-    <div class="row">
-      <a href="organs/index.html">
-        <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img">
-          <h2>Organs Overview</h2>
-        </div>
-      </a>
-
-      <div class="card" onclick="openTimer()">
-        <span class="coming-soon">COMING SOON</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
-        <h2>Anatomy & Physiology</h2>
-      </div>
-
-      <div class="card" onclick="openTimer()">
-        <span class="coming-soon">COMING SOON</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
-        <h2>Pharmacy</h2>
-      </div>
-    </div>
-
-    <div class="row">
-      <a href="/course/dep/index.html">
-        <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img">
-          <h2>Microbiology & Biotechnology</h2>
-        </div>
-      </a>
-
-      <div class="card" onclick="openTimer()">
-        <span class="coming-soon">COMING SOON</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
-        <h2>3D Study</h2>
-      </div>
-    </div>
-
-  </div>
+<h1>MEDICOSE EXPLORER</h1>
+<div class="subtitle">
+Explore the marvels of human anatomy & medical science
 </div>
 
-<!-- ===== OVERLAY ===== -->
+<div class="main-container">
+
+  <div class="row">
+    <a href="organs/index.html">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img">
+        <h2>Organs Overview</h2>
+      </div>
+    </a>
+
+    <div class="card" onclick="openTimer()">
+      <span class="coming-soon">COMING SOON</span>
+      <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
+      <h2>Anatomy & Physiology</h2>
+    </div>
+
+    <div class="card" onclick="openTimer()">
+      <span class="coming-soon">COMING SOON</span>
+      <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
+      <h2>Pharmacy</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <a href="/course/dep/index.html">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img">
+        <h2>Microbiology & Biotechnology</h2>
+      </div>
+    </a>
+
+    <div class="card" onclick="openTimer()">
+      <span class="coming-soon">COMING SOON</span>
+      <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
+      <h2>3D Study</h2>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <div class="overlay" id="overlay">
   <div class="countdown-box">
     <h2>Launching Soon 🚀</h2>
@@ -250,33 +249,32 @@
 </div>
 
 <script>
-  const targetDate = new Date("January 29, 2026 00:00:00").getTime();
+const targetDate = new Date("January 29, 2026 00:00:00").getTime();
 
-  function openTimer() {
-    document.getElementById("overlay").style.display = "flex";
-    document.getElementById("page-content").classList.add("blur");
-    updateTimer();
-  }
+function openTimer() {
+  overlay.style.display = "flex";
+  document.getElementById("page-content").classList.add("blur");
+  updateTimer();
+}
 
-  function closeTimer() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("page-content").classList.remove("blur");
-  }
+function closeTimer() {
+  overlay.style.display = "none";
+  document.getElementById("page-content").classList.remove("blur");
+}
 
-  function updateTimer() {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
+function updateTimer() {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
 
-    document.getElementById("timer").innerHTML =
-      `${days} Days : ${hours} Hrs : ${minutes} Min : ${seconds} Sec`;
-  }
+  timer.innerHTML = `${d} Days : ${h} Hrs : ${m} Min : ${s} Sec`;
+}
 
-  setInterval(updateTimer, 1000);
+setInterval(updateTimer, 1000);
 </script>
 
 </body>
