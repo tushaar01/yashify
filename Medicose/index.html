@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MEDICOSE EXPLORER</title>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -38,25 +31,27 @@
     .subtitle {
       font-size: 0.95rem;
       color: #666;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       text-align: center;
       max-width: 320px;
     }
 
-    /* === CARD GRID === */
-    .container {
+    /* === MAIN WRAPPER === */
+    .main-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center; /* TRUE CENTER */
+      gap: 20px;
+    }
+
+    /* === ROWS (WORD-LIKE CENTER) === */
+    .row {
+      display: flex;
       justify-content: center;
       gap: 15px;
-      max-width: 800px;
     }
 
-    .card-link {
-      text-decoration: none;
-    }
-
-    /* === CARD DESIGN (SAME AS ORGANS EXPLORER) === */
+    /* === CARD DESIGN === */
     .card {
       background: #ffffff;
       width: 120px;
@@ -80,9 +75,10 @@
       box-shadow: 0 5px 15px rgba(0,168,255,0.25);
     }
 
+    /* === BIGGER STICKERS === */
     .card-img {
-      width: 75px;
-      height: 75px;
+      width: 85px;
+      height: 85px;
       object-fit: contain;
     }
 
@@ -92,9 +88,15 @@
       font-weight: 600;
     }
 
-    /* Mobile tweak */
-    @media (max-width: 480px) {
-      h1 { font-size: 1.8rem; }
+    a {
+      text-decoration: none;
+    }
+
+    /* === MOBILE FRIENDLY === */
+    @media (max-width: 600px) {
+      .row {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
@@ -106,47 +108,48 @@
     Explore the marvels of human anatomy & medical science
   </div>
 
-  <div class="container">
+  <div class="main-container">
 
-    <!-- Human Anatomy -->
-    <a href="organs/index.html" class="card-link">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img" alt="Human Anatomy">
-        <h2>Human Anatomy</h2>
-      </div>
-    </a>
+    <!-- ROW 1 : 3 CARDS -->
+    <div class="row">
+      <a href="organs/index.html">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img" alt="Human Anatomy">
+          <h2>Human Anatomy</h2>
+        </div>
+      </a>
 
-    <!-- Human Physiology -->
-    <a href="physiology/index.html" class="card-link">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img" alt="Human Physiology">
-        <h2>Human Physiology</h2>
-      </div>
-    </a>
+      <a href="physiology/index.html">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img" alt="Human Physiology">
+          <h2>Human Physiology</h2>
+        </div>
+      </a>
 
-    <!-- Pharmacy -->
-    <a href="pharmacology/index.html" class="card-link">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img" alt="Pharmacy">
-        <h2>Pharmacy</h2>
-      </div>
-    </a>
+      <a href="pharmacology/index.html">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img" alt="Pharmacy">
+          <h2>Pharmacy</h2>
+        </div>
+      </a>
+    </div>
 
-    <!-- Microbiology & Biotechnology -->
-    <a href="/course/dep/index.html" class="card-link">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img" alt="Microbio & Biotech">
-        <h2>Microbio & Biotech</h2>
-      </div>
-    </a>
+    <!-- ROW 2 : 2 CARDS -->
+    <div class="row">
+      <a href="/course/dep/index.html">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img" alt="Microbio & Biotech">
+          <h2>Microbio & Biotech</h2>
+        </div>
+      </a>
 
-    <!-- 3D Models -->
-    <a href="models/index.html" class="card-link">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img" alt="3D Models">
-        <h2>3D Models</h2>
-      </div>
-    </a>
+      <a href="models/index.html">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img" alt="3D Models">
+          <h2>3D Models</h2>
+        </div>
+      </a>
+    </div>
 
   </div>
 
