@@ -5,106 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MEDICOSE EXPLORER</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-
-
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B5X5RJM3XH');
+  </script>
 
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #ffffff;
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-      margin: 15px 0 5px;
-      color: #2a5caa;
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin: 18px 0 6px;
+      color: #1f3c88;
       text-align: center;
+      letter-spacing: 0.5px;
     }
 
     .subtitle {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 34px;
       text-align: center;
-      max-width: 320px;
+      max-width: 360px;
+      line-height: 1.4;
     }
 
     /* === MAIN WRAPPER === */
     .main-container {
       display: flex;
       flex-direction: column;
-      align-items: center; /* TRUE CENTER */
-      gap: 20px;
+      align-items: center;
+      gap: 26px;
     }
 
-    /* === ROWS (WORD-LIKE CENTER) === */
+    /* === ROWS === */
     .row {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 22px;
     }
 
     /* === CARD DESIGN === */
     .card {
       background: #ffffff;
-      width: 120px;
-      height: 140px;
-      border-radius: 10px;
-      padding: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
+      width: 165px;
+      height: 185px;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      border: 1px solid #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      color: #333;
-      transition: all 0.3s ease;
+      color: #222;
+      transition: all 0.25s ease;
       text-align: center;
       cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,168,255,0.25);
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(0,168,255,0.35);
     }
 
-    /* === BIGGER STICKERS === */
+    /* === STICKERS / ICONS === */
     .card-img {
-      width: 85px;
-      height: 85px;
+      width: 110px;
+      height: 110px;
       object-fit: contain;
     }
 
+    /* === CARD TEXT === */
     .card h2 {
+      font-family: 'Poppins', sans-serif;
       font-size: 0.85rem;
-      margin: 0;
       font-weight: 600;
+      margin: 6px 0 0;
+      line-height: 1.3;
+      letter-spacing: 0.4px;
+      color: #1b1b1b;
+      text-transform: uppercase;
     }
 
     a {
       text-decoration: none;
     }
 
-    /* === MOBILE FRIENDLY === */
+    /* === MOBILE RESPONSIVE === */
     @media (max-width: 600px) {
       .row {
         flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .card {
+        width: 155px;
+        height: 175px;
+      }
+
+      .card-img {
+        width: 100px;
+        height: 100px;
       }
     }
   </style>
@@ -119,43 +139,43 @@
 
   <div class="main-container">
 
-    <!-- ROW 1 : 3 CARDS -->
+    <!-- ROW 1 -->
     <div class="row">
       <a href="organs/index.html">
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img" alt="ORGAN'S OVERVIEW">
-          <h2>ORGAN'S OVERVIEW</h2>
+          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861778.png" class="card-img" alt="ORGANS OVERVIEW">
+          <h2>Organs Overview</h2>
         </div>
       </a>
 
       <a href="physiology/index.html">
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img" alt="HUMAN'S ANATOMY & PHYSIOLOGY">
-          <h2>HUMAN'S ANATOMY & PHYSIOLOGY</h2>
+          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img" alt="ANATOMY & PHYSIOLOGY">
+          <h2>Anatomy & Physiology</h2>
         </div>
       </a>
 
       <a href="pharmacology/index.html">
         <div class="card">
           <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img" alt="PHARMACY">
-          <h2>PHARMACY</h2>
+          <h2>Pharmacy</h2>
         </div>
       </a>
     </div>
 
-    <!-- ROW 2 : 2 CARDS -->
+    <!-- ROW 2 -->
     <div class="row">
       <a href="/course/dep/index.html">
         <div class="card">
           <img src="https://cdn-icons-png.flaticon.com/512/10130/10130124.png" class="card-img" alt="MICROBIOLOGY & BIOTECHNOLOGY">
-          <h2>MICROBIOLOGY & BIOTECHNOLOGY</h2>
+          <h2>Microbiology & Biotechnology</h2>
         </div>
       </a>
 
       <a href="models/index.html">
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img" alt="3D-STUDY">
-          <h2>3D-STUDY</h2>
+          <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img" alt="3D STUDY">
+          <h2>3D Study</h2>
         </div>
       </a>
     </div>
