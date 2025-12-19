@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +7,6 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-
-  <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-B5X5RJM3XH');
-  </script>
 
   <style>
     body {
@@ -28,6 +18,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    /* ===== BLUR ONLY PAGE CONTENT ===== */
+    #page-content.blur {
+      filter: blur(6px);
+      pointer-events: none;
+      user-select: none;
+      transition: filter 0.3s ease;
     }
 
     h1 {
@@ -50,7 +48,6 @@
     .main-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 26px;
     }
 
@@ -60,7 +57,7 @@
       gap: 22px;
     }
 
-    /* CARD */
+    /* ===== CARD ===== */
     .card {
       background: #ffffff;
       width: 165px;
@@ -74,34 +71,12 @@
       align-items: center;
       justify-content: space-between;
       text-align: center;
-      transition: all 0.25s ease;
       cursor: pointer;
+      transition: all 0.25s ease;
     }
 
     .card:hover {
       transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(0,168,255,0.35);
-    }
-
-    /* COMING SOON TAG (TOP CENTER) */
-    .coming-soon {
-      background: linear-gradient(135deg, #ff9800, #ff5722);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 14px;
-      letter-spacing: 0.6px;
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      animation: pulseFloat 2.2s infinite ease-in-out;
-      margin-bottom: 6px;
-    }
-
-    @keyframes pulseFloat {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.08); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
     }
 
     .card-img {
@@ -114,24 +89,98 @@
       font-family: 'Poppins', sans-serif;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-top: 6px;
       letter-spacing: 0.4px;
-      color: #1b1b1b;
       text-transform: uppercase;
+      color: #1b1b1b;
     }
 
-    a { text-decoration: none; }
+    .coming-soon {
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 14px;
+      letter-spacing: 0.6px;
+      animation: pulse 2s infinite;
+    }
 
-    /* MOBILE */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== OVERLAY (CLEAR, NOT BLURRED) ===== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .countdown-box {
+      background: #ffffff;
+      padding: 32px 36px;
+      border-radius: 18px;
+      text-align: center;
+      max-width: 340px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .countdown-box h2 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 6px;
+      color: #1f3c88;
+    }
+
+    .launch-msg {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 14px;
+    }
+
+    .timer {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      color: #000;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 9px 18px;
+      border: none;
+      background: #1f3c88;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
     @media (max-width: 600px) {
-      .row { flex-wrap: wrap; }
-      .card { width: 155px; height: 175px; }
-      .card-img { width: 100px; height: 100px; }
+      .row {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
 
 <body>
+
+<!-- ===== PAGE CONTENT (BLUR TARGET) ===== -->
+<div id="page-content">
 
   <h1>MEDICOSE EXPLORER</h1>
   <div class="subtitle">
@@ -148,21 +197,17 @@
         </div>
       </a>
 
-      <a href="#">
-        <div class="card">
-          <span class="coming-soon">COMING SOON</span>
-          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
-          <h2>Anatomy & Physiology</h2>
-        </div>
-      </a>
+      <div class="card" onclick="openTimer()">
+        <span class="coming-soon">COMING SOON</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
+        <h2>Anatomy & Physiology</h2>
+      </div>
 
-      <a href="#">
-        <div class="card">
-          <span class="coming-soon">COMING SOON</span>
-          <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
-          <h2>Pharmacy</h2>
-        </div>
-      </a>
+      <div class="card" onclick="openTimer()">
+        <span class="coming-soon">COMING SOON</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
+        <h2>Pharmacy</h2>
+      </div>
     </div>
 
     <div class="row">
@@ -173,16 +218,57 @@
         </div>
       </a>
 
-      <a href="#">
-        <div class="card">
-          <span class="coming-soon">COMING SOON</span>
-          <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
-          <h2>3D Study</h2>
-        </div>
-      </a>
+      <div class="card" onclick="openTimer()">
+        <span class="coming-soon">COMING SOON</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
+        <h2>3D Study</h2>
+      </div>
     </div>
 
   </div>
+</div>
+
+<!-- ===== OVERLAY ===== -->
+<div class="overlay" id="overlay">
+  <div class="countdown-box">
+    <h2>Launching Soon 🚀</h2>
+    <div class="launch-msg">
+      Preparing something powerful for medical students
+    </div>
+    <div class="timer" id="timer"></div>
+    <button class="close-btn" onclick="closeTimer()">Close</button>
+  </div>
+</div>
+
+<script>
+  const targetDate = new Date("January 29, 2026 00:00:00").getTime();
+
+  function openTimer() {
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("page-content").classList.add("blur");
+    updateTimer();
+  }
+
+  function closeTimer() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("page-content").classList.remove("blur");
+  }
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("timer").innerHTML =
+      `${days} Days : ${hours} Hrs : ${minutes} Min : ${seconds} Sec`;
+  }
+
+  setInterval(updateTimer, 1000);
+</script>
 
 </body>
 </html>
