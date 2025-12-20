@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHARMACY – Health Guide | Trusted Medical Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+        
+        
+        <style>
+
+
+        
+        /* ===================================
+   PHARMACY - Health Guide Stylesheet
+   Modern Medical UI Design
+   =================================== */
+
+/* ============ ROOT VARIABLES ============ */
+:root {
+    /* Color Palette */
+    --primary-mint: #4ECDC4;
+    --primary-teal: #2C9D96;
+    --primary-dark: #1A5F59;
+    --accent-green: #95E1D3;
+    --bg-light: #F8FFFE;
+    --bg-white: #FFFFFF;
+    --text-dark: #2D3748;
+    --text-gray: #718096;
+    --text-light: #A0AEC0;
+    --border-color: #E2E8F0;
+    --shadow-light: rgba(76, 205, 196, 0.08);
+    --shadow-medium: rgba(76, 205, 196, 0.15);
+    
+    /* Spacing System */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.4s ease;
+}
+
+/* ============ GLOBAL RESET ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============ CONTAINER ============ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* ============ HEADER SECTION ============ */
+.header {
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-dark) 100%);
+    color: var(--bg-white);
+    padding: var(--spacing-lg) 0;
+    box-shadow: 0 4px 20px var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--bg-white);
+    flex-shrink: 0;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+}
+
+.trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.trust-badge i {
+    font-size: 0.7rem;
+}
+
+.language-toggle {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 4px;
+    border-radius: var(--radius-full);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--bg-white);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.lang-btn.active {
+    background: var(--bg-white);
+    color: var(--primary-teal);
+}
+
+.lang-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .logo-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.1rem;
+    }
+    
+    .trust-badge {
+        font-size: 0.7rem;
+    }
+    
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-wrap: wrap;
+    }
+    
+    .logo-section {
+        gap: var(--spacing-sm);
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .logo-text h1 {
+        font-size: 1rem;
+    }
+}
+
+/* ============ SEARCH SECTION ============ */
+.search-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--bg-light);
+}
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--bg-white);
+    border-radius: var(--radius-full);
+    padding: var(--spacing-xs);
+    box-shadow: 0 8px 30px var(--shadow-light);
+    transition: all var(--transition-medium);
+}
+
+.search-wrapper:focus-within {
+    box-shadow: 0 12px 40px var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    color: var(--primary-teal);
+    font-size: 1.25rem;
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-sm);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: var(--spacing-sm) var(--spacing-xs);
+    background: transparent;
+}
+
+.search-input::placeholder {
+    color: var(--text-light);
+}
+
+.search-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--primary-mint) 0%, var(--primary-teal) 100%);
+    border: none;
+    color: var(--bg-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.search-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .search-section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .search-input {
+        font-size: 0.9rem;
+    }
+    
+    .search-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* ============ FEATURE TOOLS SECTION ============ */
+.feature-tools {
+    padding: var(--spacing-xl) 0;
+    background: var(--bg-white);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.section-header p {
+    font-size: 1rem;
+    color: var(--text-gray);
+    font-weight: 400;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.tool-card {
+    position: relative;
+    background: var(--bg-white);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    transition: all var(--transition-medium);
+    overflow: hidden;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-mint), var(--primary-teal));
+    transform: scaleX(0);
+    transition: transform var(--transition-medium);
+}
+
+.tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px var(--shadow-light);
+    border-color: var(--primary-mint);
+}
+
+.tool-card:hover::before {
+    transform: scaleX(1);
+}
+
+.tool-card.active {
+    border-color: var(--primary-teal);
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(42, 157, 150, 0.05) 100%);
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: linear-gradient(135deg, #FFB347, #FF6B6B);
+    color: var(--bg-white);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.tool-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-md);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--bg-white);
+    transition: all var(--transition-medium);
+}
+
+.tool-icon.drug-interaction {
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+}
+
+.tool-icon.lab-analyzer {
+    background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
+}
+
+.tool-icon.first-aid {
+    background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
+}
+
+.tool-card:hover .tool-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.tool-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.tool-card p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+.tool-btn {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--primary-teal);
+    background: var(--bg-white);
+    color: var(--primary-teal);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all var(--transition-fast);
+}
+
+.tool-btn:not(:disabled):hover {
+    background: var(--primary-teal);
+    color: var(--bg-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+.tool-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--text-light);
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .tool-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .tool-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+}
+
+/* ============ HEALTH GUIDES SECTION ============ */
+.health-guides {
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+    background: var(--bg-light);
+}
+
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.guide-card {
+    background: var(--bg-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.guide-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px var(--shadow-light);
+    border-color: var(--primary-mint);
+}
+
+.guide-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-sm);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--bg-white);
+    transition: all var(--transition-medium);
+}
+
+.guide-card:hover .guide-icon {
+    transform: scale(1.1);
+}
+
+.guide-icon.fever {
+    background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+}
+
+.guide-icon.stomach {
+    background: linear-gradient(135deg, #30CFD0 0%, #330867 100%);
+}
+
+.guide-icon.skin {
+    background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%);
+}
+
+.guide-icon.diabetes {
+    background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
+}
+
+.guide-icon.heart {
+    background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%);
+}
+
+.guide-icon.mental {
+    background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
+}
+
+.guide-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+    .guides-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--spacing-sm);
+    }
+    
+    .guide-card {
+        padding: var(--spacing-md);
+    }
+    
+    .guide-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+    }
+    
+    .guide-label {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .guides-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============ FOOTER SECTION ============ */
+.footer {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-teal) 100%);
+    color: var(--bg-white);
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.disclaimer i {
+    font-size: 1.5rem;
+    color: var(--accent-green);
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.disclaimer p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom p {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .disclaimer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+    
+    .disclaimer i {
+        font-size: 1.25rem;
+    }
+    
+    .disclaimer p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============ UTILITY CLASSES ============ */
+.text-center {
+    text-align: center;
+}
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* ============ ACCESSIBILITY ============ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--primary-mint);
+    outline-offset: 2px;
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+    .header,
+    .search-section,
+    .language-toggle {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+}
+        </style>
+        
+        ------ -- ----------------------------
+        
+        
+        
+        
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>PHARMACY – Health Guide</h1>
+                        <span class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            Trusted Medical Information
+                        </span>
+                    </div>
+                </div>
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="hi">HI</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search medicines, symptoms, health topics"
+                        aria-label="Search medical information"
+                    >
+                    <button class="search-btn" aria-label="Search">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Tools Section -->
+    <section class="feature-tools">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Tools</h2>
+                <p>Advanced medical assistance at your fingertips</p>
+            </div>
+            <div class="tools-grid">
+                <!-- Drug Interaction Checker -->
+                <div class="tool-card">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <div class="tool-icon drug-interaction">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Drug Interaction Checker</h3>
+                    <p>Check potential interactions between multiple medications for safer treatment</p>
+                    <button class="tool-btn" disabled>
+                        <span>Open</span>
+                        <i class="fas fa-lock"></i>
+                    </button>
+                </div>
+
+                <!-- Lab Report Analyzer -->
+                <div class="tool-card">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <div class="tool-icon lab-analyzer">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>Lab Report Analyzer</h3>
+                    <p>Upload and understand your medical lab reports with AI-powered insights</p>
+                    <button class="tool-btn" disabled>
+                        <span>Open</span>
+                        <i class="fas fa-lock"></i>
+                    </button>
+                </div>
+
+                <!-- First Aid Assistant -->
+                <div class="tool-card active">
+                    <div class="tool-icon first-aid">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>First Aid Assistant</h3>
+                    <p>Get immediate guidance for common medical emergencies and first aid procedures</p>
+                    <button class="tool-btn">
+                        <span>Explore</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Guides Section -->
+    <section class="health-guides">
+        <div class="container">
+            <div class="section-header">
+                <h2>Health Guides</h2>
+                <p>Expert information on common health conditions</p>
+            </div>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-icon fever">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <span class="guide-label">Fever</span>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon stomach">
+                        <i class="fas fa-stomach"></i>
+                    </div>
+                    <span class="guide-label">Stomach Issues</span>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon skin">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <span class="guide-label">Skin Care</span>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon diabetes">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <span class="guide-label">Diabetes</span>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon heart">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span class="guide-label">Heart Health</span>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon mental">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span class="guide-label">Mental Wellness</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <i class="fas fa-info-circle"></i>
+                <p>This platform is for health awareness only. Always consult a qualified medical professional for diagnosis and treatment decisions.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PHARMACY – Health Guide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+---------------
+
+
+
+
+
+
+    <script>
+
+    
+    
+    // ===================================
+// PHARMACY - Health Guide JavaScript
+// Interactive Functionality
+// ===================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // ============ LANGUAGE TOGGLE ============
+    const langButtons = document.querySelectorAll('.lang-btn');
+    
+    langButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get selected language
+            const selectedLang = this.getAttribute('data-lang');
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', selectedLang);
+            
+            // Visual feedback
+            showNotification(`Language switched to ${selectedLang.toUpperCase()}`);
+        });
+    });
+    
+    // Load saved language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        langButtons.forEach(btn => {
+            if (btn.getAttribute('data-lang') === savedLang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    // ============ SEARCH FUNCTIONALITY ============
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    // Search on button click
+    searchBtn.addEventListener('click', performSearch);
+    
+    // Search on Enter key
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    function performSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query === '') {
+            showNotification('Please enter a search term', 'warning');
+            searchInput.focus();
+            return;
+        }
+        
+        // Visual feedback
+        searchBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            searchBtn.style.transform = 'scale(1)';
+        }, 200);
+        
+        // Show search feedback
+        showNotification(`Searching for: "${query}"`, 'info');
+        
+        // TODO: Implement actual search functionality
+        console.log('Search query:', query);
+        
+        // Clear search after delay (for demo purposes)
+        setTimeout(() => {
+            searchInput.value = '';
+        }, 2000);
+    }
+    
+    // ============ TOOL CARDS INTERACTION ============
+    const toolButtons = document.querySelectorAll('.tool-btn');
+    
+    toolButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (this.disabled) {
+                return;
+            }
+            
+            const toolCard = this.closest('.tool-card');
+            const toolName = toolCard.querySelector('h3').textContent;
+            
+            // Visual feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+            
+            showNotification(`Opening ${toolName}...`, 'success');
+            
+            // TODO: Implement actual tool functionality
+            console.log('Opening tool:', toolName);
+        });
+    });
+    
+    // ============ HEALTH GUIDES INTERACTION ============
+    const guideCards = document.querySelectorAll('.guide-card');
+    
+    guideCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const guideName = this.querySelector('.guide-label').textContent;
+            
+            // Visual feedback
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+            
+            showNotification(`Opening ${guideName} guide...`, 'info');
+            
+            // TODO: Implement actual guide navigation
+            console.log('Opening guide:', guideName);
+        });
+    });
+    
+    // ============ NOTIFICATION SYSTEM ============
+    function showNotification(message, type = 'info') {
+        // Remove existing notification if any
+        const existingNotification = document.querySelector('.notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        
+        // Add notification styles dynamically
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: ${getNotificationColor(type)};
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Trigger animation
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(-50%) translateY(0)';
+        }, 10);
+        
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+    
+    function getNotificationColor(type) {
+        const colors = {
+            'success': 'linear-gradient(135deg, #4ECDC4, #2C9D96)',
+            'warning': 'linear-gradient(135deg, #FFB347, #FF8C42)',
+            'error': 'linear-gradient(135deg, #FF6B9D, #C06C84)',
+            'info': 'linear-gradient(135deg, #4FACFE, #00F2FE)'
+        };
+        return colors[type] || colors.info;
+    }
+    
+    // ============ SCROLL ANIMATIONS ============
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for scroll animation
+    const animatedElements = document.querySelectorAll('.tool-card, .guide-card, .section-header');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+    
+    // ============ SMOOTH SCROLL ============
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // ============ SEARCH INPUT ENHANCEMENT ============
+    searchInput.addEventListener('focus', function() {
+        this.parentElement.style.boxShadow = '0 12px 40px rgba(76, 205, 196, 0.2)';
+    });
+    
+    searchInput.addEventListener('blur', function() {
+        this.parentElement.style.boxShadow = '0 8px 30px rgba(76, 205, 196, 0.08)';
+    });
+    
+    // ============ KEYBOARD NAVIGATION ============
+    document.addEventListener('keydown', function(e) {
+        // Focus search on Ctrl/Cmd + K
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchInput.focus();
+        }
+        
+        // Clear search on Escape
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            searchInput.blur();
+        }
+    });
+    
+    // ============ PERFORMANCE MONITORING ============
+    if ('performance' in window) {
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+        });
+    }
+    
+    // ============ ERROR HANDLING ============
+    window.addEventListener('error', function(e) {
+        console.error('Application error:', e.message);
+        // Don't show error to user in production
+    });
+    
+    // ============ INITIALIZATION COMPLETE ============
+    console.log('PHARMACY - Health Guide initialized successfully');
+    
+    // Show welcome message on first visit
+    if (!sessionStorage.getItem('welcomeShown')) {
+        setTimeout(() => {
+            showNotification('Welcome to PHARMACY â Health Guide!', 'success');
+            sessionStorage.setItem('welcomeShown', 'true');
+        }, 1000);
+    }
+});
+
+// ============ SERVICE WORKER REGISTRATION (PWA Ready) ============
+if ('serviceWorker' in navigator) {
+    // Uncomment below when service worker is ready
+    /*
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker registration failed'));
+    });
+    */
+}
+    
+    
+    
+    
+    </script>
+</body>
+</html>
