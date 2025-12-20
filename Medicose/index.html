@@ -8,25 +8,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background: #ffffff;
   min-height: 100vh;
   padding: 24px;
+}
+
+/* ===== PAGE CONTAINER ===== */
+#page-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ===== BLUR ===== */
 #page-content.blur {
   filter: blur(6px);
   pointer-events: none;
   user-select: none;
-  transition: filter 0.3s ease;
 }
 
+/* ===== HEADINGS ===== */
 h1 {
   font-family: 'Poppins', sans-serif;
   font-size: 2.4rem;
@@ -36,20 +43,22 @@ h1 {
   text-align: center;
 }
 
-/* ✅ FIXED CENTER */
 .subtitle {
   font-size: 1rem;
   color: #555;
   margin: 0 auto 34px;
   text-align: center;
   max-width: 360px;
+  width: 100%;
+  line-height: 1.5;
 }
 
-/* ===== DESKTOP LAYOUT ===== */
+/* ===== LAYOUT ===== */
 .main-container {
   display: flex;
   flex-direction: column;
   gap: 26px;
+  width: 100%;
 }
 
 .row {
@@ -114,28 +123,18 @@ h1 {
 
 a { text-decoration: none; color: inherit; }
 
-/* ===== MOBILE MAGIC ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 600px) {
-
-  /* switch to grid */
   .main-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18px;
   }
-
-  /* remove rows effect */
-  .row {
-    display: contents;
-  }
-
-  .card {
-    width: 100%;
-    height: 175px;
-  }
+  .row { display: contents; }
+  .card { width: 100%; height: 175px; }
 }
 
-/* ===== OVERLAY ===== */
+/* ===== POPUP ===== */
 .overlay {
   position: fixed;
   inset: 0;
@@ -173,18 +172,8 @@ a { text-decoration: none; color: inherit; }
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: 1px;
+  margin-bottom: 16px;
 }
-
-.close-btn {
-  margin-top: 20px;
-  padding: 9px 18px;
-  border: none;
-  background: #1f3c88;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 
 .preview-btn {
   padding: 10px 22px;
@@ -197,7 +186,14 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 12px;
 }
 
-
+.close-btn {
+  padding: 9px 18px;
+  border: none;
+  background: #1f3c88;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -212,6 +208,7 @@ Explore the marvels of human anatomy & medical science
 
 <div class="main-container">
 
+  <!-- ROW 1 -->
   <div class="row">
     <a href="organs/index.html">
       <div class="card">
@@ -220,19 +217,20 @@ Explore the marvels of human anatomy & medical science
       </div>
     </a>
 
-    <div class="card" onclick="openTimer()">
+    <div class="card" onclick="openTimer(false)">
       <span class="coming-soon">COMING SOON</span>
       <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
       <h2>Anatomy & Physiology</h2>
     </div>
 
-    <div class="card" onclick="openTimer()">
+    <div class="card" onclick="openTimer(true)">
       <span class="coming-soon">COMING SOON</span>
       <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
       <h2>Pharmacy</h2>
     </div>
   </div>
 
+  <!-- ROW 2 -->
   <div class="row">
     <a href="/course/dep/index.html">
       <div class="card">
@@ -241,7 +239,7 @@ Explore the marvels of human anatomy & medical science
       </div>
     </a>
 
-    <div class="card" onclick="openTimer()">
+    <div class="card" onclick="openTimer(false)">
       <span class="coming-soon">COMING SOON</span>
       <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
       <h2>3D Study</h2>
@@ -251,6 +249,7 @@ Explore the marvels of human anatomy & medical science
 </div>
 </div>
 
+<!-- POPUP -->
 <div class="overlay" id="overlay">
   <div class="countdown-box">
     <h2>Launching Soon 🚀</h2>
@@ -258,17 +257,22 @@ Explore the marvels of human anatomy & medical science
       Preparing something powerful for medical students
     </div>
     <div class="timer" id="timer"></div>
-    <button class="preview-btn" onclick="openPreview()">Preview</button>
+    <button class="preview-btn" id="previewBtn" onclick="openPreview()">Preview</button>
     <button class="close-btn" onclick="closeTimer()">Close</button>
   </div>
 </div>
 
 <script>
+const overlay = document.getElementById("overlay");
+const timer = document.getElementById("timer");
+const previewBtn = document.getElementById("previewBtn");
+
 const targetDate = new Date("January 29, 2026 00:00:00").getTime();
 
-function openTimer() {
+function openTimer(showPreview) {
   overlay.style.display = "flex";
   document.getElementById("page-content").classList.add("blur");
+  previewBtn.style.display = showPreview ? "inline-block" : "none";
   updateTimer();
 }
 
@@ -278,10 +282,8 @@ function closeTimer() {
 }
 
 function openPreview() {
-  window.location.href = "pharmacy/index.html";
+  window.location.href = "Pharmacy/index.html";
 }
-
-
 
 function updateTimer() {
   const now = new Date().getTime();
