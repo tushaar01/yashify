@@ -1,118 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Popcorn Pop Game 🍿</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop & Score</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle, #fff7d6, #ffd966);
-      overflow: hidden;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    h1 {
-      text-align: center;
-      margin: 10px;
-      user-select: none;
-    }
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#FFF8DC,#FFE4B5);
+  overflow:hidden;
+  height:100vh;
+  user-select:none;
+}
 
-    /* 🍿 Secret Emoji */
-    #secretEmoji {
-      cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
+#game-container{
+  position:relative;
+  width:100vw;
+  height:100vh;
+}
 
-    #secretEmoji:hover {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 6px orange);
-    }
+/* Header */
+#header{
+  position:absolute;
+  top:20px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+  z-index:100;
+}
 
-    #score {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
+/* 🔥 Attractive Title */
+#title{
+  font-size:40px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#FF4500;
+  text-shadow:
+    2px 2px 0 #fff,
+    4px 4px 0 #ffcc80,
+    6px 6px 12px rgba(0,0,0,0.3);
+}
 
-    .popcorn {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: inset -5px -5px 0 #f2d37c;
-      cursor: pointer;
-      animation: fall linear;
-    }
+#secret-emoji{
+  cursor:pointer;
+  font-size:36px;
+  transition:transform .2s;
+}
 
-    .popcorn::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #f5c16c;
-      border-radius: 50%;
-      top: 8px;
-      left: 10px;
-    }
+#secret-emoji:hover{
+  transform:scale(1.2);
+}
 
-    @keyframes fall {
-      from { top: -60px; }
-      to { top: 110vh; }
-    }
+#score{
+  font-size:32px;
+  font-weight:bold;
+  color:#FF8C00;
+  background:rgba(255,255,255,0.85);
+  padding:10px 20px;
+  border-radius:15px;
+}
 
-    .pop {
-      animation: pop 0.3s forwards;
-    }
+/* 🍿 CSS POPCORN */
+.popcorn{
+  position:absolute;
+  width:50px;
+  height:50px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:
+    inset -5px -5px 0 #f2d37c,
+    0 4px 8px rgba(0,0,0,.2);
+  cursor:pointer;
+  animation: fall linear;
+  z-index:10;
+}
 
-    @keyframes pop {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.6); opacity: 0; }
-    }
-  </style>
+.popcorn::after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:#f5c16c;
+  border-radius:50%;
+  top:8px;
+  left:10px;
+}
+
+/* Falling */
+@keyframes fall{
+  from{ top:-60px; }
+  to{ top:110vh; }
+}
+
+/* Pop animation */
+@keyframes pop{
+  0%{ transform:scale(1); opacity:1; }
+  50%{ transform:scale(1.5); opacity:.8; }
+  100%{ transform:scale(0); opacity:0; }
+}
+
+.popping{
+  animation: pop .3s ease-out forwards !important;
+}
+
+/* Game Over */
+#game-over{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(255,255,255,.95);
+  padding:40px 60px;
+  border-radius:20px;
+  text-align:center;
+  display:none;
+  z-index:200;
+}
+
+#game-over h2{
+  font-size:48px;
+  color:#FF6347;
+}
+
+#game-over p{
+  font-size:24px;
+  margin:20px 0;
+}
+
+#restart-btn{
+  font-size:24px;
+  padding:15px 40px;
+  background:#FF6347;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- 🔥 TITLE WITH SECRET EMOJI -->
-  <h1>
-    Popcorn Pop Game
-    <span id="secretEmoji" title="Secret">🍿</span>
-  </h1>
+<div id="game-container">
+  <div id="header">
+    <div id="title"> POP & SCORE! <span id="secret-emoji">🍿</span></div>
+    <div id="score">Score: 0</div>
+  </div>
 
-  <div id="score">Score: 0</div>
+  <div id="game-over">
+    <h2>Game Over!</h2>
+    <p>Final Score: <span id="final-score">0</span></p>
+    <button id="restart-btn">Play Again</button>
+  </div>
+</div>
 
-  <script>
-    let score = 0;
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
 
-    function createPopcorn() {
-      const popcorn = document.createElement("div");
-      popcorn.className = "popcorn";
+  const popSound = new Audio("https://www.genspark.ai/api/files/s/cQaDzTyX");
+  const scoreSound = new Audio("https://www.genspark.ai/api/files/s/qm8QOzlD");
 
-      popcorn.style.left = Math.random() * (window.innerWidth - 60) + "px";
-      popcorn.style.animationDuration = (3 + Math.random() * 2) + "s";
+  let score = 0;
+  let spawnSpeed = 1500;
+  let interval;
+  let gameActive = true;
 
-      popcorn.onclick = () => {
-        popcorn.classList.add("pop");
-        score++;
-        document.getElementById("score").innerText = "Score: " + score;
-        setTimeout(() => popcorn.remove(), 300);
-      };
+  const container = document.getElementById("game-container");
+  const scoreBox = document.getElementById("score");
+  const gameOver = document.getElementById("game-over");
+  const finalScore = document.getElementById("final-score");
+  const restartBtn = document.getElementById("restart-btn");
+  const secret = document.getElementById("secret-emoji");
 
-      document.body.appendChild(popcorn);
+  secret.onclick = () => location.href = "secret.html";
 
-      setTimeout(() => popcorn.remove(), 6000);
+  function createPopcorn(){
+    if(!gameActive) return;
+
+    const p = document.createElement("div");
+    p.className = "popcorn";
+    p.style.left = Math.random()*(window.innerWidth-60)+"px";
+    const dur = 4 + Math.random()*2;
+    p.style.animationDuration = dur+"s";
+
+    p.onclick = (e)=>{
+      e.stopPropagation();
+      pop(p);
+    };
+
+    container.appendChild(p);
+
+    setTimeout(()=>{
+      if(p.parentElement && !p.classList.contains("popping")){
+        p.remove();
+      }
+    }, dur*1000+100);
+  }
+
+  function pop(p){
+    if(p.classList.contains("popping")) return;
+    p.classList.add("popping");
+
+    /* ✅ SCORE FIX: +1 */
+    score += 1;
+    scoreBox.textContent = "Score: "+score;
+
+    popSound.currentTime = 0;
+    popSound.play();
+
+    if(score % 5 === 0){
+      scoreSound.currentTime = 0;
+      scoreSound.play();
     }
 
-    setInterval(createPopcorn, 800);
+    setTimeout(()=>p.remove(),300);
 
-    /* 🔑 SECRET PAGE LINK */
-    document.getElementById("secretEmoji").addEventListener("click", () => {
-      window.location.href = "secret.html"; // ← YAHI CHANGE KARNA HAI AGAR FILE NAME ALAG HAI
-    });
-  </script>
+    if(score % 10 === 0 && spawnSpeed > 500){
+      spawnSpeed -= 200;
+      clearInterval(interval);
+      interval = setInterval(createPopcorn, spawnSpeed);
+    }
+  }
+
+  function startGame(){
+    score = 0;
+    spawnSpeed = 1500;
+    gameActive = true;
+    scoreBox.textContent = "Score: 0";
+    gameOver.style.display = "none";
+    document.querySelectorAll(".popcorn").forEach(p=>p.remove());
+    clearInterval(interval);
+    interval = setInterval(createPopcorn, spawnSpeed);
+  }
+
+  restartBtn.onclick = startGame;
+  startGame();
+
+});
+</script>
 
 </body>
 </html>
