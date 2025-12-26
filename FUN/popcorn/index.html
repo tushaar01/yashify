@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Popcorn Pop Game 🍿</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle, #fff7d6, #ffd966);
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 10px;
+      user-select: none;
+    }
+
+    /* 🍿 Secret Emoji */
+    #secretEmoji {
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    #secretEmoji:hover {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 6px orange);
+    }
+
+    #score {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .popcorn {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: inset -5px -5px 0 #f2d37c;
+      cursor: pointer;
+      animation: fall linear;
+    }
+
+    .popcorn::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #f5c16c;
+      border-radius: 50%;
+      top: 8px;
+      left: 10px;
+    }
+
+    @keyframes fall {
+      from { top: -60px; }
+      to { top: 110vh; }
+    }
+
+    .pop {
+      animation: pop 0.3s forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔥 TITLE WITH SECRET EMOJI -->
+  <h1>
+    Popcorn Pop Game
+    <span id="secretEmoji" title="Secret">🍿</span>
+  </h1>
+
+  <div id="score">Score: 0</div>
+
+  <script>
+    let score = 0;
+
+    function createPopcorn() {
+      const popcorn = document.createElement("div");
+      popcorn.className = "popcorn";
+
+      popcorn.style.left = Math.random() * (window.innerWidth - 60) + "px";
+      popcorn.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+      popcorn.onclick = () => {
+        popcorn.classList.add("pop");
+        score++;
+        document.getElementById("score").innerText = "Score: " + score;
+        setTimeout(() => popcorn.remove(), 300);
+      };
+
+      document.body.appendChild(popcorn);
+
+      setTimeout(() => popcorn.remove(), 6000);
+    }
+
+    setInterval(createPopcorn, 800);
+
+    /* 🔑 SECRET PAGE LINK */
+    document.getElementById("secretEmoji").addEventListener("click", () => {
+      window.location.href = "secret.html"; // ← YAHI CHANGE KARNA HAI AGAR FILE NAME ALAG HAI
+    });
+  </script>
+
+</body>
+</html>
