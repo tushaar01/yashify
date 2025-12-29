@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Premium | Yashify</title>
+</head>
+<body>
+  <h1>🔥 Welcome to Premium Area</h1>
+  <p>Agar bina login aaye ho, tum yahan nahi pahunch sakte.</p>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+ onst firebaseConfig = {
+    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+    authDomain: "yashify01.firebaseapp.com",
+    projectId: "yashify01",
+    storageBucket: "yashify01.firebasestorage.app",
+    messagingSenderId: "209589402846",
+    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
+</body>
+</html>
