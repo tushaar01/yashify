@@ -5,54 +5,42 @@
   <title>Premium | Yashify</title>
 </head>
 <body>
+
   <h1>🔥 Welcome to Premium Area</h1>
-  
-<button id="logoutBtn">Logout</button>
-  
-  
-  
+  <button id="logoutBtn">Logout</button>
   <p>Agar bina login aaye ho, tum yahan nahi pahunch sakte.</p>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-  
-  
-  
-  
-  
- onst firebaseConfig = {
-    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
-    authDomain: "yashify01.firebaseapp.com",
-    projectId: "yashify01",
-    storageBucket: "yashify01.firebasestorage.app",
-    messagingSenderId: "209589402846",
-    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
-  };
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+    authDomain: "yashify01.firebaseapp.com",
+    projectId: "yashify01",
+    storageBucket: "yashify01.firebasestorage.app",
+    messagingSenderId: "209589402846",
+    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
+  };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
+  // 🔐 Page protection
   onAuthStateChanged(auth, (user) => {
     if (!user) {
       window.location.href = "login.html";
     }
   });
-  
-  
-  window.logout = function () {
-  signOut(auth).then(() => {
-    window.location.href = "login.html";
-  });
-  
-  
+
+  // 🚪 Logout
   document.getElementById("logoutBtn").addEventListener("click", () => {
-  signOut(auth).then(() => {
-    window.location.href = "login.html";
+    signOut(auth).then(() => {
+      window.location.href = "login.html";
+    });
   });
-});
-};
 </script>
+
 </body>
 </html>
