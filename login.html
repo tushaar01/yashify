@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Yashify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#000;
+      color:#fff;
+      font-family:Arial, sans-serif;
+    }
+    .login-box{
+      width:300px;
+      padding:25px;
+      border:1px solid #222;
+      border-radius:8px;
+      text-align:center;
+    }
+    input{
+      width:100%;
+      padding:10px;
+      margin-top:12px;
+      background:#111;
+      border:1px solid #333;
+      color:#fff;
+      border-radius:5px;
+    }
+    button{
+      width:100%;
+      margin-top:18px;
+      padding:10px;
+      background:#e50914;
+      border:none;
+      color:#fff;
+      font-size:16px;
+      border-radius:5px;
+      cursor:pointer;
+    }
+    button:hover{
+      opacity:0.9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+    <h2>Login to Yashify</h2>
+    <input id="email" type="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+    authDomain: "yashify01.firebaseapp.com",
+    projectId: "yashify01",
+    storageBucket: "yashify01.firebasestorage.app",
+    messagingSenderId: "209589402846",
+    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.login = function () {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if(!email || !password){
+      alert("Email aur password dono bharo");
+      return;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.href = "premium.html";
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  };
+</script>
+
+</body>
+</html>
