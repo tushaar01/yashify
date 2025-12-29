@@ -7,7 +7,7 @@
 <body>
   <h1>🔥 Welcome to Premium Area</h1>
   
-  <button onclick="logout()">Logout</button>
+<button id="logoutBtn">Logout</button>
   
   
   
@@ -45,6 +45,13 @@ from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   signOut(auth).then(() => {
     window.location.href = "login.html";
   });
+  
+  
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
+});
 };
 </script>
 </body>
