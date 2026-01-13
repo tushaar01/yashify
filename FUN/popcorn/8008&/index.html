@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE POPCORN TIME  🍿 | Discover Anime & Web Series</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        
+        <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B5X5RJM3XH');
+  </script>
+        
+        
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #1A1A2E;
+            --accent: #00B4D8;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --gray-light: #E9ECEF;
+            --dark: #121212;
+            --card-bg: #FFFFFF;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --radius: 10px;
+            --transition: all 0.3s ease;
+            --anime-color: #9D4EDD;
+            --webseries-color: #00B4D8;
+        }
+
+        body {
+            background-color: #fefefe;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo i {
+            margin-right: 8px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0 3.5rem;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1925&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+
+        .hero h1 {
+            color: white;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            box-shadow: none;
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Categories Section - Compact Cards */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .main-categories {
+            padding: 4rem 0 3rem;
+        }
+
+        .main-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Small Compact Category Cards */
+        .compact-category-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+            height: 180px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .compact-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .compact-category-card.anime {
+            border-left: 5px solid var(--anime-color);
+        }
+
+        .compact-category-card.webseries {
+            border-left: 5px solid var(--webseries-color);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .category-icon.anime-bg {
+            background: linear-gradient(135deg, var(--anime-color) 0%, #7B2CBF 100%);
+        }
+
+        .category-icon.webseries-bg {
+            background: linear-gradient(135deg, var(--webseries-color) 0%, #0096C7 100%);
+        }
+
+        .compact-category-content {
+            flex-grow: 1;
+        }
+
+        .compact-category-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .compact-category-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .category-link {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .category-link i {
+            transition: var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .compact-category-card:hover .category-link i {
+            transform: translateX(3px);
+        }
+
+        /* Featured Section - Images Only with Titles */
+        .featured-section {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0 2rem;
+        }
+
+        .featured-item {
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .featured-item:hover .featured-image {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            line-height: 1.3;
+        }
+
+        /* Content Grid (Anime/Webseries listings) - Square Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.8rem;
+            padding: 2rem 0 4rem;
+        }
+
+        /* Square Content Cards */
+        .square-content-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .square-content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .square-poster {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .square-content-details {
+            padding: 1rem;
+        }
+
+        .square-content-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            line-height: 1.3;
+        }
+
+        .square-content-meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+        }
+
+        .square-content-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            background-color: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .tag.anime-tag {
+            background-color: rgba(157, 78, 221, 0.1);
+            color: var(--anime-color);
+        }
+
+        .tag.webseries-tag {
+            background-color: rgba(0, 180, 216, 0.1);
+            color: var(--webseries-color);
+        }
+
+        .square-content-description {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #FFC107;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Detail View Modal */
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+        }
+
+        .detail-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal-header {
+                flex-direction: column;
+            }
+        }
+
+        .modal-poster {
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            flex-shrink: 0;
+        }
+
+        .modal-info {
+            flex-grow: 1;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .modal-meta {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .why-watch {
+            background-color: rgba(255, 107, 53, 0.05);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-watch p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* Modal Link Button Styling - NEW */
+        .modal-links {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-right: 1rem;
+            margin-bottom: 0.8rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .link-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            color: white;
+        }
+
+        .link-btn i {
+            font-size: 0.9rem;
+        }
+
+        .link-btn.anime-link {
+            background-color: var(--anime-color);
+        }
+
+        .link-btn.anime-link:hover {
+            background-color: #7B2CBF;
+        }
+
+        .link-btn.webseries-link {
+            background-color: var(--webseries-color);
+        }
+
+        .link-btn.webseries-link:hover {
+            background-color: #0096C7;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 0.7rem 1.3rem;
+            background-color: rgba(255, 107, 53, 0.1);
+            border-radius: 50px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 107, 53, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links h4, .footer-legal h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-legal p {
+            color: #bbb;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Page Headers */
+        .page-header {
+            padding: 3rem 0 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .page-header .subtitle {
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            h2 {
+                font-size: 1.9rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .main-category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .compact-category-card {
+                height: 160px;
+                padding: 0 1.2rem;
+            }
+            
+            .category-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+                margin-right: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 3rem 0 2rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-poster {
+                width: 150px;
+                height: 210px;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .page {
+            min-height: 70vh;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .py-3 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-popcorn"></i>
+                    The Popcorn Time <span>🍿</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-home">Home</a></li>
+                    <li><a href="#" class="nav-anime">Anime</a></li>
+                    <li><a href="#" class="nav-webseries">Web Series</a></li>
+                    <li><a href="#" class="nav-about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Your Ultimate Entertainment Discovery Hub</h1>
+                <p class="subtitle">Find your next binge-worthy anime or web series with our curated collections. No streaming, just discovery.</p>
+                <a href="#" class="btn explore-btn">Start Exploring</a>
+            </div>
+        </section>
+
+        <!-- Main Categories Section - Compact Cards -->
+        <section class="main-categories">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Discover Collections</h2>
+                    <p class="subtitle">Browse our handpicked recommendations</p>
+                </div>
+                <div class="main-category-grid">
+                    <!-- Anime Compact Card -->
+                    <div class="compact-category-card anime" id="anime-category">
+                        <div class="category-icon anime-bg">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="compact-category-content">
+                            <h3>Anime Collection</h3>
+                            <p>Explore Japanese animation across all genres</p>
+                            <a href="#" class="category-link">Browse Anime <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Web Series Compact Card -->
+                    <div class="compact-category-card webseries" id="webseries-category">
+                        <div class="category-icon webseries-bg">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="compact-category-content">
+                            <h3>Web Series Collection</h3>
+                            <p>Discover binge-worthy series from around the world</p>
+                            <a href="#" class="category-link">Browse Web Series <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Section - Images Only -->
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Recently Added</h2>
+                    <p class="subtitle">Fresh picks added to our collection</p>
+                </div>
+                <div class="featured-grid" id="featured-content">
+                    <!-- Featured items will be loaded by JS -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Anime Page -->
+    <div id="anime-page" class="page hidden">
+        <div class="page-header">
+            <div class="container">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                <h1>Anime Collection</h1>
+                <p class="subtitle">Handpicked Japanese animation across all genres and moods</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content-grid" id="anime-list">
+                <!-- Anime square cards will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Series Page -->
+    <div id="webseries-page" class="page hidden">
+        <div class="page-header">
+            <div class="container">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                <h1>Web Series Collection</h1>
+                <p class="subtitle">Binge-worthy series from around the world</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content-grid" id="webseries-list">
+                <!-- Web series square cards will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page hidden">
+        <section class="py-3">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About The Popcorn Time 🍿</h2>
+                </div>
+                <div class="about-content" style="max-width: 800px; margin: 0 auto;">
+                    <h3>Your Entertainment Discovery Companion</h3>
+                    <p>The Popcorn Time is a premium recommendation platform designed to help you discover your next favorite anime or web series. We believe great entertainment should be found through thoughtful curation, not impersonal algorithms.</p>
+                    
+                    <h3>What We Offer</h3>
+                    <p>We provide carefully curated recommendations for both anime and web series based on genre, mood, and quality. Each selection is handpicked by entertainment enthusiasts who understand what makes different shows resonate with different viewers.</p>
+                    
+                    <h3>Legal Notice</h3>
+                    <p>This website is for recommendation purposes only. We do not host, stream, or link to any copyrighted content. All images are used under fair use for commentary and recommendation purposes.</p>
+                    
+                    <div class="text-center mt-3">
+                        <button class="btn back-to-home">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="detail-modal" id="detail-modal">
+        <div class="modal-content">
+            <div class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">The Popcorn Time <span>🍿</span></div>
+                    <p>Your trusted guide to discovering exceptional entertainment through thoughtful curation and editorial recommendations.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" class="nav-home">Home</a></li>
+                        <li><a href="#" class="nav-anime">Anime</a></li>
+                        <li><a href="#" class="nav-webseries">Web Series</a></li>
+                        <li><a href="#" class="nav-about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal">
+                    <h4>Legal Notice</h4>
+                    <p>This website is for recommendation purposes only. We do not host or stream any content. All images are used under fair use for commentary and recommendation.</p>
+                    <p>All titles and artwork are property of their respective copyright holders.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 The Popcorn Time 🍿. All rights reserved. | Designed for entertainment discovery and appreciation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for content - Updated with links
+        const animeData = [
+            {
+                id: 1,
+                title: "Attack on Titan",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg",
+                genres: ["Action", "Dark Fantasy", "Drama"],
+                year: "2013",
+                episodes: "75+",
+                type: "TV Series",
+                description: "Humanity resides within enormous walled cities to protect themselves from giant humanoid creatures called Titans. The story follows Eren Yeager, who vows to exterminate the Titans after they destroy his hometown and kill his mother.",
+                rating: "4.9",
+                whyWatch: "Epic scale storytelling with constant plot twists and breathtaking action sequences. A masterclass in building tension and delivering emotional payoffs.",
+                details: "Studio: Wit Studio / MAPPA | Status: Completed",
+                links: [
+                    { name: "Official Website", url: "https://www.crunchyroll.com/series/GR751KNZY/attack-on-titan" },
+                    { name: "DRIVE", url: "https://drive.google.com/file/d/1VZpoBqF3G8xzcC_GpYa0-qyST32af4_k/view?usp=drivesdk" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Demon Slayer",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg",
+                genres: ["Action", "Supernatural", "Historical"],
+                year: "2019",
+                episodes: "44+",
+                type: "TV Series",
+                description: "A kind-hearted boy becomes a demon slayer after his family is slaughtered and his sister turned into a demon. Tanjiro Kamado sets out on a journey to find a cure for his sister and avenge his family.",
+                rating: "4.8",
+                whyWatch: "Stunning animation and visceral combat sequences that elevate the classic shonen formula. The Water Breathing techniques are visually spectacular.",
+                details: "Studio: ufotable | Status: Ongoing",
+                links: [
+                    { name: "Official Website", url: "https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt9335498/" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Death Note",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg",
+                genres: ["Psychological", "Thriller", "Supernatural"],
+                year: "2006",
+                episodes: "37",
+                type: "TV Series",
+                description: "A high school student discovers a supernatural notebook that allows him to kill anyone whose name he writes in it. Light Yagami decides to use the Death Note to rid the world of criminals, but his actions attract the attention of the mysterious detective known only as L.",
+                rating: "4.7",
+                whyWatch: "A cerebral cat-and-mouse game that explores morality, justice, and the corruption of power. The intellectual battle between Light and L is legendary.",
+                details: "Studio: Madhouse | Status: Completed",
+                links: [
+                    { name: "Official Website", url: "https://www.netflix.com/title/70204970" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt0877057/" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Naruto",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg",
+                genres: ["Adventure", "Martial Arts", "Fantasy"],
+                year: "2002",
+                episodes: "220",
+                type: "TV Series",
+                description: "A young ninja seeks recognition from his peers and dreams of becoming the Hokage, the leader of his village. Naruto Uzumaki carries the burden of having the Nine-Tailed Fox sealed within him.",
+                rating: "4.7",
+                whyWatch: "Iconic characters and emotional storytelling that defined a generation of anime fans. The journey of Naruto from outcast to hero is inspiring.",
+                details: "Studio: Pierrot | Status: Completed",
+                links: [
+                    { name: "Official Website", url: "https://www.crunchyroll.com/series/GYQ4MW246/naruto" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt0409591/" }
+                ]
+            },
+            {
+                id: 5,
+                title: "5 Centimeters per Second",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/5.jpeg",
+                genres: ["Romance", "Drama", "Slice of Life"],
+                year: "2007",
+                episodes: "1",
+                type: "Movie",
+                description: "Told in three interconnected segments, we follow a young man named Takaki through his life as cruel winters, cold technology, and finally, adult obligations and responsibility converge to test the delicate petals of love.",
+                rating: "4.6",
+                whyWatch: "Breathtakingly beautiful animation and a poignant story about distance, time, and the fragility of human relationships. A masterpiece of emotional storytelling.",
+                details: "Studio: CoMix Wave Films | Status: Movie",
+                links: [
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt0983213/" },
+                    { name: "Trailer", url: "https://www.youtube.com/watch?v=wdmC2fGQcL4" }
+                ]
+            },
+            {
+                id: 6,
+                title: "A Silent Voice",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg",
+                genres: ["Drama", "Romance", "School"],
+                year: "2016",
+                episodes: "1",
+                type: "Movie",
+                description: "A young man is ostracized by his classmates after he bullies a deaf girl to the point where she moves away. Years later, he sets off on a path for redemption.",
+                rating: "4.8",
+                whyWatch: "A powerful and empathetic examination of guilt, redemption, and the challenges of communication and understanding others. Beautifully animated with deep emotional impact.",
+                details: "Studio: Kyoto Animation | Status: Movie",
+                links: [
+                    { name: "Netflix", url: "https://www.netflix.com/title/80182123" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt5323662/" }
+                ]
+            },
+            {
+                id: 7,
+                title: "I Want to Eat Your Pancreas",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/1.jpeg",
+                genres: ["Romance", "Drama", "Slice of Life"],
+                year: "2018",
+                episodes: "1",
+                type: "Movie",
+                description: "A terminally ill girl shares her secret with a classmate, and the two form a bond that profoundly affects both their lives. The story explores living life to the fullest in the face of mortality.",
+                rating: "4.7",
+                whyWatch: "A deeply moving story about life, death, and making the most of the time we have. The emotional journey will stay with you long after watching.",
+                details: "Studio: Studio VOLN | Status: Movie",
+                links: [
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt8076262/" },
+                    { name: "Trailer", url: "https://www.youtube.com/watch?v=wB7AMKqjzUc" }
+                ]
+            },
+            {
+                id: 8,
+                title: "Suzume no Tojimari",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg",
+                genres: ["Adventure", "Fantasy", "Drama"],
+                year: "2022",
+                episodes: "1",
+                type: "Movie",
+                description: "A 17-year-old girl named Suzume helps a mysterious young man close doors from the other side that are releasing disasters all over Japan. Her journey grows into a larger adventure.",
+                rating: "4.5",
+                whyWatch: "Stunning visual spectacle from Makoto Shinkai with a heartfelt story about connection, loss, and moving forward. The animation quality is breathtaking.",
+                details: "Studio: CoMix Wave Films | Status: Movie",
+                links: [
+                    { name: "Official Website", url: "https://suzume-tojimari-movie.jp/" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt16428256/" }
+                ]
+            },
+            {
+                id: 9,
+                title: "Your Name",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg",
+                genres: ["Romance", "Fantasy", "Drama"],
+                year: "2016",
+                episodes: "1",
+                type: "Movie",
+                description: "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage to become even more complicated when the boy and girl decide to meet in person.",
+                rating: "4.9",
+                whyWatch: "A visually stunning masterpiece that blends romance, fantasy, and drama perfectly. The emotional payoff is one of the most satisfying in anime history.",
+                details: "Studio: CoMix Wave Films | Status: Movie",
+                links: [
+                    { name: "Netflix", url: "https://www.netflix.com/title/80186924" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt5311514/" }
+                ]
+            },
+            {
+                id: 10,
+                title: "BAKI HANMA",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg",
+                genres: ["Action", "Martial Arts", "Tournament"],
+                year: "2021",
+                episodes: "12+",
+                type: "TV Series",
+                description: "The story of Baki Hanma as he trains and prepares to face his father, Yujiro Hanma, the strongest creature on Earth. He participates in the underground martial arts tournament to prove his strength.",
+                rating: "4.4",
+                whyWatch: "Over-the-top martial arts action with insane fight sequences and superhuman abilities. Pure adrenaline-fueled entertainment for action fans.",
+                details: "Studio: TMS Entertainment | Status: Ongoing",
+                links: [
+                    { name: "Netflix", url: "https://www.netflix.com/title/80217863" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt9174358/" }
+                ]
+            },
+            {
+                id: 11,
+                title: "Solo Leveling",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg",
+                genres: ["Action", "Fantasy", "Adventure"],
+                year: "2024",
+                episodes: "12",
+                type: "TV Series",
+                description: "In a world where hunters—humans who possess magical abilities—must battle deadly monsters to protect humanity, a weak hunter named Sung Jinwoo finds himself in a seemingly endless struggle for survival.",
+                rating: "4.8",
+                whyWatch: "Incredible animation and fight sequences with a satisfying power progression story. The protagonist's journey from weakest to strongest is compelling.",
+                details: "Studio: A-1 Pictures | Status: Ongoing",
+                links: [
+                    { name: "Crunchyroll", url: "https://www.crunchyroll.com/series/GY5VEVW56/solo-leveling" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt29038550/" }
+                ]
+            }
+        ];
+
+        const webSeriesData = [
+            {
+                id: 1,
+                title: "STEVE 2025",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/steve.jpeg",
+                genres: ["Sci-Fi", "Drama", "Mystery"],
+                year: "2025",
+                seasons: "1",
+                type: "Upcoming Series",
+                description: "In a near-future world where artificial intelligence has become indistinguishable from humans, a detective must solve a series of crimes that blur the line between human and machine consciousness.",
+                rating: "4.5",
+                whyWatch: "A thought-provoking exploration of AI consciousness and what it means to be human in an increasingly technological world. The mystery elements keep you guessing.",
+                details: "Creator: Alex Garland | Seasons: 1 (Upcoming)",
+                links: [
+                    { name: "Trailer", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
+                ]
+            },
+            {
+                id: 2,
+                title: "DARK",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARKK.jpeg",
+                genres: ["Sci-Fi", "Thriller", "Mystery"],
+                year: "2017",
+                seasons: "3",
+                type: "Netflix Original",
+                description: "The disappearance of two young children in the German town of Winden opens a mystery that spans four families as they search for answers. They unravel a sinister time travel conspiracy.",
+                rating: "4.8",
+                whyWatch: "One of the most intricate and well-plotted time travel stories ever made. The complex narrative rewards careful attention and features brilliant performances.",
+                details: "Creators: Baran bo Odar, Jantje Friese | Seasons: 3",
+                links: [
+                    { name: "Netflix", url: "https://www.netflix.com/title/80100172" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt5753856/" }
+                ]
+            },
+            {
+                id: 3,
+                title: "FROM",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/FROM.jpeg",
+                genres: ["Horror", "Mystery", "Sci-Fi"],
+                year: "2022",
+                seasons: "2",
+                type: "MGM+ Original",
+                description: "Unravel the mystery of a nightmarish town in middle America that traps all those who enter. As the unwilling residents fight to keep a sense of normalcy and search for a way out, they must also survive the threats of the surrounding forest.",
+                rating: "4.4",
+                whyWatch: "A genuinely terrifying horror mystery with compelling characters and a deeply unsettling atmosphere. The central mystery keeps you hooked episode after episode.",
+                details: "Creators: John Griffin | Seasons: 2",
+                links: [
+                    { name: "MGM+", url: "https://www.mgmplus.com/series/from" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt9813792/" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Peaky Blinders",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/PB.jpeg",
+                genres: ["Crime", "Drama", "Historical"],
+                year: "2013",
+                seasons: "6",
+                type: "BBC/Netflix",
+                description: "A gangster family epic set in 1919 Birmingham, England, centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
+                rating: "4.9",
+                whyWatch: "Stylish period crime drama with incredible performances, especially from Cillian Murphy as Tommy Shelby. The atmosphere and soundtrack are exceptional.",
+                details: "Creator: Steven Knight | Seasons: 6",
+                links: [
+                    { name: "Netflix", url: "https://www.netflix.com/title/80002479" },
+                    { name: "IMDb", url: "https://www.imdb.com/title/tt2442560/" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Dhurandhara",
+                poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/d.jpeg",
+                genres: ["Drama", "Thriller", "Political"],
+                year: "2024",
+                seasons: "1",
+                type: "Hotstar Special",
+                description: "A political thriller that follows the rise and fall of a charismatic politician in contemporary India. The series explores power, corruption, and the personal costs of ambition in the cutthroat world of politics.",
+                rating: "4.3",
+                whyWatch: "A gripping political drama with sharp writing and strong performances. Offers an insightful look into the mechanics of power and ambition.",
+                details: "Creator: Anurag Kashyap | Seasons: 1",
+                links: [
+                    { name: "Hotstar", url: "https://www.hotstar.com/in" },
+                    { name: "Trailer", url: "https://www.youtube.com/watch?v=example" }
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const homePage = document.getElementById('home-page');
+        const animePage = document.getElementById('anime-page');
+        const webseriesPage = document.getElementById('webseries-page');
+        const aboutPage = document.getElementById('about-page');
+        const detailModal = document.getElementById('detail-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalBody = document.getElementById('modal-body');
+        
+        const animeList = document.getElementById('anime-list');
+        const webseriesList = document.getElementById('webseries-list');
+        const featuredContent = document.getElementById('featured-content');
+        
+        // Navigation elements
+        const navHome = document.querySelector('.nav-home');
+        const navAnime = document.querySelector('.nav-anime');
+        const navWebseries = document.querySelector('.nav-webseries');
+        const navAbout = document.querySelector('.nav-about');
+        const exploreBtn = document.querySelector('.explore-btn');
+        const backBtns = document.querySelectorAll('.back-btn');
+        const backToHome = document.querySelector('.back-to-home');
+        
+        // Category cards
+        const animeCategory = document.getElementById('anime-category');
+        const webseriesCategory = document.getElementById('webseries-category');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderFeaturedContent();
+            setupEventListeners();
+        });
+
+        // Render featured content on home page (only your specified items)
+        function renderFeaturedContent() {
+            featuredContent.innerHTML = '';
+            
+            // Only show the 4 specific items you requested
+            const featuredItems = [
+                {title: "Peaky Blinders", poster: "https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/PB.jpeg", type: "webseries"},
+                {title: "DARK", poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARKK.jpeg", type: "webseries"},
+                {title: "FROM", poster: "https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/FROM.jpeg", type: "webseries"},
+                {title: "Death Note", poster: "https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg", type: "anime"}
+            ];
+            
+            featuredItems.forEach(item => {
+                const featuredItem = document.createElement('div');
+                featuredItem.className = 'featured-item';
+                
+                // Find the actual item data for click functionality
+                let itemData;
+                if (item.type === 'anime') {
+                    itemData = animeData.find(anime => anime.title === item.title);
+                } else {
+                    itemData = webSeriesData.find(series => series.title === item.title);
+                }
+                
+                if (itemData) {
+                    featuredItem.dataset.id = itemData.id;
+                    featuredItem.dataset.type = item.type;
+                }
+                
+                featuredItem.innerHTML = `
+                    <img src="${item.poster}" alt="${item.title}" class="featured-image">
+                    <div class="featured-title">${item.title}</div>
+                `;
+                
+                if (itemData) {
+                    featuredItem.addEventListener('click', function() {
+                        const itemId = parseInt(this.dataset.id);
+                        const itemType = this.dataset.type;
+                        showItemDetail(itemId, itemType);
+                    });
+                }
+                
+                featuredContent.appendChild(featuredItem);
+            });
+        }
+
+        // Render anime list with square cards
+        function renderAnimeList() {
+            animeList.innerHTML = '';
+            
+            animeData.forEach(anime => {
+                const animeCard = document.createElement('div');
+                animeCard.className = 'square-content-card';
+                animeCard.dataset.id = anime.id;
+                animeCard.dataset.type = 'anime';
+                
+                animeCard.innerHTML = `
+                    <img src="${anime.poster}" alt="${anime.title}" class="square-poster">
+                    <div class="square-content-details">
+                        <div class="square-content-title">${anime.title}</div>
+                        <div class="square-content-meta">${anime.year} • ${anime.type}</div>
+                        <div class="square-content-tags">
+                            <span class="tag anime-tag">Anime</span>
+                            ${anime.genres.slice(0, 2).map(genre => `<span class="tag">${genre}</span>`).join('')}
+                        </div>
+                        <div class="square-content-description">${anime.description.substring(0, 80)}...</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>${anime.rating}/5.0</span>
+                        </div>
+                    </div>
+                `;
+                
+                animeCard.addEventListener('click', function() {
+                    const itemId = parseInt(this.dataset.id);
+                    showItemDetail(itemId, 'anime');
+                });
+                
+                animeList.appendChild(animeCard);
+            });
+        }
+
+        // Render web series list with square cards
+        function renderWebseriesList() {
+            webseriesList.innerHTML = '';
+            
+            webSeriesData.forEach(series => {
+                const seriesCard = document.createElement('div');
+                seriesCard.className = 'square-content-card';
+                seriesCard.dataset.id = series.id;
+                seriesCard.dataset.type = 'webseries';
+                
+                seriesCard.innerHTML = `
+                    <img src="${series.poster}" alt="${series.title}" class="square-poster">
+                    <div class="square-content-details">
+                        <div class="square-content-title">${series.title}</div>
+                        <div class="square-content-meta">${series.year} • ${series.type}</div>
+                        <div class="square-content-tags">
+                            <span class="tag webseries-tag">Web Series</span>
+                            ${series.genres.slice(0, 2).map(genre => `<span class="tag">${genre}</span>`).join('')}
+                        </div>
+                        <div class="square-content-description">${series.description.substring(0, 80)}...</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>${series.rating}/5.0</span>
+                        </div>
+                    </div>
+                `;
+                
+                seriesCard.addEventListener('click', function() {
+                    const itemId = parseInt(this.dataset.id);
+                    showItemDetail(itemId, 'webseries');
+                });
+                
+                webseriesList.appendChild(seriesCard);
+            });
+        }
+
+        // Show item detail in modal
+        function showItemDetail(itemId, itemType) {
+            const data = itemType === 'anime' ? animeData : webSeriesData;
+            const item = data.find(item => item.id === itemId);
+            
+            if (!item) return;
+            
+            const typeClass = itemType === 'anime' ? 'anime-tag' : 'webseries-tag';
+            const typeText = itemType === 'anime' ? 'Anime' : 'Web Series';
+            
+            // Generate links HTML
+            let linksHTML = '';
+            if (item.links && item.links.length > 0) {
+                linksHTML = `
+                    <div class="modal-links">
+                        <h4 style="margin-bottom: 0.8rem;">Watch Links:</h4>
+                `;
+                
+                item.links.forEach(link => {
+                    const btnClass = itemType === 'anime' ? 'link-btn anime-link' : 'link-btn webseries-link';
+                    linksHTML += `
+                        <a href="${link.url}" target="_blank" class="${btnClass}">
+                            <i class="fas fa-external-link-alt"></i>
+                            ${link.name}
+                        </a>
+                    `;
+                });
+                
+                linksHTML += `</div>`;
+            }
+            
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <img src="${item.poster}" alt="${item.title}" class="modal-poster">
+                    <div class="modal-info">
+                        <h2 class="modal-title">${item.title}</h2>
+                        <div class="modal-meta">${item.year} • ${item.type} • ${itemType === 'anime' ? item.episodes : item.seasons + ' seasons'}</div>
+                        <div class="modal-tags">
+                            <span class="tag ${typeClass}">${typeText}</span>
+                            ${item.genres.map(genre => `<span class="tag">${genre}</span>`).join('')}
+                        </div>
+                        <div class="modal-description">
+                            <p>${item.description}</p>
+                        </div>
+                        <div class="why-watch">
+                            <p><strong>Why you should watch:</strong> ${item.whyWatch}</p>
+                        </div>
+                        <div class="modal-meta">
+                            <strong>Details:</strong> ${item.details}
+                        </div>
+                        <div class="rating" style="margin-top: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <span style="font-size: 1.2rem;">${item.rating}/5.0</span>
+                        </div>
+                        ${linksHTML}
+                    </div>
+                </div>
+            `;
+            
+            detailModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            detailModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Navigation
+            navHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                showHomePage();
+            });
+            
+            navAnime.addEventListener('click', function(e) {
+                e.preventDefault();
+                showAnimePage();
+            });
+            
+            navWebseries.addEventListener('click', function(e) {
+                e.preventDefault();
+                showWebseriesPage();
+            });
+            
+            navAbout.addEventListener('click', function(e) {
+                e.preventDefault();
+                showAboutPage();
+            });
+            
+            // Category cards
+            animeCategory.addEventListener('click', function() {
+                showAnimePage();
+            });
+            
+            webseriesCategory.addEventListener('click', function() {
+                showWebseriesPage();
+            });
+            
+            exploreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('.main-categories').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Back buttons
+            backBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showHomePage();
+                });
+            });
+            
+            backToHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                showHomePage();
+            });
+            
+            // Modal close
+            modalClose.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            detailModal.addEventListener('click', function(e) {
+                if (e.target === detailModal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && detailModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Show home page
+        function showHomePage() {
+            homePage.classList.remove('hidden');
+            animePage.classList.add('hidden');
+            webseriesPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
+            closeModal();
+            window.scrollTo(0, 0);
+        }
+
+        // Show anime page
+        function showAnimePage() {
+            homePage.classList.add('hidden');
+            animePage.classList.remove('hidden');
+            webseriesPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
+            closeModal();
+            renderAnimeList();
+            window.scrollTo(0, 0);
+        }
+
+        // Show web series page
+        function showWebseriesPage() {
+            homePage.classList.add('hidden');
+            animePage.classList.add('hidden');
+            webseriesPage.classList.remove('hidden');
+            aboutPage.classList.add('hidden');
+            closeModal();
+            renderWebseriesList();
+            window.scrollTo(0, 0);
+        }
+
+        // Show about page
+        function showAboutPage() {
+            homePage.classList.add('hidden');
+            animePage.classList.add('hidden');
+            webseriesPage.classList.add('hidden');
+            aboutPage.classList.remove('hidden');
+            closeModal();
+            window.scrollTo(0, 0);
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle animation to category cards on load
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.compact-category-card');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
