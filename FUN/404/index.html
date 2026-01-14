@@ -6,7 +6,8 @@
     <title>AnimeDekh.li - Coming Soon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -15,525 +16,973 @@
         }
 
         body {
-            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            font-family: 'Poppins', 'Roboto', sans-serif;
             background-color: #0b0c0f;
             color: #ffffff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
+        /* Mobile-First Approach */
+        .mobile-container {
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 20px;
+            background: rgba(11, 12, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(244, 117, 33, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #F47521;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .mobile-menu-btn {
+            background: rgba(244, 117, 33, 0.15);
+            border: 1px solid rgba(244, 117, 33, 0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
+            color: #F47521;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* Animated Background Wall */
-        .background-wall {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .mobile-menu-btn:active {
+            background: rgba(244, 117, 33, 0.25);
+            transform: scale(0.95);
+        }
+
+        /* Hero Section for Mobile */
+        .mobile-hero {
+            position: relative;
             width: 100%;
-            height: 100%;
-            transform: rotate(-15deg) scale(1.5);
-            transform-origin: center;
-            z-index: 1;
+            min-height: 100vh;
+            padding-top: 80px;
+            padding-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
 
-        .marquee-row {
-            display: flex;
-            width: max-content;
-            margin-bottom: 20px;
-        }
-
-        .marquee-row img {
-            height: 280px;
-            width: auto;
-            margin-right: 20px;
-            border-radius: 12px;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        /* Animation Keyframes */
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes scroll-right {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .marquee-left {
-            animation: scroll-left 60s linear infinite;
-        }
-
-        .marquee-right {
-            animation: scroll-right 80s linear infinite;
-        }
-
-        .marquee-left-slow {
-            animation: scroll-left 90s linear infinite;
-        }
-
-        /* Vignette Overlay */
-        .vignette-overlay {
+        /* Improved Background for Mobile - DIAGONAL/VERTICAL MOVEMENT */
+        .mobile-bg-animation {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(11, 12, 15, 0.3) 0%, rgba(11, 12, 15, 0.85) 50%, rgba(11, 12, 15, 0.95) 100%);
+            z-index: 1;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .mobile-bg-row {
+            display: flex;
+            width: max-content;
+            margin-bottom: 15px;
+            transform-style: preserve-3d;
+        }
+
+        .mobile-bg-row img {
+            height: 160px; /* Optimized for mobile */
+            width: 110px;
+            margin-right: 12px;
+            border-radius: 8px;
+            object-fit: cover;
+            filter: brightness(0.5) saturate(1.1); /* Reduced visibility */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+            transform: rotateY(5deg); /* Added 3D effect */
+        }
+
+        /* DIAGONAL & VERTICAL ANIMATIONS */
+        @keyframes mobile-diagonal-left {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        @keyframes mobile-diagonal-right {
+            0% {
+                transform: translateX(-50%) translateY(20px);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        @keyframes mobile-vertical-left {
+            0% {
+                transform: translateY(0) rotateY(8deg);
+            }
+            100% {
+                transform: translateY(20px) rotateY(8deg);
+            }
+        }
+
+        .mobile-anim-diagonal-left {
+            animation: mobile-diagonal-left 90s linear infinite;
+        }
+
+        .mobile-anim-diagonal-right {
+            animation: mobile-diagonal-right 110s linear infinite;
+        }
+
+        .mobile-anim-vertical-left {
+            animation: mobile-vertical-left 120s linear infinite;
+        }
+
+        /* Mobile Overlay - DARKER for better visibility */
+        .mobile-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(11, 12, 15, 0.1) 0%, rgba(11, 12, 15, 0.95) 80%);
             z-index: 2;
         }
 
-        .dark-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(11, 12, 15, 0.98) 0%, rgba(11, 12, 15, 0.7) 70%, transparent 100%);
-            z-index: 3;
-        }
-
-        /* Content Container */
-        .content {
+        /* Mobile Content */
+        .mobile-content {
             position: relative;
             z-index: 10;
-            max-width: 1400px;
-            width: 100%;
-            padding: 0 80px;
-        }
-
-        /* Countdown Timer - Top Right */
-        .timer-nav {
-            position: absolute;
-            top: 40px;
-            right: 80px;
-            z-index: 15;
-            display: flex;
-            gap: 15px;
-        }
-
-        .timer-box {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            padding: 15px 20px;
+            width: 90%;
+            max-width: 500px;
             text-align: center;
-            min-width: 80px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 20px;
         }
 
-        .timer-value {
-            font-size: 32px;
+        /* FIXED: AnimeDekh.li in ONE LINE */
+        .mobile-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+            letter-spacing: -1px;
+        }
+
+        .mobile-title span {
+            color: #F47521;
+            display: inline; /* Changed from block to inline */
+            font-size: 48px;
+        }
+
+        .mobile-subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            color: #F47521;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .mobile-description {
+            font-size: 16px;
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 3px solid #F47521;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Mobile Countdown - Horizontal Layout */
+        .mobile-timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .mobile-timer-box {
+            background: rgba(244, 117, 33, 0.12);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            min-width: 70px;
+            border: 1px solid rgba(244, 117, 33, 0.2);
+            box-shadow: 0 5px 15px rgba(244, 117, 33, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-timer-value {
+            font-size: 28px;
             font-weight: 900;
             color: #F47521;
             display: block;
             line-height: 1;
         }
 
-        .timer-label {
-            font-size: 12px;
-            color: #aaaaaa;
+        .mobile-timer-label {
+            font-size: 11px;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 5px;
+            opacity: 0.9;
         }
 
-        /* Main Content */
-        .main-title {
-            font-size: 120px;
-            font-weight: 900;
-            letter-spacing: -2px;
-            color: #ffffff;
-            text-transform: uppercase;
-            line-height: 1;
+        /* Mobile Email Form */
+        .mobile-form {
+            width: 100%;
             margin-bottom: 30px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
 
-        .brand-highlight {
-            color: #F47521;
-        }
-
-        .subtitle {
-            font-size: 38px;
-            font-weight: 700;
-            color: #F47521;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .description {
-            font-size: 18px;
-            color: #cccccc;
-            max-width: 600px;
-            line-height: 1.8;
-            margin-bottom: 50px;
-        }
-
-        /* Registration Box */
-        .registration-box {
-            display: flex;
-            gap: 15px;
-            max-width: 500px;
-            margin-bottom: 25px;
-        }
-
-        .email-input {
-            flex: 1;
+        .mobile-email-input {
+            width: 100%;
             padding: 18px 25px;
             border: none;
             border-radius: 50px;
             font-size: 16px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
             color: #0b0c0f;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
             outline: none;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .email-input::placeholder {
-            color: #999999;
+        .mobile-email-input:focus {
+            border-color: #F47521;
+            background: white;
         }
 
-        .notify-button {
-            padding: 18px 40px;
+        .mobile-email-input::placeholder {
+            color: #777777;
+        }
+
+        .mobile-notify-btn {
+            width: 100%;
+            padding: 18px;
             border: none;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            background: #F47521;
+            background: linear-gradient(135deg, #F47521, #FF5E00);
             color: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(244, 117, 33, 0.4);
+            box-shadow: 0 10px 25px rgba(244, 117, 33, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .notify-button:hover {
-            background: #ff8533;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(244, 117, 33, 0.6);
+        .mobile-notify-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 15px rgba(244, 117, 33, 0.6);
         }
 
-                /* Footer Styling */
-        .footer {
+        /* Mobile Swipe Indicator */
+        .mobile-swipe-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 14px;
-            color: #666666;
-            margin-top: 20px; /* Email box se niche gap */
-            z-index: 15;
         }
 
-        .footer span {
+        .swipe-icon {
+            font-size: 30px;
+            margin-bottom: 5px;
+            animation: swipe-up 2s ease-in-out infinite;
+        }
+
+        @keyframes swipe-up {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Sections */
+        .mobile-section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 80px 25px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
         }
 
-        .footer span:not(:last-child)::after {
-            content: '|';
+        .mobile-section-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #F47521;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .mobile-section-text {
+            font-size: 17px;
+            color: #cccccc;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        /* Features Grid for Mobile */
+        .mobile-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        .mobile-feature-card {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-feature-card:active {
+            transform: translateY(-3px);
+            border-color: #F47521;
+            box-shadow: 0 10px 25px rgba(244, 117, 33, 0.2);
+        }
+
+        .mobile-feature-icon {
+            font-size: 40px;
+            color: #F47521;
+            margin-bottom: 15px;
+        }
+
+        .mobile-feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .mobile-feature-desc {
+            font-size: 14px;
+            color: #aaaaaa;
+            line-height: 1.5;
+        }
+
+        /* Mobile Anime Showcase */
+        .mobile-showcase {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 0;
+            margin: 30px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .mobile-showcase::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .mobile-anime-card {
+            flex: 0 0 auto;
+            width: 160px;
+            height: 240px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .mobile-anime-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .mobile-anime-card:active img {
+            transform: scale(1.05);
+        }
+
+        .mobile-anime-overlay {
             position: absolute;
-            right: -18px;
-            color: #444444;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .content {
-                padding: 0 40px;
-            }
-
-            .timer-nav {
-                top: 30px;
-                right: 40px;
-                gap: 10px;
-            }
-
-            .timer-box {
-                min-width: 60px;
-                padding: 12px 15px;
-            }
-
-            .timer-value {
-                font-size: 24px;
-            }
-
-            .timer-label {
-                font-size: 10px;
-            }
-
-            .main-title {
-                font-size: 80px;
-            }
-
-            .subtitle {
-                font-size: 28px;
-            }
-
-            .description {
-                font-size: 16px;
-            }
-
-            .footer {
-                left: 40px;
-            }
+        /* Mobile Footer */
+        .mobile-footer {
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            background: rgba(11, 12, 15, 0.95);
+            margin-top: 40px;
+            border-top: 1px solid rgba(244, 117, 33, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .content {
-                padding: 0 30px;
-            }
-
-            .timer-nav {
-                position: relative;
-                top: auto;
-                right: auto;
-                justify-content: center;
-                margin-bottom: 40px;
-                flex-wrap: wrap;
-            }
-
-            .hero {
-                justify-content: center;
-                text-align: center;
-            }
-
-            .dark-gradient {
-                width: 100%;
-                background: linear-gradient(to bottom, rgba(11, 12, 15, 0.98) 0%, rgba(11, 12, 15, 0.85) 100%);
-            }
-
-            .main-title {
-                font-size: 56px;
-            }
-
-            .subtitle {
-                font-size: 22px;
-            }
-
-            .description {
-                font-size: 15px;
-                max-width: 100%;
-            }
-
-            .registration-box {
-                flex-direction: column;
-                max-width: 100%;
-            }
-
-            .marquee-row img {
-                height: 200px;
-            }
-
-            .footer {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                justify-content: center;
-                margin-top: 40px;
-                flex-wrap: wrap;
-                gap: 15px;
-                font-size: 12px;
-            }
+        .mobile-footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #999999;
         }
 
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 42px;
-            }
+        .mobile-footer-links span {
+            padding: 0 10px;
+        }
 
-            .subtitle {
+        .mobile-copyright {
+            font-size: 12px;
+            color: #666666;
+            margin-top: 10px;
+        }
+
+        /* Mobile Navigation Dots */
+        .mobile-nav-dots {
+            position: fixed;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .mobile-nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-dot.active {
+            background: #F47521;
+            transform: scale(1.4);
+            box-shadow: 0 0 10px rgba(244, 117, 33, 0.7);
+        }
+
+        /* Desktop Styles (Hidden on Mobile) */
+        .desktop-only {
+            display: none;
+        }
+
+        /* Tablet and Larger Screens */
+        @media (min-width: 768px) {
+            .mobile-title {
+                font-size: 64px;
+            }
+            
+            .mobile-title span {
+                font-size: 64px;
+            }
+            
+            .mobile-subtitle {
+                font-size: 26px;
+            }
+            
+            .mobile-description {
                 font-size: 18px;
+                padding: 25px;
             }
+            
+            .mobile-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .mobile-anime-card {
+                width: 180px;
+                height: 270px;
+            }
+            
+            .mobile-timer-box {
+                min-width: 85px;
+                padding: 18px 12px;
+            }
+            
+            .mobile-timer-value {
+                font-size: 32px;
+            }
+            
+            .mobile-bg-row img {
+                height: 180px;
+                width: 130px;
+            }
+        }
 
-            .timer-box {
-                min-width: 70px;
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .mobile-container {
+                display: none;
             }
+            
+            .desktop-only {
+                display: block;
+            }
+        }
+
+        /* Animation for section entrance */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        
+        /* Mobile notification styling */
+        .mobile-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            font-weight: 600;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            max-width: 90%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .notification-success {
+            background: rgba(25, 135, 84, 0.95);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .notification-error {
+            background: rgba(220, 53, 69, 0.95);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <!-- Animated Background Wall -->
-        <div class="background-wall">
-            <!-- Row 1 - Scroll Left -->
-            <div class="marquee-row marquee-left">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
-                <!-- Duplicate for seamless loop -->
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
-            </div>
-
-            <!-- Row 2 - Scroll Right -->
-            <div class="marquee-row marquee-right">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
-                <!-- Duplicate for seamless loop -->
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
-            </div>
-
-            <!-- Row 3 - Scroll Left Slow -->
-            <div class="marquee-row marquee-left-slow">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
-                <!-- Duplicate for seamless loop -->
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
-            </div>
-
-            <!-- Row 4 - Scroll Right -->
-            <div class="marquee-row marquee-right">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
-                <!-- Duplicate for seamless loop -->
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+    <!-- Mobile Version (Shown on phones/tablets) -->
+    <div class="mobile-container">
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <div class="mobile-logo">ANIMEDEKH.LI</div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
 
-        <!-- Vignette Overlays -->
-        <div class="vignette-overlay"></div>
-        <div class="dark-gradient"></div>
-
-        <!-- Countdown Timer -->
-        <div class="timer-nav">
-            <div class="timer-box">
-                <span class="timer-value" id="days">00</span>
-                <span class="timer-label">Days</span>
-            </div>
-            <div class="timer-box">
-                <span class="timer-value" id="hours">00</span>
-                <span class="timer-label">Hours</span>
-            </div>
-            <div class="timer-box">
-                <span class="timer-value" id="minutes">00</span>
-                <span class="timer-label">Minutes</span>
-            </div>
-            <div class="timer-box">
-                <span class="timer-value" id="seconds">00</span>
-                <span class="timer-label">Seconds</span>
-            </div>
+        <!-- Mobile Navigation Dots -->
+        <div class="mobile-nav-dots">
+            <div class="mobile-nav-dot active" data-section="1"></div>
+            <div class="mobile-nav-dot" data-section="2"></div>
+            <div class="mobile-nav-dot" data-section="3"></div>
         </div>
 
-        <!-- Main Content -->
-               <div class="content">
-            <h1 class="main-title">
-                <span class="brand-highlight">ANIME</span>DEKH<span class="brand-highlight">.LI</span>
-            </h1>
+        <!-- Section 1: Hero -->
+        <section class="mobile-hero" id="mobile-section1">
+            <!-- Animated Background with DIAGONAL/VERTICAL movement -->
+            <div class="mobile-bg-animation">
+                <!-- Row 1 - Diagonal Left -->
+                <div class="mobile-bg-row mobile-anim-diagonal-left">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                    <!-- Duplicate for loop -->
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                </div>
+                
+                <!-- Row 2 - Diagonal Right -->
+                <div class="mobile-bg-row mobile-anim-diagonal-right">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+                    <!-- Duplicate for loop -->
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+                </div>
+                
+                <!-- Row 3 - Vertical Left -->
+                <div class="mobile-bg-row mobile-anim-vertical-left">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                    <!-- Duplicate for loop -->
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                </div>
+            </div>
             
-            <h2 class="subtitle">The Ultimate Anime Revolution is Coming</h2>
+            <!-- Overlay -->
+            <div class="mobile-overlay"></div>
             
-            <p class="description">
-                Apne favourite anime ko Hindi mein dekhne ka naya tareeka aa raha hai! 
-                High-quality Hindi dubbed anime, unlimited streaming, aur ek zabardast experience. 
-                Get ready for the revolution in anime entertainment!
-            </p>
-
-            <div class="registration-box">
-                <input type="email" class="email-input" placeholder="Enter your email address" id="emailInput">
-                <button class="notify-button" onclick="handleNotify()">Get Notified</button>
+            <!-- Content -->
+            <div class="mobile-content animate-in">
+                <!-- FIXED: AnimeDekh.li in ONE LINE -->
+                <h1 class="mobile-title">
+                    ANIME<span>DEKH</span>.LI
+                </h1>
+                
+                <!-- FIXED: Changed to Hindi -->
+                <h2 class="mobile-subtitle">Anime ka naya daur aa raha hai!</h2>
+                
+                <p class="mobile-description">
+                    Apne favourite anime ko Hindi mein dekhne ka naya tareeka aa raha hai! 
+                    High-quality Hindi dubbed anime, unlimited streaming, aur ek zabardast experience.
+                </p>
+                
+                <!-- Countdown Timer -->
+                <div class="mobile-timer">
+                    <div class="mobile-timer-box">
+                        <!-- FIXED: Changed to 50 days -->
+                        <span class="mobile-timer-value" id="mobile-days">50</span>
+                        <span class="mobile-timer-label">Days</span>
+                    </div>
+                    <div class="mobile-timer-box">
+                        <span class="mobile-timer-value" id="mobile-hours">00</span>
+                        <span class="mobile-timer-label">Hours</span>
+                    </div>
+                    <div class="mobile-timer-box">
+                        <span class="mobile-timer-value" id="mobile-minutes">00</span>
+                        <span class="mobile-timer-label">Minutes</span>
+                    </div>
+                    <div class="mobile-timer-box">
+                        <span class="mobile-timer-value" id="mobile-seconds">00</span>
+                        <span class="mobile-timer-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <!-- Email Form -->
+                <div class="mobile-form">
+                    <input type="email" class="mobile-email-input" placeholder="Enter your email address" id="mobile-email">
+                    <button class="mobile-notify-btn" onclick="handleMobileNotify()">
+                        <i class="fas fa-bell" style="margin-right: 10px;"></i>Notify Me
+                    </button>
+                </div>
             </div>
-
-            <div class="footer">
-                <span>© 2026 AnimeDekh.li</span>
-                <span>Opening Soon</span>
-                <span>All Rights Reserved</span>
+            
+            <!-- Swipe Indicator -->
+            <div class="mobile-swipe-indicator">
+                <div class="swipe-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div>Swipe up for more</div>
             </div>
-        </div>
+        </section>
 
+        <!-- Section 2: Features -->
+        <section class="mobile-section" id="mobile-section2" style="background: rgba(11, 12, 15, 0.98);">
+            <div class="mobile-content animate-in">
+                <!-- Hindi Title (kept as requested) -->
+                <h2 class="mobile-section-title">Kya Milega?</h2>
+                <p class="mobile-section-text">
+                    AnimeDekh.li aapke liye le kar aa raha hai ek anokha experience. 
+                    Yahan aapko milega sab kuch jo ek asli anime fan ko chahiye!
+                </p>
+                
+                <!-- Features Grid -->
+                <div class="mobile-features">
+                    <div class="mobile-feature-card">
+                        <div class="mobile-feature-icon">
+                            <i class="fas fa-closed-captioning"></i>
+                        </div>
+                        <h3 class="mobile-feature-title">HD Hindi Dubs</h3>
+                        <p class="mobile-feature-desc">High-quality Hindi dubbing with crystal clear audio.</p>
+                    </div>
+                    
+                    <div class="mobile-feature-card">
+                        <div class="mobile-feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="mobile-feature-title">Fast Streaming</h3>
+                        <p class="mobile-feature-desc">Buffer-free streaming with multiple server options.</p>
+                    </div>
+                    
+                    <div class="mobile-feature-card">
+                        <div class="mobile-feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="mobile-feature-title">All Devices</h3>
+                        <p class="mobile-feature-desc">Watch on phone, tablet, laptop, or smart TV.</p>
+                    </div>
+                    
+                    <div class="mobile-feature-card">
+                        <div class="mobile-feature-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3 class="mobile-feature-title">Offline Viewing</h3>
+                        <p class="mobile-feature-desc">Download episodes and watch without internet.</p>
+                    </div>
+                </div>
+                
+                <!-- Anime Showcase -->
+                <div style="margin-top: 50px; width: 100%;">
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 22px; text-align: center;">Popular Anime</h3>
+                    <div class="mobile-showcase">
+                        <div class="mobile-anime-card">
+                            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                            <div class="mobile-anime-overlay">Attack on Titan</div>
+                        </div>
+                        <div class="mobile-anime-card">
+                            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                            <div class="mobile-anime-overlay">Naruto</div>
+                        </div>
+                        <div class="mobile-anime-card">
+                            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                            <div class="mobile-anime-overlay">Demon Slayer</div>
+                        </div>
+                        <div class="mobile-anime-card">
+                            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                            <div class="mobile-anime-overlay">Your Name</div>
+                        </div>
+                        <div class="mobile-anime-card">
+                            <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                            <div class="mobile-anime-overlay">Solo Leveling</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Swipe Indicator -->
+            <div class="mobile-swipe-indicator">
+                <div class="swipe-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div>Swipe up for more</div>
+            </div>
+        </section>
+
+        <!-- Section 3: Final CTA - ALL ENGLISH as requested -->
+        <section class="mobile-section" id="mobile-section3" style="background: linear-gradient(135deg, #0b0c0f 0%, #1a1c24 100%);">
+            <div class="mobile-content animate-in">
+                <h2 class="mobile-section-title">Coming Soon!</h2>
+                <p class="mobile-section-text">
+                    We are launching in February 2026. Register your email now 
+                    so we can notify you first when we go live!
+                </p>
+                
+                <!-- Final Countdown -->
+                <div class="mobile-timer" style="margin-bottom: 50px;">
+                    <div class="mobile-timer-box" style="background: rgba(244, 117, 33, 0.25);">
+                        <!-- FIXED: 50 days -->
+                        <span class="mobile-timer-value" id="final-days">50</span>
+                        <span class="mobile-timer-label">Days Left</span>
+                    </div>
+                </div>
+                
+                <!-- Final Email Form -->
+                <div class="mobile-form">
+                    <input type="email" class="mobile-email-input" placeholder="Enter your email address" id="final-email">
+                    <button class="mobile-notify-btn" onclick="handleFinalNotify()" style="background: linear-gradient(135deg, #FF5E00, #FF3000);">
+                        <i class="fas fa-rocket" style="margin-right: 10px;"></i>Get Early Access
+                    </button>
+                </div>
+                
+                <!-- Social Proof -->
+                <div style="margin-top: 40px; text-align: center; color: #aaaaaa; font-size: 14px;">
+                    <p><i class="fas fa-users" style="color: #F47521; margin-right: 8px;"></i> Already <strong style="color: #F47521;">5,000+</strong> anime fans have joined the waitlist!</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="mobile-footer">
+                <div class="mobile-footer-links">
+                    <span>© 2026 AnimeDekh.li</span>
+                    <span>All Rights Reserved</span>
+                    <span>Made with ❤️ for Indian Anime Fans</span>
+                </div>
+                <div class="mobile-copyright">
+                    All anime images and content are property of their respective owners.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Desktop Version (Hidden on Mobile) -->
+    <div class="desktop-only">
+        <!-- Your original desktop code here -->
+        <style>
+            .desktop-only {
+                display: none;
+                text-align: center;
+                padding: 100px 20px;
+                color: white;
+                background: #0b0c0f;
+                min-height: 100vh;
+            }
+            
+            .desktop-only h1 {
+                font-size: 60px;
+                color: #F47521;
+                margin-bottom: 30px;
+            }
+            
+            .desktop-only p {
+                font-size: 20px;
+                max-width: 600px;
+                margin: 0 auto 40px;
+                color: #cccccc;
+            }
+            
+            @media (min-width: 1024px) {
+                .mobile-container {
+                    display: none;
+                }
+                .desktop-only {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        </style>
+        <h1>ANIMEDEKH.LI</h1>
+        <p>Please view this website on a mobile device for the best experience.</p>
+        <p>Desktop version coming soon!</p>
+    </div>
 
     <script>
-        // Countdown Timer
-        // Set your launch date here (Example: February 1, 2026)
-        const launchDate = new Date('2026-02-01T00:00:00').getTime();
+        // Mobile Countdown Timer
+        // FIXED: Set to 50 days from now
+        const now = new Date();
+        const mobileLaunchDate = new Date(now.getTime() + (50 * 24 * 60 * 60 * 1000)); // 50 days from now
 
-        function updateTimer() {
+        function updateMobileTimer() {
             const now = new Date().getTime();
-            const distance = launchDate - now;
+            const distance = mobileLaunchDate - now;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            // Update all timer displays
+            document.getElementById('mobile-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('mobile-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('mobile-minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('mobile-seconds').textContent = String(seconds).padStart(2, '0');
+            
+            document.getElementById('final-days').textContent = String(days).padStart(2, '0');
 
             if (distance < 0) {
-                clearInterval(timerInterval);
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
+                clearInterval(mobileTimerInterval);
+                document.getElementById('mobile-days').textContent = '00';
+                document.getElementById('mobile-hours').textContent = '00';
+                document.getElementById('mobile-minutes').textContent = '00';
+                document.getElementById('mobile-seconds').textContent = '00';
+                document.getElementById('final-days').textContent = '00';
             }
         }
 
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer(); // Initial call
+        const mobileTimerInterval = setInterval(updateMobileTimer, 1000);
+        updateMobileTimer(); // Initial call
 
-        // Email Notification Handler
-        function handleNotify() {
-            const email = document.getElementById('emailInput').value;
+        // Mobile Email Notification Handler
+        function handleMobileNotify() {
+            const email = document.getElementById('mobile-email').value;
             if (email && validateEmail(email)) {
-                alert('Thank you! You will be notified when AnimeDekh.li launches! 🎉');
-                document.getElementById('emailInput').value = '';
+                // Show success message
+                showMobileNotification('Thank you! You will be notified when AnimeDekh.li launches! 🎉', 'success');
+                document.getElementById('mobile-email').value = '';
             } else {
-                alert('Please enter a valid email address.');
+                showMobileNotification('Please enter a valid email address.', 'error');
+            }
+        }
+        
+        function handleFinalNotify() {
+            const email = document.getElementById('final-email').value;
+            if (email && validateEmail(email)) {
+                showMobileNotification('Thank you! You will get early access when we launch! 🚀', 'success');
+                document.getElementById('final-email').value = '';
+            } else {
+                showMobileNotification('Please enter a valid email address.', 'error');
             }
         }
 
@@ -542,10 +991,213 @@
             return re.test(email);
         }
 
-        // Enter key support for email input
-        document.getElementById('emailInput').addEventListener('keypress', function(event) {
+        // Mobile notification popup
+        function showMobileNotification(message, type = 'success') {
+            // Remove existing notification if any
+            const existingNotification = document.querySelector('.mobile-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = `mobile-notification ${type === 'error' ? 'notification-error' : 'notification-success'}`;
+            notification.innerHTML = message;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+        }
+
+        // Enter key support for email inputs
+        document.getElementById('mobile-email').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                handleNotify();
+                handleMobileNotify();
+            }
+        });
+        
+        document.getElementById('final-email').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleFinalNotify();
+            }
+        });
+
+        // Mobile Navigation
+        const mobileSections = document.querySelectorAll('.mobile-section');
+        const mobileNavDots = document.querySelectorAll('.mobile-nav-dot');
+        
+        // Update active dot based on scroll
+        function updateMobileNav() {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            mobileSections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop - windowHeight/3 && 
+                    scrollPosition < sectionTop + sectionHeight - windowHeight/3) {
+                    // Update active dot
+                    mobileNavDots.forEach(dot => dot.classList.remove('active'));
+                    mobileNavDots[index].classList.add('active');
+                }
+            });
+        }
+        
+        // Scroll to section when dot is clicked
+        mobileNavDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionNumber = dot.getAttribute('data-section');
+                const targetSection = document.getElementById(`mobile-section${sectionNumber}`);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update nav on scroll
+        window.addEventListener('scroll', updateMobileNav);
+        
+        // Menu button functionality
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            // Create mobile menu
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'mobile-menu';
+            mobileMenu.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(11, 12, 15, 0.98); z-index: 9998; padding: 100px 30px 30px;
+                display: flex; flex-direction: column; justify-content: flex-start;">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <div style="color: #F47521; font-size: 28px; font-weight: 900; margin-bottom: 10px;">ANIMEDEKH.LI</div>
+                        <div style="color: #aaaaaa; font-size: 14px;">Coming Soon - February 2026</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <a href="#mobile-section1" style="color: #F47521; font-size: 22px; font-weight: 700; 
+                        text-decoration: none; padding: 18px 20px; background: rgba(244, 117, 33, 0.1);
+                        border-radius: 12px; border-left: 4px solid #F47521;"
+                        onclick="closeMobileMenu()">Home</a>
+                        <a href="#mobile-section2" style="color: white; font-size: 22px; font-weight: 700; 
+                        text-decoration: none; padding: 18px 20px; background: rgba(255, 255, 255, 0.05);
+                        border-radius: 12px; border-left: 4px solid rgba(255,255,255,0.2);"
+                        onclick="closeMobileMenu()">Features</a>
+                        <a href="#mobile-section3" style="color: white; font-size: 22px; font-weight: 700; 
+                        text-decoration: none; padding: 18px 20px; background: rgba(255, 255, 255, 0.05);
+                        border-radius: 12px; border-left: 4px solid rgba(255,255,255,0.2);"
+                        onclick="closeMobileMenu()">Join Waitlist</a>
+                    </div>
+                    <div style="margin-top: auto; text-align: center; padding-top: 30px; color: #666666; font-size: 12px;">
+                        © 2026 AnimeDekh.li. All rights reserved.
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(mobileMenu);
+            
+            // Add close button
+            const closeBtn = document.createElement('div');
+            closeBtn.innerHTML = `
+                <div style="position: fixed; top: 25px; right: 25px; z-index: 9999; 
+                width: 45px; height: 45px; background: rgba(244, 117, 33, 0.2); 
+                border-radius: 12px; display: flex; align-items: center; justify-content: center;
+                color: #F47521; font-size: 24px; cursor: pointer; border: 1px solid rgba(244, 117, 33, 0.5);
+                transition: all 0.3s ease;" onmouseover="this.style.background='rgba(244, 117, 33, 0.3)';" 
+                onmouseout="this.style.background='rgba(244, 117, 33, 0.2)';">
+                    <i class="fas fa-times"></i>
+                </div>
+            `;
+            
+            closeBtn.addEventListener('click', closeMobileMenu);
+            document.body.appendChild(closeBtn);
+        });
+        
+        function closeMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            const closeBtn = document.querySelector('div[style*="position: fixed; top: 25px; right: 25px;"]');
+            
+            if (menu) menu.remove();
+            if (closeBtn) closeBtn.remove();
+        }
+        
+        // Initialize navigation
+        updateMobileNav();
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections for animation
+        document.querySelectorAll('.mobile-section .mobile-content').forEach((el) => {
+            observer.observe(el);
+        });
+        
+        // Add touch/swipe support for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, false);
+        
+        document.addEventListener('touchend', e => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum swipe distance
+            
+            if (touchStartY - touchEndY > swipeThreshold) {
+                // Swipe up - go to next section
+                const currentScroll = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const currentSection = Math.floor(currentScroll / windowHeight);
+                
+                if (currentSection < mobileSections.length - 1) {
+                    const nextSection = mobileSections[currentSection + 1];
+                    window.scrollTo({
+                        top: nextSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            } else if (touchEndY - touchStartY > swipeThreshold) {
+                // Swipe down - go to previous section
+                const currentScroll = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const currentSection = Math.floor(currentScroll / windowHeight);
+                
+                if (currentSection > 0) {
+                    const prevSection = mobileSections[currentSection - 1];
+                    window.scrollTo({
+                        top: prevSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+        
+        // Prevent context menu on images
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.nodeName === 'IMG') {
+                e.preventDefault();
             }
         });
     </script>
