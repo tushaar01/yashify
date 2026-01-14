@@ -1,264 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animedekh.li</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeDekh.li - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#000;
-  overflow:hidden;
-  font-family:Arial,Helvetica,sans-serif;
-}
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            background-color: #0b0c0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-/* HERO */
-.hero{
-  position:relative;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-}
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
 
-/* WALL – angle via skew (safe) */
-.wall{
-  position:absolute;
-  inset:-25%;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  transform:skewY(-6deg);
-}
+        /* Animated Background Wall */
+        .background-wall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-15deg) scale(1.5);
+            transform-origin: center;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-/* ROW */
-.row{
-  display:flex;
-  width:200%;
-  animation:scrollLeft 40s linear infinite;
-}
-.row.reverse{
-  animation:scrollRight 55s linear infinite;
-}
+        .marquee-row {
+            display: flex;
+            width: max-content;
+            margin-bottom: 20px;
+        }
 
-/* TRACK (duplicate = seamless) */
-.track{
-  display:flex;
-  gap:16px;
-}
+        .marquee-row img {
+            height: 280px;
+            width: auto;
+            margin-right: 20px;
+            border-radius: 12px;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
 
-/* ANIMATION – exact half */
-@keyframes scrollLeft{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@keyframes scrollRight{
-  from{transform:translateX(-50%)}
-  to{transform:translateX(0)}
-}
+        /* Animation Keyframes */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
-/* CARD */
-.card{
-  width:120px;
-  height:180px;
-  border-radius:10px;
-  overflow:hidden;
-  background:#111;
-  flex-shrink:0;
-}
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.7;
-  filter:brightness(.8);
-}
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
-/* CENTER */
-.center{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10;
-}
-.glass{
-  background:rgba(0,0,0,.65);
-  padding:32px 30px;
-  border-radius:22px;
-  text-align:center;
-  color:#fff;
-}
-.glass h1{
-  color:#e50914;
-  letter-spacing:4px;
-}
-.glass p{
-  margin-top:10px;
-  letter-spacing:2px;
-}
-.badge{
-  margin-top:18px;
-  background:#e50914;
-  padding:8px 22px;
-  display:inline-block;
-  border-radius:6px;
-  font-weight:bold;
-}
+        .marquee-left {
+            animation: scroll-left 60s linear infinite;
+        }
 
-/* DESKTOP SCALE */
-@media(min-width:900px){
-  .card{width:220px;height:320px}
-}
-</style>
+        .marquee-right {
+            animation: scroll-right 80s linear infinite;
+        }
+
+        .marquee-left-slow {
+            animation: scroll-left 90s linear infinite;
+        }
+
+        /* Vignette Overlay */
+        .vignette-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(11, 12, 15, 0.3) 0%, rgba(11, 12, 15, 0.85) 50%, rgba(11, 12, 15, 0.95) 100%);
+            z-index: 2;
+        }
+
+        .dark-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(11, 12, 15, 0.98) 0%, rgba(11, 12, 15, 0.7) 70%, transparent 100%);
+            z-index: 3;
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 80px;
+        }
+
+        /* Countdown Timer - Top Right */
+        .timer-nav {
+            position: absolute;
+            top: 40px;
+            right: 80px;
+            z-index: 15;
+            display: flex;
+            gap: 15px;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-align: center;
+            min-width: 80px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .timer-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #F47521;
+            display: block;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Main Content */
+        .main-title {
+            font-size: 120px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .brand-highlight {
+            color: #F47521;
+        }
+
+        .subtitle {
+            font-size: 38px;
+            font-weight: 700;
+            color: #F47521;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .description {
+            font-size: 18px;
+            color: #cccccc;
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+        }
+
+        /* Registration Box */
+        .registration-box {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            background: #ffffff;
+            color: #0b0c0f;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+
+        .email-input::placeholder {
+            color: #999999;
+        }
+
+        .notify-button {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            background: #F47521;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(244, 117, 33, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .notify-button:hover {
+            background: #ff8533;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(244, 117, 33, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 80px;
+            z-index: 15;
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .footer span {
+            position: relative;
+        }
+
+        .footer span:not(:last-child)::after {
+            content: '|';
+            position: absolute;
+            right: -18px;
+            color: #444444;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content {
+                padding: 0 40px;
+            }
+
+            .timer-nav {
+                top: 30px;
+                right: 40px;
+                gap: 10px;
+            }
+
+            .timer-box {
+                min-width: 60px;
+                padding: 12px 15px;
+            }
+
+            .timer-value {
+                font-size: 24px;
+            }
+
+            .timer-label {
+                font-size: 10px;
+            }
+
+            .main-title {
+                font-size: 80px;
+            }
+
+            .subtitle {
+                font-size: 28px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .footer {
+                left: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 0 30px;
+            }
+
+            .timer-nav {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-bottom: 40px;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .dark-gradient {
+                width: 100%;
+                background: linear-gradient(to bottom, rgba(11, 12, 15, 0.98) 0%, rgba(11, 12, 15, 0.85) 100%);
+            }
+
+            .main-title {
+                font-size: 56px;
+            }
+
+            .subtitle {
+                font-size: 22px;
+            }
+
+            .description {
+                font-size: 15px;
+                max-width: 100%;
+            }
+
+            .registration-box {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .marquee-row img {
+                height: 200px;
+            }
+
+            .footer {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                justify-content: center;
+                margin-top: 40px;
+                flex-wrap: wrap;
+                gap: 15px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 42px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .timer-box {
+                min-width: 70px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="hero">
+        <!-- Animated Background Wall -->
+        <div class="background-wall">
+            <!-- Row 1 - Scroll Left -->
+            <div class="marquee-row marquee-left">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                <!-- Duplicate for seamless loop -->
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+            </div>
 
-<div class="hero">
+            <!-- Row 2 - Scroll Right -->
+            <div class="marquee-row marquee-right">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+                <!-- Duplicate for seamless loop -->
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+            </div>
 
-  <div class="wall">
+            <!-- Row 3 - Scroll Left Slow -->
+            <div class="marquee-row marquee-left-slow">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+                <!-- Duplicate for seamless loop -->
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg" alt="Attack on Titan">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg" alt="Naruto">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg" alt="Demon Slayer">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg" alt="Your Name">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg" alt="Bleach">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg" alt="Baki">
+            </div>
 
-    <!-- ===== ROW 1 ===== -->
-    <div class="row">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-      </div>
+            <!-- Row 4 - Scroll Right -->
+            <div class="marquee-row marquee-right">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+                <!-- Duplicate for seamless loop -->
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg" alt="Death Note">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg" alt="Solo Leveling">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg" alt="Suzume">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg" alt="A Silent Voice">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg" alt="Tokyo">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg" alt="Punch">
+            </div>
+        </div>
+
+        <!-- Vignette Overlays -->
+        <div class="vignette-overlay"></div>
+        <div class="dark-gradient"></div>
+
+        <!-- Countdown Timer -->
+        <div class="timer-nav">
+            <div class="timer-box">
+                <span class="timer-value" id="days">00</span>
+                <span class="timer-label">Days</span>
+            </div>
+            <div class="timer-box">
+                <span class="timer-value" id="hours">00</span>
+                <span class="timer-label">Hours</span>
+            </div>
+            <div class="timer-box">
+                <span class="timer-value" id="minutes">00</span>
+                <span class="timer-label">Minutes</span>
+            </div>
+            <div class="timer-box">
+                <span class="timer-value" id="seconds">00</span>
+                <span class="timer-label">Seconds</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1 class="main-title">
+                <span class="brand-highlight">ANIME</span>DEKH<span class="brand-highlight">.LI</span>
+            </h1>
+            
+            <h2 class="subtitle">The Ultimate Anime Revolution is Coming</h2>
+            
+            <p class="description">
+                Apne favourite anime ko Hindi mein dekhne ka naya tareeka aa raha hai! 
+                High-quality Hindi dubbed anime, unlimited streaming, aur ek zabardast experience. 
+                Get ready for the revolution in anime entertainment!
+            </p>
+
+            <div class="registration-box">
+                <input type="email" class="email-input" placeholder="Enter your email address" id="emailInput">
+                <button class="notify-button" onclick="handleNotify()">Get Notified</button>
+            </div>
+
+            <div class="footer">
+                <span>© 2026 AnimeDekh.li</span>
+                <span>Opening Soon</span>
+                <span>All Rights Reserved</span>
+            </div>
+        </div>
     </div>
 
-    <!-- ===== ROW 2 ===== -->
-    <div class="row reverse">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-      </div>
-    </div>
+    <script>
+        // Countdown Timer
+        // Set your launch date here (Example: February 1, 2026)
+        const launchDate = new Date('2026-02-01T00:00:00').getTime();
 
-    <!-- ===== ROW 3 ===== -->
-    <div class="row">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/1.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/1.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
-      </div>
-    </div>
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
 
-    <!-- ===== ROW 4 ===== -->
-    <div class="row reverse">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-      </div>
-    </div>
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    <!-- ===== ROW 5 ===== -->
-    <div class="row">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-      </div>
-    </div>
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
-    <!-- ===== ROW 6 ===== -->
-    <div class="row reverse">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
-      </div>
-    </div>
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
 
-    <!-- ===== ROW 7 ===== -->
-    <div class="row">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
-      </div>
-    </div>
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer(); // Initial call
 
-    <!-- ===== ROW 8 ===== -->
-    <div class="row reverse">
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-      </div>
-      <div class="track">
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
-      </div>
-    </div>
+        // Email Notification Handler
+        function handleNotify() {
+            const email = document.getElementById('emailInput').value;
+            if (email && validateEmail(email)) {
+                alert('Thank you! You will be notified when AnimeDekh.li launches! 🎉');
+                document.getElementById('emailInput').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
 
-  </div>
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
 
-  <div class="center">
-    <div class="glass">
-      <h1>Animedekh.li</h1>
-      <p>Your Ultimate Ad-Free Anime Destination</p>
-      <div class="badge">OPENING SOON</div>
-    </div>
-  </div>
-
-</div>
-
+        // Enter key support for email input
+        document.getElementById('emailInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleNotify();
+            }
+        });
+    </script>
 </body>
 </html>
