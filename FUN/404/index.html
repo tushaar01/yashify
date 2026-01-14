@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animedekh.li – Opening Soon</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HERO */
+.hero-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* BACKGROUND WALL */
+.grid-container {
+    position: absolute;
+    inset: -40%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    transform: rotateZ(-12deg);
+    z-index: 1;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+}
+
+.scroll-left {
+    animation: scrollLeft 70s linear infinite;
+}
+
+.scroll-right {
+    animation: scrollRight 70s linear infinite;
+}
+
+@keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+/* CARD */
+.item {
+    width: 240px;
+    height: 360px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    flex-shrink: 0;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    filter: brightness(0.7);
+}
+
+/* CENTER GLASS */
+.overlay-content {
+    position: relative;
+    z-index: 10;
+    padding: 60px 70px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 60px rgba(0,0,0,1);
+}
+
+.overlay-content h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: 6px;
+    color: #e50914;
+    text-transform: uppercase;
+}
+
+.overlay-content p {
+    margin-top: 16px;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 36px;
+    background: #e50914;
+    border-radius: 6px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .item {
+        width: 130px;
+        height: 190px;
+    }
+
+    .grid-container {
+        inset: -80%;
+    }
+
+    .overlay-content {
+        padding: 40px 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero-section">
+
+    <!-- BACKGROUND WALL -->
+    <div class="grid-container">
+
+        <!-- ROW 1 -->
+        <div class="row scroll-left">
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DS.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
+
+            <!-- repeat -->
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/AOT.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Bleach.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DN.jpeg"></div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="row scroll-right">
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/ASV.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SL.jpeg"></div>
+
+            <!-- repeat -->
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/SUZUME.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/YN.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/BAKI.jpeg"></div>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="row scroll-left">
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/1.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/N.jpeg"></div>
+
+            <!-- repeat -->
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/PB.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/Ta.jpeg"></div>
+            <div class="item"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/DARK.jpeg"></div>
+        </div>
+
+    </div>
+
+    <!-- CENTER CONTENT -->
+    <div class="overlay-content">
+        <h1>Animedekh.li</h1>
+        <p>Your Ultimate Ad-Free Anime Destination</p>
+        <div class="status">OPENING SOON</div>
+    </div>
+
+</div>
+
+</body>
+</html>
