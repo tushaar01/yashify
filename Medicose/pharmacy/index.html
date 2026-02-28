@@ -1,1198 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHARMACY – Health Guide | Trusted Medical Information</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-
-        
-        
-        <style>
-
-
-        
-        /* ===================================
-   PHARMACY - Health Guide Stylesheet
-   Modern Medical UI Design
-   =================================== */
-
-/* ============ ROOT VARIABLES ============ */
-:root {
-    /* Color Palette */
-    --primary-mint: #4ECDC4;
-    --primary-teal: #2C9D96;
-    --primary-dark: #1A5F59;
-    --accent-green: #95E1D3;
-    --bg-light: #F8FFFE;
-    --bg-white: #FFFFFF;
-    --text-dark: #2D3748;
-    --text-gray: #718096;
-    --text-light: #A0AEC0;
-    --border-color: #E2E8F0;
-    --shadow-light: rgba(76, 205, 196, 0.08);
-    --shadow-medium: rgba(76, 205, 196, 0.15);
-    
-    /* Spacing System */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-xxl: 4rem;
-    
-    /* Border Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
-    --radius-full: 50px;
-    
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.4s ease;
-}
-
-/* ============ GLOBAL RESET ============ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg-light);
-    color: var(--text-dark);
-    line-height: 1.6;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ============ CONTAINER ============ */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0 var(--spacing-sm);
-    }
-}
-
-/* ============ HEADER SECTION ============ */
-.header {
-    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-dark) 100%);
-    color: var(--bg-white);
-    padding: var(--spacing-lg) 0;
-    box-shadow: 0 4px 20px var(--shadow-medium);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.logo-icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: var(--bg-white);
-    flex-shrink: 0;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.5px;
-}
-
-.trust-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.75rem;
-    font-weight: 400;
-    opacity: 0.9;
-}
-
-.trust-badge i {
-    font-size: 0.7rem;
-}
-
-.language-toggle {
-    display: flex;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 4px;
-    border-radius: var(--radius-full);
-}
-
-.lang-btn {
-    background: transparent;
-    border: none;
-    color: var(--bg-white);
-    padding: 8px 16px;
-    border-radius: var(--radius-full);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.lang-btn.active {
-    background: var(--bg-white);
-    color: var(--primary-teal);
-}
-
-.lang-btn:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 768px) {
-    .logo-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-    }
-    
-    .logo-text h1 {
-        font-size: 1.1rem;
-    }
-    
-    .trust-badge {
-        font-size: 0.7rem;
-    }
-    
-    .lang-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-content {
-        flex-wrap: wrap;
-    }
-    
-    .logo-section {
-        gap: var(--spacing-sm);
-    }
-    
-    .logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    
-    .logo-text h1 {
-        font-size: 1rem;
-    }
-}
-
-/* ============ SEARCH SECTION ============ */
-.search-section {
-    padding: var(--spacing-xl) 0;
-    background: var(--bg-light);
-}
-
-.search-container {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.search-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: var(--bg-white);
-    border-radius: var(--radius-full);
-    padding: var(--spacing-xs);
-    box-shadow: 0 8px 30px var(--shadow-light);
-    transition: all var(--transition-medium);
-}
-
-.search-wrapper:focus-within {
-    box-shadow: 0 12px 40px var(--shadow-medium);
-    transform: translateY(-2px);
-}
-
-.search-icon {
-    color: var(--primary-teal);
-    font-size: 1.25rem;
-    margin-left: var(--spacing-md);
-    margin-right: var(--spacing-sm);
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: var(--text-dark);
-    padding: var(--spacing-sm) var(--spacing-xs);
-    background: transparent;
-}
-
-.search-input::placeholder {
-    color: var(--text-light);
-}
-
-.search-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-full);
-    background: linear-gradient(135deg, var(--primary-mint) 0%, var(--primary-teal) 100%);
-    border: none;
-    color: var(--bg-white);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    transition: all var(--transition-fast);
-    flex-shrink: 0;
-}
-
-.search-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px var(--shadow-medium);
-}
-
-.search-btn:active {
-    transform: scale(0.98);
-}
-
-@media (max-width: 768px) {
-    .search-section {
-        padding: var(--spacing-lg) 0;
-    }
-    
-    .search-input {
-        font-size: 0.9rem;
-    }
-    
-    .search-btn {
-        width: 44px;
-        height: 44px;
-    }
-}
-
-/* ============ FEATURE TOOLS SECTION ============ */
-.feature-tools {
-    padding: var(--spacing-xl) 0;
-    background: var(--bg-white);
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-}
-
-.section-header h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: var(--spacing-xs);
-}
-
-.section-header p {
-    font-size: 1rem;
-    color: var(--text-gray);
-    font-weight: 400;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
-}
-
-.tool-card {
-    position: relative;
-    background: var(--bg-white);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    text-align: center;
-    transition: all var(--transition-medium);
-    overflow: hidden;
-}
-
-.tool-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-mint), var(--primary-teal));
-    transform: scaleX(0);
-    transition: transform var(--transition-medium);
-}
-
-.tool-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px var(--shadow-light);
-    border-color: var(--primary-mint);
-}
-
-.tool-card:hover::before {
-    transform: scaleX(1);
-}
-
-.tool-card.active {
-    border-color: var(--primary-teal);
-    background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(42, 157, 150, 0.05) 100%);
-}
-
-.coming-soon-badge {
-    position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    background: linear-gradient(135deg, #FFB347, #FF6B6B);
-    color: var(--bg-white);
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    animation: pulse 2s infinite;
-    z-index: 10;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-.tool-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--spacing-md);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: var(--bg-white);
-    transition: all var(--transition-medium);
-}
-
-.tool-icon.drug-interaction {
-    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-}
-
-.tool-icon.lab-analyzer {
-    background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
-}
-
-.tool-icon.first-aid {
-    background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
-}
-
-.tool-card:hover .tool-icon {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.tool-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: var(--spacing-sm);
-}
-
-.tool-card p {
-    font-size: 0.9rem;
-    color: var(--text-gray);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
-}
-
-.tool-btn {
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-full);
-    border: 2px solid var(--primary-teal);
-    background: var(--bg-white);
-    color: var(--primary-teal);
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    transition: all var(--transition-fast);
-}
-
-.tool-btn:not(:disabled):hover {
-    background: var(--primary-teal);
-    color: var(--bg-white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-medium);
-}
-
-.tool-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    border-color: var(--text-light);
-    color: var(--text-light);
-}
-
-@media (max-width: 768px) {
-    .section-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .tools-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-    
-    .tool-card {
-        padding: var(--spacing-lg);
-    }
-    
-    .tool-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 2rem;
-    }
-}
-
-/* ============ HEALTH GUIDES SECTION ============ */
-.health-guides {
-    padding: var(--spacing-xl) 0 var(--spacing-xxl);
-    background: var(--bg-light);
-}
-
-.guides-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
-}
-
-.guide-card {
-    background: var(--bg-white);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-    text-align: center;
-    transition: all var(--transition-medium);
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.guide-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 30px var(--shadow-light);
-    border-color: var(--primary-mint);
-}
-
-.guide-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto var(--spacing-sm);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: var(--bg-white);
-    transition: all var(--transition-medium);
-}
-
-.guide-card:hover .guide-icon {
-    transform: scale(1.1);
-}
-
-.guide-icon.fever {
-    background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
-}
-
-.guide-icon.stomach {
-    background: linear-gradient(135deg, #30CFD0 0%, #330867 100%);
-}
-
-.guide-icon.skin {
-    background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%);
-}
-
-.guide-icon.diabetes {
-    background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
-}
-
-.guide-icon.heart {
-    background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%);
-}
-
-.guide-icon.mental {
-    background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
-}
-
-.guide-label {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-@media (max-width: 768px) {
-    .guides-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: var(--spacing-sm);
-    }
-    
-    .guide-card {
-        padding: var(--spacing-md);
-    }
-    
-    .guide-icon {
-        width: 56px;
-        height: 56px;
-        font-size: 1.5rem;
-    }
-    
-    .guide-label {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .guides-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* ============ FOOTER SECTION ============ */
-.footer {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-teal) 100%);
-    color: var(--bg-white);
-    padding: var(--spacing-xl) 0 var(--spacing-lg);
-}
-
-.disclaimer {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
-.disclaimer i {
-    font-size: 1.5rem;
-    color: var(--accent-green);
-    flex-shrink: 0;
-    margin-top: 4px;
-}
-
-.disclaimer p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    opacity: 0.95;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer-bottom p {
-    font-size: 0.875rem;
-    opacity: 0.8;
-}
-
-@media (max-width: 768px) {
-    .disclaimer {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-md);
-    }
-    
-    .disclaimer i {
-        font-size: 1.25rem;
-    }
-    
-    .disclaimer p {
-        font-size: 0.85rem;
-    }
-}
-
-/* ============ UTILITY CLASSES ============ */
-.text-center {
-    text-align: center;
-}
-
-.mt-sm { margin-top: var(--spacing-sm); }
-.mt-md { margin-top: var(--spacing-md); }
-.mt-lg { margin-top: var(--spacing-lg); }
-
-.mb-sm { margin-bottom: var(--spacing-sm); }
-.mb-md { margin-bottom: var(--spacing-md); }
-.mb-lg { margin-bottom: var(--spacing-lg); }
-
-/* ============ ANIMATIONS ============ */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease forwards;
-}
-
-/* ============ ACCESSIBILITY ============ */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid var(--primary-mint);
-    outline-offset: 2px;
-}
-
-/* ============ PRINT STYLES ============ */
-@media print {
-    .header,
-    .search-section,
-    .language-toggle {
-        display: none;
-    }
-    
-    body {
-        background: white;
-    }
-}
-        </style>
-        
-        ------ -- ----------------------------
-        
-        
-        
-        
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHARMACY – Health Guide | Trusted Medical Information</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mint:#4ECDC4;--teal:#2C9D96;--dark:#1A5F59;
+  --bg:#F8FFFE;--white:#FFFFFF;
+  --txt:#2D3748;--gray:#718096;--light:#A0AEC0;
+  --border:#E2E8F0;
+  --sh1:rgba(76,205,196,.08);--sh2:rgba(76,205,196,.18);
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;--r-f:50px;
+  --t1:.2s ease;--t2:.3s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+@media(max-width:768px){.container{padding:0 1rem}}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,var(--teal),var(--dark));color:#fff;padding:1.2rem 0;box-shadow:0 4px 20px var(--sh2);position:sticky;top:0;z-index:100}
+.header-content{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.logo-section{display:flex;align-items:center;gap:1rem}
+.logo-icon{width:50px;height:50px;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.logo-text h1{font-size:1.3rem;font-weight:600;margin-bottom:2px}
+.logo-powered{font-size:0.68rem;opacity:.8;letter-spacing:.3px}
+.logo-powered span{color:#95E1D3;font-weight:600}
+.lang-toggle{display:flex;gap:6px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:4px;border-radius:var(--r-f)}
+.lang-btn{background:transparent;border:none;color:#fff;padding:6px 14px;border-radius:var(--r-f);font-family:'Poppins',sans-serif;font-weight:500;font-size:0.8rem;cursor:pointer;transition:all var(--t1);white-space:nowrap}
+.lang-btn.active{background:#fff;color:var(--teal)}
+.lang-btn:hover:not(.active){background:rgba(255,255,255,.12)}
+@media(max-width:600px){.logo-icon{width:42px;height:42px;font-size:1.3rem}.logo-text h1{font-size:1rem}.lang-btn{padding:5px 10px;font-size:0.72rem}}
+
+/* SEARCH */
+.search-section{padding:2.5rem 0 1.5rem;background:var(--bg)}
+.search-box{max-width:700px;margin:0 auto}
+.search-wrap{display:flex;align-items:center;background:#fff;border-radius:var(--r-f);padding:.4rem;box-shadow:0 8px 30px var(--sh1);transition:all var(--t2)}
+.search-wrap:focus-within{box-shadow:0 12px 40px var(--sh2);transform:translateY(-2px)}
+.s-icon{color:var(--teal);font-size:1.2rem;margin:0 .7rem 0 1.2rem;flex-shrink:0}
+.search-input{flex:1;border:none;outline:none;font-family:'Poppins',sans-serif;font-size:.95rem;color:var(--txt);padding:.6rem .3rem;background:transparent}
+.search-input::placeholder{color:var(--light)}
+.search-btn{height:44px;padding:0 1.4rem;border-radius:var(--r-f);background:linear-gradient(135deg,var(--mint),var(--teal));border:none;color:#fff;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;transition:all var(--t1);flex-shrink:0;display:flex;align-items:center;gap:.4rem}
+.search-btn:hover{transform:scale(1.04);box-shadow:0 4px 15px var(--sh2)}
+.search-btn svg{width:16px;height:16px}
+
+/* SEARCH RESULTS */
+.results-section{padding:0 0 2rem;background:var(--bg);display:none}
+.results-section.active{display:block}
+.results-title{font-size:.9rem;color:var(--gray);margin-bottom:1rem}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+.result-card{background:#fff;border-radius:var(--r-lg);padding:1.2rem;border:2px solid var(--border);transition:all var(--t2);cursor:pointer}
+.result-card:hover{border-color:var(--mint);transform:translateY(-3px);box-shadow:0 8px 25px var(--sh1)}
+.result-card h4{font-size:.95rem;font-weight:600;margin-bottom:5px}
+.result-card p{font-size:.82rem;color:var(--gray);line-height:1.5;margin-bottom:.6rem}
+.result-tag{display:inline-block;background:rgba(76,205,196,.1);color:var(--teal);padding:2px 10px;border-radius:var(--r-f);font-size:.72rem;font-weight:500}
+.no-results{text-align:center;padding:2rem;color:var(--gray);grid-column:1/-1}
+.no-results .nr-icon{font-size:2.5rem;margin-bottom:.5rem}
+
+/* SECTION */
+.sec-header{text-align:center;margin-bottom:2.5rem}
+.sec-header h2{font-size:1.8rem;font-weight:600;color:var(--txt);margin-bottom:.3rem}
+.sec-header p{font-size:.95rem;color:var(--gray)}
+
+/* FEATURED TOOLS */
+.feature-tools{padding:3rem 0;background:#fff}
+.tools-wrap{display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap;justify-content:center;margin-top:2rem}
+
+/* Mini coming-soon cards */
+.mini-cards{display:flex;gap:1rem;flex-direction:column;flex:0 0 auto;width:220px}
+@media(max-width:900px){.mini-cards{flex-direction:row;width:100%;flex:none}}
+@media(max-width:500px){.mini-cards{flex-direction:column}}
+.mini-card{background:#fff;border:2px dashed var(--border);border-radius:var(--r-lg);padding:1rem;display:flex;align-items:center;gap:.8rem;position:relative;overflow:hidden;transition:all var(--t2)}
+.mini-card:hover{border-color:var(--light);box-shadow:0 4px 16px var(--sh1)}
+.mini-icon{width:42px;height:42px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.mini-icon.drug{background:linear-gradient(135deg,#667EEA,#764BA2)}
+.mini-icon.lab{background:linear-gradient(135deg,#F093FB,#F5576C)}
+.mini-text h4{font-size:.82rem;font-weight:600;color:var(--txt);margin-bottom:2px}
+.mini-text p{font-size:.72rem;color:var(--gray);line-height:1.3}
+.mini-cs-badge{font-size:.62rem;font-weight:700;background:linear-gradient(135deg,#FFB347,#FF6B6B);color:#fff;padding:2px 7px;border-radius:var(--r-f);display:inline-block;margin-top:3px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+/* Main card (First Aid) */
+.main-card{flex:1;min-width:280px;max-width:480px;background:#fff;border:2px solid var(--teal);border-radius:var(--r-lg);padding:2rem;text-align:center;position:relative;overflow:hidden;transition:all var(--t2)}
+.main-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--mint),var(--teal))}
+.main-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px var(--sh1)}
+.main-icon{width:72px;height:72px;background:linear-gradient(135deg,#4FACFE,#00F2FE);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;margin:0 auto 1rem}
+.main-card h3{font-size:1.15rem;font-weight:600;margin-bottom:.6rem}
+.main-card p{font-size:.88rem;color:var(--gray);line-height:1.6;margin-bottom:1.3rem}
+.main-btn{width:100%;padding:.75rem 1.5rem;border-radius:var(--r-f);border:2px solid var(--teal);background:#fff;color:var(--teal);font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:all var(--t1)}
+.main-btn:hover{background:var(--teal);color:#fff;transform:translateY(-2px);box-shadow:0 4px 15px var(--sh2)}
+
+/* HEALTH GUIDES */
+.health-guides{padding:3rem 0 4rem;background:var(--bg)}
+.guides-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem;margin-top:2rem}
+.guide-card{background:#fff;border-radius:var(--r-lg);padding:1.1rem .8rem;text-align:center;transition:all var(--t2);cursor:pointer;border:2px solid transparent}
+.guide-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px var(--sh1);border-color:var(--mint)}
+.g-icon{width:56px;height:56px;margin:0 auto 8px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;transition:transform var(--t2);overflow:hidden}
+.guide-card:hover .g-icon{transform:scale(1.12)}
+.g-label{display:block;font-size:.78rem;font-weight:500;color:var(--txt);line-height:1.3}
+@media(max-width:600px){.guides-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:380px){.guides-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity var(--t2)}
+.overlay.active{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:var(--r-xl);padding:2rem;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;transform:translateY(30px);transition:transform var(--t2);position:relative}
+.overlay.active .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;color:var(--gray);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all var(--t1)}
+.modal-close:hover{background:var(--border);color:var(--txt)}
+.m-icon{width:64px;height:64px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;margin-bottom:1rem}
+.modal h2{font-size:1.4rem;font-weight:600;margin-bottom:3px}
+.m-sub{font-size:.9rem;color:var(--gray);margin-bottom:1.5rem}
+.mc h3{font-size:.95rem;font-weight:600;color:var(--txt);margin:1.2rem 0 .4rem}
+.mc p{font-size:.88rem;color:var(--gray);line-height:1.7}
+.mc ul{list-style:none;margin-top:.3rem}
+.mc ul li{font-size:.85rem;color:var(--gray);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:7px}
+.mc ul li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+.m-warn{background:rgba(255,107,107,.08);border-left:4px solid #FF6B6B;border-radius:var(--r-sm);padding:1rem;margin-top:1rem;font-size:.82rem;color:#c0392b;display:flex;gap:8px;align-items:flex-start}
+
+/* DOSAGE TABLES */
+.med-sec{margin-bottom:1.5rem}
+.med-sec h3{font-size:.98rem;font-weight:600;color:var(--dark);margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid var(--mint)}
+.dtable{width:100%;border-collapse:collapse;font-size:.78rem}
+.dtable th{background:linear-gradient(135deg,var(--teal),var(--dark));color:#fff;padding:8px 9px;text-align:left;font-weight:500}
+.dtable td{padding:7px 9px;border-bottom:1px solid var(--border);color:var(--gray);vertical-align:top}
+.dtable tr:nth-child(even) td{background:rgba(78,205,196,.04)}
+.dtable tr:hover td{background:rgba(78,205,196,.08)}
+.dnote{font-size:.74rem;color:#e07b39;margin-top:5px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.tab-btn{padding:6px 13px;border-radius:var(--r-f);border:2px solid var(--border);background:#fff;color:var(--gray);font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:500;cursor:pointer;transition:all var(--t1)}
+.tab-btn.active,.tab-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,var(--dark),var(--teal));color:#fff;padding:2.5rem 0 1.5rem}
+.disclaimer{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);padding:1.5rem;border-radius:var(--r-lg);margin-bottom:1.2rem}
+.disclaimer svg{flex-shrink:0;margin-top:3px}
+.disclaimer p{font-size:.88rem;line-height:1.7;opacity:.95}
+.footer-bot{text-align:center;padding-top:1rem;border-top:1px solid rgba(255,255,255,.2);font-size:.82rem;opacity:.75}
+
+/* Search loading */
+.search-loading{text-align:center;padding:2rem;color:var(--gray)}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+button:focus-visible,input:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+</style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <div class="logo-icon">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>PHARMACY – Health Guide</h1>
-                        <span class="trust-badge">
-                            <i class="fas fa-shield-alt"></i>
-                            Trusted Medical Information
-                        </span>
-                    </div>
-                </div>
-                <div class="language-toggle">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="hi">HI</button>
-                </div>
-            </div>
+
+<!-- HEADER -->
+<header class="header">
+<div class="container">
+<div class="header-content">
+  <div class="logo-section">
+    <div class="logo-icon">💊</div>
+    <div class="logo-text">
+      <h1 id="site-title">PHARMACY – Health Guide</h1>
+      <div class="logo-powered">Powered by <span>Yashify</span></div>
+    </div>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="hi">हिंदी</button>
+    <button class="lang-btn" data-lang="hl">Hinglish</button>
+  </div>
+</div>
+</div>
+</header>
+
+<!-- SEARCH -->
+<section class="search-section">
+<div class="container">
+<div class="search-box">
+  <div class="search-wrap">
+    <span class="s-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search medicines, symptoms, health topics...">
+    <button class="search-btn" id="searchBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span id="searchBtnTxt">Search</span>
+    </button>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- SEARCH RESULTS -->
+<section class="results-section" id="resultsSection">
+<div class="container">
+  <p class="results-title" id="resultsTitle"></p>
+  <div class="results-grid" id="resultsGrid"></div>
+</div>
+</section>
+
+<!-- FEATURED TOOLS -->
+<section class="feature-tools">
+<div class="container">
+  <div class="sec-header">
+    <h2 id="ft-title">Featured Tools</h2>
+    <p id="ft-sub">Advanced medical assistance at your fingertips</p>
+  </div>
+  <div class="tools-wrap">
+    <!-- Mini coming-soon cards -->
+    <div class="mini-cards">
+      <div class="mini-card">
+        <div class="mini-icon drug">💊</div>
+        <div class="mini-text">
+          <h4 id="drug-title">Drug Interaction Checker</h4>
+          <p id="drug-sub">Check interactions between medications</p>
+          <span class="mini-cs-badge">Coming Soon</span>
         </div>
-    </header>
-
-    <!-- Search Bar Section -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-container">
-                <div class="search-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        placeholder="Search medicines, symptoms, health topics"
-                        aria-label="Search medical information"
-                    >
-                    <button class="search-btn" aria-label="Search">
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-icon lab">🧪</div>
+        <div class="mini-text">
+          <h4 id="lab-title">Lab Report Analyzer</h4>
+          <p id="lab-sub">AI-powered lab report insights</p>
+          <span class="mini-cs-badge">Coming Soon</span>
         </div>
-    </section>
+      </div>
+    </div>
+    <!-- Main First Aid Card -->
+    <div class="main-card">
+      <div class="main-icon">🩺</div>
+      <h3 id="fa-title">First Aid & Medicine Guide</h3>
+      <p id="fa-sub">Emergency first aid + complete medicine dosage guide for all age groups — child, adult & elderly</p>
+      <button class="main-btn" id="firstAidBtn">
+        <span id="fa-btn-txt">Explore Guide</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+</section>
 
-    <!-- Feature Tools Section -->
-    <section class="feature-tools">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Tools</h2>
-                <p>Advanced medical assistance at your fingertips</p>
-            </div>
-            <div class="tools-grid">
-                <!-- Drug Interaction Checker -->
-                <div class="tool-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
-                    <div class="tool-icon drug-interaction">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3>Drug Interaction Checker</h3>
-                    <p>Check potential interactions between multiple medications for safer treatment</p>
-                    <button class="tool-btn" disabled>
-                        <span>Open</span>
-                        <i class="fas fa-lock"></i>
-                    </button>
-                </div>
+<!-- HEALTH GUIDES -->
+<section class="health-guides">
+<div class="container">
+  <div class="sec-header">
+    <h2 id="hg-title">Health Guides</h2>
+    <p id="hg-sub">Click any card to get detailed health information</p>
+  </div>
+  <div class="guides-grid">
+    <div class="guide-card" data-guide="fever"><div class="g-icon">🌡️</div><span class="g-label" data-key="fever">Fever</span></div>
+    <div class="guide-card" data-guide="stomach"><div class="g-icon">🫃</div><span class="g-label" data-key="stomach">Stomach Issues</span></div>
+    <div class="guide-card" data-guide="skin"><div class="g-icon">🧴</div><span class="g-label" data-key="skin">Skin Care</span></div>
+    <div class="guide-card" data-guide="diabetes"><div class="g-icon">🩸</div><span class="g-label" data-key="diabetes">Diabetes</span></div>
+    <div class="guide-card" data-guide="heart"><div class="g-icon">❤️</div><span class="g-label" data-key="heart">Heart Health</span></div>
+    <div class="guide-card" data-guide="mental"><div class="g-icon">🧠</div><span class="g-label" data-key="mental">Mental Wellness</span></div>
+    <div class="guide-card" data-guide="bp"><div class="g-icon">🩺</div><span class="g-label" data-key="bp">Blood Pressure</span></div>
+    <div class="guide-card" data-guide="cholesterol"><div class="g-icon">🫀</div><span class="g-label" data-key="cholesterol">Cholesterol</span></div>
+    <div class="guide-card" data-guide="thyroid"><div class="g-icon">🦋</div><span class="g-label" data-key="thyroid">Thyroid</span></div>
+    <div class="guide-card" data-guide="asthma"><div class="g-icon">🫁</div><span class="g-label" data-key="asthma">Asthma</span></div>
+    <div class="guide-card" data-guide="bones"><div class="g-icon">🦴</div><span class="g-label" data-key="bones">Bone & Joint</span></div>
+    <div class="guide-card" data-guide="eye"><div class="g-icon">👁️</div><span class="g-label" data-key="eye">Eye Care</span></div>
+    <div class="guide-card" data-guide="dental"><div class="g-icon">🦷</div><span class="g-label" data-key="dental">Dental Health</span></div>
+    <div class="guide-card" data-guide="kidney"><div class="g-icon">🫘</div><span class="g-label" data-key="kidney">Kidney Care</span></div>
+    <div class="guide-card" data-guide="liver"><div class="g-icon">🟤</div><span class="g-label" data-key="liver">Liver Health</span></div>
+    <div class="guide-card" data-guide="cold"><div class="g-icon">🤧</div><span class="g-label" data-key="cold">Cold & Cough</span></div>
+    <div class="guide-card" data-guide="allergy"><div class="g-icon">🌿</div><span class="g-label" data-key="allergy">Allergies</span></div>
+    <div class="guide-card" data-guide="nutrition"><div class="g-icon">🥗</div><span class="g-label" data-key="nutrition">Nutrition</span></div>
+    <div class="guide-card" data-guide="pregnancy"><div class="g-icon">🤰</div><span class="g-label" data-key="pregnancy">Pregnancy</span></div>
+    <div class="guide-card" data-guide="child"><div class="g-icon">👶</div><span class="g-label" data-key="child">Child Health</span></div>
+  </div>
+</div>
+</section>
 
-                <!-- Lab Report Analyzer -->
-                <div class="tool-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
-                    <div class="tool-icon lab-analyzer">
-                        <i class="fas fa-file-medical"></i>
-                    </div>
-                    <h3>Lab Report Analyzer</h3>
-                    <p>Upload and understand your medical lab reports with AI-powered insights</p>
-                    <button class="tool-btn" disabled>
-                        <span>Open</span>
-                        <i class="fas fa-lock"></i>
-                    </button>
-                </div>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+  <div class="disclaimer">
+    <svg width="22" height="22" fill="#95E1D3" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+    <p id="disclaimer-txt">This platform is for health awareness only. Always consult a qualified medical professional for diagnosis and treatment. Medicine dosages shown are general guidelines only.</p>
+  </div>
+  <div class="footer-bot">
+    <p id="footer-txt">&copy; 2024 PHARMACY – Health Guide | Powered by Yashify. All rights reserved.</p>
+  </div>
+</div>
+</footer>
 
-                <!-- First Aid Assistant -->
-                <div class="tool-card active">
-                    <div class="tool-icon first-aid">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>First Aid Assistant</h3>
-                    <p>Get immediate guidance for common medical emergencies and first aid procedures</p>
-                    <button class="tool-btn">
-                        <span>Explore</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- GUIDE MODAL -->
+<div class="overlay" id="guideOverlay">
+<div class="modal">
+  <button class="modal-close" id="guideClose">✕</button>
+  <div class="m-icon" id="mIcon"></div>
+  <h2 id="mTitle"></h2>
+  <p class="m-sub" id="mSub"></p>
+  <div class="mc" id="mContent"></div>
+</div>
+</div>
 
-    <!-- Health Guides Section -->
-    <section class="health-guides">
-        <div class="container">
-            <div class="section-header">
-                <h2>Health Guides</h2>
-                <p>Expert information on common health conditions</p>
-            </div>
-            <div class="guides-grid">
-                <div class="guide-card">
-                    <div class="guide-icon fever">
-                        <i class="fas fa-temperature-high"></i>
-                    </div>
-                    <span class="guide-label">Fever</span>
-                </div>
+<!-- FIRST AID MODAL -->
+<div class="overlay" id="faOverlay">
+<div class="modal" style="max-width:750px">
+  <button class="modal-close" id="faClose">✕</button>
+  <div class="m-icon" style="background:linear-gradient(135deg,#4FACFE,#00F2FE)">🩺</div>
+  <h2 id="fa-modal-title">First Aid & Medicine Guide</h2>
+  <p class="m-sub" id="fa-modal-sub">Emergency procedures + Medicine dosages by age group</p>
+  <div class="tabs" id="faTabs">
+    <button class="tab-btn active" data-tab="emergency">🚨 Emergency</button>
+    <button class="tab-btn" data-tab="fever-m">🌡️ Fever</button>
+    <button class="tab-btn" data-tab="pain-m">💊 Pain</button>
+    <button class="tab-btn" data-tab="cold-m">🤧 Cold/Cough</button>
+    <button class="tab-btn" data-tab="stomach-m">🫃 Stomach</button>
+    <button class="tab-btn" data-tab="allergy-m">🌿 Allergy</button>
+    <button class="tab-btn" data-tab="antibiotic-m">🦠 Antibiotics</button>
+    <button class="tab-btn" data-tab="vitamin-m">💉 Vitamins</button>
+  </div>
 
-                <div class="guide-card">
-                    <div class="guide-icon stomach">
-                        <i class="fas fa-stomach"></i>
-                    </div>
-                    <span class="guide-label">Stomach Issues</span>
-                </div>
+  <div class="tab-pane active mc" id="tab-emergency">
+    <h3>🚨 Call 112 immediately for life-threatening emergencies</h3>
+    <ul>
+      <li>Burns – Cool with running cold water for 10 min. No ice, butter, or toothpaste.</li>
+      <li>Bleeding – Apply firm pressure with clean cloth. Elevate above heart level.</li>
+      <li>Choking – 5 back blows, then 5 abdominal thrusts (Heimlich maneuver). Repeat.</li>
+      <li>CPR – 30 hard chest compressions, then 2 rescue breaths. Continue until help arrives.</li>
+      <li>Fracture – Immobilize, do NOT straighten. Apply ice pack wrapped in cloth.</li>
+      <li>Seizure – Protect from injury, do NOT restrain. Turn to side. Time duration.</li>
+      <li>Heat Stroke – Move to shade, remove excess clothing, cool with wet cloth, give water.</li>
+      <li>Allergic Reaction – EpiPen if available. Call emergency. Antihistamine if mild.</li>
+      <li>Drowning – Remove from water, begin CPR if not breathing. Keep warm.</li>
+      <li>Eye Injury – Flush with clean water 15 min. Do NOT rub. Cover and seek help.</li>
+      <li>Electric Shock – Do NOT touch victim. Cut power. Call 112. Give CPR if needed.</li>
+      <li>Poisoning – Call 1800-116-117. Do NOT induce vomiting unless advised.</li>
+    </ul>
+    <div class="m-warn">⚠️ This is basic guidance only. Always call 112 and seek professional help immediately.</div>
+  </div>
 
-                <div class="guide-card">
-                    <div class="guide-icon skin">
-                        <i class="fas fa-hand-sparkles"></i>
-                    </div>
-                    <span class="guide-label">Skin Care</span>
-                </div>
+  <div class="tab-pane mc" id="tab-fever-m">
+    <div class="med-sec"><h3>Paracetamol / Crocin / Dolo 650</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Max/Day</th></tr>
+    <tr><td>Infant (0–3 mo)</td><td>10–15 mg/kg (drops)</td><td>Every 6–8 hrs (doctor)</td><td>4 doses</td></tr>
+    <tr><td>Child (3mo–12yr)</td><td>10–15 mg/kg syrup</td><td>Every 6 hrs</td><td>4 doses</td></tr>
+    <tr><td>Adult (13–60yr)</td><td>500–1000 mg</td><td>Every 6–8 hrs</td><td>4000 mg</td></tr>
+    <tr><td>Elderly (60+)</td><td>325–500 mg</td><td>Every 8 hrs</td><td>2000 mg</td></tr></table>
+    <p class="dnote">⚠️ Avoid in liver disease. Take after food.</p></div>
+    <div class="med-sec"><h3>Ibuprofen / Brufen / Advil</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Max/Day</th></tr>
+    <tr><td>Infant &lt;6 months</td><td colspan="3" style="color:#c0392b">❌ Not recommended</td></tr>
+    <tr><td>Child (6mo–12yr)</td><td>5–10 mg/kg</td><td>Every 6–8 hrs</td><td>40 mg/kg</td></tr>
+    <tr><td>Adult</td><td>200–400 mg</td><td>Every 6–8 hrs</td><td>1200 mg</td></tr>
+    <tr><td>Elderly</td><td>200 mg</td><td>Every 8 hrs</td><td>600 mg</td></tr></table>
+    <p class="dnote">⚠️ Take with food. Avoid in kidney disease, ulcers, asthma.</p></div>
+    <div class="med-sec"><h3>Nimesulide (Nimulid)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Notes</th></tr>
+    <tr><td>Children &lt;12 yrs</td><td colspan="3" style="color:#c0392b">❌ BANNED in India for under 12</td></tr>
+    <tr><td>Adult (12–60yr)</td><td>100 mg</td><td>Twice daily</td><td>Max 15 days</td></tr>
+    <tr><td>Elderly</td><td>50–100 mg</td><td>Once daily</td><td>With caution</td></tr></table></div>
+  </div>
 
-                <div class="guide-card">
-                    <div class="guide-icon diabetes">
-                        <i class="fas fa-syringe"></i>
-                    </div>
-                    <span class="guide-label">Diabetes</span>
-                </div>
+  <div class="tab-pane mc" id="tab-pain-m">
+    <div class="med-sec"><h3>Diclofenac (Voveran / Voltaren)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Max/Day</th></tr>
+    <tr><td>Child (1–12yr)</td><td>0.5–1 mg/kg</td><td>2–3 times</td><td>3 mg/kg</td></tr>
+    <tr><td>Adult</td><td>50 mg</td><td>2–3 times</td><td>150 mg</td></tr>
+    <tr><td>Elderly</td><td>25–50 mg</td><td>Twice daily</td><td>100 mg</td></tr></table>
+    <p class="dnote">⚠️ Take with food. Avoid in kidney/liver issues.</p></div>
+    <div class="med-sec"><h3>Aspirin / Ecosprin — Adults ONLY</h3>
+    <table class="dtable"><tr><th>Use</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Pain/Fever</td><td>325–650 mg</td><td>Every 4–6 hrs</td></tr>
+    <tr><td>Heart (Ecosprin 75)</td><td>75–100 mg</td><td>Once daily after food</td></tr>
+    <tr><td>Children under 18</td><td colspan="2" style="color:#c0392b">❌ NEVER — risk of Reye's Syndrome</td></tr></table></div>
+    <div class="med-sec"><h3>Tramadol / Ultracet — Rx Only</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Adult</td><td>50–100 mg</td><td>Every 6 hrs</td></tr>
+    <tr><td>Elderly</td><td>50 mg</td><td>Every 8 hrs</td></tr>
+    <tr><td>Children &lt;12</td><td colspan="2" style="color:#c0392b">❌ Not recommended</td></tr></table></div>
+  </div>
 
-                <div class="guide-card">
-                    <div class="guide-icon heart">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <span class="guide-label">Heart Health</span>
-                </div>
+  <div class="tab-pane mc" id="tab-cold-m">
+    <div class="med-sec"><h3>Cetirizine (Alerid / Zyrtec)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (2–5yr)</td><td>2.5 mg</td><td>Once daily</td></tr>
+    <tr><td>Child (6–12yr)</td><td>5 mg</td><td>Once daily</td></tr>
+    <tr><td>Adult</td><td>10 mg</td><td>Once daily (night)</td></tr>
+    <tr><td>Elderly</td><td>5 mg</td><td>Once daily</td></tr></table></div>
+    <div class="med-sec"><h3>D-Cold / Sinarest (Phenylephrine + Paracetamol)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (6–12yr)</td><td>Half tablet</td><td>3 times daily</td></tr>
+    <tr><td>Adult</td><td>1 tablet</td><td>3 times daily</td></tr>
+    <tr><td>Elderly</td><td>1 tablet</td><td>Twice daily</td></tr></table></div>
+    <div class="med-sec"><h3>Ambroxol Cough Syrup (Ambrodil / Mucinex)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (2–5yr)</td><td>2.5 ml</td><td>3 times daily</td></tr>
+    <tr><td>Child (6–12yr)</td><td>5 ml</td><td>3 times daily</td></tr>
+    <tr><td>Adult</td><td>10 ml or 30mg tab</td><td>3 times daily</td></tr>
+    <tr><td>Elderly</td><td>10 ml</td><td>Twice daily</td></tr></table></div>
+  </div>
 
-                <div class="guide-card">
-                    <div class="guide-icon mental">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="guide-label">Mental Wellness</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="tab-pane mc" id="tab-stomach-m">
+    <div class="med-sec"><h3>Pantoprazole / Omeprazole (Pan 40 / Omez)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (1–12yr)</td><td>0.5–1 mg/kg</td><td>Once daily (doctor)</td></tr>
+    <tr><td>Adult</td><td>20–40 mg</td><td>Once daily before breakfast</td></tr>
+    <tr><td>Elderly</td><td>20 mg</td><td>Once daily</td></tr></table></div>
+    <div class="med-sec"><h3>ORS — For Diarrhea/Dehydration</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Amount per loose stool</th><th>Notes</th></tr>
+    <tr><td>Infant (&lt;2yr)</td><td>50–100 ml</td><td>Spoon slowly</td></tr>
+    <tr><td>Child (2–10yr)</td><td>100–200 ml</td><td>After each stool</td></tr>
+    <tr><td>Adult</td><td>200–400 ml</td><td>After each stool</td></tr>
+    <tr><td>Elderly</td><td>200 ml</td><td>Sip every 15 min</td></tr></table></div>
+    <div class="med-sec"><h3>Domperidone — Nausea & Vomiting</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child</td><td>0.2–0.4 mg/kg</td><td>3 times daily</td></tr>
+    <tr><td>Adult</td><td>10 mg</td><td>3 times daily</td></tr>
+    <tr><td>Elderly</td><td>10 mg</td><td>Twice daily</td></tr></table></div>
+  </div>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="container">
-            <div class="disclaimer">
-                <i class="fas fa-info-circle"></i>
-                <p>This platform is for health awareness only. Always consult a qualified medical professional for diagnosis and treatment decisions.</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 PHARMACY – Health Guide. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
----------------
+  <div class="tab-pane mc" id="tab-allergy-m">
+    <div class="med-sec"><h3>Chlorpheniramine / CTM / Piriton — Drowsy</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (2–5yr)</td><td>1 mg</td><td>3–4 times daily</td></tr>
+    <tr><td>Child (6–12yr)</td><td>2 mg</td><td>3–4 times daily</td></tr>
+    <tr><td>Adult</td><td>4 mg</td><td>3–4 times daily</td></tr>
+    <tr><td>Elderly</td><td>2–4 mg</td><td>Twice daily</td></tr></table>
+    <p class="dnote">⚠️ Causes drowsiness. Do NOT drive after taking.</p></div>
+    <div class="med-sec"><h3>Loratadine / Fexofenadine (Allegra) — Non-Drowsy</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (2–12yr, &lt;30kg)</td><td>5 mg</td><td>Once daily</td></tr>
+    <tr><td>Adult / Child &gt;30kg</td><td>10 mg</td><td>Once daily</td></tr>
+    <tr><td>Elderly</td><td>10 mg</td><td>Every other day</td></tr></table></div>
+    <div class="med-sec"><h3>Montelukast (Singulair)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child (2–5yr)</td><td>4 mg chewable</td><td>Once daily (evening)</td></tr>
+    <tr><td>Child (6–14yr)</td><td>5 mg chewable</td><td>Once daily (evening)</td></tr>
+    <tr><td>Adult (15+)</td><td>10 mg</td><td>Once daily (evening)</td></tr></table></div>
+  </div>
 
+  <div class="tab-pane mc" id="tab-antibiotic-m">
+    <div class="m-warn" style="margin-bottom:1rem">⚠️ Antibiotics require doctor's prescription. Always complete full course. Never use for viral infections.</div>
+    <div class="med-sec"><h3>Amoxicillin (Novamox / Mox)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Duration</th></tr>
+    <tr><td>Infant (3mo–1yr)</td><td>125 mg syrup</td><td>3× daily</td><td>7 days</td></tr>
+    <tr><td>Child (1–12yr)</td><td>250 mg</td><td>3× daily</td><td>7 days</td></tr>
+    <tr><td>Adult</td><td>500 mg</td><td>3× daily</td><td>7–10 days</td></tr>
+    <tr><td>Elderly</td><td>500 mg</td><td>Twice daily</td><td>7 days</td></tr></table></div>
+    <div class="med-sec"><h3>Azithromycin (Azithral)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Duration</th></tr>
+    <tr><td>Child (&gt;6mo)</td><td>10 mg/kg Day1, 5mg/kg after</td><td>Once daily</td><td>5 days</td></tr>
+    <tr><td>Adult</td><td>500mg Day1, 250mg after</td><td>Once daily</td><td>5 days</td></tr>
+    <tr><td>Elderly</td><td>250 mg</td><td>Once daily</td><td>5 days</td></tr></table></div>
+    <div class="med-sec"><h3>Ciprofloxacin (Ciplox) — Adults Only</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Under 18</td><td colspan="2" style="color:#c0392b">❌ Avoid — harms cartilage</td></tr>
+    <tr><td>Adult</td><td>250–750 mg</td><td>Twice daily</td></tr>
+    <tr><td>Elderly</td><td>250 mg</td><td>Twice daily</td></tr></table></div>
+    <div class="med-sec"><h3>Metronidazole (Flagyl)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Duration</th></tr>
+    <tr><td>Child</td><td>7.5 mg/kg</td><td>3× daily</td><td>7 days</td></tr>
+    <tr><td>Adult</td><td>400–500 mg</td><td>3× daily</td><td>7 days</td></tr>
+    <tr><td>Elderly</td><td>400 mg</td><td>Twice daily</td><td>5–7 days</td></tr></table>
+    <p class="dnote">⚠️ Avoid alcohol during course and 48 hrs after.</p></div>
+  </div>
 
+  <div class="tab-pane mc" id="tab-vitamin-m">
+    <div class="med-sec"><h3>Vitamin D3 (Calcirol / Cholecalciferol)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Daily Dose</th><th>If Deficient</th></tr>
+    <tr><td>Infant (0–12mo)</td><td>400 IU</td><td>—</td></tr>
+    <tr><td>Child (1–18yr)</td><td>600 IU</td><td>—</td></tr>
+    <tr><td>Adult (18–60yr)</td><td>600–1000 IU</td><td>60,000 IU weekly × 8 wks</td></tr>
+    <tr><td>Elderly (60+)</td><td>800–2000 IU</td><td>60,000 IU weekly × 12 wks</td></tr></table></div>
+    <div class="med-sec"><h3>Vitamin B12 (Methylcobalamin)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Child</td><td>0.5–1 mcg</td><td>Daily</td></tr>
+    <tr><td>Adult (deficiency)</td><td>500–1500 mcg</td><td>Daily × 3 months</td></tr>
+    <tr><td>Elderly</td><td>1000–1500 mcg</td><td>Daily or monthly injection</td></tr></table></div>
+    <div class="med-sec"><h3>Iron / Ferrous Sulfate (Autrin / Feronia)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th><th>Notes</th></tr>
+    <tr><td>Child</td><td>3–6 mg/kg elemental iron</td><td>Once daily</td><td>With Vit C</td></tr>
+    <tr><td>Adult</td><td>100–200 mg</td><td>Once or twice daily</td><td>Empty stomach</td></tr>
+    <tr><td>Pregnant</td><td>200 mg</td><td>Once daily</td><td>Compulsory</td></tr>
+    <tr><td>Elderly</td><td>100 mg</td><td>Once daily</td><td>After food if nausea</td></tr></table></div>
+    <div class="med-sec"><h3>Calcium + Vit D (Shelcal / Tab-Cal)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Daily Need</th><th>Supplement</th></tr>
+    <tr><td>Child (4–8yr)</td><td>1000 mg</td><td>500 mg once daily</td></tr>
+    <tr><td>Teen (9–18yr)</td><td>1300 mg</td><td>500 mg twice daily</td></tr>
+    <tr><td>Adult</td><td>1000 mg</td><td>500 mg twice daily</td></tr>
+    <tr><td>Elderly/Menopause</td><td>1200 mg</td><td>600 mg twice daily</td></tr></table></div>
+    <div class="med-sec"><h3>Zinc (Zincovit / Zinconia)</h3>
+    <table class="dtable"><tr><th>Age Group</th><th>Dose</th><th>Frequency</th></tr>
+    <tr><td>Infant (0–6mo)</td><td>2 mg/day</td><td>Once daily</td></tr>
+    <tr><td>Child (1–8yr)</td><td>5–8 mg/day</td><td>Once daily</td></tr>
+    <tr><td>Adult</td><td>8–11 mg/day</td><td>Once daily</td></tr>
+    <tr><td>Therapeutic (diarrhea)</td><td>20mg child / 40mg adult</td><td>10–14 days</td></tr></table></div>
+  </div>
 
+  <div class="m-warn" style="margin-top:1.5rem">
+    👨‍⚕️ Dosages are general reference guidelines only. Always consult a doctor or pharmacist before giving any medicine, especially to children, elderly, or patients with chronic conditions.
+  </div>
+</div>
+</div>
 
+<script>
+// =========================================================
+// LANGUAGE DATA
+// =========================================================
+const LANG = {
+  en: {
+    placeholder:'Search medicines, symptoms, health topics...',
+    searchBtn:'Search',
+    ftTitle:'Featured Tools', ftSub:'Advanced medical assistance at your fingertips',
+    drugTitle:'Drug Interaction Checker', drugSub:'Check interactions between medications',
+    labTitle:'Lab Report Analyzer', labSub:'AI-powered lab report insights',
+    faTitle:'First Aid & Medicine Guide',
+    faSub:'Emergency first aid + complete medicine dosage guide for all age groups',
+    faBtnTxt:'Explore Guide',
+    hgTitle:'Health Guides', hgSub:'Click any card to get detailed health information',
+    disclaimer:'This platform is for health awareness only. Always consult a qualified medical professional for diagnosis and treatment.',
+    footer:'© 2024 PHARMACY – Health Guide | Powered by Yashify. All rights reserved.',
+    faModalTitle:'First Aid & Medicine Guide',
+    faModalSub:'Emergency procedures + Medicine dosages by age group',
+    guides:{fever:'Fever',stomach:'Stomach Issues',skin:'Skin Care',diabetes:'Diabetes',heart:'Heart Health',mental:'Mental Wellness',bp:'Blood Pressure',cholesterol:'Cholesterol',thyroid:'Thyroid',asthma:'Asthma',bones:'Bone & Joint',eye:'Eye Care',dental:'Dental Health',kidney:'Kidney Care',liver:'Liver Health',cold:'Cold & Cough',allergy:'Allergies',nutrition:'Nutrition',pregnancy:'Pregnancy',child:'Child Health'},
+    resultsFound:(n,q)=>`${n} result(s) for "${q}"`,
+    noResults:(q)=>`No results found for "${q}". Try different keywords.`
+  },
+  hi: {
+    placeholder:'दवाएं, लक्षण, स्वास्थ्य विषय खोजें...',
+    searchBtn:'खोजें',
+    ftTitle:'विशेष टूल्स', ftSub:'आपकी उंगलियों पर उन्नत चिकित्सा सहायता',
+    drugTitle:'दवा इंटरेक्शन चेकर', drugSub:'दवाओं के बीच इंटरेक्शन जांचें',
+    labTitle:'लैब रिपोर्ट विश्लेषक', labSub:'AI से लैब रिपोर्ट समझें',
+    faTitle:'प्राथमिक चिकित्सा और दवा गाइड',
+    faSub:'आपातकालीन प्राथमिक चिकित्सा + सभी आयु वर्गों के लिए दवा की खुराक',
+    faBtnTxt:'गाइड देखें',
+    hgTitle:'स्वास्थ्य गाइड', hgSub:'विस्तृत जानकारी के लिए कोई भी कार्ड पर क्लिक करें',
+    disclaimer:'यह प्लेटफॉर्म केवल स्वास्थ्य जागरूकता के लिए है। निदान और उपचार के लिए हमेशा किसी योग्य चिकित्सक से परामर्श करें।',
+    footer:'© 2024 फार्मेसी – हेल्थ गाइड | Powered by Yashify. सर्वाधिकार सुरक्षित।',
+    faModalTitle:'प्राथमिक चिकित्सा और दवा गाइड',
+    faModalSub:'आपातकालीन प्रक्रियाएं + आयु वर्ग के अनुसार दवा की खुराक',
+    guides:{fever:'बुखार',stomach:'पेट की समस्याएं',skin:'त्वचा की देखभाल',diabetes:'मधुमेह',heart:'हृदय स्वास्थ्य',mental:'मानसिक स्वास्थ्य',bp:'रक्तचाप',cholesterol:'कोलेस्ट्रॉल',thyroid:'थायराइड',asthma:'दमा',bones:'हड्डी और जोड़',eye:'नेत्र देखभाल',dental:'दांतों का स्वास्थ्य',kidney:'गुर्दे की देखभाल',liver:'यकृत स्वास्थ्य',cold:'सर्दी और खांसी',allergy:'एलर्जी',nutrition:'पोषण',pregnancy:'गर्भावस्था',child:'बाल स्वास्थ्य'},
+    resultsFound:(n,q)=>`"${q}" के लिए ${n} परिणाम मिले`,
+    noResults:(q)=>`"${q}" के लिए कोई परिणाम नहीं मिला। अलग शब्द आज़माएं।`
+  },
+  hl: {
+    placeholder:'Medicines, symptoms, health topics search karo...',
+    searchBtn:'Search Karo',
+    ftTitle:'Featured Tools', ftSub:'Apni ungliyon par advanced medical help',
+    drugTitle:'Drug Interaction Checker', drugSub:'Medicines ke beech interaction check karo',
+    labTitle:'Lab Report Analyzer', labSub:'AI se apni lab report samjho',
+    faTitle:'First Aid aur Medicine Guide',
+    faSub:'Emergency first aid + sabhi age groups ke liye medicine dosage guide',
+    faBtnTxt:'Guide Dekho',
+    hgTitle:'Health Guides', hgSub:'Kisi bhi card par click karo detailed jankari ke liye',
+    disclaimer:'Yeh platform sirf health awareness ke liye hai. Diagnosis aur treatment ke liye hamesha qualified doctor se milein.',
+    footer:'© 2024 PHARMACY – Health Guide | Powered by Yashify. Sab rights reserved.',
+    faModalTitle:'First Aid aur Medicine Guide',
+    faModalSub:'Emergency procedures + Age group ke hisaab se medicine dosage',
+    guides:{fever:'Bukhar',stomach:'Pet ki Taklif',skin:'Skin Care',diabetes:'Diabetes',heart:'Dil ki Sehat',mental:'Mental Health',bp:'Blood Pressure',cholesterol:'Cholesterol',thyroid:'Thyroid',asthma:'Asthma / Dama',bones:'Haddi aur Joints',eye:'Aankhon ki Care',dental:'Daanton ki Health',kidney:'Gurdey ki Care',liver:'Liver Health',cold:'Sardi aur Khansi',allergy:'Allergy',nutrition:'Poshan',pregnancy:'Pregnancy',child:'Bachon ki Sehat'},
+    resultsFound:(n,q)=>`"${q}" ke liye ${n} result mile`,
+    noResults:(q)=>`"${q}" ke liye koi result nahi mila. Alag word try karo.`
+  }
+};
 
+let currentLang = 'en';
 
-    <script>
+function applyLang(lang) {
+  const L = LANG[lang];
+  currentLang = lang;
+  document.getElementById('searchInput').placeholder = L.placeholder;
+  document.getElementById('searchBtnTxt').textContent = L.searchBtn;
+  document.getElementById('ft-title').textContent = L.ftTitle;
+  document.getElementById('ft-sub').textContent = L.ftSub;
+  document.getElementById('drug-title').textContent = L.drugTitle;
+  document.getElementById('drug-sub').textContent = L.drugSub;
+  document.getElementById('lab-title').textContent = L.labTitle;
+  document.getElementById('lab-sub').textContent = L.labSub;
+  document.getElementById('fa-title').textContent = L.faTitle;
+  document.getElementById('fa-sub').textContent = L.faSub;
+  document.getElementById('fa-btn-txt').textContent = L.faBtnTxt;
+  document.getElementById('hg-title').textContent = L.hgTitle;
+  document.getElementById('hg-sub').textContent = L.hgSub;
+  document.getElementById('disclaimer-txt').textContent = L.disclaimer;
+  document.getElementById('footer-txt').innerHTML = L.footer;
+  document.getElementById('fa-modal-title').textContent = L.faModalTitle;
+  document.getElementById('fa-modal-sub').textContent = L.faModalSub;
+  // Update guide labels
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (L.guides[key]) el.textContent = L.guides[key];
+  });
+}
 
-    
-    
-    // ===================================
-// PHARMACY - Health Guide JavaScript
-// Interactive Functionality
-// ===================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // ============ LANGUAGE TOGGLE ============
-    const langButtons = document.querySelectorAll('.lang-btn');
-    
-    langButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            langButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Get selected language
-            const selectedLang = this.getAttribute('data-lang');
-            
-            // Store language preference
-            localStorage.setItem('preferredLanguage', selectedLang);
-            
-            // Visual feedback
-            showNotification(`Language switched to ${selectedLang.toUpperCase()}`);
-        });
-    });
-    
-    // Load saved language preference
-    const savedLang = localStorage.getItem('preferredLanguage');
-    if (savedLang) {
-        langButtons.forEach(btn => {
-            if (btn.getAttribute('data-lang') === savedLang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-    }
-    
-    // ============ SEARCH FUNCTIONALITY ============
-    const searchInput = document.querySelector('.search-input');
-    const searchBtn = document.querySelector('.search-btn');
-    
-    // Search on button click
-    searchBtn.addEventListener('click', performSearch);
-    
-    // Search on Enter key
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-    
-    function performSearch() {
-        const query = searchInput.value.trim();
-        
-        if (query === '') {
-            showNotification('Please enter a search term', 'warning');
-            searchInput.focus();
-            return;
-        }
-        
-        // Visual feedback
-        searchBtn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            searchBtn.style.transform = 'scale(1)';
-        }, 200);
-        
-        // Show search feedback
-        showNotification(`Searching for: "${query}"`, 'info');
-        
-        // TODO: Implement actual search functionality
-        console.log('Search query:', query);
-        
-        // Clear search after delay (for demo purposes)
-        setTimeout(() => {
-            searchInput.value = '';
-        }, 2000);
-    }
-    
-    // ============ TOOL CARDS INTERACTION ============
-    const toolButtons = document.querySelectorAll('.tool-btn');
-    
-    toolButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            if (this.disabled) {
-                return;
-            }
-            
-            const toolCard = this.closest('.tool-card');
-            const toolName = toolCard.querySelector('h3').textContent;
-            
-            // Visual feedback
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 200);
-            
-            showNotification(`Opening ${toolName}...`, 'success');
-            
-            // TODO: Implement actual tool functionality
-            console.log('Opening tool:', toolName);
-        });
-    });
-    
-    // ============ HEALTH GUIDES INTERACTION ============
-    const guideCards = document.querySelectorAll('.guide-card');
-    
-    guideCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const guideName = this.querySelector('.guide-label').textContent;
-            
-            // Visual feedback
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-            
-            showNotification(`Opening ${guideName} guide...`, 'info');
-            
-            // TODO: Implement actual guide navigation
-            console.log('Opening guide:', guideName);
-        });
-    });
-    
-    // ============ NOTIFICATION SYSTEM ============
-    function showNotification(message, type = 'info') {
-        // Remove existing notification if any
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        
-        // Add notification styles dynamically
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            background: ${getNotificationColor(type)};
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            font-size: 0.9rem;
-            font-weight: 500;
-            opacity: 0;
-            transition: all 0.3s ease;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Trigger animation
-        setTimeout(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translateX(-50%) translateY(0)';
-        }, 10);
-        
-        // Remove notification after 3 seconds
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(-50%) translateY(-20px)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 3000);
-    }
-    
-    function getNotificationColor(type) {
-        const colors = {
-            'success': 'linear-gradient(135deg, #4ECDC4, #2C9D96)',
-            'warning': 'linear-gradient(135deg, #FFB347, #FF8C42)',
-            'error': 'linear-gradient(135deg, #FF6B9D, #C06C84)',
-            'info': 'linear-gradient(135deg, #4FACFE, #00F2FE)'
-        };
-        return colors[type] || colors.info;
-    }
-    
-    // ============ SCROLL ANIMATIONS ============
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for scroll animation
-    const animatedElements = document.querySelectorAll('.tool-card, .guide-card, .section-header');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
-    
-    // ============ SMOOTH SCROLL ============
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // ============ SEARCH INPUT ENHANCEMENT ============
-    searchInput.addEventListener('focus', function() {
-        this.parentElement.style.boxShadow = '0 12px 40px rgba(76, 205, 196, 0.2)';
-    });
-    
-    searchInput.addEventListener('blur', function() {
-        this.parentElement.style.boxShadow = '0 8px 30px rgba(76, 205, 196, 0.08)';
-    });
-    
-    // ============ KEYBOARD NAVIGATION ============
-    document.addEventListener('keydown', function(e) {
-        // Focus search on Ctrl/Cmd + K
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            searchInput.focus();
-        }
-        
-        // Clear search on Escape
-        if (e.key === 'Escape' && document.activeElement === searchInput) {
-            searchInput.value = '';
-            searchInput.blur();
-        }
-    });
-    
-    // ============ PERFORMANCE MONITORING ============
-    if ('performance' in window) {
-        window.addEventListener('load', function() {
-            const loadTime = performance.now();
-            console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-        });
-    }
-    
-    // ============ ERROR HANDLING ============
-    window.addEventListener('error', function(e) {
-        console.error('Application error:', e.message);
-        // Don't show error to user in production
-    });
-    
-    // ============ INITIALIZATION COMPLETE ============
-    console.log('PHARMACY - Health Guide initialized successfully');
-    
-    // Show welcome message on first visit
-    if (!sessionStorage.getItem('welcomeShown')) {
-        setTimeout(() => {
-            showNotification('Welcome to PHARMACY â Health Guide!', 'success');
-            sessionStorage.setItem('welcomeShown', 'true');
-        }, 1000);
-    }
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    applyLang(this.getAttribute('data-lang'));
+  });
 });
 
-// ============ SERVICE WORKER REGISTRATION (PWA Ready) ============
-if ('serviceWorker' in navigator) {
-    // Uncomment below when service worker is ready
-    /*
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker registered'))
-            .catch(err => console.log('Service Worker registration failed'));
+// =========================================================
+// SEARCH DATABASE (comprehensive)
+// =========================================================
+const searchDB = [
+  {title:'Paracetamol (Crocin / Dolo 650)',desc:'Common fever and pain medicine. Adult: 500–1000mg every 6–8 hrs. Child: 10–15 mg/kg body weight. Max 4g/day for adults.',tag:'Medicine',keywords:['paracetamol','crocin','dolo','fever','pain','temperature','bukhar']},
+  {title:'Ibuprofen (Brufen / Advil)',desc:'Anti-inflammatory for fever, pain, swelling. Adult: 200–400mg every 6–8 hrs with food. Avoid in kidney problems.',tag:'Medicine',keywords:['ibuprofen','brufen','advil','pain','inflammation','swelling','dard']},
+  {title:'Aspirin / Ecosprin',desc:'Pain relief and heart protection (75mg daily). NEVER give to children under 18 – risk of Reye\'s Syndrome.',tag:'Medicine',keywords:['aspirin','ecosprin','heart','blood thinner','platelet']},
+  {title:'Amoxicillin (Novamox / Mox)',desc:'Antibiotic for bacterial infections. Adult: 500mg 3× daily for 7–10 days. Always complete the full course.',tag:'Medicine',keywords:['amoxicillin','novamox','mox','antibiotic','bacterial','infection']},
+  {title:'Azithromycin (Azithral / Zithromax)',desc:'Antibiotic for respiratory, skin, and ear infections. Adult: 500mg Day 1, then 250mg for 4 days.',tag:'Medicine',keywords:['azithromycin','azithral','zithromax','antibiotic','chest infection']},
+  {title:'Cetirizine (Alerid / Zyrtec)',desc:'Antihistamine for allergies and cold. Adult: 10mg once daily at night. Child 6–12yr: 5mg once daily.',tag:'Medicine',keywords:['cetirizine','alerid','zyrtec','antihistamine','allergy','itching','khujli']},
+  {title:'Loratadine / Fexofenadine (Allegra)',desc:'Non-drowsy antihistamine. Adult: 10mg once daily. Good for daytime allergy relief without causing sleepiness.',tag:'Medicine',keywords:['loratadine','allegra','fexofenadine','allergy','non-drowsy']},
+  {title:'Omeprazole / Pantoprazole (Omez / Pan 40)',desc:'For acidity, heartburn, GERD. Adult: 20–40mg before breakfast. Child: 0.5–1mg/kg/day.',tag:'Medicine',keywords:['omeprazole','pantoprazole','pan40','omez','acidity','heartburn','gerd','acid','jalan']},
+  {title:'Domperidone (Domstal)',desc:'For nausea and vomiting. Adult: 10mg 3× daily before meals. Child: 0.2–0.4mg/kg 3× daily.',tag:'Medicine',keywords:['domperidone','domstal','nausea','vomiting','ulti','jee machlana']},
+  {title:'ORS (Oral Rehydration Solution)',desc:'For diarrhea and dehydration. Mix 1 sachet in 1 liter clean water. Give 50–100ml per loose stool for infants.',tag:'Medicine',keywords:['ors','rehydration','diarrhea','loose motion','dehydration','pani ki kami']},
+  {title:'Metronidazole (Flagyl)',desc:'Antibiotic for amoeba, giardia, bacterial vaginosis. Adult: 400–500mg 3× daily for 7 days. Avoid alcohol.',tag:'Medicine',keywords:['metronidazole','flagyl','amoeba','giardia','stomach infection','pet infection']},
+  {title:'Diclofenac (Voveran / Voltaren)',desc:'Powerful pain reliever and anti-inflammatory. Adult: 50mg 2–3× daily with food. Max 150mg/day.',tag:'Medicine',keywords:['diclofenac','voveran','voltaren','pain','joint pain','arthritis','dard']},
+  {title:'Ambroxol / Guaifenesin (Ambrodil)',desc:'Expectorant for wet/productive cough. Adult: 10ml or 30mg tablet 3× daily. Child 2–5yr: 2.5ml 3× daily.',tag:'Medicine',keywords:['ambroxol','ambrodil','mucinex','cough syrup','khansi','chest congestion']},
+  {title:'Vitamin D3 (Calcirol / Cholecalciferol)',desc:'For bone health and immunity. Adult deficiency: 60,000 IU weekly for 8 weeks. Daily maintenance: 600–1000 IU.',tag:'Medicine',keywords:['vitamin d','calcirol','cholecalciferol','bone','immunity','deficiency','kamzori']},
+  {title:'Vitamin B12 (Methylcobalamin)',desc:'For nerve health, energy. Common in vegetarians. Adult: 500–1500mcg daily for 3 months to correct deficiency.',tag:'Medicine',keywords:['vitamin b12','methylcobalamin','nerve','energy','anemia','kamzori','tingling']},
+  {title:'Iron Supplement (Autrin / Feronia / Dexorange)',desc:'For iron deficiency anemia. Adult: 100–200mg elemental iron daily. Take with Vitamin C or orange juice.',tag:'Medicine',keywords:['iron','ferrous','autrin','feronia','dexorange','anemia','khoon ki kami']},
+  {title:'Calcium + Vitamin D (Shelcal)',desc:'For bone strength. Adult: 500mg calcium twice daily. Elderly and post-menopausal: 600mg twice daily.',tag:'Medicine',keywords:['calcium','shelcal','bones','osteoporosis','haddi','vitamin d']},
+  {title:'Nimesulide (Nimulid)',desc:'Fever and pain relief for adults only. 100mg twice daily, max 15 days. BANNED for children under 12 in India.',tag:'Medicine',keywords:['nimesulide','nimulid','fever','pain','adult only']},
+  {title:'Montelukast (Singulair)',desc:'For allergic asthma and hay fever. Adult (15+): 10mg once daily in evening. Child 2–5yr: 4mg chewable.',tag:'Medicine',keywords:['montelukast','singulair','asthma','allergy','hayfever']},
+  {title:'Tramadol (Ultracet)',desc:'Strong pain reliever for moderate to severe pain. Prescription required. Adult: 50–100mg every 6 hrs.',tag:'Medicine',keywords:['tramadol','ultracet','strong pain','severe pain','prescription']},
+
+  // SYMPTOMS
+  {title:'Headache (Sir Dard)',desc:'Causes: dehydration, stress, eye strain, sinusitis. Drink water, rest in dark room. Take paracetamol 500mg if needed.',tag:'Symptom',keywords:['headache','sir dard','migraine','tension','stress','dehydration']},
+  {title:'Fever (Bukhar)',desc:'Temp above 98.6°F. Give paracetamol as per age. Cool compress on forehead. Stay hydrated. See doctor if above 103°F.',tag:'Symptom',keywords:['fever','bukhar','temperature','high temperature','thandi']},
+  {title:'Cough (Khansi)',desc:'Dry cough: suppressant. Wet cough: expectorant (Ambroxol). Try honey + warm water + ginger for natural relief.',tag:'Symptom',keywords:['cough','khansi','dry cough','wet cough','chest','baalgam']},
+  {title:'Body Pain / Muscle Ache',desc:'Rest, warm compress, ibuprofen or diclofenac for relief. If after exercise, stay hydrated and stretch gently.',tag:'Symptom',keywords:['body pain','muscle ache','badan dard','joint pain','jod dard','myalgia']},
+  {title:'Nausea & Vomiting (Ulti)',desc:'Small sips of water or ORS. Avoid solid food temporarily. Take domperidone or ondansetron as prescribed.',tag:'Symptom',keywords:['nausea','vomiting','ulti','jee machlana','motion sickness']},
+  {title:'Diarrhea / Loose Motion',desc:'Start ORS immediately to prevent dehydration. BRAT diet (banana, rice, applesauce, toast). See doctor if bloody.',tag:'Symptom',keywords:['diarrhea','loose motion','pechish','loose stool','amoeba','stomach bug']},
+  {title:'Constipation (Kabz)',desc:'Drink 8+ glasses water, eat fiber (fruits, vegetables, oats). Isabgol husk works well. Laxatives as last resort.',tag:'Symptom',keywords:['constipation','kabz','hard stool','isabgol','fiber','pait saaf']},
+  {title:'Acidity / Heartburn (Jalan)',desc:'Avoid spicy/oily food, eat small meals, don\'t lie down after eating. Take antacid (Gelusil) or omeprazole.',tag:'Symptom',keywords:['acidity','heartburn','jalan','acid reflux','gerd','pet mein jalan']},
+  {title:'Sore Throat (Gale Mein Dard)',desc:'Salt water gargling, honey lemon warm water, lozenges. Take cetirizine or paracetamol for relief.',tag:'Symptom',keywords:['sore throat','gale mein dard','tonsil','throat pain','pharyngitis']},
+  {title:'Cold / Runny Nose (Nazla/Zukam)',desc:'Steam inhalation, saline nasal drops, cetirizine, D-Cold tablet. Drink warm fluids. Rest well.',tag:'Symptom',keywords:['cold','runny nose','nazla','zukam','blocked nose','nasal congestion','sinus']},
+  {title:'Skin Rash / Itching (Khujli)',desc:'Identify trigger, apply calamine lotion, take cetirizine 10mg. See doctor if spreading or accompanied by fever.',tag:'Symptom',keywords:['rash','itching','khujli','hives','urticaria','skin allergy','chichpan']},
+  {title:'Fatigue / Tiredness (Thakan)',desc:'Check for anemia (iron/B12), Vitamin D deficiency, thyroid issues. Sleep 7–8 hrs, stay hydrated, eat balanced diet.',tag:'Symptom',keywords:['fatigue','tiredness','thakan','weakness','kamzori','lethargy']},
+  {title:'Dizziness (Chakkar)',desc:'Sit or lie down immediately. Could be low BP, dehydration, inner ear issue or anemia. Drink water, eat something.',tag:'Symptom',keywords:['dizziness','chakkar','vertigo','lightheaded','fainting','anemia']},
+  {title:'Back Pain (Kamar Dard)',desc:'Rest, hot compress, gentle stretching. Diclofenac gel or tablet. See doctor if pain radiates to legs.',tag:'Symptom',keywords:['back pain','kamar dard','spine','disc','sciatica','lower back']},
+
+  // CONDITIONS
+  {title:'Diabetes (Madhumeh)',desc:'Monitor blood sugar daily. Low-sugar high-fiber diet. Exercise 30 min daily. Medicine: Metformin (doctor prescribed).',tag:'Condition',keywords:['diabetes','sugar','madhumeh','blood glucose','insulin','type 2','type 1']},
+  {title:'Hypertension / High Blood Pressure',desc:'Normal BP: 120/80. Reduce salt, exercise, avoid stress. Medicine: Amlodipine, Losartan (doctor prescribed).',tag:'Condition',keywords:['hypertension','high blood pressure','bp high','haart attack risk','stroke']},
+  {title:'Hypothyroidism',desc:'Fatigue, weight gain, hair loss. Test: TSH blood test. Treatment: Levothyroxine (Thyronorm) on empty stomach.',tag:'Condition',keywords:['hypothyroid','thyroid','TSH','levothyroxine','thyronorm','weight gain','fatigue']},
+  {title:'Asthma (Dama)',desc:'Use prescribed inhaler (Salbutamol for relief, Budecort for prevention). Avoid triggers. Carry rescue inhaler always.',tag:'Condition',keywords:['asthma','dama','breathing','inhaler','wheezing','shortness of breath','saans']},
+  {title:'Anemia (Khoon ki Kami)',desc:'Pale skin, fatigue, breathlessness. Eat iron-rich foods (spinach, meat, lentils). Iron supplements + Vitamin C.',tag:'Condition',keywords:['anemia','khoon ki kami','iron deficiency','pale','hemoglobin','low hb']},
+  {title:'Arthritis (Joint Pain)',desc:'Joint pain, stiffness. Exercise, hot/cold therapy, diclofenac or ibuprofen. Rheumatoid type needs doctor.',tag:'Condition',keywords:['arthritis','joint pain','jod dard','rheumatoid','osteoarthritis','knee pain','ghutne']},
+  {title:'GERD / Acid Reflux',desc:'Chronic heartburn. Avoid triggers, small meals, don\'t lie down after eating. Long-term: Pantoprazole/Omeprazole.',tag:'Condition',keywords:['gerd','acid reflux','acidity','heartburn','jalan','stomach acid']},
+  {title:'Urinary Tract Infection (UTI)',desc:'Burning urination, frequent urge. Drink lots of water. Antibiotics: Nitrofurantoin or Ciprofloxacin (doctor prescribed).',tag:'Condition',keywords:['uti','urinary infection','burning urination','peshab mein jalan','bladder infection']},
+  {title:'Dengue Fever',desc:'High fever, joint pain, rash. No specific cure. Rest, ORS/fluids, paracetamol only (no aspirin/ibuprofen). Watch platelet count.',tag:'Condition',keywords:['dengue','dengue fever','platelet','joint pain','rash','mosquito']},
+  {title:'Malaria',desc:'Fever with chills and sweating in cycles. Diagnosed by blood test. Treatment: Hydroxychloroquine or Artemether (doctor only).',tag:'Condition',keywords:['malaria','fever','chills','plasmodium','mosquito','baar baar bukhar']},
+  {title:'Typhoid',desc:'Prolonged fever, weakness, stomach pain. Widal test for diagnosis. Antibiotics: Azithromycin or Ciprofloxacin.',tag:'Condition',keywords:['typhoid','prolonged fever','widal','salmonella','kamzori','pet dard']},
+  {title:'COVID-19',desc:'Fever, cough, breathlessness, loss of smell/taste. Isolate, rest, paracetamol for fever. Seek help if O2 drops below 95%.',tag:'Condition',keywords:['covid','corona','covid-19','sars','loss of smell','oxygen','quarantine']},
+
+  // HEALTH TOPICS
+  {title:'Blood Sugar Normal Range',desc:'Fasting: 70–100 mg/dL. After meal (2hr): below 140 mg/dL. HbA1c normal: below 5.7%.',tag:'Health Info',keywords:['blood sugar','glucose','fasting sugar','hba1c','diabetes range','normal sugar']},
+  {title:'Blood Pressure Normal Range',desc:'Normal: 120/80 mmHg. Pre-hypertension: 120–139/80–89. Hypertension: 140/90 and above.',tag:'Health Info',keywords:['blood pressure range','normal bp','hypertension range','systolic','diastolic']},
+  {title:'Normal Body Temperature',desc:'Normal: 98.2–98.6°F (36.8–37°C). Fever: above 100.4°F (38°C). Low-grade fever: 99–100.3°F.',tag:'Health Info',keywords:['normal temperature','body temp','fever threshold','thermometer','98.6']},
+  {title:'Cholesterol Normal Levels',desc:'Total: <200 mg/dL. LDL (bad): <130 mg/dL. HDL (good): >40 mg/dL (men), >50 (women). Triglycerides: <150 mg/dL.',tag:'Health Info',keywords:['cholesterol','ldl','hdl','triglycerides','lipid','lipid profile']},
+  {title:'Hemoglobin Normal Range',desc:'Men: 13.5–17.5 g/dL. Women: 12–15.5 g/dL. Children: 11–16 g/dL. Below normal = anemia.',tag:'Health Info',keywords:['hemoglobin','hb','anemia','blood count','cbc','khoon']},
+  {title:'BMI (Body Mass Index)',desc:'Underweight: <18.5. Normal: 18.5–24.9. Overweight: 25–29.9. Obese: 30+. BMI = weight(kg) / height(m)²',tag:'Health Info',keywords:['bmi','body mass index','weight','obesity','overweight','underweight']},
+  {title:'Vaccination Schedule India',desc:'BCG, OPV, DPT at birth and 6 weeks. MMR at 9 months. Follow complete IAP (Indian Academy of Pediatrics) schedule.',tag:'Health Info',keywords:['vaccine','vaccination','immunization','टीका','टीकाकरण','bcg','mmr','dpt','polio']},
+  {title:'Pregnancy Tips',desc:'Folic acid from conception, iron from 14 weeks, calcium throughout. 8 antenatal checkups minimum. No alcohol.',tag:'Health Info',keywords:['pregnancy','garbhavastha','antenatal','prenatal','folic acid','pregnant','delivery']},
+];
+
+// =========================================================
+// SEARCH FUNCTION
+// =========================================================
+function performSearch() {
+  const query = document.getElementById('searchInput').value.trim();
+  const L = LANG[currentLang];
+  const resultsSection = document.getElementById('resultsSection');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const resultsTitle = document.getElementById('resultsTitle');
+
+  if (!query) { resultsSection.classList.remove('active'); return; }
+
+  // Show loading
+  resultsSection.classList.add('active');
+  resultsGrid.innerHTML = '<div class="search-loading"><div class="spinner"></div><p>Searching...</p></div>';
+  resultsTitle.textContent = '';
+
+  setTimeout(() => {
+    const q = query.toLowerCase();
+    const results = searchDB.filter(item => {
+      return item.title.toLowerCase().includes(q) ||
+             item.desc.toLowerCase().includes(q) ||
+             item.tag.toLowerCase().includes(q) ||
+             item.keywords.some(k => k.toLowerCase().includes(q) || q.includes(k.toLowerCase()));
     });
-    */
+
+    resultsGrid.innerHTML = '';
+    if (results.length === 0) {
+      resultsGrid.innerHTML = `<div class="no-results"><div class="nr-icon">🔍</div><p>${L.noResults(query)}</p></div>`;
+    } else {
+      results.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        // Highlight matching text
+        const highlighted = item.title.replace(new RegExp(`(${query})`, 'gi'), '<mark style="background:#d4f7f5;border-radius:3px;padding:0 2px">$1</mark>');
+        card.innerHTML = `<h4>${highlighted}</h4><p>${item.desc}</p><span class="result-tag">${item.tag}</span>`;
+        resultsGrid.appendChild(card);
+      });
+    }
+
+    resultsTitle.textContent = results.length > 0 ? L.resultsFound(results.length, query) : '';
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
 }
-    
-    
-    
-    
-    </script>
+
+document.getElementById('searchBtn').addEventListener('click', performSearch);
+document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+document.getElementById('searchInput').addEventListener('input', function() {
+  if (!this.value.trim()) document.getElementById('resultsSection').classList.remove('active');
+});
+
+// =========================================================
+// GUIDE DATA
+// =========================================================
+const GUIDES = {
+  fever:{icon:'🌡️',bg:'linear-gradient(135deg,#FA709A,#FEE140)',title:'Fever Guide',sub:'Understanding and managing fever safely',content:`<h3>What is Fever?</h3><p>Body temperature above 98.6°F (37°C). Usually a sign the body is fighting an infection.</p><h3>Common Causes</h3><ul><li>Viral infections (cold, flu, COVID-19)</li><li>Bacterial infections</li><li>Heat exhaustion or heatstroke</li><li>Vaccines or certain medications</li></ul><h3>Home Remedies</h3><ul><li>Rest and stay well hydrated – drink plenty of fluids</li><li>Apply cool (not cold) wet cloth to forehead</li><li>Take paracetamol as per age</li><li>Wear light clothing and keep room ventilated</li></ul><div class="m-warn">⚠️ Seek medical help if fever exceeds 103°F (39.4°C), lasts more than 3 days, or infant under 3 months has fever.</div>`},
+  stomach:{icon:'🫃',bg:'linear-gradient(135deg,#30CFD0,#330867)',title:'Stomach Issues Guide',sub:'Managing common digestive problems',content:`<h3>Common Problems</h3><p>Digestive issues are very common. Most are mild and manageable at home.</p><h3>Types & Symptoms</h3><ul><li>Indigestion – bloating, discomfort after eating</li><li>Diarrhea – loose stools, cramping</li><li>Constipation – infrequent, hard bowel movements</li><li>Gastritis – stomach pain, nausea, vomiting</li><li>Acid Reflux – heartburn, sour taste in mouth</li></ul><h3>Home Remedies</h3><ul><li>Drink ginger tea or plain water frequently</li><li>Eat light bland foods (banana, rice, toast)</li><li>Avoid spicy, oily, or heavy foods</li><li>Take ORS for diarrhea to prevent dehydration</li></ul><div class="m-warn">⚠️ See a doctor if symptoms persist over 48 hours or you notice blood in stool.</div>`},
+  skin:{icon:'🧴',bg:'linear-gradient(135deg,#A8EDEA,#FED6E3)',title:'Skin Care Guide',sub:'Maintaining healthy skin and treating common issues',content:`<h3>Common Skin Conditions</h3><ul><li>Acne – clogged pores, pimples, blackheads</li><li>Eczema – dry, itchy, inflamed skin patches</li><li>Rashes – redness and bumps from allergens or heat</li><li>Fungal infections – ringworm, athlete's foot</li><li>Sunburn – redness and pain from UV exposure</li></ul><h3>Skin Care Tips</h3><ul><li>Clean and moisturize skin daily</li><li>Use sunscreen SPF 30+ when outdoors</li><li>Drink at least 8 glasses of water daily</li><li>Eat fruits and vegetables rich in vitamins A, C, E</li></ul><div class="m-warn">⚠️ See a dermatologist for persistent rashes, changing moles, or conditions not improving in 2 weeks.</div>`},
+  diabetes:{icon:'🩸',bg:'linear-gradient(135deg,#FF9A9E,#FAD0C4)',title:'Diabetes Guide',sub:'Understanding and managing blood sugar levels',content:`<h3>What is Diabetes?</h3><p>Condition where the body cannot regulate blood sugar (glucose) properly. Type 1, Type 2, and Gestational diabetes.</p><h3>Symptoms</h3><ul><li>Frequent urination, especially at night</li><li>Excessive thirst and hunger</li><li>Unexplained weight loss</li><li>Blurred vision and persistent fatigue</li><li>Slow healing of wounds</li></ul><h3>Management</h3><ul><li>Monitor blood glucose levels regularly</li><li>Low-sugar, high-fiber diet</li><li>Exercise 30 min daily</li><li>Take prescribed medication on schedule</li><li>Avoid smoking and limit alcohol</li></ul><div class="m-warn">⚠️ Never adjust diabetes medication without your doctor's advice.</div>`},
+  heart:{icon:'❤️',bg:'linear-gradient(135deg,#FF6B9D,#C06C84)',title:'Heart Health Guide',sub:'Protecting your cardiovascular system',content:`<h3>Warning Signs</h3><ul><li>Chest pain or tightness</li><li>Shortness of breath at rest or with activity</li><li>Palpitations or irregular heartbeat</li><li>Swelling in legs, ankles, or feet</li><li>Fatigue, dizziness, or fainting</li></ul><h3>Prevention</h3><ul><li>Exercise 150+ minutes per week</li><li>Eat heart-healthy diet (less salt, less saturated fat)</li><li>Quit smoking completely</li><li>Maintain healthy weight and blood pressure</li><li>Manage stress through yoga or meditation</li></ul><div class="m-warn">⚠️ Call 112 for chest pain with sweating, jaw pain, or arm pain – could be heart attack.</div>`},
+  mental:{icon:'🧠',bg:'linear-gradient(135deg,#A1C4FD,#C2E9FB)',title:'Mental Wellness Guide',sub:'Taking care of your mental and emotional health',content:`<h3>Common Conditions</h3><ul><li>Anxiety – excessive worry, restlessness, panic attacks</li><li>Depression – persistent sadness, loss of interest</li><li>Stress – overwhelm from work or life events</li><li>Insomnia – difficulty falling or staying asleep</li><li>Burnout – emotional and physical exhaustion</li></ul><h3>Wellness Tips</h3><ul><li>Practice mindfulness and deep breathing daily</li><li>Maintain regular sleep schedule (7–8 hours)</li><li>Stay socially connected with loved ones</li><li>Exercise regularly – boosts mood naturally</li><li>Limit social media and screen time</li></ul><div class="m-warn">⚠️ For crisis support, call iCall: 9152987821. Please reach out to a mental health professional.</div>`},
+  bp:{icon:'🩺',bg:'linear-gradient(135deg,#F7971E,#FFD200)',title:'Blood Pressure Guide',sub:'Understanding hypertension and hypotension',content:`<h3>Normal BP: 120/80 mmHg</h3><h3>High BP Symptoms</h3><ul><li>Headaches, especially in the morning</li><li>Dizziness and blurred vision</li><li>Nosebleeds and shortness of breath</li><li>Often "silent" – no symptoms (dangerous)</li></ul><h3>Management</h3><ul><li>Reduce salt intake to less than 5g per day</li><li>Exercise regularly and maintain healthy weight</li><li>Avoid smoking and limit alcohol</li><li>Take prescribed BP medicines regularly, never skip</li><li>Monitor BP at home with a digital monitor</li></ul><div class="m-warn">⚠️ BP above 180/120 is a hypertensive emergency. Call 112 immediately.</div>`},
+  cholesterol:{icon:'🫀',bg:'linear-gradient(135deg,#f953c6,#b91d73)',title:'Cholesterol Guide',sub:'Managing lipid levels for heart health',content:`<h3>Normal Levels</h3><ul><li>Total Cholesterol: Less than 200 mg/dL</li><li>LDL (Bad): Less than 130 mg/dL</li><li>HDL (Good): Above 40 mg/dL (men), 50 (women)</li><li>Triglycerides: Less than 150 mg/dL</li></ul><h3>How to Improve</h3><ul><li>Eat more fiber – oats, fruits, vegetables, legumes</li><li>Reduce saturated and trans fats (fried food, butter)</li><li>Exercise at least 30 minutes daily</li><li>Quit smoking – it lowers HDL significantly</li><li>Statins if prescribed (e.g., Atorvastatin)</li></ul><div class="m-warn">⚠️ High cholesterol has no symptoms. Get a lipid profile test every year after age 35.</div>`},
+  thyroid:{icon:'🦋',bg:'linear-gradient(135deg,#43e97b,#38f9d7)',title:'Thyroid Health Guide',sub:'Understanding thyroid disorders',content:`<h3>Hypothyroidism Symptoms</h3><ul><li>Weight gain, fatigue, always feeling cold</li><li>Dry skin, hair loss, constipation</li><li>Depression and brain fog</li></ul><h3>Hyperthyroidism Symptoms</h3><ul><li>Weight loss, anxiety, always feeling hot</li><li>Rapid heartbeat and sweating</li><li>Tremors and irritability</li></ul><h3>Management</h3><ul><li>Hypothyroid: Levothyroxine (Thyronorm) – empty stomach</li><li>Regular TSH blood test every 6 months</li><li>Adequate iodine in diet through iodized salt</li></ul><div class="m-warn">⚠️ Thyroid needs lifelong management. Never stop medication without doctor's advice.</div>`},
+  asthma:{icon:'🫁',bg:'linear-gradient(135deg,#4facfe,#00f2fe)',title:'Asthma Guide',sub:'Managing respiratory conditions effectively',content:`<h3>Common Triggers</h3><ul><li>Dust mites, pollen, pet dander</li><li>Smoke, pollution, and strong odors</li><li>Cold air or exercise-induced</li><li>Stress and respiratory infections</li></ul><h3>Symptoms</h3><ul><li>Wheezing and shortness of breath</li><li>Coughing, especially at night or early morning</li><li>Chest tightness or pain</li></ul><h3>Management</h3><ul><li>Use prescribed inhaler (Salbutamol for relief)</li><li>Avoid known triggers at home and outdoors</li><li>Always carry rescue inhaler</li><li>Monitor peak flow regularly</li></ul><div class="m-warn">⚠️ Severe attack (can't speak, blue lips) is a medical emergency. Call 112.</div>`},
+  bones:{icon:'🦴',bg:'linear-gradient(135deg,#a18cd1,#fbc2eb)',title:'Bone & Joint Health',sub:'Keeping your musculoskeletal system strong',content:`<h3>Common Conditions</h3><ul><li>Osteoarthritis – joint pain and stiffness (age-related)</li><li>Rheumatoid Arthritis – autoimmune joint inflammation</li><li>Osteoporosis – weak, brittle bones</li><li>Gout – uric acid crystals causing severe joint pain</li><li>Back pain – muscle strain or disc issues</li></ul><h3>Prevention</h3><ul><li>Take adequate calcium and Vitamin D daily</li><li>Exercise regularly – walking, swimming, yoga</li><li>Maintain healthy weight to reduce joint pressure</li><li>Apply hot/cold packs for joint pain relief</li></ul><div class="m-warn">⚠️ Sudden severe joint pain or inability to move needs immediate medical attention.</div>`},
+  eye:{icon:'👁️',bg:'linear-gradient(135deg,#0fd850,#f9f047)',title:'Eye Care Guide',sub:'Protecting your vision for life',content:`<h3>Common Eye Problems</h3><ul><li>Refractive errors – myopia, hyperopia, astigmatism</li><li>Conjunctivitis (Pink Eye) – redness, discharge, itching</li><li>Cataracts – cloudy lens causing blurry vision</li><li>Glaucoma – increased pressure damaging optic nerve</li><li>Dry eye – insufficient tear production</li></ul><h3>Eye Care Tips</h3><ul><li>20-20-20 rule: Every 20 min, look 20 feet away for 20 seconds</li><li>Eye exam every 1–2 years</li><li>Wear UV-protective sunglasses outdoors</li><li>Eat green leafy vegetables and carrots (Vitamin A)</li></ul><div class="m-warn">⚠️ Sudden vision loss, eye injury, or floaters with flashing lights are emergencies.</div>`},
+  dental:{icon:'🦷',bg:'linear-gradient(135deg,#89f7fe,#66a6ff)',title:'Dental Health Guide',sub:'Maintaining oral health and hygiene',content:`<h3>Common Dental Issues</h3><ul><li>Cavities – tooth decay from plaque and sugar</li><li>Gum disease – gingivitis and periodontitis</li><li>Toothache – pulp infection or abscess</li><li>Sensitivity – pain from hot/cold foods</li></ul><h3>Oral Hygiene Tips</h3><ul><li>Brush teeth twice daily for at least 2 minutes</li><li>Floss once daily</li><li>Use fluoride toothpaste</li><li>Rinse with mouthwash after brushing</li><li>Visit dentist every 6 months</li><li>Reduce sugar and acidic drinks</li></ul><div class="m-warn">⚠️ Toothache with face/jaw swelling is a sign of serious infection. See dentist urgently.</div>`},
+  kidney:{icon:'🫘',bg:'linear-gradient(135deg,#f77062,#fe5196)',title:'Kidney Care Guide',sub:'Protecting your renal health',content:`<h3>Warning Signs</h3><ul><li>Frequent or decreased urination</li><li>Blood in urine or foamy urine</li><li>Swelling in face, hands, or feet</li><li>Fatigue and loss of appetite</li><li>Persistent lower back or flank pain</li></ul><h3>Prevention</h3><ul><li>Drink 8–10 glasses of water daily</li><li>Limit salt and processed food intake</li><li>Avoid overuse of painkillers (NSAIDs damage kidneys)</li><li>Control blood sugar and blood pressure</li></ul><div class="m-warn">⚠️ Sudden severe flank pain with vomiting may indicate kidney stone. Seek care promptly.</div>`},
+  liver:{icon:'🟤',bg:'linear-gradient(135deg,#fda085,#f6d365)',title:'Liver Health Guide',sub:'Keeping your liver functioning well',content:`<h3>Common Liver Conditions</h3><ul><li>Fatty liver disease – excess fat accumulation</li><li>Hepatitis A, B, C – viral liver infections</li><li>Cirrhosis – severe scarring of liver tissue</li><li>Jaundice – yellowing of skin and eyes</li></ul><h3>Liver Health Tips</h3><ul><li>Limit or completely avoid alcohol</li><li>Eat balanced diet with less processed food</li><li>Maintain healthy weight (fatty liver is reversible)</li><li>Get Hepatitis A and B vaccines</li><li>Avoid self-medication and overuse of supplements</li></ul><div class="m-warn">⚠️ Yellow skin, dark urine, severe abdominal pain – seek emergency care immediately.</div>`},
+  cold:{icon:'🤧',bg:'linear-gradient(135deg,#84fab0,#8fd3f4)',title:'Cold & Cough Guide',sub:'Managing upper respiratory infections',content:`<h3>Cold vs Flu</h3><p>Cold is milder (nose/throat). Flu is severe with high fever, body aches, and fatigue.</p><h3>Symptoms</h3><ul><li>Runny or blocked nose</li><li>Sore throat and sneezing</li><li>Dry or wet cough</li><li>Body aches (mainly flu)</li></ul><h3>Home Remedies</h3><ul><li>Steam inhalation with Vicks/eucalyptus 2–3× daily</li><li>Honey + ginger + warm water – natural cough relief</li><li>Salt water gargling for sore throat</li><li>Stay warm, hydrated, and rest well</li></ul><div class="m-warn">⚠️ See a doctor if fever exceeds 103°F, breathing is difficult, or symptoms worsen after 7 days.</div>`},
+  allergy:{icon:'🌿',bg:'linear-gradient(135deg,#fddb92,#d1fdff)',title:'Allergy Guide',sub:'Understanding and managing allergic reactions',content:`<h3>Common Allergens</h3><ul><li>Pollen – seasonal hay fever</li><li>Dust mites and pet dander</li><li>Foods: peanuts, shellfish, milk, eggs</li><li>Insect stings and medicines</li></ul><h3>Symptoms</h3><ul><li>Sneezing, runny nose, watery eyes</li><li>Skin rash, hives, or itching</li><li>Swelling of lips, tongue, throat (serious)</li><li>Breathing difficulty (anaphylaxis – emergency)</li></ul><h3>Management</h3><ul><li>Identify and avoid known triggers</li><li>Take cetirizine/loratadine for mild symptoms</li><li>Keep EpiPen if prescribed for severe allergy</li></ul><div class="m-warn">⚠️ Anaphylaxis (throat swelling, breathing difficulty) – Call 112 immediately.</div>`},
+  nutrition:{icon:'🥗',bg:'linear-gradient(135deg,#96fbc4,#f9f586)',title:'Nutrition Guide',sub:'Eating right for lifelong health',content:`<h3>Essential Nutrients</h3><ul><li>Carbohydrates – energy source (whole grains, fruits)</li><li>Proteins – muscle repair (dal, eggs, meat, soy)</li><li>Fats – brain health (nuts, olive oil, fish)</li><li>Vitamins A, C, D, E, B12 – immunity</li><li>Minerals: calcium, iron, zinc, iodine</li></ul><h3>Healthy Eating Tips</h3><ul><li>Eat 5 portions of fruits and vegetables daily</li><li>Choose whole grains over refined</li><li>Limit sugar, salt, and ultra-processed foods</li><li>Drink 8–10 glasses of water daily</li><li>Don't skip breakfast – fuels your metabolism</li></ul><div class="m-warn">⚠️ Consult a dietitian for personalized nutrition advice if you have a chronic condition.</div>`},
+  pregnancy:{icon:'🤰',bg:'linear-gradient(135deg,#fccb90,#d57eeb)',title:'Pregnancy Health Guide',sub:'Caring for mother and baby',content:`<h3>Essential Supplements</h3><ul><li>Folic acid 400–800 mcg daily (prevents neural tube defects)</li><li>Iron 200 mg daily from 14 weeks</li><li>Calcium 1000 mg daily throughout</li><li>Vitamin D 600–800 IU daily</li></ul><h3>Foods to Avoid</h3><ul><li>Raw fish, undercooked meat and eggs</li><li>High-mercury fish (shark, swordfish)</li><li>Excess caffeine (max 200 mg/day)</li><li>Alcohol – completely avoid</li></ul><h3>Important Tips</h3><ul><li>8 antenatal checkups minimum</li><li>Moderate exercise – walking or prenatal yoga</li><li>Rest well and manage stress</li></ul><div class="m-warn">⚠️ Any bleeding, severe headache, or reduced baby movement – contact doctor immediately.</div>`},
+  child:{icon:'👶',bg:'linear-gradient(135deg,#e0c3fc,#8ec5fc)',title:'Child Health Guide',sub:'Keeping children healthy from birth to teen years',content:`<h3>Vaccination Schedule (India – IAP)</h3><ul><li>At birth: BCG, OPV0, Hepatitis B</li><li>6 weeks: DPT, OPV, Hib, Rotavirus, PCV</li><li>9 months: Measles/MMR first dose</li><li>12–15 months: MMR second, Typhoid, Hepatitis A</li></ul><h3>Common Childhood Issues</h3><ul><li>Teething – teething rings, cold cloth, doctor-approved gel</li><li>Diarrhea – ORS immediately, continue breastfeeding</li><li>Worms – Albendazole 400mg yearly (children above 2 years)</li></ul><h3>Healthy Habits</h3><ul><li>Screen time: Max 1 hr/day for 2–5yr; 2 hrs older</li><li>Sleep: 10–13 hrs toddlers; 9–11 hrs school age</li><li>Daily outdoor play</li></ul><div class="m-warn">⚠️ High fever in infants under 3 months is an emergency. See doctor immediately.</div>`}
+};
+
+// Guide Modal
+const guideOverlay = document.getElementById('guideOverlay');
+document.querySelectorAll('.guide-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const key = this.getAttribute('data-guide');
+    const data = GUIDES[key];
+    if (!data) return;
+    document.getElementById('mIcon').textContent = data.icon;
+    document.getElementById('mIcon').style.background = data.bg;
+    document.getElementById('mIcon').style.fontSize = '2rem';
+    document.getElementById('mTitle').textContent = data.title;
+    document.getElementById('mSub').textContent = data.sub;
+    document.getElementById('mContent').innerHTML = data.content;
+    guideOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+document.getElementById('guideClose').addEventListener('click', () => { guideOverlay.classList.remove('active'); document.body.style.overflow = ''; });
+guideOverlay.addEventListener('click', e => { if (e.target === guideOverlay) { guideOverlay.classList.remove('active'); document.body.style.overflow = ''; } });
+
+// First Aid Modal
+const faOverlay = document.getElementById('faOverlay');
+document.getElementById('firstAidBtn').addEventListener('click', () => { faOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
+document.getElementById('faClose').addEventListener('click', () => { faOverlay.classList.remove('active'); document.body.style.overflow = ''; });
+faOverlay.addEventListener('click', e => { if (e.target === faOverlay) { faOverlay.classList.remove('active'); document.body.style.overflow = ''; } });
+
+// Tabs in First Aid
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('tab-' + this.getAttribute('data-tab')).classList.add('active');
+  });
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+  if (e.key === 'Escape') {
+    guideOverlay.classList.remove('active');
+    faOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Scroll animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.guide-card, .mini-card, .main-card, .sec-header').forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'all .5s ease'; obs.observe(el);
+});
+</script>
 </body>
 </html>
