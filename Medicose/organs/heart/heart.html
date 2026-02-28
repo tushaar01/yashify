@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +8,8 @@
   <title>Heart Explorer | Medicose</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Google tag (gtag.js) -->
+    
+    <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,7 +17,9 @@
     gtag('js', new Date());
     gtag('config', 'G-B5X5RJM3XH');
   </script>
-
+    
+    
+    
   <style>
     :root {
       --primary: #ff4d6d;
@@ -27,9 +31,7 @@
       --gray: #6c757d;
       --card-bg: rgba(255,255,255,0.7);
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--light);
@@ -38,8 +40,6 @@
       flex-direction: column;
       min-height:100vh;
     }
-
-    /* Header */
     .header {
       background: white;
       padding: 15px 30px;
@@ -47,8 +47,10 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    
     .logo {
       display: flex;
       align-items: center;
@@ -57,28 +59,15 @@
       font-weight: 700;
       color: var(--primary);
     }
-    
-    .header-icons {
-      display: flex;
-      gap: 20px;
-    }
-    
+    .header-icons { display: flex; gap: 20px; }
     .header-icons i {
       font-size: 20px;
       color: var(--gray);
       cursor: pointer;
       transition: 0.3s;
     }
-    
-    .header-icons i:hover {
-      color: var(--primary);
-    }
-
-    /* Main layout */
-    .main-container {
-      display: flex;
-      flex: 1;
-    }
+    .header-icons i:hover { color: var(--primary); }
+    .main-container { display: flex; flex: 1; }
 
     /* Sidebar */
     .sidebar {
@@ -88,8 +77,11 @@
       padding: 30px 0;
       display: flex;
       flex-direction: column;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
     }
-    
     .menu-item {
       display: flex;
       align-items: center;
@@ -100,23 +92,13 @@
       color: var(--gray);
       text-decoration: none;
     }
-    
-    .menu-item:hover {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-    
+    .menu-item:hover { background: var(--primary-light); color: var(--primary); }
     .menu-item.active {
       background: var(--primary-light);
       color: var(--primary);
       border-right: 3px solid var(--primary);
     }
-    
-    .menu-item i {
-      font-size: 20px;
-      width: 25px;
-      text-align: center;
-    }
+    .menu-item i { font-size: 20px; width: 25px; text-align: center; }
 
     /* Main content */
     .main-content {
@@ -127,27 +109,28 @@
       gap: 30px;
     }
 
-    /* Heart Explorer Section */
+    /* All sections hidden by default, shown via JS */
+    .section-block { display: none; animation: fadeIn 0.4s ease; }
+    .section-block.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Heart Explorer */
     .heart-explorer {
       background: white;
       border-radius: 20px;
       padding: 30px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
-    
-    .heart-explorer h2 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-    
+    .heart-explorer h2 { font-size: 26px; margin-bottom: 20px; color: var(--primary); }
     .heart-visual-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 30px;
     }
-    
     .heart-animation {
       position: relative;
       width: 250px;
@@ -156,14 +139,12 @@
       justify-content: center;
       align-items: center;
     }
-    
     .heart-beat {
       width: 180px;
       height: 180px;
       animation: heartbeat 1.2s infinite;
       position: relative;
     }
-    
     @keyframes heartbeat {
       0% { transform: scale(1); }
       25% { transform: scale(1.1); }
@@ -171,13 +152,7 @@
       75% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
-    
-    .heart-beat img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    
+    .heart-beat img { width: 100%; height: 100%; object-fit: contain; }
     .heart-rate {
       position: absolute;
       bottom: 30px;
@@ -189,34 +164,13 @@
       align-items: center;
       gap: 10px;
     }
-    
-    .heart-rate i {
-      color: var(--primary);
-      font-size: 20px;
-    }
-    
-    .heart-rate span {
-      font-weight: 600;
-      font-size: 18px;
-    }
-    
-    .heart-info {
-      flex: 1;
-    }
-    
-    .heart-info h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: var(--dark);
-    }
-    
-    .heart-info p {
-      color: var(--gray);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
+    .heart-rate i { color: var(--primary); font-size: 20px; }
+    .heart-rate span { font-weight: 600; font-size: 18px; }
+    .heart-info { flex: 1; }
+    .heart-info h3 { font-size: 22px; margin-bottom: 10px; color: var(--dark); }
+    .heart-info p { color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
 
-    /* ECG Wave Section */
+    /* ECG */
     .ecg-wave {
       background: white;
       border-radius: 20px;
@@ -225,20 +179,8 @@
       margin-top: 20px;
       overflow: hidden;
     }
-    
-    .ecg-wave h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .ecg-wave h3 i {
-      color: var(--primary);
-    }
-    
+    .ecg-wave h3 { font-size: 18px; margin-bottom: 15px; color: var(--dark); display: flex; align-items: center; gap: 10px; }
+    .ecg-wave h3 i { color: var(--primary); }
     .ecg-container {
       height: 120px;
       background: #1b1d29;
@@ -246,7 +188,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .ecg-line {
       position: absolute;
       top: 50%;
@@ -256,34 +197,13 @@
       background: rgba(255,255,255,0.2);
       transform: translateY(-50%);
     }
-    
-    #ecg-canvas {
-      width: 100%;
-      height: 100%;
-    }
-    
-    .ecg-stats {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-    }
-    
-    .ecg-stat {
-      text-align: center;
-    }
-    
-    .ecg-stat .value {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--primary);
-    }
-    
-    .ecg-stat .label {
-      font-size: 12px;
-      color: var(--gray);
-    }
+    #ecg-canvas { width: 100%; height: 100%; }
+    .ecg-stats { display: flex; justify-content: space-between; margin-top: 15px; }
+    .ecg-stat { text-align: center; }
+    .ecg-stat .value { font-size: 16px; font-weight: 600; color: var(--primary); }
+    .ecg-stat .label { font-size: 12px; color: var(--gray); }
 
-    /* Square Vitals Section */
+    /* Vitals */
     .square-vitals {
       display: grid;
       grid-template-columns: repeat(4, 120px);
@@ -291,7 +211,6 @@
       margin-top: 20px;
       justify-content: start;
     }
-    
     .square-card {
       width: 120px;
       height: 120px;
@@ -304,51 +223,20 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: 0.3s;
     }
-    
-    .square-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    
-    .square-card .value {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary);
-      text-align: center;
-    }
-    
-    .square-card .label {
-      font-size: 12px;
-      color: var(--gray);
-      text-align: center;
-    }
-    
-    .square-card .icon {
-      text-align: center;
-      font-size: 24px;
-      color: var(--secondary);
-    }
+    .square-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .square-card .value { font-size: 20px; font-weight: 700; color: var(--primary); text-align: center; }
+    .square-card .label { font-size: 12px; color: var(--gray); text-align: center; }
+    .square-card .icon { text-align: center; font-size: 24px; color: var(--secondary); }
 
-    /* ECG Condition Section */
+    /* ECG Condition */
     .ecg-condition {
       background: white;
       border-radius: 20px;
       padding: 30px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
-    
-    .ecg-condition h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-    
-    .ecg-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 15px;
-    }
-    
+    .ecg-condition h2 { font-size: 22px; margin-bottom: 20px; color: var(--primary); }
+    .ecg-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
     .ecg-card {
       background: var(--light);
       border-radius: 12px;
@@ -358,137 +246,301 @@
       transition: 0.3s;
       cursor: pointer;
     }
-    
-    .ecg-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .ecg-card img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 10px;
-    }
-    
-    .ecg-card p {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--dark);
-    }
+    .ecg-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .ecg-card img { width: 40px; height: 40px; margin-bottom: 10px; }
+    .ecg-card p { font-size: 14px; font-weight: 600; color: var(--dark); }
 
-    /* Content Area for Menu Items */
-    .content-area {
+    /* Content sections */
+    .content-section {
       background: white;
       border-radius: 20px;
       padding: 30px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      margin-top: 30px;
-      display: none;
     }
-    
-    .content-area.active {
-      display: block;
+    .content-section h2 { font-size: 22px; margin-bottom: 20px; color: var(--primary); }
+    .content-section p { color: var(--gray); line-height: 1.6; margin-bottom: 15px; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
-    
-    .content-area h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: var(--primary);
+    .info-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
     }
-    
-    .content-area p {
+    .info-card h3 { color: var(--primary); margin-bottom: 10px; font-size: 16px; }
+    .info-card p { color: var(--gray); font-size: 14px; margin: 0; }
+
+    /* ===== CALCULATOR SECTION ===== */
+    .calc-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    .calc-tab {
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: 2px solid var(--primary-light);
       color: var(--gray);
-      line-height: 1.6;
-      margin-bottom: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.3s;
+      background: white;
+    }
+    .calc-tab.active, .calc-tab:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .calc-panel { display: none; }
+    .calc-panel.active { display: block; animation: fadeIn 0.3s ease; }
+    .calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .calc-group { display: flex; flex-direction: column; gap: 6px; }
+    .calc-group label { font-size: 13px; font-weight: 600; color: var(--dark); }
+    .calc-group input, .calc-group select {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 2px solid #eee;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      transition: 0.3s;
+      outline: none;
+    }
+    .calc-group input:focus, .calc-group select:focus { border-color: var(--primary); }
+    .calc-btn {
+      grid-column: 1 / -1;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .calc-btn:hover { background: #e03358; transform: translateY(-2px); }
+    .calc-result {
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--primary-light), #fff0f3);
+      border-radius: 15px;
+      display: none;
+      border-left: 4px solid var(--primary);
+    }
+    .calc-result.show { display: block; animation: fadeIn 0.4s ease; }
+    .result-value { font-size: 36px; font-weight: 700; color: var(--primary); }
+    .result-label { font-size: 14px; color: var(--gray); margin-bottom: 8px; }
+    .result-msg { font-size: 14px; color: var(--dark); font-weight: 500; }
+    .result-bar {
+      width: 100%;
+      height: 12px;
+      background: #eee;
+      border-radius: 10px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .result-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width 0.8s ease;
+      background: var(--primary);
     }
 
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-      .square-vitals {
-        grid-template-columns: repeat(4, 1fr);
-      }
+    /* ===== RISK QUIZ ===== */
+    .quiz-question { margin-bottom: 20px; }
+    .quiz-question p { font-weight: 600; color: var(--dark); margin-bottom: 10px; font-size: 15px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
     }
-    
+    .quiz-option:hover { background: var(--primary-light); }
+    .quiz-option input[type="radio"] { accent-color: var(--primary); width: 16px; height: 16px; }
+    .quiz-option input[type="checkbox"] { accent-color: var(--primary); width: 16px; height: 16px; }
+    .quiz-submit {
+      padding: 12px 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    .quiz-submit:hover { background: #e03358; }
+    .risk-result {
+      display: none;
+      margin-top: 25px;
+      padding: 25px;
+      border-radius: 15px;
+      animation: fadeIn 0.4s ease;
+    }
+    .risk-result.show { display: block; }
+    .risk-low { background: linear-gradient(135deg, #d4edda, #f0fff4); border-left: 4px solid #28a745; }
+    .risk-medium { background: linear-gradient(135deg, #fff3cd, #fffbf0); border-left: 4px solid #ffc107; }
+    .risk-high { background: linear-gradient(135deg, #f8d7da, #fff0f3); border-left: 4px solid var(--primary); }
+    .risk-title { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .risk-low .risk-title { color: #28a745; }
+    .risk-medium .risk-title { color: #e09000; }
+    .risk-high .risk-title { color: var(--primary); }
+
+    /* ===== DIET & EXERCISE ===== */
+    .diet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+    .diet-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--primary);
+      transition: 0.3s;
+    }
+    .diet-card:hover { transform: translateY(-4px); }
+    .diet-card .diet-icon { font-size: 30px; margin-bottom: 10px; }
+    .diet-card h4 { color: var(--dark); font-size: 15px; margin-bottom: 8px; }
+    .diet-card p { color: var(--gray); font-size: 13px; line-height: 1.5; }
+
+    /* ===== EMERGENCY GUIDE ===== */
+    .emergency-banner {
+      background: linear-gradient(135deg, var(--primary), #c9294a);
+      color: white;
+      padding: 20px 25px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .emergency-banner i { font-size: 35px; }
+    .emergency-banner h3 { font-size: 18px; margin-bottom: 5px; }
+    .emergency-banner p { font-size: 13px; opacity: 0.9; }
+    .symptom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+    .symptom-card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      transition: 0.3s;
+    }
+    .symptom-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .symptom-card .s-icon { font-size: 28px; margin-bottom: 10px; }
+    .symptom-card h4 { color: var(--primary); font-size: 15px; margin-bottom: 6px; }
+    .symptom-card p { color: var(--gray); font-size: 13px; line-height: 1.5; }
+    .urgent-tag {
+      display: inline-block;
+      background: #fff0f3;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+    .call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 25px;
+      width: 100%;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    .call-btn:hover { background: #e03358; transform: translateY(-2px); }
+
+    /* Responsive */
     @media (max-width: 992px) {
-      .heart-visual-container {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .square-vitals {
-        grid-template-columns: repeat(2, 1fr);
-        justify-content: center;
-      }
+      .heart-visual-container { flex-direction: column; text-align: center; }
+      .square-vitals { grid-template-columns: repeat(2, 1fr); justify-content: center; }
     }
-    
     @media (max-width: 768px) {
-      .main-container {
-        flex-direction: column;
-      }
-      
-      .sidebar {
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 15px 0;
-      }
-      
-      .menu-item {
-        flex-direction: column;
-        padding: 10px 15px;
-        font-size: 13px;
-        gap: 8px;
-      }
-      
-      .menu-item span {
-        text-align: center;
-      }
-      
-      .square-vitals {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .main-container { flex-direction: column; }
+      .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 15px 0; position: static; height: auto; }
+      .menu-item { flex-direction: column; padding: 10px 15px; font-size: 13px; gap: 8px; }
+      .calc-form { grid-template-columns: 1fr; }
+      .square-vitals { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">
-      <i class="fas fa-heartbeat"></i>
-      <span>Medicose</span>
-    </div>
-    <div class="header-icons">
-      <i class="fas fa-envelope"></i>
-      <i class="fas fa-bell"></i>
-      <i class="fas fa-user-circle"></i>
-    </div>
+
+<div class="header">
+  <div class="logo">
+    <i class="fas fa-heartbeat"></i>
+    <span>Medicose</span>
+  </div>
+  <div class="header-icons">
+    <i class="fas fa-envelope"></i>
+    <i class="fas fa-bell"></i>
+    <i class="fas fa-user-circle"></i>
+  </div>
+</div>
+
+<div class="main-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="#" class="menu-item active" data-target="home">
+      <i class="fas fa-brain"></i>
+      <span>Basic Anatomy</span>
+    </a>
+    <a href="#" class="menu-item" data-target="heart-condition">
+      <i class="fas fa-heart"></i>
+      <span>Heart Condition</span>
+    </a>
+    <a href="#" class="menu-item" data-target="treatment">
+      <i class="fas fa-stethoscope"></i>
+      <span>Treatment</span>
+    </a>
+    <a href="#" class="menu-item" data-target="latest-research">
+      <i class="fas fa-flask"></i>
+      <span>Latest Research</span>
+    </a>
+    <a href="#" class="menu-item" data-target="calculator">
+      <i class="fas fa-calculator"></i>
+      <span>Calculators</span>
+    </a>
+    <a href="#" class="menu-item" data-target="diet">
+      <i class="fas fa-apple-alt"></i>
+      <span>Diet & Exercise</span>
+    </a>
+    <a href="#" class="menu-item" data-target="emergency">
+      <i class="fas fa-ambulance"></i>
+      <span>Emergency Guide</span>
+    </a>
+    <a href="#" class="menu-item" data-target="risk-quiz">
+      <i class="fas fa-clipboard-check"></i>
+      <span>Risk Assessment</span>
+    </a>
   </div>
 
-  <!-- Main Container -->
-  <div class="main-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <a href="#" class="menu-item active" data-target="basic-anatomy">
-        <i class="fas fa-brain"></i>
-        <span>Basic Anatomy</span>
-      </a>
-      <a href="#" class="menu-item" data-target="heart-condition">
-        <i class="fas fa-heart"></i>
-        <span>Heart Condition</span>
-      </a>
-      <a href="#" class="menu-item" data-target="treatment">
-        <i class="fas fa-stethoscope"></i>
-        <span>Treatment</span>
-      </a>
-      <a href="#" class="menu-item" data-target="latest-research">
-        <i class="fas fa-flask"></i>
-        <span>Latest Research</span>
-      </a>
-    </div>
+  <div class="main-content">
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <!-- Heart Explorer Section -->
+    <!-- ======= HOME / BASIC ANATOMY ======= -->
+    <div id="home" class="section-block active">
       <div class="heart-explorer">
         <h2>Heart Explorer</h2>
         <div class="heart-visual-container">
@@ -506,8 +558,7 @@
             <p>Your heart is beating at a normal rate. The animation shows a real-time representation of your heart's pumping action. A healthy resting heart rate for adults is between 60-100 beats per minute.</p>
           </div>
         </div>
-        
-        <!-- ECG Wave -->
+
         <div class="ecg-wave">
           <h3><i class="fas fa-wave-square"></i> Real-time ECG Monitoring</h3>
           <div class="ecg-container">
@@ -515,56 +566,37 @@
             <canvas id="ecg-canvas"></canvas>
           </div>
           <div class="ecg-stats">
-            <div class="ecg-stat">
-              <div class="value">72 bpm</div>
-              <div class="label">Heart Rate</div>
-            </div>
-            <div class="ecg-stat">
-              <div class="value">Normal</div>
-              <div class="label">Rhythm</div>
-            </div>
-            <div class="ecg-stat">
-              <div class="value">98%</div>
-              <div class="label">Signal Quality</div>
-            </div>
+            <div class="ecg-stat"><div class="value">72 bpm</div><div class="label">Heart Rate</div></div>
+            <div class="ecg-stat"><div class="value">Normal</div><div class="label">Rhythm</div></div>
+            <div class="ecg-stat"><div class="value">98%</div><div class="label">Signal Quality</div></div>
           </div>
         </div>
-        
-        <!-- Square Vitals -->
+
         <div class="square-vitals">
           <div class="square-card">
-            <div class="icon">
-              <i class="fas fa-tint"></i>
-            </div>
+            <div class="icon"><i class="fas fa-tint"></i></div>
             <div class="value">116/70</div>
             <div class="label">Blood Pressure</div>
           </div>
           <div class="square-card">
-            <div class="icon">
-              <i class="fas fa-syringe"></i>
-            </div>
+            <div class="icon"><i class="fas fa-syringe"></i></div>
             <div class="value">98</div>
             <div class="label">Glucose mg/dL</div>
           </div>
           <div class="square-card">
-            <div class="icon">
-              <i class="fas fa-wind"></i>
-            </div>
+            <div class="icon"><i class="fas fa-wind"></i></div>
             <div class="value">98%</div>
             <div class="label">Blood Oxygen</div>
           </div>
           <div class="square-card">
-            <div class="icon">
-              <i class="fas fa-vial"></i>
-            </div>
+            <div class="icon"><i class="fas fa-vial"></i></div>
             <div class="value">180</div>
             <div class="label">Cholesterol</div>
           </div>
         </div>
       </div>
 
-      <!-- ECG Condition Section -->
-      <div class="ecg-condition">
+      <div class="ecg-condition" style="margin-top:30px;">
         <h2>ECG Condition Monitoring</h2>
         <div class="ecg-cards">
           <div class="ecg-card">
@@ -590,218 +622,545 @@
         </div>
       </div>
 
-      <!-- Content Areas -->
-      <div id="basic-anatomy" class="content-area active">
+      <div class="content-section" style="margin-top:30px;">
         <h2>Basic Heart Anatomy</h2>
         <p>The heart is a muscular organ about the size of a fist, located just behind and slightly left of the breastbone. The heart pumps blood through the network of arteries and veins called the cardiovascular system.</p>
         <p>It has four chambers: the right and left atria, and the right and left ventricles. Valves between the chambers keep blood flowing in the right direction.</p>
         <div style="text-align: center; margin-top: 20px;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Diagram_of_the_human_heart_%28cropped%29.svg/800px-Diagram_of_the_human_heart_%28cropped%29.svg.png" alt="Heart Anatomy" style="max-width: 100%; height: auto; border-radius: 10px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Diagram_of_the_human_heart_%28cropped%29.svg/800px-Diagram_of_the_human_heart_%28cropped%29.svg.png" alt="Heart Anatomy" style="max-width:100%;height:auto;border-radius:10px;">
         </div>
       </div>
+    </div>
 
-      <div id="heart-condition" class="content-area">
+    <!-- ======= HEART CONDITION ======= -->
+    <div id="heart-condition" class="section-block">
+      <div class="content-section">
         <h2>Heart Conditions</h2>
         <p>Common heart conditions include coronary artery disease, arrhythmias, heart valve disease, and heart failure. Symptoms can vary but often include chest pain, shortness of breath, palpitations, and fatigue.</p>
         <p>Regular check-ups and maintaining a healthy lifestyle can help prevent many heart conditions.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Coronary Artery Disease</h3>
-            <p>Build-up of plaque in the heart's arteries, which can lead to reduced blood flow.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Coronary Artery Disease</h3>
+            <p>Build-up of plaque in the heart's arteries, which can lead to reduced blood flow and heart attacks.</p>
           </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Arrhythmia</h3>
+          <div class="info-card">
+            <h3>Arrhythmia</h3>
             <p>Abnormal heart rhythms that can cause the heart to beat too fast, too slow, or irregularly.</p>
           </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Heart Failure</h3>
+          <div class="info-card">
+            <h3>Heart Failure</h3>
             <p>The heart doesn't pump blood as well as it should, leading to fatigue and shortness of breath.</p>
           </div>
-        </div>
-      </div>
-
-      <div id="treatment" class="content-area">
-        <h2>Treatment Options</h2>
-        <p>Treatment for heart conditions depends on the specific condition and its severity. Options may include lifestyle changes, medications, medical procedures, or surgery.</p>
-        <p>Common procedures include angioplasty, stent placement, pacemaker implantation, and bypass surgery.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Lifestyle Changes</h3>
-            <p>Healthy diet, regular exercise, quitting smoking, and stress management.</p>
+          <div class="info-card">
+            <h3>Heart Valve Disease</h3>
+            <p>One or more of the heart valves don't work properly, affecting blood flow through the heart.</p>
           </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Medications</h3>
-            <p>Blood thinners, beta-blockers, ACE inhibitors, and cholesterol-lowering drugs.</p>
+          <div class="info-card">
+            <h3>Cardiomyopathy</h3>
+            <p>Disease of the heart muscle that makes it harder for the heart to pump blood to the rest of the body.</p>
           </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Surgical Procedures</h3>
-            <p>Angioplasty, bypass surgery, valve repair/replacement, and pacemaker implantation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="latest-research" class="content-area">
-        <h2>Latest Research</h2>
-        <p>Recent advances in cardiology include new anticoagulant medications, improved stent technology, minimally invasive surgical techniques, and advancements in artificial intelligence for early detection of heart conditions.</p>
-        <p>Researchers are also exploring regenerative therapies to repair damaged heart tissue.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">AI in Cardiology</h3>
-            <p>Machine learning algorithms are being developed to predict heart disease risk and interpret ECGs.</p>
-          </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Regenerative Medicine</h3>
-            <p>Stem cell therapy and tissue engineering show promise for repairing damaged heart tissue.</p>
-          </div>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-            <h3 style="color: var(--primary); margin-bottom: 10px;">Minimally Invasive Procedures</h3>
-            <p>New techniques allow for complex heart procedures with smaller incisions and faster recovery.</p>
+          <div class="info-card">
+            <h3>Pericarditis</h3>
+            <p>Inflammation of the pericardium (the sac surrounding the heart), causing chest pain and other symptoms.</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // Handle menu item clicks
-    document.querySelectorAll('.menu-item').forEach(item => {
-      item.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Remove active class from all items
-        document.querySelectorAll('.menu-item').forEach(i => {
-          i.classList.remove('active');
-        });
-        
-        // Add active class to clicked item
-        this.classList.add('active');
-        
-        // Hide all content areas
-        document.querySelectorAll('.content-area').forEach(area => {
-          area.classList.remove('active');
-        });
-        
-        // Show the targeted content area
-        const targetId = this.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
-      });
+    <!-- ======= TREATMENT ======= -->
+    <div id="treatment" class="section-block">
+      <div class="content-section">
+        <h2>Treatment Options</h2>
+        <p>Treatment for heart conditions depends on the specific condition and its severity. Options may include lifestyle changes, medications, medical procedures, or surgery.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Lifestyle Changes</h3>
+            <p>Healthy diet, regular exercise, quitting smoking, limiting alcohol, and stress management.</p>
+          </div>
+          <div class="info-card">
+            <h3>Medications</h3>
+            <p>Blood thinners, beta-blockers, ACE inhibitors, statins, and cholesterol-lowering drugs.</p>
+          </div>
+          <div class="info-card">
+            <h3>Angioplasty & Stenting</h3>
+            <p>A balloon is used to open blocked arteries and a stent is placed to keep the artery open.</p>
+          </div>
+          <div class="info-card">
+            <h3>Bypass Surgery</h3>
+            <p>A healthy blood vessel is used to create a new path around a blocked or narrowed artery.</p>
+          </div>
+          <div class="info-card">
+            <h3>Pacemaker</h3>
+            <p>A small device placed under the skin to help control abnormal heart rhythms.</p>
+          </div>
+          <div class="info-card">
+            <h3>Valve Repair / Replacement</h3>
+            <p>Surgical correction or replacement of damaged heart valves to restore normal function.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= LATEST RESEARCH ======= -->
+    <div id="latest-research" class="section-block">
+      <div class="content-section">
+        <h2>Latest Research</h2>
+        <p>Recent advances in cardiology are transforming how heart disease is detected, treated, and prevented. From AI-powered diagnostics to regenerative therapies, the future of heart health looks promising.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>AI in Cardiology</h3>
+            <p>Machine learning algorithms are being developed to predict heart disease risk and interpret ECGs with doctor-level accuracy.</p>
+          </div>
+          <div class="info-card">
+            <h3>Regenerative Medicine</h3>
+            <p>Stem cell therapy and tissue engineering show promise for repairing damaged heart tissue after a heart attack.</p>
+          </div>
+          <div class="info-card">
+            <h3>Minimally Invasive Procedures</h3>
+            <p>New techniques allow for complex heart procedures with smaller incisions and faster recovery times.</p>
+          </div>
+          <div class="info-card">
+            <h3>Wearable ECG Monitors</h3>
+            <p>Smartwatches and patches can now detect atrial fibrillation and other arrhythmias in real-time.</p>
+          </div>
+          <div class="info-card">
+            <h3>Gene Therapy</h3>
+            <p>Researchers are exploring ways to correct genetic defects that cause inherited heart conditions.</p>
+          </div>
+          <div class="info-card">
+            <h3>Novel Anticoagulants</h3>
+            <p>New blood-thinning medications offer improved safety profiles and more convenient dosing for patients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= CALCULATORS ======= -->
+    <div id="calculator" class="section-block">
+      <div class="content-section">
+        <h2>Health Calculators</h2>
+        <p>Use these tools to better understand your heart health metrics.</p>
+        <div class="calc-tabs">
+          <button class="calc-tab active" data-panel="bmi-panel">BMI Calculator</button>
+          <button class="calc-tab" data-panel="hr-panel">Heart Rate Zones</button>
+        </div>
+
+        <!-- BMI Panel -->
+        <div id="bmi-panel" class="calc-panel active">
+          <div class="calc-form">
+            <div class="calc-group">
+              <label>Height (cm)</label>
+              <input type="number" id="bmi-height" placeholder="e.g. 170" min="50" max="250">
+            </div>
+            <div class="calc-group">
+              <label>Weight (kg)</label>
+              <input type="number" id="bmi-weight" placeholder="e.g. 70" min="10" max="300">
+            </div>
+            <div class="calc-group">
+              <label>Age</label>
+              <input type="number" id="bmi-age" placeholder="e.g. 30" min="1" max="120">
+            </div>
+            <div class="calc-group">
+              <label>Gender</label>
+              <select id="bmi-gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <button class="calc-btn" onclick="calcBMI()">Calculate BMI</button>
+          </div>
+          <div class="calc-result" id="bmi-result">
+            <div class="result-label">Your BMI</div>
+            <div class="result-value" id="bmi-value">--</div>
+            <div class="result-bar"><div class="result-fill" id="bmi-bar" style="width:0%"></div></div>
+            <div class="result-msg" id="bmi-msg"></div>
+          </div>
+        </div>
+
+        <!-- Heart Rate Zones Panel -->
+        <div id="hr-panel" class="calc-panel">
+          <div class="calc-form">
+            <div class="calc-group">
+              <label>Your Age</label>
+              <input type="number" id="hr-age" placeholder="e.g. 30" min="10" max="100">
+            </div>
+            <div class="calc-group">
+              <label>Resting Heart Rate (bpm)</label>
+              <input type="number" id="hr-resting" placeholder="e.g. 60" min="30" max="100">
+            </div>
+            <button class="calc-btn" onclick="calcHRZones()">Calculate Zones</button>
+          </div>
+          <div class="calc-result" id="hr-result">
+            <p style="font-weight:600;color:var(--dark);margin-bottom:15px;">Your Heart Rate Zones:</p>
+            <div id="hr-zones" style="display:flex;flex-direction:column;gap:10px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= DIET & EXERCISE ======= -->
+    <div id="diet" class="section-block">
+      <div class="content-section">
+        <h2>Diet Tips for Heart Health</h2>
+        <p>A heart-healthy diet can lower your risk of heart disease and stroke. Focus on nutrient-rich foods and limit processed foods, saturated fats, and excess sodium.</p>
+        <div class="diet-grid">
+          <div class="diet-card">
+            <div class="diet-icon">🐟</div>
+            <h4>Fatty Fish</h4>
+            <p>Salmon, mackerel, and sardines are rich in omega-3 fatty acids that reduce inflammation and lower triglycerides.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🫐</div>
+            <h4>Berries</h4>
+            <p>Blueberries, strawberries, and raspberries are packed with antioxidants that protect against heart disease.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🥦</div>
+            <h4>Leafy Greens</h4>
+            <p>Spinach, kale, and collard greens are high in Vitamin K and nitrates that reduce blood pressure.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🥜</div>
+            <h4>Nuts & Seeds</h4>
+            <p>Almonds, walnuts, and flaxseeds provide healthy fats, fiber, and micronutrients essential for heart health.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🫒</div>
+            <h4>Olive Oil</h4>
+            <p>Rich in monounsaturated fats and antioxidants, olive oil is linked to reduced risk of heart disease.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🚫</div>
+            <h4>Avoid Trans Fats</h4>
+            <p>Limit processed foods, fried foods, and baked goods that contain trans fats and raise bad cholesterol.</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top:30px;">Exercise Recommendations</h2>
+        <p>Regular physical activity is one of the most important things you can do for your heart. Aim for at least 150 minutes of moderate exercise per week.</p>
+        <div class="diet-grid">
+          <div class="diet-card">
+            <div class="diet-icon">🚶</div>
+            <h4>Brisk Walking</h4>
+            <p>30 minutes of brisk walking daily can significantly reduce your risk of heart disease. Great for beginners.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🏊</div>
+            <h4>Swimming</h4>
+            <p>A full-body low-impact workout that improves cardiovascular endurance without stressing joints.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🚴</div>
+            <h4>Cycling</h4>
+            <p>Regular cycling strengthens the heart muscle, improves lung capacity, and reduces stress levels.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🧘</div>
+            <h4>Yoga</h4>
+            <p>Reduces stress hormones that damage the heart and helps lower blood pressure and heart rate.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">🏋️</div>
+            <h4>Strength Training</h4>
+            <p>Twice-weekly resistance training improves heart function and helps maintain healthy body weight.</p>
+          </div>
+          <div class="diet-card">
+            <div class="diet-icon">⚠️</div>
+            <h4>Avoid Overexertion</h4>
+            <p>Always warm up and cool down. Stop exercising if you feel chest pain, dizziness, or shortness of breath.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= EMERGENCY GUIDE ======= -->
+    <div id="emergency" class="section-block">
+      <div class="content-section">
+        <h2>Emergency Heart Symptoms Guide</h2>
+        <div class="emergency-banner">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <h3>If you experience any of these symptoms, call emergency services immediately!</h3>
+            <p>Don't drive yourself — call 112 (India) or your local emergency number right away.</p>
+          </div>
+        </div>
+        <div class="symptom-grid">
+          <div class="symptom-card">
+            <div class="s-icon">💔</div>
+            <h4>Chest Pain or Pressure</h4>
+            <p>Crushing, squeezing, or pressure in the chest lasting more than a few minutes. May spread to arm, neck, or jaw.</p>
+            <span class="urgent-tag">⚠️ CALL 112 IMMEDIATELY</span>
+          </div>
+          <div class="symptom-card">
+            <div class="s-icon">😤</div>
+            <h4>Shortness of Breath</h4>
+            <p>Sudden difficulty breathing, especially at rest or with minimal exertion. Can occur with or without chest pain.</p>
+            <span class="urgent-tag">⚠️ SEEK EMERGENCY CARE</span>
+          </div>
+          <div class="symptom-card">
+            <div class="s-icon">🥵</div>
+            <h4>Cold Sweat & Nausea</h4>
+            <p>Sudden cold sweat, nausea, or lightheadedness combined with chest discomfort — classic heart attack signs.</p>
+            <span class="urgent-tag">⚠️ CALL 112 IMMEDIATELY</span>
+          </div>
+          <div class="symptom-card">
+            <div class="s-icon">💪</div>
+            <h4>Arm / Jaw Pain</h4>
+            <p>Pain or numbness radiating to the left arm, neck, back, or jaw — often a sign of a heart attack.</p>
+            <span class="urgent-tag">⚠️ CALL 112 IMMEDIATELY</span>
+          </div>
+          <div class="symptom-card">
+            <div class="s-icon">😵</div>
+            <h4>Fainting / Loss of Consciousness</h4>
+            <p>Sudden fainting or unconsciousness may indicate a serious arrhythmia or cardiac arrest.</p>
+            <span class="urgent-tag">⚠️ CALL 112 & START CPR</span>
+          </div>
+          <div class="symptom-card">
+            <div class="s-icon">💓</div>
+            <h4>Irregular Heartbeat</h4>
+            <p>Sudden rapid, fluttering, or pounding heartbeat (palpitations) that doesn't go away on its own.</p>
+            <span class="urgent-tag">⚠️ SEE A DOCTOR URGENTLY</span>
+          </div>
+        </div>
+        <a class="call-btn" href="tel:112">
+          <i class="fas fa-phone"></i> Call Emergency: 112
+        </a>
+      </div>
+    </div>
+
+    <!-- ======= RISK QUIZ ======= -->
+    <div id="risk-quiz" class="section-block">
+      <div class="content-section">
+        <h2>Heart Risk Assessment Quiz</h2>
+        <p>Answer these questions to understand your risk level for heart disease. This is for informational purposes only — always consult a doctor.</p>
+
+        <div class="quiz-question">
+          <p>1. How old are you?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q1" value="0"> Under 40</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="1"> 40 – 54</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="2"> 55 – 64</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="3"> 65 or older</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>2. Do you smoke or have you smoked in the past?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q2" value="0"> Never smoked</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="1"> Former smoker (quit 5+ years ago)</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="2"> Former smoker (quit recently)</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="3"> Current smoker</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>3. How would you describe your physical activity level?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q3" value="0"> Very active (exercise most days)</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="1"> Moderately active (3–4 times/week)</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="2"> Lightly active (1–2 times/week)</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="3"> Sedentary (rarely exercise)</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>4. Do you have high blood pressure?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q4" value="0"> No, normal blood pressure</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="1"> Borderline / I'm not sure</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="2"> Yes, controlled with medication</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="3"> Yes, uncontrolled</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>5. Do you have a family history of heart disease?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q5" value="0"> No family history</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="1"> Distant relatives (grandparents, cousins)</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="2"> Parent had heart disease after age 60</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="3"> Parent had heart disease before age 60</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>6. How would you describe your diet?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q6" value="0"> Very healthy (lots of fruits, vegetables, whole grains)</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="1"> Mostly healthy with occasional indulgences</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="2"> Average diet with frequent processed foods</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="3"> Mostly unhealthy (fast food, high fat, high sodium)</label>
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <p>7. Do you have diabetes or high blood sugar?</p>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q7" value="0"> No</label>
+            <label class="quiz-option"><input type="radio" name="q7" value="1"> Pre-diabetic</label>
+            <label class="quiz-option"><input type="radio" name="q7" value="2"> Yes, well controlled</label>
+            <label class="quiz-option"><input type="radio" name="q7" value="3"> Yes, poorly controlled</label>
+          </div>
+        </div>
+
+        <button class="quiz-submit" onclick="calcRisk()">Get My Risk Assessment</button>
+
+        <div class="risk-result" id="risk-result">
+          <div class="risk-title" id="risk-title"></div>
+          <div id="risk-body"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end main-container -->
+
+<script>
+  // ===== MENU NAVIGATION =====
+  document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelectorAll('.section-block').forEach(s => s.classList.remove('active'));
+      const target = this.getAttribute('data-target');
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  });
 
-    // Real-time ECG Wave Animation
-    const canvas = document.getElementById('ecg-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Set canvas size
+  // ===== CALC TABS =====
+  document.querySelectorAll('.calc-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById(this.getAttribute('data-panel')).classList.add('active');
+    });
+  });
+
+  // ===== BMI CALCULATOR =====
+  function calcBMI() {
+    const h = parseFloat(document.getElementById('bmi-height').value) / 100;
+    const w = parseFloat(document.getElementById('bmi-weight').value);
+    if (!h || !w || h <= 0 || w <= 0) { alert('Please enter valid height and weight.'); return; }
+    const bmi = (w / (h * h)).toFixed(1);
+    const result = document.getElementById('bmi-result');
+    document.getElementById('bmi-value').textContent = bmi;
+    let msg = '', pct = 0, color = '';
+    if (bmi < 18.5) { msg = '⚠️ Underweight — Consider consulting a nutritionist.'; pct = 20; color = '#5d6dff'; }
+    else if (bmi < 25) { msg = '✅ Normal weight — Great! Keep maintaining a healthy lifestyle.'; pct = 45; color = '#28a745'; }
+    else if (bmi < 30) { msg = '⚠️ Overweight — Focus on diet and exercise for heart health.'; pct = 65; color = '#ffc107'; }
+    else { msg = '🔴 Obese — Higher risk of heart disease. Please consult your doctor.'; pct = 88; color = '#ff4d6d'; }
+    document.getElementById('bmi-msg').textContent = msg;
+    const bar = document.getElementById('bmi-bar');
+    bar.style.width = pct + '%';
+    bar.style.background = color;
+    result.classList.add('show');
+  }
+
+  // ===== HR ZONES CALCULATOR =====
+  function calcHRZones() {
+    const age = parseFloat(document.getElementById('hr-age').value);
+    const rhr = parseFloat(document.getElementById('hr-resting').value);
+    if (!age || !rhr) { alert('Please enter age and resting heart rate.'); return; }
+    const mhr = 220 - age;
+    const hrr = mhr - rhr;
+    const zones = [
+      { name: 'Zone 1 – Warm Up', pct: '50–60%', min: Math.round(hrr * 0.50 + rhr), max: Math.round(hrr * 0.60 + rhr), color: '#5d6dff', desc: 'Light activity, gentle walks' },
+      { name: 'Zone 2 – Fat Burn', pct: '60–70%', min: Math.round(hrr * 0.60 + rhr), max: Math.round(hrr * 0.70 + rhr), color: '#28a745', desc: 'Moderate effort, brisk walk' },
+      { name: 'Zone 3 – Aerobic', pct: '70–80%', min: Math.round(hrr * 0.70 + rhr), max: Math.round(hrr * 0.80 + rhr), color: '#ffc107', desc: 'Sustained effort, jogging' },
+      { name: 'Zone 4 – Threshold', pct: '80–90%', min: Math.round(hrr * 0.80 + rhr), max: Math.round(hrr * 0.90 + rhr), color: '#ff8c00', desc: 'Hard effort, running' },
+      { name: 'Zone 5 – Maximum', pct: '90–100%', min: Math.round(hrr * 0.90 + rhr), max: mhr, color: '#ff4d6d', desc: 'Max sprint, short bursts' }
+    ];
+    const container = document.getElementById('hr-zones');
+    container.innerHTML = zones.map(z => `
+      <div style="display:flex;align-items:center;gap:12px;padding:10px;background:#f8f9fa;border-radius:10px;border-left:4px solid ${z.color}">
+        <div style="min-width:140px;font-weight:600;font-size:13px;color:${z.color}">${z.name}</div>
+        <div style="flex:1;font-size:13px;color:#6c757d">${z.desc}</div>
+        <div style="font-weight:700;color:${z.color};font-size:14px">${z.min}–${z.max} bpm</div>
+      </div>
+    `).join('');
+    document.getElementById('hr-result').classList.add('show');
+  }
+
+  // ===== RISK QUIZ =====
+  function calcRisk() {
+    let score = 0;
+    let answered = 0;
+    for (let i = 1; i <= 7; i++) {
+      const sel = document.querySelector(`input[name="q${i}"]:checked`);
+      if (sel) { score += parseInt(sel.value); answered++; }
+    }
+    if (answered < 7) { alert('Please answer all questions.'); return; }
+    const result = document.getElementById('risk-result');
+    result.className = 'risk-result show';
+    let title = '', body = '';
+    if (score <= 5) {
+      result.classList.add('risk-low');
+      title = '🟢 Low Risk';
+      body = `<p>Your answers suggest a <strong>low risk</strong> of heart disease. Keep up your healthy habits! Continue exercising regularly, eating well, and attending annual check-ups.</p><p style="margin-top:10px;color:#6c757d;font-size:13px;">Remember: Even low-risk individuals should get regular heart health screenings.</p>`;
+    } else if (score <= 12) {
+      result.classList.add('risk-medium');
+      title = '🟡 Moderate Risk';
+      body = `<p>Your answers suggest a <strong>moderate risk</strong> of heart disease. Consider making lifestyle improvements and speaking with your doctor about preventive measures.</p><ul style="margin-top:10px;color:#6c757d;font-size:13px;padding-left:20px;"><li>Increase physical activity to 150+ minutes/week</li><li>Follow a heart-healthy diet</li><li>Monitor blood pressure and cholesterol regularly</li></ul>`;
+    } else {
+      result.classList.add('risk-high');
+      title = '🔴 High Risk';
+      body = `<p>Your answers suggest a <strong>higher risk</strong> of heart disease. Please consult your doctor as soon as possible for a comprehensive heart health evaluation.</p><ul style="margin-top:10px;color:#6c757d;font-size:13px;padding-left:20px;"><li>Schedule an appointment with a cardiologist</li><li>Get blood pressure, cholesterol & blood sugar tested</li><li>Make immediate lifestyle changes</li><li>Discuss medications with your doctor if needed</li></ul>`;
+    }
+    document.getElementById('risk-title').textContent = title;
+    document.getElementById('risk-body').innerHTML = body;
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ===== ECG ANIMATION =====
+  const canvas = document.getElementById('ecg-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  let position = 0;
+  function generateECGData() {
+    const d = [];
+    for (let i = 0; i < 20; i++) d.push(0);
+    for (let i = 0; i < 5; i++) d.push(i * 10);
+    for (let i = 5; i > 0; i--) d.push(i * 10);
+    for (let i = 0; i < 10; i++) d.push(0);
+    for (let i = 0; i < 3; i++) d.push(-i * 30);
+    d.push(-90);
+    for (let i = 3; i > 0; i--) d.push(-i * 30);
+    for (let i = 0; i < 3; i++) d.push(i * 30);
+    d.push(90);
+    for (let i = 3; i > 0; i--) d.push(i * 30);
+    for (let i = 0; i < 10; i++) d.push(0);
+    for (let i = 0; i < 10; i++) d.push(i * 15);
+    for (let i = 10; i > 0; i--) d.push(i * 15);
+    for (let i = 0; i < 20; i++) d.push(0);
+    return d;
+  }
+  const ecgPattern = generateECGData();
+  function drawECG() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#ff4d6d';
+    const centerY = canvas.height / 2;
+    const step = canvas.width / 100;
+    for (let i = 0; i < 100; i++) {
+      const x = i * step;
+      const y = centerY - ecgPattern[(position + i) % ecgPattern.length] / 3;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    position = (position + 1) % ecgPattern.length;
+    requestAnimationFrame(drawECG);
+  }
+  drawECG();
+  window.addEventListener('resize', () => {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    
-    // ECG data simulation
-    let data = [];
-    let position = 0;
-    
-    // Generate ECG-like waveform data
-    function generateECGData() {
-      const dataPoints = [];
-      
-      // Flat line
-      for (let i = 0; i < 20; i++) {
-        dataPoints.push(0);
-      }
-      
-      // P wave
-      for (let i = 0; i < 5; i++) {
-        dataPoints.push(i * 10);
-      }
-      for (let i = 5; i > 0; i--) {
-        dataPoints.push(i * 10);
-      }
-      
-      // Flat line
-      for (let i = 0; i < 10; i++) {
-        dataPoints.push(0);
-      }
-      
-      // QRS complex
-      for (let i = 0; i < 3; i++) {
-        dataPoints.push(-i * 30);
-      }
-      dataPoints.push(-90);
-      for (let i = 3; i > 0; i--) {
-        dataPoints.push(-i * 30);
-      }
-      for (let i = 0; i < 3; i++) {
-        dataPoints.push(i * 30);
-      }
-      dataPoints.push(90);
-      for (let i = 3; i > 0; i--) {
-        dataPoints.push(i * 30);
-      }
-      
-      // Flat line
-      for (let i = 0; i < 10; i++) {
-        dataPoints.push(0);
-      }
-      
-      // T wave
-      for (let i = 0; i < 10; i++) {
-        dataPoints.push(i * 15);
-      }
-      for (let i = 10; i > 0; i--) {
-        dataPoints.push(i * 15);
-      }
-      
-      // Flat line
-      for (let i = 0; i < 20; i++) {
-        dataPoints.push(0);
-      }
-      
-      return dataPoints;
-    }
-    
-    // Initialize data
-    const ecgPattern = generateECGData();
-    
-    // Draw ECG wave
-    function drawECG() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw the wave
-      ctx.beginPath();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#ff4d6d';
-      
-      const centerY = canvas.height / 2;
-      const step = canvas.width / 100;
-      
-      for (let i = 0; i < 100; i++) {
-        const x = i * step;
-        const dataIndex = (position + i) % ecgPattern.length;
-        const y = centerY - ecgPattern[dataIndex] / 3;
-        
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-      
-      ctx.stroke();
-      
-      // Update position for next frame
-      position = (position + 1) % ecgPattern.length;
-      
-      // Request next frame
-      requestAnimationFrame(drawECG);
-    }
-    
-    // Start animation
-    drawECG();
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
