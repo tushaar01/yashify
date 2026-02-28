@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +38,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#page-content.blur {
-  filter: blur(6px);
-  pointer-events: none;
-  user-select: none;
 }
 
 /* ===== HEADINGS ===== */
@@ -116,23 +111,6 @@ h1 {
   color: #1b1b1b;
 }
 
-.coming-soon {
-  background: linear-gradient(135deg, #ff9800, #ff5722);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 14px;
-  letter-spacing: 0.6px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-
 a { text-decoration: none; color: inherit; }
 
 /* ===== MOBILE ===== */
@@ -144,67 +122,6 @@ a { text-decoration: none; color: inherit; }
   }
   .row { display: contents; }
   .card { width: 100%; height: 175px; }
-}
-
-/* ===== POPUP ===== */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(12px);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.countdown-box {
-  background: #fff;
-  padding: 32px 36px;
-  border-radius: 18px;
-  text-align: center;
-  max-width: 340px;
-  width: 90%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-}
-
-.countdown-box h2 {
-  font-family: 'Poppins', sans-serif;
-  margin-bottom: 6px;
-  color: #1f3c88;
-}
-
-.launch-msg {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 14px;
-}
-
-.timer {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-}
-
-.preview-btn {
-  padding: 10px 22px;
-  border: none;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: #fff;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-bottom: 12px;
-}
-
-.close-btn {
-  padding: 9px 18px;
-  border: none;
-  background: #1f3c88;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
 }
 </style>
 </head>
@@ -229,17 +146,19 @@ Explore the marvels of human anatomy & medical science
       </div>
     </a>
 
-    <div class="card" onclick="openTimer(false)">
-      <span class="coming-soon">COMING SOON</span>
-      <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
-      <h2>Anatomy & Physiology</h2>
-    </div>
+    <a href="Anatomy/index.html">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861669.png" class="card-img">
+        <h2>Anatomy & Physiology</h2>
+      </div>
+    </a>
 
-    <div class="card" onclick="openTimer(true)">
-      <span class="coming-soon">COMING SOON</span>
-      <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
-      <h2>Pharmacy</h2>
-    </div>
+    <a href="Pharmacy/index.html">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4861/4861715.png" class="card-img">
+        <h2>Pharmacy</h2>
+      </div>
+    </a>
   </div>
 
   <!-- ROW 2 -->
@@ -250,67 +169,10 @@ Explore the marvels of human anatomy & medical science
         <h2>Microbiology & Biotechnology</h2>
       </div>
     </a>
-
-    <div class="card" onclick="openTimer(false)">
-      <span class="coming-soon">COMING SOON</span>
-      <img src="https://cdn-icons-png.flaticon.com/512/7879/7879020.png" class="card-img">
-      <h2>3D Study</h2>
-    </div>
   </div>
 
 </div>
 </div>
-
-<!-- POPUP -->
-<div class="overlay" id="overlay">
-  <div class="countdown-box">
-    <h2>Launching Soon 🚀</h2>
-    <div class="launch-msg">
-      Preparing something powerful for medical students
-    </div>
-    <div class="timer" id="timer"></div>
-    <button class="preview-btn" id="previewBtn" onclick="openPreview()">Preview</button>
-    <button class="close-btn" onclick="closeTimer()">Close</button>
-  </div>
-</div>
-
-<script>
-const overlay = document.getElementById("overlay");
-const timer = document.getElementById("timer");
-const previewBtn = document.getElementById("previewBtn");
-
-const targetDate = new Date("January 29, 2026 00:00:00").getTime();
-
-function openTimer(showPreview) {
-  overlay.style.display = "flex";
-  document.getElementById("page-content").classList.add("blur");
-  previewBtn.style.display = showPreview ? "inline-block" : "none";
-  updateTimer();
-}
-
-function closeTimer() {
-  overlay.style.display = "none";
-  document.getElementById("page-content").classList.remove("blur");
-}
-
-function openPreview() {
-  window.location.href = "Pharmacy/index.html";
-}
-
-function updateTimer() {
-  const now = new Date().getTime();
-  const diff = targetDate - now;
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-
-  timer.innerHTML = `${d} Days : ${h} Hrs : ${m} Min : ${s} Sec`;
-}
-
-setInterval(updateTimer, 1000);
-</script>
 
 </body>
 </html>
