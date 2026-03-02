@@ -1,278 +1,75 @@
 
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YASHIFY — LEGACY</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #080808;
-      --off-black: #0d0d0d;
-      --white: #f0ece4;
-      --red: #9B1C1C;
-      --red-glow: rgba(155, 28, 28, 0.35);
-      --border: rgba(240, 236, 228, 0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Cormorant Garamond', serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ── HERO SECTION ── */
-    .hero {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      max-width: 500px;
-      max-height: 100vh;
-    }
-
-    /* Center the hero image naturally */
-    .hero-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 60px 20px;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 0 60px;
-    }
-    .divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .divider-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-
-    /* ── MINDS SECTION ── */
-    .minds-section {
-      background: var(--off-black);
-      padding: 100px 40px 120px;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--red);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      display: block;
-    }
-
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(22px, 4vw, 40px);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      color: var(--white);
-      text-transform: uppercase;
-      line-height: 1.3;
-    }
-
-    .section-title span {
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--red);
-      margin: 24px auto 0;
-    }
-
-    /* ── GRID ── */
-    .authors-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 60px 80px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* ── CARD ── */
-    .author-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.3s ease;
-    }
-
-    .author-card:hover {
-      transform: scale(1.03);
-    }
-
-    .author-card:hover .author-name::after {
-      width: 100%;
-    }
-
-    .author-card:hover .portrait-ring {
-      box-shadow: 0 0 28px var(--red-glow);
-    }
-
-    /* ── PORTRAIT ── */
-    .portrait-ring {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: box-shadow 0.3s ease;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .portrait-ring img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: grayscale(100%) contrast(1.1);
-    }
-
-    /* ── NAME ── */
-    .author-name {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      color: var(--white);
-      text-transform: uppercase;
-      margin-top: 22px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .author-name::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--red);
-      transition: width 0.3s ease;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .authors-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-      .minds-section {
-        padding: 70px 20px 90px;
-      }
-      .portrait-ring {
-        width: 150px;
-        height: 150px;
-      }
-      .divider {
-        padding: 0 30px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YASHIFY — LEGACY</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#080808;--off-black:#0d0d0d;--white:#f0ece4;--red:#9B1C1C;--red-glow:rgba(155,28,28,0.35);--border:rgba(240,236,228,0.08)}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.hero{width:100%;height:100vh;overflow:hidden}
+.hero img{width:100%;height:100vh;object-fit:cover;display:block}
+.minds-section{background:var(--off-black);padding:100px 40px 120px;position:relative}
+.section-header{text-align:center;margin-bottom:80px}
+.section-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.5em;color:var(--red);text-transform:uppercase;margin-bottom:18px;display:block}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,40px);font-weight:400;letter-spacing:0.18em;color:var(--white);text-transform:uppercase;line-height:1.3}
+.section-title span{display:block;width:40px;height:1px;background:var(--red);margin:24px auto 0}
+.authors-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:60px 80px;max-width:800px;margin:0 auto}
+.author-card{display:flex;flex-direction:column;align-items:center;cursor:pointer;text-decoration:none;transition:transform 0.3s ease}
+.author-card:hover{transform:scale(1.03)}
+.author-card:hover .author-name::after{width:100%}
+.author-card:hover .portrait-ring{box-shadow:0 0 28px var(--red-glow)}
+.portrait-ring{width:180px;height:180px;border-radius:50%;overflow:hidden;border:1px solid var(--border);transition:box-shadow 0.3s ease;position:relative;flex-shrink:0}
+.portrait-ring img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(100%) contrast(1.1)}
+.author-name{font-family:'Cinzel',serif;font-size:13px;font-weight:400;letter-spacing:0.3em;color:var(--white);text-transform:uppercase;margin-top:22px;position:relative;display:inline-block}
+.author-name::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);transition:width 0.3s ease}
+@media(max-width:600px){.authors-grid{grid-template-columns:1fr;gap:50px}.minds-section{padding:70px 20px 90px}.portrait-ring{width:150px;height:150px}}
+</style>
 </head>
 <body>
 
-  <!-- ── HERO SECTION ── -->
-  <section class="hero">
-    <div class="hero-inner">
-      <img src="/mnt/user-data/uploads/IMG_9087.jpeg" alt="YASHIFY Legacy Hero" />
-    </div>
-  </section>
+<section class="hero">
+  <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/L.jpeg" alt="YASHIFY Legacy" />
+</section>
 
-  <!-- ── DIVIDER ── -->
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-dot"></div>
-    <div class="divider-line"></div>
+<section class="minds-section">
+  <div class="section-header">
+    <span class="section-label">Legacy</span>
+    <h2 class="section-title">Minds That Shaped History<span></span></h2>
   </div>
-
-  <!-- ── MINDS SECTION ── -->
-  <section class="minds-section">
-
-    <div class="section-header">
-      <span class="section-label">Legacy</span>
-      <h2 class="section-title">Minds That Shaped History<span></span></h2>
-    </div>
-
-    <div class="authors-grid">
-
-      <!-- Card 1: Mark Twain (IMG_9086) -->
-      <a class="author-card" href="#">
-        <div class="portrait-ring">
-          <img src="/mnt/user-data/uploads/IMG_9086.jpeg" alt="Mark Twain" />
-        </div>
-        <span class="author-name">Mark Twain</span>
-      </a>
-
-      <!-- Card 2: Albert Camus (IMG_9085) -->
-      <a class="author-card" href="#">
-        <div class="portrait-ring">
-          <img src="/mnt/user-data/uploads/IMG_9085.jpeg" alt="Albert Camus" />
-        </div>
-        <span class="author-name">Albert Camus</span>
-      </a>
-
-      <!-- Card 3: Dostoevsky (IMG_9084) -->
-      <a class="author-card" href="#">
-        <div class="portrait-ring">
-          <img src="/mnt/user-data/uploads/IMG_9084.jpeg" alt="Fyodor Dostoevsky" />
-        </div>
-        <span class="author-name">Fyodor Dostoevsky</span>
-      </a>
-
-      <!-- Card 4: Kafka (IMG_8243) -->
-      <a class="author-card" href="#">
-        <div class="portrait-ring">
-          <img src="/mnt/user-data/uploads/IMG_8243.jpeg" alt="Franz Kafka" />
-        </div>
-        <span class="author-name">Franz Kafka</span>
-      </a>
-
-    </div>
-  </section>
+  <div class="authors-grid">
+    <a class="author-card" href="#">
+      <div class="portrait-ring">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/MT.jpeg" alt="Mark Twain" />
+      </div>
+      <span class="author-name">Mark Twain</span>
+    </a>
+    <a class="author-card" href="#">
+      <div class="portrait-ring">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/AC.jpeg" alt="Albert Camus" />
+      </div>
+      <span class="author-name">Albert Camus</span>
+    </a>
+    <a class="author-card" href="#">
+      <div class="portrait-ring">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/FD.jpeg" alt="Fyodor Dostoevsky" />
+      </div>
+      <span class="author-name">Fyodor Dostoevsky</span>
+    </a>
+    <a class="author-card" href="#">
+      <div class="portrait-ring">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/FK.jpeg" alt="Franz Kafka" />
+      </div>
+      <span class="author-name">Franz Kafka</span>
+    </a>
+  </div>
+</section>
 
 </body>
 </html>
