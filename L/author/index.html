@@ -7,32 +7,34 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>YASHIFY — LEGACY</title>
-
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-
-
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#080808;--off-black:#0d0d0d;--white:#f0ece4;--red:#9B1C1C;--border:rgba(240,236,228,0.08)}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.hero{position:relative;height:100vh;width:100%;overflow:hidden}
-.hero img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;filter:brightness(0.45);background:#080808}
+.hero{
+  position:relative;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+  background-image:url('https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/L.jpeg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:brightness(1);
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(8,8,8,0.55);
+}
 .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.hero-top{position:absolute;top:48px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:14px;letter-spacing:0.55em;color:rgba(240,236,228,0.5);text-transform:uppercase;white-space:nowrap}
+.hero-top{position:absolute;top:48px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:clamp(10px,2vw,18px);letter-spacing:0.55em;color:rgba(240,236,228,0.5);text-transform:uppercase;white-space:nowrap}
 .hero-center{display:flex;flex-direction:column;align-items:center;gap:24px}
-.hero-brand{font-family:'Cinzel',serif;font-size:clamp(42px,8vw,96px);font-weight:400;letter-spacing:0.45em;color:var(--white);text-transform:uppercase}
-.hero-btn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.55em;color:var(--white);text-transform:uppercase;border:1px solid rgba(240,236,228,0.3);padding:12px 32px;cursor:pointer;background:transparent;text-decoration:none;transition:border-color 0.3s,color 0.3s}
+.hero-brand{font-family:'Cinzel',serif;font-size:clamp(32px,6vw,90px);font-weight:400;letter-spacing:0.45em;color:var(--white);text-transform:uppercase}
+.hero-btn{font-family:'Cinzel',serif;font-size:clamp(10px,2vw,16px);letter-spacing:0.55em;color:var(--white);text-transform:uppercase;border:1px solid rgba(240,236,228,0.3);padding:12px 32px;cursor:pointer;background:transparent;text-decoration:none;transition:border-color 0.3s,color 0.3s}
 .hero-btn:hover{border-color:var(--red);color:var(--red)}
 .hero-side{position:absolute;right:40px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.6em;color:rgba(240,236,228,0.3);text-transform:uppercase}
 .about{background:var(--black);padding:100px 40px;text-align:center}
@@ -57,22 +59,33 @@ body{background:var(--black);color:var(--white);font-family:'Cormorant Garamond'
 .portrait-ring img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(100%) contrast(1.1)}
 .author-name{font-family:'Cinzel',serif;font-size:12px;font-weight:400;letter-spacing:0.3em;color:var(--white);text-transform:uppercase;margin-top:22px;position:relative;display:inline-block}
 .author-name::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);transition:width 0.3s ease}
-@media(max-width:700px){
-  .philosophy-grid{grid-template-columns:1fr}
-  .pillar{border-right:none;border-bottom:1px solid var(--border)}
-  .pillar:last-child{border-bottom:none}
-  .authors-grid{grid-template-columns:1fr;gap:50px}
+@media(max-width:768px){
+  .hero{background-size:170%;background-position:center top}
+  .hero-top{font-size:clamp(8px,2.5vw,12px);letter-spacing:0.3em;top:28px}
+  .hero-brand{letter-spacing:0.2em}
+  .hero-btn{padding:9px 22px}
   .hero-side{display:none}
-  .about{padding:70px 24px}
-  .philosophy{padding:70px 24px}
-  .thinkers{padding:70px 24px 90px}
-  .portrait-ring{width:150px;height:150px}
+  .about{padding:50px 24px}
+  .about p{font-size:16px;line-height:1.8;letter-spacing:0.04em}
+  .philosophy{padding:50px 20px}
+  .philosophy-grid{grid-template-columns:1fr}
+  .pillar{border-right:none;border-bottom:1px solid var(--border);padding:32px 24px}
+  .pillar:last-child{border-bottom:none}
+  .pillar-title{font-size:12px;letter-spacing:0.3em;margin-bottom:12px}
+  .pillar-text{font-size:16px}
+  .thinkers{padding:50px 20px 70px}
+  .thinkers-label{font-size:11px;letter-spacing:0.3em}
+  .thinkers-title{font-size:16px;letter-spacing:0.12em}
+  .thinkers-header{margin-bottom:44px}
+  .authors-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px;max-width:100%}
+  .portrait-ring{width:120px;height:120px}
+  .author-name{font-size:9px;letter-spacing:0.18em;margin-top:12px}
+  .footer p{font-size:9px;letter-spacing:0.25em}
 }
 </style>
 </head>
 <body>
 <section class="hero">
-  <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/author/L.jpeg" alt="YASHIFY Legacy"/>
   <div class="hero-overlay">
     <span class="hero-top">Legends Think Different.</span>
     <div class="hero-center">
