@@ -1,15 +1,18 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wisdom Vault | yashify.fun</title>
-
-<link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icon.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
-<!-- Google tag (gtag.js) -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Mind Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,226 +21,441 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
+  
+  
+  
+  <style>
+    :root {
+      --teal:      #2A9D8F;
+      --teal-dark: #1A6B61;
+      --blue:      #1A5F7A;
+      --red:       #E63946;
+      --cream:     #F5F0E8;
+      --ink:       #0D1B2A;
+      --ink-mid:   #2C3E50;
+      --ink-soft:  #6B8A99;
+      --rule:      rgba(255,255,255,0.18);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+    .bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    /* dark teal overlay — heavier left for text, fades right */
+    .bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10, 35, 45, 0.82) 0%,
+        rgba(10, 35, 45, 0.65) 30%,
+        rgba(10, 35, 45, 0.28) 55%,
+        rgba(10, 35, 45, 0.04) 72%,
+        transparent 82%
+      );
+    }
+
+    /* ── PAGE ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── STICKY NOTES — side by side in empty teal space above books ── */
+    .sticky-wrap {
+      position: fixed;
+      top: 12%;
+      left: 42%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.75s ease forwards;
+    }
+
+    .sticky {
+      width: 158px;
+      padding: 18px 18px 20px;
+      border-radius: 3px 16px 16px 3px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* tape strip at top */
+    .sticky::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 44px; height: 20px;
+      border-radius: 2px;
+      opacity: 0.55;
+    }
+
+    .sticky-yellow {
+      background: #F9E84A;
+      box-shadow: 3px 4px 18px rgba(0,0,0,0.22), -1px -1px 0 rgba(0,0,0,0.04);
+      transform: rotate(1.5deg);
+    }
+    .sticky-yellow::before { background: rgba(249,200,50,0.7); }
+    .sticky-yellow:hover {
+      transform: rotate(0deg) translateY(-5px) scale(1.03);
+      box-shadow: 6px 10px 28px rgba(0,0,0,0.28);
+    }
+
+    .sticky-teal {
+      background: #A8E6DF;
+      box-shadow: 3px 4px 18px rgba(0,0,0,0.22), -1px -1px 0 rgba(0,0,0,0.04);
+      transform: rotate(-2deg);
+    }
+    .sticky-teal::before { background: rgba(100,210,200,0.7); }
+    .sticky-teal:hover {
+      transform: rotate(0deg) translateY(-5px) scale(1.03);
+      box-shadow: 6px 10px 28px rgba(0,0,0,0.28);
+    }
+
+    /* pin dot */
+    .sticky-pin {
+      position: absolute;
+      top: 10px; left: 50%;
+      transform: translateX(-50%);
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.18);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+
+    /* fold corner */
+    .sticky-yellow::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 18px; height: 18px;
+      background: linear-gradient(225deg, rgba(0,0,0,0.10) 50%, transparent 50%);
+      border-radius: 0 0 16px 0;
+    }
+    .sticky-teal::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 18px; height: 18px;
+      background: linear-gradient(225deg, rgba(0,0,0,0.09) 50%, transparent 50%);
+      border-radius: 0 0 16px 0;
+    }
+
+    .sticky-icon {
+      font-size: 22px;
+      line-height: 1;
+      margin-top: 8px;
+    }
+    .sticky-label {
+      font-family: 'Caveat', cursive;
+      font-weight: 800;
+      font-size: 22px;
+      color: #1A1208;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .sticky-sub {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(26,18,8,0.60);
+      line-height: 1.4;
+    }
+    .sticky-arrow {
+      font-size: 12px;
+      color: rgba(26,18,8,0.30);
+      margin-top: 4px;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .sticky:hover .sticky-arrow {
+      color: rgba(26,18,8,0.65);
+      transform: translateX(4px);
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 22px 48px;
+      opacity: 0;
+      animation: fadeDown 0.5s 0.05s ease forwards;
+    }
+    .nav-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .nav-title {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+    }
+    .nav-title em { font-style: italic; color: #4DD9C8; }
+    .nav-powered {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.70);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.30);
+    }
+    .nav-powered span { color: #4DD9C8; }
+    .nav-powered:hover { color: #FFFFFF; }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px 72px;
+      max-width: 620px;
+    }
+
+    /* eyebrow */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.20s ease forwards;
+    }
+    .ey-line { width: 22px; height: 1px; background: var(--teal); }
+
+    /* ── BIG TITLE ── */
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      line-height: 0.88;
+      letter-spacing: -3px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.30s ease forwards;
+    }
+    .hero-title .the {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+      letter-spacing: 1px;
+      color: rgba(245,240,232,0.50);
+      margin-bottom: 6px;
+    }
+    .word-mind { color: var(--cream); }
+    .word-lib  { color: var(--teal); }
+
+    /* ornament */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 26px 0;
+      max-width: 220px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.40s ease forwards;
+    }
+    .orn-l {
+      flex:1; height:1px;
+      background: linear-gradient(to right, var(--teal), rgba(42,157,143,0.1));
+    }
+    .orn-dot {
+      width:5px; height:5px;
+      border-radius:50%;
+      background: var(--teal);
+      opacity: 0.6;
+    }
+
+    /* quote */
+    .hero-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1rem, 1.9vw, 1.22rem);
+      line-height: 1.85;
+      color: rgba(245,240,232,0.72);
+      max-width: 420px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.48s ease forwards;
+    }
 
 
 
-<style>
-:root {
-  --primary:#7c3aed;
-  --accent:#db2777;
-  --bg:#f9fafb;
-  --card:#ffffff;
-  --border:#e5e7eb;
-}
 
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  margin:0;
-  padding:20px;
-  display:flex;
-  justify-content:center;
-}
 
-#page-content.blur{
-  filter:blur(6px);
-  pointer-events:none;
-}
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
 
-.container{max-width:800px;width:100%}
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .navbar { padding: 14px 18px; }
 
-/* HEADER */
-.header{text-align:center;margin-bottom:2rem}
-.title{
-  font-size:2.2rem;
-  font-weight:700;
-  background:linear-gradient(to right,var(--primary),var(--accent));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.quote{font-size:.9rem;color:#6b7280;font-style:italic}
+      /* push hero content to top */
+      .hero {
+        padding: 28px 22px 24px;
+        max-width: 100%;
+        justify-content: flex-start;
+      }
 
-/* CARDS */
-.mini-cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1rem;
-}
-.mini-card{
-  background:var(--card);
-  border-radius:12px;
-  padding:1rem;
-  border:1px solid var(--border);
-  text-decoration:none;
-  color:inherit;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  min-height:140px;
-  position:relative;
-  cursor:pointer;
-}
-.mini-card:hover{transform:translateY(-4px)}
+      .eyebrow { margin-bottom: 14px; font-size: 8.5px; }
 
-.sticker{
-  width:70px;height:70px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(219,39,119,.12));
-  padding:12px;margin-bottom:.7rem;
-}
-.sticker img{width:100%;height:100%;object-fit:contain}
+      .hero-title {
+        font-size: clamp(3.2rem, 14vw, 4.2rem);
+        letter-spacing: -1.5px;
+      }
 
-h3{margin:0;font-size:.95rem;color:var(--primary)}
-p{margin:0;font-size:.75rem;color:#6b7280}
+      .ornament { margin: 16px 0; }
 
-/* TAGS */
-.tag{
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:.6rem;
-  padding:4px 8px;
-  border-radius:12px;
-  font-weight:600;
-  letter-spacing:.5px;
-}
-.view{background:#10b981;color:#fff}
-.process{background:#f59e0b;color:#fff}
-.soon{
-  background:linear-gradient(135deg,#ff9800,#ff5722);
-  color:#fff;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-  100%{transform:scale(1)}
-}
+      .hero-quote {
+        font-size: 0.98rem;
+        max-width: 100%;
+      }
 
-/* POPUP */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.25);
-  backdrop-filter:blur(12px);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-.popup{
-  background:#fff;
-  padding:30px;
-  border-radius:16px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.3);
-  width:90%;
-  max-width:320px;
-}
-.popup h2{margin:0;color:var(--primary)}
-.timer{margin-top:10px;font-weight:600}
-.close{
-  margin-top:18px;
-  padding:8px 16px;
-  border:none;
-  background:var(--primary);
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
-}
+      /* overlay stronger top, fades to transparent so books show at bottom */
+      .bg::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(10,35,45,0.90) 0%,
+          rgba(10,35,45,0.75) 38%,
+          rgba(10,35,45,0.20) 65%,
+          transparent 100%
+        );
+      }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .mini-cards{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:480px){
-  .mini-cards{grid-template-columns:1fr}
-}
-</style>
+      /* sticky notes — bottom center, smaller */
+      .sticky-wrap {
+        top: auto;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 12px;
+      }
+      .sticky { width: 138px; padding: 14px 14px 16px; }
+      .sticky-label { font-size: 19px; }
+      .sticky-sub   { font-size: 9.5px; }
+      .sticky-yellow { transform: rotate(1deg); }
+      .sticky-teal   { transform: rotate(-1.5deg); }
+    }
+    @media (max-width: 360px) {
+      .sticky { width: 124px; }
+      .hero-title { font-size: 3rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="page-content" class="container">
-
-<header class="header">
-  <h1 class="title">Wisdom Vault</h1>
-  <p class="quote">"Where Knowledge Meets Devotion"</p>
-</header>
-
-<div class="mini-cards">
-
-<!-- Bookflix -->
-<a href="bookflix/index.html" class="mini-card">
-  <span class="tag view">ONLY VIEW</span>
-  <div class="sticker"><img src="https://cdn-icons-png.flaticon.com/512/9472/9472972.png"></div>
-  <h3>Bookflix</h3>
-  <p>Your Library, Your Universe</p>
-</a>
-
-<!-- Authors -->
-<a href="author/index.html" class="mini-card">
-  <span class="tag process">IN PROCESS</span>
-  <div class="sticker"><img src="https://cdn-icons-png.flaticon.com/512/11180/11180317.png"></div>
-  <h3>Authors / Writers</h3>
-  <p>The scariest moment is before you start</p>
-</a>
-
-<!-- Science Hub -->
-<div class="mini-card" onclick="openTimer('2026-01-01')">
-  <span class="tag soon">COMING SOON</span>
-  <div class="sticker"><img src="https://cdn-icons-png.flaticon.com/512/4479/4479259.png"></div>
-  <h3>Science Hub</h3>
-  <p>Exploring the mysteries of universe</p>
+<div class="bg">
+  <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/Bg.jpg" alt="Books"/>
 </div>
 
-<!-- Holy Books -->
-<div class="mini-card" onclick="openTimer('2026-01-30')">
-  <span class="tag soon">COMING SOON</span>
-  <div class="sticker"><img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/rating.gif"></div>
-  <h3>HOLY BOOKs</h3>
-  <p>Live With Compassion</p>
-</div>
+<div class="page">
 
-</div>
+  <nav class="navbar">
+    <div class="nav-right">
+      <a class="nav-title" href="#">Mind <em>Library</em></a>
+      <a class="nav-powered" href="https://yashify.fun" target="_blank">Powered by <span>Yashify</span></a>
+    </div>
+  </nav>
 
-</div>
+  <section class="hero">
 
-<!-- POPUP -->
-<div class="overlay" id="overlay">
-  <div class="popup">
-    <h2>Launching Soon 🚀</h2>
-    <p style="font-size:.85rem;color:#555">Preparing something meaningful</p>
-    <div class="timer" id="timer"></div>
-    <button class="close" onclick="closeTimer()">Close</button>
+    <div class="eyebrow">
+      <div class="ey-line"></div>
+      Curated for the curious mind
+    </div>
+
+    <h1 class="hero-title">
+      <span class="the">The</span>
+      <span class="word-mind">Mind</span><br>
+      <span class="word-lib">Library</span>
+    </h1>
+
+    <div class="ornament">
+      <div class="orn-l"></div>
+      <div class="orn-dot"></div>
+    </div>
+
+    <p class="hero-quote">
+      "Great minds left their thoughts behind.<br>
+      This is where you find them."
+    </p>
+
+
+
+
+  </section>
+
+  <!-- Sticky notes over the books -->
+  <div class="sticky-wrap">
+    <a class="sticky sticky-yellow" href="bookflix/index.html">
+      <div class="sticky-pin"></div>
+      <div class="sticky-label">BOOKFLIX</div>
+      <div class="sticky-sub">Your reading universe</div>
+      <div class="sticky-arrow">→</div>
+    </a>
+    <a class="sticky sticky-teal" href="author/index.html">
+      <div class="sticky-pin"></div>
+      <div class="sticky-label">LEGACY</div>
+      <div class="sticky-sub">Minds that shaped history</div>
+      <div class="sticky-arrow">→</div>
+    </a>
   </div>
+
 </div>
-
-<script>
-let target;
-
-function openTimer(date){
-  target = new Date(date+" 00:00:00").getTime();
-  overlay.style.display="flex";
-  page-content.classList.add("blur");
-}
-
-function closeTimer(){
-  overlay.style.display="none";
-  page-content.classList.remove("blur");
-}
-
-setInterval(()=>{
-  if(!target) return;
-  const now=new Date().getTime();
-  const d=target-now;
-  const days=Math.floor(d/(1000*60*60*24));
-  const hrs=Math.floor((d/(1000*60*60))%24);
-  const min=Math.floor((d/(1000*60))%60);
-  const sec=Math.floor((d/1000)%60);
-  timer.innerHTML=`${days}d : ${hrs}h : ${min}m : ${sec}s`;
-},1000);
-</script>
 
 </body>
 </html>
+
