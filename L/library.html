@@ -4,6 +4,7 @@
 
 
 
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
   <title>The Mind Library</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700;800&display=swap" rel="stylesheet"/>
   
-  <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -338,11 +339,10 @@
       to   { opacity:1; transform:translateY(0); }
     }
 
-    /* ── MOBILE ── */
+    /* ── ANDROID MOBILE ── */
     @media (max-width: 640px) {
       .navbar { padding: 14px 18px; }
 
-      /* push hero content to top */
       .hero {
         padding: 28px 22px 24px;
         max-width: 100%;
@@ -363,35 +363,79 @@
         max-width: 100%;
       }
 
-      /* overlay stronger top, fades to transparent so books show at bottom */
       .bg::after {
         background: linear-gradient(
           to bottom,
-          rgba(10,35,45,0.90) 0%,
-          rgba(10,35,45,0.75) 38%,
-          rgba(10,35,45,0.20) 65%,
+          rgba(10,35,45,0.88) 0%,
+          rgba(10,35,45,0.72) 42%,
+          rgba(10,35,45,0.18) 68%,
           transparent 100%
         );
       }
 
-      /* sticky notes — bottom center, smaller */
+      /* sticky notes — top right on android, stacked */
       .sticky-wrap {
-        top: auto;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
+        top: 80px;
+        right: 16px;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        flex-direction: column;
         gap: 12px;
       }
-      .sticky { width: 138px; padding: 14px 14px 16px; }
+      .sticky { width: 136px; padding: 14px 14px 16px; }
       .sticky-label { font-size: 19px; }
       .sticky-sub   { font-size: 9.5px; }
       .sticky-yellow { transform: rotate(1deg); }
       .sticky-teal   { transform: rotate(-1.5deg); }
     }
+
     @media (max-width: 360px) {
-      .sticky { width: 124px; }
+      .sticky { width: 122px; }
       .hero-title { font-size: 3rem; }
+    }
+
+    /* ── iPAD / TABLET ── */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .navbar { padding: 20px 36px; }
+
+      .hero {
+        padding: 44px 44px 64px;
+        max-width: 52%;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: clamp(3.8rem, 8vw, 5.5rem);
+        letter-spacing: -2px;
+      }
+
+      .hero-quote { font-size: 1.05rem; }
+
+      .bg::after {
+        background: linear-gradient(
+          105deg,
+          rgba(10,35,45,0.88) 0%,
+          rgba(10,35,45,0.68) 32%,
+          rgba(10,35,45,0.20) 55%,
+          transparent 72%
+        );
+      }
+
+      /* iPad — sticky notes top right, stacked vertically */
+      .sticky-wrap {
+        top: 88px;
+        right: 36px;
+        left: auto;
+        transform: none;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .sticky { width: 150px; padding: 16px 16px 18px; }
+      .sticky-label { font-size: 20px; }
+      .sticky-sub   { font-size: 10px; }
+      .sticky-yellow { transform: rotate(1.5deg); }
+      .sticky-teal   { transform: rotate(-2deg); }
     }
   </style>
 </head>
@@ -458,4 +502,5 @@
 
 </body>
 </html>
+
 
