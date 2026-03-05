@@ -3,24 +3,9 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASHIFY - A World for Curious Minds</title>
+    
+ 
 
-    <!-- PWA & Icons -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="512.png">
-    <link rel="icon" type="image/png" href="512.png">
-    <meta name="theme-color" content="#8C52FF">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
-
-     
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     
-    
-    
-    <!-- Google tag (gtag.js) -->
+       <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -46,8 +29,9 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-
-
+    
+    
+    
     <style>
         @font-face {
             font-family: 'Bristol';
@@ -140,11 +124,16 @@
             .search-dropdown { left: 54px; right: 54px; }
             .stats-section { gap: 20px; padding: 14px 16px; }
             .stat-number { font-size: 1.2rem; }
-            .cards-container { grid-template-columns: repeat(2,1fr); max-width: 380px; gap: 14px; }
+            .cards-container { grid-template-columns: repeat(3,1fr); max-width: 100%; gap: 10px; }
+            .card { padding: 16px 8px 14px; border-radius: 16px; }
+            .card-icon-img { width: 38px; height: 38px; margin-bottom: 8px; }
+            .card h3 { font-size: 0.78rem; margin-bottom: 6px; }
+            .card p { font-size: 0.62rem; }
+            .underline { width: 20px; margin-bottom: 8px; }
             #fixedIcon { width: 36px; height: 36px; }
             .mailbox-btn { width: 44px; height: 44px; font-size: 1.1rem; }
         }
-        @media (max-width: 400px) { .cards-container { grid-template-columns: 1fr; } }
+        @media (max-width: 400px) { .card h3 { font-size: 0.72rem; } }
     </style>
 </head>
 <body>
@@ -167,7 +156,7 @@
 
 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" id="fixedIcon">
 
-<a href="mailto:admin@yashify.fun?subject=Problem%20Report&body=Please%20describe%20your%20issue%20here..." class="mailbox-btn">
+<a href="/cdn-cgi/l/email-protection#dfbebbb2b6b19fa6beacb7b6b9a6f1b9aab1e0acaabdb5babcabe28fadb0bdb3bab2faedef8dbaafb0adabf9bdb0bba6e28fb3babeacbafaedefbbbaacbcadb6bdbafaedefa6b0aaadfaedefb6acacaabafaedefb7baadbaf1f1f1" class="mailbox-btn">
     <i class="fas fa-envelope"></i>
 </a>
 
@@ -238,7 +227,7 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Progress bar
@@ -374,7 +363,7 @@ function startVoice() {
     };
     r.onend = function() { mic.classList.remove('listening'); };
     r.onerror = function() {
-        mic.classList.remove('listening');
+          mic.classList.remove('listening');
         dd.innerHTML = '<div class="search-empty">🎙️ Mic access nahi mila. Permission allow karo.</div>';
         dd.classList.add('show');
     };
