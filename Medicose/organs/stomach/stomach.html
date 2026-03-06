@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stomach Anatomy - Organs Explorer | Medical Education</title>
+    <meta name="description" content="Comprehensive stomach anatomy guide for NEET, BSc, and medical students. Detailed content covering location, structure, parts, blood supply, functions and clinical anatomy.">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+
+
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2a5a8c;
+            --cream: #f0f6ff;
+            --cream-dark: #d8e8f8;
+            --warm-white: #f5faff;
+            --charcoal: #111c2a;
+            --text-dark: #1a2e42;
+            --text-mid: #2d4a66;
+            --text-light: #6a8aaa;
+            --gold: #3a9abf;
+            --gold-light: #5ab8de;
+            --teal: #1a7a6a;
+            --teal-light: #2aaa90;
+            --accent: #e84393;
+            --shadow-sm: 0 2px 8px rgba(26,58,92,0.08);
+            --shadow-md: 0 4px 20px rgba(26,58,92,0.13);
+            --shadow-lg: 0 8px 40px rgba(26,58,92,0.18);
+            --radius: 12px;
+            --radius-sm: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-dark); line-height: 1.7; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        .header { position: sticky; top: 0; z-index: 100; background: var(--charcoal); border-bottom: 2px solid var(--gold); box-shadow: var(--shadow-md); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+        .logo i { color: var(--gold); font-size: 1.2rem; }
+        .nav { display: flex; gap: 4px; }
+        .nav a { color: var(--cream-dark); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); transition: all 0.2s; }
+        .nav a:hover { background: rgba(58,154,191,0.18); color: var(--gold-light); }
+        .menu-toggle { display: none; background: none; border: 1.5px solid rgba(58,154,191,0.4); color: var(--cream); padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+        .mobile-menu { display: none; flex-direction: column; background: #0d1620; border-bottom: 1px solid rgba(58,154,191,0.2); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { color: var(--cream-dark); text-decoration: none; padding: 12px 24px; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+        .mobile-menu a:hover { background: rgba(58,154,191,0.1); color: var(--gold-light); }
+
+        .hero {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #0d2a45 45%, #1a4a7a 100%);
+            color: var(--cream); padding: 80px 0 64px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%233a9abf' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content { text-align: center; position: relative; }
+        .organ-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 90px; height: 90px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%; margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(58,154,191,0.45);
+            animation: pulse-glow 3s ease-in-out infinite;
+            overflow: hidden; padding: 10px;
+        }
+        .organ-badge img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 8px 32px rgba(58,154,191,0.4); }
+            50% { box-shadow: 0 8px 52px rgba(58,154,191,0.75); }
+        }
+        .page-title { font-family: 'Crimson Pro', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: 0.12em; color: #fff; margin-bottom: 12px; }
+        .tagline { font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-style: italic; color: var(--gold-light); margin-bottom: 20px; }
+        .hero-description { max-width: 680px; margin: 0 auto 40px; color: rgba(240,246,255,0.8); font-size: 1rem; line-height: 1.8; }
+        .hero-stats { display: flex; gap: 2px; justify-content: center; flex-wrap: wrap; }
+        .stat-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(58,154,191,0.25); padding: 20px 28px; border-radius: var(--radius); text-align: center; min-width: 120px; transition: all 0.3s; }
+        .stat-item:hover { background: rgba(58,154,191,0.12); border-color: var(--gold); transform: translateY(-2px); }
+        .stat-number { font-family: 'Crimson Pro', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-light); }
+        .stat-label { font-size: 0.75rem; color: rgba(240,246,255,0.6); margin-top: 4px; letter-spacing: 0.05em; }
+
+        .main-content { padding: 48px 0 80px; }
+
+        .quick-nav { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 40px; box-shadow: var(--shadow-sm); }
+        .quick-nav h3 { font-family: 'Crimson Pro', serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 16px; }
+        .quick-nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+        .quick-nav-item { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--warm-white); border: 1px solid var(--cream-dark); color: var(--text-mid); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: all 0.2s; }
+        .quick-nav-item i { color: var(--gold); font-size: 0.9rem; }
+        .quick-nav-item:hover { background: var(--primary); color: var(--cream); border-color: var(--primary); }
+        .quick-nav-item:hover i { color: var(--gold-light); }
+
+        .content-section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--cream-dark); }
+        .section-label { background: var(--primary); color: var(--cream); font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+        .section-header h2 { font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 700; color: var(--charcoal); }
+
+        .info-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+        .info-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .info-card h3 i { color: var(--gold); font-size: 1rem; }
+        .info-card h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .info-card p { color: var(--text-mid); font-size: 0.93rem; margin-bottom: 10px; }
+        .highlight-card { border-left: 4px solid var(--gold); background: linear-gradient(135deg, #f0f9ff, var(--warm-white)); }
+
+        .detailed-list { list-style: none; padding: 0; }
+        .detailed-list > li { padding: 8px 0 8px 18px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); font-size: 0.9rem; position: relative; }
+        .detailed-list > li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; }
+        .detailed-list > li:last-child { border-bottom: none; }
+        .detailed-list li strong { color: var(--text-dark); }
+        .detailed-list ul { margin-top: 8px; padding-left: 16px; list-style: disc; color: var(--text-light); font-size: 0.88rem; }
+
+        .highlight-box { border-radius: var(--radius-sm); padding: 14px 18px; margin: 12px 0; font-size: 0.88rem; background: #e8f4fd; border-left: 3px solid var(--gold); color: #0d2a45; }
+        .highlight-box p { margin-bottom: 6px; }
+        .highlight-box ul, .highlight-box ol { padding-left: 18px; }
+        .highlight-box li { padding: 2px 0; }
+        .highlight-box.warning { background: #fff8e1; border-left-color: #f4a020; color: #7a4f00; }
+        .highlight-box.success { background: #e8f5e9; border-left-color: #43a047; color: #1b4f1b; }
+        .highlight-box.info { background: #e3f2fd; border-left-color: var(--primary); color: #0d2a45; }
+        .highlight-box.danger { background: #ffebee; border-left-color: #e53935; color: #5c0000; }
+
+        .intro-text { color: var(--text-mid); font-size: 0.92rem; margin-bottom: 14px; line-height: 1.7; }
+
+        .relation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .relation-card { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius-sm); padding: 16px; }
+        .relation-card h4 { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--cream-dark); }
+        .relation-card ul { list-style: none; padding: 0; }
+        .relation-card li { font-size: 0.85rem; color: var(--text-mid); padding: 4px 0 4px 12px; position: relative; }
+        .relation-card li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        .characteristics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+        .char-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; border: 1px solid var(--cream-dark); transition: all 0.2s; }
+        .char-item:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .char-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
+        .char-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .char-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin: 4px 0; }
+        .char-detail { font-size: 0.78rem; color: var(--text-light); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+        .feature-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--cream-dark); }
+        .feature-item h4 { color: var(--teal); margin-bottom: 10px; font-size: 0.88rem; font-weight: 600; }
+        .feature-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .feature-item li { padding: 3px 0; }
+
+        .nephron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .nephron-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+        .nephron-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .nephron-header { background: var(--charcoal); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .nephron-header h3 { color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.1rem; }
+        .nephron-badge { background: var(--gold); color: var(--charcoal); font-size: 0.7rem; padding: 3px 10px; border-radius: 100px; font-weight: 600; white-space: nowrap; }
+        .nephron-content { padding: 20px; }
+        .nephron-content ul { list-style: disc; padding-left: 18px; font-size: 0.87rem; color: var(--text-mid); }
+        .nephron-content li { padding: 3px 0; }
+        .nephron-content li strong { color: var(--text-dark); }
+
+        .summary-card { background: var(--cream); border-color: var(--cream-dark); }
+        .summary-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px; }
+        .summary-table th { background: var(--charcoal); color: var(--cream); padding: 10px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .summary-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); vertical-align: top; }
+        .summary-table tr:nth-child(even) td { background: rgba(240,246,255,0.5); }
+        .summary-table tr:hover td { background: rgba(58,154,191,0.06); }
+
+        .clinical-note { background: #fff8e1; border-left: 3px solid #f4a020; padding: 10px 14px; font-size: 0.85rem; color: #6b4a00; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+        .remember-note { background: #e8f5e9; border-left: 3px solid #43a047; padding: 10px 14px; font-size: 0.85rem; color: #1b4f1b; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+
+        .memory-tricks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .trick-item { background: linear-gradient(135deg, #e3f2fd, #f0f8ff); border: 1px solid #b3d9f0; border-radius: var(--radius-sm); padding: 18px; }
+        .trick-item h4 { color: #0d2a45; margin-bottom: 10px; font-size: 0.9rem; }
+        .trick-item p { font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item li { padding: 2px 0; }
+
+        .layers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 14px; }
+        .layer-card { background: var(--cream); border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--cream-dark); text-align: center; }
+        .layer-card .layer-num { background: var(--primary); color: var(--cream); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 700; font-size: 0.9rem; }
+        .layer-card h4 { color: var(--primary); font-size: 0.88rem; margin-bottom: 8px; font-weight: 600; }
+        .layer-card p { font-size: 0.82rem; color: var(--text-mid); }
+
+        .back-home-btn { position: fixed; bottom: 88px; right: 28px; display: flex; align-items: center; gap: 7px; background: var(--charcoal); color: var(--gold-light); text-decoration: none; padding: 9px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; box-shadow: var(--shadow-md); border: 1.5px solid rgba(58,154,191,0.35); z-index: 99; transition: all 0.25s; white-space: nowrap; }
+        .back-home-btn:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        .floating-like { position: fixed; left: 24px; bottom: 28px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 99; }
+        .like-btn { width: 52px; height: 52px; border-radius: 50%; border: none; background: #fff; color: #ccc; font-size: 1.4rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible; }
+        .like-btn.liked { color: #e53935; background: #fff0f0; border: 2px solid #ffcdd2; transform: scale(1.08); }
+        .like-btn:active { transform: scale(0.92); }
+        .like-btn:hover:not(.liked) { color: #ef9a9a; transform: scale(1.1); }
+        .like-btn.burst::after { content: "❤"; position: absolute; font-size: 1.2rem; animation: burst-up 0.6s ease forwards; pointer-events: none; }
+        @keyframes burst-up { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-40px) scale(1.5)} }
+        .like-count { background: var(--primary); color: var(--cream); font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; min-width: 44px; text-align: center; box-shadow: var(--shadow-sm); }
+        .like-label { font-size: 0.68rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        @keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+        .like-count.pop { animation: like-pop 0.3s ease; }
+
+        .scroll-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--primary); color: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: all 0.3s; font-size: 0.9rem; z-index: 99; border: none; }
+        .scroll-to-top.visible { opacity: 1; pointer-events: auto; }
+        .scroll-to-top:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        .footer { background: var(--charcoal); color: rgba(240,246,255,0.7); padding: 48px 0 24px; border-top: 2px solid var(--gold); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+        .footer-section h3 { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 12px; }
+        .footer-section p { font-size: 0.85rem; line-height: 1.7; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 8px; }
+        .footer-section ul a { color: rgba(240,246,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-section ul a:hover { color: var(--gold-light); }
+        .footer-bottom { border-top: 1px solid rgba(240,246,255,0.1); padding-top: 20px; text-align: center; font-size: 0.82rem; color: rgba(240,246,255,0.4); }
+
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .menu-toggle { display: flex; align-items: center; }
+            .nephron-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .quick-nav-grid { grid-template-columns: repeat(2, 1fr); }
+            .characteristics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Organs Explorer</span>
+                </a>
+                <nav class="nav">
+                    <a href="#location">Overview</a>
+                    <a href="#parts">Parts</a>
+                    <a href="#layers">Wall Layers</a>
+                    <a href="#blood-supply">Blood Supply</a>
+                    <a href="#clinical-section">Clinical</a>
+                    <a href="#exam-points">NEET Points</a>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#location" onclick="closeMobileMenu()">Overview</a>
+        <a href="#parts" onclick="closeMobileMenu()">Parts</a>
+        <a href="#layers" onclick="closeMobileMenu()">Wall Layers</a>
+        <a href="#blood-supply" onclick="closeMobileMenu()">Blood Supply</a>
+        <a href="#clinical-section" onclick="closeMobileMenu()">Clinical</a>
+        <a href="#exam-points" onclick="closeMobileMenu()">NEET Points</a>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="organ-badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/508/508794.png" alt="Stomach Icon">
+                </div>
+                <h1 class="page-title">THE STOMACH</h1>
+                <p class="tagline">The Body's Primary Digestive Reservoir & Churning Chamber</p>
+                <p class="hero-description">
+                    The stomach is a J-shaped muscular organ of the gastrointestinal tract that stores food, mechanically churns it, 
+                    and begins chemical digestion through gastric acid and enzymes. It connects the oesophagus to the duodenum.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1–1.5L</div>
+                        <div class="stat-label">Capacity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">pH 1.5</div>
+                        <div class="stat-label">Gastric Acid</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4–5 hrs</div>
+                        <div class="stat-label">Emptying Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3 Layers</div>
+                        <div class="stat-label">Muscle Layers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+
+            <div class="quick-nav">
+                <h3>Quick Jump to Sections</h3>
+                <div class="quick-nav-grid">
+                    <a href="#location" class="quick-nav-item"><i class="fas fa-map-marker-alt"></i><span>Location</span></a>
+                    <a href="#parts" class="quick-nav-item"><i class="fas fa-th-large"></i><span>Parts</span></a>
+                    <a href="#curvatures" class="quick-nav-item"><i class="fas fa-circle-notch"></i><span>Curvatures</span></a>
+                    <a href="#layers" class="quick-nav-item"><i class="fas fa-layer-group"></i><span>Wall Layers</span></a>
+                    <a href="#blood-supply" class="quick-nav-item"><i class="fas fa-heart"></i><span>Blood Supply</span></a>
+                    <a href="#nerve-supply" class="quick-nav-item"><i class="fas fa-bolt"></i><span>Nerve Supply</span></a>
+                    <a href="#functions" class="quick-nav-item"><i class="fas fa-cogs"></i><span>Functions</span></a>
+                    <a href="#clinical-section" class="quick-nav-item"><i class="fas fa-stethoscope"></i><span>Clinical</span></a>
+                    <a href="#exam-points" class="quick-nav-item"><i class="fas fa-star"></i><span>NEET Points</span></a>
+                </div>
+            </div>
+
+            <!-- Section A: Location -->
+            <section id="location" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section A</span>
+                    <h2>Location & Position</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Exact Location</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Position:</strong> Intraperitoneal organ, in the epigastric, umbilical, and left hypochondriac regions</li>
+                        <li><strong>Vertebral level:</strong> Extends from T10 (cardiac orifice) to L1 (pyloric orifice)</li>
+                        <li><strong>Cardiac orifice (inlet):</strong> Left of T10 vertebra, behind 7th costal cartilage</li>
+                        <li><strong>Pyloric orifice (outlet):</strong> Transpyloric plane (L1), right of midline</li>
+                        <li><strong>Shape:</strong> J-shaped when upright; varies with posture, respiration and content</li>
+                        <li><strong>Size:</strong> ~25–30 cm long; 10–15 cm wide when full</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrows-alt"></i> Relations</h3>
+                    <div class="relation-grid">
+                        <div class="relation-card">
+                            <h4>Anterior Relations</h4>
+                            <ul>
+                                <li>Left lobe of liver (upper part)</li>
+                                <li>Anterior abdominal wall (lower part)</li>
+                                <li>Diaphragm (upper left area)</li>
+                            </ul>
+                        </div>
+                        <div class="relation-card">
+                            <h4>Posterior Relations (Stomach Bed)</h4>
+                            <ul>
+                                <li>Diaphragm (left crus)</li>
+                                <li>Spleen (left)</li>
+                                <li>Left suprarenal gland</li>
+                                <li>Upper left kidney</li>
+                                <li>Splenic artery &amp; body of pancreas</li>
+                                <li>Transverse mesocolon</li>
+                            </ul>
+                        </div>
+                        <div class="relation-card">
+                            <h4>Peritoneal Folds</h4>
+                            <ul>
+                                <li><strong>Lesser omentum:</strong> connects lesser curvature to liver</li>
+                                <li><strong>Greater omentum:</strong> hangs from greater curvature</li>
+                                <li><strong>Gastrosplenic ligament:</strong> connects to spleen</li>
+                                <li><strong>Gastrophrenic ligament:</strong> connects to diaphragm</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section B: Parts -->
+            <section id="parts" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section B</span>
+                    <h2>Parts of the Stomach</h2>
+                </div>
+                <div class="nephron-grid">
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Cardia</h3>
+                            <span class="nephron-badge">Inlet Zone</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li>Surrounds the <strong>cardiac orifice</strong> (gastroesophageal junction)</li>
+                                <li>At level of T10 vertebra</li>
+                                <li>Lower oesophageal sphincter (LES) prevents reflux</li>
+                                <li>Mucosa transitions from stratified squamous to columnar epithelium</li>
+                                <li>No true anatomical sphincter — physiological only</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Fundus</h3>
+                            <span class="nephron-badge">Superior Dome</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li>Dome-shaped, lies <strong>above and left of cardia</strong></li>
+                                <li>Contains swallowed air (gas bubble visible on X-ray)</li>
+                                <li>Related to left dome of diaphragm and spleen</li>
+                                <li>Rich in parietal (oxyntic) cells — produces HCl</li>
+                                <li>Gastric rugae most prominent here</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Body (Corpus)</h3>
+                            <span class="nephron-badge">Main Region</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li>Largest part of the stomach</li>
+                                <li>Between fundus and pyloric antrum</li>
+                                <li>Contains <strong>parietal cells</strong> (HCl, intrinsic factor)</li>
+                                <li>Contains <strong>chief cells</strong> (pepsinogen)</li>
+                                <li>Main site of mechanical churning and mixing</li>
+                                <li>G cells secrete gastrin in pyloric region</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Pyloric Part</h3>
+                            <span class="nephron-badge">Outlet</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li>Divided into <strong>pyloric antrum</strong> and <strong>pyloric canal</strong></li>
+                                <li>Pyloric canal: ~2.5 cm long, leads to pyloric orifice</li>
+                                <li>Pyloric sphincter: smooth muscle ring, controls gastric emptying</li>
+                                <li>Transpyloric plane (L1) — important landmark</li>
+                                <li>G cells produce <strong>gastrin</strong> in antrum</li>
+                                <li>Congenital hypertrophic pyloric stenosis occurs here</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-ruler-combined"></i> Stomach Characteristics</h3>
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                            <div class="char-label">Length</div>
+                            <div class="char-value">25–30 cm</div>
+                            <div class="char-detail">When moderately full</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-tint"></i></div>
+                            <div class="char-label">Capacity</div>
+                            <div class="char-value">1–1.5 L</div>
+                            <div class="char-detail">Adults (up to 4L max)</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-flask"></i></div>
+                            <div class="char-label">Gastric pH</div>
+                            <div class="char-value">1.5–3.5</div>
+                            <div class="char-detail">Highly acidic</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-clock"></i></div>
+                            <div class="char-label">Emptying</div>
+                            <div class="char-value">4–5 hrs</div>
+                            <div class="char-detail">Mixed meal</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-weight"></i></div>
+                            <div class="char-label">Weight</div>
+                            <div class="char-value">~150 g</div>
+                            <div class="char-detail">Empty stomach</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-layer-group"></i></div>
+                            <div class="char-label">Muscle Layers</div>
+                            <div class="char-value">3 Layers</div>
+                            <div class="char-detail">Unique to stomach</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section C: Curvatures -->
+            <section id="curvatures" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section C</span>
+                    <h2>Curvatures & Orifices</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-circle-notch"></i> Lesser Curvature</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Length:</strong> ~10 cm — shorter, concave right border</li>
+                        <li><strong>Angular notch (incisura angularis):</strong> Marks junction of body and pyloric antrum — important landmark</li>
+                        <li><strong>Attached:</strong> Lesser omentum (hepatogastric ligament)</li>
+                        <li><strong>Blood supply:</strong> Right and left gastric arteries run along it</li>
+                        <li><strong>Gastric canal (Magenstrasse):</strong> Longitudinal mucosal fold along lesser curvature — channels fluids quickly to pylorus</li>
+                    </ul>
+                    <div class="highlight-box warning">
+                        <p><strong>NEET Alert:</strong> Incisura angularis is the site most commonly affected by peptic ulcers on the lesser curvature.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-circle-notch"></i> Greater Curvature</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Length:</strong> ~40 cm — longer, convex left border</li>
+                        <li><strong>Attachments:</strong> Greater omentum, gastrosplenic ligament, gastrophrenic ligament</li>
+                        <li><strong>Blood supply:</strong> Right and left gastroepiploic arteries</li>
+                        <li><strong>Short gastric arteries:</strong> Supply the fundus along greater curvature</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-dot-circle"></i> Orifices</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Cardiac Orifice (Inlet)</h4>
+                            <ul>
+                                <li>Gastroesophageal junction</li>
+                                <li>Level: T10 vertebra</li>
+                                <li>No true anatomical sphincter</li>
+                                <li>Angle of His prevents reflux</li>
+                                <li>LES is physiological mechanism</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Pyloric Orifice (Outlet)</h4>
+                            <ul>
+                                <li>Opens into 1st part of duodenum</li>
+                                <li>Level: L1 (transpyloric plane)</li>
+                                <li>True anatomical sphincter present</li>
+                                <li>Thickened circular muscle</li>
+                                <li>Palpable as firm mass in pyloric stenosis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section D: Wall Layers -->
+            <section id="layers" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section D</span>
+                    <h2>Wall Layers & Histology</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-layer-group"></i> Gastric Wall — 4 Coats</h3>
+                    <p class="intro-text">The stomach wall has the standard GIT structure PLUS an additional oblique muscle layer — unique to stomach.</p>
+                    <div class="layers-grid">
+                        <div class="layer-card">
+                            <div class="layer-num">1</div>
+                            <h4>Mucosa</h4>
+                            <p>Simple columnar epithelium. Contains gastric pits, glands (fundic, pyloric, cardiac). Has rugae (folds) when empty.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">2</div>
+                            <h4>Submucosa</h4>
+                            <p>Dense connective tissue. Contains Meissner's plexus, blood vessels, lymphatics. No glands (unlike duodenum).</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">3</div>
+                            <h4>Muscularis Externa</h4>
+                            <p><strong>3 layers</strong> — outer longitudinal, middle circular (thickened at pylorus), inner oblique (unique to stomach). Auerbach's plexus between layers.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">4</div>
+                            <h4>Serosa (Peritoneum)</h4>
+                            <p>Visceral peritoneum covering entire stomach. Continuous with lesser and greater omentum.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box info" style="margin-top:16px;">
+                        <p><strong>Key Fact:</strong> Stomach is the only GIT organ with 3 muscular layers — outer longitudinal, middle circular, inner oblique. This enables churning (peristalsis + retropulsion).</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-microscope"></i> Gastric Cells & Secretions</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Cell Type</th><th>Location</th><th>Secretion</th><th>Function</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Parietal (Oxyntic)</strong></td><td>Fundus & body</td><td>HCl, Intrinsic factor</td><td>Acid digestion; B12 absorption</td></tr>
+                            <tr><td><strong>Chief (Zymogenic)</strong></td><td>Fundus & body</td><td>Pepsinogen, Gastric lipase</td><td>Protein & fat digestion</td></tr>
+                            <tr><td><strong>G cells</strong></td><td>Pyloric antrum</td><td>Gastrin</td><td>Stimulates HCl secretion</td></tr>
+                            <tr><td><strong>Mucous neck cells</strong></td><td>Gland necks</td><td>Mucus, HCO₃⁻</td><td>Protects gastric mucosa</td></tr>
+                            <tr><td><strong>D cells</strong></td><td>Antrum</td><td>Somatostatin</td><td>Inhibits gastrin & HCl</td></tr>
+                            <tr><td><strong>ECL cells</strong></td><td>Fundus</td><td>Histamine</td><td>Stimulates parietal cells</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section E: Blood Supply -->
+            <section id="blood-supply" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section E</span>
+                    <h2>Blood Supply</h2>
+                </div>
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-heart"></i> Arterial Supply — Coeliac Trunk Branches</h3>
+                    <p class="intro-text">The stomach has the richest blood supply of any abdominal organ — from all 3 branches of the coeliac trunk.</p>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Artery</th><th>Origin</th><th>Supply Area</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Left gastric a.</strong></td><td>Coeliac trunk (directly)</td><td>Lesser curvature (left part), lower oesophagus</td></tr>
+                            <tr><td><strong>Right gastric a.</strong></td><td>Hepatic artery proper</td><td>Lesser curvature (right part)</td></tr>
+                            <tr><td><strong>Left gastroepiploic a.</strong></td><td>Splenic artery</td><td>Greater curvature (left part)</td></tr>
+                            <tr><td><strong>Right gastroepiploic a.</strong></td><td>Gastroduodenal artery</td><td>Greater curvature (right part)</td></tr>
+                            <tr><td><strong>Short gastric aa. (5–7)</strong></td><td>Splenic artery</td><td>Fundus of stomach</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="remember-note">
+                        <strong>Mnemonic:</strong> "Left Right Left Right Short" — along lesser curvature: Left gastric + Right gastric; along greater curvature: Left gastroepiploic + Right gastroepiploic; fundus: Short gastric.
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-tint"></i> Venous Drainage</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Left gastric vein (coronary vein):</strong> Drains to portal vein — important in portal hypertension (oesophageal varices)</li>
+                        <li><strong>Right gastric vein:</strong> Drains to portal vein</li>
+                        <li><strong>Left gastroepiploic vein:</strong> Drains to splenic vein</li>
+                        <li><strong>Right gastroepiploic vein:</strong> Drains to superior mesenteric vein</li>
+                        <li><strong>Short gastric veins:</strong> Drain to splenic vein</li>
+                        <li>All ultimately drain to <strong>portal vein → liver</strong></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-project-diagram"></i> Lymphatic Drainage</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Lesser curvature:</strong> → Left gastric nodes → coeliac nodes</li>
+                        <li><strong>Upper right (pyloric area):</strong> → Hepatic nodes → coeliac nodes</li>
+                        <li><strong>Greater curvature (left):</strong> → Pancreaticosplenic nodes → coeliac nodes</li>
+                        <li><strong>Greater curvature (right):</strong> → Subpyloric/right gastroepiploic nodes → coeliac nodes</li>
+                        <li>All ultimately drain to <strong>coeliac lymph nodes</strong> then thoracic duct</li>
+                        <li><strong>Virchow's node (Troisier's sign):</strong> Left supraclavicular node — enlarges in gastric carcinoma</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section F: Nerve Supply -->
+            <section id="nerve-supply" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section F</span>
+                    <h2>Nerve Supply</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-bolt"></i> Autonomic Innervation</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Parasympathetic (Vagus — CN X)</h4>
+                            <ul>
+                                <li>Left vagus → anterior gastric nerve (cephalic phase of gastric secretion)</li>
+                                <li>Right vagus → posterior gastric nerve</li>
+                                <li>Stimulates: HCl secretion, gastric motility, gastrin release</li>
+                                <li>Auerbach's & Meissner's plexuses relay signals</li>
+                                <li>Vagotomy → reduces acid secretion (treatment for PUD)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Sympathetic</h4>
+                            <ul>
+                                <li>T6–T9 spinal segments</li>
+                                <li>Via coeliac plexus and coeliac ganglia</li>
+                                <li>Reduces gastric motility and secretion</li>
+                                <li>Vasoconstriction of gastric vessels</li>
+                                <li>Pain sensation via sympathetic afferents (referred to epigastrium)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section G: Functions -->
+            <section id="functions" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section G</span>
+                    <h2>Functions of the Stomach</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-cogs"></i> Major Functions</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Storage</h4>
+                            <ul>
+                                <li>Accommodates 1–1.5L of food</li>
+                                <li>Receptive relaxation (vagal reflex)</li>
+                                <li>Slows entry into duodenum</li>
+                                <li>Allows enzymatic digestion time</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Mechanical Digestion</h4>
+                            <ul>
+                                <li>Churning via 3 muscle layers</li>
+                                <li>Mixes food with gastric juice → chyme</li>
+                                <li>Peristaltic waves: 3/minute</li>
+                                <li>Retropulsion back through body</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Chemical Digestion</h4>
+                            <ul>
+                                <li>HCl: denatures proteins, kills bacteria, activates pepsin</li>
+                                <li>Pepsin: begins protein digestion</li>
+                                <li>Gastric lipase: limited fat digestion</li>
+                                <li>Intrinsic factor: essential for B12 absorption (ileum)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Hormonal</h4>
+                            <ul>
+                                <li>Gastrin (G cells): stimulates HCl, motility</li>
+                                <li>Somatostatin (D cells): inhibits gastrin</li>
+                                <li>Ghrelin: hunger hormone (fundus)</li>
+                                <li>Histamine: stimulates parietal cells</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-flask"></i> Phases of Gastric Secretion</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Phase</th><th>Stimulus</th><th>Mechanism</th><th>% of Total HCl</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Cephalic</strong></td><td>Sight, smell, thought of food</td><td>Vagus nerve → ACh → parietal cells</td><td>~30%</td></tr>
+                            <tr><td><strong>Gastric</strong></td><td>Food in stomach (distension, peptides)</td><td>Local reflexes + gastrin → HCl</td><td>~60%</td></tr>
+                            <tr><td><strong>Intestinal</strong></td><td>Chyme in duodenum</td><td>Secretin, CCK inhibit; initial gastrin stimulates</td><td>~10%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section H: Clinical -->
+            <section id="clinical-section" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section H</span>
+                    <h2>Clinical Anatomy</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-stethoscope"></i> Important Clinical Conditions</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Peptic Ulcer Disease (PUD):</strong> Most common at lesser curvature (incisura angularis) and posterior wall of duodenum. H. pylori infection + NSAIDs are main causes. Posterior gastric ulcer may erode gastroduodenal artery → massive haemorrhage; or pancreas → referred back pain.</li>
+                        <li><strong>Gastric Carcinoma:</strong> Most common in pyloric antrum. Spreads to Virchow's node (left supraclavicular). Krukenberg tumour = ovarian metastasis. Blumer's shelf = rectal metastasis. Linitis plastica = diffuse infiltration → "leather bottle" stomach.</li>
+                        <li><strong>Congenital Hypertrophic Pyloric Stenosis:</strong> Hypertrophy of pyloric circular muscle → projectile non-bilious vomiting at 3–6 weeks of age. Palpable "olive-shaped" mass in RUQ. Treated by Ramstedt's pyloromyotomy.</li>
+                        <li><strong>Hiatus Hernia:</strong> Stomach herniates through oesophageal hiatus. Sliding type (90%) — gastroesophageal junction moves up; Rolling/paraesophageal type (10%) — fundus herniates alongside oesophagus. Presents with GORD, dysphagia.</li>
+                        <li><strong>GORD (Gastro-Oesophageal Reflux Disease):</strong> Failure of lower oesophageal sphincter mechanism. Leads to Barrett's oesophagus (columnar metaplasia) → risk of oesophageal adenocarcinoma.</li>
+                        <li><strong>Zollinger-Ellison Syndrome:</strong> Gastrin-secreting tumour (gastrinoma) of pancreas/duodenum. Causes severe peptic ulcers, diarrhoea. Elevated fasting gastrin levels confirm diagnosis.</li>
+                        <li><strong>Volvulus of Stomach:</strong> Rotation along long or short axis. Organoaxial (common) — along pylorus-cardia axis. Presents with Borchardt's triad: epigastric pain, retching without vomit, NGT cannot be passed.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-cut"></i> Surgical Anatomy Points</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Highly Selective Vagotomy (HSV):</strong> Preserves nerve of Latarjet (to pylorus) — no drainage procedure needed</li>
+                        <li><strong>Truncal Vagotomy:</strong> Requires drainage procedure (pyloroplasty/gastrojejunostomy) as it causes pyloric spasm</li>
+                        <li><strong>Billroth I (Gastroduodenostomy):</strong> Partial gastrectomy + anastomosis to duodenum</li>
+                        <li><strong>Billroth II (Gastrojejunostomy):</strong> Duodenal stump closed; anastomosis to jejunum</li>
+                        <li><strong>Gastrectomy lymph node levels:</strong> D1 (perigastric nodes), D2 (coeliac axis nodes) — D2 is gold standard for gastric cancer</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section I: NEET Points -->
+            <section id="exam-points" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section I</span>
+                    <h2>NEET High-Yield Points</h2>
+                </div>
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-star"></i> Must-Know for Exams</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Stomach bed structures:</strong> Diaphragm, spleen, left kidney, left suprarenal, splenic artery, pancreas, transverse mesocolon — 7 structures</li>
+                        <li><strong>Only GIT organ with 3 muscle layers</strong> — outer longitudinal, middle circular, inner oblique</li>
+                        <li><strong>Intrinsic factor</strong> is produced by parietal cells — deficiency → pernicious anaemia (B12 deficiency)</li>
+                        <li><strong>Pyloric stenosis</strong> → projectile non-bilious vomiting (bile enters distal to pylorus)</li>
+                        <li><strong>Virchow's node</strong> = left supraclavicular node, enlarged in gastric carcinoma (Troisier's sign)</li>
+                        <li><strong>Left gastric artery</strong> is the most common origin of replaced/accessory left hepatic artery</li>
+                        <li><strong>Angle of His</strong> (~45°) between oesophagus and fundus — acts as flutter valve against reflux</li>
+                        <li><strong>Gastric canal (Magenstrasse)</strong> along lesser curvature — channels fluids rapidly to duodenum</li>
+                        <li><strong>Incisura angularis</strong> = most common site of gastric ulcer on lesser curvature</li>
+                        <li><strong>Ghrelin</strong> (hunger hormone) produced mainly by fundus of stomach</li>
+                        <li><strong>Blood supply memory:</strong> Stomach is supplied by ALL branches of coeliac trunk (direct/indirect)</li>
+                        <li><strong>Portal hypertension:</strong> Left gastric (coronary) vein connects portal to systemic → oesophageal varices</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-lightbulb"></i> Memory Tricks</h3>
+                    <div class="memory-tricks">
+                        <div class="trick-item">
+                            <h4>Stomach Bed — "DeSKLiSPaT"</h4>
+                            <ul>
+                                <li><strong>D</strong>iaphragm</li>
+                                <li><strong>S</strong>pleen</li>
+                                <li><strong>K</strong>idney (left)</li>
+                                <li><strong>L</strong>eft suprarenal</li>
+                                <li><strong>S</strong>plenic artery</li>
+                                <li><strong>Pa</strong>ncreas</li>
+                                <li><strong>T</strong>ransverse mesocolon</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Pyloric Stenosis Triad</h4>
+                            <p>3 Ps: <strong>Projectile</strong> non-bilious vomiting + <strong>Palpable</strong> olive mass + <strong>Peristaltic</strong> visible waves. Age: 3–6 weeks. Boys > Girls (4:1).</p>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Gastric Cell Secretions</h4>
+                            <p><strong>Parietal = HCl + IF</strong> (both "P"rocesses for digestion and B12); <strong>Chief = pepsinogen</strong> (C for Churning protein); <strong>G cell = Gastrin</strong> (G-G).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <button class="scroll-to-top" id="scrollToTop" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="floating-like">
+        <button class="like-btn" id="likeBtn" title="Like this page">
+            <i class="fas fa-heart" id="likeIcon"></i>
+        </button>
+        <div class="like-count" id="likeCount">
+            <span id="likeNumber">...</span>
+        </div>
+        <div class="like-label">Likes</div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Organs Explorer</h3>
+                    <p>Comprehensive medical education platform for aspiring healthcare professionals.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#location">Location & Overview</a></li>
+                        <li><a href="#parts">Parts of Stomach</a></li>
+                        <li><a href="#layers">Wall Layers</a></li>
+                        <li><a href="#blood-supply">Blood Supply</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Study Resources</h3>
+                    <ul>
+                        <li><a href="#exam-points">NEET High-Yield Points</a></li>
+                        <li><a href="#functions">Functions</a></li>
+                        <li><a href="#clinical-section">Clinical Anatomy</a></li>
+                        <li><a href="#nerve-supply">Nerve Supply</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Organs Explorer. For educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuToggle.querySelector('i').className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+        }
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu();
+        });
+
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const likeBtn = document.getElementById('likeBtn');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeNumber = document.getElementById('likeNumber');
+        const likeCountEl = document.getElementById('likeCount');
+        const LIKE_KEY = 'stomach-page-likes';
+        const USER_KEY = 'stomach-page-user-liked';
+        let totalLikes = 0;
+        let userLiked = false;
+
+        async function loadLikes() {
+            try { const r = await window.storage.get(LIKE_KEY, true); totalLikes = r ? parseInt(r.value)||0 : 0; } catch(e) { totalLikes = 0; }
+            try { const r = await window.storage.get(USER_KEY, false); userLiked = r ? r.value === 'true' : false; } catch(e) { userLiked = false; }
+            updateLikeUI(false);
+        }
+        async function saveLikes() {
+            try { await window.storage.set(LIKE_KEY, String(totalLikes), true); await window.storage.set(USER_KEY, String(userLiked), false); } catch(e) {}
+        }
+        function formatLikes(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : n.toString(); }
+        function updateLikeUI(animate) {
+            likeNumber.textContent = formatLikes(totalLikes);
+            if (userLiked) { likeBtn.classList.add('liked'); likeIcon.style.color = '#e53935'; }
+            else { likeBtn.classList.remove('liked'); likeIcon.style.color = ''; }
+            if (animate) { likeCountEl.classList.add('pop'); setTimeout(() => likeCountEl.classList.remove('pop'), 350); }
+        }
+        likeBtn.addEventListener('click', async () => {
+            if (userLiked) { userLiked = false; totalLikes = Math.max(0, totalLikes - 1); }
+            else { userLiked = true; totalLikes++; likeBtn.classList.add('burst'); setTimeout(() => likeBtn.classList.remove('burst'), 700); }
+            updateLikeUI(true);
+            await saveLikes();
+        });
+        loadLikes();
+
+        const cards = document.querySelectorAll('.info-card, .nephron-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        cards.forEach(c => {
+            c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+            c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObserver.observe(c);
+        });
+    </script>
+</body>
+</html>
