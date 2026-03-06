@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Anatomy - Organs Explorer | Medical Education</title>
+    <meta name="description" content="Comprehensive kidney anatomy guide for NEET, BSc, and medical students. Detailed content covering location, structure, nephron, blood supply, functions and clinical anatomy.">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2a5a8c;
+            --cream: #f0f6ff;
+            --cream-dark: #d8e8f8;
+            --warm-white: #f5faff;
+            --charcoal: #111c2a;
+            --text-dark: #1a2e42;
+            --text-mid: #2d4a66;
+            --text-light: #6a8aaa;
+            --gold: #3a9abf;
+            --gold-light: #5ab8de;
+            --teal: #1a7a6a;
+            --teal-light: #2aaa90;
+            --accent: #e84393;
+            --shadow-sm: 0 2px 8px rgba(26,58,92,0.08);
+            --shadow-md: 0 4px 20px rgba(26,58,92,0.13);
+            --shadow-lg: 0 8px 40px rgba(26,58,92,0.18);
+            --radius: 12px;
+            --radius-sm: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-dark); line-height: 1.7; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* ===== HEADER ===== */
+        .header { position: sticky; top: 0; z-index: 100; background: var(--charcoal); border-bottom: 2px solid var(--gold); box-shadow: var(--shadow-md); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+        .logo i { color: var(--gold); font-size: 1.2rem; }
+        .nav { display: flex; gap: 4px; }
+        .nav a { color: var(--cream-dark); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); transition: all 0.2s; }
+        .nav a:hover { background: rgba(58,154,191,0.18); color: var(--gold-light); }
+        .menu-toggle { display: none; background: none; border: 1.5px solid rgba(58,154,191,0.4); color: var(--cream); padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+        .mobile-menu { display: none; flex-direction: column; background: #0d1620; border-bottom: 1px solid rgba(58,154,191,0.2); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { color: var(--cream-dark); text-decoration: none; padding: 12px 24px; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+        .mobile-menu a:hover { background: rgba(58,154,191,0.1); color: var(--gold-light); }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #0d2a45 45%, #1a4a7a 100%);
+            color: var(--cream);
+            padding: 80px 0 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%233a9abf' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content { text-align: center; position: relative; }
+        .organ-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 90px; height: 90px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%; margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(58,154,191,0.45);
+            animation: pulse-glow 3s ease-in-out infinite;
+            overflow: hidden; padding: 10px;
+        }
+        .organ-badge img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 8px 32px rgba(58,154,191,0.4); }
+            50% { box-shadow: 0 8px 52px rgba(58,154,191,0.75); }
+        }
+        .page-title { font-family: 'Crimson Pro', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: 0.12em; color: #fff; margin-bottom: 12px; }
+        .tagline { font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-style: italic; color: var(--gold-light); margin-bottom: 20px; }
+        .hero-description { max-width: 680px; margin: 0 auto 40px; color: rgba(240,246,255,0.8); font-size: 1rem; line-height: 1.8; }
+        .hero-stats { display: flex; gap: 2px; justify-content: center; flex-wrap: wrap; }
+        .stat-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(58,154,191,0.25); padding: 20px 28px; border-radius: var(--radius); text-align: center; min-width: 120px; transition: all 0.3s; }
+        .stat-item:hover { background: rgba(58,154,191,0.12); border-color: var(--gold); transform: translateY(-2px); }
+        .stat-number { font-family: 'Crimson Pro', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-light); }
+        .stat-label { font-size: 0.75rem; color: rgba(240,246,255,0.6); margin-top: 4px; letter-spacing: 0.05em; }
+
+        /* ===== MAIN ===== */
+        .main-content { padding: 48px 0 80px; }
+
+        /* ===== QUICK NAV ===== */
+        .quick-nav { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 40px; box-shadow: var(--shadow-sm); }
+        .quick-nav h3 { font-family: 'Crimson Pro', serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 16px; }
+        .quick-nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+        .quick-nav-item { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--warm-white); border: 1px solid var(--cream-dark); color: var(--text-mid); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: all 0.2s; }
+        .quick-nav-item i { color: var(--gold); font-size: 0.9rem; }
+        .quick-nav-item:hover { background: var(--primary); color: var(--cream); border-color: var(--primary); }
+        .quick-nav-item:hover i { color: var(--gold-light); }
+
+        /* ===== SECTIONS ===== */
+        .content-section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--cream-dark); }
+        .section-label { background: var(--primary); color: var(--cream); font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+        .section-header h2 { font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 700; color: var(--charcoal); }
+
+        /* ===== INFO CARDS ===== */
+        .info-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+        .info-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .info-card h3 i { color: var(--gold); font-size: 1rem; }
+        .info-card h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .info-card p { color: var(--text-mid); font-size: 0.93rem; margin-bottom: 10px; }
+        .highlight-card { border-left: 4px solid var(--gold); background: linear-gradient(135deg, #f0f9ff, var(--warm-white)); }
+
+        .detailed-list { list-style: none; padding: 0; }
+        .detailed-list > li { padding: 8px 0 8px 18px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); font-size: 0.9rem; position: relative; }
+        .detailed-list > li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; }
+        .detailed-list > li:last-child { border-bottom: none; }
+        .detailed-list li strong { color: var(--text-dark); }
+        .detailed-list ul { margin-top: 8px; padding-left: 16px; list-style: disc; color: var(--text-light); font-size: 0.88rem; }
+
+        .highlight-box { border-radius: var(--radius-sm); padding: 14px 18px; margin: 12px 0; font-size: 0.88rem; background: #e8f4fd; border-left: 3px solid var(--gold); color: #0d2a45; }
+        .highlight-box p { margin-bottom: 6px; }
+        .highlight-box ul, .highlight-box ol { padding-left: 18px; }
+        .highlight-box li { padding: 2px 0; }
+        .highlight-box.warning { background: #fff8e1; border-left-color: #f4a020; color: #7a4f00; }
+        .highlight-box.success { background: #e8f5e9; border-left-color: #43a047; color: #1b4f1b; }
+        .highlight-box.info { background: #e3f2fd; border-left-color: var(--primary); color: #0d2a45; }
+        .highlight-box.danger { background: #ffebee; border-left-color: #e53935; color: #5c0000; }
+
+        .intro-text { color: var(--text-mid); font-size: 0.92rem; margin-bottom: 14px; line-height: 1.7; }
+
+        /* ===== GRIDS ===== */
+        .relation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .relation-card { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius-sm); padding: 16px; }
+        .relation-card h4 { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--cream-dark); text-transform: none; letter-spacing: 0; }
+        .relation-card ul { list-style: none; padding: 0; }
+        .relation-card li { font-size: 0.85rem; color: var(--text-mid); padding: 4px 0 4px 12px; position: relative; }
+        .relation-card li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        .characteristics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+        .char-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; border: 1px solid var(--cream-dark); transition: all 0.2s; }
+        .char-item:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .char-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
+        .char-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .char-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin: 4px 0; }
+        .char-detail { font-size: 0.78rem; color: var(--text-light); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+        .feature-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--cream-dark); }
+        .feature-item h4 { color: var(--teal); margin-bottom: 10px; font-size: 0.88rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
+        .feature-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .feature-item li { padding: 3px 0; }
+
+        .impressions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+        .impression-item { background: var(--cream); border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--cream-dark); border-top: 3px solid var(--teal); }
+        .impression-item h4 { color: var(--teal); font-size: 0.88rem; margin-bottom: 8px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+        .impression-item p { font-size: 0.84rem; color: var(--text-mid); margin: 3px 0; }
+
+        .comparison-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .comparison-box { grid-template-columns: 1fr; } }
+        .compare-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--cream-dark); }
+        .compare-item h4 { color: var(--primary); margin-bottom: 8px; font-size: 0.88rem; text-transform: none; letter-spacing: 0; }
+        .compare-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .compare-item li { padding: 3px 0; }
+        .compare-item p { font-size: 0.85rem; color: var(--text-mid); }
+
+        /* ===== NEPHRON CARD ===== */
+        .nephron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .nephron-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+        .nephron-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .nephron-header { background: var(--charcoal); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .nephron-header h3 { color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.1rem; }
+        .nephron-badge { background: var(--gold); color: var(--charcoal); font-size: 0.7rem; padding: 3px 10px; border-radius: 100px; font-weight: 600; white-space: nowrap; }
+        .nephron-content { padding: 20px; }
+        .nephron-content ul { list-style: disc; padding-left: 18px; font-size: 0.87rem; color: var(--text-mid); }
+        .nephron-content li { padding: 3px 0; }
+        .nephron-content li strong { color: var(--text-dark); }
+
+        /* ===== SUMMARY TABLE ===== */
+        .summary-card { background: var(--cream); border-color: var(--cream-dark); }
+        .summary-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px; }
+        .summary-table th { background: var(--charcoal); color: var(--cream); padding: 10px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .summary-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); vertical-align: top; }
+        .summary-table tr:nth-child(even) td { background: rgba(240,246,255,0.5); }
+        .summary-table tr:hover td { background: rgba(58,154,191,0.06); }
+
+        .clinical-note { background: #fff8e1; border-left: 3px solid #f4a020; padding: 10px 14px; font-size: 0.85rem; color: #6b4a00; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+        .remember-note { background: #e8f5e9; border-left: 3px solid #43a047; padding: 10px 14px; font-size: 0.85rem; color: #1b4f1b; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+
+        .memory-tricks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .trick-item { background: linear-gradient(135deg, #e3f2fd, #f0f8ff); border: 1px solid #b3d9f0; border-radius: var(--radius-sm); padding: 18px; }
+        .trick-item h4 { color: #0d2a45; margin-bottom: 10px; font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+        .trick-item p { font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item li { padding: 2px 0; }
+
+        /* ===== LAYERS ===== */
+        .layers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 14px; }
+        .layer-card { background: var(--cream); border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--cream-dark); text-align: center; }
+        .layer-card .layer-num { background: var(--primary); color: var(--cream); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 700; font-size: 0.9rem; }
+        .layer-card h4 { color: var(--primary); font-size: 0.88rem; margin-bottom: 8px; text-transform: none; letter-spacing: 0; font-weight: 600; }
+        .layer-card p { font-size: 0.82rem; color: var(--text-mid); }
+
+        /* ===== BACK HOME + LIKE ===== */
+        .back-home-btn { position: fixed; bottom: 88px; right: 28px; display: flex; align-items: center; gap: 7px; background: var(--charcoal); color: var(--gold-light); text-decoration: none; padding: 9px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; box-shadow: var(--shadow-md); border: 1.5px solid rgba(58,154,191,0.35); z-index: 99; transition: all 0.25s; white-space: nowrap; }
+        .back-home-btn:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        .floating-like { position: fixed; left: 24px; bottom: 28px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 99; }
+        .like-btn { width: 52px; height: 52px; border-radius: 50%; border: none; background: #fff; color: #ccc; font-size: 1.4rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible; }
+        .like-btn.liked { color: #e53935; background: #fff0f0; border: 2px solid #ffcdd2; transform: scale(1.08); }
+        .like-btn:active { transform: scale(0.92); }
+        .like-btn:hover:not(.liked) { color: #ef9a9a; transform: scale(1.1); }
+        .like-btn.burst::after { content: "❤"; position: absolute; font-size: 1.2rem; animation: burst-up 0.6s ease forwards; pointer-events: none; }
+        @keyframes burst-up { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-40px) scale(1.5)} }
+        .like-count { background: var(--primary); color: var(--cream); font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; min-width: 44px; text-align: center; box-shadow: var(--shadow-sm); }
+        .like-label { font-size: 0.68rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        @keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+        .like-count.pop { animation: like-pop 0.3s ease; }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--primary); color: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: all 0.3s; font-size: 0.9rem; z-index: 99; border: none; }
+        .scroll-to-top.visible { opacity: 1; pointer-events: auto; }
+        .scroll-to-top:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: var(--charcoal); color: rgba(240,246,255,0.7); padding: 48px 0 24px; border-top: 2px solid var(--gold); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+        .footer-section h3 { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 12px; }
+        .footer-section p { font-size: 0.85rem; line-height: 1.7; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 8px; }
+        .footer-section ul a { color: rgba(240,246,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-section ul a:hover { color: var(--gold-light); }
+        .footer-bottom { border-top: 1px solid rgba(240,246,255,0.1); padding-top: 20px; text-align: center; font-size: 0.82rem; color: rgba(240,246,255,0.4); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .menu-toggle { display: flex; align-items: center; }
+            .nephron-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .quick-nav-grid { grid-template-columns: repeat(2, 1fr); }
+            .characteristics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://yashify.fun" class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Organs Explorer</span>
+                </a>
+                <nav class="nav">
+                    <a href="#location">Overview</a>
+                    <a href="#gross-anatomy">Anatomy</a>
+                    <a href="#nephron">Nephron</a>
+                    <a href="#blood-supply">Blood Supply</a>
+                    <a href="#clinical-section">Clinical</a>
+                    <a href="#exam-points">NEET Points</a>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#location" onclick="closeMobileMenu()">Overview</a>
+        <a href="#gross-anatomy" onclick="closeMobileMenu()">Anatomy</a>
+        <a href="#nephron" onclick="closeMobileMenu()">Nephron</a>
+        <a href="#blood-supply" onclick="closeMobileMenu()">Blood Supply</a>
+        <a href="#clinical-section" onclick="closeMobileMenu()">Clinical</a>
+        <a href="#exam-points" onclick="closeMobileMenu()">NEET Points</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="organ-badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/954/954394.png" alt="Kidney Icon">
+                </div>
+                <h1 class="page-title">THE KIDNEY</h1>
+                <p class="tagline">The Body's Master Filtration and Homeostasis Organ</p>
+                <p class="hero-description">
+                    The kidneys are paired retroperitoneal organs that filter approximately 180 litres of blood daily,
+                    regulating fluid balance, electrolytes, blood pressure, and producing vital hormones.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">150g</div>
+                        <div class="stat-label">Each Kidney</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">180 L</div>
+                        <div class="stat-label">Filtered/Day</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Nephrons Each</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Cardiac Output</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- Quick Nav -->
+            <div class="quick-nav">
+                <h3>Quick Jump to Sections</h3>
+                <div class="quick-nav-grid">
+                    <a href="#location" class="quick-nav-item"><i class="fas fa-map-marker-alt"></i><span>Location</span></a>
+                    <a href="#gross-anatomy" class="quick-nav-item"><i class="fas fa-eye"></i><span>Gross Anatomy</span></a>
+                    <a href="#surfaces" class="quick-nav-item"><i class="fas fa-border-all"></i><span>Surfaces</span></a>
+                    <a href="#coverings" class="quick-nav-item"><i class="fas fa-layer-group"></i><span>Coverings</span></a>
+                    <a href="#internal" class="quick-nav-item"><i class="fas fa-circle-notch"></i><span>Internal</span></a>
+                    <a href="#nephron" class="quick-nav-item"><i class="fas fa-microscope"></i><span>Nephron</span></a>
+                    <a href="#blood-supply" class="quick-nav-item"><i class="fas fa-heart"></i><span>Blood Supply</span></a>
+                    <a href="#nerve-supply" class="quick-nav-item"><i class="fas fa-bolt"></i><span>Nerve Supply</span></a>
+                    <a href="#ureter" class="quick-nav-item"><i class="fas fa-arrows-down-to-line"></i><span>Ureter</span></a>
+                    <a href="#functions" class="quick-nav-item"><i class="fas fa-cogs"></i><span>Functions</span></a>
+                    <a href="#clinical-section" class="quick-nav-item"><i class="fas fa-stethoscope"></i><span>Clinical</span></a>
+                    <a href="#exam-points" class="quick-nav-item"><i class="fas fa-star"></i><span>NEET Points</span></a>
+                </div>
+            </div>
+
+            <!-- Section A: Location -->
+            <section id="location" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section A</span>
+                    <h2>Location & Position</h2>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Exact Location</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Position:</strong> Retroperitoneal — behind the peritoneum, on posterior abdominal wall</li>
+                        <li><strong>Region:</strong> Lumbar region, on either side of vertebral column</li>
+                        <li><strong>Vertebral level:</strong> T12 to L3 (right kidney slightly lower due to liver above)</li>
+                        <li><strong>Right kidney:</strong> T12–L3 vertebral level</li>
+                        <li><strong>Left kidney:</strong> T11–L2 vertebral level (slightly higher than right)</li>
+                        <li><strong>Hilum level:</strong> Transpyloric plane (L1) — both kidneys</li>
+                        <li><strong>Movement:</strong> Move 2–3 cm during respiration (descend on inspiration)</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-arrows-alt"></i> Relations</h3>
+                    <div class="relation-grid">
+                        <div class="relation-card">
+                            <h4>Right Kidney Relations</h4>
+                            <ul>
+                                <li><strong>Anteriorly:</strong> Right suprarenal gland (upper pole), liver (upper 2/3), hepatic flexure of colon, 2nd part of duodenum</li>
+                                <li><strong>Posteriorly:</strong> Diaphragm, 12th rib, psoas major, quadratus lumborum, transversus abdominis</li>
+                                <li><strong>Medially:</strong> IVC, right suprarenal gland</li>
+                            </ul>
+                        </div>
+                        <div class="relation-card">
+                            <h4>Left Kidney Relations</h4>
+                            <ul>
+                                <li><strong>Anteriorly:</strong> Left suprarenal gland (upper pole), stomach, spleen, body of pancreas, left colic flexure, jejunum</li>
+                                <li><strong>Posteriorly:</strong> Diaphragm, 11th and 12th ribs, psoas major, quadratus lumborum</li>
+                                <li><strong>Medially:</strong> Aorta, left suprarenal gland</li>
+                            </ul>
+                        </div>
+                        <div class="relation-card">
+                            <h4>Posterior Relations (Both)</h4>
+                            <ul>
+                                <li><strong>Diaphragm:</strong> Separates from pleural cavity</li>
+                                <li><strong>Psoas major:</strong> Medial muscle</li>
+                                <li><strong>Quadratus lumborum:</strong> Lateral muscle</li>
+                                <li><strong>Transversus abdominis:</strong> Most lateral</li>
+                                <li><strong>Subcostal nerve (T12):</strong> Passes diagonally</li>
+                                <li><strong>Iliohypogastric & ilioinguinal nerves (L1):</strong> Below 12th rib</li>
+                            </ul>
+                        </div>
+                        <div class="relation-card">
+                            <h4>Why Right is Lower?</h4>
+                            <ul>
+                                <li>Liver occupies right hypochondrium</li>
+                                <li>Pushes right kidney inferiorly</li>
+                                <li>Right kidney: T12–L3</li>
+                                <li>Left kidney: T11–L2</li>
+                                <li>Right kidney ~1.5 cm lower than left</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section B: Gross Anatomy -->
+            <section id="gross-anatomy" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section B</span>
+                    <h2>Gross Anatomy</h2>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-ruler"></i> Physical Characteristics</h3>
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-weight-hanging"></i></div>
+                            <div class="char-label">Weight</div>
+                            <div class="char-value">120–170 g</div>
+                            <div class="char-detail">Each kidney</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-ruler-vertical"></i></div>
+                            <div class="char-label">Length</div>
+                            <div class="char-value">10–12 cm</div>
+                            <div class="char-detail">Vertically</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-ruler-horizontal"></i></div>
+                            <div class="char-label">Width</div>
+                            <div class="char-value">5–7 cm</div>
+                            <div class="char-detail">Horizontally</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                            <div class="char-label">Thickness</div>
+                            <div class="char-value">2.5–3 cm</div>
+                            <div class="char-detail">Anteroposterior</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-palette"></i></div>
+                            <div class="char-label">Color</div>
+                            <div class="char-value">Reddish-brown</div>
+                            <div class="char-detail">Due to vascularity</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-shapes"></i></div>
+                            <div class="char-label">Shape</div>
+                            <div class="char-value">Bean-shaped</div>
+                            <div class="char-detail">Medial concavity</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="surfaces">
+                    <h3><i class="fas fa-border-all"></i> Surfaces, Poles & Borders</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Anterior Surface</h4>
+                            <ul>
+                                <li>Convex, covered by peritoneum (except for small area)</li>
+                                <li>Shows impressions of overlying organs</li>
+                                <li>Right: liver, duodenum, colon</li>
+                                <li>Left: stomach, spleen, pancreas, colon, jejunum</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Posterior Surface</h4>
+                            <ul>
+                                <li>Flat, devoid of peritoneum</li>
+                                <li>Rests on posterior abdominal wall muscles</li>
+                                <li>Related to diaphragm, ribs 11 & 12, and lumbar muscles</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Upper (Superior) Pole</h4>
+                            <ul>
+                                <li>Broad and rounded</li>
+                                <li>Capped by suprarenal gland</li>
+                                <li>Related to diaphragm posteriorly</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Lower (Inferior) Pole</h4>
+                            <ul>
+                                <li>Narrower and more pointed</li>
+                                <li>2.5 cm above iliac crest</li>
+                                <li>Ureter begins here (renal pelvis)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Medial Border</h4>
+                            <ul>
+                                <li>Concave — like inner curve of bean</li>
+                                <li>Middle part = Hilum (renal hilum)</li>
+                                <li>Hilum transmits renal vessels, ureter, nerves</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Lateral Border</h4>
+                            <ul>
+                                <li>Convex, smooth, rounded</li>
+                                <li>No major structures here</li>
+                                <li>Outer surface of the bean shape</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-door-open"></i> Renal Hilum — Gateway of Kidney</h3>
+                    <div class="highlight-box info">
+                        <p><strong>Hilum</strong> = vertical slit on medial border where structures enter/exit the kidney</p>
+                    </div>
+                    <ul class="detailed-list">
+                        <li><strong>Location:</strong> Middle of medial border, at L1 level (transpyloric plane)</li>
+                        <li><strong>Leads to:</strong> Renal sinus (a fat-filled space inside kidney)</li>
+                        <li><strong>Contents (Anterior to Posterior — "VAD"):</strong>
+                            <ul>
+                                <li><strong>V</strong>ein — Renal vein (most anterior)</li>
+                                <li><strong>A</strong>rtery — Renal artery (middle)</li>
+                                <li><strong>D</strong>uct — Ureter / Renal pelvis (most posterior)</li>
+                                <li>Also: lymphatics and autonomic nerves</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="highlight-box success">
+                        <p><strong>Memory: "VAD" at hilum</strong> — Vein (front), Artery (middle), Duct/ureter (behind)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section C: Coverings -->
+            <section id="coverings" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section C</span>
+                    <h2>Coverings of Kidney</h2>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-layer-group"></i> Three Coverings (From Inside to Outside)</h3>
+                    <p class="intro-text">Kidney has 3 coverings arranged concentrically — like layers of an onion:</p>
+                    <div class="layers-grid">
+                        <div class="layer-card">
+                            <div class="layer-num">1</div>
+                            <h4>Fibrous Capsule (Renal Capsule)</h4>
+                            <p>Innermost layer. Thin, tough fibrous coat. Strips easily from healthy kidney (difficult in disease/scarring). Continuous with outer coat of ureter at hilum.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">2</div>
+                            <h4>Perinephric Fat (Adipose Capsule)</h4>
+                            <p>Middle layer. Perirenal fat — fatty cushion around kidney. Protects kidney from trauma. Thickest posteriorly. Absent at hilum. Reduced in starvation → "floating kidney" (nephroptosis).</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">3</div>
+                            <h4>Renal Fascia (Gerota's Fascia)</h4>
+                            <p>Outermost layer. Condensed connective tissue. Two layers: anterior (Toldt's fascia) and posterior (Zuckerkandl's fascia). Closed above and laterally; open below (important clinically). Contains suprarenal gland within the same fascial envelope.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-exclamation-circle"></i> Clinical Importance of Coverings</h3>
+                    <div class="impressions-grid">
+                        <div class="impression-item">
+                            <h4>Nephroptosis (Floating Kidney)</h4>
+                            <p>Loss of perinephric fat → kidney descends. Common in thin women. Causes intermittent ureteric obstruction → loin pain.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>Perinephric Abscess</h4>
+                            <p>Pus collects in perinephric fat space. Often secondary to renal carbuncle. Confined by Gerota's fascia. Can track downwards (fascia open inferiorly).</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>Retroperitoneal Hematoma</h4>
+                            <p>Blood collects in perirenal fat after trauma. Contained by fascia. Can cause flank ecchymosis (Grey Turner's sign).</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>Renal Transplant</h4>
+                            <p>Transplanted kidney placed in iliac fossa (extraperitoneal). Gerota's fascia knowledge essential for surgery.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section D: Internal Structure -->
+            <section id="internal" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section D</span>
+                    <h2>Internal Structure</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-circle-notch"></i> Cortex vs Medulla</h3>
+                    <div class="comparison-box">
+                        <div class="compare-item">
+                            <h4>Renal Cortex (Outer)</h4>
+                            <ul>
+                                <li>Reddish-brown, granular appearance</li>
+                                <li>~1 cm thick outer rim</li>
+                                <li>Contains: Glomeruli, Bowman's capsule, PCT, DCT</li>
+                                <li>Cortical columns (of Bertin) dip between pyramids</li>
+                                <li>Highly vascular</li>
+                                <li>Site of filtration and reabsorption</li>
+                            </ul>
+                        </div>
+                        <div class="compare-item">
+                            <h4>Renal Medulla (Inner)</h4>
+                            <ul>
+                                <li>Pale, striated appearance</li>
+                                <li>Contains 8–18 renal pyramids</li>
+                                <li>Each pyramid: base faces cortex, apex = renal papilla</li>
+                                <li>Contains: Loop of Henle, collecting ducts</li>
+                                <li>Site of concentration of urine</li>
+                                <li>Medullary rays project into cortex</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-filter"></i> Collecting System</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Renal papilla:</strong> Apex of each pyramid; 8–18 per kidney; site where collecting ducts open</li>
+                        <li><strong>Minor calyx:</strong> Cup-shaped; surrounds 1–3 papillae; 7–14 per kidney</li>
+                        <li><strong>Major calyx:</strong> Formed by union of 2–3 minor calyces; 2–3 per kidney (upper, middle, lower)</li>
+                        <li><strong>Renal pelvis:</strong> Funnel-shaped; formed by major calyces joining; capacity ~8 mL; narrows to ureter at PUJ (pelvi-ureteric junction)</li>
+                        <li><strong>PUJ (Pelvi-Ureteric Junction):</strong> At L1–L2 level; common site of obstruction; important surgically</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-columns"></i> Renal Columns (Columns of Bertin)</h3>
+                    <ul class="detailed-list">
+                        <li>Extensions of cortical tissue that dip between medullary pyramids</li>
+                        <li>Contain interlobar vessels (arcuate arteries/veins)</li>
+                        <li>Important landmark in ultrasound and CT</li>
+                        <li><strong>Prominent column of Bertin:</strong> Can mimic a renal mass on imaging — important normal variant to recognize</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section E: Nephron -->
+            <section id="nephron" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section E</span>
+                    <h2>The Nephron — Functional Unit</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-microscope"></i> Overview</h3>
+                    <div class="highlight-box info">
+                        <p><strong>Each kidney has ~1 million nephrons.</strong> Nephron = structural and functional unit of kidney. Once lost, nephrons cannot regenerate (hence chronic kidney disease is progressive).</p>
+                    </div>
+                    <div class="comparison-box">
+                        <div class="compare-item">
+                            <h4>Cortical Nephrons (85%)</h4>
+                            <ul>
+                                <li>Glomerulus in outer cortex</li>
+                                <li>Short loop of Henle (doesn't reach medulla)</li>
+                                <li>Primary role: Filtration and reabsorption</li>
+                                <li>Efferent arteriole → peritubular capillaries</li>
+                            </ul>
+                        </div>
+                        <div class="compare-item">
+                            <h4>Juxtamedullary Nephrons (15%)</h4>
+                            <ul>
+                                <li>Glomerulus near cortico-medullary junction</li>
+                                <li>Long loop of Henle (deep into medulla)</li>
+                                <li>Primary role: Urine concentration</li>
+                                <li>Efferent arteriole → vasa recta</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nephron-grid">
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>1. Renal Corpuscle</h3>
+                            <span class="nephron-badge">Filtration Unit</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Glomerulus</h4>
+                            <ul>
+                                <li>Tuft of capillaries from afferent arteriole</li>
+                                <li>High pressure capillaries (~60 mmHg)</li>
+                                <li>Covered by visceral layer of Bowman's capsule (podocytes)</li>
+                                <li>Filtration membrane: Endothelium + Basement membrane + Podocytes</li>
+                            </ul>
+                            <h4>Bowman's Capsule</h4>
+                            <ul>
+                                <li>Double-walled cup surrounding glomerulus</li>
+                                <li>Visceral layer: Podocytes (with foot processes/pedicels)</li>
+                                <li>Parietal layer: Simple squamous epithelium</li>
+                                <li>Bowman's space: Filtrate collects here → enters PCT</li>
+                            </ul>
+                            <p class="clinical-note">Glomerulonephritis: Inflammation of glomeruli → protein in urine (proteinuria), haematuria. Causes: IgA nephropathy (most common), post-streptococcal, lupus nephritis.</p>
+                        </div>
+                    </div>
+
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>2. Proximal Convoluted Tubule (PCT)</h3>
+                            <span class="nephron-badge">Major Reabsorber</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Structure</h4>
+                            <ul>
+                                <li>Longest part of nephron (~15 mm)</li>
+                                <li>Located in renal cortex</li>
+                                <li>Cuboidal cells with abundant microvilli (brush border)</li>
+                                <li>Rich in mitochondria (active transport)</li>
+                            </ul>
+                            <h4>Functions</h4>
+                            <ul>
+                                <li>Reabsorbs 60–65% of filtered Na⁺, water</li>
+                                <li>100% reabsorption of glucose, amino acids</li>
+                                <li>Reabsorbs HCO₃⁻ (bicarbonate)</li>
+                                <li>Secretes H⁺, drugs, organic acids</li>
+                            </ul>
+                            <p class="clinical-note">Fanconi syndrome: Defect in PCT reabsorption → glucose, amino acids, phosphate lost in urine despite normal blood levels.</p>
+                        </div>
+                    </div>
+
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>3. Loop of Henle</h3>
+                            <span class="nephron-badge">Concentrating Unit</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Parts</h4>
+                            <ul>
+                                <li><strong>Descending thin limb:</strong> Permeable to water; dips into medulla</li>
+                                <li><strong>Ascending thin limb:</strong> Permeable to Na⁺/Cl⁻; impermeable to water</li>
+                                <li><strong>Ascending thick limb:</strong> Active Na⁺-K⁺-2Cl⁻ transport; impermeable to water</li>
+                            </ul>
+                            <h4>Countercurrent Mechanism</h4>
+                            <ul>
+                                <li>Creates medullary osmotic gradient (300–1200 mOsm)</li>
+                                <li>Enables concentration of urine up to 4x plasma</li>
+                                <li>Vasa recta maintain this gradient</li>
+                            </ul>
+                            <p class="clinical-note">Loop diuretics (Furosemide) act here — block Na⁺-K⁺-2Cl⁻ cotransporter in thick ascending limb → powerful diuresis.</p>
+                        </div>
+                    </div>
+
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>4. Distal Convoluted Tubule (DCT)</h3>
+                            <span class="nephron-badge">Fine Tuning</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Structure</h4>
+                            <ul>
+                                <li>Shorter than PCT; located in cortex</li>
+                                <li>Begins at macula densa (juxtaglomerular apparatus)</li>
+                                <li>No brush border (unlike PCT)</li>
+                            </ul>
+                            <h4>Functions</h4>
+                            <ul>
+                                <li>Aldosterone acts here → Na⁺ reabsorption</li>
+                                <li>PTH acts here → Ca²⁺ reabsorption</li>
+                                <li>K⁺ secretion (regulated by aldosterone)</li>
+                                <li>H⁺ secretion (acid-base regulation)</li>
+                            </ul>
+                            <p class="clinical-note">Thiazide diuretics act on DCT — block Na⁺-Cl⁻ cotransporter. Used in hypertension.</p>
+                        </div>
+                    </div>
+
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>5. Collecting Duct</h3>
+                            <span class="nephron-badge">ADH Target</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Structure</h4>
+                            <ul>
+                                <li>Not technically part of nephron (collecting system)</li>
+                                <li>Receives urine from several DCTs</li>
+                                <li>Passes through medulla → opens at papilla</li>
+                                <li>Two cell types: Principal cells, Intercalated cells</li>
+                            </ul>
+                            <h4>Functions</h4>
+                            <ul>
+                                <li><strong>ADH (Vasopressin):</strong> Acts on principal cells → aquaporin-2 insertion → water reabsorption → concentrated urine</li>
+                                <li><strong>No ADH:</strong> Impermeable to water → dilute urine</li>
+                                <li>Final regulation of urine concentration</li>
+                            </ul>
+                            <p class="clinical-note">Diabetes Insipidus: ADH deficiency (central) or resistance (nephrogenic) → collecting duct impermeable → huge volume of dilute urine (polyuria).</p>
+                        </div>
+                    </div>
+
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>6. Juxtaglomerular Apparatus (JGA)</h3>
+                            <span class="nephron-badge">BP Sensor</span>
+                        </div>
+                        <div class="nephron-content">
+                            <h4>Components</h4>
+                            <ul>
+                                <li><strong>Macula densa:</strong> Specialized DCT cells at afferent arteriole contact; senses NaCl in filtrate</li>
+                                <li><strong>JG cells (granular cells):</strong> Modified smooth muscle of afferent arteriole; secrete Renin</li>
+                                <li><strong>Extraglomerular mesangial cells (Lacis cells):</strong> Between macula densa and glomerulus; signaling role</li>
+                            </ul>
+                            <h4>RAAS Activation</h4>
+                            <ul>
+                                <li>Low BP/Na⁺ → JG cells release Renin</li>
+                                <li>Renin → Angiotensinogen → Angiotensin I → (ACE) → Angiotensin II</li>
+                                <li>Ang II → Vasoconstriction + Aldosterone release → ↑BP</li>
+                            </ul>
+                            <p class="clinical-note">ACE inhibitors (Ramipril, Enalapril) block RAAS → used in hypertension, heart failure, diabetic nephropathy.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section F: Blood Supply -->
+            <section id="blood-supply" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section F</span>
+                    <h2>Blood Supply</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-heart"></i> Arterial Supply</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Renal artery:</strong> Branch of abdominal aorta at L1–L2 level; wide caliber for high flow</li>
+                        <li><strong>Right renal artery:</strong> Longer (crosses behind IVC); passes posterior to right renal vein, head of pancreas and 2nd part of duodenum</li>
+                        <li><strong>Left renal artery:</strong> Shorter; passes posterior to left renal vein, body of pancreas and splenic vein</li>
+                        <li><strong>Segmental arteries (5):</strong> Renal artery divides into 5 end arteries — superior, antero-superior, antero-inferior, inferior, posterior</li>
+                        <li><strong>End arteries:</strong> No anastomoses — blockage = infarction of that segment</li>
+                        <li><strong>Interlobar arteries:</strong> Run in columns of Bertin between pyramids</li>
+                        <li><strong>Arcuate arteries:</strong> Run along cortico-medullary junction</li>
+                        <li><strong>Interlobular arteries:</strong> Ascend into cortex; give off afferent arterioles to glomeruli</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right"></i> Venous Drainage</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Renal veins:</strong> Drain into IVC; lie anterior to corresponding renal arteries</li>
+                        <li><strong>Left renal vein:</strong> Longer (3x longer than right); crosses anterior to aorta, posterior to superior mesenteric artery (SMA); receives left gonadal, left suprarenal, and left inferior phrenic veins</li>
+                        <li><strong>Right renal vein:</strong> Short; drains directly into IVC; receives no tributaries</li>
+                        <li><strong>Nutcracker syndrome:</strong> Left renal vein compressed between aorta and SMA → left flank pain, haematuria</li>
+                    </ul>
+                    <div class="highlight-box warning">
+                        <p><strong>Important:</strong> Left renal vein is more at risk during abdominal aortic aneurysm repair — it can be inadvertently ligated.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-project-diagram"></i> Intrarenal Circulation Summary</h3>
+                    <div class="highlight-box success">
+                        <p><strong>Flow sequence:</strong> Renal artery → Segmental arteries → Interlobar arteries → Arcuate arteries → Interlobular arteries → <strong>Afferent arteriole</strong> → Glomerulus → <strong>Efferent arteriole</strong> → Peritubular capillaries / Vasa recta → Interlobular veins → Arcuate veins → Interlobar veins → Renal vein → IVC</p>
+                    </div>
+                    <div class="highlight-box info">
+                        <p><strong>Two capillary beds in series</strong> is unique to kidneys — allows independent regulation of filtration pressure (glomerular) and reabsorption (peritubular).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section G: Nerve Supply -->
+            <section id="nerve-supply" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section G</span>
+                    <h2>Nerve Supply & Lymphatics</h2>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-bolt"></i> Nerve Supply</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Sympathetic:</strong> T10–L1 via renal plexus (from celiac and aorticorenal ganglia); vasomotor (controls blood flow); inhibits renin secretion at high activity</li>
+                        <li><strong>Parasympathetic:</strong> Vagus nerve (minor role); not well established</li>
+                        <li><strong>Afferent (pain):</strong> T10–L1 dermatomes; referred pain to loin, groin, scrotum/labia (ureteric colic)</li>
+                        <li><strong>Renal pain:</strong> Loin (flank) pain; dull ache (capsule distension) or colicky pain (ureteric spasm)</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-tint"></i> Lymphatic Drainage</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Drain to:</strong> Lateral aortic (para-aortic/lumbar) lymph nodes at L1–L2</li>
+                        <li>Follow renal vessels</li>
+                        <li>Important in spread of renal cell carcinoma</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section H: Ureter -->
+            <section id="ureter" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section H</span>
+                    <h2>Ureter</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-arrows-down-to-line"></i> Overview</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Length:</strong> ~25 cm (10 cm abdominal + 15 cm pelvic)</li>
+                        <li><strong>Diameter:</strong> ~3 mm; muscular tube with peristaltic movement</li>
+                        <li><strong>Course:</strong> From renal pelvis (L1) → pelvi-ureteric junction → bladder</li>
+                        <li><strong>Retroperitoneal</strong> throughout its course</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marked"></i> Three Sites of Narrowing (Stone Gets Stuck Here!)</h3>
+                    <div class="impressions-grid">
+                        <div class="impression-item">
+                            <h4>1. Pelvi-Ureteric Junction (PUJ)</h4>
+                            <p>Where renal pelvis meets ureter. At L1–L2 level. Most common site of congenital obstruction.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>2. Pelvic Brim</h4>
+                            <p>Where ureter crosses bifurcation of common iliac artery. At level of sacroiliac joint.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>3. Vesico-Ureteric Junction (VUJ)</h4>
+                            <p>Where ureter enters bladder wall obliquely. Narrowest point. Most common site for ureteric stones to lodge.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box warning">
+                        <p><strong>Ureteric Colic:</strong> Severe, colicky, loin-to-groin pain radiating to scrotum/labia. Due to smooth muscle spasm from a stone. Treated with NSAIDs (first-line) + alpha-blockers (tamsulosin) to facilitate passage.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-crosshairs"></i> Important Crossings (Exam Favourite!)</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Gonadal vessels:</strong> Cross anterior to ureter (both sides); important during gonadectomy</li>
+                        <li><strong>Bifurcation of common iliac artery:</strong> Ureter crosses here at pelvic brim</li>
+                        <li><strong>Vas deferens (male):</strong> Crosses anterior to ureter just before bladder — "water under the bridge"</li>
+                        <li><strong>Uterine artery (female):</strong> Crosses anterior to ureter at level of cervix — "water under the bridge"; risk during hysterectomy (ureter may be ligated accidentally!)</li>
+                    </ul>
+                    <div class="highlight-box danger">
+                        <p><strong>Surgical Risk:</strong> Uterine artery crosses ureter 2 cm lateral to cervix during hysterectomy. If ureter is accidentally ligated = post-op hydronephrosis/urinoma. Must be identified before ligation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section I: Functions -->
+            <section id="functions" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section I</span>
+                    <h2>Functions of Kidney</h2>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-cogs"></i> Major Functions</h3>
+                    <div class="impressions-grid">
+                        <div class="impression-item">
+                            <h4>1. Filtration & Excretion</h4>
+                            <p>Filters 180 L/day plasma; GFR ~125 mL/min; removes urea, creatinine, drugs, toxins.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>2. Fluid Balance</h4>
+                            <p>Regulates body water volume; adjusts urine output from 0.5–20 L/day based on ADH levels.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>3. Electrolyte Regulation</h4>
+                            <p>Na⁺, K⁺, Ca²⁺, Mg²⁺, PO₄³⁻ balance via aldosterone, PTH, and direct tubular mechanisms.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>4. Acid-Base Balance</h4>
+                            <p>Excretes H⁺, reabsorbs HCO₃⁻; maintains blood pH 7.35–7.45. Kidney is slower but more powerful than lungs.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>5. BP Regulation (RAAS)</h4>
+                            <p>Renin → Ang II → vasoconstriction + aldosterone. Long-term BP control via volume regulation.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>6. Erythropoietin (EPO)</h4>
+                            <p>Peritubular cells produce EPO in response to hypoxia → stimulates RBC production in bone marrow. CKD → EPO deficiency → anaemia.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>7. Vitamin D Activation</h4>
+                            <p>Kidney converts 25-hydroxyvitamin D → 1,25-dihydroxyvitamin D (calcitriol) via 1-α-hydroxylase. CKD → renal osteodystrophy.</p>
+                        </div>
+                        <div class="impression-item">
+                            <h4>8. Gluconeogenesis</h4>
+                            <p>Renal cortex can produce glucose (especially during fasting/prolonged exercise). About 20% of total gluconeogenesis.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section J: Clinical -->
+            <section id="clinical-section" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section J</span>
+                    <h2>Clinical Anatomy</h2>
+                </div>
+
+                <div class="impressions-grid">
+                    <div class="impression-item">
+                        <h4>Renal Cell Carcinoma (RCC)</h4>
+                        <p>Most common renal malignancy (85%). Clear cell type most frequent. Classic triad: haematuria, loin pain, flank mass. RCC invades renal vein → IVC → right atrium ("tumour thrombus").</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Hydronephrosis</h4>
+                        <p>Dilation of renal pelvis and calyces due to obstruction. Causes: PUJ obstruction, stones, tumour, stricture. Long-standing → cortical thinning → renal failure.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Polycystic Kidney Disease (ADPKD)</h4>
+                        <p>Autosomal dominant; PKD1 (chromosome 16) most common. Bilateral cysts. Associated with: berry aneurysms (subarachnoid haemorrhage), mitral valve prolapse, liver cysts. Leads to CKD.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Horseshoe Kidney</h4>
+                        <p>Fusion of lower poles during fetal development. Most common renal fusion anomaly. Ascent blocked by inferior mesenteric artery at L3. Increased risk: PUJ obstruction, stones, Wilms tumour.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Renal Biopsy</h4>
+                        <p>Lower pole of kidney preferred (avoids hilum). Posterior approach in prone position. Real-time ultrasound guidance. Complication: Haematuria (most common), AVF, perirenal haematoma.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Nephrotic vs Nephritic Syndrome</h4>
+                        <p><strong>Nephrotic:</strong> Massive proteinuria (>3.5g/day), oedema, hypoalbuminaemia, hyperlipidaemia. <strong>Nephritic:</strong> Haematuria, oliguria, hypertension, mild proteinuria, RBC casts.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Acute Kidney Injury (AKI)</h4>
+                        <p>Pre-renal (most common — dehydration, shock), intrinsic (ATN, glomerulonephritis), post-renal (obstruction). Managed by treating cause + fluids. Dialysis if severe.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Renal Transplant Anatomy</h4>
+                        <p>Placed in right iliac fossa (extraperitoneal). Renal artery anastomosed to external iliac artery; renal vein to external iliac vein; ureter to bladder. Right iliac fossa preferred (shorter right external iliac vein).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section K: NEET Points -->
+            <section id="exam-points" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section K</span>
+                    <h2>NEET / Exam High-Yield Points</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-star"></i> Must-Know Facts</h3>
+                    <div class="memory-tricks">
+                        <div class="trick-item">
+                            <h4>Position & Levels</h4>
+                            <ul>
+                                <li>Kidney = retroperitoneal</li>
+                                <li>Right lower than left (liver above)</li>
+                                <li>Hilum at L1 = transpyloric plane</li>
+                                <li>Left kidney: T11–L2; Right: T12–L3</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Hilum Contents — "VAD"</h4>
+                            <ul>
+                                <li><strong>V</strong>ein — most anterior</li>
+                                <li><strong>A</strong>rtery — middle</li>
+                                <li><strong>D</strong>uct (ureter) — most posterior</li>
+                                <li>Plus lymphatics and nerves</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Three Narrowings of Ureter</h4>
+                            <ul>
+                                <li>PUJ (pelvi-ureteric junction)</li>
+                                <li>Pelvic brim (common iliac crossing)</li>
+                                <li>VUJ (vesico-ureteric junction) — narrowest</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Nephron Diuretic Sites</h4>
+                            <ul>
+                                <li>Loop diuretics → Thick ascending limb</li>
+                                <li>Thiazides → DCT</li>
+                                <li>Aldosterone antagonists → Collecting duct</li>
+                                <li>Osmotic diuretics → PCT</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Coverings Mnemonic</h4>
+                            <ul>
+                                <li>"FCG" inside-out: Fibrous capsule, perinephric Fat (adipose), Gerota's fascia</li>
+                                <li>Gerota's fascia open inferiorly (pus tracks down!)</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Special Kidney Facts</h4>
+                            <ul>
+                                <li>Kidney gets 25% of cardiac output</li>
+                                <li>Filters 180 L/day; excretes ~1.5 L urine</li>
+                                <li>~1 million nephrons per kidney</li>
+                                <li>Renal artery = end arteries → infarction if blocked</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card summary-card">
+                    <h3><i class="fas fa-question-circle"></i> Common NEET Questions</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Question</th><th>Answer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Which kidney is lower and why?</td><td>Right kidney — pushed down by liver</td></tr>
+                            <tr><td>Contents of renal hilum (order)?</td><td>Vein (anterior), Artery, Ureter (posterior) — VAD</td></tr>
+                            <tr><td>Functional unit of kidney</td><td>Nephron (~1 million per kidney)</td></tr>
+                            <tr><td>Site where ADH acts?</td><td>Collecting duct (principal cells)</td></tr>
+                            <tr><td>Site where aldosterone acts?</td><td>DCT and collecting duct</td></tr>
+                            <tr><td>Narrowest part of ureter?</td><td>Vesico-ureteric junction (VUJ)</td></tr>
+                            <tr><td>Uterine artery and ureter relation?</td><td>Uterine artery crosses anterior to ureter ("water under bridge")</td></tr>
+                            <tr><td>Which nephrons concentrate urine?</td><td>Juxtamedullary nephrons (long loop of Henle)</td></tr>
+                            <tr><td>Renal biopsy site?</td><td>Lower pole of right kidney (posterior approach)</td></tr>
+                            <tr><td>Horseshoe kidney: fusion blocked by?</td><td>Inferior mesenteric artery (at L3)</td></tr>
+                            <tr><td>CKD anaemia cause?</td><td>Decreased EPO production by peritubular cells</td></tr>
+                            <tr><td>Gerota's fascia: where is it open?</td><td>Inferiorly — pus/infection can track down</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Back to Home -->
+    <a href="https://yashify.fun" target="_blank" class="back-home-btn">
+        <i class="fas fa-home"></i>
+        <span>yashify.fun</span>
+    </a>
+
+    <!-- Floating Like -->
+    <div class="floating-like" id="floatingLike">
+        <button class="like-btn" id="likeBtn">
+            <i class="fas fa-heart" id="likeIcon"></i>
+        </button>
+        <div class="like-count" id="likeCount">
+            <span id="likeNumber">...</span>
+        </div>
+        <div class="like-label">Likes</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Organs Explorer</h3>
+                    <p>Comprehensive medical education platform for aspiring healthcare professionals.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#location">Location & Overview</a></li>
+                        <li><a href="#gross-anatomy">Gross Anatomy</a></li>
+                        <li><a href="#nephron">Nephron</a></li>
+                        <li><a href="#blood-supply">Blood Supply</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Study Resources</h3>
+                    <ul>
+                        <li><a href="#exam-points">NEET High-Yield Points</a></li>
+                        <li><a href="#ureter">Ureter</a></li>
+                        <li><a href="#clinical-section">Clinical Anatomy</a></li>
+                        <li><a href="#functions">Functions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Organs Explorer. For educational purposes only.</p>
+                <p style="margin-top:10px; font-size:0.8rem; color:rgba(240,246,255,0.3);">
+                    Powered by <a href="https://yashify.fun" target="_blank" style="color:var(--gold-light);text-decoration:none;font-weight:600;">✦ Yashify</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuToggle.querySelector('i').className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+        }
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu();
+        });
+
+        // ===== SCROLL TO TOP =====
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ===== FLOATING LIKE with REALTIME STORAGE =====
+        const likeBtn = document.getElementById('likeBtn');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeNumber = document.getElementById('likeNumber');
+        const likeCountEl = document.getElementById('likeCount');
+
+        const LIKE_KEY = 'kidney-page-likes';
+        const USER_KEY = 'kidney-page-user-liked';
+        let totalLikes = 0;
+        let userLiked = false;
+
+        async function loadLikes() {
+            try { const r = await window.storage.get(LIKE_KEY, true); totalLikes = r ? parseInt(r.value)||0 : 0; } catch(e) { totalLikes = 0; }
+            try { const r = await window.storage.get(USER_KEY, false); userLiked = r ? r.value === 'true' : false; } catch(e) { userLiked = false; }
+            updateLikeUI(false);
+        }
+        async function saveLikes() {
+            try { await window.storage.set(LIKE_KEY, String(totalLikes), true); await window.storage.set(USER_KEY, String(userLiked), false); } catch(e) {}
+        }
+        async function pollLikes() {
+            try {
+                const r = await window.storage.get(LIKE_KEY, true);
+                const latest = r ? parseInt(r.value)||0 : 0;
+                if (latest !== totalLikes) {
+                    totalLikes = latest;
+                    likeNumber.textContent = formatLikes(totalLikes);
+                    likeCountEl.classList.add('pop');
+                    setTimeout(() => likeCountEl.classList.remove('pop'), 350);
+                }
+            } catch(e) {}
+        }
+        function formatLikes(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : n.toString(); }
+        function updateLikeUI(animate) {
+            likeNumber.textContent = formatLikes(totalLikes);
+            if (userLiked) { likeBtn.classList.add('liked'); likeIcon.style.color = '#e53935'; }
+            else { likeBtn.classList.remove('liked'); likeIcon.style.color = ''; }
+            if (animate) { likeCountEl.classList.add('pop'); setTimeout(() => likeCountEl.classList.remove('pop'), 350); }
+        }
+        likeBtn.addEventListener('click', async () => {
+            if (userLiked) { userLiked = false; totalLikes = Math.max(0, totalLikes - 1); }
+            else {
+                userLiked = true; totalLikes++;
+                likeBtn.classList.add('burst');
+                setTimeout(() => likeBtn.classList.remove('burst'), 700);
+            }
+            updateLikeUI(true);
+            await saveLikes();
+        });
+        loadLikes();
+        setInterval(pollLikes, 8000);
+
+        // ===== CARD ENTRANCE ANIMATIONS =====
+        const cards = document.querySelectorAll('.info-card, .nephron-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        cards.forEach(c => {
+            c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+            c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObserver.observe(c);
+        });
+    </script>
+</body>
+</html>
