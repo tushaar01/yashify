@@ -1,15 +1,18 @@
-<!DOCTYPE html>
+  
+          
+        
+        
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liver Anatomy - Organs Explorer | Medical Education</title>
     <meta name="description" content="Comprehensive liver anatomy guide for NEET, BSc, and medical students. Ultra-detailed content covering location, structure, functions, and clinical anatomy.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-        
-          <!-- Google tag (gtag.js) -->
+    
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,27 +21,1000 @@
 
   gtag('config', 'G-B5X5RJM3XH');
 </script>
-        
-        
-        
+    
+    
+    
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --burgundy: #7c1d2e;
+            --burgundy-light: #a63245;
+            --cream: #f9f4ec;
+            --cream-dark: #ede6d8;
+            --warm-white: #fdfaf6;
+            --charcoal: #2a2118;
+            --text-dark: #3d2e1e;
+            --text-mid: #5c4a35;
+            --text-light: #8a7560;
+            --gold: #c4973e;
+            --gold-light: #ddb96a;
+            --teal: #1d6b6b;
+            --teal-light: #2d9090;
+            --shadow-sm: 0 2px 8px rgba(42,33,24,0.08);
+            --shadow-md: 0 4px 20px rgba(42,33,24,0.12);
+            --shadow-lg: 0 8px 40px rgba(42,33,24,0.16);
+            --radius: 12px;
+            --radius-sm: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--burgundy); border-radius: 3px; }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--charcoal);
+            border-bottom: 2px solid var(--gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--cream);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .logo i { color: var(--gold); font-size: 1.2rem; }
+
+        .nav { display: flex; gap: 4px; }
+
+        .nav a {
+            color: var(--cream-dark);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s;
+            letter-spacing: 0.02em;
+        }
+
+        .nav a:hover {
+            background: rgba(196,151,62,0.15);
+            color: var(--gold-light);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1.5px solid rgba(196,151,62,0.4);
+            color: var(--cream);
+            padding: 7px 10px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: #1e1710;
+            border-bottom: 1px solid rgba(196,151,62,0.3);
+            padding: 8px 0;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            color: var(--cream-dark);
+            text-decoration: none;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.2s;
+        }
+
+        .mobile-menu a:hover { background: rgba(196,151,62,0.1); color: var(--gold-light); }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #4a1520 50%, #7c1d2e 100%);
+            color: var(--cream);
+            padding: 80px 0 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4973e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content { text-align: center; position: relative; }
+
+        .organ-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+            color: var(--charcoal);
+            box-shadow: 0 8px 32px rgba(196,151,62,0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 8px 32px rgba(196,151,62,0.4); }
+            50% { box-shadow: 0 8px 48px rgba(196,151,62,0.7); }
+        }
+
+        .page-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .tagline {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            margin: 0 auto 40px;
+            color: rgba(249,244,236,0.8);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(196,151,62,0.25);
+            padding: 20px 28px;
+            border-radius: var(--radius);
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+
+        .stat-item:hover {
+            background: rgba(196,151,62,0.12);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .stat-label { font-size: 0.75rem; color: rgba(249,244,236,0.6); margin-top: 4px; letter-spacing: 0.05em; }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content { padding: 48px 0 80px; }
+
+        /* ===== QUICK NAV ===== */
+        .quick-nav {
+            background: var(--cream);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-nav h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            color: var(--burgundy);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 8px;
+        }
+
+        .quick-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .quick-nav-item i { color: var(--gold); font-size: 0.9rem; }
+        .quick-nav-item:hover { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); }
+        .quick-nav-item:hover i { color: var(--gold-light); }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section { margin-bottom: 48px; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+
+        .section-label {
+            background: var(--burgundy);
+            color: var(--cream);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 100px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .section-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        /* ===== INFO CARDS ===== */
+        .info-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--burgundy);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i { color: var(--gold); font-size: 1rem; }
+
+        .info-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 16px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-card p { color: var(--text-mid); font-size: 0.93rem; margin-bottom: 10px; }
+
+        .highlight-card {
+            border-left: 4px solid var(--gold);
+            background: linear-gradient(135deg, #fffdf8, var(--warm-white));
+        }
+
+        /* ===== LISTS ===== */
+        .detailed-list { list-style: none; padding: 0; }
+
+        .detailed-list > li {
+            padding: 8px 0 8px 18px;
+            border-bottom: 1px solid var(--cream-dark);
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .detailed-list > li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .detailed-list > li:last-child { border-bottom: none; }
+
+        .detailed-list li strong { color: var(--text-dark); }
+
+        .detailed-list ul {
+            margin-top: 8px;
+            padding-left: 16px;
+            list-style: disc;
+            color: var(--text-light);
+            font-size: 0.88rem;
+        }
+
+        /* ===== HIGHLIGHT BOXES ===== */
+        .highlight-box {
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 0.88rem;
+        }
+
+        .highlight-box p { margin-bottom: 6px; }
+        .highlight-box ul { padding-left: 18px; color: inherit; }
+        .highlight-box li { padding: 2px 0; }
+
+        .highlight-box { background: #edf4ff; border-left: 3px solid #4a90d9; color: #2c5282; }
+        .highlight-box.warning { background: #fff8e1; border-left-color: var(--gold); color: #7a5a00; }
+        .highlight-box.success { background: #e8f5e9; border-left-color: #4caf50; color: #2e5e2e; }
+        .highlight-box.info { background: #e8f4fd; border-left-color: var(--teal); color: #1a4a4a; }
+
+        /* ===== RELATION GRID ===== */
+        .relation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .relation-card {
+            background: var(--cream);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+        }
+
+        .relation-card h4 {
+            color: var(--burgundy);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--cream-dark);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .relation-card ul { list-style: none; padding: 0; }
+
+        .relation-card li {
+            font-size: 0.85rem;
+            color: var(--text-mid);
+            padding: 4px 0;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .relation-card li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        /* ===== CHARACTERISTICS GRID ===== */
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+        }
+
+        .char-item {
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            padding: 18px 16px;
+            text-align: center;
+            border: 1px solid var(--cream-dark);
+            transition: all 0.2s;
+        }
+
+        .char-item:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .char-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
+        .char-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .char-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin: 4px 0; }
+        .char-detail { font-size: 0.78rem; color: var(--text-light); }
+
+        /* ===== FEATURE GRID ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .feature-item {
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .feature-item h4 { color: var(--teal); margin-bottom: 10px; font-size: 0.88rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
+        .feature-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .feature-item li { padding: 3px 0; }
+
+        /* ===== IMPRESSIONS GRID ===== */
+        .impressions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+        }
+
+        .impression-item {
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--cream-dark);
+            border-top: 3px solid var(--teal);
+        }
+
+        .impression-item h4 { color: var(--teal); font-size: 0.88rem; margin-bottom: 8px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+        .impression-item p { font-size: 0.84rem; color: var(--text-mid); margin: 3px 0; }
+
+        /* ===== COMPARISON BOX ===== */
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 600px) { .comparison-box { grid-template-columns: 1fr; } }
+
+        .compare-item {
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .compare-item h4 { color: var(--burgundy); margin-bottom: 8px; font-size: 0.88rem; text-transform: none; letter-spacing: 0; }
+        .compare-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .compare-item li { padding: 3px 0; }
+        .compare-item p { font-size: 0.85rem; color: var(--text-mid); }
+
+        /* ===== LOBES GRID ===== */
+        .lobes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 24px; }
+
+        .lobe-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .lobe-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+        .lobe-header {
+            background: var(--charcoal);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .lobe-header h3 { color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.15rem; }
+        .lobe-badge { background: var(--gold); color: var(--charcoal); font-size: 0.7rem; padding: 3px 10px; border-radius: 100px; font-weight: 600; white-space: nowrap; }
+        .lobe-badge.largest { background: var(--burgundy); color: var(--cream); }
+        .lobe-content { padding: 20px; }
+        .lobe-content ul { list-style: disc; padding-left: 18px; font-size: 0.87rem; color: var(--text-mid); }
+        .lobe-content li { padding: 3px 0; }
+        .lobe-content li strong { color: var(--text-dark); }
+
+        .clinical-note, .remember-note {
+            background: #fff8e1;
+            border-left: 3px solid var(--gold);
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            color: #6b4c00;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 8px;
+        }
+
+        /* ===== SUMMARY TABLE ===== */
+        .summary-card { background: var(--cream); border-color: var(--cream-dark); }
+
+        .summary-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px; }
+        .summary-table th { background: var(--charcoal); color: var(--cream); padding: 10px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .summary-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); vertical-align: top; }
+        .summary-table tr:nth-child(even) td { background: rgba(249,244,236,0.5); }
+        .summary-table tr:hover td { background: rgba(196,151,62,0.06); }
+
+        /* ===== SEGMENTS ===== */
+        .segments-detailed { display: flex; flex-direction: column; gap: 24px; }
+
+        .segment-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.2s;
+        }
+
+        .segment-card:hover { box-shadow: var(--shadow-md); }
+
+        .segment-card.caudate { border-left: 4px solid var(--teal); }
+
+        .segment-number {
+            background: var(--burgundy);
+            color: var(--cream);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .segment-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.15rem; color: var(--charcoal); margin-bottom: 12px; }
+
+        .segment-info { flex: 1; }
+        .segment-info p { font-size: 0.87rem; color: var(--text-mid); margin: 6px 0; }
+        .segment-info ul { list-style: disc; padding-left: 18px; font-size: 0.87rem; color: var(--text-mid); }
+        .segment-info li { padding: 3px 0; }
+        .segment-info strong { color: var(--text-dark); }
+
+        .segment-group {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 20px;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .group-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--burgundy);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--cream-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .group-title i { color: var(--gold); }
+
+        /* ===== IMPORTANCE GRID ===== */
+        .importance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .importance-item {
+            text-align: center;
+            padding: 20px 16px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cream-dark);
+        }
+
+        .importance-item i { font-size: 1.5rem; color: var(--teal); margin-bottom: 10px; display: block; }
+        .importance-item h4 { color: var(--text-dark); margin-bottom: 6px; font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+        .importance-item p { font-size: 0.83rem; color: var(--text-light); }
+
+        /* ===== TRIAD EXPLANATION ===== */
+        .triad-explanation {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 600px) { .triad-explanation { grid-template-columns: 1fr; } }
+
+        .triad-item {
+            text-align: center;
+            padding: 18px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cream-dark);
+        }
+
+        .triad-item i { font-size: 1.6rem; color: var(--burgundy); margin-bottom: 10px; display: block; }
+        .triad-item h4 { color: var(--text-dark); margin-bottom: 6px; font-size: 0.88rem; text-transform: none; letter-spacing: 0; }
+        .triad-item p { font-size: 0.82rem; color: var(--text-light); }
+
+        /* ===== MEMORY TRICKS ===== */
+        .memory-tricks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .trick-item {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8f1);
+            border: 1px solid #c8e6c9;
+            border-radius: var(--radius-sm);
+            padding: 18px;
+        }
+
+        .trick-item h4 { color: #2e6b2e; margin-bottom: 10px; font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+        .trick-item p { font-size: 0.85rem; color: #3d5e3d; }
+        .trick-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: #4a6e4a; }
+        .trick-item li { padding: 2px 0; }
+
+        /* ===== SURFACE CARDS ===== */
+        .surface-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .surface-card.diaphragmatic { border-top: 4px solid var(--teal); }
+        .surface-card.visceral { border-top: 4px solid var(--burgundy); }
+        .surface-card.posterior { border-top: 4px solid var(--charcoal); }
+
+        .surface-card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .surface-card h3 i { color: var(--gold); }
+
+        .surface-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+        .detail-section h4 { color: var(--burgundy); font-size: 0.85rem; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .detail-section ul { list-style: none; padding: 0; }
+        .detail-section li { font-size: 0.86rem; color: var(--text-mid); padding: 4px 0 4px 14px; position: relative; }
+        .detail-section li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+        .detail-section li strong { color: var(--text-dark); }
+
+        /* ===== H-PATTERN ===== */
+        .h-pattern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .h-part {
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .h-part h5 { color: var(--teal); font-size: 0.85rem; margin-bottom: 10px; font-weight: 600; }
+        .h-part ul { list-style: none; padding: 0; }
+        .h-part li { font-size: 0.84rem; color: var(--text-mid); padding: 3px 0 3px 12px; position: relative; }
+        .h-part li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        /* ===== BORDER CARDS ===== */
+        .border-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 20px; }
+
+        .border-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .border-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.15rem; color: var(--charcoal); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .border-card h3 i { color: var(--gold); }
+        .border-details h4 { color: var(--burgundy); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 16px 0 8px; }
+        .border-details ul { list-style: disc; padding-left: 18px; font-size: 0.86rem; color: var(--text-mid); }
+        .border-details li { padding: 3px 0; }
+        .border-details li strong { color: var(--text-dark); }
+
+        /* ===== LIGAMENT CARDS ===== */
+        .ligaments-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; margin-bottom: 24px; }
+
+        .ligament-card {
+            background: var(--warm-white);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ligament-card.falciform { border-top: 4px solid var(--burgundy); }
+        .ligament-card.round { border-top: 4px solid var(--teal); }
+        .ligament-card.coronary { border-top: 4px solid var(--gold); }
+        .ligament-card.triangular { border-top: 4px solid #6b7280; }
+        .ligament-card.omentum { border-top: 4px solid var(--charcoal); }
+
+        .ligament-header {
+            background: var(--cream);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .ligament-header h3 { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: var(--charcoal); display: flex; align-items: center; gap: 8px; }
+        .ligament-header h3 i { color: var(--gold); font-size: 0.9rem; }
+        .ligament-badge { background: var(--charcoal); color: var(--cream); font-size: 0.68rem; padding: 3px 10px; border-radius: 100px; font-weight: 500; white-space: nowrap; }
+
+        .ligament-content { padding: 20px; }
+        .ligament-content h4 { color: var(--burgundy); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 16px 0 8px; font-weight: 600; }
+        .ligament-content h4:first-child { margin-top: 0; }
+        .ligament-content ul { list-style: none; padding: 0; }
+        .ligament-content li { font-size: 0.86rem; color: var(--text-mid); padding: 4px 0 4px 14px; position: relative; }
+        .ligament-content li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+        .ligament-content li strong { color: var(--text-dark); }
+        .ligament-content ul ul { padding-left: 14px; margin-top: 4px; }
+        .ligament-content ul ul li { font-size: 0.83rem; }
+
+        /* ===== LAYERS EXPLANATION ===== */
+        .layers-explanation { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+        @media (max-width: 500px) { .layers-explanation { grid-template-columns: 1fr; } }
+
+        .layer-item { background: var(--cream); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--cream-dark); }
+        .layer-item h5 { color: var(--teal); font-size: 0.85rem; margin-bottom: 8px; font-weight: 600; }
+        .layer-item ul { list-style: disc; padding-left: 14px; font-size: 0.83rem; color: var(--text-mid); }
+        .layer-item li { padding: 2px 0; }
+
+        /* ===== PARTS GRID ===== */
+        .parts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+        @media (max-width: 500px) { .parts-grid { grid-template-columns: 1fr; } }
+
+        .part-card { background: var(--cream); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--cream-dark); }
+        .part-card h5 { color: var(--burgundy); font-size: 0.85rem; margin-bottom: 8px; font-weight: 600; }
+        .part-card ul { list-style: none; padding: 0; }
+        .part-card li { font-size: 0.83rem; color: var(--text-mid); padding: 3px 0 3px 12px; position: relative; }
+        .part-card li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin: 8px 0; }
+        .comparison-table th { background: var(--charcoal); color: var(--cream); padding: 8px 12px; text-align: left; }
+        .comparison-table td { padding: 8px 12px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); }
+
+        /* ===== INTRO TEXT ===== */
+        .intro-text { color: var(--text-mid); font-size: 0.92rem; margin-bottom: 14px; line-height: 1.7; }
+        .overview-list { list-style: none; padding: 0; }
+        .overview-list li { padding: 6px 0 6px 16px; color: var(--text-mid); font-size: 0.9rem; position: relative; border-bottom: 1px solid var(--cream-dark); }
+        .overview-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
+        .overview-list li strong { color: var(--text-dark); }
+
+        /* ===== BACK TO HOME BUTTON ===== */
+        .back-home-btn {
+            position: fixed;
+            bottom: 88px;
+            right: 28px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--charcoal);
+            color: var(--gold-light);
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            box-shadow: var(--shadow-md);
+            border: 1.5px solid rgba(196,151,62,0.35);
+            z-index: 99;
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+        .back-home-btn:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .back-home-btn i { font-size: 0.85rem; }
+
+        /* ===== FLOATING LIKE ===== */
+        .floating-like {
+            position: fixed;
+            left: 24px;
+            bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            z-index: 99;
+        }
+        .like-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            color: #ccc;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+        }
+        .like-btn.liked { color: #e53935; background: #fff0f0; border: 2px solid #ffcdd2; transform: scale(1.08); }
+        .like-btn:active { transform: scale(0.92); }
+        .like-btn:hover:not(.liked) { color: #ef9a9a; transform: scale(1.1); box-shadow: 0 6px 24px rgba(229,57,53,0.2); }
+        .like-btn.burst::after { content: "❤"; position: absolute; font-size: 1.2rem; animation: burst-up 0.6s ease forwards; pointer-events: none; }
+        @keyframes burst-up { 0% { opacity:1; transform:translateY(0) scale(1); } 100% { opacity:0; transform:translateY(-40px) scale(1.5); } }
+        .like-count { background: var(--burgundy); color: var(--cream); font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; min-width: 44px; text-align: center; box-shadow: var(--shadow-sm); }
+        .like-label { font-size: 0.68rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        @keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+        .like-count.pop { animation: like-pop 0.3s ease; }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: var(--burgundy);
+            color: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            z-index: 99;
+            border: none;
+        }
+
+        .scroll-to-top.visible { opacity: 1; pointer-events: auto; }
+        .scroll-to-top:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--charcoal);
+            color: rgba(249,244,236,0.7);
+            padding: 48px 0 24px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+
+        .footer-section p { font-size: 0.85rem; line-height: 1.7; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 8px; }
+        .footer-section ul a { color: rgba(249,244,236,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-section ul a:hover { color: var(--gold-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(249,244,236,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: rgba(249,244,236,0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .menu-toggle { display: flex; align-items: center; }
+            .hero { padding: 60px 0 48px; }
+            .hero-stats { gap: 6px; }
+            .stat-item { padding: 14px 18px; min-width: 100px; }
+            .lobes-grid, .ligaments-grid { grid-template-columns: 1fr; }
+            .segments-detailed .segment-card { flex-direction: column; }
+            .surface-details { grid-template-columns: 1fr; }
+            .summary-table { font-size: 0.78rem; }
+            .summary-table th, .summary-table td { padding: 8px 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .quick-nav-grid { grid-template-columns: repeat(2, 1fr); }
+            .characteristics-grid { grid-template-columns: repeat(2, 1fr); }
+            .triad-explanation { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-heart-pulse"></i>
+                <a href="#" class="logo">
+                    <i class="fas fa-heartbeat"></i>
                     <span>Organs Explorer</span>
-                </div>
+                </a>
                 <nav class="nav">
-                    <a href="#overview">Overview</a>
-                    <a href="#anatomy">Anatomy</a>
-                    <a href="#histology">Histology</a>
-                    <a href="#clinical">Clinical</a>
+                    <a href="#location">Overview</a>
+                    <a href="#gross-anatomy">Anatomy</a>
+                    <a href="#histology-section">Histology</a>
+                    <a href="#clinical-section">Clinical</a>
                     <a href="#exam-points">NEET Points</a>
                 </nav>
-                <button class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -47,11 +1023,13 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#overview">Overview</a>
-        <a href="#anatomy">Anatomy</a>
-        <a href="#histology">Histology</a>
-        <a href="#clinical">Clinical</a>
-        <a href="#exam-points">NEET Points</a>
+        <a href="#location" onclick="closeMobileMenu()">Overview</a>
+        <a href="#gross-anatomy" onclick="closeMobileMenu()">Anatomy</a>
+        <a href="#lobes" onclick="closeMobileMenu()">Lobes</a>
+        <a href="#segments" onclick="closeMobileMenu()">Segments</a>
+        <a href="#ligaments" onclick="closeMobileMenu()">Ligaments</a>
+        <a href="#clinical-section" onclick="closeMobileMenu()">Clinical</a>
+        <a href="#exam-points" onclick="closeMobileMenu()">NEET Points</a>
     </div>
 
     <!-- Hero Section -->
@@ -59,12 +1037,12 @@
         <div class="container">
             <div class="hero-content">
                 <div class="organ-badge">
-                    <i class="fas fa-liver"></i>
+                    <img src="https://cdn-icons-png.flaticon.com/512/8855/8855321.png" alt="Liver Icon" style="width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(0.15);">
                 </div>
                 <h1 class="page-title">THE LIVER</h1>
                 <p class="tagline">The Body's Chemical Factory and Metabolic Powerhouse</p>
                 <p class="hero-description">
-                    The liver is the largest internal organ and gland in the human body, performing over 500 vital functions. 
+                    The liver is the largest internal organ and gland in the human body, performing over 500 vital functions.
                     It plays crucial roles in metabolism, detoxification, protein synthesis, and bile production.
                 </p>
                 <div class="hero-stats">
@@ -92,68 +1070,33 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
+
             <!-- Quick Navigation -->
             <div class="quick-nav">
                 <h3>Quick Jump to Sections</h3>
                 <div class="quick-nav-grid">
-                    <a href="#location" class="quick-nav-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Location</span>
-                    </a>
-                    <a href="#gross-anatomy" class="quick-nav-item">
-                        <i class="fas fa-eye"></i>
-                        <span>Gross Anatomy</span>
-                    </a>
-                    <a href="#lobes" class="quick-nav-item">
-                        <i class="fas fa-puzzle-piece"></i>
-                        <span>Lobes</span>
-                    </a>
-                    <a href="#segments" class="quick-nav-item">
-                        <i class="fas fa-cubes"></i>
-                        <span>Segments</span>
-                    </a>
-                    <a href="#surfaces" class="quick-nav-item">
-                        <i class="fas fa-border-all"></i>
-                        <span>Surfaces</span>
-                    </a>
-                    <a href="#ligaments" class="quick-nav-item">
-                        <i class="fas fa-link"></i>
-                        <span>Ligaments</span>
-                    </a>
-                    <a href="#porta" class="quick-nav-item">
-                        <i class="fas fa-door-open"></i>
-                        <span>Porta Hepatis</span>
-                    </a>
-                    <a href="#blood-supply" class="quick-nav-item">
-                        <i class="fas fa-heart"></i>
-                        <span>Blood Supply</span>
-                    </a>
-                    <a href="#biliary" class="quick-nav-item">
-                        <i class="fas fa-droplet"></i>
-                        <span>Biliary System</span>
-                    </a>
-                    <a href="#histology" class="quick-nav-item">
-                        <i class="fas fa-microscope"></i>
-                        <span>Histology</span>
-                    </a>
-                    <a href="#functions" class="quick-nav-item">
-                        <i class="fas fa-cogs"></i>
-                        <span>Functions</span>
-                    </a>
-                    <a href="#clinical" class="quick-nav-item">
-                        <i class="fas fa-stethoscope"></i>
-                        <span>Clinical</span>
-                    </a>
+                    <a href="#location" class="quick-nav-item"><i class="fas fa-map-marker-alt"></i><span>Location</span></a>
+                    <a href="#gross-anatomy" class="quick-nav-item"><i class="fas fa-eye"></i><span>Gross Anatomy</span></a>
+                    <a href="#lobes" class="quick-nav-item"><i class="fas fa-puzzle-piece"></i><span>Lobes</span></a>
+                    <a href="#segments" class="quick-nav-item"><i class="fas fa-cubes"></i><span>Segments</span></a>
+                    <a href="#surfaces" class="quick-nav-item"><i class="fas fa-border-all"></i><span>Surfaces</span></a>
+                    <a href="#ligaments" class="quick-nav-item"><i class="fas fa-link"></i><span>Ligaments</span></a>
+                    <a href="#porta" class="quick-nav-item"><i class="fas fa-door-open"></i><span>Porta Hepatis</span></a>
+                    <a href="#blood-supply" class="quick-nav-item"><i class="fas fa-heart"></i><span>Blood Supply</span></a>
+                    <a href="#biliary" class="quick-nav-item"><i class="fas fa-droplet"></i><span>Biliary System</span></a>
+                    <a href="#histology-section" class="quick-nav-item"><i class="fas fa-microscope"></i><span>Histology</span></a>
+                    <a href="#functions" class="quick-nav-item"><i class="fas fa-cogs"></i><span>Functions</span></a>
+                    <a href="#clinical-section" class="quick-nav-item"><i class="fas fa-stethoscope"></i><span>Clinical</span></a>
                 </div>
             </div>
 
-            <!-- Section A: Location & Position -->
+            <!-- Section A: Location -->
             <section id="location" class="content-section">
                 <div class="section-header">
                     <span class="section-label">Section A</span>
                     <h2>Location & Position</h2>
                 </div>
-                
+
                 <div class="info-card">
                     <h3><i class="fas fa-map-marker-alt"></i> Exact Location in Abdomen</h3>
                     <ul class="detailed-list">
@@ -167,31 +1110,27 @@
 
                 <div class="info-card">
                     <h3><i class="fas fa-arrows-alt"></i> Relations to Nearby Structures</h3>
-                    
                     <div class="relation-grid">
                         <div class="relation-card">
                             <h4>Superior Relations</h4>
                             <ul>
                                 <li><strong>Diaphragm:</strong> Separates liver from lungs and pleura</li>
                                 <li><strong>Right pleura and lung:</strong> Related to upper part of right lobe</li>
-                                <li><strong>Heart:</strong> Left lobe is related to heart through diaphragm</li>
+                                <li><strong>Heart:</strong> Left lobe related to heart through diaphragm</li>
                                 <li><strong>Pericardium:</strong> Anterior part of left lobe</li>
                             </ul>
                         </div>
-
                         <div class="relation-card">
                             <h4>Inferior (Visceral) Relations</h4>
                             <ul>
                                 <li><strong>Stomach:</strong> Left lobe shows gastric impression</li>
-                                <li><strong>Duodenum:</strong> First and second parts create duodenal impression</li>
+                                <li><strong>Duodenum:</strong> 1st and 2nd parts create duodenal impression</li>
                                 <li><strong>Right kidney:</strong> Posterior part shows renal impression</li>
                                 <li><strong>Right suprarenal gland:</strong> Small suprarenal impression</li>
                                 <li><strong>Hepatic flexure of colon:</strong> Colic impression</li>
                                 <li><strong>Gallbladder:</strong> Fossa for gallbladder on visceral surface</li>
-                                <li><strong>Esophagus:</strong> Posterior part of left lobe</li>
                             </ul>
                         </div>
-
                         <div class="relation-card">
                             <h4>Anterior Relations</h4>
                             <ul>
@@ -200,14 +1139,12 @@
                                 <li><strong>Xiphoid process:</strong> Left lobe related</li>
                             </ul>
                         </div>
-
                         <div class="relation-card">
                             <h4>Posterior Relations</h4>
                             <ul>
                                 <li><strong>Diaphragm:</strong> Separates from vertebral column</li>
-                                <li><strong>Inferior vena cava (IVC):</strong> Groove on posterior surface</li>
+                                <li><strong>IVC:</strong> Groove on posterior surface</li>
                                 <li><strong>Esophagus:</strong> Esophageal groove</li>
-                                <li><strong>Aorta:</strong> Through diaphragm</li>
                                 <li><strong>Right kidney and suprarenal:</strong> Direct contact</li>
                             </ul>
                         </div>
@@ -220,40 +1157,10 @@
                         <p><strong>Important:</strong> Liver is an intraperitoneal organ EXCEPT for the bare area</p>
                     </div>
                     <ul class="detailed-list">
-                        <li>
-                            <strong>Falciform Ligament:</strong>
-                            <ul>
-                                <li>Connects liver to anterior abdominal wall and diaphragm</li>
-                                <li>Separates right and left lobes (anatomically)</li>
-                                <li>Contains ligamentum teres (obliterated umbilical vein)</li>
-                                <li>Extends from bare area to umbilicus</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Coronary Ligament:</strong>
-                            <ul>
-                                <li>Connects posterior surface of liver to diaphragm</li>
-                                <li>Has anterior and posterior layers</li>
-                                <li>Encloses the bare area (area without peritoneal covering)</li>
-                                <li>Anterior layer: reflection of peritoneum from diaphragmatic surface</li>
-                                <li>Posterior layer: reflection from posterior surface</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Right Triangular Ligament:</strong>
-                            <ul>
-                                <li>Where anterior and posterior layers of coronary ligament meet on right side</li>
-                                <li>Small triangular fold</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Left Triangular Ligament:</strong>
-                            <ul>
-                                <li>Where anterior and posterior layers meet on left side</li>
-                                <li>Connects left lobe to diaphragm</li>
-                                <li>Longer than right triangular ligament</li>
-                            </ul>
-                        </li>
+                        <li><strong>Falciform Ligament:</strong> Connects liver to anterior abdominal wall and diaphragm. Contains ligamentum teres (obliterated umbilical vein). Separates right and left lobes anatomically.</li>
+                        <li><strong>Coronary Ligament:</strong> Connects posterior surface of liver to diaphragm. Has anterior and posterior layers. Encloses the bare area (area without peritoneal covering).</li>
+                        <li><strong>Right Triangular Ligament:</strong> Where anterior and posterior layers of coronary ligament meet on right side. Small triangular fold.</li>
+                        <li><strong>Left Triangular Ligament:</strong> Connects left lobe to diaphragm. Longer than right triangular ligament.</li>
                     </ul>
                 </div>
             </section>
@@ -269,16 +1176,16 @@
                     <h3><i class="fas fa-ruler"></i> Physical Characteristics</h3>
                     <div class="characteristics-grid">
                         <div class="char-item">
-                            <div class="char-icon"><i class="fas fa-weight"></i></div>
+                            <div class="char-icon"><i class="fas fa-weight-hanging"></i></div>
                             <div class="char-label">Weight</div>
-                            <div class="char-value">1.2-1.5 kg (Adult)</div>
+                            <div class="char-value">1.2–1.5 kg</div>
                             <div class="char-detail">About 2% of body weight</div>
                         </div>
                         <div class="char-item">
                             <div class="char-icon"><i class="fas fa-ruler-horizontal"></i></div>
                             <div class="char-label">Size</div>
-                            <div class="char-value">25-28 cm wide</div>
-                            <div class="char-detail">15-18 cm anteroposterior</div>
+                            <div class="char-value">25–28 cm wide</div>
+                            <div class="char-detail">15–18 cm anteroposterior</div>
                         </div>
                         <div class="char-item">
                             <div class="char-icon"><i class="fas fa-shapes"></i></div>
@@ -304,25 +1211,21 @@
                         <li><strong>Color:</strong> Uniform reddish-brown</li>
                         <li><strong>Consistency:</strong> Firm but soft (becomes hard in cirrhosis)</li>
                         <li><strong>Coverage:</strong> Covered by peritoneum except at attachment of falciform ligament</li>
-                        <li><strong>Upper border:</strong> Related to diaphragm, hence to heart and lungs</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
                     <h3><i class="fas fa-layer-group"></i> Visceral (Inferior) Surface Features</h3>
                     <p class="intro-text">The visceral surface is directed downwards, backwards, and to the left. It shows multiple impressions and important structures:</p>
-                    
                     <div class="feature-grid">
                         <div class="feature-item">
                             <h4>H-Shaped Fissures</h4>
-                            <p>The visceral surface has characteristic H-shaped fissures:</p>
                             <ul>
                                 <li><strong>Vertical right limb:</strong> Fossa for gallbladder (anteriorly) + Groove for IVC (posteriorly)</li>
                                 <li><strong>Vertical left limb:</strong> Fissure for ligamentum teres (anteriorly) + Fissure for ligamentum venosum (posteriorly)</li>
                                 <li><strong>Horizontal crossbar:</strong> Porta hepatis</li>
                             </ul>
                         </div>
-
                         <div class="feature-item">
                             <h4>Porta Hepatis</h4>
                             <ul>
@@ -332,17 +1235,15 @@
                                 <li>About 5 cm long</li>
                             </ul>
                         </div>
-
                         <div class="feature-item">
                             <h4>Gallbladder Fossa</h4>
                             <ul>
                                 <li>Located on right side of H</li>
                                 <li>Houses the gallbladder</li>
-                                <li>About 7-10 cm long</li>
+                                <li>About 7–10 cm long</li>
                                 <li>Separates quadrate lobe from right lobe</li>
                             </ul>
                         </div>
-
                         <div class="feature-item">
                             <h4>IVC Groove</h4>
                             <ul>
@@ -361,75 +1262,37 @@
                             <h4>1. Gastric Impression</h4>
                             <p><strong>Location:</strong> Left lobe, visceral surface</p>
                             <p><strong>Caused by:</strong> Stomach (anterior surface and lesser curvature)</p>
-                            <p><strong>Appearance:</strong> Shallow concave depression</p>
                         </div>
-
                         <div class="impression-item">
                             <h4>2. Duodenal Impression</h4>
                             <p><strong>Location:</strong> Right lobe, near porta hepatis</p>
                             <p><strong>Caused by:</strong> First part of duodenum</p>
-                            <p><strong>Appearance:</strong> Small shallow depression</p>
                         </div>
-
                         <div class="impression-item">
                             <h4>3. Colic Impression</h4>
-                            <p><strong>Location:</strong> Right lobe, lower part of visceral surface</p>
+                            <p><strong>Location:</strong> Right lobe, lower visceral surface</p>
                             <p><strong>Caused by:</strong> Right colic flexure (hepatic flexure)</p>
-                            <p><strong>Appearance:</strong> Variable depression</p>
                         </div>
-
                         <div class="impression-item">
                             <h4>4. Renal Impression</h4>
-                            <p><strong>Location:</strong> Right lobe, posterior part of visceral surface</p>
+                            <p><strong>Location:</strong> Right lobe, posterior visceral surface</p>
                             <p><strong>Caused by:</strong> Right kidney</p>
-                            <p><strong>Appearance:</strong> Deep concave impression</p>
                         </div>
-
                         <div class="impression-item">
                             <h4>5. Suprarenal Impression</h4>
                             <p><strong>Location:</strong> Near IVC groove, above renal impression</p>
                             <p><strong>Caused by:</strong> Right suprarenal gland</p>
-                            <p><strong>Appearance:</strong> Small triangular depression</p>
                         </div>
-
                         <div class="impression-item">
                             <h4>6. Esophageal Impression</h4>
                             <p><strong>Location:</strong> Posterior surface of left lobe</p>
                             <p><strong>Caused by:</strong> Lower end of esophagus</p>
-                            <p><strong>Appearance:</strong> Small depression</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="info-card">
-                    <h3><i class="fas fa-square"></i> Bare Area of Liver</h3>
-                    <div class="highlight-box warning">
-                        <p><strong>Clinical Importance:</strong> The bare area is where liver is directly in contact with diaphragm without peritoneal covering. Infections can spread here.</p>
-                    </div>
-                    <ul class="detailed-list">
-                        <li><strong>Location:</strong> Posterior surface of right lobe</li>
-                        <li><strong>Shape:</strong> Triangular or quadrilateral area</li>
-                        <li><strong>Boundaries:</strong>
-                            <ul>
-                                <li>Anterior: Anterior layer of coronary ligament</li>
-                                <li>Posterior: Posterior layer of coronary ligament</li>
-                                <li>Right: Right triangular ligament</li>
-                                <li>Left: IVC and caudate lobe</li>
-                            </ul>
-                        </li>
-                        <li><strong>Relations:</strong> Directly attached to diaphragm (no peritoneum)</li>
-                        <li><strong>Significance:</strong>
-                            <ul>
-                                <li>Only area without peritoneal covering</li>
-                                <li>Direct pathway for spread of infections to/from diaphragm</li>
-                                <li>Site where hepatic veins leave liver to enter IVC</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </section>
 
-            <!-- Section C: Lobes of Liver -->
+            <!-- Section C: Lobes -->
             <section id="lobes" class="content-section">
                 <div class="section-header">
                     <span class="section-label">Section C</span>
@@ -452,7 +1315,7 @@
                             <h4>Physiological/Functional Division</h4>
                             <p>Based on <strong>blood supply and bile drainage</strong>:</p>
                             <ul>
-                                <li>Divided by Cantlie's line (imaginary line from IVC to gallbladder fossa)</li>
+                                <li>Divided by Cantlie's line</li>
                                 <li>2 main functional lobes + 8 segments</li>
                                 <li>Used in surgery and radiology</li>
                                 <li>Quadrate and caudate lobes belong to LEFT functional lobe</li>
@@ -471,28 +1334,18 @@
                             <span class="lobe-badge largest">Largest Lobe</span>
                         </div>
                         <div class="lobe-content">
-                            <h4><i class="fas fa-info-circle"></i> Basic Features</h4>
+                            <h4>Basic Features</h4>
                             <ul>
-                                <li><strong>Size:</strong> Largest lobe, about 6 times larger than left lobe</li>
-                                <li><strong>Position:</strong> Occupies right hypochondrium</li>
-                                <li><strong>Boundaries:</strong>
-                                    <ul>
-                                        <li>Anteriorly: Separated from left lobe by falciform ligament</li>
-                                        <li>Posteriorly: Separated by fissure for ligamentum venosum and IVC groove</li>
-                                        <li>On visceral surface: Bounded by H-shaped fissures</li>
-                                    </ul>
-                                </li>
+                                <li>About 6 times larger than left lobe</li>
+                                <li>Occupies right hypochondrium</li>
+                                <li>Separated from left lobe by falciform ligament (anteriorly)</li>
                             </ul>
-
-                            <h4><i class="fas fa-map-marked"></i> Important Features</h4>
+                            <h4>Important Features</h4>
                             <ul>
-                                <li>Contains gallbladder fossa on its visceral surface</li>
-                                <li>Shows renal, suprarenal, duodenal, and colic impressions</li>
-                                <li>Related to right kidney, right colic flexure, duodenum</li>
+                                <li>Contains gallbladder fossa on visceral surface</li>
+                                <li>Shows renal, suprarenal, duodenal, colic impressions</li>
                                 <li>Bare area located on posterior part</li>
                             </ul>
-
-                            <h4><i class="fas fa-stethoscope"></i> Clinical Note</h4>
                             <p class="clinical-note">Right lobe is more commonly affected by liver diseases. Liver biopsy is often taken from right lobe.</p>
                         </div>
                     </div>
@@ -503,28 +1356,19 @@
                             <span class="lobe-badge">Smaller Lobe</span>
                         </div>
                         <div class="lobe-content">
-                            <h4><i class="fas fa-info-circle"></i> Basic Features</h4>
+                            <h4>Basic Features</h4>
                             <ul>
-                                <li><strong>Size:</strong> Smaller and thinner than right lobe</li>
-                                <li><strong>Position:</strong> Extends into left hypochondrium and epigastrium</li>
-                                <li><strong>Boundaries:</strong>
-                                    <ul>
-                                        <li>Right margin: Falciform ligament (anterior), fissure for ligamentum venosum (posterior)</li>
-                                        <li>Left margin: Left triangular ligament</li>
-                                    </ul>
-                                </li>
+                                <li>Smaller and thinner than right lobe</li>
+                                <li>Extends into left hypochondrium and epigastrium</li>
+                                <li>Left triangular ligament attaches here</li>
                             </ul>
-
-                            <h4><i class="fas fa-map-marked"></i> Important Features</h4>
+                            <h4>Important Features</h4>
                             <ul>
                                 <li>Shows prominent gastric impression on visceral surface</li>
                                 <li>Related to stomach, esophagus, and heart</li>
-                                <li>Attached to diaphragm by left triangular ligament</li>
-                                <li>Fissure for ligamentum teres on its visceral surface</li>
+                                <li>Fissure for ligamentum teres on visceral surface</li>
                             </ul>
-
-                            <h4><i class="fas fa-book"></i> Remember</h4>
-                            <p class="remember-note">Left lobe receives blood mainly from left branches of hepatic artery and portal vein. In functional division, quadrate and caudate lobes are part of left functional lobe.</p>
+                            <p class="remember-note">In functional division, quadrate and caudate lobes are part of left functional lobe.</p>
                         </div>
                     </div>
 
@@ -534,33 +1378,17 @@
                             <span class="lobe-badge">Small, Inferior</span>
                         </div>
                         <div class="lobe-content">
-                            <h4><i class="fas fa-info-circle"></i> Basic Features</h4>
-                            <ul>
-                                <li><strong>Location:</strong> Visceral surface only (cannot be seen from above)</li>
-                                <li><strong>Shape:</strong> Roughly quadrilateral (hence name "quadrate")</li>
-                                <li><strong>Position:</strong> Between right and left lobes, anterior to porta hepatis</li>
-                            </ul>
-
-                            <h4><i class="fas fa-border-all"></i> Boundaries (Very Important for Exams)</h4>
+                            <h4>Boundaries (Very Important for Exams)</h4>
                             <ul>
                                 <li><strong>Anteriorly:</strong> Inferior border of liver</li>
                                 <li><strong>Posteriorly:</strong> Porta hepatis</li>
                                 <li><strong>Right side:</strong> Fossa for gallbladder</li>
                                 <li><strong>Left side:</strong> Fissure for ligamentum teres</li>
                             </ul>
-
-                            <h4><i class="fas fa-exclamation-circle"></i> Functional Anatomy</h4>
                             <div class="highlight-box info">
-                                <p><strong>Important:</strong> Anatomically looks like part of right lobe, BUT functionally belongs to LEFT lobe because:</p>
-                                <ul>
-                                    <li>Receives blood from left hepatic artery</li>
-                                    <li>Drains bile into left hepatic duct</li>
-                                    <li>Supplied by left portal vein branches</li>
-                                </ul>
+                                <p><strong>Important:</strong> Anatomically looks like right lobe BUT functionally belongs to LEFT lobe — receives blood from left hepatic artery, drains bile into left hepatic duct.</p>
                             </div>
-
-                            <h4><i class="fas fa-stethoscope"></i> Clinical Relevance</h4>
-                            <p class="clinical-note">Quadrate lobe is related to gallbladder. Inflammation of gallbladder (cholecystitis) can affect this lobe.</p>
+                            <p class="clinical-note">Related to gallbladder. Cholecystitis can affect this lobe.</p>
                         </div>
                     </div>
 
@@ -570,40 +1398,17 @@
                             <span class="lobe-badge">Posterior, Small</span>
                         </div>
                         <div class="lobe-content">
-                            <h4><i class="fas fa-info-circle"></i> Basic Features</h4>
-                            <ul>
-                                <li><strong>Location:</strong> Posterior surface of liver (cannot be seen from front)</li>
-                                <li><strong>Shape:</strong> Tail-like projection (Latin "cauda" = tail)</li>
-                                <li><strong>Position:</strong> Between IVC and fissure for ligamentum venosum</li>
-                            </ul>
-
-                            <h4><i class="fas fa-border-all"></i> Boundaries</h4>
+                            <h4>Boundaries</h4>
                             <ul>
                                 <li><strong>Anteriorly:</strong> Porta hepatis</li>
                                 <li><strong>Posteriorly:</strong> IVC</li>
                                 <li><strong>Right side:</strong> Groove for IVC</li>
                                 <li><strong>Left side:</strong> Fissure for ligamentum venosum</li>
                             </ul>
-
-                            <h4><i class="fas fa-puzzle-piece"></i> Parts of Caudate Lobe</h4>
-                            <ul>
-                                <li><strong>Caudate process:</strong> Thin strip connecting caudate lobe to right lobe (runs to right, posterior to porta hepatis)</li>
-                                <li><strong>Papillary process:</strong> Small elevation on left side of caudate lobe</li>
-                            </ul>
-
-                            <h4><i class="fas fa-exclamation-circle"></i> Unique Features</h4>
                             <div class="highlight-box success">
-                                <p><strong>Special characteristics of caudate lobe:</strong></p>
-                                <ul>
-                                    <li>Has <strong>independent blood supply</strong> directly from portal vein and hepatic artery</li>
-                                    <li>Drains directly into IVC (hepatic veins drain separately)</li>
-                                    <li>Like quadrate lobe, functionally belongs to LEFT lobe</li>
-                                    <li>Can undergo hypertrophy in cirrhosis when other lobes atrophy</li>
-                                </ul>
+                                <p><strong>Unique features:</strong> Independent blood supply directly from portal vein; drains directly into IVC; can hypertrophy in cirrhosis when other lobes atrophy.</p>
                             </div>
-
-                            <h4><i class="fas fa-stethoscope"></i> Clinical Importance</h4>
-                            <p class="clinical-note">In cirrhosis with portal hypertension, caudate lobe often enlarges because it has direct drainage to IVC, bypassing the obstructed hepatic veins. This is called "caudate lobe hypertrophy" - an important radiological sign!</p>
+                            <p class="clinical-note">In cirrhosis, caudate lobe enlarges — "caudate lobe hypertrophy" is an important radiological sign!</p>
                         </div>
                     </div>
                 </div>
@@ -615,7 +1420,6 @@
                             <tr>
                                 <th>Lobe</th>
                                 <th>Size</th>
-                                <th>Location</th>
                                 <th>Key Features</th>
                                 <th>Functional Classification</th>
                             </tr>
@@ -624,28 +1428,24 @@
                             <tr>
                                 <td><strong>Right Lobe</strong></td>
                                 <td>Largest</td>
-                                <td>Right side, entire right hypochondrium</td>
                                 <td>Gallbladder fossa, multiple impressions</td>
                                 <td>Right functional lobe</td>
                             </tr>
                             <tr>
                                 <td><strong>Left Lobe</strong></td>
                                 <td>Smaller</td>
-                                <td>Extends to left hypochondrium</td>
                                 <td>Gastric impression</td>
                                 <td>Left functional lobe</td>
                             </tr>
                             <tr>
                                 <td><strong>Quadrate Lobe</strong></td>
                                 <td>Small</td>
-                                <td>Visceral surface, anterior to porta</td>
                                 <td>Bounded by gallbladder and lig. teres</td>
                                 <td>LEFT functional lobe</td>
                             </tr>
                             <tr>
                                 <td><strong>Caudate Lobe</strong></td>
                                 <td>Small</td>
-                                <td>Posterior surface</td>
                                 <td>Between IVC and lig. venosum</td>
                                 <td>LEFT functional lobe</td>
                             </tr>
@@ -654,7 +1454,7 @@
                 </div>
             </section>
 
-            <!-- Section D: Segmental Anatomy -->
+            <!-- Section D: Segments -->
             <section id="segments" class="content-section">
                 <div class="section-header">
                     <span class="section-label">Section D</span>
@@ -665,213 +1465,122 @@
                     <h3><i class="fas fa-graduation-cap"></i> Why Learn Liver Segments?</h3>
                     <div class="importance-grid">
                         <div class="importance-item">
-                            <i class="fas fa-scalpel-path"></i>
+                            <i class="fas fa-cut"></i>
                             <h4>Surgical Planning</h4>
-                            <p>Surgeons can remove diseased segments without affecting healthy ones. Each segment is an independent functional unit.</p>
+                            <p>Remove diseased segments without affecting healthy ones.</p>
                         </div>
                         <div class="importance-item">
                             <i class="fas fa-x-ray"></i>
                             <h4>Radiology</h4>
-                            <p>Doctors describe tumor locations using segment numbers in CT scans and MRI reports.</p>
+                            <p>Tumor locations described using segment numbers in CT/MRI.</p>
                         </div>
                         <div class="importance-item">
                             <i class="fas fa-syringe"></i>
-                            <h4>Interventional Procedures</h4>
-                            <p>Precise targeting for biopsies, ablations, and localized treatments.</p>
+                            <h4>Interventional</h4>
+                            <p>Precise targeting for biopsies and ablations.</p>
                         </div>
                         <div class="importance-item">
                             <i class="fas fa-notes-medical"></i>
                             <h4>Clinical Communication</h4>
-                            <p>Universal language for doctors worldwide to discuss liver pathology.</p>
+                            <p>Universal language for doctors worldwide.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="info-card">
-                    <h3><i class="fas fa-book-medical"></i> The Couinaud Classification System</h3>
-                    <p class="intro-text">French surgeon Claude Couinaud (1957) divided liver into 8 functionally independent segments based on:</p>
-                    <ul class="detailed-list">
-                        <li><strong>Portal vein branches:</strong> Each segment receives its own portal vein branch</li>
-                        <li><strong>Hepatic artery branches:</strong> Each segment has dedicated arterial supply</li>
-                        <li><strong>Bile duct drainage:</strong> Each segment drains through its own bile duct</li>
-                        <li><strong>Hepatic vein position:</strong> Segments are separated by hepatic veins</li>
-                    </ul>
-                    <div class="highlight-box info">
-                        <p><strong>Key Concept:</strong> Each segment is a self-contained unit with its own blood supply and drainage - like separate mini-organs within the liver!</p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <h3><i class="fas fa-cubes"></i> Understanding the 8 Segments</h3>
-                    <p class="intro-text">Segments are numbered I to VIII (Roman numerals). Think of liver divided by 3 imaginary planes:</p>
-                    <ul>
-                        <li><strong>Cantlie's line (vertical):</strong> Right plane, divides right from left lobe</li>
-                        <li><strong>Right hepatic vein (vertical):</strong> Divides right lobe into anterior and posterior sectors</li>
-                        <li><strong>Left hepatic vein (vertical):</strong> Divides left lobe into medial and lateral sectors</li>
-                        <li><strong>Horizontal plane:</strong> Through portal vein bifurcation, divides into superior and inferior segments</li>
-                    </ul>
                 </div>
 
                 <div class="segments-detailed">
                     <div class="segment-card caudate">
                         <div class="segment-number">I</div>
-                        <h3>Segment I - Caudate Lobe</h3>
                         <div class="segment-info">
-                            <p><strong>Location:</strong> Posterior surface of liver</p>
-                            <p><strong>Unique Features:</strong></p>
-                            <ul>
-                                <li>Only segment on posterior surface</li>
-                                <li>Between IVC and fissure for ligamentum venosum</li>
-                                <li>Has independent vascular supply directly from portal vein</li>
-                                <li>Drains directly into IVC (not through hepatic veins)</li>
-                                <li>Can be seen from behind, not from front</li>
-                            </ul>
-                            <p><strong>Clinical Note:</strong> Spared in Budd-Chiari syndrome (hepatic vein thrombosis) because of direct IVC drainage. Often hypertrophies in cirrhosis.</p>
+                            <h3>Segment I — Caudate Lobe</h3>
+                            <p><strong>Location:</strong> Posterior surface of liver, between IVC and fissure for ligamentum venosum</p>
+                            <p><strong>Unique:</strong> Only segment on posterior surface; independent vascular supply; drains directly into IVC (not through hepatic veins)</p>
+                            <p><strong>Clinical:</strong> Spared in Budd-Chiari syndrome. Hypertrophies in cirrhosis.</p>
                         </div>
                     </div>
 
                     <div class="segment-group left-lobe">
                         <h3 class="group-title"><i class="fas fa-arrow-left"></i> LEFT LOBE SEGMENTS (II, III, IVa, IVb)</h3>
-                        
+
                         <div class="segment-card">
                             <div class="segment-number">II</div>
-                            <h3>Segment II - Left Lateral Superior</h3>
                             <div class="segment-info">
+                                <h3>Segment II — Left Lateral Superior</h3>
                                 <p><strong>Location:</strong> Upper part of left lateral sector</p>
-                                <p><strong>Position:</strong> Superior and posterior part of left lobe</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to heart and left dome of diaphragm</li>
-                                    <li>Left triangular ligament attaches here</li>
-                                    <li>Most superior and lateral part of left lobe</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong></p>
-                                <ul>
-                                    <li>Left lateral portal vein branch</li>
-                                    <li>Left hepatic artery branch</li>
-                                </ul>
-                                <p><strong>Drainage:</strong> Left hepatic duct â Common hepatic duct</p>
+                                <p>Related to heart and left dome of diaphragm. Left triangular ligament attaches here.</p>
+                                <p><strong>Supply:</strong> Left lateral portal vein + left hepatic artery branches</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">III</div>
-                            <h3>Segment III - Left Lateral Inferior</h3>
                             <div class="segment-info">
+                                <h3>Segment III — Left Lateral Inferior</h3>
                                 <p><strong>Location:</strong> Lower part of left lateral sector</p>
-                                <p><strong>Position:</strong> Inferior part of left lobe</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to stomach (gastric impression)</li>
-                                    <li>Forms left margin of liver</li>
-                                    <li>Extends to inferior border of liver</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Left lateral portal branches</p>
-                                <p><strong>Easy Memory:</strong> Segments II and III together = Left lateral sector (visible from front)</p>
+                                <p>Related to stomach (gastric impression). Forms left margin of liver.</p>
+                                <p><strong>Memory:</strong> Segments II + III together = Left lateral sector</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">IVa</div>
-                            <h3>Segment IVa - Left Medial Superior</h3>
                             <div class="segment-info">
-                                <p><strong>Location:</strong> Upper part of left medial sector</p>
-                                <p><strong>Position:</strong> Superior to porta hepatis, between falciform ligament and fissure for ligamentum venosum</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to heart through diaphragm</li>
-                                    <li>Anteriorly related to anterior abdominal wall</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Left medial portal vein branches</p>
+                                <h3>Segment IVa — Left Medial Superior</h3>
+                                <p><strong>Location:</strong> Upper part of left medial sector, superior to porta hepatis</p>
+                                <p>Between falciform ligament and fissure for ligamentum venosum. Related to heart through diaphragm.</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">IVb</div>
-                            <h3>Segment IVb - Left Medial Inferior (Quadrate Lobe)</h3>
                             <div class="segment-info">
-                                <p><strong>Location:</strong> Lower part of left medial sector</p>
-                                <p><strong>Position:</strong> Inferior to porta hepatis = Quadrate lobe</p>
-                                <p><strong>Boundaries:</strong></p>
-                                <ul>
-                                    <li>Between gallbladder fossa (right) and ligamentum teres (left)</li>
-                                    <li>Anterior to porta hepatis</li>
-                                    <li>Reaches inferior margin of liver</li>
-                                </ul>
-                                <p><strong>Relations:</strong> Related to gallbladder, pylorus of stomach</p>
-                                <p><strong>Important:</strong> This is the anatomical quadrate lobe (Section C)</p>
+                                <h3>Segment IVb — Left Medial Inferior (Quadrate Lobe)</h3>
+                                <p><strong>Location:</strong> Lower part of left medial sector = anatomical Quadrate lobe</p>
+                                <p>Between gallbladder fossa (right) and ligamentum teres (left), anterior to porta hepatis.</p>
+                                <p><strong>Relations:</strong> Related to gallbladder and pylorus of stomach</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="segment-group right-lobe">
                         <h3 class="group-title"><i class="fas fa-arrow-right"></i> RIGHT LOBE SEGMENTS (V, VI, VII, VIII)</h3>
-                        
+
                         <div class="segment-card">
                             <div class="segment-number">V</div>
-                            <h3>Segment V - Right Anterior Inferior</h3>
                             <div class="segment-info">
-                                <p><strong>Location:</strong> Lower part of right anterior sector</p>
-                                <p><strong>Position:</strong> Inferior and anterior, right side of gallbladder</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to gallbladder (right side of gallbladder fossa)</li>
-                                    <li>Related to hepatic flexure of colon</li>
-                                    <li>Related to right kidney</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Right anterior portal vein branches</p>
-                                <p><strong>Clinical Note:</strong> Common site for liver tumors; adjacent to gallbladder</p>
+                                <h3>Segment V — Right Anterior Inferior</h3>
+                                <p><strong>Location:</strong> Lower part of right anterior sector, right side of gallbladder</p>
+                                <p>Related to gallbladder, hepatic flexure of colon, right kidney.</p>
+                                <p><strong>Clinical:</strong> Common site for liver tumors; adjacent to gallbladder</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">VI</div>
-                            <h3>Segment VI - Right Posterior Inferior</h3>
                             <div class="segment-info">
+                                <h3>Segment VI — Right Posterior Inferior</h3>
                                 <p><strong>Location:</strong> Lower part of right posterior sector</p>
-                                <p><strong>Position:</strong> Posterior and inferior part of right lobe</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to right kidney (renal impression)</li>
-                                    <li>Related to hepatic flexure of colon</li>
-                                    <li>Most inferior and posterior on right side</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Right posterior portal branches</p>
-                                <p><strong>Easy Memory:</strong> "Six sits on kidney" - related to right kidney</p>
+                                <p>Related to right kidney (renal impression) and hepatic flexure of colon.</p>
+                                <p><strong>Memory:</strong> "Six sits on kidney"</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">VII</div>
-                            <h3>Segment VII - Right Posterior Superior</h3>
                             <div class="segment-info">
+                                <h3>Segment VII — Right Posterior Superior</h3>
                                 <p><strong>Location:</strong> Upper part of right posterior sector</p>
-                                <p><strong>Position:</strong> Posterior and superior, between right and middle hepatic veins</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to right dome of diaphragm</li>
-                                    <li>Related to bare area of liver</li>
-                                    <li>Most posterior and superior on right side</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Right posterior portal branches</p>
-                                <p><strong>Clinical Note:</strong> Difficult to access surgically due to posterior position</p>
+                                <p>Related to right dome of diaphragm and bare area of liver.</p>
+                                <p><strong>Clinical:</strong> Difficult to access surgically due to posterior position</p>
                             </div>
                         </div>
 
                         <div class="segment-card">
                             <div class="segment-number">VIII</div>
-                            <h3>Segment VIII - Right Anterior Superior</h3>
                             <div class="segment-info">
-                                <p><strong>Location:</strong> Upper part of right anterior sector</p>
-                                <p><strong>Position:</strong> Anterior and superior, between middle and right hepatic veins</p>
-                                <p><strong>Relations:</strong></p>
-                                <ul>
-                                    <li>Related to right dome of diaphragm and right lung</li>
-                                    <li>Forms upper part of anterior surface</li>
-                                    <li>Most superior on right anterior side</li>
-                                </ul>
-                                <p><strong>Blood Supply:</strong> Right anterior portal branches</p>
-                                <p><strong>Easy Memory:</strong> "Eight is great" - largest of right anterior segments</p>
+                                <h3>Segment VIII — Right Anterior Superior</h3>
+                                <p><strong>Location:</strong> Upper part of right anterior sector, forms upper anterior surface</p>
+                                <p>Related to right dome of diaphragm and right lung.</p>
+                                <p><strong>Memory:</strong> "Eight is great" — largest of right anterior segments</p>
                             </div>
                         </div>
                     </div>
@@ -881,125 +1590,43 @@
                     <h3><i class="fas fa-table"></i> Segments Summary Table</h3>
                     <table class="summary-table">
                         <thead>
-                            <tr>
-                                <th>Segment</th>
-                                <th>Name</th>
-                                <th>Location</th>
-                                <th>Easy Memory Trick</th>
-                            </tr>
+                            <tr><th>Segment</th><th>Name</th><th>Location</th><th>Memory Trick</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>I</strong></td>
-                                <td>Caudate</td>
-                                <td>Posterior</td>
-                                <td>"I am behind everyone"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>II</strong></td>
-                                <td>Left lateral superior</td>
-                                <td>Upper left lateral</td>
-                                <td>"Two is on top left"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>III</strong></td>
-                                <td>Left lateral inferior</td>
-                                <td>Lower left lateral</td>
-                                <td>"Three is below two"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>IVa</strong></td>
-                                <td>Left medial superior</td>
-                                <td>Upper left medial</td>
-                                <td>"Four-A is above porta"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>IVb</strong></td>
-                                <td>Left medial inferior (Quadrate)</td>
-                                <td>Lower left medial</td>
-                                <td>"Four-B is below = quadrate"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>V</strong></td>
-                                <td>Right anterior inferior</td>
-                                <td>Lower right anterior</td>
-                                <td>"Five is near gallbladder"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>VI</strong></td>
-                                <td>Right posterior inferior</td>
-                                <td>Lower right posterior</td>
-                                <td>"Six sits on kidney"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>VII</strong></td>
-                                <td>Right posterior superior</td>
-                                <td>Upper right posterior</td>
-                                <td>"Seven is in heaven (high up)"</td>
-                            </tr>
-                            <tr>
-                                <td><strong>VIII</strong></td>
-                                <td>Right anterior superior</td>
-                                <td>Upper right anterior</td>
-                                <td>"Eight is great (large)"</td>
-                            </tr>
+                            <tr><td><strong>I</strong></td><td>Caudate</td><td>Posterior</td><td>"I am behind everyone"</td></tr>
+                            <tr><td><strong>II</strong></td><td>Left lateral superior</td><td>Upper left lateral</td><td>"Two is on top left"</td></tr>
+                            <tr><td><strong>III</strong></td><td>Left lateral inferior</td><td>Lower left lateral</td><td>"Three is below two"</td></tr>
+                            <tr><td><strong>IVa</strong></td><td>Left medial superior</td><td>Upper left medial</td><td>"Four-A is above porta"</td></tr>
+                            <tr><td><strong>IVb</strong></td><td>Left medial inferior (Quadrate)</td><td>Lower left medial</td><td>"Four-B is below = quadrate"</td></tr>
+                            <tr><td><strong>V</strong></td><td>Right anterior inferior</td><td>Lower right anterior</td><td>"Five is near gallbladder"</td></tr>
+                            <tr><td><strong>VI</strong></td><td>Right posterior inferior</td><td>Lower right posterior</td><td>"Six sits on kidney"</td></tr>
+                            <tr><td><strong>VII</strong></td><td>Right posterior superior</td><td>Upper right posterior</td><td>"Seven is in heaven (high)"</td></tr>
+                            <tr><td><strong>VIII</strong></td><td>Right anterior superior</td><td>Upper right anterior</td><td>"Eight is great (large)"</td></tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="info-card highlight-card">
-                    <h3><i class="fas fa-microscope"></i> Portal Triads and Segments</h3>
-                    <p class="intro-text">Each segment receives its blood supply through a <strong>portal triad</strong> (à¤¤à¥à¤¨ à¤à¥à¤à¥à¤ à¤à¤¾ à¤¸à¤®à¥à¤¹):</p>
-                    <div class="triad-explanation">
-                        <div class="triad-item">
-                            <i class="fas fa-droplet"></i>
-                            <h4>1. Portal Vein Branch</h4>
-                            <p>Brings nutrient-rich blood from intestines (70% of liver blood)</p>
-                        </div>
-                        <div class="triad-item">
-                            <i class="fas fa-heart-pulse"></i>
-                            <h4>2. Hepatic Artery Branch</h4>
-                            <p>Brings oxygen-rich blood from aorta (30% of liver blood)</p>
-                        </div>
-                        <div class="triad-item">
-                            <i class="fas fa-water"></i>
-                            <h4>3. Bile Duct</h4>
-                            <p>Drains bile produced by hepatocytes in that segment</p>
-                        </div>
-                    </div>
-                    <div class="highlight-box success">
-                        <p><strong>Why this matters in surgery:</strong> When removing a segment, surgeon ligates (ties off) all three structures in the portal triad for that segment. Other segments continue functioning normally!</p>
-                    </div>
-                </div>
-
                 <div class="info-card">
-                    <h3><i class="fas fa-lightbulb"></i> Simplified Way to Remember Segments</h3>
+                    <h3><i class="fas fa-lightbulb"></i> Memory Techniques for Segments</h3>
                     <div class="memory-tricks">
                         <div class="trick-item">
-                            <h4>ð¯ Trick 1: Clock-face Method</h4>
-                            <p>Imagine looking at liver from front:</p>
+                            <h4>Trick 1: Portal Triad per Segment</h4>
+                            <p>Each segment gets its own: <strong>Portal Vein branch + Hepatic Artery branch + Bile Duct</strong> (trifecta = independent unit).</p>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Trick 2: Clock-face Method</h4>
                             <ul>
                                 <li>Segment I is behind (cannot see)</li>
-                                <li>Left side (9-12 o'clock): II, III, IV</li>
-                                <li>Right side (12-3 o'clock): VIII, V</li>
-                                <li>Right side back (3-6 o'clock): VII, VI</li>
+                                <li>Left side (9–12 o'clock): II, III, IV</li>
+                                <li>Right anterior: VIII (top), V (bottom)</li>
+                                <li>Right posterior: VII (top), VI (bottom)</li>
                             </ul>
                         </div>
                         <div class="trick-item">
-                            <h4>ð¯ Trick 2: "Odd on Top" for Right Lobe</h4>
-                            <p>In right lobe:</p>
+                            <h4>Trick 3: Left-to-Right Counting</h4>
                             <ul>
-                                <li>ODD numbers (VII, V) - Anterior sector</li>
-                                <li>EVEN numbers (VIII, VI) - Posterior sector</li>
-                                <li>Higher numbers (VIII, VII) - Superior</li>
-                                <li>Lower numbers (V, VI) - Inferior</li>
-                            </ul>
-                        </div>
-                        <div class="trick-item">
-                            <h4>ð¯ Trick 3: Left-to-Right Counting</h4>
-                            <p>Start from left, move right:</p>
-                            <ul>
-                                <li>II-III (left lateral) â IV (left medial) â V-VIII (right lobe)</li>
+                                <li>II–III (left lateral) → IV (left medial)</li>
+                                <li>V–VIII (right lobe, counterclockwise)</li>
                                 <li>I is special (posterior only)</li>
                             </ul>
                         </div>
@@ -1007,71 +1634,32 @@
                 </div>
             </section>
 
-            <!-- Section E: Surfaces & Borders -->
+            <!-- Section E: Surfaces -->
             <section id="surfaces" class="content-section">
                 <div class="section-header">
                     <span class="section-label">Section E</span>
                     <h2>Liver Surfaces & Borders</h2>
                 </div>
 
-                <div class="info-card">
-                    <h3><i class="fas fa-info-circle"></i> Overview of Liver Surfaces</h3>
-                    <p class="intro-text">The liver has 5 surfaces/areas to study:</p>
-                    <ul class="overview-list">
-                        <li><strong>Diaphragmatic surface</strong> - Superior, anterior, and right lateral</li>
-                        <li><strong>Visceral surface</strong> - Inferior surface (postero-inferior)</li>
-                        <li><strong>Posterior surface</strong> - Includes bare area</li>
-                        <li><strong>Inferior border</strong> - Sharp margin</li>
-                        <li><strong>Superior border</strong> - Poorly defined</li>
-                    </ul>
-                </div>
-
                 <div class="surface-card diaphragmatic">
                     <h3><i class="fas fa-lungs"></i> 1. Diaphragmatic Surface</h3>
-                    
                     <div class="surface-details">
                         <div class="detail-section">
                             <h4>Description</h4>
                             <ul>
-                                <li><strong>Shape:</strong> Smooth, convex (dome-shaped)</li>
-                                <li><strong>Position:</strong> Directed upward, forward, and to the right</li>
-                                <li><strong>Coverage:</strong> Completely covered by peritoneum (except where falciform ligament attaches)</li>
-                                <li><strong>Relations:</strong> Separated from diaphragm by peritoneal cavity</li>
+                                <li>Smooth, convex (dome-shaped)</li>
+                                <li>Directed upward, forward, and to the right</li>
+                                <li>Completely covered by peritoneum (except falciform ligament attachment)</li>
                             </ul>
                         </div>
-
                         <div class="detail-section">
-                            <h4>Subdivisions</h4>
-                            <ul>
-                                <li><strong>Superior surface (facies superior):</strong> Related to central tendon of diaphragm, heart above</li>
-                                <li><strong>Anterior surface (facies anterior):</strong> Related to right costal cartilages and diaphragm</li>
-                                <li><strong>Right surface (facies dextra):</strong> Related to right dome of diaphragm, right lung and pleura</li>
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4>Important Features</h4>
-                            <ul>
-                                <li><strong>Falciform ligament:</strong> Attaches to anterior part, divides into right and left portions</li>
-                                <li><strong>Cardiac impression:</strong> Central depression where heart rests on liver through diaphragm</li>
-                                <li><strong>Surface markings:</strong>
-                                    <ul>
-                                        <li>Upper border: 5th intercostal space (right), 5th rib (left)</li>
-                                        <li>Lower border: Right costal margin (normally should not extend below)</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4>Clinical Relations</h4>
+                            <h4>Clinical</h4>
                             <div class="highlight-box warning">
-                                <p><strong>Clinical Importance:</strong></p>
                                 <ul>
-                                    <li>Liver dullness on percussion: Normally extends from 5th intercostal space to costal margin</li>
-                                    <li>Reduced dullness suggests pneumoperitoneum (air in abdomen)</li>
-                                    <li>Diaphragmatic surface can be injured in lower chest trauma</li>
-                                    <li>Subphrenic abscess can develop between liver and diaphragm</li>
+                                    <li>Liver dullness on percussion: 5th ICS to costal margin</li>
+                                    <li>Reduced dullness = pneumoperitoneum</li>
+                                    <li>Can be injured in lower chest trauma</li>
+                                    <li>Subphrenic abscess can form here</li>
                                 </ul>
                             </div>
                         </div>
@@ -1080,73 +1668,41 @@
 
                 <div class="surface-card visceral">
                     <h3><i class="fas fa-layer-group"></i> 2. Visceral (Inferior) Surface</h3>
-                    
                     <div class="surface-details">
                         <div class="detail-section">
-                            <h4>Description</h4>
-                            <ul>
-                                <li><strong>Shape:</strong> Irregular, concave, shows multiple impressions</li>
-                                <li><strong>Position:</strong> Directed downward, backward, and to the left</li>
-                                <li><strong>Coverage:</strong> Covered by peritoneum except at:</li>
-                                <ul>
-                                    <li>Porta hepatis</li>
-                                    <li>Gallbladder fossa</li>
-                                    <li>Bare area (posterior part)</li>
-                                </ul>
-                                <li><strong>Direction:</strong> Postero-inferior and left</li>
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4>H-Shaped Fissures (Most Important)</h4>
-                            <p>The characteristic H-shaped pattern divides visceral surface:</p>
+                            <h4>H-Shaped Fissures (Key Feature)</h4>
                             <div class="h-pattern">
                                 <div class="h-part">
                                     <h5>Right Vertical Limb</h5>
                                     <ul>
-                                        <li><strong>Anterior:</strong> Fossa for gallbladder (about 7-10 cm)</li>
-                                        <li><strong>Posterior:</strong> Groove for IVC (about 3 cm wide)</li>
-                                        <li>These two structures are connected and form right boundary of quadrate and caudate lobes</li>
+                                        <li><strong>Anterior:</strong> Fossa for gallbladder</li>
+                                        <li><strong>Posterior:</strong> Groove for IVC</li>
                                     </ul>
                                 </div>
                                 <div class="h-part">
                                     <h5>Left Vertical Limb</h5>
                                     <ul>
-                                        <li><strong>Anterior:</strong> Fissure for ligamentum teres (contains obliterated umbilical vein)</li>
-                                        <li><strong>Posterior:</strong> Fissure for ligamentum venosum (contains obliterated ductus venosus)</li>
-                                        <li>Forms left boundary of quadrate and caudate lobes</li>
+                                        <li><strong>Anterior:</strong> Fissure for ligamentum teres</li>
+                                        <li><strong>Posterior:</strong> Fissure for ligamentum venosum</li>
                                     </ul>
                                 </div>
                                 <div class="h-part">
                                     <h5>Horizontal Crossbar</h5>
                                     <ul>
-                                        <li><strong>Porta hepatis</strong> - the gateway of liver</li>
-                                        <li>About 5 cm long transverse fissure</li>
-                                        <li>Connects right and left vertical limbs</li>
-                                        <li>Site of entry/exit for vessels, ducts, nerves</li>
+                                        <li><strong>Porta hepatis</strong> — about 5 cm long</li>
+                                        <li>Entry/exit for vessels, ducts, nerves</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
                         <div class="detail-section">
-                            <h4>Impressions on Visceral Surface</h4>
-                            <p>Various organs create impressions (already detailed in Section B):</p>
-                            <ul>
-                                <li><strong>Left lobe:</strong> Gastric impression, esophageal impression</li>
-                                <li><strong>Right lobe:</strong> Renal, suprarenal, duodenal, colic impressions</li>
-                                <li><strong>Quadrate lobe:</strong> Related to pylorus</li>
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4>Areas Not Covered by Peritoneum</h4>
+                            <h4>Areas NOT Covered by Peritoneum</h4>
                             <div class="highlight-box info">
-                                <ol>
-                                    <li><strong>Porta hepatis:</strong> Allows passage of structures</li>
-                                    <li><strong>Fossa for gallbladder:</strong> Gallbladder attached here</li>
-                                    <li><strong>Groove for IVC:</strong> IVC embedded here</li>
-                                    <li><strong>Bare area:</strong> Direct contact with diaphragm</li>
+                                <ol style="padding-left:18px">
+                                    <li>Porta hepatis</li>
+                                    <li>Fossa for gallbladder</li>
+                                    <li>Groove for IVC</li>
+                                    <li>Bare area</li>
                                 </ol>
                             </div>
                         </div>
@@ -1154,71 +1710,24 @@
                 </div>
 
                 <div class="surface-card posterior">
-                    <h3><i class="fas fa-square"></i> 3. Posterior Surface</h3>
-                    
+                    <h3><i class="fas fa-square"></i> 3. Posterior Surface & Bare Area</h3>
                     <div class="surface-details">
                         <div class="detail-section">
-                            <h4>Description</h4>
+                            <h4>Bare Area Boundaries</h4>
                             <ul>
-                                <li><strong>Shape:</strong> Broad and rounded on right, narrow on left</li>
-                                <li><strong>Position:</strong> Faces backward</li>
-                                <li><strong>Coverage:</strong> Mostly devoid of peritoneum (bare area)</li>
-                                <li><strong>Relations:</strong> Directly attached to diaphragm in bare area</li>
+                                <li><strong>Anterior:</strong> Anterior layer of coronary ligament</li>
+                                <li><strong>Posterior:</strong> Posterior layer of coronary ligament</li>
+                                <li><strong>Right:</strong> Right triangular ligament</li>
+                                <li><strong>Left:</strong> IVC and caudate lobe</li>
                             </ul>
                         </div>
-
                         <div class="detail-section">
-                            <h4>Main Features</h4>
+                            <h4>Clinical Importance</h4>
                             <ul>
-                                <li><strong>Bare area:</strong>
-                                    <ul>
-                                        <li>Large triangular/quadrilateral area</li>
-                                        <li>Direct contact with diaphragm (no peritoneum)</li>
-                                        <li>Bounded by coronary ligaments</li>
-                                        <li>Site where hepatic veins enter IVC</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Groove for IVC:</strong>
-                                    <ul>
-                                        <li>Deep vertical groove on right side of bare area</li>
-                                        <li>About 3 cm wide</li>
-                                        <li>IVC partially embedded in liver tissue</li>
-                                        <li>Right, middle, and left hepatic veins drain into IVC here</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Caudate lobe:</strong>
-                                    <ul>
-                                        <li>Visible on posterior surface</li>
-                                        <li>Between IVC and ligamentum venosum</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Fissure for ligamentum venosum:</strong>
-                                    <ul>
-                                        <li>Deep fissure on left side</li>
-                                        <li>Contains obliterated ductus venosus</li>
-                                        <li>Separates caudate lobe from left lobe</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4>Relations of Posterior Surface</h4>
-                            <ul>
-                                <li><strong>Through diaphragm:</strong>
-                                    <ul>
-                                        <li>Aorta (at T12 level)</li>
-                                        <li>Vertebral bodies (T10-T12)</li>
-                                        <li>Right crus of diaphragm</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Direct contact (no diaphragm):</strong>
-                                    <ul>
-                                        <li>Right kidney and suprarenal gland</li>
-                                        <li>IVC</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Upper left part:</strong> Esophagus (esophageal impression on caudate lobe)</li>
+                                <li>Only area without peritoneal covering</li>
+                                <li>Direct pathway for spread of infections to/from diaphragm</li>
+                                <li>Site where hepatic veins leave liver to enter IVC</li>
+                                <li>Right kidney and suprarenal gland in direct contact</li>
                             </ul>
                         </div>
                     </div>
@@ -1226,130 +1735,37 @@
 
                 <div class="border-cards">
                     <div class="border-card">
-                        <h3><i class="fas fa-border-none"></i> 4. Inferior Border (Margo Inferior)</h3>
+                        <h3><i class="fas fa-border-none"></i> Inferior Border</h3>
                         <div class="border-details">
                             <h4>Characteristics</h4>
                             <ul>
-                                <li><strong>Shape:</strong> Sharp, thin, well-defined edge</li>
-                                <li><strong>Direction:</strong> Oblique - from 9th right costal cartilage to 8th left costal cartilage</li>
-                                <li><strong>Normal position:</strong> Should NOT extend below costal margin</li>
-                                <li><strong>Palpation:</strong> Can be felt when patient takes deep breath (in thin individuals)</li>
+                                <li>Sharp, thin, well-defined edge</li>
+                                <li>Oblique direction: 9th right to 8th left costal cartilage</li>
+                                <li>Normal position: Does NOT extend below costal margin</li>
                             </ul>
-
-                            <h4>Important Landmarks</h4>
-                            <ul>
-                                <li><strong>Notch for fundus of gallbladder:</strong> Where gallbladder touches inferior border (at tip of 9th costal cartilage)</li>
-                                <li><strong>Right end:</strong> At right mid-clavicular line</li>
-                                <li><strong>Left end:</strong> Extends to left side, reaches 8th costal cartilage</li>
-                            </ul>
-
                             <h4>Clinical Significance</h4>
                             <div class="highlight-box warning">
-                                <p><strong>Hepatomegaly (enlarged liver):</strong></p>
-                                <ul>
-                                    <li>Inferior border extends BELOW costal margin</li>
-                                    <li>Measured in "finger breadths below costal margin"</li>
-                                    <li>Can be palpated during clinical examination</li>
-                                    <li>Sharp edge becomes rounded in cirrhosis</li>
-                                    <li>May extend to umbilicus or even pelvis in massive enlargement</li>
-                                </ul>
+                                <p><strong>Hepatomegaly:</strong> Inferior border extends BELOW costal margin. Measured in finger breadths. Sharp edge becomes rounded in cirrhosis.</p>
                             </div>
-
-                            <h4>Surface Marking</h4>
-                            <ul>
-                                <li>Right: Right costal margin in mid-clavicular line (9th costal cartilage)</li>
-                                <li>Crosses midline below xiphisternum</li>
-                                <li>Left: 8th left costal cartilage</li>
-                                <li>Inferior border crosses transpyloric plane at midline</li>
-                            </ul>
                         </div>
                     </div>
-
                     <div class="border-card">
-                        <h3><i class="fas fa-border-top-left"></i> 5. Superior Border</h3>
+                        <h3><i class="fas fa-border-top-left"></i> Superior Border</h3>
                         <div class="border-details">
                             <h4>Characteristics</h4>
                             <ul>
-                                <li><strong>Definition:</strong> Poorly defined, thick, rounded</li>
-                                <li><strong>Shape:</strong> Corresponds to diaphragmatic convexity</li>
-                                <li><strong>Cannot be palpated</strong> (unlike inferior border)</li>
+                                <li>Poorly defined, thick, rounded</li>
+                                <li>Cannot be palpated (unlike inferior border)</li>
+                                <li>Right: 5th intercostal space in mid-clavicular line</li>
+                                <li>Left: 5th rib in mid-clavicular line</li>
                             </ul>
-
-                            <h4>Position</h4>
-                            <ul>
-                                <li><strong>Right side:</strong> 5th intercostal space in mid-clavicular line</li>
-                                <li><strong>Midline:</strong> Xiphisternum level</li>
-                                <li><strong>Left side:</strong> 5th rib in mid-clavicular line (slightly lower than right)</li>
-                            </ul>
-
-                            <h4>Relations</h4>
-                            <ul>
-                                <li>Separated from thoracic cavity by diaphragm</li>
-                                <li>Right lung and pleura above (right side)</li>
-                                <li>Heart above (central and left)</li>
-                                <li>Protected by rib cage</li>
-                            </ul>
-
-                            <h4>Clinical Note</h4>
-                            <p class="clinical-note">Percussion of superior border helps determine liver span. Normal liver span is 10-12 cm in mid-clavicular line. Reduced span suggests liver cirrhosis or atrophy.</p>
+                            <p class="clinical-note">Normal liver span: 10–12 cm in mid-clavicular line. Reduced span suggests cirrhosis or atrophy.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="info-card summary-card">
-                    <h3><i class="fas fa-clipboard-list"></i> Quick Surface Summary</h3>
-                    <table class="summary-table">
-                        <thead>
-                            <tr>
-                                <th>Surface/Border</th>
-                                <th>Shape</th>
-                                <th>Direction</th>
-                                <th>Coverage</th>
-                                <th>Key Features</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Diaphragmatic</strong></td>
-                                <td>Smooth, convex</td>
-                                <td>Upward, forward, right</td>
-                                <td>Peritoneum (except falciform attachment)</td>
-                                <td>Related to diaphragm, heart, lungs</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Visceral</strong></td>
-                                <td>Irregular, concave</td>
-                                <td>Downward, backward, left</td>
-                                <td>Peritoneum (except porta, GB fossa, IVC)</td>
-                                <td>H-shaped fissures, impressions</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Posterior</strong></td>
-                                <td>Broad (right), narrow (left)</td>
-                                <td>Backward</td>
-                                <td>Mostly no peritoneum (bare area)</td>
-                                <td>Bare area, IVC groove, caudate lobe</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Inferior Border</strong></td>
-                                <td>Sharp, thin</td>
-                                <td>Oblique (right to left)</td>
-                                <td>Peritoneum</td>
-                                <td>Normally at costal margin, palpable</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Superior Border</strong></td>
-                                <td>Rounded, thick</td>
-                                <td>Follows diaphragm curve</td>
-                                <td>Peritoneum</td>
-                                <td>Not palpable, at 5th ICS/rib level</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
 
-            <!-- Section F: Ligaments (continued in next part due to length) -->
+            <!-- Section F: Ligaments -->
             <section id="ligaments" class="content-section">
                 <div class="section-header">
                     <span class="section-label">Section F</span>
@@ -1359,13 +1775,7 @@
                 <div class="info-card highlight-card">
                     <h3><i class="fas fa-info-circle"></i> Understanding Liver Ligaments</h3>
                     <div class="highlight-box info">
-                        <p><strong>Important Concept:</strong> Liver "ligaments" are NOT true ligaments (like knee ligaments). They are double-layered folds of peritoneum connecting liver to:</p>
-                        <ul>
-                            <li>Diaphragm</li>
-                            <li>Anterior abdominal wall</li>
-                            <li>Stomach (lesser omentum)</li>
-                        </ul>
-                        <p><strong>Function:</strong> Help hold liver in position, but liver is mainly supported by intra-abdominal pressure and surrounding organs</p>
+                        <p><strong>Important Concept:</strong> Liver "ligaments" are NOT true ligaments. They are double-layered folds of peritoneum connecting liver to: diaphragm, anterior abdominal wall, or stomach (lesser omentum). Liver is mainly supported by intra-abdominal pressure and surrounding organs.</p>
                     </div>
                 </div>
 
@@ -1378,103 +1788,49 @@
                         <div class="ligament-content">
                             <h4>Description</h4>
                             <ul>
-                                <li><strong>Shape:</strong> Sickle-shaped (Latin "falx" = sickle)</li>
-                                <li><strong>Structure:</strong> Double layer of peritoneum</li>
-                                <li><strong>Position:</strong> Sagittal plane (vertical, anterior-posterior)</li>
-                                <li><strong>Visible:</strong> Can be seen easily from anterior view</li>
+                                <li>Sickle-shaped double peritoneum (Latin "falx" = sickle)</li>
+                                <li>Sagittal position (vertical, anterior-posterior)</li>
+                                <li>Separates right and left anatomical lobes</li>
                             </ul>
-
-                            <h4>Attachments</h4>
+                            <h4>Contents (Free Lower Border)</h4>
                             <ul>
-                                <li><strong>Superior:</strong> Diaphragm and anterior abdominal wall (from umbilicus to diaphragm)</li>
-                                <li><strong>Inferior:</strong> Extends from umbilicus to liver's anterior surface</li>
-                                <li><strong>Posterior:</strong> Reaches anterior layer of coronary ligament at bare area</li>
-                                <li><strong>On liver:</strong> Separates right and left anatomical lobes</li>
+                                <li><strong>Ligamentum teres hepatis</strong> — obliterated left umbilical vein</li>
+                                <li><strong>Paraumbilical veins</strong> — connect portal to systemic system</li>
                             </ul>
-
-                            <h4>Contents</h4>
-                            <ul>
-                                <li><strong>Ligamentum teres hepatis</strong> (round ligament)
-                                    <ul>
-                                        <li>Runs in FREE LOWER BORDER of falciform ligament</li>
-                                        <li>Obliterated left umbilical vein</li>
-                                        <li>Extends from umbilicus to left portal vein</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Paraumbilical veins:</strong> Small veins connecting portal system to systemic veins</li>
-                            </ul>
-
                             <h4>Clinical Importance</h4>
                             <div class="highlight-box warning">
                                 <ul>
-                                    <li><strong>Portal hypertension:</strong> Paraumbilical veins dilate â Caput medusae (dilated veins around umbilicus)</li>
-                                    <li><strong>Surgery:</strong> Important landmark during abdominal operations</li>
-                                    <li><strong>Liver biopsy:</strong> Helps identify right vs left lobe</li>
+                                    <li><strong>Portal hypertension:</strong> Paraumbilical veins dilate → Caput medusae</li>
+                                    <li>Important surgical landmark</li>
                                 </ul>
                             </div>
-
-                            <h4>Anatomical Relations</h4>
-                            <ul>
-                                <li>Divides liver into right lobe (larger) and left lobe (smaller) anatomically</li>
-                                <li>This division is NOT same as functional division</li>
-                                <li>Attached along anterior-superior surface of liver</li>
-                            </ul>
                         </div>
                     </div>
 
                     <div class="ligament-card round">
                         <div class="ligament-header">
-                            <h3><i class="fas fa-circle"></i> 2. Ligamentum Teres (Round Ligament)</h3>
+                            <h3><i class="fas fa-circle"></i> 2. Ligamentum Teres</h3>
                             <span class="ligament-badge">Fetal Remnant</span>
                         </div>
                         <div class="ligament-content">
-                            <h4>Description</h4>
+                            <h4>Nature</h4>
                             <ul>
-                                <li><strong>Shape:</strong> Round fibrous cord</li>
-                                <li><strong>Nature:</strong> Obliterated left umbilical vein from fetal life</li>
-                                <li><strong>Position:</strong> Lies in free edge of falciform ligament</li>
-                                <li><strong>Length:</strong> From umbilicus to liver, about 15-20 cm</li>
+                                <li>Obliterated left umbilical vein from fetal life</li>
+                                <li>Runs in FREE LOWER EDGE of falciform ligament</li>
+                                <li>From umbilicus to left portal vein (~15–20 cm)</li>
                             </ul>
-
-                            <h4>Course</h4>
+                            <h4>Fetal Function</h4>
                             <ul>
-                                <li><strong>Starts:</strong> Umbilicus</li>
-                                <li><strong>Travels:</strong> In free lower edge of falciform ligament (ascending)</li>
-                                <li><strong>Reaches:</strong> Visceral surface of liver at anterior notch</li>
-                                <li><strong>Ends:</strong> Continues in fissure for ligamentum teres to reach left portal vein</li>
-                            </ul>
-
-                            <h4>Fetal Function (Before Birth)</h4>
-                            <ul>
-                                <li>In fetus = <strong>Left umbilical vein</strong></li>
+                                <li>In fetus = Left umbilical vein</li>
                                 <li>Carried oxygenated blood from placenta to fetus</li>
-                                <li>Blood went through liver â ductus venosus â IVC â heart</li>
-                                <li>After birth: Vein obliterates (closes) â becomes ligamentum teres</li>
+                                <li>After birth: obliterates → becomes ligamentum teres</li>
                             </ul>
-
-                            <h4>Adult Function & Clinical Importance</h4>
+                            <h4>Clinical</h4>
                             <ul>
-                                <li><strong>Normal adult:</strong> No function, just fibrous remnant</li>
-                                <li><strong>Contains:</strong> Paraumbilical veins (small veins connecting portal and systemic systems)</li>
-                                <li><strong>Portal hypertension:</strong>
-                                    <ul>
-                                        <li>Paraumbilical veins reopen and dilate</li>
-                                        <li>Create porto-systemic shunt around umbilicus</li>
-                                        <li>Visible as "Caput medusae" (medusa head pattern of veins)</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Surgical landmark:</strong> Helps identify left portal vein</li>
+                                <li>Portal hypertension → paraumbilical veins reopen → Caput medusae</li>
                             </ul>
-
-                            <h4>Related Structures</h4>
-                            <ul>
-                                <li><strong>Fissure for ligamentum teres:</strong> Groove on visceral surface where it runs</li>
-                                <li><strong>Left portal vein:</strong> Where ligamentum teres ends</li>
-                                <li><strong>Falciform ligament:</strong> Surrounds it in its free edge</li>
-                            </ul>
-
                             <div class="highlight-box success">
-                                <p><strong>Easy Memory:</strong> "Round ligament = Remnant of Umbilical vein" (R-R-U pattern)</p>
+                                <p><strong>Memory:</strong> "Round ligament = Remnant of umbilical vein" (R-R-U)</p>
                             </div>
                         </div>
                     </div>
@@ -1485,244 +1841,91 @@
                             <span class="ligament-badge">Enclose Bare Area</span>
                         </div>
                         <div class="ligament-content">
-                            <h4>Description</h4>
-                            <ul>
-                                <li><strong>Structure:</strong> Two layers of peritoneum (anterior and posterior)</li>
-                                <li><strong>Position:</strong> On posterior surface of liver</li>
-                                <li><strong>Function:</strong> Connect posterior liver to diaphragm</li>
-                                <li><strong>Important:</strong> Enclose the bare area between the two layers</li>
-                            </ul>
-
                             <h4>Two Layers</h4>
                             <div class="layers-explanation">
                                 <div class="layer-item">
                                     <h5>Anterior Layer (Upper)</h5>
                                     <ul>
-                                        <li>Peritoneum reflected from diaphragmatic surface</li>
-                                        <li>Where anterior surface becomes posterior</li>
-                                        <li>Continuous with falciform ligament anteriorly</li>
+                                        <li>Reflected from diaphragmatic surface</li>
                                         <li>Forms upper boundary of bare area</li>
+                                        <li>Continuous with falciform ligament</li>
                                     </ul>
                                 </div>
                                 <div class="layer-item">
                                     <h5>Posterior Layer (Lower)</h5>
                                     <ul>
-                                        <li>Peritoneum reflected from posterior/inferior surface</li>
-                                        <li>Continues as lesser omentum (hepatogastric ligament)</li>
+                                        <li>Reflected from posterior surface</li>
                                         <li>Forms lower boundary of bare area</li>
-                                        <li>More extensive than anterior layer</li>
+                                        <li>Continues as lesser omentum</li>
                                     </ul>
                                 </div>
                             </div>
-
-                            <h4>Area Enclosed</h4>
-                            <ul>
-                                <li>Between anterior and posterior layers = <strong>BARE AREA</strong></li>
-                                <li>Bare area has NO peritoneal covering</li>
-                                <li>Direct attachment of liver to diaphragm here</li>
-                                <li>Triangular/quadrilateral shape</li>
-                            </ul>
-
-                            <h4>Lateral Endings</h4>
-                            <ul>
-                                <li>On <strong>RIGHT SIDE:</strong> Two layers meet â Right triangular ligament</li>
-                                <li>On <strong>LEFT SIDE:</strong> Two layers meet â Left triangular ligament</li>
-                                <li>Coronary ligaments are continuous with triangular ligaments</li>
-                            </ul>
-
-                            <h4>Clinical Importance</h4>
+                            <h4>Clinical</h4>
                             <div class="highlight-box warning">
                                 <ul>
-                                    <li><strong>Subphrenic abscess:</strong> Pus can collect between liver and diaphragm</li>
-                                    <li><strong>Hepatic veins:</strong> Pass through bare area to enter IVC</li>
-                                    <li><strong>Spread of infection:</strong> Bare area allows direct spread between liver and diaphragm</li>
-                                    <li><strong>Surgery:</strong> Important during hepatectomy (liver removal surgery)</li>
+                                    <li>Subphrenic abscess can develop here</li>
+                                    <li>Hepatic veins pass through bare area to IVC</li>
+                                    <li>Important during hepatectomy</li>
                                 </ul>
                             </div>
-
-                            <h4>Boundaries of Bare Area (Formed by Coronary Ligaments)</h4>
-                            <ul>
-                                <li><strong>Superior:</strong> Anterior layer of coronary ligament</li>
-                                <li><strong>Inferior:</strong> Posterior layer of coronary ligament</li>
-                                <li><strong>Right:</strong> Right triangular ligament</li>
-                                <li><strong>Left:</strong> IVC groove and caudate lobe</li>
-                            </ul>
                         </div>
                     </div>
 
                     <div class="ligament-card triangular">
                         <div class="ligament-header">
-                            <h3><i class="fas fa-play"></i> 4. Right Triangular Ligament</h3>
-                            <span class="ligament-badge">Small, Right Side</span>
+                            <h3><i class="fas fa-play"></i> 4 & 5. Triangular Ligaments</h3>
+                            <span class="ligament-badge">Lateral Ends</span>
                         </div>
                         <div class="ligament-content">
-                            <h4>Description</h4>
-                            <ul>
-                                <li><strong>Shape:</strong> Small triangular fold</li>
-                                <li><strong>Formation:</strong> Where anterior and posterior layers of coronary ligament meet on RIGHT side</li>
-                                <li><strong>Size:</strong> Small, short</li>
-                                <li><strong>Position:</strong> Right lateral end of bare area</li>
-                            </ul>
-
-                            <h4>Attachments</h4>
-                            <ul>
-                                <li><strong>From:</strong> Right lobe of liver (right lateral part)</li>
-                                <li><strong>To:</strong> Right dome of diaphragm</li>
-                                <li><strong>Relations:</strong> Marks right lateral limit of bare area</li>
-                            </ul>
-
-                            <h4>Clinical Relevance</h4>
-                            <ul>
-                                <li>Must be divided during right hepatectomy (removal of right liver lobe)</li>
-                                <li>Small size makes it easy to divide surgically</li>
-                                <li>Helps mobilize right lobe during surgery</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="ligament-card triangular">
-                        <div class="ligament-header">
-                            <h3><i class="fas fa-play fa-flip-horizontal"></i> 5. Left Triangular Ligament</h3>
-                            <span class="ligament-badge">Longer, Left Side</span>
-                        </div>
-                        <div class="ligament-content">
-                            <h4>Description</h4>
-                            <ul>
-                                <li><strong>Shape:</strong> Triangular fold</li>
-                                <li><strong>Formation:</strong> Where anterior and posterior layers of coronary ligament meet on LEFT side</li>
-                                <li><strong>Size:</strong> Longer than right triangular ligament</li>
-                                <li><strong>Position:</strong> Between left lobe and diaphragm</li>
-                            </ul>
-
-                            <h4>Attachments</h4>
-                            <ul>
-                                <li><strong>From:</strong> Superior surface of left lobe</li>
-                                <li><strong>To:</strong> Diaphragm (left dome)</li>
-                                <li><strong>Relation:</strong> Lies to left of falciform ligament</li>
-                            </ul>
-
-                            <h4>Comparison with Right Triangular Ligament</h4>
                             <table class="comparison-table">
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>Left</th>
-                                    <th>Right</th>
-                                </tr>
-                                <tr>
-                                    <td>Length</td>
-                                    <td>Longer</td>
-                                    <td>Shorter</td>
-                                </tr>
-                                <tr>
-                                    <td>Lobe attached</td>
-                                    <td>Left lobe</td>
-                                    <td>Right lobe</td>
-                                </tr>
-                                <tr>
-                                    <td>Surgical access</td>
-                                    <td>Easier to mobilize</td>
-                                    <td>Simpler to divide</td>
-                                </tr>
+                                <tr><th>Feature</th><th>Left</th><th>Right</th></tr>
+                                <tr><td>Length</td><td>Longer</td><td>Shorter (small)</td></tr>
+                                <tr><td>Lobe attached</td><td>Left lobe</td><td>Right lobe</td></tr>
+                                <tr><td>Formation</td><td>Coronary layers meet (left side)</td><td>Coronary layers meet (right side)</td></tr>
+                                <tr><td>Surgical use</td><td>Divided in left hepatectomy</td><td>Divided in right hepatectomy</td></tr>
                             </table>
-
-                            <h4>Clinical Relevance</h4>
-                            <ul>
-                                <li>Division needed for left hepatectomy</li>
-                                <li>Important for mobilizing left lobe</li>
-                                <li>Longer extent makes mobilization easier</li>
-                            </ul>
+                            <div class="highlight-box success">
+                                <p><strong>Memory:</strong> "Left is Longer, Right is Runt"</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="ligament-card omentum">
                         <div class="ligament-header">
                             <h3><i class="fas fa-layer-group"></i> 6. Lesser Omentum</h3>
-                            <span class="ligament-badge">Double-Layered</span>
+                            <span class="ligament-badge">Portal Triad Inside</span>
                         </div>
                         <div class="ligament-content">
-                            <h4>Description</h4>
-                            <ul>
-                                <li><strong>Structure:</strong> Double layer of peritoneum</li>
-                                <li><strong>Position:</strong> Extends from liver to stomach and duodenum</li>
-                                <li><strong>Shape:</strong> Gastrohepatic part is wide, hepatoduodenal part is narrow</li>
-                                <li><strong>Function:</strong> Connects liver to upper digestive tract</li>
-                            </ul>
-
                             <h4>Two Parts</h4>
                             <div class="parts-grid">
                                 <div class="part-card">
-                                    <h5>A) Hepatogastric Ligament</h5>
+                                    <h5>Hepatogastric Ligament</h5>
                                     <ul>
-                                        <li><strong>From:</strong> Fissure for ligamentum venosum and porta hepatis on liver</li>
-                                        <li><strong>To:</strong> Lesser curvature of stomach</li>
-                                        <li><strong>Shape:</strong> Broad, thin membrane</li>
-                                        <li><strong>Contents:</strong>
-                                            <ul>
-                                                <li>Right and left gastric vessels</li>
-                                                <li>Lymph nodes</li>
-                                                <li>Vagal nerve branches</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Clinical:</strong> Divided during gastrectomy surgeries</li>
+                                        <li>Liver → lesser curvature of stomach</li>
+                                        <li>Broad, thin membrane</li>
+                                        <li>Contains: right/left gastric vessels, lymph nodes, vagal branches</li>
                                     </ul>
                                 </div>
-
                                 <div class="part-card">
-                                    <h5>B) Hepatoduodenal Ligament</h5>
+                                    <h5>Hepatoduodenal Ligament</h5>
                                     <ul>
-                                        <li><strong>From:</strong> Porta hepatis</li>
-                                        <li><strong>To:</strong> First part of duodenum (superior part)</li>
-                                        <li><strong>Shape:</strong> Thick, tubular, free right border</li>
-                                        <li><strong>Forms:</strong> Anterior boundary of epiploic foramen (of Winslow)</li>
-                                        <li><strong>Contents (Portal Triad):</strong>
-                                            <ul>
-                                                <li><strong>Portal vein</strong> (posterior)</li>
-                                                <li><strong>Hepatic artery proper</strong> (anterior left)</li>
-                                                <li><strong>Common bile duct</strong> (anterior right)</li>
-                                                <li>Lymph nodes, lymphatics, nerves</li>
-                                            </ul>
-                                        </li>
+                                        <li>Porta hepatis → 1st part of duodenum</li>
+                                        <li>Thick, free right border</li>
+                                        <li>Contains Portal Triad (DAV)</li>
                                     </ul>
                                 </div>
                             </div>
-
-                            <h4>Contents of Free Right Border (Portal Triad)</h4>
                             <div class="highlight-box success">
-                                <p><strong>Arrangement in FREE EDGE (from anterior to posterior):</strong></p>
+                                <p><strong>Portal Triad — "DAV" (Right to Left):</strong></p>
                                 <ul>
-                                    <li><strong>Right side:</strong> Common bile duct (CBD)</li>
-                                    <li><strong>Left side:</strong> Hepatic artery proper</li>
-                                    <li><strong>Posterior:</strong> Portal vein (largest)</li>
+                                    <li><strong>D</strong>uct (CBD) — rightmost</li>
+                                    <li><strong>A</strong>rtery (Hepatic artery proper) — middle left</li>
+                                    <li><strong>V</strong>ein (Portal vein) — posterior, largest</li>
                                 </ul>
-                                <p><strong>Memory trick:</strong> "DAV" from right to left - <strong>D</strong>uct, <strong>A</strong>rtery, <strong>V</strong>ein</p>
                             </div>
-
-                            <h4>Clinical Importance - Pringle Maneuver</h4>
                             <div class="highlight-box warning">
-                                <p><strong>Emergency Technique:</strong></p>
-                                <ul>
-                                    <li>During liver surgery or trauma, if severe bleeding occurs</li>
-                                    <li>Surgeon clamps the hepatoduodenal ligament (free right border)</li>
-                                    <li>This stops blood flow: portal vein + hepatic artery</li>
-                                    <li>Controls bleeding temporarily (max 20-30 minutes safely)</li>
-                                    <li>Allows surgeon to identify bleeding source</li>
-                                </ul>
+                                <p><strong>Pringle Maneuver:</strong> Clamp hepatoduodenal ligament to stop liver bleeding in emergency surgery (controls portal vein + hepatic artery). Safe for 20–30 min.</p>
                             </div>
-
-                            <h4>Epiploic Foramen (Foramen of Winslow)</h4>
-                            <ul>
-                                <li><strong>Location:</strong> Behind free right edge of lesser omentum</li>
-                                <li><strong>Boundaries:</strong>
-                                    <ul>
-                                        <li>Anterior: Hepatoduodenal ligament (portal triad)</li>
-                                        <li>Posterior: IVC</li>
-                                        <li>Superior: Caudate lobe of liver</li>
-                                        <li>Inferior: First part of duodenum</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Significance:</strong> Communication between greater and lesser sacs</li>
-                                <li><strong>Clinical:</strong> Allows spread of infections between sacs</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1731,91 +1934,220 @@
                     <h3><i class="fas fa-list-check"></i> Ligaments Quick Summary</h3>
                     <table class="summary-table">
                         <thead>
-                            <tr>
-                                <th>Ligament</th>
-                                <th>Connects</th>
-                                <th>Key Feature</th>
-                                <th>Clinical Point</th>
-                            </tr>
+                            <tr><th>Ligament</th><th>Connects</th><th>Key Feature</th><th>Clinical Point</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Falciform</strong></td>
-                                <td>Liver â Ant. abd. wall & diaphragm</td>
-                                <td>Contains ligamentum teres in free edge</td>
-                                <td>Caput medusae in portal hypertension</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ligamentum Teres</strong></td>
-                                <td>Umbilicus â Left portal vein</td>
-                                <td>Obliterated umbilical vein</td>
-                                <td>Reopens in portal hypertension</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Coronary</strong></td>
-                                <td>Liver â Diaphragm (posterior)</td>
-                                <td>Encloses bare area</td>
-                                <td>Hepatic veins pass through</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Right Triangular</strong></td>
-                                <td>Right lobe â Diaphragm</td>
-                                <td>Small, short</td>
-                                <td>Divided in right hepatectomy</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Left Triangular</strong></td>
-                                <td>Left lobe â Diaphragm</td>
-                                <td>Longer than right</td>
-                                <td>Divided in left hepatectomy</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Lesser Omentum</strong></td>
-                                <td>Liver â Stomach & duodenum</td>
-                                <td>Contains portal triad in free edge</td>
-                                <td>Pringle maneuver - clamp to stop bleeding</td>
-                            </tr>
+                            <tr><td><strong>Falciform</strong></td><td>Liver → Ant. abd. wall & diaphragm</td><td>Contains ligamentum teres in free edge</td><td>Caput medusae in portal hypertension</td></tr>
+                            <tr><td><strong>Lig. Teres</strong></td><td>Umbilicus → Left portal vein</td><td>Obliterated umbilical vein</td><td>Reopens in portal hypertension</td></tr>
+                            <tr><td><strong>Coronary</strong></td><td>Liver → Diaphragm (posterior)</td><td>Encloses bare area</td><td>Hepatic veins pass through</td></tr>
+                            <tr><td><strong>Right Triangular</strong></td><td>Right lobe → Diaphragm</td><td>Small, short</td><td>Divided in right hepatectomy</td></tr>
+                            <tr><td><strong>Left Triangular</strong></td><td>Left lobe → Diaphragm</td><td>Longer than right</td><td>Divided in left hepatectomy</td></tr>
+                            <tr><td><strong>Lesser Omentum</strong></td><td>Liver → Stomach & duodenum</td><td>Portal triad in free edge</td><td>Pringle maneuver</td></tr>
                         </tbody>
                     </table>
                 </div>
+            </section>
+
+            <!-- Section G: Blood Supply -->
+            <section id="blood-supply" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section G</span>
+                    <h2>Blood Supply of Liver</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-heart"></i> Dual Blood Supply — Key Concept</h3>
+                    <div class="comparison-box">
+                        <div class="compare-item">
+                            <h4>Portal Vein (70–75%)</h4>
+                            <ul>
+                                <li>Nutrient-rich blood from GI tract and spleen</li>
+                                <li>Less oxygenated</li>
+                                <li>Formed by SMV + splenic vein (behind neck of pancreas)</li>
+                                <li>Enters liver at porta hepatis</li>
+                                <li>Divides into right and left branches</li>
+                            </ul>
+                        </div>
+                        <div class="compare-item">
+                            <h4>Hepatic Artery (25–30%)</h4>
+                            <ul>
+                                <li>Oxygenated blood from aorta</li>
+                                <li>Celiac trunk → Common hepatic artery → Proper hepatic artery</li>
+                                <li>Divides into right and left hepatic arteries</li>
+                                <li><strong>Right hepatic artery</strong> crosses behind CBD (important surgical point)</li>
+                                <li>Cystic artery arises from right hepatic artery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="info-card">
-                    <h3><i class="fas fa-lightbulb"></i> Memory Techniques for Ligaments</h3>
-                    <div class="memory-tricks">
-                        <div class="trick-item">
-                            <h4>ð¯ For Lesser Omentum Contents (Portal Triad)</h4>
-                            <p><strong>"DAV" arrangement (Right to Left):</strong></p>
-                            <ul>
-                                <li><strong>D</strong>uct (Common bile duct) - rightmost</li>
-                                <li><strong>A</strong>rtery (Hepatic artery proper) - middle left</li>
-                                <li><strong>V</strong>ein (Portal vein) - posterior, largest</li>
-                            </ul>
-                        </div>
+                    <h3><i class="fas fa-arrow-right"></i> Venous Drainage</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Hepatic veins:</strong> 3 main veins (right, middle, left) drain into IVC</li>
+                        <li><strong>Right hepatic vein:</strong> Drains segments V, VI, VII, VIII</li>
+                        <li><strong>Middle hepatic vein:</strong> Drains segments IV, V, VIII (often joins left)</li>
+                        <li><strong>Left hepatic vein:</strong> Drains segments II, III, IV</li>
+                        <li><strong>Caudate lobe:</strong> Direct drainage into IVC via separate small veins</li>
+                        <li><strong>IVC:</strong> Receives hepatic veins just below diaphragm (at T8 level)</li>
+                    </ul>
+                </div>
 
-                        <div class="trick-item">
-                            <h4>ð¯ For Fetal Remnants</h4>
-                            <p><strong>Two fetal remnants in liver:</strong></p>
-                            <ul>
-                                <li><strong>Ligamentum teres</strong> = Umbilical vein (brought blood FROM placenta)</li>
-                                <li><strong>Ligamentum venosum</strong> = Ductus venosus (bypassed liver TO reach heart)</li>
-                            </ul>
-                        </div>
-
-                        <div class="trick-item">
-                            <h4>ð¯ For Triangular Ligaments</h4>
-                            <p><strong>"Left is Longer, Right is Runt"</strong></p>
-                            <p>Left triangular ligament is longer than right</p>
-                        </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-exclamation-circle"></i> Portal Hypertension — Portosystemic Anastomoses</h3>
+                    <div class="highlight-box warning">
+                        <p><strong>When portal pressure increases (cirrhosis), blood bypasses liver via porto-systemic connections:</strong></p>
+                        <ul>
+                            <li><strong>Esophageal varices:</strong> Left gastric vein → esophageal veins → azygos (risk of rupture = life-threatening bleed)</li>
+                            <li><strong>Caput medusae:</strong> Paraumbilical veins → superficial abdominal veins around umbilicus</li>
+                            <li><strong>Hemorrhoids:</strong> Superior rectal vein → middle/inferior rectal veins</li>
+                            <li><strong>Retroperitoneal anastomoses:</strong> Portal branches → retroperitoneal veins</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Due to length, remaining sections will continue in next message -->
-            <div class="scroll-to-top" id="scrollToTop">
-                <i class="fas fa-arrow-up"></i>
-            </div>
+            <!-- Section H: Clinical -->
+            <section id="clinical-section" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section H</span>
+                    <h2>Clinical Anatomy</h2>
+                </div>
+
+                <div class="impressions-grid">
+                    <div class="impression-item">
+                        <h4>Hepatomegaly</h4>
+                        <p>Enlarged liver palpable below costal margin. Causes: hepatitis, cirrhosis, malignancy, heart failure, metabolic disorders.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Jaundice</h4>
+                        <p>Yellow discoloration due to bilirubin accumulation. Pre-hepatic (hemolysis), hepatic (hepatitis/cirrhosis), or post-hepatic (bile duct obstruction).</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Cirrhosis</h4>
+                        <p>Fibrosis replaces normal liver tissue. Causes: alcohol, hepatitis B/C, NAFLD. Leads to portal hypertension.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Liver Biopsy</h4>
+                        <p>Usually from right lobe via intercostal approach. Patient holds breath to avoid pneumothorax. Risk: bleeding from hepatic vessels.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Budd-Chiari Syndrome</h4>
+                        <p>Hepatic vein thrombosis. Caudate lobe (Segment I) is SPARED as it drains directly into IVC. Characteristic caudate lobe hypertrophy.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Liver Trauma</h4>
+                        <p>Right lobe more commonly injured (larger, less protected). Bare area allows retroperitoneal hematoma formation. IVC injury = massive hemorrhage.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Subphrenic Abscess</h4>
+                        <p>Pus between liver and diaphragm. Via bare area or after abdominal surgery. Right subphrenic most common. Requires drainage.</p>
+                    </div>
+                    <div class="impression-item">
+                        <h4>Liver Transplantation</h4>
+                        <p>Anastomose: IVC, portal vein, hepatic artery, bile duct. Living donor: segments II-III (left lateral) for pediatric; right lobe for adult recipients.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section I: NEET Points -->
+            <section id="exam-points" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section I</span>
+                    <h2>NEET / Exam High-Yield Points</h2>
+                </div>
+
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-star"></i> Must-Know Facts for NEET</h3>
+                    <div class="memory-tricks">
+                        <div class="trick-item">
+                            <h4>Lobes & Functional Division</h4>
+                            <ul>
+                                <li>Quadrate lobe = functionally LEFT (not right)</li>
+                                <li>Caudate lobe = functionally LEFT (not right)</li>
+                                <li>Cantlie's line divides functional lobes</li>
+                                <li>Falciform ligament divides anatomical lobes</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Ligamentum Teres & Venosum</h4>
+                            <ul>
+                                <li>Lig. teres = obliterated LEFT umbilical vein</li>
+                                <li>Lig. venosum = obliterated ductus venosus</li>
+                                <li>Both are fetal remnants</li>
+                                <li>Lig. teres is in free edge of falciform lig.</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Portal Triad — DAV Rule</h4>
+                            <ul>
+                                <li><strong>D</strong>uct (CBD) = right side</li>
+                                <li><strong>A</strong>rtery (hepatic) = left side</li>
+                                <li><strong>V</strong>ein (portal) = posterior</li>
+                                <li>Pringle maneuver = clamp free right edge of lesser omentum</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Caudate Lobe Special Points</h4>
+                            <ul>
+                                <li>Spared in Budd-Chiari syndrome</li>
+                                <li>Hypertrophies in cirrhosis</li>
+                                <li>Independent blood supply from portal vein</li>
+                                <li>Drains DIRECTLY into IVC</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Porta Hepatis Contents</h4>
+                            <ul>
+                                <li>Right portal vein (larger) + Left portal vein</li>
+                                <li>Hepatic artery (right + left branches)</li>
+                                <li>Right + Left hepatic ducts</li>
+                                <li>Lymph nodes and lymphatics</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Blood Supply Numbers</h4>
+                            <ul>
+                                <li>Portal vein = 70–75% of blood supply</li>
+                                <li>Hepatic artery = 25–30% of blood supply</li>
+                                <li>But artery provides ~50% of oxygen</li>
+                                <li>Dual blood supply = unique to liver</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card summary-card">
+                    <h3><i class="fas fa-question-circle"></i> Common NEET Questions</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Question</th><th>Answer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Largest lobe of liver</td><td>Right lobe</td></tr>
+                            <tr><td>Quadrate lobe belongs to which functional lobe?</td><td>LEFT functional lobe</td></tr>
+                            <tr><td>Caudate lobe is spared in which condition?</td><td>Budd-Chiari syndrome</td></tr>
+                            <tr><td>What is ligamentum teres?</td><td>Obliterated left umbilical vein</td></tr>
+                            <tr><td>What is ligamentum venosum?</td><td>Obliterated ductus venosus</td></tr>
+                            <tr><td>Contents of free edge of lesser omentum (DAV)?</td><td>Duct (CBD), Artery (hepatic), Vein (portal)</td></tr>
+                            <tr><td>Number of functional segments of liver</td><td>8 (Couinaud classification)</td></tr>
+                            <tr><td>What is Pringle maneuver?</td><td>Clamping hepatoduodenal ligament to stop liver bleeding</td></tr>
+                            <tr><td>Where do hepatic veins drain?</td><td>Into IVC just below diaphragm</td></tr>
+                            <tr><td>Bare area of liver — what is unique?</td><td>No peritoneal covering; directly attached to diaphragm</td></tr>
+                            <tr><td>Caput medusae occurs due to?</td><td>Paraumbilical vein dilatation in portal hypertension</td></tr>
+                            <tr><td>Which ligament separates anatomical lobes?</td><td>Falciform ligament</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
         </div>
     </main>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1828,27 +2160,208 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#overview">Overview</a></li>
-                        <li><a href="#anatomy">Anatomy</a></li>
-                        <li><a href="#histology">Histology</a></li>
-                        <li><a href="#clinical">Clinical</a></li>
+                        <li><a href="#location">Location & Overview</a></li>
+                        <li><a href="#gross-anatomy">Gross Anatomy</a></li>
+                        <li><a href="#lobes">Lobes</a></li>
+                        <li><a href="#segments">Segments</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Study Resources</h3>
                     <ul>
-                        <li><a href="#exam-points">NEET Points</a></li>
-                        <li><a href="#diagrams">Diagrams</a></li>
-                        <li><a href="#functions">Functions</a></li>
+                        <li><a href="#exam-points">NEET High-Yield Points</a></li>
+                        <li><a href="#blood-supply">Blood Supply</a></li>
+                        <li><a href="#clinical-section">Clinical Anatomy</a></li>
+                        <li><a href="#ligaments">Ligaments</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Organs Explorer. For educational purposes only.</p>
+                <p style="margin-top:10px; font-size:0.8rem; color:rgba(249,244,236,0.35);">
+                    Powered by <a href="https://yashify.fun" target="_blank" style="color:var(--gold-light);text-decoration:none;font-weight:600;letter-spacing:0.04em;">✦ Yashify</a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back to Home Button -->
+    <a href="https://yashify.fun" target="_blank" class="back-home-btn" title="Back to Yashify Home">
+        <i class="fas fa-home"></i>
+        <span>yashify.fun</span>
+    </a>
+
+    <!-- Floating Like Button -->
+    <div class="floating-like" id="floatingLike">
+        <button class="like-btn" id="likeBtn" title="Like this page">
+            <i class="fas fa-heart" id="likeIcon"></i>
+        </button>
+        <div class="like-count" id="likeCount">
+            <span id="likeNumber">...</span>
+        </div>
+        <div class="like-label">Likes</div>
+    </div>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            icon.className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // ===== SCROLL TO TOP =====
+        const scrollBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== FLOATING LIKE BUTTON with REALTIME STORAGE =====
+        const likeBtn = document.getElementById('likeBtn');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeNumber = document.getElementById('likeNumber');
+        const likeCountEl = document.getElementById('likeCount');
+
+        const LIKE_KEY = 'liver-page-likes';
+        const USER_KEY = 'liver-page-user-liked';
+        let totalLikes = 0;
+        let userLiked = false;
+
+        // Load likes from storage
+        async function loadLikes() {
+            try {
+                const res = await window.storage.get(LIKE_KEY, true);
+                totalLikes = res ? parseInt(res.value) || 0 : 0;
+            } catch(e) {
+                totalLikes = 0;
+            }
+            try {
+                const userRes = await window.storage.get(USER_KEY, false);
+                userLiked = userRes ? userRes.value === 'true' : false;
+            } catch(e) {
+                userLiked = false;
+            }
+            updateLikeUI(false);
+        }
+
+        // Save likes to storage
+        async function saveLikes() {
+            try {
+                await window.storage.set(LIKE_KEY, String(totalLikes), true);
+                await window.storage.set(USER_KEY, String(userLiked), false);
+            } catch(e) {}
+        }
+
+        // Poll for realtime updates every 8 seconds
+        async function pollLikes() {
+            try {
+                const res = await window.storage.get(LIKE_KEY, true);
+                const latest = res ? parseInt(res.value) || 0 : 0;
+                if (latest !== totalLikes) {
+                    totalLikes = latest;
+                    likeNumber.textContent = formatLikes(totalLikes);
+                    likeCountEl.classList.add('pop');
+                    setTimeout(() => likeCountEl.classList.remove('pop'), 350);
+                }
+            } catch(e) {}
+        }
+
+        function formatLikes(n) {
+            if (n >= 1000) return (n/1000).toFixed(1) + 'k';
+            return n.toString();
+        }
+
+        function updateLikeUI(animate) {
+            likeNumber.textContent = formatLikes(totalLikes);
+            if (userLiked) {
+                likeBtn.classList.add('liked');
+                likeIcon.style.color = '#e53935';
+            } else {
+                likeBtn.classList.remove('liked');
+                likeIcon.style.color = '';
+            }
+            if (animate) {
+                likeCountEl.classList.add('pop');
+                setTimeout(() => likeCountEl.classList.remove('pop'), 350);
+            }
+        }
+
+        likeBtn.addEventListener('click', async () => {
+            if (userLiked) {
+                // Unlike
+                userLiked = false;
+                totalLikes = Math.max(0, totalLikes - 1);
+            } else {
+                // Like
+                userLiked = true;
+                totalLikes++;
+                // Burst animation
+                likeBtn.classList.add('burst');
+                setTimeout(() => likeBtn.classList.remove('burst'), 700);
+            }
+            updateLikeUI(true);
+            await saveLikes();
+        });
+
+        // Init
+        loadLikes();
+        setInterval(pollLikes, 8000);
+
+
+        const sections = document.querySelectorAll('.content-section, section[id]');
+        const navLinks = document.querySelectorAll('.nav a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.style.color = '';
+                        link.style.background = '';
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(s => observer.observe(s));
+
+        // ===== SMOOTH ENTRANCE ANIMATION =====
+        const cards = document.querySelectorAll('.info-card, .lobe-card, .segment-card, .ligament-card, .surface-card');
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObserver.observe(card);
+        });
+    </script>
 </body>
 </html>
