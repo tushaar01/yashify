@@ -1,0 +1,909 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeletal System - Organs Explorer | Medical Education</title>
+    <meta name="description" content="Comprehensive skeletal system anatomy guide for NEET, BSc, and medical students. Bones, joints, cartilage, divisions, functions and clinical anatomy.">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+
+
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2a5a8c;
+            --cream: #f0f6ff;
+            --cream-dark: #d8e8f8;
+            --warm-white: #f5faff;
+            --charcoal: #111c2a;
+            --text-dark: #1a2e42;
+            --text-mid: #2d4a66;
+            --text-light: #6a8aaa;
+            --gold: #3a9abf;
+            --gold-light: #5ab8de;
+            --teal: #1a7a6a;
+            --teal-light: #2aaa90;
+            --accent: #e84393;
+            --shadow-sm: 0 2px 8px rgba(26,58,92,0.08);
+            --shadow-md: 0 4px 20px rgba(26,58,92,0.13);
+            --shadow-lg: 0 8px 40px rgba(26,58,92,0.18);
+            --radius: 12px;
+            --radius-sm: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-dark); line-height: 1.7; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        .header { position: sticky; top: 0; z-index: 100; background: var(--charcoal); border-bottom: 2px solid var(--gold); box-shadow: var(--shadow-md); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+        .logo i { color: var(--gold); font-size: 1.2rem; }
+        .nav { display: flex; gap: 4px; }
+        .nav a { color: var(--cream-dark); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 6px 12px; border-radius: var(--radius-sm); transition: all 0.2s; }
+        .nav a:hover { background: rgba(58,154,191,0.18); color: var(--gold-light); }
+        .menu-toggle { display: none; background: none; border: 1.5px solid rgba(58,154,191,0.4); color: var(--cream); padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+        .mobile-menu { display: none; flex-direction: column; background: #0d1620; border-bottom: 1px solid rgba(58,154,191,0.2); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { color: var(--cream-dark); text-decoration: none; padding: 12px 24px; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+        .mobile-menu a:hover { background: rgba(58,154,191,0.1); color: var(--gold-light); }
+
+        .hero { background: linear-gradient(135deg, var(--charcoal) 0%, #0d2a45 45%, #1a4a7a 100%); color: var(--cream); padding: 80px 0 64px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%233a9abf' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { text-align: center; position: relative; }
+        .organ-badge { display: inline-flex; align-items: center; justify-content: center; width: 90px; height: 90px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; margin: 0 auto 24px; box-shadow: 0 8px 32px rgba(58,154,191,0.45); animation: pulse-glow 3s ease-in-out infinite; overflow: hidden; padding: 10px; }
+        .organ-badge img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 8px 32px rgba(58,154,191,0.4); } 50% { box-shadow: 0 8px 52px rgba(58,154,191,0.75); } }
+        .page-title { font-family: 'Crimson Pro', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: 0.12em; color: #fff; margin-bottom: 12px; }
+        .tagline { font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-style: italic; color: var(--gold-light); margin-bottom: 20px; }
+        .hero-description { max-width: 680px; margin: 0 auto 40px; color: rgba(240,246,255,0.8); font-size: 1rem; line-height: 1.8; }
+        .hero-stats { display: flex; gap: 2px; justify-content: center; flex-wrap: wrap; }
+        .stat-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(58,154,191,0.25); padding: 20px 28px; border-radius: var(--radius); text-align: center; min-width: 120px; transition: all 0.3s; }
+        .stat-item:hover { background: rgba(58,154,191,0.12); border-color: var(--gold); transform: translateY(-2px); }
+        .stat-number { font-family: 'Crimson Pro', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-light); }
+        .stat-label { font-size: 0.75rem; color: rgba(240,246,255,0.6); margin-top: 4px; letter-spacing: 0.05em; }
+
+        .main-content { padding: 48px 0 80px; }
+        .quick-nav { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 40px; box-shadow: var(--shadow-sm); }
+        .quick-nav h3 { font-family: 'Crimson Pro', serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 16px; }
+        .quick-nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+        .quick-nav-item { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--warm-white); border: 1px solid var(--cream-dark); color: var(--text-mid); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: all 0.2s; }
+        .quick-nav-item i { color: var(--gold); font-size: 0.9rem; }
+        .quick-nav-item:hover { background: var(--primary); color: var(--cream); border-color: var(--primary); }
+        .quick-nav-item:hover i { color: var(--gold-light); }
+
+        .content-section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--cream-dark); }
+        .section-label { background: var(--primary); color: var(--cream); font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+        .section-header h2 { font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 700; color: var(--charcoal); }
+
+        .info-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+        .info-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .info-card h3 i { color: var(--gold); font-size: 1rem; }
+        .info-card h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .info-card p { color: var(--text-mid); font-size: 0.93rem; margin-bottom: 10px; }
+        .highlight-card { border-left: 4px solid var(--gold); background: linear-gradient(135deg, #f0f9ff, var(--warm-white)); }
+
+        .detailed-list { list-style: none; padding: 0; }
+        .detailed-list > li { padding: 8px 0 8px 18px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); font-size: 0.9rem; position: relative; }
+        .detailed-list > li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; }
+        .detailed-list > li:last-child { border-bottom: none; }
+        .detailed-list li strong { color: var(--text-dark); }
+        .detailed-list ul { margin-top: 8px; padding-left: 16px; list-style: disc; color: var(--text-light); font-size: 0.88rem; }
+
+        .highlight-box { border-radius: var(--radius-sm); padding: 14px 18px; margin: 12px 0; font-size: 0.88rem; background: #e8f4fd; border-left: 3px solid var(--gold); color: #0d2a45; }
+        .highlight-box p { margin-bottom: 6px; }
+        .highlight-box ul { padding-left: 18px; }
+        .highlight-box li { padding: 2px 0; }
+        .highlight-box.warning { background: #fff8e1; border-left-color: #f4a020; color: #7a4f00; }
+        .highlight-box.success { background: #e8f5e9; border-left-color: #43a047; color: #1b4f1b; }
+        .highlight-box.info { background: #e3f2fd; border-left-color: var(--primary); color: #0d2a45; }
+        .highlight-box.danger { background: #ffebee; border-left-color: #e53935; color: #5c0000; }
+
+        .intro-text { color: var(--text-mid); font-size: 0.92rem; margin-bottom: 14px; line-height: 1.7; }
+
+        .relation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .relation-card { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius-sm); padding: 16px; }
+        .relation-card h4 { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--cream-dark); }
+        .relation-card ul { list-style: none; padding: 0; }
+        .relation-card li { font-size: 0.85rem; color: var(--text-mid); padding: 4px 0 4px 12px; position: relative; }
+        .relation-card li::before { content: '•'; position: absolute; left: 0; color: var(--gold); }
+
+        .characteristics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+        .char-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; border: 1px solid var(--cream-dark); transition: all 0.2s; }
+        .char-item:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .char-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
+        .char-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .char-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin: 4px 0; }
+        .char-detail { font-size: 0.78rem; color: var(--text-light); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+        .feature-item { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--cream-dark); }
+        .feature-item h4 { color: var(--teal); margin-bottom: 10px; font-size: 0.88rem; font-weight: 600; }
+        .feature-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .feature-item li { padding: 3px 0; }
+
+        .nephron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .nephron-card { background: var(--warm-white); border: 1px solid var(--cream-dark); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+        .nephron-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .nephron-header { background: var(--charcoal); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .nephron-header h3 { color: var(--cream); font-family: 'Crimson Pro', serif; font-size: 1.1rem; }
+        .nephron-badge { background: var(--gold); color: var(--charcoal); font-size: 0.7rem; padding: 3px 10px; border-radius: 100px; font-weight: 600; white-space: nowrap; }
+        .nephron-content { padding: 20px; }
+        .nephron-content ul { list-style: disc; padding-left: 18px; font-size: 0.87rem; color: var(--text-mid); }
+        .nephron-content li { padding: 3px 0; }
+        .nephron-content li strong { color: var(--text-dark); }
+
+        .summary-card { background: var(--cream); border-color: var(--cream-dark); }
+        .summary-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px; }
+        .summary-table th { background: var(--charcoal); color: var(--cream); padding: 10px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .summary-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); color: var(--text-mid); vertical-align: top; }
+        .summary-table tr:nth-child(even) td { background: rgba(240,246,255,0.5); }
+        .summary-table tr:hover td { background: rgba(58,154,191,0.06); }
+
+        .clinical-note { background: #fff8e1; border-left: 3px solid #f4a020; padding: 10px 14px; font-size: 0.85rem; color: #6b4a00; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+        .remember-note { background: #e8f5e9; border-left: 3px solid #43a047; padding: 10px 14px; font-size: 0.85rem; color: #1b4f1b; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 8px; }
+
+        .memory-tricks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .trick-item { background: linear-gradient(135deg, #e3f2fd, #f0f8ff); border: 1px solid #b3d9f0; border-radius: var(--radius-sm); padding: 18px; }
+        .trick-item h4 { color: #0d2a45; margin-bottom: 10px; font-size: 0.9rem; }
+        .trick-item p { font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item ul { list-style: disc; padding-left: 16px; font-size: 0.85rem; color: #1a3a5c; }
+        .trick-item li { padding: 2px 0; }
+
+        .layers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 14px; }
+        .layer-card { background: var(--cream); border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--cream-dark); text-align: center; }
+        .layer-card .layer-num { background: var(--primary); color: var(--cream); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 700; font-size: 0.9rem; }
+        .layer-card h4 { color: var(--primary); font-size: 0.88rem; margin-bottom: 8px; font-weight: 600; }
+        .layer-card p { font-size: 0.82rem; color: var(--text-mid); }
+
+        .back-home-btn { position: fixed; bottom: 88px; right: 28px; display: flex; align-items: center; gap: 7px; background: var(--charcoal); color: var(--gold-light); text-decoration: none; padding: 9px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; box-shadow: var(--shadow-md); border: 1.5px solid rgba(58,154,191,0.35); z-index: 99; transition: all 0.25s; white-space: nowrap; }
+        .back-home-btn:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        .floating-like { position: fixed; left: 24px; bottom: 28px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 99; }
+        .like-btn { width: 52px; height: 52px; border-radius: 50%; border: none; background: #fff; color: #ccc; font-size: 1.4rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible; }
+        .like-btn.liked { color: #e53935; background: #fff0f0; border: 2px solid #ffcdd2; transform: scale(1.08); }
+        .like-btn:active { transform: scale(0.92); }
+        .like-btn:hover:not(.liked) { color: #ef9a9a; transform: scale(1.1); }
+        .like-btn.burst::after { content: "❤"; position: absolute; font-size: 1.2rem; animation: burst-up 0.6s ease forwards; pointer-events: none; }
+        @keyframes burst-up { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-40px) scale(1.5)} }
+        .like-count { background: var(--primary); color: var(--cream); font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; min-width: 44px; text-align: center; box-shadow: var(--shadow-sm); }
+        .like-label { font-size: 0.68rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        @keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+        .like-count.pop { animation: like-pop 0.3s ease; }
+
+        .scroll-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--primary); color: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: all 0.3s; font-size: 0.9rem; z-index: 99; border: none; }
+        .scroll-to-top.visible { opacity: 1; pointer-events: auto; }
+        .scroll-to-top:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+        .footer { background: var(--charcoal); color: rgba(240,246,255,0.7); padding: 48px 0 24px; border-top: 2px solid var(--gold); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+        .footer-section h3 { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 12px; }
+        .footer-section p { font-size: 0.85rem; line-height: 1.7; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 8px; }
+        .footer-section ul a { color: rgba(240,246,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-section ul a:hover { color: var(--gold-light); }
+        .footer-bottom { border-top: 1px solid rgba(240,246,255,0.1); padding-top: 20px; text-align: center; font-size: 0.82rem; color: rgba(240,246,255,0.4); }
+
+        @media (max-width: 768px) { .nav { display: none; } .menu-toggle { display: flex; align-items: center; } .nephron-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .quick-nav-grid { grid-template-columns: repeat(2, 1fr); } .characteristics-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Organs Explorer</span>
+                </a>
+                <nav class="nav">
+                    <a href="#overview">Overview</a>
+                    <a href="#divisions">Divisions</a>
+                    <a href="#bone-types">Bone Types</a>
+                    <a href="#joints">Joints</a>
+                    <a href="#clinical-section">Clinical</a>
+                    <a href="#exam-points">NEET Points</a>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#overview" onclick="closeMobileMenu()">Overview</a>
+        <a href="#divisions" onclick="closeMobileMenu()">Divisions</a>
+        <a href="#bone-types" onclick="closeMobileMenu()">Bone Types</a>
+        <a href="#joints" onclick="closeMobileMenu()">Joints</a>
+        <a href="#clinical-section" onclick="closeMobileMenu()">Clinical</a>
+        <a href="#exam-points" onclick="closeMobileMenu()">NEET Points</a>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="organ-badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/12/12215.png" alt="Skeleton Icon">
+                </div>
+                <h1 class="page-title">THE SKELETON</h1>
+                <p class="tagline">The Body's Structural Framework, Protection & Movement System</p>
+                <p class="hero-description">
+                    The skeletal system is the rigid framework of bones, cartilage and ligaments that supports the body, 
+                    protects vital organs, enables movement, produces blood cells and stores minerals essential for life.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">206</div>
+                        <div class="stat-label">Adult Bones</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">Bones at Birth</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">~15%</div>
+                        <div class="stat-label">Body Weight</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">360+</div>
+                        <div class="stat-label">Joints</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+
+            <div class="quick-nav">
+                <h3>Quick Jump to Sections</h3>
+                <div class="quick-nav-grid">
+                    <a href="#overview" class="quick-nav-item"><i class="fas fa-info-circle"></i><span>Overview</span></a>
+                    <a href="#divisions" class="quick-nav-item"><i class="fas fa-th-large"></i><span>Divisions</span></a>
+                    <a href="#bone-types" class="quick-nav-item"><i class="fas fa-shapes"></i><span>Bone Types</span></a>
+                    <a href="#bone-structure" class="quick-nav-item"><i class="fas fa-layer-group"></i><span>Structure</span></a>
+                    <a href="#joints" class="quick-nav-item"><i class="fas fa-link"></i><span>Joints</span></a>
+                    <a href="#ossification" class="quick-nav-item"><i class="fas fa-baby"></i><span>Ossification</span></a>
+                    <a href="#functions" class="quick-nav-item"><i class="fas fa-cogs"></i><span>Functions</span></a>
+                    <a href="#clinical-section" class="quick-nav-item"><i class="fas fa-stethoscope"></i><span>Clinical</span></a>
+                    <a href="#exam-points" class="quick-nav-item"><i class="fas fa-star"></i><span>NEET Points</span></a>
+                </div>
+            </div>
+
+            <!-- Section A: Overview -->
+            <section id="overview" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section A</span>
+                    <h2>Overview of Skeletal System</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-info-circle"></i> Basic Facts</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Total bones (adult):</strong> 206 bones (some individuals have sesamoid variations — up to 213)</li>
+                        <li><strong>Bones at birth:</strong> ~300–350 bones (many fuse during development)</li>
+                        <li><strong>Body weight:</strong> Skeleton contributes ~15% of total body weight</li>
+                        <li><strong>Hardest substance in body:</strong> Enamel (not bone); bone is 2nd hardest</li>
+                        <li><strong>Longest bone:</strong> Femur (thigh bone) — ~48 cm in adult male</li>
+                        <li><strong>Smallest bone:</strong> Stapes (stirrup bone of middle ear) — ~3 mm</li>
+                        <li><strong>Largest sesamoid bone:</strong> Patella (kneecap)</li>
+                        <li><strong>Most fractured bone:</strong> Clavicle</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-ruler-combined"></i> Key Statistics</h3>
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-bone"></i></div>
+                            <div class="char-label">Adult Bones</div>
+                            <div class="char-value">206</div>
+                            <div class="char-detail">Standard count</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-baby"></i></div>
+                            <div class="char-label">Birth Bones</div>
+                            <div class="char-value">~300</div>
+                            <div class="char-detail">Fuse over time</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-tint"></i></div>
+                            <div class="char-label">Water Content</div>
+                            <div class="char-value">~22%</div>
+                            <div class="char-detail">In bone matrix</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-flask"></i></div>
+                            <div class="char-label">Calcium Store</div>
+                            <div class="char-value">99%</div>
+                            <div class="char-detail">Body's Ca²⁺ in bone</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-link"></i></div>
+                            <div class="char-label">Total Joints</div>
+                            <div class="char-value">360+</div>
+                            <div class="char-detail">All types combined</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                            <div class="char-label">Longest Bone</div>
+                            <div class="char-value">Femur</div>
+                            <div class="char-detail">~48 cm (adult male)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section B: Divisions -->
+            <section id="divisions" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section B</span>
+                    <h2>Divisions of the Skeleton</h2>
+                </div>
+                <div class="nephron-grid">
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Axial Skeleton</h3>
+                            <span class="nephron-badge">80 Bones</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li><strong>Skull:</strong> 22 bones (8 cranial + 14 facial)</li>
+                                <li><strong>Vertebral column:</strong> 26 bones (7C + 12T + 5L + 1S + 1Cx)</li>
+                                <li><strong>Thoracic cage:</strong> 25 bones (12 pairs ribs + sternum)</li>
+                                <li><strong>Hyoid bone:</strong> 1 bone (U-shaped, only bone not articulating with another)</li>
+                                <li><strong>Ossicles of ear:</strong> 6 bones (3 per side — malleus, incus, stapes)</li>
+                                <li>Forms the <strong>central axis</strong> of the body</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Appendicular Skeleton</h3>
+                            <span class="nephron-badge">126 Bones</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li><strong>Upper limb (each):</strong> 32 bones → 64 total</li>
+                                <li><strong>Lower limb (each):</strong> 31 bones → 62 total (including patella)</li>
+                                <li><strong>Pectoral girdle:</strong> Clavicle + Scapula (2 per side = 4 total)</li>
+                                <li><strong>Pelvic girdle:</strong> 2 hip bones (os coxae) — each = ilium + ischium + pubis</li>
+                                <li>Enables <strong>locomotion</strong> and upper limb manipulation</li>
+                                <li>Attaches to axial skeleton via girdles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-list-ol"></i> Detailed Bone Count</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Region</th><th>Bones</th><th>Count</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Cranium</strong></td><td>Frontal, parietal×2, temporal×2, occipital, sphenoid, ethmoid</td><td>8</td></tr>
+                            <tr><td><strong>Face</strong></td><td>Mandible, maxilla×2, zygomatic×2, nasal×2, palatine×2, lacrimal×2, vomer, inferior nasal concha×2</td><td>14</td></tr>
+                            <tr><td><strong>Vertebrae</strong></td><td>Cervical×7, Thoracic×12, Lumbar×5, Sacrum (fused 5), Coccyx (fused 4)</td><td>26</td></tr>
+                            <tr><td><strong>Thorax</strong></td><td>Sternum (manubrium+body+xiphoid), Ribs×12 pairs</td><td>25</td></tr>
+                            <tr><td><strong>Upper Limb (×2)</strong></td><td>Clavicle, scapula, humerus, radius, ulna, carpals×8, metacarpals×5, phalanges×14</td><td>64</td></tr>
+                            <tr><td><strong>Lower Limb (×2)</strong></td><td>Hip bone, femur, patella, tibia, fibula, tarsals×7, metatarsals×5, phalanges×14</td><td>62</td></tr>
+                            <tr><td><strong>Ear ossicles</strong></td><td>Malleus, incus, stapes × 2 sides</td><td>6</td></tr>
+                            <tr><td><strong>Hyoid</strong></td><td>Hyoid bone</td><td>1</td></tr>
+                            <tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>206</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section C: Bone Types -->
+            <section id="bone-types" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section C</span>
+                    <h2>Classification of Bones</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-shapes"></i> By Shape</h3>
+                    <div class="layers-grid">
+                        <div class="layer-card">
+                            <div class="layer-num">1</div>
+                            <h4>Long Bones</h4>
+                            <p>Longer than wide. Femur, tibia, fibula, humerus, radius, ulna, metacarpals, metatarsals, phalanges. Have epiphysis, diaphysis, metaphysis.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">2</div>
+                            <h4>Short Bones</h4>
+                            <p>Cube-shaped. Carpals (wrist) and tarsals (ankle). Provide stability with limited movement.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">3</div>
+                            <h4>Flat Bones</h4>
+                            <p>Thin, curved. Skull bones (frontal, parietal), sternum, scapula, ribs, hip bone. Protect organs; large surface for muscle attachment.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">4</div>
+                            <h4>Irregular Bones</h4>
+                            <p>Complex shapes. Vertebrae, facial bones, calcaneus. Don't fit other categories.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">5</div>
+                            <h4>Sesamoid Bones</h4>
+                            <p>Develop within tendons. Patella (largest), pisiform, fabella (variable). Reduce friction in tendons.</p>
+                        </div>
+                        <div class="layer-card">
+                            <div class="layer-num">6</div>
+                            <h4>Pneumatic Bones</h4>
+                            <p>Air-filled sinuses. Frontal, maxilla, sphenoid, ethmoid bones. Reduce skull weight; resonate voice.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section D: Bone Structure -->
+            <section id="bone-structure" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section D</span>
+                    <h2>Bone Structure & Histology</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-layer-group"></i> Macroscopic Structure (Long Bone)</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Diaphysis:</strong> Shaft of long bone; compact bone surrounds medullary cavity (yellow marrow in adults)</li>
+                        <li><strong>Epiphysis:</strong> Ends of long bone; mainly spongy (cancellous) bone covered by articular cartilage</li>
+                        <li><strong>Metaphysis:</strong> Flared region between epiphysis and diaphysis; contains growth plate (epiphyseal plate) in children</li>
+                        <li><strong>Epiphyseal plate (growth plate):</strong> Hyaline cartilage; site of longitudinal bone growth; fuses ~18–25 years</li>
+                        <li><strong>Periosteum:</strong> Fibrous outer covering; contains osteoblasts; site of appositional (width) growth; bone's blood supply and nerve supply</li>
+                        <li><strong>Endosteum:</strong> Inner lining of medullary cavity; contains osteoblasts and osteoclasts</li>
+                        <li><strong>Articular cartilage:</strong> Hyaline cartilage covering epiphysis — no periosteum here</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-microscope"></i> Microscopic Structure (Haversian System)</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Osteon (Haversian system):</strong> Functional unit of compact bone; cylindrical structure</li>
+                        <li><strong>Haversian canal:</strong> Central canal containing blood vessels, lymphatics and nerves</li>
+                        <li><strong>Lamellae:</strong> Concentric rings of calcified matrix around Haversian canal</li>
+                        <li><strong>Lacunae:</strong> Small spaces between lamellae containing osteocytes</li>
+                        <li><strong>Canaliculi:</strong> Tiny channels connecting lacunae — allow nutrient exchange between osteocytes</li>
+                        <li><strong>Volkmann's canals (perforating canals):</strong> Run perpendicular to Haversian canals; connect adjacent osteons and periosteum</li>
+                        <li><strong>Interstitial lamellae:</strong> Remnants of old osteons between active osteons</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-users"></i> Bone Cells</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Cell</th><th>Origin</th><th>Function</th><th>Key Feature</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Osteoblasts</strong></td><td>Mesenchyme</td><td>Bone formation — secrete osteoid (collagen + proteoglycans)</td><td>Alkaline phosphatase marker; line periosteum/endosteum</td></tr>
+                            <tr><td><strong>Osteocytes</strong></td><td>Osteoblasts (trapped)</td><td>Maintain bone matrix; mechanosensing; calcium regulation</td><td>In lacunae; long processes in canaliculi</td></tr>
+                            <tr><td><strong>Osteoclasts</strong></td><td>Monocyte/macrophage lineage</td><td>Bone resorption — dissolve mineral matrix</td><td>Multinucleated; ruffled border; in Howship's lacunae; TRAP positive</td></tr>
+                            <tr><td><strong>Osteoprogenitor cells</strong></td><td>Mesenchymal stem cells</td><td>Differentiate into osteoblasts</td><td>Mitotically active; in periosteum</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="highlight-box info" style="margin-top:12px;">
+                        <p><strong>Bone Matrix Composition:</strong> ~65% inorganic (mainly hydroxyapatite Ca₁₀(PO₄)₆(OH)₂) + ~35% organic (type I collagen = osteoid). Collagen gives flexibility; mineral gives hardness.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section E: Joints -->
+            <section id="joints" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section E</span>
+                    <h2>Joints (Arthrology)</h2>
+                </div>
+                <div class="nephron-grid">
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Fibrous Joints</h3>
+                            <span class="nephron-badge">Synarthrosis</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li><strong>No movement</strong> (synarthrosis) or minimal</li>
+                                <li>Joined by fibrous connective tissue</li>
+                                <li><strong>Sutures:</strong> Skull bones (coronal, sagittal, lambdoid sutures)</li>
+                                <li><strong>Syndesmosis:</strong> Bones joined by ligament — more movement (inferior tibiofibular joint)</li>
+                                <li><strong>Gomphosis:</strong> Peg-in-socket — teeth in alveolar sockets (periodontal ligament)</li>
+                                <li>No synovial cavity</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Cartilaginous Joints</h3>
+                            <span class="nephron-badge">Amphiarthrosis</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li><strong>Limited movement</strong> (amphiarthrosis)</li>
+                                <li><strong>Primary (synchondrosis):</strong> Hyaline cartilage — 1st sternocostal joint, epiphyseal plates. Temporary.</li>
+                                <li><strong>Secondary (symphysis):</strong> Fibrocartilage — pubic symphysis, intervertebral discs, manubriosternal joint. Permanent.</li>
+                                <li>No synovial cavity</li>
+                                <li>Pubic symphysis: fibrocartilaginous disc — widens during childbirth</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nephron-card">
+                        <div class="nephron-header">
+                            <h3>Synovial Joints</h3>
+                            <span class="nephron-badge">Diarthrosis — Most Mobile</span>
+                        </div>
+                        <div class="nephron-content">
+                            <ul>
+                                <li><strong>Freely movable</strong> (diarthrosis) — most joints of limbs</li>
+                                <li>Features: joint cavity, synovial membrane, synovial fluid, articular cartilage, fibrous capsule, ligaments</li>
+                                <li><strong>Plane:</strong> Intercarpal, intertarsal</li>
+                                <li><strong>Hinge:</strong> Elbow, knee (modified), ankle, interphalangeal</li>
+                                <li><strong>Pivot:</strong> Atlantoaxial, proximal/distal radioulnar</li>
+                                <li><strong>Condyloid:</strong> Radiocarpal (wrist), MCP joints</li>
+                                <li><strong>Saddle:</strong> 1st carpometacarpal (thumb) — most mobile</li>
+                                <li><strong>Ball & socket:</strong> Shoulder (most mobile), hip (most stable)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-tint"></i> Synovial Fluid</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Produced by:</strong> Synovial membrane (type B synoviocytes / fibroblast-like)</li>
+                        <li><strong>Composition:</strong> Dialysate of blood plasma + hyaluronic acid + lubricin</li>
+                        <li><strong>Functions:</strong> Lubrication, nutrient supply to avascular articular cartilage, shock absorption</li>
+                        <li><strong>Normal volume:</strong> ~0.5–4 mL in knee joint</li>
+                        <li><strong>Normal appearance:</strong> Clear, straw-coloured, viscous (due to hyaluronic acid)</li>
+                        <li><strong>Aspiration (arthrocentesis):</strong> Used to diagnose gout (urate crystals), pseudogout, infection, haemarthrosis</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section F: Ossification -->
+            <section id="ossification" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section F</span>
+                    <h2>Ossification (Bone Formation)</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-baby"></i> Types of Ossification</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Intramembranous Ossification</h4>
+                            <ul>
+                                <li>Bone forms directly from mesenchyme</li>
+                                <li>No cartilage template</li>
+                                <li>Flat bones of skull (frontal, parietal, occipital squama)</li>
+                                <li>Clavicle (partly), mandible, maxilla</li>
+                                <li>Fontanelles are membrane-covered gaps between ossifying bones</li>
+                                <li>Wormian (sutural) bones form here</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Endochondral Ossification</h4>
+                            <ul>
+                                <li>Bone replaces a hyaline cartilage model</li>
+                                <li>All long bones and short bones</li>
+                                <li>Most bones of skull base</li>
+                                <li>Primary ossification centre: diaphysis (forms in utero)</li>
+                                <li>Secondary ossification centre: epiphysis (forms postnatally)</li>
+                                <li>Growth at epiphyseal (growth) plate until ~25 years</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="highlight-box warning" style="margin-top:12px;">
+                        <p><strong>NEET Alert:</strong> Clavicle is special — ossifies by BOTH intramembranous AND endochondral ossification (the only long bone to have intramembranous component).</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-calendar"></i> Key Ossification Timings</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Bone/Centre</th><th>Appears</th><th>Fuses</th><th>Note</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Clavicle (1° centre)</td><td>5th–6th week IU</td><td>—</td><td>First bone to ossify</td></tr>
+                            <tr><td>Femur (1° centre)</td><td>7th week IU</td><td>—</td><td>Longest bone</td></tr>
+                            <tr><td>Distal femur epiphysis</td><td>36th week IU</td><td>18–20 yrs</td><td>Seen on X-ray of newborn — confirms term baby</td></tr>
+                            <tr><td>Medial epicondyle (elbow)</td><td>~5 years</td><td>~17 years</td><td>Last to fuse at elbow — important trauma landmark</td></tr>
+                            <tr><td>Femoral head epiphysis</td><td>~6 months</td><td>~17 years</td><td>Absent at birth — helps diagnose CDH</td></tr>
+                            <tr><td>Iliac crest</td><td>Puberty</td><td>~25 years</td><td>Used for bone age assessment</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section G: Functions -->
+            <section id="functions" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section G</span>
+                    <h2>Functions of Skeletal System</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-cogs"></i> Six Major Functions</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>Support</h4>
+                            <ul>
+                                <li>Structural framework for body</li>
+                                <li>Supports soft tissues and organs</li>
+                                <li>Maintains body posture (vertebral column)</li>
+                                <li>Cradles and supports abdominal viscera (pelvis)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Protection</h4>
+                            <ul>
+                                <li>Skull — protects brain</li>
+                                <li>Vertebral column — protects spinal cord</li>
+                                <li>Thoracic cage — protects heart, lungs, great vessels</li>
+                                <li>Pelvis — protects pelvic organs (bladder, reproductive organs)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Movement</h4>
+                            <ul>
+                                <li>Bones act as levers for muscle action</li>
+                                <li>Joints are fulcrums</li>
+                                <li>3 classes of levers in the body</li>
+                                <li>Sesamoid bones redirect tendon pull</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Haematopoiesis</h4>
+                            <ul>
+                                <li>Red bone marrow — produces all blood cells</li>
+                                <li>Active sites in adults: sternum, vertebrae, ribs, iliac crest, proximal femur/humerus</li>
+                                <li>In children: all bones have red marrow</li>
+                                <li>Yellow marrow (fat) can revert to red in anaemia</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Mineral Storage</h4>
+                            <ul>
+                                <li>99% of body's calcium stored in bone</li>
+                                <li>85% of body's phosphorus in bone</li>
+                                <li>Also stores Mg²⁺, Na⁺, K⁺</li>
+                                <li>Regulated by PTH (resorption) and calcitonin (deposition)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Endocrine Function</h4>
+                            <ul>
+                                <li>Osteocalcin (from osteoblasts) — regulates insulin sensitivity, male fertility, energy expenditure</li>
+                                <li>FGF-23 (from osteocytes) — regulates phosphate reabsorption in kidney</li>
+                                <li>Bone as an endocrine organ is a recent discovery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section H: Clinical -->
+            <section id="clinical-section" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section H</span>
+                    <h2>Clinical Anatomy</h2>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-stethoscope"></i> Important Clinical Conditions</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Fractures:</strong>
+                            <ul>
+                                <li>Colles' fracture: distal radius fracture (fall on outstretched hand) — "dinner fork" deformity; commonly post-menopausal women</li>
+                                <li>Pott's fracture: bimalleolar ankle fracture — eversion injury</li>
+                                <li>Monteggia fracture: ulna fracture + radial head dislocation</li>
+                                <li>Galeazzi fracture: radius fracture + distal radioulnar joint dislocation</li>
+                                <li>Boxer's fracture: 5th metacarpal neck fracture</li>
+                                <li>March fracture: stress fracture of 2nd metatarsal</li>
+                            </ul>
+                        </li>
+                        <li><strong>Osteoporosis:</strong> Reduced bone mass (BMD T-score ≤ −2.5). Post-menopausal (oestrogen ↓ → osteoclast activity ↑). Vertebral crush fractures, hip fractures. DEXA scan for diagnosis.</li>
+                        <li><strong>Osteomalacia / Rickets:</strong> Defective mineralisation due to Vit D/Ca deficiency. Rickets in children (growth plate abnormality — bow legs, rachitic rosary). Osteomalacia in adults (bone pain, proximal myopathy, Looser zones on X-ray).</li>
+                        <li><strong>Paget's Disease:</strong> Excessive, disorganised bone remodelling. Elevated ALP. "Tam o' shanter" skull, bowing of tibia ("sabre tibia"), deafness (VIII nerve compression). Risk of osteosarcoma.</li>
+                        <li><strong>Osteosarcoma:</strong> Most common primary malignant bone tumour in children/young adults. Distal femur/proximal tibia. Codman's triangle + sunburst pattern on X-ray.</li>
+                        <li><strong>Ewing's Sarcoma:</strong> 2nd most common primary bone tumour; diaphysis of long bones; "onion skin" periosteal reaction on X-ray. EWSR1-FLI1 translocation t(11;22).</li>
+                        <li><strong>Congenital Dislocation of Hip (CDH):</strong> Developmental dysplasia of hip (DDH). Absent femoral head ossification centre at birth. Barlow + Ortolani tests. Trendelenburg gait if missed.</li>
+                        <li><strong>Gout:</strong> Urate crystal deposition in joints (especially 1st MTP — podagra). Birefringent needle-shaped crystals under polarised light. Tophi in chronic cases.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-syringe"></i> Clinical Procedures</h3>
+                    <ul class="detailed-list">
+                        <li><strong>Bone marrow aspiration & biopsy:</strong> Posterior superior iliac spine (PSIS) most common site; also sternum for aspiration only</li>
+                        <li><strong>Intraosseous (IO) access:</strong> Proximal tibia (children), distal tibia/humerus (adults) — emergency vascular access</li>
+                        <li><strong>Bone age assessment:</strong> X-ray of left hand and wrist — compare to Greulich & Pyle atlas</li>
+                        <li><strong>DEXA scan:</strong> Dual-energy X-ray absorptiometry — measures bone mineral density (BMD) at hip and lumbar spine</li>
+                        <li><strong>Joint aspiration (arthrocentesis):</strong> Knee most commonly — diagnose gout, pseudogout, septic arthritis, haemarthrosis</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section I: NEET Points -->
+            <section id="exam-points" class="content-section">
+                <div class="section-header">
+                    <span class="section-label">Section I</span>
+                    <h2>NEET High-Yield Points</h2>
+                </div>
+                <div class="info-card highlight-card">
+                    <h3><i class="fas fa-star"></i> Must-Know for Exams</h3>
+                    <ul class="detailed-list">
+                        <li><strong>206 bones</strong> in adult; ~300 at birth; smallest = stapes; longest = femur; largest sesamoid = patella</li>
+                        <li><strong>Axial skeleton = 80 bones;</strong> Appendicular skeleton = 126 bones</li>
+                        <li><strong>First bone to ossify:</strong> Clavicle (5th–6th week IU); also has intramembranous + endochondral ossification</li>
+                        <li><strong>Distal femur epiphysis</strong> appears at 36 weeks IU — confirms full-term baby at birth</li>
+                        <li><strong>Hyoid bone</strong> = only bone in body that doesn't articulate with any other bone</li>
+                        <li><strong>Most common fracture:</strong> Clavicle; Most mobile joint: shoulder; Most stable joint: hip</li>
+                        <li><strong>Haversian canal</strong> runs longitudinally; Volkmann's canal runs perpendicularly (connects Haversian systems)</li>
+                        <li><strong>Osteoclasts</strong> are multinucleated, derived from monocytes, TRAP-positive, work in Howship's lacunae</li>
+                        <li><strong>Colles' fracture</strong> = distal radius; dinner fork deformity; fall on outstretched hand (FOOSH)</li>
+                        <li><strong>Medial epicondyle</strong> = last to fuse at elbow (~17 yrs); always remember "CRITOE" for elbow ossification order</li>
+                        <li><strong>Bone matrix:</strong> 65% inorganic (hydroxyapatite) + 35% organic (Type I collagen)</li>
+                        <li><strong>Wormian bones:</strong> Intramembranous islands in sutures — seen in osteogenesis imperfecta, hypothyroidism, Down syndrome</li>
+                        <li><strong>Osteocalcin</strong> from osteoblasts = bone's endocrine function (regulates insulin, testosterone)</li>
+                        <li><strong>Saddle joint</strong> (1st CMC) has greatest range of movement among non-ball-and-socket joints</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-lightbulb"></i> Memory Tricks</h3>
+                    <div class="memory-tricks">
+                        <div class="trick-item">
+                            <h4>Elbow Ossification — CRITOE</h4>
+                            <ul>
+                                <li><strong>C</strong>apitulum — 1 year</li>
+                                <li><strong>R</strong>adial head — 3 years</li>
+                                <li><strong>I</strong>nternal (medial) epicondyle — 5 years</li>
+                                <li><strong>T</strong>rochlea — 7 years</li>
+                                <li><strong>O</strong>lecranon — 9 years</li>
+                                <li><strong>E</strong>xternal (lateral) epicondyle — 11 years</li>
+                            </ul>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Wrist Carpals — "Some Lovers Try Positions That They Can't Handle"</h4>
+                            <p>Scaphoid, Lunate, Triquetrum, Pisiform, Trapezium, Trapezoid, Capitate, Hamate (proximal → distal, lateral → medial).</p>
+                        </div>
+                        <div class="trick-item">
+                            <h4>Fracture-Dislocation Mnemonics</h4>
+                            <p><strong>Monteggia</strong> = "M" for Medial side ulna + radial head (MUGR). <strong>Galeazzi</strong> = "Go" = radius + distal radioulnar joint dislocation. Remember: M before G alphabetically = Monteggia = Ulna (U before G).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <button class="scroll-to-top" id="scrollToTop" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="floating-like">
+        <button class="like-btn" id="likeBtn" title="Like this page">
+            <i class="fas fa-heart" id="likeIcon"></i>
+        </button>
+        <div class="like-count" id="likeCount">
+            <span id="likeNumber">...</span>
+        </div>
+        <div class="like-label">Likes</div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Organs Explorer</h3>
+                    <p>Comprehensive medical education platform for aspiring healthcare professionals.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#divisions">Divisions</a></li>
+                        <li><a href="#bone-types">Bone Types</a></li>
+                        <li><a href="#joints">Joints</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Study Resources</h3>
+                    <ul>
+                        <li><a href="#exam-points">NEET High-Yield Points</a></li>
+                        <li><a href="#functions">Functions</a></li>
+                        <li><a href="#clinical-section">Clinical Anatomy</a></li>
+                        <li><a href="#ossification">Ossification</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Organs Explorer. For educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuToggle.querySelector('i').className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+        }
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu();
+        });
+
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const likeBtn = document.getElementById('likeBtn');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeNumber = document.getElementById('likeNumber');
+        const likeCountEl = document.getElementById('likeCount');
+        const LIKE_KEY = 'skeleton-page-likes';
+        const USER_KEY = 'skeleton-page-user-liked';
+        let totalLikes = 0;
+        let userLiked = false;
+
+        async function loadLikes() {
+            try { const r = await window.storage.get(LIKE_KEY, true); totalLikes = r ? parseInt(r.value)||0 : 0; } catch(e) { totalLikes = 0; }
+            try { const r = await window.storage.get(USER_KEY, false); userLiked = r ? r.value === 'true' : false; } catch(e) { userLiked = false; }
+            updateLikeUI(false);
+        }
+        async function saveLikes() {
+            try { await window.storage.set(LIKE_KEY, String(totalLikes), true); await window.storage.set(USER_KEY, String(userLiked), false); } catch(e) {}
+        }
+        function formatLikes(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : n.toString(); }
+        function updateLikeUI(animate) {
+            likeNumber.textContent = formatLikes(totalLikes);
+            if (userLiked) { likeBtn.classList.add('liked'); likeIcon.style.color = '#e53935'; }
+            else { likeBtn.classList.remove('liked'); likeIcon.style.color = ''; }
+            if (animate) { likeCountEl.classList.add('pop'); setTimeout(() => likeCountEl.classList.remove('pop'), 350); }
+        }
+        likeBtn.addEventListener('click', async () => {
+            if (userLiked) { userLiked = false; totalLikes = Math.max(0, totalLikes - 1); }
+            else { userLiked = true; totalLikes++; likeBtn.classList.add('burst'); setTimeout(() => likeBtn.classList.remove('burst'), 700); }
+            updateLikeUI(true);
+            await saveLikes();
+        });
+        loadLikes();
+
+        const cards = document.querySelectorAll('.info-card, .nephron-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        cards.forEach(c => {
+            c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+            c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObserver.observe(c);
+        });
+    </script>
+</body>
+</html>
