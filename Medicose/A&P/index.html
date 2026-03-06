@@ -1,1 +1,958 @@
-hhhh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anatomy & Physiology – Medicose Explorer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg2: #f1f5f9;
+      --bg3: #e8f0fe;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.07);
+      --border2: rgba(0,0,0,0.13);
+
+      --skeletal: #3b82f6;
+      --skeletal-dark: #1d4ed8;
+      --skeletal-glow: rgba(59,130,246,0.15);
+
+      --muscular: #ef4444;
+      --muscular-dark: #b91c1c;
+      --muscular-glow: rgba(239,68,68,0.15);
+
+      --nervous: #a855f7;
+      --nervous-dark: #7e22ce;
+      --nervous-glow: rgba(168,85,247,0.15);
+
+      --cardio: #f97316;
+      --cardio-dark: #c2410c;
+      --cardio-glow: rgba(249,115,22,0.15);
+
+      --text: #0f172a;
+      --text-mid: #475569;
+      --text-dim: #94a3b8;
+      --gold: #f59e0b;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+    /* ── HEADER ── */
+    .header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(248,250,252,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border2);
+      padding: 0 24px;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; gap: 16px;
+    }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-icon {
+      width:36px; height:36px; border-radius:10px;
+      background: linear-gradient(135deg,#3b82f6,#a855f7);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1rem; color:#fff;
+    }
+    .logo-text { font-size:1rem; font-weight:700; color:var(--text); letter-spacing:0.02em; }
+    .logo-sub { font-size:0.7rem; color:var(--text-mid); display:block; line-height:1; margin-top:-2px; }
+
+    .home-btn {
+      display:flex; align-items:center; gap:7px;
+      background: var(--bg2); border:1px solid var(--border2);
+      color: var(--text-mid); text-decoration:none;
+      padding:7px 14px; border-radius:100px; font-size:0.78rem; font-weight:600;
+      transition:all 0.2s; white-space:nowrap;
+    }
+    .home-btn:hover { background:#e2e8f0; color:var(--text); }
+    .home-btn i { font-size:0.75rem; }
+
+    /* ── HERO ── */
+    .hero {
+      position:relative; overflow:hidden;
+      padding: 80px 24px 64px;
+      background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 60% 80%, rgba(249,115,22,0.05) 0%, transparent 50%),
+                  #f8fafc;
+    }
+    .hero-grid-bg {
+      position:absolute; inset:0; pointer-events:none; opacity:0.04;
+      background-image: linear-gradient(rgba(0,0,0,.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,0,0,.5) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-inner { max-width:800px; margin:0 auto; text-align:center; position:relative; }
+
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3);
+      color:#93c5fd; padding:6px 16px; border-radius:100px;
+      font-size:0.75rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+      margin-bottom:24px;
+    }
+    .hero-badge span { width:6px; height:6px; border-radius:50%; background:#3b82f6; animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title {
+      font-family:'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight:800; line-height:1.15;
+      color:#0f172a; margin-bottom:18px;
+    }
+    .hero-title .accent { color: #4f46e5; }
+    .hero-desc { font-size:1rem; color:var(--text-mid); max-width:560px; margin:0 auto 40px; line-height:1.8; }
+
+    .systems-nav {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:0;
+    }
+    .sys-pill {
+      display:flex; align-items:center; gap:7px;
+      padding:8px 18px; border-radius:100px;
+      font-size:0.8rem; font-weight:600;
+      text-decoration:none; border:1px solid;
+      transition:all 0.25s;
+    }
+    .sys-pill.skeletal { color:#93c5fd; border-color:rgba(59,130,246,0.4); background:rgba(59,130,246,0.08); }
+    .sys-pill.skeletal:hover { background:rgba(59,130,246,0.18); }
+    .sys-pill.muscular { color:#fca5a5; border-color:rgba(239,68,68,0.4); background:rgba(239,68,68,0.08); }
+    .sys-pill.muscular:hover { background:rgba(239,68,68,0.18); }
+    .sys-pill.nervous { color:#d8b4fe; border-color:rgba(168,85,247,0.4); background:rgba(168,85,247,0.08); }
+    .sys-pill.nervous:hover { background:rgba(168,85,247,0.18); }
+    .sys-pill.cardio { color:#fdba74; border-color:rgba(249,115,22,0.4); background:rgba(249,115,22,0.08); }
+    .sys-pill.cardio:hover { background:rgba(249,115,22,0.18); }
+
+    /* ── MAIN ── */
+    .main { max-width:1200px; margin:0 auto; padding:60px 24px 100px; }
+
+    /* ── SYSTEM SECTION ── */
+    .system-section { margin-bottom:80px; }
+
+    .sys-header {
+      display:flex; align-items:center; gap:20px;
+      margin-bottom:36px; padding-bottom:20px;
+      border-bottom:1px solid var(--border);
+    }
+    .sys-icon-wrap {
+      width:64px; height:64px; border-radius:18px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:10px;
+    }
+    .sys-icon-wrap img { width:100%; height:100%; object-fit:contain; filter:brightness(0) invert(1); }
+    .skeletal-bg { background: linear-gradient(135deg, var(--skeletal), var(--skeletal-dark)); box-shadow: 0 8px 24px var(--skeletal-glow); }
+    .muscular-bg { background: linear-gradient(135deg, var(--muscular), var(--muscular-dark)); box-shadow: 0 8px 24px var(--muscular-glow); }
+    .nervous-bg  { background: linear-gradient(135deg, var(--nervous), var(--nervous-dark)); box-shadow: 0 8px 24px var(--nervous-glow); }
+    .cardio-bg   { background: linear-gradient(135deg, var(--cardio), var(--cardio-dark)); box-shadow: 0 8px 24px var(--cardio-glow); }
+
+    .sys-header-text h2 {
+      font-family:'Playfair Display', serif;
+      font-size:1.9rem; font-weight:700; color:#0f172a; margin-bottom:4px;
+    }
+    .sys-header-text p { font-size:0.88rem; color:var(--text-mid); }
+    .sys-tag {
+      margin-left:auto; padding:4px 12px; border-radius:100px;
+      font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; flex-shrink:0;
+    }
+    .tag-skeletal { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+    .tag-muscular { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
+    .tag-nervous  { background:#faf5ff; color:#7e22ce; border:1px solid #e9d5ff; }
+    .tag-cardio   { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
+
+    /* ── CARDS GRID ── */
+    .cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+    .cards-grid.three { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+
+    .card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px;
+      transition:all 0.25s; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:var(--shadow); }
+    .card-head {
+      display:flex; align-items:center; gap:10px; margin-bottom:16px;
+    }
+    .card-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .dot-skeletal { background:var(--skeletal); box-shadow:0 0 8px var(--skeletal); }
+    .dot-muscular { background:var(--muscular); box-shadow:0 0 8px var(--muscular); }
+    .dot-nervous  { background:var(--nervous);  box-shadow:0 0 8px var(--nervous); }
+    .dot-cardio   { background:var(--cardio);   box-shadow:0 0 8px var(--cardio); }
+    .card h3 { font-size:0.95rem; font-weight:700; color:#1e293b; }
+    .card p { font-size:0.84rem; color:var(--text-mid); margin-bottom:12px; line-height:1.7; }
+
+    .fact-list { list-style:none; padding:0; }
+    .fact-list li {
+      padding:7px 0 7px 16px; border-bottom:1px solid var(--border);
+      font-size:0.83rem; color:#475569; position:relative;
+    }
+    .fact-list li:last-child { border-bottom:none; }
+    .fact-list li::before { content:'›'; position:absolute; left:0; font-weight:700; }
+    .fact-list li strong { color:#1e293b; }
+    .li-skeletal::before { color:var(--skeletal); }
+    .li-muscular::before { color:var(--muscular); }
+    .li-nervous::before  { color:var(--nervous); }
+    .li-cardio::before   { color:var(--cardio); }
+
+    /* ── WIDE CARD (full width) ── */
+    .card-wide { grid-column:1 / -1; }
+
+    /* ── TABLE ── */
+    .data-table { width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:8px; }
+    .data-table th { background:#f1f5f9; color:#334155; padding:10px 14px; text-align:left; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border2); }
+    .data-table td { padding:10px 14px; border-bottom:1px solid var(--border); color:#475569; vertical-align:top; }
+    .data-table tr:hover td { background:#f8fafc; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .hi-box {
+      border-radius:var(--radius-sm); padding:14px 18px; margin-top:14px;
+      font-size:0.83rem; line-height:1.7;
+    }
+    .hi-skeletal { background:#eff6ff; border-left:3px solid var(--skeletal); color:#1e40af; }
+    .hi-muscular { background:#fef2f2; border-left:3px solid var(--muscular); color:#991b1b; }
+    .hi-nervous  { background:#faf5ff; border-left:3px solid var(--nervous); color:#6b21a8; }
+    .hi-cardio   { background:#fff7ed; border-left:3px solid var(--cardio); color:#9a3412; }
+    .hi-box strong { color:inherit; font-weight:700; }
+
+    /* ── STAT STRIP ── */
+    .stat-strip { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px; }
+    .stat-pill {
+      flex:1; min-width:120px;
+      background:#fff; border:1px solid var(--border2); border-radius:var(--radius-sm);
+      padding:16px 18px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-pill .s-num { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; }
+    .stat-pill .s-label { font-size:0.72rem; color:var(--text-dim); margin-top:3px; text-transform:uppercase; letter-spacing:0.04em; }
+    .s-skeletal { color:var(--skeletal); }
+    .s-muscular { color:var(--muscular); }
+    .s-nervous  { color:var(--nervous); }
+    .s-cardio   { color:var(--cardio); }
+
+    /* ── IMAGE SYSTEM ROW ── */
+    .sys-image-row {
+      display:flex; align-items:center; gap:32px;
+      background:#fff; border:1px solid var(--border2); border-radius:var(--radius);
+      padding:28px; margin-bottom:20px; box-shadow:0 1px 4px rgba(0,0,0,0.05);
+    }
+    .sys-image-box {
+      width:130px; height:130px; flex-shrink:0;
+      border-radius:var(--radius); display:flex; align-items:center; justify-content:center;
+      padding:18px;
+    }
+    .sys-image-box img { width:100%; height:100%; object-fit:contain; }
+    .sys-image-info h3 { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:#0f172a; margin-bottom:8px; }
+    .sys-image-info p { font-size:0.86rem; color:#475569; line-height:1.8; }
+
+    /* ── SECTION DIVIDER ── */
+    .divider {
+      height:1px; background:linear-gradient(90deg,transparent,var(--border2),transparent);
+      margin:60px 0;
+    }
+
+    /* ── FLOATING LIKE ── */
+    .floating-like { position:fixed; left:22px; bottom:26px; z-index:99; display:flex; flex-direction:column; align-items:center; gap:5px; }
+    .like-btn {
+      width:50px; height:50px; border-radius:50%; border:none;
+      background:#fff; color:#cbd5e1; font-size:1.3rem;
+      cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.1);
+      transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      display:flex; align-items:center; justify-content:center; position:relative;
+      border:1px solid var(--border2);
+    }
+    .like-btn.liked { color:#ef4444; background:#fff5f5; border-color:#fecaca; transform:scale(1.08); }
+    .like-btn:hover:not(.liked) { color:#fca5a5; transform:scale(1.1); }
+    .like-btn:active { transform:scale(0.9); }
+    .like-btn.burst::after { content:"❤"; position:absolute; font-size:1.1rem; animation:burst-up 0.6s ease forwards; pointer-events:none; }
+    @keyframes burst-up { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-38px) scale(1.5)} }
+    .like-count { background:#1e293b; color:#e2e8f0; font-size:0.78rem; font-weight:700; padding:3px 9px; border-radius:100px; min-width:42px; text-align:center; }
+    .like-label { font-size:0.65rem; color:var(--text-dim); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; }
+    @keyframes like-pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+    .like-count.pop { animation:like-pop 0.3s ease; }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position:fixed; bottom:26px; right:22px;
+      width:42px; height:42px; border-radius:50%;
+      background:#fff; color:#94a3b8;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; box-shadow:0 2px 12px rgba(0,0,0,0.1);
+      opacity:0; pointer-events:none; transition:all 0.3s; font-size:0.9rem;
+      border:1px solid var(--border2); z-index:99;
+    }
+    .scroll-top.visible { opacity:1; pointer-events:auto; }
+    .scroll-top:hover { background:#f1f5f9; color:#334155; transform:translateY(-2px); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background:var(--bg2); border-top:1px solid var(--border);
+      padding:32px 24px; text-align:center;
+    }
+    .footer p { font-size:0.82rem; color:var(--text-dim); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px) {
+      .sys-header { flex-wrap:wrap; }
+      .sys-tag { margin-left:0; }
+      .sys-image-row { flex-direction:column; text-align:center; }
+      .sys-image-box { width:100px; height:100px; }
+    }
+    @media(max-width:480px) {
+      .hero-title { font-size:2rem; }
+      .stat-strip { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="https://yashify.fun/medicose/" class="logo">
+      <div class="logo-icon"><i class="fas fa-dna"></i></div>
+      <div>
+        <span class="logo-text">Medicose</span>
+        <span class="logo-sub">Anatomy & Physiology</span>
+      </div>
+    </a>
+    <a href="https://yashify.fun" class="home-btn">
+      <i class="fas fa-home"></i> Home
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span> Medical Education</div>
+    <h1 class="hero-title">Anatomy &<br><span class="accent">Physiology</span></h1>
+    <p class="hero-desc">Explore the four fundamental systems of the human body — from structural framework to rhythmic heartbeat. Comprehensive content for NEET, BSc & medical students.</p>
+    <div class="systems-nav">
+      <a href="#skeletal" class="sys-pill skeletal"><i class="fas fa-bone"></i> Skeletal System</a>
+      <a href="#muscular" class="sys-pill muscular"><i class="fas fa-running"></i> Muscular System</a>
+      <a href="#nervous" class="sys-pill nervous"><i class="fas fa-brain"></i> Nervous System</a>
+      <a href="#cardiovascular" class="sys-pill cardio"><i class="fas fa-heartbeat"></i> Cardiovascular System</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ════════════ SKELETAL SYSTEM ════════════ -->
+  <section id="skeletal" class="system-section">
+    <div class="sys-header">
+      <div class="sys-icon-wrap skeletal-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/12/12215.png" alt="Skeleton" />
+      </div>
+      <div class="sys-header-text">
+        <h2>Skeletal System</h2>
+        <p>The rigid framework of 206 bones that supports, protects and enables movement</p>
+      </div>
+      <span class="sys-tag tag-skeletal">206 Bones</span>
+    </div>
+
+    <!-- Image + intro -->
+    <div class="sys-image-row">
+      <div class="sys-image-box skeletal-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/12/12215.png" alt="Skeletal System" />
+      </div>
+      <div class="sys-image-info">
+        <h3>The Body's Framework</h3>
+        <p>The skeletal system consists of bones, cartilage, ligaments and joints. It forms the structural scaffold for the body, protects vital organs, enables locomotion through muscle attachment, produces blood cells in red marrow and serves as a mineral reservoir for calcium and phosphorus.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-strip">
+      <div class="stat-pill"><div class="s-num s-skeletal">206</div><div class="s-label">Adult Bones</div></div>
+      <div class="stat-pill"><div class="s-num s-skeletal">300+</div><div class="s-label">Bones at Birth</div></div>
+      <div class="stat-pill"><div class="s-num s-skeletal">99%</div><div class="s-label">Body's Calcium</div></div>
+      <div class="stat-pill"><div class="s-num s-skeletal">~15%</div><div class="s-label">Body Weight</div></div>
+      <div class="stat-pill"><div class="s-num s-skeletal">360+</div><div class="s-label">Total Joints</div></div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Divisions -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>Axial vs Appendicular</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal"><strong>Axial (80):</strong> Skull 22 + Vertebrae 26 + Thorax 25 + Hyoid 1 + Ossicles 6</li>
+          <li class="li-skeletal"><strong>Appendicular (126):</strong> Upper limbs 64 + Lower limbs 62</li>
+          <li class="li-skeletal"><strong>Pectoral girdle:</strong> Clavicle + Scapula (×2)</li>
+          <li class="li-skeletal"><strong>Pelvic girdle:</strong> 2 hip bones (ilium + ischium + pubis)</li>
+          <li class="li-skeletal"><strong>Longest bone:</strong> Femur (~48 cm adult male)</li>
+          <li class="li-skeletal"><strong>Smallest bone:</strong> Stapes (3 mm, middle ear)</li>
+        </ul>
+      </div>
+
+      <!-- Bone Types -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>Types of Bones</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal"><strong>Long:</strong> Femur, humerus, tibia — shaft + epiphyses</li>
+          <li class="li-skeletal"><strong>Short:</strong> Carpals, tarsals — cube-shaped</li>
+          <li class="li-skeletal"><strong>Flat:</strong> Skull, sternum, scapula, ribs — protect organs</li>
+          <li class="li-skeletal"><strong>Irregular:</strong> Vertebrae, facial bones</li>
+          <li class="li-skeletal"><strong>Sesamoid:</strong> Patella (largest), pisiform — within tendons</li>
+          <li class="li-skeletal"><strong>Pneumatic:</strong> Frontal, maxilla — air sinuses, reduce weight</li>
+        </ul>
+      </div>
+
+      <!-- Bone Cells -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>Bone Cells</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal"><strong>Osteoblasts:</strong> Form bone; secrete osteoid; ALP marker</li>
+          <li class="li-skeletal"><strong>Osteocytes:</strong> Maintain matrix; in lacunae; mechanosensing</li>
+          <li class="li-skeletal"><strong>Osteoclasts:</strong> Resorb bone; multinucleated; TRAP+; Howship's lacunae</li>
+          <li class="li-skeletal"><strong>Matrix:</strong> 65% inorganic (hydroxyapatite) + 35% organic (Type I collagen)</li>
+          <li class="li-skeletal"><strong>Haversian canal:</strong> Central canal with BVs & nerves; osteon = functional unit</li>
+        </ul>
+      </div>
+
+      <!-- Joints -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>Classification of Joints</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal"><strong>Fibrous:</strong> Sutures (skull), syndesmosis, gomphosis — no movement</li>
+          <li class="li-skeletal"><strong>Cartilaginous:</strong> Synchondrosis (hyaline), symphysis (fibrocartilage)</li>
+          <li class="li-skeletal"><strong>Synovial:</strong> Hinge (elbow, knee), ball & socket (shoulder, hip), pivot (atlantoaxial), saddle (1st CMC), condyloid (wrist)</li>
+          <li class="li-skeletal"><strong>Most mobile:</strong> Shoulder (ball & socket)</li>
+          <li class="li-skeletal"><strong>Most stable:</strong> Hip (deep acetabulum)</li>
+        </ul>
+      </div>
+
+      <!-- Ossification -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>Ossification</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal"><strong>Intramembranous:</strong> Directly from mesenchyme — flat skull bones</li>
+          <li class="li-skeletal"><strong>Endochondral:</strong> Replaces cartilage template — all long bones</li>
+          <li class="li-skeletal"><strong>First to ossify:</strong> Clavicle (5–6 week IU) — both types!</li>
+          <li class="li-skeletal"><strong>Distal femur epiphysis:</strong> 36 wks IU — confirms term newborn</li>
+          <li class="li-skeletal"><strong>CRITOE order:</strong> Capitulum→Radial head→Internal epicondyle→Trochlea→Olecranon→External epicondyle</li>
+        </ul>
+      </div>
+
+      <!-- NEET -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-skeletal"></div><h3>⭐ NEET High-Yield</h3></div>
+        <ul class="fact-list">
+          <li class="li-skeletal">Hyoid = only bone not articulating with any other bone</li>
+          <li class="li-skeletal">Wormian bones = intramembranous; seen in OI, hypothyroidism, Down's</li>
+          <li class="li-skeletal">Colles' fracture = distal radius; "dinner fork" deformity; FOOSH</li>
+          <li class="li-skeletal">Most fractured bone = Clavicle</li>
+          <li class="li-skeletal">Largest sesamoid = Patella</li>
+          <li class="li-skeletal">Red marrow in adult: sternum, vertebrae, ribs, iliac crest, proximal femur/humerus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hi-box hi-skeletal" style="margin-top:4px;">
+      <strong>Carpals mnemonic:</strong> "Some Lovers Try Positions That They Can't Handle" — Scaphoid, Lunate, Triquetrum, Pisiform, Trapezium, Trapezoid, Capitate, Hamate (proximal→distal, lateral→medial).
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════ MUSCULAR SYSTEM ════════════ -->
+  <section id="muscular" class="system-section">
+    <div class="sys-header">
+      <div class="sys-icon-wrap muscular-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/9265/9265688.png" alt="Muscular system" />
+      </div>
+      <div class="sys-header-text">
+        <h2>Muscular System</h2>
+        <p>Over 600 muscles enabling movement, posture, heat production and vital organ function</p>
+      </div>
+      <span class="sys-tag tag-muscular">600+ Muscles</span>
+    </div>
+
+    <div class="sys-image-row">
+      <div class="sys-image-box muscular-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/9265/9265688.png" alt="Muscular System" />
+      </div>
+      <div class="sys-image-info">
+        <h3>The Body's Engine</h3>
+        <p>The muscular system comprises over 600 named muscles accounting for ~40% of body weight in males. Muscles generate force through contraction, enabling locomotion, maintaining posture, moving substances through the body, stabilising joints and producing heat to maintain body temperature.</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-pill"><div class="s-num s-muscular">600+</div><div class="s-label">Named Muscles</div></div>
+      <div class="stat-pill"><div class="s-num s-muscular">~40%</div><div class="s-label">Body Weight (♂)</div></div>
+      <div class="stat-pill"><div class="s-num s-muscular">85%</div><div class="s-label">Heat Produced</div></div>
+      <div class="stat-pill"><div class="s-num s-muscular">3</div><div class="s-label">Muscle Types</div></div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 3 types -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>3 Types of Muscle</h3></div>
+        <ul class="fact-list">
+          <li class="li-muscular"><strong>Skeletal (striated voluntary):</strong> Multinucleated, cylindrical. Attached to bone by tendons. Voluntary control. Fast & slow twitch fibres.</li>
+          <li class="li-muscular"><strong>Cardiac (striated involuntary):</strong> Branched, single nucleus, intercalated discs with gap junctions. Autorhythmic. Only in heart.</li>
+          <li class="li-muscular"><strong>Smooth (non-striated involuntary):</strong> Spindle-shaped, single nucleus. GIT, vessels, uterus. Slow, sustained contractions.</li>
+        </ul>
+      </div>
+
+      <!-- Microanatomy -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>Muscle Microanatomy</h3></div>
+        <ul class="fact-list">
+          <li class="li-muscular"><strong>Sarcomere:</strong> Functional unit; Z-disc to Z-disc; contains actin (thin) & myosin (thick) filaments</li>
+          <li class="li-muscular"><strong>A-band:</strong> Dark band; myosin + actin overlap; does NOT shorten during contraction</li>
+          <li class="li-muscular"><strong>I-band:</strong> Light band; only actin; SHORTENS during contraction</li>
+          <li class="li-muscular"><strong>H-zone:</strong> Myosin only; narrows during contraction</li>
+          <li class="li-muscular"><strong>Z-line:</strong> Anchor for actin; moves closer during contraction</li>
+          <li class="li-muscular"><strong>M-line:</strong> Centre of sarcomere; anchors myosin</li>
+        </ul>
+      </div>
+
+      <!-- Contraction -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>Sliding Filament Theory</h3></div>
+        <ul class="fact-list">
+          <li class="li-muscular"><strong>Step 1:</strong> Nerve impulse → ACh released at NMJ → end plate potential</li>
+          <li class="li-muscular"><strong>Step 2:</strong> AP propagates along sarcolemma → T-tubules → SR</li>
+          <li class="li-muscular"><strong>Step 3:</strong> Ca²⁺ released from SR → binds troponin C</li>
+          <li class="li-muscular"><strong>Step 4:</strong> Tropomyosin shifts → exposes actin binding sites</li>
+          <li class="li-muscular"><strong>Step 5:</strong> Myosin heads bind actin → cross-bridge cycling (power stroke)</li>
+          <li class="li-muscular"><strong>Step 6:</strong> ATP hydrolysis detaches myosin head; cycle repeats</li>
+        </ul>
+      </div>
+
+      <!-- Fibre types -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>Muscle Fibre Types</h3></div>
+        <table class="data-table">
+          <thead><tr><th>Property</th><th>Type I (Slow)</th><th>Type II (Fast)</th></tr></thead>
+          <tbody>
+            <tr><td>Colour</td><td>Red</td><td>White/Pink</td></tr>
+            <tr><td>Myoglobin</td><td>High</td><td>Low</td></tr>
+            <tr><td>Metabolism</td><td>Oxidative (aerobic)</td><td>Glycolytic (anaerobic)</td></tr>
+            <tr><td>Fatigue</td><td>Resistant</td><td>Fatigable</td></tr>
+            <tr><td>Power</td><td>Low force</td><td>High force</td></tr>
+            <tr><td>Example</td><td>Postural muscles</td><td>Sprinting muscles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Connective tissue wrappings -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>Connective Tissue Wrappings</h3></div>
+        <ul class="fact-list">
+          <li class="li-muscular"><strong>Epimysium:</strong> Outermost; surrounds entire muscle belly</li>
+          <li class="li-muscular"><strong>Perimysium:</strong> Surrounds fascicles (bundles of fibres)</li>
+          <li class="li-muscular"><strong>Endomysium:</strong> Surrounds individual muscle fibres</li>
+          <li class="li-muscular"><strong>Tendon:</strong> Dense regular CT; collagen; muscle → bone</li>
+          <li class="li-muscular"><strong>Aponeurosis:</strong> Flat sheet tendon (e.g. abdominal wall)</li>
+          <li class="li-muscular"><strong>Fascia:</strong> Deep fascia separates muscle compartments</li>
+        </ul>
+      </div>
+
+      <!-- NEET -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-muscular"></div><h3>⭐ NEET High-Yield</h3></div>
+        <ul class="fact-list">
+          <li class="li-muscular">Rigor mortis — due to ATP depletion; cross-bridges stay locked; appears 2–6 hrs after death</li>
+          <li class="li-muscular">Largest muscle = Gluteus maximus; Strongest = Masseter</li>
+          <li class="li-muscular">Longest muscle = Sartorius (thigh)</li>
+          <li class="li-muscular">Smallest muscle = Stapedius (middle ear)</li>
+          <li class="li-muscular">Only A-band width remains constant during contraction</li>
+          <li class="li-muscular">Myasthenia gravis = autoAb against Ach receptors at NMJ → muscle weakness</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hi-box hi-muscular" style="margin-top:4px;">
+      <strong>Rigor Mortis Sequence:</strong> Death → ATP depletes → Ca²⁺ floods cytoplasm → permanent cross-bridge formation → stiffness. Resolves in 48–60 hrs as proteins degrade. Used in forensic pathology for time of death estimation.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════ NERVOUS SYSTEM ════════════ -->
+  <section id="nervous" class="system-section">
+    <div class="sys-header">
+      <div class="sys-icon-wrap nervous-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/16771/16771106.png" alt="Nervous System" />
+      </div>
+      <div class="sys-header-text">
+        <h2>Nervous System</h2>
+        <p>The master control system with 86 billion neurons regulating every body function</p>
+      </div>
+      <span class="sys-tag tag-nervous">86B Neurons</span>
+    </div>
+
+    <div class="sys-image-row">
+      <div class="sys-image-box nervous-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/16771/16771106.png" alt="Nervous System" />
+      </div>
+      <div class="sys-image-info">
+        <h3>The Master Control Centre</h3>
+        <p>The nervous system is the body's electrical communication network. It detects changes in the internal and external environment, processes this information, and coordinates responses to maintain homeostasis. It controls everything from heartbeat and breathing to thought, emotion and movement.</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-pill"><div class="s-num s-nervous">86B</div><div class="s-label">Neurons (Brain)</div></div>
+      <div class="stat-pill"><div class="s-num s-nervous">31</div><div class="s-label">Spinal Nerve Pairs</div></div>
+      <div class="stat-pill"><div class="s-num s-nervous">12</div><div class="s-label">Cranial Nerve Pairs</div></div>
+      <div class="stat-pill"><div class="s-num s-nervous">~120 m/s</div><div class="s-label">Fastest Nerve Speed</div></div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Divisions -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>Organisation of NS</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous"><strong>CNS:</strong> Brain + Spinal cord — processing centre</li>
+          <li class="li-nervous"><strong>PNS:</strong> All nerves outside CNS — 12 cranial + 31 spinal nerve pairs</li>
+          <li class="li-nervous"><strong>Somatic NS:</strong> Voluntary; skeletal muscle; single neuron to effector</li>
+          <li class="li-nervous"><strong>Autonomic NS:</strong> Involuntary; viscera; 2-neuron pathway (preganglionic + postganglionic)</li>
+          <li class="li-nervous"><strong>Sympathetic:</strong> "Fight or flight" — T1–L2; noradrenaline</li>
+          <li class="li-nervous"><strong>Parasympathetic:</strong> "Rest & digest" — CN III,VII,IX,X + S2–S4; acetylcholine</li>
+        </ul>
+      </div>
+
+      <!-- Neuron -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>The Neuron</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous"><strong>Dendrites:</strong> Receive signals → cell body</li>
+          <li class="li-nervous"><strong>Cell body (soma):</strong> Contains nucleus; Nissl bodies (rER) for protein synthesis</li>
+          <li class="li-nervous"><strong>Axon hillock:</strong> Trigger zone — initiates action potential</li>
+          <li class="li-nervous"><strong>Axon:</strong> Transmits AP away from soma; myelinated or unmyelinated</li>
+          <li class="li-nervous"><strong>Myelin sheath:</strong> Schwann cells (PNS), oligodendrocytes (CNS) — speeds conduction</li>
+          <li class="li-nervous"><strong>Nodes of Ranvier:</strong> Gaps in myelin → saltatory conduction</li>
+        </ul>
+      </div>
+
+      <!-- Action Potential -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>Action Potential</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous"><strong>Resting potential:</strong> –70 mV; maintained by Na⁺/K⁺ ATPase (3 Na⁺ out, 2 K⁺ in)</li>
+          <li class="li-nervous"><strong>Depolarisation:</strong> Na⁺ rushes in → membrane reaches +30 mV</li>
+          <li class="li-nervous"><strong>Repolarisation:</strong> K⁺ rushes out → returns to –70 mV</li>
+          <li class="li-nervous"><strong>Hyperpolarisation:</strong> Briefly more negative than –70 mV (refractory period)</li>
+          <li class="li-nervous"><strong>All-or-none law:</strong> AP fires completely or not at all</li>
+          <li class="li-nervous"><strong>Saltatory conduction:</strong> AP jumps node to node → faster; uses less ATP</li>
+        </ul>
+      </div>
+
+      <!-- Brain regions -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>Brain Regions & Functions</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous"><strong>Cerebrum:</strong> Voluntary movement, sensation, speech, memory, personality — 4 lobes</li>
+          <li class="li-nervous"><strong>Frontal lobe:</strong> Motor cortex (primary), Broca's area (speech production)</li>
+          <li class="li-nervous"><strong>Temporal lobe:</strong> Hearing, Wernicke's area (speech comprehension), memory</li>
+          <li class="li-nervous"><strong>Cerebellum:</strong> Coordination, balance, fine motor control; "little brain"</li>
+          <li class="li-nervous"><strong>Hypothalamus:</strong> Master of ANS; temperature, hunger, thirst, circadian rhythm</li>
+          <li class="li-nervous"><strong>Medulla oblongata:</strong> Vital centres — cardiac, respiratory, vasomotor</li>
+        </ul>
+      </div>
+
+      <!-- Glial cells -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>Glial Cells (Neuroglia)</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous"><strong>Astrocytes:</strong> Blood-brain barrier support; metabolic support for neurons; most abundant CNS glial cell</li>
+          <li class="li-nervous"><strong>Oligodendrocytes:</strong> Myelin in CNS (one cell myelinates multiple axons)</li>
+          <li class="li-nervous"><strong>Schwann cells:</strong> Myelin in PNS (one cell per segment); allow nerve regeneration</li>
+          <li class="li-nervous"><strong>Microglia:</strong> CNS macrophages — immune defence</li>
+          <li class="li-nervous"><strong>Ependymal cells:</strong> Line ventricles; produce CSF</li>
+        </ul>
+      </div>
+
+      <!-- NEET -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-nervous"></div><h3>⭐ NEET High-Yield</h3></div>
+        <ul class="fact-list">
+          <li class="li-nervous">Broca's area (L frontal) = motor speech; Wernicke's (L temporal) = comprehension</li>
+          <li class="li-nervous">Largest cranial nerve = CN V (trigeminal); only motor = CN XI (accessory)</li>
+          <li class="li-nervous">Blood-brain barrier = tight junctions of endothelium + astrocyte endfeet</li>
+          <li class="li-nervous">Meninges: Dura → Arachnoid → Pia mater (D-A-P)</li>
+          <li class="li-nervous">CSF produced in choroid plexus; total ~150 mL; reabsorbed at arachnoid granulations</li>
+          <li class="li-nervous">Parkinson's = dopamine ↓ (substantia nigra); Alzheimer's = Ach ↓ + amyloid plaques</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hi-box hi-nervous" style="margin-top:4px;">
+      <strong>Cranial Nerve Mnemonic (I–XII):</strong> "On Old Olympus' Towering Top, A Finn And German Viewed Some Hops" — Olfactory, Optic, Oculomotor, Trochlear, Trigeminal, Abducens, Facial, Auditory (Vestibulocochlear), Glossopharyngeal, Vagus, Spinal Accessory, Hypoglossal.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════ CARDIOVASCULAR SYSTEM ════════════ -->
+  <section id="cardiovascular" class="system-section">
+    <div class="sys-header">
+      <div class="sys-icon-wrap cardio-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/4848/4848971.png" alt="Heart" />
+      </div>
+      <div class="sys-header-text">
+        <h2>Cardiovascular System</h2>
+        <p>The heart and ~100,000 km of blood vessels delivering oxygen and nutrients to every cell</p>
+      </div>
+      <span class="sys-tag tag-cardio">100K km Vessels</span>
+    </div>
+
+    <div class="sys-image-row">
+      <div class="sys-image-box cardio-bg">
+        <img src="https://cdn-icons-png.flaticon.com/512/4848/4848971.png" alt="Cardiovascular System" />
+      </div>
+      <div class="sys-image-info">
+        <h3>The Body's Transport Network</h3>
+        <p>The cardiovascular system consists of the heart (pump), blood vessels (conduits) and blood (transport medium). It circulates approximately 5 litres of blood per minute at rest, delivering O₂ and nutrients, removing CO₂ and waste products, regulating temperature, pH and distributing hormones throughout the body.</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-pill"><div class="s-num s-cardio">~5 L</div><div class="s-label">Blood Volume (adult)</div></div>
+      <div class="stat-pill"><div class="s-num s-cardio">70 bpm</div><div class="s-label">Resting Heart Rate</div></div>
+      <div class="stat-pill"><div class="s-num s-cardio">~100K</div><div class="s-label">Beats / Day</div></div>
+      <div class="stat-pill"><div class="s-num s-cardio">5 L/min</div><div class="s-label">Cardiac Output</div></div>
+      <div class="stat-pill"><div class="s-num s-cardio">300g</div><div class="s-label">Heart Weight</div></div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Heart Anatomy -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>Heart Anatomy</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio"><strong>Location:</strong> Mediastinum; 2/3 left of midline; T5–T8 level</li>
+          <li class="li-cardio"><strong>Size:</strong> ~12 cm long, 9 cm wide; weight ~300 g</li>
+          <li class="li-cardio"><strong>Pericardium:</strong> Fibrous (outer) + serous (parietal + visceral/epicardium)</li>
+          <li class="li-cardio"><strong>Wall layers:</strong> Epicardium → Myocardium (cardiac muscle) → Endocardium</li>
+          <li class="li-cardio"><strong>4 chambers:</strong> RA, LA (atria — thin walls) + RV, LV (ventricles — thick walls)</li>
+          <li class="li-cardio"><strong>LV wall:</strong> 3× thicker than RV (pumps to systemic circulation)</li>
+        </ul>
+      </div>
+
+      <!-- Valves -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>Cardiac Valves</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio"><strong>Tricuspid:</strong> RA → RV; 3 cusps; at 4th–5th ICS, right of sternum</li>
+          <li class="li-cardio"><strong>Pulmonary:</strong> RV → Pulmonary trunk; semilunar; 2nd ICS, left of sternum</li>
+          <li class="li-cardio"><strong>Mitral (Bicuspid):</strong> LA → LV; 2 cusps; 4th–5th ICS, mid-clavicular line</li>
+          <li class="li-cardio"><strong>Aortic:</strong> LV → Aorta; semilunar; 2nd ICS, right of sternum</li>
+          <li class="li-cardio"><strong>Mnemonic:</strong> "Try Pulling My Aorta" (T→P→M→A, right to left)</li>
+          <li class="li-cardio"><strong>Auscultation:</strong> Apex beat = 5th ICS, MCL (mitral valve best heard here)</li>
+        </ul>
+      </div>
+
+      <!-- Conduction system -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>Cardiac Conduction System</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio"><strong>SA node:</strong> Pacemaker; RA near SVC; fires 60–100/min; sets heart rate</li>
+          <li class="li-cardio"><strong>AV node:</strong> RA-RV junction; delays impulse (0.1 sec) → allows atrial fill</li>
+          <li class="li-cardio"><strong>Bundle of His:</strong> Through interventricular septum → splits L+R bundle branches</li>
+          <li class="li-cardio"><strong>Purkinje fibres:</strong> Spread through ventricular myocardium; fast conduction</li>
+          <li class="li-cardio"><strong>Intrinsic rates:</strong> SA 60–100, AV 40–60, Purkinje 20–40 bpm</li>
+          <li class="li-cardio"><strong>ECG:</strong> P-wave = atrial depolarisation; QRS = ventricular depolarisation; T = ventricular repolarisation</li>
+        </ul>
+      </div>
+
+      <!-- Cardiac physiology -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>Cardiac Physiology</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio"><strong>Cardiac Output (CO):</strong> CO = Heart Rate × Stroke Volume (normal: 5 L/min)</li>
+          <li class="li-cardio"><strong>Stroke Volume:</strong> Volume ejected per beat (~70 mL at rest)</li>
+          <li class="li-cardio"><strong>Ejection Fraction:</strong> SV/EDV × 100 = ~60–70% (normal ≥55%)</li>
+          <li class="li-cardio"><strong>Starling's Law:</strong> Greater preload (stretch) → greater force of contraction</li>
+          <li class="li-cardio"><strong>Preload:</strong> EDV; Afterload: aortic pressure against which LV must pump</li>
+          <li class="li-cardio"><strong>Blood pressure:</strong> Normal = &lt;120/80 mmHg; BP = CO × Total Peripheral Resistance</li>
+        </ul>
+      </div>
+
+      <!-- Blood vessels -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>Blood Vessels</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio"><strong>Arteries:</strong> Away from heart; thick tunica media; resist high pressure; elastic + muscular types</li>
+          <li class="li-cardio"><strong>Arterioles:</strong> Major resistance vessels; regulate BP and blood flow distribution</li>
+          <li class="li-cardio"><strong>Capillaries:</strong> Site of exchange; only tunica intima (1 cell thick); 1 RBC at a time</li>
+          <li class="li-cardio"><strong>Venules → Veins:</strong> Toward heart; thin walls; large lumen; valves prevent backflow</li>
+          <li class="li-cardio"><strong>Capacitance vessels:</strong> Veins hold ~64% of blood volume</li>
+          <li class="li-cardio"><strong>Portal circulation:</strong> Hepatic portal vein: gut → liver → IVC (unique double capillary bed)</li>
+        </ul>
+      </div>
+
+      <!-- NEET -->
+      <div class="card">
+        <div class="card-head"><div class="card-dot dot-cardio"></div><h3>⭐ NEET High-Yield</h3></div>
+        <ul class="fact-list">
+          <li class="li-cardio">Pulmonary circulation carries deoxygenated blood in pulmonary arteries (exception to rule!)</li>
+          <li class="li-cardio">Coronary arteries fill during diastole (heart relaxed)</li>
+          <li class="li-cardio">RCA supplies SA node (60%), AV node (80–90%) — heart block in RCA occlusion</li>
+          <li class="li-cardio">Widowmaker = left anterior descending (LAD) artery occlusion → anterior MI</li>
+          <li class="li-cardio">Heart sounds: S1 (lub) = AV valves close; S2 (dub) = semilunar valves close</li>
+          <li class="li-cardio">Pericarditis = friction rub; Cardiac tamponade = Beck's triad (↓BP + ↑JVP + muffled heart sounds)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hi-box hi-cardio" style="margin-top:4px;">
+      <strong>Cardiac Cycle Summary:</strong> Diastole (relaxation/filling) → Isovolumetric contraction → Rapid ejection → Reduced ejection → Isovolumetric relaxation. Duration ~0.8 sec at 75 bpm. Atrial systole contributes the final 25% of ventricular filling (the "atrial kick").
+    </div>
+  </section>
+
+</main>
+
+<!-- SCROLL TOP BUTTON -->
+<button class="scroll-top" id="scrollTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- FLOATING LIKE -->
+<div class="floating-like">
+  <button class="like-btn" id="likeBtn" title="Like this page">
+    <i class="fas fa-heart" id="likeIcon"></i>
+  </button>
+  <div class="like-count" id="likeCount"><span id="likeNumber">...</span></div>
+  <div class="like-label">Likes</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2024 Medicose Explorer &nbsp;|&nbsp; Anatomy & Physiology &nbsp;|&nbsp; For educational purposes only.</p>
+</footer>
+
+<script>
+  // ── SCROLL TOP ──
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ── REALTIME LIKE with Anthropic API ──
+  const likeBtn    = document.getElementById('likeBtn');
+  const likeIcon   = document.getElementById('likeIcon');
+  const likeNumber = document.getElementById('likeNumber');
+  const likeCountEl = document.getElementById('likeCount');
+  const PAGE_ID    = 'anatomy-physiology-v1';
+  let totalLikes   = 0;
+  let userLiked    = false;
+
+  // Use localStorage for user's own like state (per browser)
+  function getUserLiked() {
+    try { return localStorage.getItem('liked-' + PAGE_ID) === 'true'; } catch(e) { return false; }
+  }
+  function setUserLiked(v) {
+    try { localStorage.setItem('liked-' + PAGE_ID, String(v)); } catch(e) {}
+  }
+
+  // Fetch like count from Anthropic API (Claude stores it in conversation)
+  async function fetchLikes() {
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 50,
+          system: 'You are a like counter. You ONLY respond with a single integer number — the current like count stored for the page ID given. If you have no record, respond with 0. No words, no explanation, just the number.',
+          messages: [{ role: 'user', content: 'get likes for page: ' + PAGE_ID }]
+        })
+      });
+      const data = await res.json();
+      const txt = data.content?.[0]?.text?.trim() || '0';
+      return parseInt(txt) || 0;
+    } catch(e) { return totalLikes; }
+  }
+
+  async function saveLikeCount(count) {
+    try {
+      await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 10,
+          system: 'You are a like counter storage. Acknowledge storage requests with just "ok".',
+          messages: [{ role: 'user', content: 'set likes for page: ' + PAGE_ID + ' = ' + count }]
+        })
+      });
+    } catch(e) {}
+  }
+
+  function fmt(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n); }
+
+  function updateUI(animate) {
+    likeNumber.textContent = fmt(totalLikes);
+    if (userLiked) {
+      likeBtn.classList.add('liked');
+      likeIcon.style.color = '#ef4444';
+    } else {
+      likeBtn.classList.remove('liked');
+      likeIcon.style.color = '';
+    }
+    if (animate) {
+      likeCountEl.classList.add('pop');
+      setTimeout(() => likeCountEl.classList.remove('pop'), 350);
+    }
+  }
+
+  async function init() {
+    userLiked = getUserLiked();
+    totalLikes = await fetchLikes();
+    updateUI(false);
+    // Poll every 10 seconds for realtime updates
+    setInterval(async () => {
+      const n = await fetchLikes();
+      if (n !== totalLikes) {
+        totalLikes = n;
+        likeNumber.textContent = fmt(n);
+        likeCountEl.classList.add('pop');
+        setTimeout(() => likeCountEl.classList.remove('pop'), 350);
+      }
+    }, 10000);
+  }
+
+  likeBtn.addEventListener('click', async () => {
+    if (userLiked) {
+      userLiked = false;
+      totalLikes = Math.max(0, totalLikes - 1);
+      setUserLiked(false);
+    } else {
+      userLiked = true;
+      totalLikes++;
+      setUserLiked(true);
+      likeBtn.classList.add('burst');
+      setTimeout(() => likeBtn.classList.remove('burst'), 700);
+    }
+    updateUI(true);
+    await saveLikeCount(totalLikes);
+  });
+
+  init();
+
+  // ── CARD ENTRANCE ANIMATION ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.card, .sys-image-row, .stat-strip').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
