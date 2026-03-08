@@ -1,16 +1,14 @@
 
-
-
-
-
-
+   
   
+  
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Mind Library</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library - Yashify | Stories, Articles & Wisdom</title>
 
 
 <!-- ✅ SEO Meta Tags - Library Page -->
@@ -31,9 +29,15 @@
 
 
 
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700;800&display=swap" rel="stylesheet"/>
+
+<meta name="description" content="Yashify Library - Stories, Articles, BookFlix aur Wisdom.">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
+<meta name="theme-color" content="#FBBF24">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
   
-    <!-- Google tag (gtag.js) -->
+  
+   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -45,481 +49,348 @@
   
   
   
-  <style>
-    :root {
-      --teal:      #2A9D8F;
-      --teal-dark: #1A6B61;
-      --blue:      #1A5F7A;
-      --red:       #E63946;
-      --cream:     #F5F0E8;
-      --ink:       #0D1B2A;
-      --ink-mid:   #2C3E50;
-      --ink-soft:  #6B8A99;
-      --rule:      rgba(255,255,255,0.18);
-    }
+<style>
+:root{--bg:#F4F7FB;--text:#111827;--sub:#6B7280;--purple:#8C52FF;--blue:#3ABFF8;--yellow:#FBBF24;--violet:#A855F7;--red:#EF4444;--green:#10B981;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0 20px;overflow-x:hidden;}
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html, body { height:100%; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--cream);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+/* PROGRESS BAR */
+#progressBar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#FBBF24,#F59E0B,#8C52FF);z-index:99999;border-radius:0 2px 2px 0;transition:width .3s ease,opacity .5s ease;pointer-events:none;}
 
-    /* ── BACKGROUND ── */
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-    }
-    .bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    /* dark teal overlay — heavier left for text, fades right */
-    .bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        105deg,
-        rgba(10, 35, 45, 0.82) 0%,
-        rgba(10, 35, 45, 0.65) 30%,
-        rgba(10, 35, 45, 0.28) 55%,
-        rgba(10, 35, 45, 0.04) 72%,
-        transparent 82%
-      );
-    }
+/* CONFETTI */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99990;}
 
-    /* ── PAGE ── */
-    .page {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+/* FIXED ICON */
+#fixedIcon{position:fixed;top:16px;left:16px;width:44px;height:44px;border-radius:12px;display:block;animation:floatY 3s ease-in-out infinite;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.15);}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-    /* ── STICKY NOTES — side by side in empty teal space above books ── */
-    .sticky-wrap {
-      position: fixed;
-      top: 12%;
-      left: 42%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: row;
-      gap: 24px;
-      z-index: 10;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.75s ease forwards;
-    }
+/* MAILBOX */
+.mailbox-btn{position:fixed;top:20px;right:20px;width:50px;height:50px;background:var(--yellow);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.25);z-index:10000;transition:.3s ease;font-size:1.3rem;text-decoration:none;}
+.mailbox-btn:hover{transform:scale(1.12);background:#F59E0B;}
 
-    .sticky {
-      width: 158px;
-      padding: 18px 18px 20px;
-      border-radius: 3px 16px 16px 3px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      text-decoration: none;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+/* NAVBAR */
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;max-width:1200px;margin:0 auto;}
+.logo{font-size:1.5rem;font-weight:800;text-transform:uppercase;}
+.back-btn{display:flex;align-items:center;gap:8px;color:var(--sub);text-decoration:none;font-size:.9rem;font-weight:600;border:2px solid #e5e7eb;border-radius:50px;padding:8px 16px;transition:all .2s;}
+.back-btn:hover{border-color:var(--yellow);color:var(--yellow);}
 
-    /* tape strip at top */
-    .sticky::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 44px; height: 20px;
-      border-radius: 2px;
-      opacity: 0.55;
-    }
+/* HERO */
+.hero{max-width:1100px;margin:40px auto 20px;display:flex;align-items:center;gap:40px;padding:0 10px;}
+.hero-avatar{flex-shrink:0;width:160px;height:160px;border-radius:50%;border:3px solid var(--yellow);overflow:hidden;background:white;}
+.hero-right{flex:1;display:flex;flex-direction:column;gap:18px;}
+.hero-right h1{font-size:2.6rem;font-weight:700;line-height:1.2;min-height:3.4rem;}
+.hero-right>p{font-size:1rem;color:var(--sub);margin-top:-10px;}
+.quote-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:50px;padding:8px 18px;font-size:.85rem;font-weight:700;color:#92400E;width:fit-content;}
+.quote-badge i{color:var(--yellow);}
 
-    .sticky-yellow {
-      background: #F9E84A;
-      box-shadow: 3px 4px 18px rgba(0,0,0,0.22), -1px -1px 0 rgba(0,0,0,0.04);
-      transform: rotate(1.5deg);
-    }
-    .sticky-yellow::before { background: rgba(249,200,50,0.7); }
-    .sticky-yellow:hover {
-      transform: rotate(0deg) translateY(-5px) scale(1.03);
-      box-shadow: 6px 10px 28px rgba(0,0,0,0.28);
-    }
+/* STATS */
+.stats-section{max-width:780px;margin:10px auto 0;display:flex;justify-content:center;gap:40px;padding:18px 20px;background:white;border-radius:20px;box-shadow:0 2px 12px rgba(251,191,36,.1);}
+.stat-item{text-align:center;}
+.stat-number{font-size:1.5rem;font-weight:800;color:var(--yellow);line-height:1;}
+.stat-label{font-size:.72rem;color:var(--sub);margin-top:4px;}
+.stat-divider{width:1px;background:#e5e7eb;align-self:stretch;}
 
-    .sticky-teal {
-      background: #A8E6DF;
-      box-shadow: 3px 4px 18px rgba(0,0,0,0.22), -1px -1px 0 rgba(0,0,0,0.04);
-      transform: rotate(-2deg);
-    }
-    .sticky-teal::before { background: rgba(100,210,200,0.7); }
-    .sticky-teal:hover {
-      transform: rotate(0deg) translateY(-5px) scale(1.03);
-      box-shadow: 6px 10px 28px rgba(0,0,0,0.28);
-    }
+/* SECTION TITLE */
+.section-title{max-width:780px;margin:28px auto 12px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--sub);}
 
-    /* pin dot */
-    .sticky-pin {
-      position: absolute;
-      top: 10px; left: 50%;
-      transform: translateX(-50%);
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.18);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-    }
+/* CARDS */
+.cards-container{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:780px;margin:0 auto 20px;}
+.card-wrapper{position:relative;}
+.card{background:white;border-radius:22px;padding:26px 14px 20px;text-align:center;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;align-items:center;height:100%;}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(0,0,0,.09);}
+.card-icon-img{width:54px;height:54px;object-fit:contain;margin-bottom:12px;}
+.card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--text);}
+.underline{width:26px;height:3px;border-radius:2px;margin-bottom:10px;}
+.card p{font-size:.76rem;color:var(--sub);line-height:1.4;max-width:90%;}
 
-    /* fold corner */
-    .sticky-yellow::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 18px; height: 18px;
-      background: linear-gradient(225deg, rgba(0,0,0,0.10) 50%, transparent 50%);
-      border-radius: 0 0 16px 0;
-    }
-    .sticky-teal::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 18px; height: 18px;
-      background: linear-gradient(225deg, rgba(0,0,0,0.09) 50%, transparent 50%);
-      border-radius: 0 0 16px 0;
-    }
+/* CARD BORDERS */
+.bookflix{border:2.5px solid var(--yellow);}.bookflix .underline{background:var(--yellow);}
+.legacy{border:2.5px solid var(--violet);}.legacy .underline{background:var(--violet);}
+.articles{border:2.5px solid var(--blue);}.articles .underline{background:var(--blue);}
+.wisdom{border:2.5px solid var(--green);}.wisdom .underline{background:var(--green);}
+.stories{border:2.5px solid var(--red);}.stories .underline{background:var(--red);}
+.featured{border:2.5px solid var(--purple);}.featured .underline{background:var(--purple);}
 
-    .sticky-icon {
-      font-size: 22px;
-      line-height: 1;
-      margin-top: 8px;
-    }
-    .sticky-label {
-      font-family: 'Caveat', cursive;
-      font-weight: 800;
-      font-size: 22px;
-      color: #1A1208;
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-    .sticky-sub {
-      font-size: 10px;
-      font-weight: 500;
-      color: rgba(26,18,8,0.60);
-      line-height: 1.4;
-    }
-    .sticky-arrow {
-      font-size: 12px;
-      color: rgba(26,18,8,0.30);
-      margin-top: 4px;
-      transition: color 0.3s, transform 0.3s;
-    }
-    .sticky:hover .sticky-arrow {
-      color: rgba(26,18,8,0.65);
-      transform: translateX(4px);
-    }
+/* NEW BADGE */
+.new-badge{position:absolute;top:-8px;right:-8px;background:var(--red);color:white;font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;z-index:10;animation:pulseBadge 2s ease-in-out infinite;}
+@keyframes pulseBadge{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{transform:scale(1.06);box-shadow:0 0 0 5px rgba(239,68,68,0)}}
 
-    /* ── NAVBAR ── */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 22px 48px;
-      opacity: 0;
-      animation: fadeDown 0.5s 0.05s ease forwards;
-    }
-    .nav-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-    .nav-title {
-      font-family: 'Fraunces', serif;
-      font-size: 14px;
-      font-weight: 900;
-      color: #FFFFFF;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-    }
-    .nav-title em { font-style: italic; color: #4DD9C8; }
-    .nav-powered {
-      font-size: 8.5px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.70);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.25s;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.30);
-    }
-    .nav-powered span { color: #4DD9C8; }
-    .nav-powered:hover { color: #FFFFFF; }
+/* COMING SOON MINI CARDS */
+.cs-row{max-width:780px;margin:0 auto 20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cs-card{background:white;border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;opacity:.7;cursor:not-allowed;border:1.5px dashed #d1d5db;min-width:140px;flex:1;max-width:220px;}
+.cs-icon{font-size:1.3rem;}
+.cs-info{}
+.cs-name{font-size:.82rem;font-weight:700;color:var(--text);}
+.cs-badge{display:inline-block;background:#f3f4f6;color:#6B7280;font-size:.55rem;font-weight:700;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;}
 
-    /* ── HERO ── */
-    .hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 48px 56px 72px;
-      max-width: 620px;
-    }
+/* FEATURED STRIP */
+.featured-strip{max-width:780px;margin:0 auto 20px;background:white;border-radius:20px;padding:20px 24px;box-shadow:0 2px 12px rgba(251,191,36,.07);border-left:4px solid var(--yellow);}
+.featured-strip-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--yellow);margin-bottom:10px;}
+.featured-strip h2{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.featured-strip p{font-size:.82rem;color:var(--sub);margin-bottom:14px;}
+.read-btn{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:white;border-radius:50px;padding:9px 20px;font-size:.88rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.read-btn:hover{background:#F59E0B;transform:translateY(-1px);}
 
-    /* eyebrow */
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: 4px;
-      color: var(--teal);
-      text-transform: uppercase;
-      margin-bottom: 22px;
-      opacity: 0;
-      animation: fadeUp 0.5s 0.20s ease forwards;
-    }
-    .ey-line { width: 22px; height: 1px; background: var(--teal); }
+/* ACTION ROW */
+.action-row{max-width:780px;margin:0 auto 40px;display:flex;align-items:center;gap:12px;padding:16px 20px;background:white;border-radius:20px;box-shadow:0 2px 12px rgba(251,191,36,.07);flex-wrap:wrap;}
+.like-btn{display:flex;align-items:center;gap:8px;background:none;border:2.5px solid #e5e7eb;border-radius:50px;padding:9px 20px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;color:var(--sub);cursor:pointer;transition:all .3s ease;}
+.like-btn:hover{border-color:var(--red);color:var(--red);transform:scale(1.04);}
+.like-btn.liked{border-color:var(--red);background:#fff5f5;color:var(--red);}
+@keyframes heartPop{0%{transform:scale(1)}50%{transform:scale(1.7)}100%{transform:scale(1)}}
+.share-btn{display:flex;align-items:center;gap:8px;background:none;border:2.5px solid #e5e7eb;border-radius:50px;padding:9px 20px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;color:var(--sub);cursor:pointer;transition:all .3s ease;margin-left:auto;}
+.share-btn:hover{border-color:var(--yellow);color:var(--yellow);transform:scale(1.04);}
 
-    /* ── BIG TITLE ── */
-    .hero-title {
-      font-family: 'Fraunces', serif;
-      font-weight: 900;
-      font-size: clamp(4.5rem, 10vw, 8rem);
-      line-height: 0.88;
-      letter-spacing: -3px;
-      opacity: 0;
-      animation: fadeUp 0.5s 0.30s ease forwards;
-    }
-    .hero-title .the {
-      display: block;
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(1.1rem, 2.4vw, 1.7rem);
-      letter-spacing: 1px;
-      color: rgba(245,240,232,0.50);
-      margin-bottom: 6px;
-    }
-    .word-mind { color: var(--cream); }
-    .word-lib  { color: var(--teal); }
+/* FOOTER */
+footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-size:.95rem;}
+.footer-social{margin-top:10px;}
+.footer-social a{color:var(--violet);font-size:1.5rem;margin:0 10px;display:inline-block;transition:.3s ease;}
+.footer-social a:hover{color:#7C3AED;transform:scale(1.1);}
 
-    /* ornament */
-    .ornament {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 26px 0;
-      max-width: 220px;
-      opacity: 0;
-      animation: fadeUp 0.5s 0.40s ease forwards;
-    }
-    .orn-l {
-      flex:1; height:1px;
-      background: linear-gradient(to right, var(--teal), rgba(42,157,143,0.1));
-    }
-    .orn-dot {
-      width:5px; height:5px;
-      border-radius:50%;
-      background: var(--teal);
-      opacity: 0.6;
-    }
-
-    /* quote */
-    .hero-quote {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(1rem, 1.9vw, 1.22rem);
-      line-height: 1.85;
-      color: rgba(245,240,232,0.72);
-      max-width: 420px;
-      opacity: 0;
-      animation: fadeUp 0.5s 0.48s ease forwards;
-    }
-
-
-
-
-
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(18px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity:0; transform:translateY(-10px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
-    /* ── ANDROID MOBILE ── */
-    @media (max-width: 640px) {
-      .navbar { padding: 14px 18px; }
-
-      .hero {
-        padding: 28px 22px 24px;
-        max-width: 100%;
-        justify-content: flex-start;
-      }
-
-      .eyebrow { margin-bottom: 14px; font-size: 8.5px; }
-
-      .hero-title {
-        font-size: clamp(3.2rem, 14vw, 4.2rem);
-        letter-spacing: -1.5px;
-      }
-
-      .ornament { margin: 16px 0; }
-
-      .hero-quote {
-        font-size: 0.98rem;
-        max-width: 100%;
-      }
-
-      .bg::after {
-        background: linear-gradient(
-          to bottom,
-          rgba(10,35,45,0.88) 0%,
-          rgba(10,35,45,0.72) 42%,
-          rgba(10,35,45,0.18) 68%,
-          transparent 100%
-        );
-      }
-
-      /* sticky notes — top right on android, stacked */
-      .sticky-wrap {
-        top: 80px;
-        right: 16px;
-        left: auto;
-        bottom: auto;
-        transform: none;
-        flex-direction: column;
-        gap: 12px;
-      }
-      .sticky { width: 136px; padding: 14px 14px 16px; }
-      .sticky-label { font-size: 19px; }
-      .sticky-sub   { font-size: 9.5px; }
-      .sticky-yellow { transform: rotate(1deg); }
-      .sticky-teal   { transform: rotate(-1.5deg); }
-    }
-
-    @media (max-width: 360px) {
-      .sticky { width: 122px; }
-      .hero-title { font-size: 3rem; }
-    }
-
-    /* ── iPAD / TABLET ── */
-    @media (min-width: 641px) and (max-width: 1024px) {
-      .navbar { padding: 20px 36px; }
-
-      .hero {
-        padding: 44px 44px 64px;
-        max-width: 52%;
-        justify-content: center;
-      }
-
-      .hero-title {
-        font-size: clamp(3.8rem, 8vw, 5.5rem);
-        letter-spacing: -2px;
-      }
-
-      .hero-quote { font-size: 1.05rem; }
-
-      .bg::after {
-        background: linear-gradient(
-          105deg,
-          rgba(10,35,45,0.88) 0%,
-          rgba(10,35,45,0.68) 32%,
-          rgba(10,35,45,0.20) 55%,
-          transparent 72%
-        );
-      }
-
-      /* iPad — sticky notes top right, stacked vertically */
-      .sticky-wrap {
-        top: 88px;
-        right: 36px;
-        left: auto;
-        transform: none;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .sticky { width: 150px; padding: 16px 16px 18px; }
-      .sticky-label { font-size: 20px; }
-      .sticky-sub   { font-size: 10px; }
-      .sticky-yellow { transform: rotate(1.5deg); }
-      .sticky-teal   { transform: rotate(-2deg); }
-    }
-  </style>
+/* MOBILE */
+@media(max-width:768px){
+  .navbar{padding-left:60px;}
+  .hero{flex-direction:column;align-items:center;text-align:center;gap:20px;margin-top:20px;}
+  .hero-avatar{width:110px;height:110px;}
+  .hero-right h1{font-size:1.8rem;}
+  .hero-right>p{font-size:.9rem;}
+  .stats-section{gap:20px;padding:14px 16px;}
+  .stat-number{font-size:1.2rem;}
+  .cards-container{grid-template-columns:repeat(3,1fr);max-width:100%;gap:10px;}
+  .card{padding:16px 8px 14px;border-radius:16px;}
+  .card-icon-img{width:38px;height:38px;margin-bottom:8px;}
+  .card h3{font-size:.78rem;margin-bottom:6px;}
+  .card p{font-size:.62rem;}
+  .underline{width:20px;margin-bottom:8px;}
+  .share-btn{margin-left:0;}
+  .quote-badge{font-size:.75rem;}
+  .cs-card{min-width:100px;padding:10px 12px;}
+  .cs-name{font-size:.75rem;}
+}
+@media(max-width:400px){.card h3{font-size:.72rem;}}
+</style>
 </head>
 <body>
 
-<div class="bg">
-  <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/L/Bg.jpg" alt="Books"/>
+<canvas id="confettiCanvas"></canvas>
+<div id="progressBar"></div>
+<img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" id="fixedIcon">
+<a href="mailto:admin@yashify.fun" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
+
+<nav class="navbar">
+  <div class="logo">YASHIFY</div>
+  <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-avatar">
+    <img src="https://raw.githubusercontent.com/o0o0-o0o0/0/main/1000106753.png" alt="Library" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="hero-right">
+    <div class="quote-badge">
+      <i class="fas fa-quote-left"></i>
+      Every page holds a universe
+    </div>
+    <h1 id="heroTitle"></h1>
+    <p>Read Stories | Explore Articles | Discover Wisdom</p>
+  </div>
+</section>
+
+<div class="stats-section">
+  <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Books Available</div></div>
+  <div class="stat-divider"></div>
+  <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Authors</div></div>
+  <div class="stat-divider"></div>
+  <div class="stat-item"><div class="stat-number">&#8734;</div><div class="stat-label">Things to Read</div></div>
 </div>
 
-<div class="page">
+<div class="section-title">&#128214; Featured This Week</div>
+<div class="featured-strip">
+  <div class="featured-strip-label"><i class="fas fa-star"></i> Editor's Pick</div>
+  <h2>Atomic Habits — James Clear</h2>
+  <p>Tiny changes, remarkable results. Discover how small habits compound into life-changing transformation.</p>
+  <a href="https://yashify.fun/l/bookflix/" class="read-btn"><i class="fas fa-book-open"></i> Read Now</a>
+</div>
 
-  <nav class="navbar">
-    <div class="nav-right">
-      <a class="nav-title" href="#">Mind <em>Library</em></a>
-      <a class="nav-powered" href="https://yashify.fun" target="_blank">Powered by <span>Yashify</span></a>
-    </div>
-  </nav>
-
-  <section class="hero">
-
-    <div class="eyebrow">
-      <div class="ey-line"></div>
-      Curated for the curious mind
-    </div>
-
-    <h1 class="hero-title">
-      <span class="the">The</span>
-      <span class="word-mind">Mind</span><br>
-      <span class="word-lib">Library</span>
-    </h1>
-
-    <div class="ornament">
-      <div class="orn-l"></div>
-      <div class="orn-dot"></div>
-    </div>
-
-    <p class="hero-quote">
-      "Great minds left their thoughts behind.<br>
-      This is where you find them."
-    </p>
-
-
-
-
-  </section>
-
-  <!-- Sticky notes over the books -->
-  <div class="sticky-wrap">
-    <a class="sticky sticky-yellow" href="bookflix/index.html">
-      <div class="sticky-pin"></div>
-      <div class="sticky-label">BOOKFLIX</div>
-      <div class="sticky-sub">Your reading universe</div>
-      <div class="sticky-arrow">→</div>
-    </a>
-    <a class="sticky sticky-teal" href="author/index.html">
-      <div class="sticky-pin"></div>
-      <div class="sticky-label">LEGACY</div>
-      <div class="sticky-sub">Minds that shaped history</div>
-      <div class="sticky-arrow">→</div>
+<div class="section-title">&#128193; Explore Library</div>
+<div class="cards-container">
+  <div class="card-wrapper">
+    <span class="new-badge">New</span>
+    <a href="https://yashify.fun/l/bookflix/" class="card bookflix">
+      <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" class="card-icon-img" alt="BookFlix">
+      <h3>BookFlix</h3><div class="underline"></div>
+      <p>20+ books to read online, anytime</p>
     </a>
   </div>
-
+  <div class="card-wrapper">
+    <a href="https://yashify.fun/l/author/" class="card legacy">
+      <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png" class="card-icon-img" alt="Legacy">
+      <h3>Legacy</h3><div class="underline"></div>
+      <p>Explore writers &amp; their worlds</p>
+    </a>
+  </div>
+  <div class="card-wrapper">
+    <a href="/l/articles/" class="card articles">
+      <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" class="card-icon-img" alt="Articles">
+      <h3>Articles</h3><div class="underline"></div>
+      <p>Thought-provoking reads on life &amp; science</p>
+    </a>
+  </div>
 </div>
 
+<!-- COMING SOON — mini cute cards -->
+<div class="section-title">&#8987; Coming Soon</div>
+<div class="cs-row">
+  <div class="cs-card">
+    <div class="cs-icon">&#128214;</div>
+    <div class="cs-info">
+      <div class="cs-name">Stories</div>
+      <span class="cs-badge">Coming Soon</span>
+    </div>
+  </div>
+  <div class="cs-card">
+    <div class="cs-icon">&#129504;</div>
+    <div class="cs-info">
+      <div class="cs-name">Wisdom</div>
+      <span class="cs-badge">Coming Soon</span>
+    </div>
+  </div>
+  <div class="cs-card">
+    <div class="cs-icon">&#11088;</div>
+    <div class="cs-info">
+      <div class="cs-name">Featured</div>
+      <span class="cs-badge">Coming Soon</span>
+    </div>
+  </div>
+</div>
+
+<div class="action-row">
+  <button class="like-btn" id="likeBtn" onclick="toggleLike()">
+    <i class="far fa-heart" id="likeIcon"></i>
+    <span id="likeCount">0</span>
+  </button>
+  <span style="font-size:.82rem;color:var(--sub);">Padha kuch acha? Like karo! &#128156;</span>
+  <button class="share-btn" onclick="shareLibrary()"><i class="fas fa-share-nodes"></i> Share</button>
+</div>
+
+<footer>
+  <p>Made with &#10084;&#65039; by Yashify</p>
+  <p>&#169; <span id="year"></span> &#8212; All Rights Reserved</p>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yashify.fun" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<script>
+// YEAR
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// PROGRESS BAR
+var bar = document.getElementById('progressBar'), prog = 0;
+var bt = setInterval(function(){
+  prog += Math.random() * 18;
+  if(prog > 85) prog = 85;
+  bar.style.width = prog + '%';
+}, 250);
+window.addEventListener('load', function(){
+  clearInterval(bt);
+  bar.style.width = '100%';
+  setTimeout(function(){ bar.style.opacity = '0'; }, 500);
+});
+
+// ✅ TYPEWRITER — seedha call, koi delay nahi
+var tw_txt = 'Where Stories Live';
+var tw_i = 0;
+var tw_el = document.getElementById('heroTitle');
+function runTypewriter(){
+  tw_el.textContent = tw_txt.slice(0, tw_i);
+  tw_i++;
+  if(tw_i <= tw_txt.length) setTimeout(runTypewriter, 80);
+}
+runTypewriter();
+
+// ✅ CONFETTI
+var launchConfetti = (function(){
+  var canvas = document.getElementById('confettiCanvas');
+  var ctx = canvas.getContext('2d');
+  var pieces = [];
+  var colors = ['#8C52FF','#3ABFF8','#FBBF24','#EF4444','#A855F7','#34D399','#F472B6'];
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize);
+  resize();
+  function Piece(){
+    this.x = window.innerWidth / 2;
+    this.y = window.innerHeight / 2;
+    this.vx = (Math.random() - .5) * 16;
+    this.vy = (Math.random() - 1.6) * 14;
+    this.w = 7 + Math.random() * 8;
+    this.h = 4 + Math.random() * 4;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.rot = Math.random() * Math.PI * 2;
+    this.rotV = (Math.random() - .5) * .2;
+    this.alpha = 1;
+  }
+  var aid = null;
+  function loop(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(function(p){
+      p.x += p.vx; p.vy += 0.45; p.y += p.vy;
+      p.rot += p.rotV; p.alpha = Math.max(0, p.alpha - .016);
+      ctx.save(); ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+    pieces = pieces.filter(function(p){ return p.alpha > 0; });
+    if(pieces.length) aid = requestAnimationFrame(loop);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  return function(){
+    for(var i = 0; i < 120; i++) pieces.push(new Piece());
+    if(aid) cancelAnimationFrame(aid);
+    loop();
+  };
+})();
+
+// ✅ LIKE BUTTON
+function isLiked(){ return localStorage.getItem('lib_like') === '1'; }
+function renderLike(){
+  var btn = document.getElementById('likeBtn');
+  var ico = document.getElementById('likeIcon');
+  var cnt = document.getElementById('likeCount');
+  var liked = isLiked();
+  btn.classList.toggle('liked', liked);
+  ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+  var n = parseInt(localStorage.getItem('lib_likes_count') || '0');
+  cnt.textContent = n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
+}
+function toggleLike(){
+  var n = parseInt(localStorage.getItem('lib_likes_count') || '0');
+  if(isLiked()){
+    localStorage.removeItem('lib_like');
+    localStorage.setItem('lib_likes_count', Math.max(n - 1, 0));
+  } else {
+    localStorage.setItem('lib_like', '1');
+    localStorage.setItem('lib_likes_count', n + 1);
+    launchConfetti();
+    var ico = document.getElementById('likeIcon');
+    ico.style.animation = 'none';
+    ico.offsetWidth;
+    ico.style.animation = 'heartPop .4s ease';
+  }
+  renderLike();
+}
+renderLike();
+
+// SHARE
+function shareLibrary(){
+  var url = 'https://yashify.fun/l/library';
+  if(navigator.share){
+    navigator.share({title:'Yashify Library', url: url});
+  } else {
+    window.open('https://wa.me/?text=' + encodeURIComponent('Check out Yashify Library!\n' + url), '_blank');
+  }
+}
+</script>
 </body>
 </html>
 
