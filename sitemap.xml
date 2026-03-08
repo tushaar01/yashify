@@ -1,23 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://yashify.fun/</loc>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://yashify.fun/medicose/</loc>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://yashify.fun/l/library</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://yashify.fun/fun/</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  
+
+
+
+
+
+<url>
+  <loc>https://yashify.fun/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/l/library</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/a&amp;p/anatomy</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/pharmacy/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/course/dep/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/l/bookflix/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/l/author/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/popcorn/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/snake/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/snake2/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/tictactoe/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/rock/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/crossword/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/oddoneout/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/car/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/spin/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/checklist/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/rocks/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/elonmusk/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/spacex/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/noise/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/passwordgame/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/stopat00.00sec/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/fun/404/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/heart/heart</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/brain/brain</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/lungs/lungs</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/liv/liver</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/kidney/kidney</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/stomach/stomach</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/medicose/organs/skeleton/skeleton</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/course/dep/projects/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://yashify.fun/course/dep/projects/ra/</loc>
+  <lastmod>2026-03-07T18:50:29+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
 </urlset>
