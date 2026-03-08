@@ -115,7 +115,7 @@ footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-si
 <canvas id="confettiCanvas"></canvas>
 <div id="progressBar"></div>
 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" id="fixedIcon">
-<a href="mailto:admin@yashify.fun" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
+<a href="/cdn-cgi/l/email-protection#b9d8ddd4d0d7f9c0d8cad1d0dfc097dfccd7" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
 
 <nav class="navbar">
   <div class="logo">YASHIFY</div>
@@ -194,7 +194,7 @@ footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-si
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // PROGRESS BAR
@@ -259,36 +259,56 @@ var launchConfetti=(function(){
   };
 })();
 
-// LIKE BUTTON
-function isLiked(){ return localStorage.getItem('med_like')==='1'; }
-function renderLike(){
-  var btn=document.getElementById('likeBtn');
-  var ico=document.getElementById('likeIcon');
-  var cnt=document.getElementById('likeCount');
-  var liked=isLiked();
-  btn.classList.toggle('liked',liked);
-  ico.className=liked?'fas fa-heart':'far fa-heart';
-  var n=parseInt(localStorage.getItem('med_likes_count')||'0');
-  cnt.textContent=n>=1000?(n/1000).toFixed(1)+'k':n;
+// FIREBASE REAL-TIME LIKES
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const cfg = {
+  apiKey:"AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+  authDomain:"yashify01.firebaseapp.com",
+  databaseURL:"https://yashify01-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"yashify01",
+  storageBucket:"yashify01.firebasestorage.app",
+  messagingSenderId:"209589402846",
+  appId:"1:209589402846:web:c6a47049dcbc9e6eed564f"
+};
+const app = initializeApp(cfg);
+const db = getDatabase(app);
+const likeRef = ref(db, 'stats/medicose_likes');
+
+function isLiked(){ return localStorage.getItem('med_like') === '1'; }
+
+function renderLike(n){
+  var btn = document.getElementById('likeBtn');
+  var ico = document.getElementById('likeIcon');
+  var cnt = document.getElementById('likeCount');
+  if(!btn) return;
+  var liked = isLiked();
+  btn.classList.toggle('liked', liked);
+  ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+  cnt.textContent = n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
 }
-function toggleLike(){
-  var n=parseInt(localStorage.getItem('med_likes_count')||'0');
+
+onValue(likeRef, function(snap){ renderLike(snap.val() || 0); });
+
+window.toggleLike = function(){
   if(isLiked()){
     localStorage.removeItem('med_like');
-    localStorage.setItem('med_likes_count',Math.max(n-1,0));
+    runTransaction(likeRef, function(c){ return Math.max((c||0)-1, 0); });
   } else {
     localStorage.setItem('med_like','1');
-    localStorage.setItem('med_likes_count',n+1);
+    runTransaction(likeRef, function(c){ return (c||0)+1; });
     launchConfetti();
-    var ico=document.getElementById('likeIcon');
-    ico.style.animation='none';
+    var ico = document.getElementById('likeIcon');
+    ico.style.animation = 'none';
     ico.offsetWidth;
-    ico.style.animation='heartPop .4s ease';
+    ico.style.animation = 'heartPop .4s ease';
   }
-  renderLike();
-}
-renderLike();
-
+};
+</script>
+<script>
 // SHARE
 function shareMedicose(){
   var url='https://yashify.fun/medicose/';
