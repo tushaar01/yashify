@@ -1,54 +1,14 @@
-
-   
-  
-  
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Library - Yashify | Stories, Articles & Wisdom</title>
-
-
-<!-- ✅ SEO Meta Tags - Library Page -->
-<meta name="description" content="Yashify Library - Hindi aur English stories, articles aur wisdom. Rozana nayi kahaniyan aur gyaan bhare articles padho.">
-<meta name="keywords" content="hindi stories, english articles, wisdom, short stories, yashify library, motivational articles">
-<meta name="author" content="Yashify">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://yashify.fun/l/library">
-
-<!-- ✅ Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Library - Stories & Articles | Yashify">
-<meta property="og:description" content="Rozana nayi stories aur articles — Hindi aur English mein!">
-<meta property="og:image" content="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
-<meta property="og:url" content="https://yashify.fun/l/library">
-
-
-
-
-
-
 <meta name="description" content="Yashify Library - Stories, Articles, BookFlix aur Wisdom.">
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
 <meta name="theme-color" content="#FBBF24">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
-  
-  
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B5X5RJM3XH');
-</script>
-  
-  
-  
 <style>
 :root{--bg:#F4F7FB;--text:#111827;--sub:#6B7280;--purple:#8C52FF;--blue:#3ABFF8;--yellow:#FBBF24;--violet:#A855F7;--red:#EF4444;--green:#10B981;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -174,7 +134,7 @@ footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-si
 <canvas id="confettiCanvas"></canvas>
 <div id="progressBar"></div>
 <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" id="fixedIcon">
-<a href="mailto:admin@yashify.fun" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
+<a href="/cdn-cgi/l/email-protection#7617121b1f18360f17051e1f100f58100318" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
 
 <nav class="navbar">
   <div class="logo">YASHIFY</div>
@@ -280,7 +240,7 @@ footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-si
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // YEAR
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -351,47 +311,65 @@ var launchConfetti = (function(){
   };
 })();
 
-// ✅ LIKE BUTTON
+// ✅ FIREBASE REAL-TIME LIKES
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const cfg = {
+  apiKey:"AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+  authDomain:"yashify01.firebaseapp.com",
+  databaseURL:"https://yashify01-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"yashify01",
+  storageBucket:"yashify01.firebasestorage.app",
+  messagingSenderId:"209589402846",
+  appId:"1:209589402846:web:c6a47049dcbc9e6eed564f"
+};
+const app = initializeApp(cfg);
+const db = getDatabase(app);
+const likeRef = ref(db, 'stats/library_likes');
+
 function isLiked(){ return localStorage.getItem('lib_like') === '1'; }
-function renderLike(){
+
+function renderLike(n){
   var btn = document.getElementById('likeBtn');
   var ico = document.getElementById('likeIcon');
   var cnt = document.getElementById('likeCount');
+  if(!btn) return;
   var liked = isLiked();
   btn.classList.toggle('liked', liked);
   ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
-  var n = parseInt(localStorage.getItem('lib_likes_count') || '0');
   cnt.textContent = n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
 }
-function toggleLike(){
-  var n = parseInt(localStorage.getItem('lib_likes_count') || '0');
+
+onValue(likeRef, function(snap){ renderLike(snap.val() || 0); });
+
+window.toggleLike = function(){
   if(isLiked()){
     localStorage.removeItem('lib_like');
-    localStorage.setItem('lib_likes_count', Math.max(n - 1, 0));
+    runTransaction(likeRef, function(c){ return Math.max((c||0)-1, 0); });
   } else {
-    localStorage.setItem('lib_like', '1');
-    localStorage.setItem('lib_likes_count', n + 1);
+    localStorage.setItem('lib_like','1');
+    runTransaction(likeRef, function(c){ return (c||0)+1; });
     launchConfetti();
     var ico = document.getElementById('likeIcon');
     ico.style.animation = 'none';
     ico.offsetWidth;
     ico.style.animation = 'heartPop .4s ease';
   }
-  renderLike();
-}
-renderLike();
-
+};
+</script>
+<script>
 // SHARE
 function shareLibrary(){
-  var url = 'https://yashify.fun/l/library';
+  var url = 'https://yashify.fun/l/library/';
   if(navigator.share){
     navigator.share({title:'Yashify Library', url: url});
   } else {
-    window.open('https://wa.me/?text=' + encodeURIComponent('Check out Yashify Library!\n' + url), '_blank');
+    window.open('https://wa.me/?text='+encodeURIComponent('Check out Yashify Library!\n'+url),'_blank');
   }
 }
 </script>
 </body>
 </html>
-
-
