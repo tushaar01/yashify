@@ -604,5 +604,15 @@ function startVoice(){
   };
 }
 </script>
+
+<script>
+  window.addEventListener('load', function() {
+    var vid = document.querySelector('.hero-avatar video');
+    if (vid) {
+      vid.muted = true;
+      vid.play().catch(function() {});
+    }
+  });
+</script>
 </body>
 </html>
