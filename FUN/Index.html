@@ -1,37 +1,23 @@
-
-
-
-
-   
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yashify - FUN Zone</title>
 
-
-<!-- ✅ SEO Meta Tags - Fun Zone Page -->
-<meta name="description" content="Yashify Fun Zone - Free online games aur entertainment. Apna dimag refresh karo aur masti karo!">
-<meta name="keywords" content="free online games, fun zone, brain games, puzzle games, yashify fun, entertainment">
-<meta name="author" content="Yashify">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://yashify.fun/fun/">
-
-<!-- ✅ Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fun Zone - Free Games | Yashify">
-<meta property="og:description" content="Free online games aur fun activities — bilkul free!">
-<meta property="og:image" content="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
-<meta property="og:url" content="https://yashify.fun/fun/">
-
-
-
-
+  <meta name="description" content="Yashify Fun Zone - Free online games aur entertainment. Apna dimag refresh karo aur masti karo!">
+  <meta name="keywords" content="free online games, fun zone, brain games, puzzle games, yashify fun, entertainment">
+  <meta name="author" content="Yashify">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yashify.fun/fun/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fun Zone - Free Games | Yashify">
+  <meta property="og:description" content="Free online games aur fun activities — bilkul free!">
+  <meta property="og:image" content="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
+  <meta property="og:url" content="https://yashify.fun/fun/">
 
   <link rel="icon" href="https://raw.githubusercontent.com/tushaar01/yashify/main/Rocks/ic.ico" type="image/x-icon">
-    
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
   <script>
@@ -41,285 +27,937 @@
     gtag('config', 'G-B5X5RJM3XH');
   </script>
 
-  <!-- Font Awesome for icons -->
+   
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --neon-purple: #b94fff;
+      --neon-cyan: #00f5ff;
+      --neon-green: #39ff14;
+      --neon-pink: #ff2d78;
+      --neon-yellow: #ffe000;
+      --neon-orange: #ff6b00;
+      --bg-dark: #080b14;
+      --bg-card: #0d1226;
+      --bg-card2: #0e1520;
+      --border-glow: rgba(185,79,255,0.3);
+      --text-main: #e8eaf6;
+      --text-sub: #7986cb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
       min-height: 100vh;
-      overflow: auto;
-      padding: 20px;
+      overflow-x: hidden;
       position: relative;
     }
 
-    /* Mail Button Styles */
-    .mail-btn {
+    /* Animated grid background */
+    body::before {
+      content: '';
       position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: #7c3aed;
-      color: white;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(185,79,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(185,79,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing orbs background */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(185,79,255,0.06) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbMove {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(300px, 200px); }
+    }
+
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Progress bar */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-pink));
+      z-index: 99999;
+      transition: width 0.1s;
+      box-shadow: 0 0 8px var(--neon-purple);
+    }
+
+    /* Mail button */
+    .mail-btn {
+      position: fixed; top: 20px; right: 20px;
+      width: 50px; height: 50px;
+      background: var(--neon-purple);
+      color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 1000;
+      text-decoration: none; font-size: 1.2rem;
+      box-shadow: 0 0 16px rgba(185,79,255,0.6);
+      transition: .3s ease;
+    }
+    .mail-btn:hover { transform: scale(1.12); box-shadow: 0 0 28px rgba(185,79,255,0.9); }
+
+    /* Back btn */
+    .back-btn {
+      position: fixed; top: 20px; left: 20px;
+      padding: 8px 16px;
+      background: rgba(185,79,255,0.12);
+      border: 1px solid rgba(185,79,255,0.4);
+      border-radius: 30px;
+      color: var(--neon-purple);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; z-index: 1000;
+      transition: .2s; display: flex; align-items: center; gap: 6px;
+    }
+    .back-btn:hover { background: rgba(185,79,255,0.25); box-shadow: 0 0 12px rgba(185,79,255,0.3); }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 90px 24px 40px;
+      display: flex; align-items: center; gap: 40px;
+    }
+
+    /* Avatar */
+    .avatar-wrap {
+      flex-shrink: 0;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+
+    .avatar-ring {
+      width: 160px; height: 160px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      z-index: 100;
-      text-decoration: none;
+      position: relative;
+      animation: floatAvatar 4s ease-in-out infinite;
     }
 
-    .mail-btn:hover {
-      transform: scale(1.1);
-      background: #6d28d9;
+    @keyframes floatAvatar {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    .title {
-      font-size: 2rem;
-      text-align: center;
-      margin: 20px 0 30px 0;
-      color: #7c3aed;
-      font-weight: 700;
-      padding-top: 10px;
+    .avatar-ring::before {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--neon-purple), var(--neon-cyan), var(--neon-pink), var(--neon-purple));
+      animation: spinRing 3s linear infinite;
+      z-index: -1;
     }
 
-    .container {
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar-ring::after {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(transparent 60%, rgba(185,79,255,0.3) 100%);
+      animation: spinRing 6s linear infinite reverse;
+      z-index: -2;
+    }
+
+    .avatar-img {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-dark);
+      display: block;
+    }
+
+    .avatar-badge {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px; font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    /* Hero right */
+    .hero-right {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(20px, 3.5vw, 42px);
+      font-weight: 900;
+      line-height: 1.15;
+      min-height: 60px;
+    }
+
+    .hero-title .cursor {
+      display: inline-block;
+      width: 3px; height: 1em;
+      background: var(--neon-cyan);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blinkCursor .7s step-end infinite;
+      box-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    @keyframes blinkCursor {
+      50% { opacity: 0; }
+    }
+
+    .title-word-fun { color: var(--neon-purple); text-shadow: 0 0 20px rgba(185,79,255,0.7); }
+    .title-word-zone { color: var(--neon-cyan); text-shadow: 0 0 20px rgba(0,245,255,0.7); }
+
+    .hero-subtitle {
+      font-size: 17px; font-weight: 500;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* Game count badge */
+    .game-count-wrap {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .game-count-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(57,255,20,0.08);
+      border: 1px solid rgba(57,255,20,0.3);
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-family: 'Orbitron', monospace;
+      font-size: 13px; font-weight: 700;
+      color: var(--neon-green);
+      text-shadow: 0 0 8px var(--neon-green);
+    }
+
+    .game-count-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--neon-green);
+      box-shadow: 0 0 8px var(--neon-green);
+      animation: pulseDot 1.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    /* Search bar */
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-bar {
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(185,79,255,0.3);
+      border-radius: 50px;
+      padding: 10px 16px 10px 46px;
+      transition: .2s;
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 16px rgba(185,79,255,0.25);
+      background: rgba(185,79,255,0.05);
+    }
+
+    .search-bar input {
+      background: transparent; border: none; outline: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-main); width: 100%;
+    }
+
+    .search-bar input::placeholder { color: rgba(121,134,203,0.6); }
+
+    .search-icon {
+      position: absolute; left: 16px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--neon-purple);
+      font-size: 15px;
+    }
+
+    #search-dropdown {
+      display: none; position: absolute;
+      top: calc(100% + 8px); left: 0; right: 0;
+      background: #0d1226;
+      border: 1px solid rgba(185,79,255,0.3);
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      max-height: 280px; overflow-y: auto; z-index: 200;
+    }
+
+    #search-dropdown.show { display: block; }
+
+    .sd-item {
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer; border-bottom: 1px solid rgba(185,79,255,0.1);
+      transition: .15s; text-decoration: none;
+    }
+
+    .sd-item:last-child { border-bottom: none; }
+    .sd-item:hover { background: rgba(185,79,255,0.08); color: var(--neon-purple); }
+    .sd-item i { width: 18px; color: var(--neon-purple); font-size: 13px; }
+    .sd-item .sd-hint { margin-left: auto; font-size: 11px; color: var(--text-sub); font-weight: 500; }
+
+    /* Like row */
+    .like-row {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+
+    .like-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,45,120,0.08);
+      border: 1.5px solid rgba(255,45,120,0.3);
+      border-radius: 50px; padding: 9px 20px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px; font-weight: 700;
+      color: #ff6b9d; cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .like-btn:hover {
+      background: rgba(255,45,120,0.18);
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 16px rgba(255,45,120,0.3);
+    }
+
+    .like-btn.liked {
+      background: rgba(255,45,120,0.2);
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+      box-shadow: 0 0 20px rgba(255,45,120,0.4);
+    }
+
+    .like-hint {
+      font-size: 13px; color: var(--text-sub); font-weight: 500;
+    }
+
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.8); }
+      100% { transform: scale(1); }
+    }
+
+    /* ========== GAMES SECTION ========== */
+    .games-section {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: 1px;
+    }
+
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(185,79,255,0.5), transparent);
+    }
+
+    /* Game grid */
+    .games-grid {
       display: grid;
-      gap: 15px;
-      justify-content: center;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-      max-width: 1200px;
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      color: #333;
+    /* Neon game card */
+    .game-card {
+      position: relative;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid rgba(185,79,255,0.15);
+      padding: 18px 12px 14px;
       text-align: center;
       text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      color: var(--text-main);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+      transition: all .3s ease;
       overflow: hidden;
-      width: 200px;
-      height: 200px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      border: 1px solid #e5e7eb;
-      padding: 10px;
+      cursor: pointer;
     }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    .game-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(185,79,255,0.05), transparent);
+      opacity: 0; transition: .3s;
+      border-radius: 16px;
     }
+
+    .game-card:hover::before { opacity: 1; }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 24px rgba(185,79,255,0.25), 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    /* Each card gets a unique neon accent color */
+    .game-card[data-color="cyan"]:hover { border-color: var(--neon-cyan); box-shadow: 0 0 24px rgba(0,245,255,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+    .game-card[data-color="green"]:hover { border-color: var(--neon-green); box-shadow: 0 0 24px rgba(57,255,20,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+    .game-card[data-color="pink"]:hover { border-color: var(--neon-pink); box-shadow: 0 0 24px rgba(255,45,120,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+    .game-card[data-color="yellow"]:hover { border-color: var(--neon-yellow); box-shadow: 0 0 24px rgba(255,224,0,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+    .game-card[data-color="orange"]:hover { border-color: var(--neon-orange); box-shadow: 0 0 24px rgba(255,107,0,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+
+    .card-img-wrap {
+      width: 72px; height: 72px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .game-card:hover .card-img-wrap {
+      background: rgba(185,79,255,0.1);
+      transform: scale(1.08);
+    }
+
+    .game-card[data-color="cyan"]:hover .card-img-wrap { background: rgba(0,245,255,0.1); }
+    .game-card[data-color="green"]:hover .card-img-wrap { background: rgba(57,255,20,0.1); }
+    .game-card[data-color="pink"]:hover .card-img-wrap { background: rgba(255,45,120,0.1); }
+    .game-card[data-color="yellow"]:hover .card-img-wrap { background: rgba(255,224,0,0.1); }
+    .game-card[data-color="orange"]:hover .card-img-wrap { background: rgba(255,107,0,0.1); }
 
     .card-img {
-      width: 80%;
-      height: 100px;
+      width: 52px; height: 52px;
       object-fit: contain;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
     }
 
-    .card:hover .card-img {
-      transform: scale(1.05);
+    .card-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      letter-spacing: 0.3px;
     }
 
-    .card h2 {
-      margin: 0;
-      font-size: 1rem;
-      color: #333;
-      padding: 0 5px;
+    /* Neon top-border accent line */
+    .card-accent {
+      position: absolute; top: 0; left: 20%; right: 20%;
+      height: 2px;
+      border-radius: 0 0 4px 4px;
+      background: var(--neon-purple);
+      box-shadow: 0 0 8px var(--neon-purple);
+      opacity: 0; transition: .3s;
     }
 
+    .game-card:hover .card-accent { opacity: 1; }
+    .game-card[data-color="cyan"] .card-accent { background: var(--neon-cyan); box-shadow: 0 0 8px var(--neon-cyan); }
+    .game-card[data-color="green"] .card-accent { background: var(--neon-green); box-shadow: 0 0 8px var(--neon-green); }
+    .game-card[data-color="pink"] .card-accent { background: var(--neon-pink); box-shadow: 0 0 8px var(--neon-pink); }
+    .game-card[data-color="yellow"] .card-accent { background: var(--neon-yellow); box-shadow: 0 0 8px var(--neon-yellow); }
+    .game-card[data-color="orange"] .card-accent { background: var(--neon-orange); box-shadow: 0 0 8px var(--neon-orange); }
+
+    /* New badge on card */
+    .new-badge {
+      position: absolute; top: -6px; right: -6px;
+      background: var(--neon-pink);
+      color: white; font-size: 9px; font-weight: 800;
+      padding: 2px 7px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: .5px;
+      box-shadow: 0 0 8px rgba(255,45,120,0.6);
+      font-family: 'Orbitron', monospace;
+    }
+
+    /* Footer */
     footer {
-      margin-top: 30px;
-      padding: 15px;
+      position: relative; z-index: 1;
       text-align: center;
-      color: #6b7280;
-      font-size: 0.8rem;
+      padding: 20px 24px 32px;
+      color: var(--text-sub);
+      font-size: 13px; font-weight: 500;
     }
 
+    footer a { color: var(--neon-purple); text-decoration: none; }
+    footer a:hover { text-shadow: 0 0 8px var(--neon-purple); }
+
+    /* Scroll reveal */
+    .game-card {
+      opacity: 0; transform: translateY(20px);
+      animation: revealCard .4s ease forwards;
+    }
+
+    @keyframes revealCard {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stagger delays */
+    .game-card:nth-child(1)  { animation-delay: .05s; }
+    .game-card:nth-child(2)  { animation-delay: .10s; }
+    .game-card:nth-child(3)  { animation-delay: .15s; }
+    .game-card:nth-child(4)  { animation-delay: .20s; }
+    .game-card:nth-child(5)  { animation-delay: .25s; }
+    .game-card:nth-child(6)  { animation-delay: .30s; }
+    .game-card:nth-child(7)  { animation-delay: .35s; }
+    .game-card:nth-child(8)  { animation-delay: .40s; }
+    .game-card:nth-child(9)  { animation-delay: .45s; }
+    .game-card:nth-child(10) { animation-delay: .50s; }
+    .game-card:nth-child(11) { animation-delay: .55s; }
+    .game-card:nth-child(12) { animation-delay: .60s; }
+    .game-card:nth-child(13) { animation-delay: .65s; }
+    .game-card:nth-child(14) { animation-delay: .70s; }
+    .game-card:nth-child(15) { animation-delay: .75s; }
+    .game-card:nth-child(16) { animation-delay: .80s; }
+
+    /* Mobile */
     @media (max-width: 768px) {
-      .container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
-        gap: 12px;
-      }
-      .card {
-        width: 150px;
-        height: 150px;
-      }
-      .card-img {
-        height: 80px;
-      }
-      .title {
-        font-size: 1.8rem;
-      }
-      .mail-btn {
-        width: 45px;
-        height: 45px;
-        top: 15px;
-        right: 15px;
-      }
+      .hero { flex-direction: column; text-align: center; padding: 80px 16px 30px; gap: 24px; }
+      .avatar-ring, .avatar-img { width: 120px; height: 120px; }
+      .like-row { justify-content: center; }
+      .game-count-wrap { justify-content: center; }
+      .search-wrap { width: 100%; }
+      .games-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
     }
 
     @media (max-width: 480px) {
-      .container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .title {
-        font-size: 1.5rem;
-      }
+      .games-grid { grid-template-columns: repeat(3, 1fr); }
+      .card-img-wrap { width: 58px; height: 58px; }
+      .card-img { width: 40px; height: 40px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Mail Button (Top Right Corner) -->
-  <a href="mailto:admin@yashify.fun?subject=Feedback%20on%20Yashify%20FUN%20Zone&body=Hello%20Yashify%20Team," 
-     class="mail-btn" 
-     title="Send Feedback">
-    <i class="fas fa-envelope"></i>
-  </a>
+<canvas id="confettiCanvas"></canvas>
+<div id="progress-bar"></div>
 
-  <h1 class="title">Yashify FUN Zone</h1>
+<!-- Mail button -->
+<a href="mailto:admin@yashify.fun?subject=Feedback%20on%20Yashify%20FUN%20Zone" class="mail-btn" title="Send Feedback">
+  <i class="fas fa-envelope"></i>
+</a>
 
-  <div class="container">
-    
-      <a href="popcorn/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/11618/11618146.png" alt="popcorn" class="card-img">
-      <h2>popcorn</h2>
-    </a>
-   
+<!-- Back button -->
+<a href="https://yashify.fun" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Yashify
+</a>
 
-    <a href="snake/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1978/1978406.png" alt="snake" class="card-img">
-      <h2>Snake</h2>
-    </a>
+<!-- ========== HERO ========== -->
+<div class="hero">
 
- <a href="snake2/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1660/1660410.png" alt="snake" class="card-img">
-      <h2>Snake 2</h2>
-    </a>
-
-
- <a href="tictactoe/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/16027/16027793.png" alt="tictactoe" class="card-img">
-      <h2>Tic Tae Toe</h2>
-    </a>
-
-
- <a href="rock/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/rock/Ruu.PNG" alt="rock" class="card-img">
-      <h2>Rock Paper Scissors</h2>
-    </a>
-
-
- <a href="crossword/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/16500/16500823.png" alt="crossword" class="card-img">
-      <h2>CrossWord Mini </h2>
-    </a>
-
-
-
- <a href="oddoneout/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/7386/7386708.png" alt="oddoneout" class="card-img">
-      <h2>Odd One Out  Mini </h2>
-    </a>
-
-<a href="car/index.html" class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1505/1505502.png" alt="car" class="card-img">
-      <h2>mini car racing </h2>
-    </a>
-
-
-<a href="spin/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/spin/S.png" alt="spin" class="card-img">
-      <h2>Random Spin</h2>
-    </a>
-    
-    
-    <a href="checklist/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/checklist/LL.PNG" alt="checklist" class="card-img">
-      <h2>Life Checklist</h2>
-    </a>
-    
-    
-    
-    <a href="Rocks/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Rocks/Rocks.PNG" alt="Rocks" class="card-img">
-      <h2>Rocks</h2>
-    </a>
-
-    <a href="ElonMusk/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
-      <h2>Elon Musk</h2>
-    </a>
-
-    <a href="SpaceX/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/SpaceX/Space.PNG" alt="Space X" class="card-img">
-      <h2>Space X</h2>
-    </a>
-
-    <a href="Noise/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Noise/No.PNG" alt="Noise" class="card-img">
-      <h2>Noise</h2>
-    </a>
-
-    <a href="Passwordgame/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Passwordgame/P.PNG" alt="Password Game" class="card-img">
-      <h2>Password Game</h2>
-    </a>
-
-    <a href="stopat00.00sec/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
-      <h2>Stop at 00:00</h2>
-    </a>
-
-
-
-    <a href="404/index.html" class="card">
-      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stopwatch" class="card-img">
-      <h2>Stop at 00:00</h2>
-    </a>
-
-   
-    
-    
+  <!-- Avatar -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <img
+        src="https://raw.githubusercontent.com/o0o0-o0o0/0/e691d414e8b4fc6fd0bc55b67a8076cbcb3245f7/1000107144.png"
+        alt="Fun Zone Avatar"
+        class="avatar-img"
+        onerror="this.src='https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg'"
+      >
+    </div>
+    <div class="avatar-badge">⚡ PLAY MODE</div>
   </div>
 
-  <footer>
-    <p>© 2025 Yashify | All Rights Reserved</p>
-  </footer>
+  <!-- Right content -->
+  <div class="hero-right">
 
-  <script>
-    // Game count display
-    window.onload = function() {
-      const gameCount = document.querySelectorAll('.card').length;
-      const countElement = document.createElement('p');
-      countElement.textContent = `${gameCount} games available`;
-      countElement.style.textAlign = 'center';
-      countElement.style.margin = '-15px 0 20px 0';
-      countElement.style.color = '#6b7280';
-      document.querySelector('.title').insertAdjacentElement('afterend', countElement);
-    };
-  </script>
+    <!-- Typewriter title -->
+    <div class="hero-title" id="hero-title">
+      <span class="cursor" id="title-cursor"></span>
+    </div>
+
+    <p class="hero-subtitle">
+      Apna dimag refresh karo — free games, pure fun, zero boredom. 🎮
+    </p>
+
+    <!-- Game count -->
+    <div class="game-count-wrap">
+      <div class="game-count-badge">
+        <div class="dot"></div>
+        <span id="game-count-num">16</span>&nbsp;GAMES AVAILABLE
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <i class="fas fa-search search-icon"></i>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search games... (Snake, Puzzle, Race...)" oninput="doSearch()" onkeydown="searchKey(event)">
+      </div>
+      <div id="search-dropdown"></div>
+    </div>
+
+    <!-- Live Like -->
+    <div class="like-row">
+      <button class="like-btn" id="like-btn" onclick="toggleLike()">
+        <i class="far fa-heart" id="like-icon"></i>
+        <span id="like-count">...</span>
+      </button>
+      <span class="like-hint">Pasand aaya? Like karo! 💜</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== GAMES GRID ========== -->
+<div class="games-section">
+  <div class="section-header">
+    <div class="section-title">⚡ ALL GAMES</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="games-grid" id="games-grid">
+
+    <a href="popcorn/index.html" class="game-card" data-color="yellow" data-name="popcorn">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/11618/11618146.png" alt="Popcorn" class="card-img">
+      </div>
+      <div class="card-name">Popcorn</div>
+    </a>
+
+    <a href="snake/index.html" class="game-card" data-color="green" data-name="snake">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/1978/1978406.png" alt="Snake" class="card-img">
+      </div>
+      <div class="card-name">Snake</div>
+    </a>
+
+    <a href="snake2/index.html" class="game-card" data-color="cyan" data-name="snake 2">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/1660/1660410.png" alt="Snake 2" class="card-img">
+      </div>
+      <div class="card-name">Snake 2</div>
+    </a>
+
+    <a href="tictactoe/index.html" class="game-card" data-color="purple" data-name="tic tac toe">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/16027/16027793.png" alt="Tic Tac Toe" class="card-img">
+      </div>
+      <div class="card-name">Tic Tac Toe</div>
+    </a>
+
+    <a href="rock/index.html" class="game-card" data-color="orange" data-name="rock paper scissors">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/rock/Ruu.PNG" alt="Rock Paper Scissors" class="card-img">
+      </div>
+      <div class="card-name">Rock Paper Scissors</div>
+    </a>
+
+    <a href="crossword/index.html" class="game-card" data-color="cyan" data-name="crossword mini">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/16500/16500823.png" alt="Crossword" class="card-img">
+      </div>
+      <div class="card-name">CrossWord Mini</div>
+    </a>
+
+    <a href="oddoneout/index.html" class="game-card" data-color="pink" data-name="odd one out">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/7386/7386708.png" alt="Odd One Out" class="card-img">
+      </div>
+      <div class="card-name">Odd One Out</div>
+    </a>
+
+    <a href="car/index.html" class="game-card" data-color="orange" data-name="mini car racing">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://cdn-icons-png.flaticon.com/512/1505/1505502.png" alt="Car Racing" class="card-img">
+      </div>
+      <div class="card-name">Mini Car Racing</div>
+    </a>
+
+    <a href="spin/index.html" class="game-card" data-color="yellow" data-name="random spin">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/spin/S.png" alt="Random Spin" class="card-img">
+      </div>
+      <div class="card-name">Random Spin</div>
+    </a>
+
+    <a href="checklist/index.html" class="game-card" data-color="green" data-name="life checklist">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/checklist/LL.PNG" alt="Life Checklist" class="card-img">
+      </div>
+      <div class="card-name">Life Checklist</div>
+    </a>
+
+    <a href="Rocks/index.html" class="game-card" data-color="cyan" data-name="rocks">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Rocks/Rocks.PNG" alt="Rocks" class="card-img">
+      </div>
+      <div class="card-name">Rocks</div>
+    </a>
+
+    <a href="ElonMusk/index.html" class="game-card" data-color="purple" data-name="elon musk">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/ElonMusk/Elon.PNG" alt="Elon Musk" class="card-img">
+      </div>
+      <div class="card-name">Elon Musk</div>
+    </a>
+
+    <a href="SpaceX/index.html" class="game-card" data-color="cyan" data-name="spacex space x">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/SpaceX/Space.PNG" alt="SpaceX" class="card-img">
+      </div>
+      <div class="card-name">SpaceX</div>
+    </a>
+
+    <a href="Noise/index.html" class="game-card" data-color="pink" data-name="noise ambient sound">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Noise/No.PNG" alt="Noise" class="card-img">
+      </div>
+      <div class="card-name">Noise</div>
+    </a>
+
+    <a href="Passwordgame/index.html" class="game-card" data-color="orange" data-name="password game">
+      <span class="new-badge">HOT</span>
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/Passwordgame/P.PNG" alt="Password Game" class="card-img">
+      </div>
+      <div class="card-name">Password Game</div>
+    </a>
+
+    <a href="stopat00.00sec/index.html" class="game-card" data-color="yellow" data-name="stop at 0 stopwatch">
+      <div class="card-accent"></div>
+      <div class="card-img-wrap">
+        <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/stopat00.00sec/Stop.PNG" alt="Stop at 00:00" class="card-img">
+      </div>
+      <div class="card-name">Stop at 00:00</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 <a href="https://yashify.fun">Yashify</a> | All Rights Reserved</p>
+</footer>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const cfg = {
+    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+    authDomain: "yashify01.firebaseapp.com",
+    databaseURL: "https://yashify01-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "yashify01",
+    storageBucket: "yashify01.firebasestorage.app",
+    messagingSenderId: "209589402846",
+    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
+  };
+
+  const app = initializeApp(cfg);
+  const db = getDatabase(app);
+
+  // Fun Zone gets its OWN like counter key
+  const likeRef = ref(db, 'stats/funzone_likes');
+
+  function isLiked() { return localStorage.getItem('yfun_lk') === '1'; }
+
+  function renderLike(n) {
+    const btn = document.getElementById('like-btn');
+    const ico = document.getElementById('like-icon');
+    const cnt = document.getElementById('like-count');
+    if (!btn) return;
+    const liked = isLiked();
+    btn.classList.toggle('liked', liked);
+    ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+    cnt.textContent = n >= 1000 ? (n / 1000).toFixed(1) + 'k' : n;
+  }
+
+  onValue(likeRef, snap => renderLike(snap.val() || 0));
+
+  window.toggleLike = function () {
+    if (isLiked()) {
+      localStorage.removeItem('yfun_lk');
+      runTransaction(likeRef, c => Math.max((c || 0) - 1, 0));
+    } else {
+      localStorage.setItem('yfun_lk', '1');
+      runTransaction(likeRef, c => (c || 0) + 1);
+      launchConfetti();
+      const ico = document.getElementById('like-icon');
+      ico.style.animation = 'none'; ico.offsetWidth;
+      ico.style.animation = 'heartPop .4s ease';
+    }
+    const cnt = document.getElementById('like-count');
+    const cur = parseInt(cnt.textContent) || 0;
+    renderLike(isLiked() ? cur + 1 : Math.max(cur - 1, 0));
+  };
+</script>
+
+<script>
+  // ---- CONFETTI ----
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  let pieces = [];
+  const colors = ['#b94fff','#00f5ff','#39ff14','#ff2d78','#ffe000','#ff6b00'];
+  function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+  window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+  function Piece() {
+    this.x = innerWidth/2; this.y = innerHeight/2;
+    this.vx = (Math.random()-.5)*18; this.vy = (Math.random()-1.8)*15;
+    this.w = 6+Math.random()*8; this.h = 3+Math.random()*5;
+    this.color = colors[Math.floor(Math.random()*colors.length)];
+    this.rot = Math.random()*Math.PI*2; this.rotV = (Math.random()-.5)*.25;
+    this.alpha = 1;
+  }
+
+  let raf;
+  function confettiLoop() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      p.x+=p.vx; p.vy+=.5; p.y+=p.vy; p.rot+=p.rotV;
+      p.alpha=Math.max(0,p.alpha-.015);
+      ctx.save(); ctx.globalAlpha=p.alpha;
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    pieces=pieces.filter(p=>p.alpha>0);
+    if(pieces.length) raf=requestAnimationFrame(confettiLoop);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  function launchConfetti() {
+    for(let i=0;i<130;i++) pieces.push(new Piece());
+    if(raf) cancelAnimationFrame(raf);
+    confettiLoop();
+  }
+
+  // ---- PROGRESS BAR ----
+  window.addEventListener('scroll', () => {
+    const pct = (scrollY / (document.body.scrollHeight - innerHeight)) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  // ---- TYPEWRITER TITLE ----
+  (function() {
+    const el = document.getElementById('hero-title');
+    const cursor = document.getElementById('title-cursor');
+    const lines = [
+      { text: 'YASHIFY ', cls: '' },
+      { text: 'FUN', cls: 'title-word-fun' },
+      { text: ' ', cls: '' },
+      { text: 'ZONE', cls: 'title-word-zone' }
+    ];
+    const full = 'YASHIFY FUN ZONE';
+    let i = 0;
+
+    function type() {
+      if (i > full.length) return;
+      // Build spans
+      el.innerHTML = '';
+      let built = '';
+      const typed = full.slice(0, i);
+      // Reconstruct with colored spans
+      if (typed.length <= 8) {
+        el.innerHTML = `<span>${typed}</span>`;
+      } else if (typed.length <= 11) {
+        el.innerHTML = `<span>YASHIFY </span><span class="title-word-fun">${typed.slice(8)}</span>`;
+      } else if (typed.length <= 12) {
+        el.innerHTML = `<span>YASHIFY </span><span class="title-word-fun">FUN</span><span>${typed.slice(11)}</span>`;
+      } else {
+        el.innerHTML = `<span>YASHIFY </span><span class="title-word-fun">FUN</span><span> </span><span class="title-word-zone">${typed.slice(12)}</span>`;
+      }
+      el.innerHTML += '<span class="cursor"></span>';
+      i++;
+      setTimeout(type, i <= full.length ? 80 : 0);
+    }
+
+    setTimeout(type, 600);
+  })();
+
+  // ---- GAME COUNT ----
+  const gameCount = document.querySelectorAll('.game-card').length;
+  document.getElementById('game-count-num').textContent = gameCount;
+
+  // ---- SEARCH ----
+  const games = Array.from(document.querySelectorAll('.game-card')).map(card => ({
+    name: card.querySelector('.card-name').textContent,
+    data: card.dataset.name || '',
+    href: card.href,
+    img: card.querySelector('.card-img').src,
+    el: card
+  }));
+
+  function doSearch() {
+    const q = document.getElementById('search-input').value.trim().toLowerCase();
+    const dd = document.getElementById('search-dropdown');
+    dd.innerHTML = '';
+    if (!q) { dd.classList.remove('show'); return; }
+
+    const matches = games.filter(g =>
+      g.name.toLowerCase().includes(q) || g.data.toLowerCase().includes(q)
+    ).slice(0, 8);
+
+    if (!matches.length) {
+      dd.innerHTML = `<div class="sd-item" style="color:var(--text-sub)">❌ "${q}" nahi mila</div>`;
+      dd.classList.add('show'); return;
+    }
+
+    matches.forEach(g => {
+      const a = document.createElement('a');
+      a.className = 'sd-item';
+      a.href = g.href;
+      a.innerHTML = `<img src="${g.img}" style="width:22px;height:22px;object-fit:contain;border-radius:4px;">${g.name}<span class="sd-hint">Play →</span>`;
+      dd.appendChild(a);
+    });
+    dd.classList.add('show');
+  }
+
+  function searchKey(e) {
+    if (e.key === 'Escape') document.getElementById('search-dropdown').classList.remove('show');
+  }
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrap')) document.getElementById('search-dropdown').classList.remove('show');
+  });
+</script>
 </body>
 </html>
