@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioMicro Hub | Biotechnology & Microbiology</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-       <!-- Google tag (gtag.js) -->
+
+ <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,9 +15,7 @@
       gtag('js', new Date());
       gtag('config', 'G-B5X5RJM3XH');
     </script>
-    
-    
-    
+
   <style>
     :root {
       --bio: #3b82f6;
@@ -35,6 +32,7 @@
       --border: #e2e8f0;
       --card-shadow: 0 2px 12px rgba(59,130,246,0.08);
       --radius: 14px;
+      --red: #EF4444;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -77,6 +75,30 @@
       gap: 16px;
     }
 
+    /* Yashify Logo - clickable */
+    .yashify-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .yashify-logo-link:hover { opacity: 0.85; }
+    .yashify-logo-link img {
+      height: 36px;
+      width: 36px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(140,82,255,0.2);
+    }
+    .yashify-logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #8C52FF;
+      letter-spacing: 0.5px;
+    }
+
     .logo-wrap {
       display: flex;
       flex-direction: column;
@@ -86,7 +108,7 @@
 
     .logo-main {
       font-family: 'Quicksand', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       background: linear-gradient(135deg, var(--bio), var(--micro));
       -webkit-background-clip: text;
@@ -211,12 +233,13 @@
       color: var(--gray);
     }
 
-    /* HERO */
+    /* =====================
+       NEW HERO SECTION
+    ===================== */
     .hero {
       background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #0d9488 100%);
       color: white;
-      padding: 56px 24px 48px;
-      text-align: center;
+      padding: 48px 24px 44px;
       position: relative;
       overflow: hidden;
     }
@@ -228,33 +251,219 @@
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    /* Floating DNA particles */
+    .hero::after {
+      content: '🧬';
+      position: absolute;
+      right: 5%;
+      top: 10%;
+      font-size: 80px;
+      opacity: 0.07;
+      animation: floatDNA 6s ease-in-out infinite;
+    }
 
-    .hero h1 {
+    @keyframes floatDNA {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(15deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    /* Avatar */
+    .hero-avatar-wrap {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.5);
+      overflow: hidden;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 8px rgba(255,255,255,0.1);
+      animation: floatAvatar 4s ease-in-out infinite;
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-avatar img {
+      width: 88%;
+      height: 88%;
+      object-fit: contain;
+    }
+
+    .hero-avatar-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* Hero right */
+    .hero-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-right h1 {
       font-family: 'Quicksand', sans-serif;
-      font-size: clamp(26px, 4vw, 44px);
+      font-size: clamp(22px, 3.5vw, 40px);
       font-weight: 800;
-      margin-bottom: 12px;
       line-height: 1.2;
     }
 
-    .hero h1 span.b { color: #93c5fd; }
-    .hero h1 span.m { color: #6ee7b7; }
+    .hero-right h1 span.b { color: #93c5fd; }
+    .hero-right h1 span.m { color: #6ee7b7; }
 
-    .hero p {
-      font-size: 16px;
+    .hero-subtitle {
+      font-size: 15px;
       opacity: 0.88;
-      margin-bottom: 28px;
+      line-height: 1.5;
     }
 
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    /* Quote */
+    .hero-quote {
+      background: rgba(255,255,255,0.1);
+      border-left: 3px solid #6ee7b7;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-style: italic;
+      opacity: 0.9;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-quote span {
+      display: block;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 700;
+      color: #6ee7b7;
+      margin-top: 4px;
+    }
+
+    /* Hero search bar */
+    .hero-search-wrap {
+      position: relative;
+    }
+
+    .hero-search-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      padding: 6px 6px 6px 18px;
+      backdrop-filter: blur(8px);
+      transition: 0.2s;
+    }
+
+    .hero-search-row:focus-within {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .hero-search-row input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .hero-search-row input::placeholder { color: rgba(255,255,255,0.6); }
+
+    .hero-search-btn {
+      background: white;
+      color: var(--bio);
+      border: none;
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .hero-search-btn:hover { background: #dbeafe; }
+
+    #hero-search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      z-index: 300;
+    }
+
+    #hero-search-results.show { display: block; }
+
+    .hero-search-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      transition: 0.15s;
+      color: var(--text);
+    }
+
+    .hero-search-item:last-child { border-bottom: none; }
+    .hero-search-item:hover { background: var(--bg); }
+
+    /* Hero buttons */
+    .hero-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
     .hero-btn {
-      padding: 11px 24px;
+      padding: 10px 20px;
       border-radius: 30px;
       font-family: 'Nunito', sans-serif;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       text-decoration: none;
       transition: 0.2s;
       display: flex;
@@ -268,6 +477,162 @@
     .hero-btn.blue:hover { background: rgba(255,255,255,0.25); }
     .hero-btn.pink { background: var(--pink); color: white; }
     .hero-btn.pink:hover { opacity: 0.9; }
+
+    /* Hero like button */
+    .hero-like-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-like-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-like-btn:hover {
+      background: rgba(239,68,68,0.3);
+      border-color: #fca5a5;
+    }
+
+    .hero-like-btn.liked {
+      background: rgba(239,68,68,0.35);
+      border-color: #f87171;
+    }
+
+    .hero-like-label {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.7); }
+      100% { transform: scale(1); }
+    }
+
+    /* =====================
+       FLOATING EXAM SCHEDULE
+    ===================== */
+    #floating-exam {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .exam-float-card {
+      background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+      color: white;
+      border-radius: 16px;
+      padding: 14px 12px;
+      box-shadow: 0 8px 24px rgba(30,58,138,0.4);
+      width: 110px;
+      text-align: center;
+      animation: floatExam 3s ease-in-out infinite;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exam-float-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    }
+
+    .exam-float-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(30,58,138,0.5);
+    }
+
+    @keyframes floatExam {
+      0%, 100% { transform: translateY(0); box-shadow: 0 8px 24px rgba(30,58,138,0.4); }
+      50% { transform: translateY(-8px); box-shadow: 0 16px 32px rgba(30,58,138,0.5); }
+    }
+
+    .exam-float-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .exam-float-label {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+
+    .exam-float-date {
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .exam-float-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 4px;
+    }
+
+    .exam-float-pulse {
+      width: 8px;
+      height: 8px;
+      background: #6ee7b7;
+      border-radius: 50%;
+      margin: 8px auto 0;
+      animation: pulseGreen 1.5s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    /* Floating mailbox - exact same as yashify home */
+    .mailbox-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #8C52FF;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      z-index: 10000;
+      transition: .3s ease;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .mailbox-btn:hover { transform: scale(1.12); background: #A855F7; }
 
     /* MAIN */
     main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
@@ -357,7 +722,6 @@
     }
 
     .course-card.micro { border-top-color: var(--micro); }
-
     .course-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(59,130,246,0.13); }
 
     .course-head {
@@ -383,7 +747,6 @@
 
     .course-title { font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 16px; color: var(--text); }
     .course-sub { font-size: 12px; color: var(--gray); }
-
     .course-desc { font-size: 13px; color: var(--gray); margin-bottom: 14px; line-height: 1.5; }
 
     .tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -458,7 +821,6 @@
     .year-panel { display: none; }
     .year-panel.active { display: block; animation: fadeUp 0.25s ease; }
 
-    /* Subject list - SMALL COMPACT CARDS */
     .subj-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -478,7 +840,6 @@
     }
 
     .micro-panel .subj-card { border-left-color: var(--micro); }
-
     .subj-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(59,130,246,0.1); }
     .micro-panel .subj-card:hover { box-shadow: 0 4px 14px rgba(16,185,129,0.1); }
 
@@ -530,11 +891,9 @@
     }
 
     .micro-panel .subj-btn { color: var(--micro); border-color: var(--micro-light); }
-
     .subj-btn:hover { background: var(--bio); color: white; border-color: var(--bio); }
     .micro-panel .subj-btn:hover { background: var(--micro); border-color: var(--micro); }
 
-    /* Syllabus row */
     .syllabus-row {
       background: linear-gradient(135deg, var(--bio-light), #eff6ff);
       border-radius: 10px;
@@ -552,54 +911,6 @@
     }
 
     .syllabus-row span { font-size: 13px; font-weight: 700; color: var(--text); }
-
-    /* FACULTY */
-    .faculty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
-
-    .faculty-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--card-shadow);
-      text-align: center;
-      transition: 0.25s;
-    }
-
-    .faculty-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-
-    .faculty-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      margin: 0 auto 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .f-blue { background: var(--bio-light); color: var(--bio); }
-    .f-green { background: var(--micro-light); color: var(--micro); }
-    .f-purple { background: #ede9fe; color: var(--purple); }
-
-    .faculty-name { font-family: 'Quicksand', sans-serif; font-size: 15px; font-weight: 800; margin-bottom: 3px; }
-    .faculty-role { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
-    .faculty-desc { font-size: 12px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
-
-    .faculty-links { display: flex; gap: 8px; justify-content: center; }
-    .faculty-links a {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--gray);
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    .faculty-links a:hover { background: var(--bio); color: white; }
 
     /* CONTACT */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -744,7 +1055,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: gap;
+      flex-wrap: wrap;
       gap: 12px;
     }
 
@@ -757,7 +1068,7 @@
     #back-top {
       position: fixed;
       bottom: 24px;
-      left: 24px;
+      left: 20px;
       width: 44px; height: 44px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--bio), var(--micro));
@@ -791,13 +1102,13 @@
       text-decoration: none;
       z-index: 99;
       box-shadow: 0 4px 14px rgba(59,130,246,0.35);
-      animation: pulse 2.5s infinite;
+      animation: pulseFaq 2.5s infinite;
       transition: 0.2s;
     }
 
     .float-help:hover { transform: scale(1.1); }
 
-    @keyframes pulse {
+    @keyframes pulseFaq {
       0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); }
       70% { box-shadow: 0 0 0 14px rgba(59,130,246,0); }
       100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
@@ -826,6 +1137,15 @@
 
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 99990;
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -835,11 +1155,15 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .search-wrap { max-width: 200px; }
       .subj-grid { grid-template-columns: 1fr; }
+      .hero-content { flex-direction: column; text-align: center; gap: 20px; }
+      .hero-avatar { width: 110px; height: 110px; }
+      .hero-quote { text-align: left; }
+      #floating-exam { display: none; }
+      .hero-like-row { justify-content: center; }
     }
 
     @media (max-width: 480px) {
       .footer-grid { grid-template-columns: 1fr; }
-      .exam-grid { grid-template-columns: 1fr 1fr; }
     }
 
     /* Mobile menu */
@@ -863,23 +1187,36 @@
 </head>
 <body>
 
-<!-- Scroll Progress -->
+<canvas id="confettiCanvas"></canvas>
 <div id="progress-bar"></div>
 
+<!-- FLOATING EXAM SCHEDULE -->
+<div id="floating-exam">
+  <div class="exam-float-card" onclick="document.getElementById('exam-schedule').scrollIntoView({behavior:'smooth'})">
+    <span class="exam-float-icon">📅</span>
+    <div class="exam-float-label">Exams Start</div>
+    <div class="exam-float-date">18 March<br>2026</div>
+    <div class="exam-float-sub">Click for details</div>
+    <div class="exam-float-pulse"></div>
+  </div>
+</div>
+
+<!-- FLOATING MAILBOX - exact same as yashify home -->
+<a href="mailto:admin@yashify.fun" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="logo-wrap" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      
-      <div>
-        <span class="logo-main" style="display:block;"><i class="fas fa-dna"></i> BioMicro Hub</span>
-        <span class="logo-sub" style="display:block;">✨ Powered by Yashify</span>
-      </div>
-    </div>
-    <div style="font-family:'Quicksand',sans-serif;font-size:15px;font-weight:800;color:#1e3a8a;white-space:nowrap;display:flex;align-items:center;gap:6px;">
+    <!-- Yashify Logo - clickable -->
+    <a href="https://yashify.fun" class="yashify-logo-link">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <span class="yashify-logo-text">YASHIFY</span>
+    </a>
+
+    <div style="font-family:'Quicksand',sans-serif;font-size:14px;font-weight:800;color:#1e3a8a;white-space:nowrap;display:flex;align-items:center;gap:6px;">
       <img src="data:image/png;base64,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" alt="MIET" style="height:22px;width:auto;"> <span>MIET Content</span>
     </div>
+
     <div class="search-wrap">
       <i class="fas fa-search"></i>
       <input type="text" id="search-input" placeholder="Search subjects, topics...">
@@ -889,9 +1226,8 @@
       <a href="#courses">Courses</a>
       <a href="#resources">Resources</a>
       <a href="#exam-schedule">Schedule</a>
-      <a href="#faculty">Faculty</a>
       <a href="#contact">Contact</a>
-      <a href="#" class="home-btn"><i class="fas fa-home"></i> Home</a>
+      <a href="https://yashify.fun" class="home-btn"><i class="fas fa-home"></i> Home</a>
     </div>
     <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
       <i class="fas fa-bars"></i>
@@ -899,30 +1235,64 @@
   </div>
 </nav>
 
-
-
-
 <!-- Mobile Menu -->
 <div class="mobile-menu">
   <span class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')"><i class="fas fa-times"></i></span>
   <a href="#courses" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Courses</a>
   <a href="#resources" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Resources</a>
   <a href="#exam-schedule" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Schedule</a>
-  <a href="#faculty" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Faculty</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
   <a href="https://yashify.fun">🏠 Yashify Home</a>
 </div>
 
-<!-- HERO -->
+<!-- ===================== HERO ===================== -->
 <header class="hero">
   <div class="hero-content">
-    <h1>Explore <span class="b">Biotechnology</span> &<br><span class="m">Microbiology</span> Together</h1>
-    <p>Your complete academic portal — notes, question banks, practical manuals & more.</p>
-    <div class="hero-btns">
-      <a href="projects/index.html" class="hero-btn pink"><i class="fas fa-flask"></i> Projects 🔬</a>
-      <a href="#resources" class="hero-btn white"><i class="fas fa-book-open"></i> Browse Resources</a>
-      <a href="#contact" class="hero-btn blue"><i class="fas fa-envelope"></i> Contact Us</a>
+
+    <!-- Avatar with MIET logo -->
+    <div class="hero-avatar-wrap">
+      <div class="hero-avatar">
+        <img src="data:image/png;base64,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" alt="MIET">
+      </div>
+      <div class="hero-avatar-label">MIET · BioMicro Hub</div>
     </div>
+
+    <!-- Hero Right Content -->
+    <div class="hero-right">
+      <h1>Explore <span class="b">Biotechnology</span> &amp;<br><span class="m">Microbiology</span> Together</h1>
+
+      <p class="hero-subtitle">Your complete academic portal — notes, question banks, practical manuals &amp; research projects.</p>
+
+      <!-- Quote -->
+      <div class="hero-quote">
+        "Science is the poetry of reality — and biology is its most beautiful verse."
+        <span>— BioMicro Hub, MIET</span>
+      </div>
+
+      <!-- Hero Search -->
+      <div class="hero-search-wrap">
+        <div class="hero-search-row">
+          <input type="text" id="hero-search-input" placeholder="Search subjects, subject codes, projects..." oninput="heroSearch()" onkeydown="heroSearchKey(event)">
+          <button class="hero-search-btn" onclick="heroSearchGo()"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div id="hero-search-results"></div>
+      </div>
+
+      <!-- Buttons + Like Row -->
+      <div class="hero-like-row">
+        <a href="projects/index.html" class="hero-btn pink"><i class="fas fa-flask"></i> Projects 🔬</a>
+        <a href="#resources" class="hero-btn white"><i class="fas fa-book-open"></i> Browse Resources</a>
+        <a href="#contact" class="hero-btn blue"><i class="fas fa-envelope"></i> Contact</a>
+
+        <!-- Live Like Button -->
+        <button class="hero-like-btn" id="hero-like-btn" onclick="toggleHeroLike()">
+          <i class="far fa-heart" id="hero-like-icon"></i>
+          <span id="hero-like-count">...</span>
+        </button>
+        <span class="hero-like-label">Ek like toh banta hai! 💙</span>
+      </div>
+    </div>
+
   </div>
 </header>
 
@@ -942,7 +1312,6 @@
       </div>
     </div>
   </section>
-        
 
   <!-- COURSES -->
   <section id="courses">
@@ -1106,82 +1475,27 @@
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
       <!-- MICRO YEAR 3 -->
       <div id="micro-year-3" class="year-panel">
         <div class="syllabus-row">
           <span>📄 B.Sc. Microbiology — 3rd Year Syllabus</span>
-
-
           <a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/Syllabus%20.doc" download><i class="fas fa-download"></i> Download</a>
         </div>
-
-
         <div class="subj-grid">
-
           <div class="subj-card" data-subject="Food Microbiology 301"><div class="subj-top"><span class="subj-code">301</span><span class="subj-name">Food Microbiology</span></div><div class="subj-actions"><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-301%2C302.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-301%2C302.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
           <div class="subj-card" data-subject="Environmental Microbiology 302"><div class="subj-top"><span class="subj-code">302</span><span class="subj-name">Environmental Microbiology</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note302.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-301%2C302.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
-
           <div class="subj-card" data-subject="Microbial Biotechnology 303"><div class="subj-top"><span class="subj-code">303</span><span class="subj-name">Microbial Biotechnology</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note303.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/b303.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
           <div class="subj-card" data-subject="Diagnostic Microbiology 304"><div class="subj-top"><span class="subj-code">304</span><span class="subj-name">Diagnostic Microbiology</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note304.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/b%20304.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
-
           <div class="subj-card" data-subject="Pharmaceutical Microbiology 305"><div class="subj-top"><span class="subj-code">305</span><span class="subj-name">Pharmaceutical Microbiology</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note305.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/b%20305.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
           <div class="subj-card"><div class="subj-top"><span class="subj-code">306</span><span class="subj-name">Subject 306</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note306.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/mb3%20%20306.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
-
           <div class="subj-card"><div class="subj-top"><span class="subj-code">307</span><span class="subj-name">Subject 307</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note307.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-307.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
-
           <div class="subj-card"><div class="subj-top"><span class="subj-code">308</span><span class="subj-name">Subject 308</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note308.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="microbiology/qbank/M3qbank308.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a></div></div>
-
-
-
           <div class="subj-card"><div class="subj-top"><span class="subj-code">309</span><span class="subj-name">Subject 309</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note309.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="microbiology/qbank/M3qbank309.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-309.pdf" download><i class="fas fa-flask"></i> Manual</a></div></div>
-
-
-
-
           <div class="subj-card"><div class="subj-top"><span class="subj-code">310</span><span class="subj-name">Subject 310</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note310.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="microbiology/qbank/M3qbank310.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a><a class="subj-btn" href="microbiology/practical/M3practical310.pdf" download><i class="fas fa-flask"></i> Manual</a></div></div>
-
-
-
         </div>
       </div>
     </div>
   </section>
-
- 
-       
 
   <!-- CONTACT -->
   <section id="contact">
@@ -1245,7 +1559,6 @@
         <h4>Department</h4>
         <ul>
           <li><a href="#">About Us</a></li>
-          <li><a href="#faculty">Faculty</a></li>
           <li><a href="#">Research</a></li>
           <li><a href="#">Facilities</a></li>
           <li><a href="#">News & Events</a></li>
@@ -1289,13 +1602,109 @@
 <!-- Toast -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Done!</span></div>
 
+<!-- ===================== FIREBASE + SCRIPTS ===================== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const cfg = {
+    apiKey: "AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+    authDomain: "yashify01.firebaseapp.com",
+    databaseURL: "https://yashify01-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "yashify01",
+    storageBucket: "yashify01.firebasestorage.app",
+    messagingSenderId: "209589402846",
+    appId: "1:209589402846:web:c6a47049dcbc9e6eed564f"
+  };
+
+  const app = initializeApp(cfg);
+  const db = getDatabase(app);
+
+  // Like button — using same key as home page for shared likes
+  const likeRef = ref(db, 'stats/likes');
+
+  function bioLiked() { return localStorage.getItem('ylk') === '1'; }
+
+  function renderHeroLike(n) {
+    var btn = document.getElementById('hero-like-btn');
+    var ico = document.getElementById('hero-like-icon');
+    var cnt = document.getElementById('hero-like-count');
+    if (!btn) return;
+    var liked = bioLiked();
+    btn.classList.toggle('liked', liked);
+    ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+    cnt.textContent = n >= 1000 ? (n / 1000).toFixed(1) + 'k' : n;
+  }
+
+  onValue(likeRef, snap => renderHeroLike(snap.val() || 0));
+
+  window.toggleHeroLike = function () {
+    if (bioLiked()) {
+      localStorage.removeItem('ylk');
+      runTransaction(likeRef, c => Math.max((c || 0) - 1, 0));
+    } else {
+      localStorage.setItem('ylk', '1');
+      runTransaction(likeRef, c => (c || 0) + 1);
+      window.launchConfetti();
+      var ico = document.getElementById('hero-like-icon');
+      ico.style.animation = 'none';
+      ico.offsetWidth;
+      ico.style.animation = 'heartPop .4s ease';
+    }
+    var cnt = document.getElementById('hero-like-count');
+    var cur = parseInt(cnt.textContent) || 0;
+    renderHeroLike(bioLiked() ? cur + 1 : Math.max(cur - 1, 0));
+  };
+</script>
+
 <script>
-  // Progress bar
+  // ---- CONFETTI ----
+  window.launchConfetti = (function () {
+    var canvas = document.getElementById('confettiCanvas');
+    var ctx = canvas.getContext('2d');
+    var pieces = [];
+    var colors = ['#3b82f6', '#10b981', '#8b5cf6', '#ec4899', '#f97316', '#6ee7b7', '#93c5fd'];
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+    function Piece() {
+      this.x = window.innerWidth / 2; this.y = window.innerHeight / 2;
+      this.vx = (Math.random() - .5) * 16; this.vy = (Math.random() - 1.6) * 14;
+      this.w = 7 + Math.random() * 8; this.h = 4 + Math.random() * 4;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.rot = Math.random() * Math.PI * 2; this.rotV = (Math.random() - .5) * .2;
+      this.alpha = 1;
+    }
+    var aid = null;
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(function (p) {
+        p.x += p.vx; p.vy += 0.45; p.y += p.vy;
+        p.rot += p.rotV; p.alpha = Math.max(0, p.alpha - .016);
+        ctx.save(); ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.color; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      pieces = pieces.filter(function (p) { return p.alpha > 0; });
+      if (pieces.length) { aid = requestAnimationFrame(loop); }
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    return function () {
+      for (var i = 0; i < 120; i++) pieces.push(new Piece());
+      if (aid) cancelAnimationFrame(aid);
+      loop();
+    };
+  })();
+
+  // ---- PROGRESS BAR ----
   window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('progress-bar').style.width = scrolled + '%';
     const bt = document.getElementById('back-top');
     window.scrollY > 300 ? bt.classList.add('show') : bt.classList.remove('show');
+    // Hide floating exam when at top
+    const fe = document.getElementById('floating-exam');
+    if (fe) fe.style.opacity = window.scrollY > 100 ? '1' : '1';
   });
 
   document.getElementById('back-top').addEventListener('click', e => {
@@ -1303,15 +1712,15 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Smooth scroll
+  // ---- SMOOTH SCROLL ----
   document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function(e) {
+    a.addEventListener('click', function (e) {
       const t = document.querySelector(this.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
 
-  // Program tabs
+  // ---- PROGRAM TABS ----
   function switchProg(prog, btn) {
     document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
@@ -1319,7 +1728,7 @@
     document.getElementById('prog-' + prog).classList.add('active');
   }
 
-  // Year tabs
+  // ---- YEAR TABS ----
   function switchYear(prog, year, btn) {
     const panel = document.getElementById('prog-' + prog);
     panel.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
@@ -1328,7 +1737,7 @@
     document.getElementById(prog + '-year-' + year).classList.add('active');
   }
 
-  // Search
+  // ---- SEARCH DATA ----
   const allSubjects = [];
   document.querySelectorAll('.subj-card[data-subject]').forEach(card => {
     const name = card.querySelector('.subj-name').textContent;
@@ -1337,50 +1746,28 @@
     allSubjects.push({ name, code, isMicro, card });
   });
 
+  // NAV search
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
 
-  searchInput.addEventListener('input', function() {
+  searchInput.addEventListener('input', function () {
     const q = this.value.trim().toLowerCase();
     searchResults.innerHTML = '';
     if (!q) { searchResults.classList.remove('show'); return; }
-
     const matches = allSubjects.filter(s =>
       s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q)
     ).slice(0, 8);
-
     if (!matches.length) {
       searchResults.innerHTML = '<div class="search-item">No subjects found</div>';
-      searchResults.classList.add('show');
-      return;
+      searchResults.classList.add('show'); return;
     }
-
     matches.forEach(s => {
       const div = document.createElement('div');
       div.className = 'search-item';
       div.innerHTML = `<i class="fas ${s.isMicro ? 'fa-microscope' : 'fa-dna'}" style="color:${s.isMicro ? 'var(--micro)' : 'var(--bio)'}"></i>
         <span><strong>${s.code}</strong> — ${s.name}</span>
         <span class="s-tag ${s.isMicro ? 'micro' : 'bio'}">${s.isMicro ? 'Micro' : 'Bio'}</span>`;
-
-      div.addEventListener('click', () => {
-        searchResults.classList.remove('show');
-        searchInput.value = '';
-        // Switch to correct prog & year
-        const prog = s.isMicro ? 'micro' : 'bio';
-        const yearNum = parseInt(s.code.charAt(0));
-        const progBtn = document.querySelector(`.prog-tab.${s.isMicro ? 'micro' : 'bio'}-tab`);
-        switchProg(prog, progBtn);
-        const yearPanel = document.getElementById(prog + '-year-' + yearNum);
-        if (yearPanel) {
-          const yearBtn = yearPanel.closest('.prog-panel').querySelectorAll('.year-tab')[yearNum - 1];
-          switchYear(prog, yearNum, yearBtn);
-        }
-        setTimeout(() => {
-          s.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          s.card.style.outline = '2px solid ' + (s.isMicro ? 'var(--micro)' : 'var(--bio)');
-          setTimeout(() => s.card.style.outline = '', 2000);
-        }, 200);
-      });
+      div.addEventListener('click', () => jumpToSubject(s));
       searchResults.appendChild(div);
     });
     searchResults.classList.add('show');
@@ -1388,9 +1775,69 @@
 
   document.addEventListener('click', e => {
     if (!e.target.closest('.search-wrap')) searchResults.classList.remove('show');
+    if (!e.target.closest('.hero-search-wrap')) document.getElementById('hero-search-results').classList.remove('show');
   });
+
+  // HERO search
+  function heroSearch() {
+    const q = document.getElementById('hero-search-input').value.trim().toLowerCase();
+    const dd = document.getElementById('hero-search-results');
+    dd.innerHTML = '';
+    if (!q) { dd.classList.remove('show'); return; }
+    const matches = allSubjects.filter(s =>
+      s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q)
+    ).slice(0, 8);
+    if (!matches.length) {
+      dd.innerHTML = '<div class="hero-search-item" style="color:#64748b;">No subjects found for "' + q + '"</div>';
+      dd.classList.add('show'); return;
+    }
+    matches.forEach(s => {
+      const div = document.createElement('div');
+      div.className = 'hero-search-item';
+      div.innerHTML = `<i class="fas ${s.isMicro ? 'fa-microscope' : 'fa-dna'}" style="color:${s.isMicro ? 'var(--micro)' : 'var(--bio)'}"></i>
+        <span><strong>${s.code}</strong> — ${s.name}</span>
+        <span class="s-tag ${s.isMicro ? 'micro' : 'bio'}">${s.isMicro ? 'Micro' : 'Bio'}</span>`;
+      div.addEventListener('click', () => {
+        dd.classList.remove('show');
+        document.getElementById('hero-search-input').value = '';
+        jumpToSubject(s);
+      });
+      dd.appendChild(div);
+    });
+    dd.classList.add('show');
+  }
+
+  function heroSearchKey(e) {
+    if (e.key === 'Enter') heroSearchGo();
+    if (e.key === 'Escape') document.getElementById('hero-search-results').classList.remove('show');
+  }
+
+  function heroSearchGo() {
+    const q = document.getElementById('hero-search-input').value.trim().toLowerCase();
+    if (!q) return;
+    const m = allSubjects.find(s => s.name.toLowerCase().includes(q) || s.code.toLowerCase().includes(q));
+    if (m) jumpToSubject(m);
+  }
+
+  function jumpToSubject(s) {
+    const prog = s.isMicro ? 'micro' : 'bio';
+    const yearNum = parseInt(s.code.charAt(0));
+    const progBtn = document.querySelector(`.prog-tab.${s.isMicro ? 'micro' : 'bio'}-tab`);
+    switchProg(prog, progBtn);
+    const progPanel = document.getElementById('prog-' + prog);
+    if (progPanel) {
+      const yearBtns = progPanel.querySelectorAll('.year-tab');
+      if (yearBtns[yearNum - 1]) switchYear(prog, yearNum, yearBtns[yearNum - 1]);
+    }
+    setTimeout(() => {
+      document.getElementById('resources').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        s.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        s.card.style.outline = '2px solid ' + (s.isMicro ? 'var(--micro)' : 'var(--bio)');
+        setTimeout(() => s.card.style.outline = '', 2000);
+      }, 400);
+    }, 150);
+  }
 </script>
 </body>
 </html>
-
-
