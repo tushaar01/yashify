@@ -584,33 +584,55 @@ window.addEventListener('scroll', function(){
   readBar.style.width = pct + '%';
 });
 
-// Like toggle (localStorage)
-function isLiked(){ return localStorage.getItem('alz_like') === '1'; }
-var localCount = parseInt(localStorage.getItem('alz_count') || '0');
+// FIREBASE REAL-TIME LIKES
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const cfg = {
+  apiKey:"AIzaSyAigw066zndWp5S8ecmbNa_su8S-SJ2o8c",
+  authDomain:"yashify01.firebaseapp.com",
+  databaseURL:"https://yashify01-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"yashify01",
+  storageBucket:"yashify01.firebasestorage.app",
+  messagingSenderId:"209589402846",
+  appId:"1:209589402846:web:c6a47049dcbc9e6eed564f"
+};
+const app = initializeApp(cfg);
+const db = getDatabase(app);
+const likeRef = ref(db, 'stats/discoveries_likes');
+
+function isLiked(){ return localStorage.getItem('disc_like') === '1'; }
 
 function renderLike(n){
   var btn = document.getElementById('likeBtn');
   var ico = document.getElementById('likeIcon');
   var cnt = document.getElementById('likeCount');
+  if(!btn) return;
   var liked = isLiked();
   btn.classList.toggle('liked', liked);
   ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
   cnt.textContent = n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
 }
-renderLike(localCount);
 
-function toggleLike(){
+onValue(likeRef, function(snap){ renderLike(snap.val() || 0); });
+
+window.toggleLike = function(){
   if(isLiked()){
-    localStorage.removeItem('alz_like');
-    localCount = Math.max(0, localCount - 1);
+    localStorage.removeItem('disc_like');
+    runTransaction(likeRef, function(c){ return Math.max((c||0)-1, 0); });
   } else {
-    localStorage.setItem('alz_like','1');
-    localCount += 1;
+    localStorage.setItem('disc_like','1');
+    runTransaction(likeRef, function(c){ return (c||0)+1; });
+    launchConfetti();
+    var ico = document.getElementById('likeIcon');
+    ico.style.animation = 'none';
+    ico.offsetWidth;
+    ico.style.animation = 'heartPop .4s ease';
   }
-  localStorage.setItem('alz_count', localCount);
-  renderLike(localCount);
-}
-
+};
+</script>
 // Share
 function sharePage(){
   var url = window.location.href;
