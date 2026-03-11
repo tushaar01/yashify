@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Blood Test May Predict Alzheimer's 3–4 Years Before It Begins — Yashify</title>
+<meta name="description" content="Scientists have developed a blood test that can predict Alzheimer's disease 3 to 4 years before symptoms appear. Read the full discovery on Yashify.">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
+<meta name="theme-color" content="#3ABFF8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+  
+<style>
+:root {
+  --bg: #F4F7FB;
+  --text: #111827;
+  --sub: #6B7280;
+  --blue: #3ABFF8;
+  --purple: #8C52FF;
+  --green: #10B981;
+  --green-light: #DCFCE7;
+  --green-mid: #BBF7D0;
+  --green-dark: #047857;
+  --card: #ffffff;
+  --border: #E5E7EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── PROGRESS BAR ─── */
+#progressBar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, #3ABFF8, #8C52FF, #10B981);
+  z-index: 99999; border-radius: 0 2px 2px 0;
+  transition: width .3s ease, opacity .5s ease;
+  pointer-events: none;
+}
+
+/* ─── READ PROGRESS ─── */
+#readBar {
+  position: fixed; top: 3px; left: 0; height: 2px; width: 0%;
+  background: var(--green);
+  z-index: 99998; transition: width .1s linear;
+  pointer-events: none;
+}
+
+/* ─── NAVBAR ─── */
+.navbar {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(244,247,251,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; gap: 16px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: inherit; flex-shrink: 0;
+}
+.nav-logo img {
+  width: 36px; height: 36px; border-radius: 10px;
+  object-fit: cover;
+}
+.nav-logo span {
+  font-size: 1.1rem; font-weight: 800; letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--sub); text-decoration: none;
+  font-size: .82rem; font-weight: 600;
+  border: 1.5px solid var(--border);
+  border-radius: 50px; padding: 6px 14px;
+  transition: all .2s;
+}
+.back-btn:hover { border-color: var(--blue); color: var(--blue); }
+.nav-site-link {
+  font-size: .78rem; font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-light);
+  border: 1.5px solid var(--green-mid);
+  border-radius: 50px; padding: 6px 14px;
+  text-decoration: none; transition: .2s;
+}
+.nav-site-link:hover { background: var(--green-mid); }
+
+/* ─── HERO ARTICLE HEADER ─── */
+.article-hero {
+  max-width: 800px; margin: 40px auto 0; padding: 0 20px;
+}
+.article-tag-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.atag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 50px;
+  font-size: .75rem; font-weight: 700;
+}
+.atag-green { background: var(--green-light); color: var(--green-dark); border: 1.5px solid var(--green-mid); }
+.atag-blue  { background: #E0F2FE; color: #0369A1; border: 1.5px solid #BAE6FD; }
+.atag-date  { background: white; color: var(--sub); border: 1.5px solid var(--border); font-weight: 600; }
+
+.article-title {
+  font-family: 'Lora', serif;
+  font-size: 2.4rem; font-weight: 600; line-height: 1.3;
+  color: var(--text); margin-bottom: 16px;
+}
+.article-subtitle {
+  font-size: 1.05rem; color: var(--sub);
+  line-height: 1.6; margin-bottom: 24px;
+  font-weight: 400;
+}
+
+/* ─── COVER IMAGE ─── */
+.cover-wrap {
+  max-width: 800px; margin: 0 auto 40px; padding: 0 20px;
+}
+.cover-img {
+  width: 100%; border-radius: 20px;
+  overflow: hidden; background: #e5e7eb;
+  position: relative; box-shadow: 0 8px 32px rgba(0,0,0,.1);
+}
+.cover-img img {
+  width: 100%; display: block;
+  height: auto; object-fit: contain;
+}
+.cover-caption {
+  text-align: center; font-size: .73rem; color: var(--sub);
+  margin-top: 10px; font-style: italic;
+}
+/* Yashify watermark on image */
+.img-watermark {
+  position: absolute; bottom: 12px; right: 14px;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+  border-radius: 8px; padding: 4px 10px;
+  font-size: .7rem; font-weight: 700; color: white;
+  letter-spacing: .5px;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.article-layout {
+  max-width: 800px; margin: 0 auto 40px; padding: 0 20px;
+  display: grid; grid-template-columns: 1fr 220px; gap: 32px;
+}
+@media(max-width:720px){ .article-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+/* ─── ARTICLE BODY ─── */
+.article-body {
+  background: white; border-radius: 20px;
+  padding: 32px 36px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.article-body p {
+  font-family: 'Lora', serif;
+  font-size: 1.02rem; line-height: 1.85;
+  color: #1F2937; margin-bottom: 20px;
+}
+.article-body h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem; font-weight: 800;
+  color: var(--text); margin: 30px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.article-body h2::before {
+  content: ''; display: inline-block;
+  width: 4px; height: 18px; border-radius: 4px;
+  background: linear-gradient(180deg, var(--blue), var(--purple));
+}
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: linear-gradient(135deg, #E0F2FE, #EDE9FE);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 18px 22px;
+  margin: 24px 0;
+}
+.highlight-box p {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: .92rem !important; font-weight: 600 !important;
+  color: #1E3A5F !important; line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+/* FACT CHIPS */
+.fact-row {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;
+}
+.fact-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--green-light); border: 1.5px solid var(--green-mid);
+  border-radius: 50px; padding: 8px 16px;
+  font-size: .82rem; font-weight: 700; color: var(--green-dark);
+}
+
+/* QUOTE */
+.pull-quote {
+  border-left: 3px solid var(--green);
+  padding: 12px 20px; margin: 24px 0;
+  background: #F0FDF4; border-radius: 0 12px 12px 0;
+}
+.pull-quote p {
+  font-family: 'Lora', serif !important;
+  font-size: 1.05rem !important;
+  font-style: italic !important;
+  color: #065F46 !important;
+  margin: 0 !important;
+}
+.pull-quote cite {
+  display: block; margin-top: 8px;
+  font-size: .75rem; font-weight: 700;
+  color: var(--sub); font-style: normal;
+}
+
+/* YASHIFY BRAND BAND inside article */
+.brand-band {
+  background: linear-gradient(135deg, #0EA5E9 0%, #8C52FF 100%);
+  border-radius: 14px; padding: 16px 22px;
+  display: flex; align-items: center; gap: 14px;
+  margin: 28px 0; text-decoration: none;
+}
+.brand-band img { width: 40px; height: 40px; border-radius: 10px; }
+.brand-band-text { flex: 1; }
+.brand-band-text span {
+  display: block; font-size: .78rem;
+  color: rgba(255,255,255,.8); font-weight: 600;
+}
+.brand-band-text strong {
+  display: block; font-size: 1rem;
+  color: white; font-weight: 800; letter-spacing: .5px;
+}
+.brand-band-arrow {
+  color: rgba(255,255,255,.8); font-size: 1.1rem;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar-card {
+  background: white; border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.sidebar-card h4 {
+  font-size: .72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--sub); margin-bottom: 12px;
+}
+.key-fact {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+}
+.key-fact:last-child { border-bottom: none; padding-bottom: 0; }
+.key-fact-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; flex-shrink: 0;
+}
+.key-fact-text { font-size: .8rem; color: var(--text); font-weight: 600; line-height: 1.4; }
+.key-fact-sub { font-size: .7rem; color: var(--sub); font-weight: 400; }
+
+/* YASHIFY BRAND CARD in sidebar */
+.brand-sidebar {
+  background: linear-gradient(145deg, #0F172A, #1E3A5F);
+  border-radius: 16px; padding: 20px;
+  text-align: center;
+}
+.brand-sidebar img {
+  width: 52px; height: 52px; border-radius: 14px;
+  margin: 0 auto 10px; display: block;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
+.brand-sidebar p {
+  color: rgba(255,255,255,.7); font-size: .75rem;
+  line-height: 1.5; margin-bottom: 12px;
+}
+.brand-sidebar a {
+  display: block; background: linear-gradient(135deg, #3ABFF8, #8C52FF);
+  color: white; text-decoration: none;
+  border-radius: 50px; padding: 8px 0;
+  font-size: .82rem; font-weight: 700; transition: .2s;
+}
+.brand-sidebar a:hover { opacity: .85; transform: scale(1.03); }
+
+/* ─── ACTION ROW ─── */
+.action-row {
+  max-width: 800px; margin: 0 auto 16px; padding: 0 20px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.action-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: white; border: 2px solid var(--border);
+  border-radius: 50px; padding: 10px 22px;
+  font-family: 'Outfit', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  color: var(--sub); cursor: pointer; transition: all .25s;
+}
+.action-btn:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+.action-btn.liked { border-color: #EF4444; background: #FFF5F5; color: #EF4444; }
+.action-btn.share:hover { border-color: var(--purple); color: var(--purple); }
+.action-btn.copy:hover { border-color: var(--green); color: var(--green-dark); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #111827; color: rgba(255,255,255,.6);
+  padding: 40px 24px 30px; text-align: center;
+  margin-top: 20px;
+}
+.foot-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; margin-bottom: 14px;
+}
+.foot-logo img { width: 40px; height: 40px; border-radius: 10px; }
+.foot-logo span {
+  font-size: 1.3rem; font-weight: 800; letter-spacing: 1.5px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+footer p { font-size: .82rem; margin-bottom: 6px; }
+.foot-social a {
+  color: #8C52FF; font-size: 1.4rem;
+  margin: 0 10px; display: inline-block; transition: .2s;
+}
+.foot-social a:hover { color: #3ABFF8; transform: scale(1.1); }
+.foot-tag {
+  display: inline-block; margin-top: 14px;
+  font-size: .7rem; color: rgba(255,255,255,.3);
+  letter-spacing: 1px;
+}
+
+@media(max-width: 600px) {
+  .article-title { font-size: 1.7rem; }
+  .article-body { padding: 22px 20px; }
+  .article-body p { font-size: .95rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+<div id="readBar"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://yashify.fun" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <span>YASHIFY</span>
+    </a>
+    <div class="nav-right">
+      <a href="https://yashify.fun/l/new-discoveries/" class="back-btn"><i class="fas fa-arrow-left"></i> Discoveries</a>
+      <a href="https://yashify.fun" class="nav-site-link">🌐 yashify.fun</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE HERO -->
+<header class="article-hero">
+  <div class="article-tag-row">
+    <span class="atag atag-green">🧬 Biotech &amp; MicroBio</span>
+    <span class="atag atag-blue"><i class="fas fa-flask"></i> Research</span>
+    <span class="atag atag-date">📅 March 2025</span>
+  </div>
+  <h1 class="article-title">New Blood Test May Predict Alzheimer's 3–4 Years Before It Begins</h1>
+  <p class="article-subtitle">
+    Scientists have developed a simple blood test that can detect early signs of Alzheimer's disease years before symptoms appear — a potential game-changer in brain health.
+  </p>
+</header>
+
+<!-- COVER IMAGE -->
+<div class="cover-wrap">
+  <div class="cover-img">
+    <img src="https://raw.githubusercontent.com/o0o0-o0o0/discoveries/171cdc314e10a3f9368a5832ace13c9cb0d4cfb6/1000107339.png" alt="Alzheimer's Blood Test Discovery">
+    <div class="img-watermark">© yashify.fun</div>
+  </div>
+  <p class="cover-caption">Illustration: Biomarker detection in early-stage Alzheimer's research</p>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="article-layout">
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p>
+      In a major step forward for neuroscience, researchers have unveiled a blood test capable of detecting Alzheimer's disease up to <strong>3 to 4 years before clinical symptoms emerge</strong>. The test measures specific protein biomarkers in the blood that signal early neurodegeneration — long before memory loss or cognitive decline becomes visible.
+    </p>
+
+    <div class="highlight-box">
+      <p>💡 <strong>Key Finding:</strong> The test detects elevated levels of phosphorylated tau (p-tau217) — a protein linked to the toxic tangles that form in the Alzheimer's brain — with over 90% accuracy in early detection trials.</p>
+    </div>
+
+    <h2>Why This Discovery Matters</h2>
+    <p>
+      Alzheimer's disease affects over <strong>55 million people worldwide</strong>, yet current diagnosis methods — like brain scans (PET) or spinal fluid analysis — are expensive, invasive, and often come too late. A simple blood draw that flags the disease years earlier could transform how doctors approach prevention and treatment.
+    </p>
+
+    <div class="fact-row">
+      <span class="fact-chip">🧠 55M+ affected worldwide</span>
+      <span class="fact-chip">⏱️ 3–4 year early warning</span>
+      <span class="fact-chip">✅ 90%+ accuracy</span>
+      <span class="fact-chip">💉 Simple blood draw</span>
+    </div>
+
+    <h2>How the Test Works</h2>
+    <p>
+      The blood test focuses on a biomarker called <strong>p-tau217</strong>, a fragment of the tau protein. In Alzheimer's, abnormal tau proteins clump together inside neurons, disrupting communication and eventually killing brain cells. These abnormal proteins leave traces in the blood long before the brain shows outward damage.
+    </p>
+    <p>
+      By measuring the ratio of specific tau fragments, scientists can determine whether the characteristic plaques and tangles of Alzheimer's are already forming — even if the person feels perfectly fine today.
+    </p>
+
+    <div class="pull-quote">
+      <p>"Early detection means early intervention — and for Alzheimer's, every month matters."</p>
+      <cite>— Research team perspective, 2025</cite>
+    </div>
+
+    <h2>What Happens Next?</h2>
+    <p>
+      The test is currently in advanced clinical validation stages. Researchers aim to make it widely available within the next few years as a routine screening tool — much like cholesterol or blood sugar tests. Combined with emerging therapies like anti-amyloid drugs, earlier detection could finally give patients a fighting chance.
+    </p>
+
+    <!-- BRAND BAND — Yashify branding inside article -->
+    <a href="https://yashify.fun/l/articles/discoveries" class="brand-band" target="_blank">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <div class="brand-band-text">
+        <span>More discoveries on</span>
+        <strong>🌐 yashify.fun</strong>
+      </div>
+      <i class="fas fa-arrow-right brand-band-arrow"></i>
+    </a>
+
+    <h2>What It Means for You</h2>
+    <p>
+      If this test becomes routine, your annual health checkup could soon include an Alzheimer's risk screen. This would allow lifestyle changes, mental health strategies, and early medical interventions — potentially slowing or even halting the disease before it takes hold.
+    </p>
+    <p>
+      This is science at its most hopeful: catching what was once invisible, before it becomes irreversible.
+    </p>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- KEY FACTS -->
+    <div class="sidebar-card">
+      <h4>🔑 Key Facts</h4>
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#DCFCE7;">🧬</div>
+        <div>
+          <div class="key-fact-text">Biomarker Used</div>
+          <div class="key-fact-sub">Phosphorylated tau (p-tau217)</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#E0F2FE;">⏱️</div>
+        <div>
+          <div class="key-fact-text">Early Detection Window</div>
+          <div class="key-fact-sub">3 to 4 years before symptoms</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#EDE9FE;">✅</div>
+        <div>
+          <div class="key-fact-text">Accuracy</div>
+          <div class="key-fact-sub">Over 90% in trials</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#FEF3C7;">📅</div>
+        <div>
+          <div class="key-fact-text">Published</div>
+          <div class="key-fact-sub">March 2025</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#FEE2E2;">🌍</div>
+        <div>
+          <div class="key-fact-text">People Affected</div>
+          <div class="key-fact-sub">55 million+ worldwide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAGS -->
+    <div class="sidebar-card">
+      <h4>🏷️ Tags</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#DCFCE7;color:#047857;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Alzheimer's</span>
+        <span style="background:#E0F2FE;color:#0369A1;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Biotech</span>
+        <span style="background:#EDE9FE;color:#6D28D9;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Neuroscience</span>
+        <span style="background:#FEF3C7;color:#92400E;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Blood Test</span>
+        <span style="background:#FEE2E2;color:#9B1C1C;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Brain Health</span>
+      </div>
+    </div>
+
+    <!-- YASHIFY BRAND CARD -->
+    <div class="brand-sidebar">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <p>Breaking science &amp; discoveries for curious minds — every week on Yashify.</p>
+      <a href="https://yashify.fun" target="_blank">🌐 Visit yashify.fun</a>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ACTION ROW -->
+<div class="action-row">
+  <button class="action-btn" id="likeBtn" onclick="toggleLike()">
+    <i class="far fa-heart" id="likeIcon"></i>
+    <span id="likeCount">0</span> Liked this
+  </button>
+  <button class="action-btn share" onclick="sharePage()">
+    <i class="fas fa-share-nodes"></i> Share
+  </button>
+  <button class="action-btn copy" onclick="copyLink()">
+    <i class="fas fa-link"></i> <span id="copyTxt">Copy Link</span>
+  </button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://yashify.fun" class="foot-logo">
+    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+    <span>YASHIFY</span>
+  </a>
+  <p>Breaking Science, Research &amp; Discoveries for Curious Minds</p>
+  <p style="margin-top:4px;">© <span id="year"></span> Yashify — All Rights Reserved</p>
+  <div class="foot-social">
+    <a href="https://www.instagram.com/yashify.fun" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+  <span class="foot-tag">SCIENCE NEVER SLEEPS 🔬 &nbsp;·&nbsp; YASHIFY.FUN</span>
+</footer>
+
+<script>
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Progress bar on load
+var bar = document.getElementById('progressBar'), prog = 0;
+var bt = setInterval(function(){
+  prog += Math.random() * 18;
+  if(prog > 85) prog = 85;
+  bar.style.width = prog + '%';
+}, 250);
+window.addEventListener('load', function(){
+  clearInterval(bt);
+  bar.style.width = '100%';
+  setTimeout(function(){ bar.style.opacity = '0'; }, 600);
+});
+
+// Read progress
+var readBar = document.getElementById('readBar');
+window.addEventListener('scroll', function(){
+  var body = document.body, html = document.documentElement;
+  var total = Math.max(body.scrollHeight, html.scrollHeight) - window.innerHeight;
+  var pct = total > 0 ? (window.scrollY / total * 100) : 0;
+  readBar.style.width = pct + '%';
+});
+
+// Like toggle (localStorage)
+function isLiked(){ return localStorage.getItem('alz_like') === '1'; }
+var localCount = parseInt(localStorage.getItem('alz_count') || '0');
+
+function renderLike(n){
+  var btn = document.getElementById('likeBtn');
+  var ico = document.getElementById('likeIcon');
+  var cnt = document.getElementById('likeCount');
+  var liked = isLiked();
+  btn.classList.toggle('liked', liked);
+  ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+  cnt.textContent = n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
+}
+renderLike(localCount);
+
+function toggleLike(){
+  if(isLiked()){
+    localStorage.removeItem('alz_like');
+    localCount = Math.max(0, localCount - 1);
+  } else {
+    localStorage.setItem('alz_like','1');
+    localCount += 1;
+  }
+  localStorage.setItem('alz_count', localCount);
+  renderLike(localCount);
+}
+
+// Share
+function sharePage(){
+  var url = window.location.href;
+  var title = 'New Blood Test May Predict Alzheimer\'s 3–4 Years Before It Begins — Yashify';
+  if(navigator.share){
+    navigator.share({ title: title, url: url });
+  } else {
+    window.open('https://wa.me/?text='+encodeURIComponent(title+'\n'+url),'_blank');
+  }
+}
+
+// Copy link
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    var el = document.getElementById('copyTxt');
+    el.textContent = 'Copied!';
+    setTimeout(function(){ el.textContent = 'Copy Link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
