@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Your Gut May Hold the Key to Slowing Ovarian Aging — Yashify</title>
+<meta name="description" content="A 2026 Nature Aging study reveals gut bacteria can reverse signs of ovarian aging — unlocking a surprising new path to women's long-term health.">
+
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg">
+<meta name="theme-color" content="#3ABFF8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F4F7FB;
+  --text: #111827;
+  --sub: #6B7280;
+  --blue: #3ABFF8;
+  --purple: #8C52FF;
+  --green: #10B981;
+  --green-light: #DCFCE7;
+  --green-mid: #BBF7D0;
+  --green-dark: #047857;
+  --card: #ffffff;
+  --border: #E5E7EB;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+#progressBar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #3ABFF8, #8C52FF, #10B981); z-index: 99999; border-radius: 0 2px 2px 0; transition: width .3s ease, opacity .5s ease; pointer-events: none; }
+#readBar { position: fixed; top: 3px; left: 0; height: 2px; width: 0%; background: var(--green); z-index: 99998; transition: width .1s linear; pointer-events: none; }
+
+.navbar { position: sticky; top: 0; z-index: 1000; background: rgba(244,247,251,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; flex-shrink: 0; }
+.nav-logo img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+.nav-logo span { font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.back-btn { display: flex; align-items: center; gap: 6px; color: var(--sub); text-decoration: none; font-size: .82rem; font-weight: 600; border: 1.5px solid var(--border); border-radius: 50px; padding: 6px 14px; transition: all .2s; }
+.back-btn:hover { border-color: var(--blue); color: var(--blue); }
+.nav-site-link { font-size: .78rem; font-weight: 700; color: var(--green-dark); background: var(--green-light); border: 1.5px solid var(--green-mid); border-radius: 50px; padding: 6px 14px; text-decoration: none; transition: .2s; }
+.nav-site-link:hover { background: var(--green-mid); }
+
+.article-hero { max-width: 800px; margin: 40px auto 0; padding: 0 20px; }
+.article-tag-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.atag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 50px; font-size: .75rem; font-weight: 700; }
+.atag-green { background: var(--green-light); color: var(--green-dark); border: 1.5px solid var(--green-mid); }
+.atag-blue  { background: #E0F2FE; color: #0369A1; border: 1.5px solid #BAE6FD; }
+.atag-date  { background: white; color: var(--sub); border: 1.5px solid var(--border); font-weight: 600; }
+.article-title { font-family: 'Lora', serif; font-size: 2.4rem; font-weight: 600; line-height: 1.3; color: var(--text); margin-bottom: 16px; }
+.article-subtitle { font-size: 1.05rem; color: var(--sub); line-height: 1.6; margin-bottom: 24px; font-weight: 400; }
+
+.cover-wrap { max-width: 800px; margin: 0 auto 40px; padding: 0 20px; }
+.cover-img { width: 100%; border-radius: 20px; overflow: hidden; background: #e5e7eb; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+.cover-img img { width: 100%; display: block; height: auto; object-fit: contain; }
+.cover-caption { text-align: center; font-size: .73rem; color: var(--sub); margin-top: 10px; font-style: italic; }
+.img-watermark { position: absolute; bottom: 12px; right: 14px; background: rgba(0,0,0,.55); backdrop-filter: blur(4px); border-radius: 8px; padding: 4px 10px; font-size: .7rem; font-weight: 700; color: white; letter-spacing: .5px; }
+
+.article-layout { max-width: 800px; margin: 0 auto 40px; padding: 0 20px; display: grid; grid-template-columns: 1fr 220px; gap: 32px; }
+@media(max-width:720px){ .article-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+.article-body { background: white; border-radius: 20px; padding: 32px 36px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+.article-body p { font-family: 'Lora', serif; font-size: 1.02rem; line-height: 1.85; color: #1F2937; margin-bottom: 20px; }
+.article-body h2 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text); margin: 30px 0 12px; display: flex; align-items: center; gap: 8px; }
+.article-body h2::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 4px; background: linear-gradient(180deg, var(--blue), var(--purple)); }
+
+.highlight-box { background: linear-gradient(135deg, #E0F2FE, #EDE9FE); border-left: 4px solid var(--blue); border-radius: 12px; padding: 18px 22px; margin: 24px 0; }
+.highlight-box p { font-family: 'Outfit', sans-serif !important; font-size: .92rem !important; font-weight: 600 !important; color: #1E3A5F !important; line-height: 1.6 !important; margin: 0 !important; }
+
+.fact-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+.fact-chip { display: flex; align-items: center; gap: 8px; background: var(--green-light); border: 1.5px solid var(--green-mid); border-radius: 50px; padding: 8px 16px; font-size: .82rem; font-weight: 700; color: var(--green-dark); }
+
+.pull-quote { border-left: 3px solid var(--green); padding: 12px 20px; margin: 24px 0; background: #F0FDF4; border-radius: 0 12px 12px 0; }
+.pull-quote p { font-family: 'Lora', serif !important; font-size: 1.05rem !important; font-style: italic !important; color: #065F46 !important; margin: 0 !important; }
+.pull-quote cite { display: block; margin-top: 8px; font-size: .75rem; font-weight: 700; color: var(--sub); font-style: normal; }
+
+.brand-band { background: linear-gradient(135deg, #0EA5E9 0%, #8C52FF 100%); border-radius: 14px; padding: 16px 22px; display: flex; align-items: center; gap: 14px; margin: 28px 0; text-decoration: none; }
+.brand-band img { width: 40px; height: 40px; border-radius: 10px; }
+.brand-band-text { flex: 1; }
+.brand-band-text span { display: block; font-size: .78rem; color: rgba(255,255,255,.8); font-weight: 600; }
+.brand-band-text strong { display: block; font-size: 1rem; color: white; font-weight: 800; letter-spacing: .5px; }
+.brand-band-arrow { color: rgba(255,255,255,.8); font-size: 1.1rem; }
+
+.sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar-card { background: white; border-radius: 16px; padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+.sidebar-card h4 { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--sub); margin-bottom: 12px; }
+.key-fact { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.key-fact:last-child { border-bottom: none; padding-bottom: 0; }
+.key-fact-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+.key-fact-text { font-size: .8rem; color: var(--text); font-weight: 600; line-height: 1.4; }
+.key-fact-sub { font-size: .7rem; color: var(--sub); font-weight: 400; }
+
+.brand-sidebar { background: linear-gradient(145deg, #0F172A, #1E3A5F); border-radius: 16px; padding: 20px; text-align: center; }
+.brand-sidebar img { width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 10px; display: block; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.brand-sidebar p { color: rgba(255,255,255,.7); font-size: .75rem; line-height: 1.5; margin-bottom: 12px; }
+.brand-sidebar a { display: block; background: linear-gradient(135deg, #3ABFF8, #8C52FF); color: white; text-decoration: none; border-radius: 50px; padding: 8px 0; font-size: .82rem; font-weight: 700; transition: .2s; }
+.brand-sidebar a:hover { opacity: .85; transform: scale(1.03); }
+
+.action-row { max-width: 800px; margin: 0 auto 16px; padding: 0 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.action-btn { display: flex; align-items: center; gap: 8px; background: white; border: 2px solid var(--border); border-radius: 50px; padding: 10px 22px; font-family: 'Outfit', sans-serif; font-size: .9rem; font-weight: 700; color: var(--sub); cursor: pointer; transition: all .25s; }
+.action-btn:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+.action-btn.liked { border-color: #EF4444; background: #FFF5F5; color: #EF4444; }
+.action-btn.share:hover { border-color: var(--purple); color: var(--purple); }
+.action-btn.copy:hover { border-color: var(--green); color: var(--green-dark); }
+
+footer { background: #111827; color: rgba(255,255,255,.6); padding: 40px 24px 30px; text-align: center; margin-top: 20px; }
+.foot-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
+.foot-logo img { width: 40px; height: 40px; border-radius: 10px; }
+.foot-logo span { font-size: 1.3rem; font-weight: 800; letter-spacing: 1.5px; background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+footer p { font-size: .82rem; margin-bottom: 6px; }
+.foot-social a { color: #8C52FF; font-size: 1.4rem; margin: 0 10px; display: inline-block; transition: .2s; }
+.foot-social a:hover { color: #3ABFF8; transform: scale(1.1); }
+.foot-tag { display: inline-block; margin-top: 14px; font-size: .7rem; color: rgba(255,255,255,.3); letter-spacing: 1px; }
+
+@media(max-width: 600px) { .article-title { font-size: 1.7rem; } .article-body { padding: 22px 20px; } .article-body p { font-size: .95rem; } }
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+<div id="readBar"></div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="https://yashify.fun" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <span>YASHIFY</span>
+    </a>
+    <div class="nav-right">
+      <a href="https://yashify.fun/l/articles/discoveries" class="back-btn"><i class="fas fa-arrow-left"></i> Discoveries</a>
+      <a href="https://yashify.fun" class="nav-site-link">🌐 yashify.fun</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="article-tag-row">
+    <span class="atag atag-green">🧬 Women's Health &amp; Microbiome</span>
+    <span class="atag atag-blue"><i class="fas fa-flask"></i> Breakthrough</span>
+    <span class="atag atag-date">📅 January 2026</span>
+  </div>
+
+  <h1 class="article-title">Your Gut May Hold the Key to Slowing Ovarian Aging</h1>
+
+  <p class="article-subtitle">
+    A groundbreaking 2026 study found that gut bacteria from young mice can partially reverse ovarian aging in older ones — revealing a hidden biological axis that could transform women's health forever.
+  </p>
+</header>
+
+<div class="cover-wrap">
+  <div class="cover-img">
+    <img src="https://raw.githubusercontent.com/o0o0-o0o0/discoveries/31bce926af9a1fdc0480c4be2fe32563b9414222/ovaries/ovarian.png" alt="Gut-Ovary Axis: How gut microbiome influences ovarian aging">
+    <div class="img-watermark">© yashify.fun</div>
+  </div>
+  <p class="cover-caption">Illustration: The gut–ovary axis — a newly discovered biological communication channel between your digestive system and reproductive health.</p>
+</div>
+
+<div class="article-layout">
+
+  <article class="article-body">
+
+    <p>
+      For decades, ovarian aging has been treated as an inevitable biological clock — one that ticks quietly until fertility fades and serious health risks begin to climb. As women grow older, declining ovarian function doesn't just affect reproduction. It triggers a chain reaction across the entire body, raising the risk of <strong>osteoporosis, memory loss, and heart disease.</strong> Yet despite how much is at stake, the biological drivers behind this aging process have remained largely mysterious.
+    </p>
+
+    <div class="highlight-box">
+      <p>💡 <strong>Key Finding:</strong> Transferring gut microbes from young mice into older ones reduced ovarian inflammation, improved gene activity, and partially reversed signs of ovarian aging — including a measurable boost in fertility.</p>
+    </div>
+
+    <h2>The Surprising Discovery: Gut Bacteria and Your Ovaries</h2>
+    <p>
+      Scientists publishing in <em>Nature Aging</em> in 2026 noticed something striking: older mice carried a dramatically different set of gut bacteria compared to younger ones. Not just slightly different — the microbial landscape had fundamentally shifted. And that difference appeared to be <strong>directly connected to the health of their ovaries.</strong>
+    </p>
+    <p>
+      So researchers ran a bold experiment. They transferred gut microbes from young mice into older, estropausal ones — and the results were unexpected. The older mice showed less ovarian inflammation, healthier gene activity, and real signs of tissue rejuvenation. Their fertility even improved.
+    </p>
+
+    <div class="fact-row">
+      <span class="fact-chip">🦠 Gut bacteria dramatically differ with age</span>
+      <span class="fact-chip">🔬 Published in Nature Aging, 2026</span>
+      <span class="fact-chip">🐭 Tested via microbiome transfer in mice</span>
+      <span class="fact-chip">♀️ Fertility improved after gut transfer</span>
+      <span class="fact-chip">🔥 Ovarian inflammation visibly reduced</span>
+    </div>
+
+    <h2>What's Actually Doing the Work Inside the Gut?</h2>
+    <p>
+      Researchers didn't stop at the big result — they dug deeper. They identified <strong>specific bacterial species and metabolites</strong> — tiny chemical messengers produced by gut microbes — that appear to drive these rejuvenating benefits. These compounds travel through the bloodstream, calming inflammation, supporting hormonal balance, and triggering cellular repair in the ovaries.
+    </p>
+
+    <div class="pull-quote">
+      <p>"A shift in gut bacteria alone was enough to partially reverse signs of ovarian aging."</p>
+      <cite>— Nature Aging, 2026</cite>
+    </div>
+
+    <h2>Introducing the Gut–Ovary Axis</h2>
+    <p>
+      Scientists are now calling this the <strong>gut–ovary axis</strong>: a biological communication channel between your digestive system and your reproductive health that we are only just beginning to understand. The idea that what lives in your gut can influence the aging of your ovaries is genuinely new — and it changes the way researchers think about women's long-term health.
+    </p>
+
+    <a href="https://yashify.fun/l/articles/discoveries" class="brand-band" target="_blank">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <div class="brand-band-text">
+        <span>More discoveries on</span>
+        <strong>🌐 yashify.fun</strong>
+      </div>
+      <i class="fas fa-arrow-right brand-band-arrow"></i>
+    </a>
+
+    <h2>Why This Matters for Everyday Women</h2>
+    <p>
+      If the gut microbiome can be intentionally changed to support ovarian health, the possibilities are enormous. Think <strong>targeted probiotics, specific dietary patterns, or microbiome therapies</strong> designed to delay menopause-related decline, protect bone density, preserve memory, and extend quality of life — all by tending to the bacteria that live in your gut.
+    </p>
+    <p>
+      Human trials are still ahead, but this research marks a genuine turning point. It means ovarian aging is no longer just a hormone story — it's a microbiome story too.
+    </p>
+
+    <h2>What Comes Next?</h2>
+    <p>
+      The field is now racing to identify exactly which bacterial strains and metabolites are most powerful, and whether similar effects can be reproduced in humans. Aging may not be as fixed as we once thought — and the <strong>trillions of microbes living inside you</strong> might just be your most powerful allies yet.
+    </p>
+
+  </article>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+      <h4>🔑 Key Facts</h4>
+
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#DCFCE7;">🦠</div>
+        <div>
+          <div class="key-fact-text">Gut–Ovary Axis</div>
+          <div class="key-fact-sub">A newly identified communication channel between digestive and reproductive systems</div>
+        </div>
+      </div>
+
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#E0F2FE;">📄</div>
+        <div>
+          <div class="key-fact-text">Published in Nature Aging</div>
+          <div class="key-fact-sub">One of the most prestigious biology journals in the world</div>
+        </div>
+      </div>
+
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#EDE9FE;">🔬</div>
+        <div>
+          <div class="key-fact-text">Microbiome Transfer</div>
+          <div class="key-fact-sub">Young mouse gut bacteria transplanted into older estropausal mice</div>
+        </div>
+      </div>
+
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#FEF3C7;">♀️</div>
+        <div>
+          <div class="key-fact-text">Fertility Restored (Partially)</div>
+          <div class="key-fact-sub">Older mice showed measurable improvement in fertility markers</div>
+        </div>
+      </div>
+
+      <div class="key-fact">
+        <div class="key-fact-icon" style="background:#FEE2E2;">🧪</div>
+        <div>
+          <div class="key-fact-text">Human Trials Ahead</div>
+          <div class="key-fact-sub">Currently animal study only; human research is the next major step</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>🏷️ Tags</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#DCFCE7;color:#047857;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Microbiome</span>
+        <span style="background:#E0F2FE;color:#0369A1;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Ovarian Health</span>
+        <span style="background:#EDE9FE;color:#6D28D9;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Aging</span>
+        <span style="background:#FEF3C7;color:#92400E;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Gut Bacteria</span>
+        <span style="background:#FEE2E2;color:#9B1C1C;padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:700;">Women's Health</span>
+      </div>
+    </div>
+
+    <div class="brand-sidebar">
+      <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+      <p>Breaking science &amp; discoveries for curious minds — every week on Yashify.</p>
+      <a href="https://yashify.fun" target="_blank">🌐 Visit yashify.fun</a>
+    </div>
+
+  </aside>
+
+</div>
+
+<div class="action-row">
+  <button class="action-btn" id="likeBtn" onclick="toggleLike()">
+    <i class="far fa-heart" id="likeIcon"></i>
+    <span id="likeCount">0</span> Liked this
+  </button>
+  <button class="action-btn share" onclick="sharePage()">
+    <i class="fas fa-share-nodes"></i> Share
+  </button>
+  <button class="action-btn copy" onclick="copyLink()">
+    <i class="fas fa-link"></i> <span id="copyTxt">Copy Link</span>
+  </button>
+</div>
+
+<footer>
+  <a href="https://yashify.fun" class="foot-logo">
+    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
+    <span>YASHIFY</span>
+  </a>
+  <p>Breaking Science, Research &amp; Discoveries for Curious Minds</p>
+  <p style="margin-top:4px;">© <span id="year"></span> Yashify — All Rights Reserved</p>
+  <div class="foot-social">
+    <a href="https://www.instagram.com/yashify.fun" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+  <span class="foot-tag">SCIENCE NEVER SLEEPS 🔬 &nbsp;·&nbsp; YASHIFY.FUN</span>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+var bar = document.getElementById('progressBar'), prog = 0;
+var bt = setInterval(function(){
+  prog += Math.random() * 18;
+  if(prog > 85) prog = 85;
+  bar.style.width = prog + '%';
+}, 250);
+window.addEventListener('load', function(){
+  clearInterval(bt);
+  bar.style.width = '100%';
+  setTimeout(function(){ bar.style.opacity = '0'; }, 600);
+});
+
+var readBar = document.getElementById('readBar');
+window.addEventListener('scroll', function(){
+  var body = document.body, html = document.documentElement;
+  var total = Math.max(body.scrollHeight, html.scrollHeight) - window.innerHeight;
+  var pct = total > 0 ? (window.scrollY / total * 100) : 0;
+  readBar.style.width = pct + '%';
+});
+
+function isLiked(){ return localStorage.getItem('article_like_ovarian') === '1'; }
+function renderLike(n){
+  var btn = document.getElementById('likeBtn');
+  var ico = document.getElementById('likeIcon');
+  var cnt = document.getElementById('likeCount');
+  var liked = isLiked();
+  btn.classList.toggle('liked', liked);
+  ico.className = liked ? 'fas fa-heart' : 'far fa-heart';
+  cnt.textContent = n;
+}
+var likeCount = 0;
+renderLike(likeCount);
+window.toggleLike = function(){
+  if(isLiked()){
+    localStorage.removeItem('article_like_ovarian');
+    likeCount = Math.max(0, likeCount - 1);
+  } else {
+    localStorage.setItem('article_like_ovarian','1');
+    likeCount++;
+  }
+  renderLike(likeCount);
+};
+
+function sharePage(){
+  var url = window.location.href;
+  var title = document.title;
+  if(navigator.share){ navigator.share({ title: title, url: url }); }
+  else { window.open('https://wa.me/?text='+encodeURIComponent(title+'\n'+url),'_blank'); }
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    var el = document.getElementById('copyTxt');
+    el.textContent = 'Copied!';
+    setTimeout(function(){ el.textContent = 'Copy Link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
