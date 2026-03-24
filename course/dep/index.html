@@ -1195,14 +1195,14 @@
   <div class="exam-float-card" onclick="document.getElementById('exam-schedule').scrollIntoView({behavior:'smooth'})">
     <span class="exam-float-icon">📅</span>
     <div class="exam-float-label">Exams Start</div>
-    <div class="exam-float-date">18 March<br>2026</div>
+    <div class="exam-float-date">08 April<br>2026</div>
     <div class="exam-float-sub">Click for details</div>
     <div class="exam-float-pulse"></div>
   </div>
 </div>
 
 <!-- FLOATING MAILBOX - exact same as yashify home -->
-<a href="mailto:admin@yashify.fun" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
+<a href="/cdn-cgi/l/email-protection#b9d8ddd4d0d7f9c0d8cad1d0dfc097dfccd7" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
 
 <!-- NAV -->
 <nav>
@@ -1300,17 +1300,254 @@
 
   <!-- EXAM SCHEDULE -->
   <section id="exam-schedule">
-    <div class="sec-title"><div class="dot"></div> 📅 Exam Schedule & Important Dates</div>
-    <div style="background:white;border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(59,130,246,0.08);text-align:center;">
-      <div style="font-size:48px;margin-bottom:12px;">📢</div>
-      <h3 style="font-family:'Quicksand',sans-serif;font-size:22px;font-weight:800;color:#1e293b;margin-bottom:8px;">Update Soon</h3>
-      <p style="color:#64748b;font-size:15px;margin-bottom:18px;">Exam schedule will be updated here shortly.</p>
-      <div style="background:linear-gradient(135deg,#dbeafe,#d1fae5);border-radius:12px;padding:16px 24px;display:inline-block;">
-        <div style="font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">📌 Important Notice</div>
-        <div style="font-size:20px;font-weight:800;color:#1e3a8a;">Papers Starting: 18 March 2026</div>
-        <div style="font-size:13px;color:#64748b;margin-top:4px;">Stay tuned for detailed timetable</div>
+    <div class="sec-title"><div class="dot"></div> 📅 Exam Schedule — April 2026</div>
+
+    <!-- Info Banner -->
+    <div style="background:linear-gradient(135deg,#1e3a8a,#1d4ed8);border-radius:14px;padding:16px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;color:white;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:28px;">🏛️</span>
+        <div>
+          <div style="font-family:'Quicksand',sans-serif;font-weight:800;font-size:16px;">Ch. Charan Singh University, Meerut</div>
+          <div style="font-size:12px;opacity:0.8;">Examination Programme (Main, Back & Ex Exam) · April 2026</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;opacity:0.8;letter-spacing:1px;text-transform:uppercase;">Date Issued</div>
+        <div style="font-size:15px;font-weight:800;">20.03.2026</div>
       </div>
     </div>
+
+    <!-- Programme Tabs -->
+    <div class="prog-tabs" id="exam-prog-tabs">
+      <button class="prog-tab bio-tab active" onclick="switchExamProg('bio', this)"><i class="fas fa-dna"></i> B.Sc. Biotechnology</button>
+      <button class="prog-tab micro-tab" onclick="switchExamProg('micro', this)"><i class="fas fa-microscope"></i> B.Sc. Microbiology</button>
+    </div>
+
+    <!-- ===== BIOTECHNOLOGY ===== -->
+    <div id="exam-prog-bio" class="prog-panel active">
+      <!-- Year Tabs -->
+      <div class="year-tabs">
+        <button class="year-tab active" onclick="switchExamYear('bio', 1, this)">I Year</button>
+        <button class="year-tab" onclick="switchExamYear('bio', 2, this)">II Year</button>
+        <button class="year-tab" onclick="switchExamYear('bio', 3, this)">III Year</button>
+      </div>
+
+      <!-- BIO YEAR 1 -->
+      <div id="exam-bio-1" class="year-panel active">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(59,130,246,0.08);">
+          <div style="background:linear-gradient(135deg,var(--bio-light),#eff6ff);padding:12px 20px;border-bottom:1px solid #bfdbfe;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--bio);">
+            📋 B.Sc. Bio-Technology — I Year &nbsp;|&nbsp; Time: 10:00 AM to 1:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--bio);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>08.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-chemistry</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B101</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>10.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-Physics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B102</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>13.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Cell Biology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B103</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>16.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B104</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>18.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Genetics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B105</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>21.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Instrumentation & Bio-analytical Techniques</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B106</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>23.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Biomathematics & Biostatistics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B107</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>25.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Chemistry</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B108</span></td></tr>
+                <tr><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>28.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-diversity</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B109</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIO YEAR 2 -->
+      <div id="exam-bio-2" class="year-panel">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(59,130,246,0.08);">
+          <div style="background:linear-gradient(135deg,var(--bio-light),#eff6ff);padding:12px 20px;border-bottom:1px solid #bfdbfe;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--bio);">
+            📋 B.Sc. Bio-Technology — II Year &nbsp;|&nbsp; Time: 10:00 AM to 1:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--bio);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>09.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Fundamentals of Computers & Bioinformatics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B201</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>11.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Bioenergetics and Biomembranes</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B202</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>15.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Molecular Biology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B203</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>17.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Molecular Genetics and Cytogenetics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B204</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>20.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Immunology and Immunotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B205</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>22.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Recombinant and DNA Technology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B206</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>24.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Animal Physiology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B207</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>27.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Plant Physiology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B208</span></td></tr>
+                <tr><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>29.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Enzymes and Enzyme Technology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B209</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIO YEAR 3 -->
+      <div id="exam-bio-3" class="year-panel">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(59,130,246,0.08);">
+          <div style="background:linear-gradient(135deg,var(--bio-light),#eff6ff);padding:12px 20px;border-bottom:1px solid #bfdbfe;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--bio);">
+            📋 B.Sc. Biotechnology — III Year &nbsp;|&nbsp; Time: 2:00 PM to 5:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--bio);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>08.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Plant Bio-Technology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B301</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>10.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Animal Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B302</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>13.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Molecular Virology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B303</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>16.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Nano Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B304</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>18.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Environmental Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B305</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>21.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Transcriptomics and Metabolomics <span style="font-size:10px;background:#ede9fe;color:var(--purple);padding:1px 6px;border-radius:10px;margin-left:4px;">Hons</span></td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">310-New / 306-Old</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>23.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Bioprocess Engineering and Technology <span style="font-size:10px;background:#ede9fe;color:var(--purple);padding:1px 6px;border-radius:10px;margin-left:4px;">Hons</span></td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">311-New / 307-Old</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>25.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-Safety Guidelines, Intellectual Property Rights & Entrepreneurship Development</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B308</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>28.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Recent Trends in Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B309</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">10</td><td style="padding:9px 14px;"><strong>30.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Industrial Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B306</span></td></tr>
+                <tr><td style="padding:9px 14px;color:var(--gray);">11</td><td style="padding:9px 14px;"><strong>04.05.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Genomics and Proteomics</td><td style="padding:9px 14px;"><span style="background:var(--bio-light);color:var(--bio);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B307</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MICROBIOLOGY ===== -->
+    <div id="exam-prog-micro" class="prog-panel micro-panel">
+      <!-- Year Tabs -->
+      <div class="year-tabs">
+        <button class="year-tab active" onclick="switchExamYear('micro', 1, this)">I Year</button>
+        <button class="year-tab" onclick="switchExamYear('micro', 2, this)">II Year</button>
+        <button class="year-tab" onclick="switchExamYear('micro', 3, this)">III Year</button>
+      </div>
+
+      <!-- MICRO YEAR 1 -->
+      <div id="exam-micro-1" class="year-panel active">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(16,185,129,0.08);">
+          <div style="background:linear-gradient(135deg,var(--micro-light),#ecfdf5);padding:12px 20px;border-bottom:1px solid #a7f3d0;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--micro);">
+            📋 B.Sc. Microbiology — I Year &nbsp;|&nbsp; Time: 10:00 AM to 1:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--micro);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>08.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Fundamentals of Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-101</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>10.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Bacteriology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-102</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>13.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Virology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-103</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>16.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Mycology, Phycology and Protozoology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-104</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>18.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-chemistry</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-105</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>21.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Bio-physics</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-106</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>23.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Instrumentation and Culture Techniques</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-107</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>25.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Analytical Techniques</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-108</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>28.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Biology I</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-109</span></td></tr>
+                <tr><td style="padding:9px 14px;color:var(--gray);">10</td><td style="padding:9px 14px;"><strong>30.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Biology II</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-110</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MICRO YEAR 2 -->
+      <div id="exam-micro-2" class="year-panel">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(16,185,129,0.08);">
+          <div style="background:linear-gradient(135deg,var(--micro-light),#ecfdf5);padding:12px 20px;border-bottom:1px solid #a7f3d0;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--micro);">
+            📋 B.Sc. Microbiology — II Year &nbsp;|&nbsp; Time: 10:00 AM to 1:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--micro);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>09.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Cell Biology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-201</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>11.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Cell Reproduction and Differentiation</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-202</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>15.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Microbial Physiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-203</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>17.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Microbial Metabolism</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-204</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>20.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Molecular Biology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-205</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>22.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Microbial Genetics</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-206</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>24.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Biomathematics</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-207</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>27.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Fundamentals of Computer & Biostatistics</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-208</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>29.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Biology III</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-209</span></td></tr>
+                <tr><td style="padding:9px 14px;color:var(--gray);">10</td><td style="padding:9px 14px;"><strong>02.05.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Biology IV</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-210</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MICRO YEAR 3 -->
+      <div id="exam-micro-3" class="year-panel">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(16,185,129,0.08);">
+          <div style="background:linear-gradient(135deg,var(--micro-light),#ecfdf5);padding:12px 20px;border-bottom:1px solid #a7f3d0;font-family:'Quicksand',sans-serif;font-weight:800;font-size:14px;color:var(--micro);">
+            📋 B.Sc. Microbiology — III Year &nbsp;|&nbsp; Time: 2:00 PM to 5:00 PM
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:var(--micro);color:white;">
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">S.N.</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Date & Day</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Paper</th>
+                  <th style="padding:10px 14px;text-align:left;font-weight:700;">Code</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">1</td><td style="padding:9px 14px;"><strong>08.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:9px 14px;font-weight:600;">Immunology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-301</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">2</td><td style="padding:9px 14px;"><strong>10.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Friday</span></td><td style="padding:9px 14px;font-weight:600;">Medical Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-302</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">3</td><td style="padding:9px 14px;"><strong>13.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:9px 14px;font-weight:600;">Food and Dairy Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-303</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">4</td><td style="padding:9px 14px;"><strong>16.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Agricultural Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-304</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">5</td><td style="padding:9px 14px;"><strong>18.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Recombinant DNA Technology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-305</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">6</td><td style="padding:9px 14px;"><strong>21.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Industrial Microbiology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-306</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">7</td><td style="padding:9px 14px;"><strong>23.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Microbial Ecology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-307</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">8</td><td style="padding:9px 14px;"><strong>25.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Saturday</span></td><td style="padding:9px 14px;font-weight:600;">Microbes in Environmental Biotechnology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-308</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 14px;color:var(--gray);">9</td><td style="padding:9px 14px;"><strong>28.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Tuesday</span></td><td style="padding:9px 14px;font-weight:600;">Fundamentals of Information Technology</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-309</span></td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 14px;color:var(--gray);">10</td><td style="padding:9px 14px;"><strong>30.04.2026</strong><br><span style="font-size:11px;color:var(--gray);">Thursday</span></td><td style="padding:9px 14px;font-weight:600;">Genomics, Proteomics and Bio-informatics</td><td style="padding:9px 14px;"><span style="background:var(--micro-light);color:var(--micro);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-310</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Special Additional Papers -->
+          <div style="background:linear-gradient(135deg,#ede9fe,#f5f3ff);border-top:2px dashed #c4b5fd;padding:12px 20px;">
+            <div style="font-family:'Quicksand',sans-serif;font-weight:800;font-size:13px;color:var(--purple);margin-bottom:10px;">⭐ Special Additional Papers for B.Sc. (Hons)</div>
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <tr style="border-bottom:1px solid #ddd6fe;"><td style="padding:8px 14px;color:var(--gray);">11</td><td style="padding:8px 14px;"><strong>04.05.2026</strong><br><span style="font-size:11px;color:var(--gray);">Monday</span></td><td style="padding:8px 14px;font-weight:600;">Diagnostic Microbiology</td><td style="padding:8px 14px;"><span style="background:#ede9fe;color:var(--purple);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-311</span></td></tr>
+              <tr><td style="padding:8px 14px;color:var(--gray);">12</td><td style="padding:8px 14px;"><strong>06.05.2026</strong><br><span style="font-size:11px;color:var(--gray);">Wednesday</span></td><td style="padding:8px 14px;font-weight:600;">Biosafety and Bioethics</td><td style="padding:8px 14px;"><span style="background:#ede9fe;color:var(--purple);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">B-312</span></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- COURSES -->
@@ -1522,7 +1759,7 @@
           <div class="info-icon"><i class="fas fa-envelope"></i></div>
           <div>
             <div class="info-title">Email</div>
-            <div class="info-text">admin@yashify.fun<br>fix@yashify.fun</div>
+            <div class="info-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe9f9a939790be879f8d96979887d0988b90">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1e7877665e677f6d7677786730786b70">[email&#160;protected]</a></div>
           </div>
         </div>
         <div class="info-card">
@@ -1603,7 +1840,7 @@
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Done!</span></div>
 
 <!-- ===================== FIREBASE + SCRIPTS ===================== -->
-<script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
@@ -1720,6 +1957,22 @@
     });
   });
 
+  // ---- EXAM SCHEDULE TABS ----
+  function switchExamProg(prog, btn) {
+    document.querySelectorAll('#exam-prog-tabs .prog-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#exam-schedule .prog-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('exam-prog-' + prog).classList.add('active');
+  }
+
+  function switchExamYear(prog, year, btn) {
+    const panel = document.getElementById('exam-prog-' + prog);
+    panel.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+    panel.querySelectorAll('.year-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('exam-' + prog + '-' + year).classList.add('active');
+  }
+
   // ---- PROGRAM TABS ----
   function switchProg(prog, btn) {
     document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
@@ -1830,14 +2083,30 @@
       if (yearBtns[yearNum - 1]) switchYear(prog, yearNum, yearBtns[yearNum - 1]);
     }
     setTimeout(() => {
-      document.getElementById('resources').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        s.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        s.card.style.outline = '2px solid ' + (s.isMicro ? 'var(--micro)' : 'var(--bio)');
-        setTimeout(() => s.card.style.outline = '', 2000);
-      }, 400);
-    }, 150);
+      s.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      s.card.style.outline = '3px solid ' + (s.isMicro ? 'var(--micro)' : 'var(--bio)');
+      setTimeout(() => { s.card.style.outline = ''; }, 2000);
+    }, 300);
+    searchResults.classList.remove('show');
+    document.getElementById('search-input').value = '';
   }
+
+  // ---- HAMBURGER ----
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger')) {
+      document.querySelector('.mobile-menu').classList.remove('open');
+    }
+  });
+
+  // ---- TOAST ----
+  window.showToast = function(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  };
+
 </script>
+
 </body>
 </html>
