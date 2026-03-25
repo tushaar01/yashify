@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioNotes Hub — B.Sc. Biotechnology & Microbiology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X5RJM3XH');
+</script>
+
+
+
+<style>
+:root {
+  --bg:        #0e0f13;
+  --surface:   #16181f;
+  --surface2:  #1e2028;
+  --border:    #2a2d38;
+  --border2:   #373b4a;
+  --text:      #e8eaf0;
+  --muted:     #6b7089;
+  --muted2:    #9299b8;
+
+–bt: #3bba8c;   /* biotechnology green */
+–bt-dim: rgba(59,186,140,.12);
+–bt-border: rgba(59,186,140,.28);
+
+–mb: #5b8fff;   /* microbiology blue */
+–mb-dim: rgba(91,143,255,.12);
+–mb-border: rgba(91,143,255,.28);
+
+–gold: #e8a43a;
+
+–y1-bt: #3bba8c;  –y1-bt-bg: rgba(59,186,140,.1);
+–y2-bt: #a78bfa;  –y2-bt-bg: rgba(167,139,250,.1);
+–y3-bt: #f97316;  –y3-bt-bg: rgba(249,115,22,.1);
+
+–y1-mb: #5b8fff;  –y1-mb-bg: rgba(91,143,255,.1);
+–y2-mb: #34d399;  –y2-mb-bg: rgba(52,211,153,.1);
+–y3-mb: #fb7185;  –y3-mb-bg: rgba(251,113,133,.1);
+
+–radius: 14px;
+–shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+
+- { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 300;
+min-height: 100vh;
+}
+
+/* ── HERO HEADER ── */
+.hero {
+background: var(–surface);
+border-bottom: 1px solid var(–border);
+padding: 40px 24px 28px;
+text-align: center;
+position: sticky;
+top: 0;
+z-index: 200;
+backdrop-filter: blur(12px);
+}
+
+.hero-eyebrow {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 10px;
+}
+
+.hero h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.6rem, 5vw, 2.8rem);
+font-weight: 800;
+line-height: 1.1;
+margin-bottom: 6px;
+}
+
+.hero h1 .hl-bt { color: var(–bt); }
+.hero h1 .hl-mb { color: var(–mb); }
+.hero h1 .sep   { color: var(–muted); margin: 0 6px; font-style: italic; font-weight: 400; }
+
+.hero-sub {
+font-size: 12.5px;
+color: var(–muted2);
+margin-bottom: 20px;
+letter-spacing: .4px;
+}
+
+/* ── STREAM SWITCHER ── */
+.stream-switch {
+display: inline-flex;
+background: var(–bg);
+border: 1px solid var(–border2);
+border-radius: 50px;
+padding: 3px;
+gap: 2px;
+margin-bottom: 16px;
+}
+
+.stream-btn {
+padding: 7px 22px;
+border-radius: 50px;
+border: none;
+background: transparent;
+color: var(–muted);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+transition: all .22s ease;
+letter-spacing: .3px;
+}
+
+.stream-btn.active-bt {
+background: var(–bt);
+color: #000;
+}
+
+.stream-btn.active-mb {
+background: var(–mb);
+color: #fff;
+}
+
+/* ── YEAR TABS ── */
+.year-tabs {
+display: flex;
+justify-content: center;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.ytab {
+padding: 6px 18px;
+border-radius: 50px;
+border: 1.5px solid var(–border2);
+background: transparent;
+color: var(–muted2);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 12px;
+font-weight: 600;
+cursor: pointer;
+transition: all .18s ease;
+}
+
+.ytab:hover { border-color: var(–muted); color: var(–text); }
+
+/* BT year tab active states */
+.bt-stream .ytab.y-active[data-y=“all”] { background: var(–gold); border-color: var(–gold); color: #000; }
+.bt-stream .ytab.y-active[data-y=“1”]   { background: var(–y1-bt); border-color: var(–y1-bt); color: #000; }
+.bt-stream .ytab.y-active[data-y=“2”]   { background: var(–y2-bt); border-color: var(–y2-bt); color: #fff; }
+.bt-stream .ytab.y-active[data-y=“3”]   { background: var(–y3-bt); border-color: var(–y3-bt); color: #fff; }
+
+/* MB year tab active states */
+.mb-stream .ytab.y-active[data-y=“1”] { background: var(–y1-mb); border-color: var(–y1-mb); color: #fff; }
+.mb-stream .ytab.y-active[data-y=“2”] { background: var(–y2-mb); border-color: var(–y2-mb); color: #000; }
+.mb-stream .ytab.y-active[data-y=“3”] { background: var(–y3-mb); border-color: var(–y3-mb); color: #fff; }
+
+/* ── DISCLAIMER BANNER ── */
+.disclaimer {
+max-width: 980px;
+margin: 24px auto 0;
+background: rgba(232,164,58,.06);
+border: 1px solid rgba(232,164,58,.25);
+border-radius: var(–radius);
+padding: 14px 18px;
+display: flex;
+gap: 12px;
+align-items: flex-start;
+font-size: 12px;
+line-height: 1.6;
+color: var(–muted2);
+}
+
+.disclaimer-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.disclaimer strong { color: var(–gold); }
+
+/* ── MAIN ── */
+main { max-width: 980px; margin: 0 auto; padding: 28px 16px 80px; }
+
+/* ── STREAM SECTIONS ── */
+.stream-section { display: none; }
+.stream-section.active { display: block; animation: fadeIn .3s ease; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── YEAR SECTIONS ── */
+.year-section { display: none; }
+.year-section.active { display: block; }
+
+/* ── YEAR BANNER ── */
+.year-banner {
+display: flex;
+align-items: center;
+gap: 14px;
+padding: 14px 20px;
+border-radius: var(–radius);
+margin-bottom: 26px;
+border-left: 4px solid;
+}
+
+.year-banner-title { font-family: ‘Playfair Display’, serif; font-size: 1.1rem; font-weight: 700; }
+.year-banner-sub   { font-size: 11.5px; color: var(–muted2); margin-top: 3px; }
+.year-banner-icon  { font-size: 24px; }
+
+/* BT year banners */
+#bt-y1 .year-banner { background: var(–y1-bt-bg); border-color: var(–y1-bt); }
+#bt-y2 .year-banner { background: var(–y2-bt-bg); border-color: var(–y2-bt); }
+#bt-y3 .year-banner { background: var(–y3-bt-bg); border-color: var(–y3-bt); }
+#bt-all .year-banner { background: rgba(232,164,58,.08); border-color: var(–gold); }
+
+/* MB year banners */
+#mb-y1 .year-banner { background: var(–y1-mb-bg); border-color: var(–y1-mb); }
+#mb-y2 .year-banner { background: var(–y2-mb-bg); border-color: var(–y2-mb); }
+#mb-y3 .year-banner { background: var(–y3-mb-bg); border-color: var(–y3-mb); }
+
+/* ── COURSE GROUP ── */
+.course-group { margin-bottom: 30px; }
+
+.course-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 9.5px;
+font-weight: 500;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.course-label::after { content:’’; flex:1; height:1px; background: var(–border); }
+
+/* ── PAPER GRID ── */
+.papers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+
+/* ── CARD ── */
+.paper-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+overflow: hidden;
+transition: border-color .22s, box-shadow .22s, transform .22s;
+}
+
+.paper-card:hover {
+transform: translateY(-3px);
+box-shadow: var(–shadow);
+}
+
+/* BT card hover accent */
+.bt-stream .paper-card:hover { border-color: var(–bt-border); }
+
+/* MB card hover accent */
+.mb-stream .paper-card:hover { border-color: var(–mb-border); }
+
+/* ── CARD HEAD ── */
+.card-head {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 12px 14px;
+border-bottom: 1px solid var(–border);
+background: var(–surface2);
+}
+
+.paper-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 9.5px;
+font-weight: 500;
+padding: 3px 8px;
+border-radius: 6px;
+flex-shrink: 0;
+letter-spacing: .5px;
+}
+
+.bt-stream .paper-tag { background: var(–bt-dim); color: var(–bt); border: 1px solid var(–bt-border); }
+.mb-stream .paper-tag { background: var(–mb-dim); color: var(–mb); border: 1px solid var(–mb-border); }
+
+.paper-name { font-size: 12.5px; font-weight: 600; flex: 1; color: var(–text); line-height: 1.35; }
+
+.paper-code {
+font-family: ‘DM Mono’, monospace;
+font-size: 9.5px;
+padding: 3px 7px;
+border-radius: 5px;
+background: var(–bg);
+color: var(–muted);
+border: 1px solid var(–border);
+flex-shrink: 0;
+}
+
+/* ── LINK ROWS ── */
+.links-list { padding: 4px 0; }
+
+.note-link {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 14px;
+text-decoration: none;
+color: var(–muted2);
+font-size: 12px;
+border-bottom: 1px solid var(–border);
+transition: background .15s, color .15s;
+}
+
+.note-link:last-child { border-bottom: none; }
+
+.note-link:hover { background: var(–surface2); color: var(–text); }
+
+.link-dot {
+width: 8px; height: 8px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+
+.link-label { flex: 1; line-height: 1.4; }
+
+.link-arrow {
+font-size: 10px;
+opacity: .5;
+flex-shrink: 0;
+transition: opacity .15s, transform .15s;
+}
+
+.note-link:hover .link-arrow { opacity: 1; transform: translateX(2px); }
+
+/* dot colors */
+.dot-bk { background: #e8622a; }
+.dot-ts { background: #2563eb; }
+.dot-bt { background: var(–bt); }
+.dot-nb { background: #9333ea; }
+.dot-yt { background: #dc2626; }
+.dot-open { background: var(–mb); }
+
+/* ── UNIT ROWS (MB style) ── */
+.unit-row {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+padding: 9px 14px;
+text-decoration: none;
+color: var(–muted2);
+font-size: 11.5px;
+border-bottom: 1px solid var(–border);
+transition: background .15s, color .15s;
+line-height: 1.45;
+}
+
+.unit-row:last-child { border-bottom: none; }
+.unit-row:hover { background: var(–surface2); color: var(–text); }
+
+.unit-num {
+font-family: ‘DM Mono’, monospace;
+font-size: 9.5px;
+font-weight: 500;
+color: var(–muted);
+width: 24px;
+flex-shrink: 0;
+padding-top: 2px;
+}
+
+.unit-text { flex: 1; }
+
+.open-btn {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+padding: 3px 9px;
+border-radius: 6px;
+flex-shrink: 0;
+border: 1px solid var(–border2);
+color: var(–muted);
+white-space: nowrap;
+transition: all .15s;
+background: transparent;
+}
+
+.unit-row:hover .open-btn { border-color: var(–mb-border); color: var(–mb); }
+
+/* ── TOP SITES ── */
+.top-sites {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+padding: 16px 18px;
+margin-bottom: 24px;
+}
+
+.top-sites h3 {
+font-family: ‘Playfair Display’, serif;
+font-size: 14px;
+color: var(–text);
+margin-bottom: 12px;
+font-weight: 600;
+}
+
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 6px 13px;
+background: var(–surface2);
+border: 1px solid var(–border2);
+border-radius: 50px;
+text-decoration: none;
+font-size: 11.5px;
+color: var(–muted2);
+font-weight: 500;
+transition: all .18s;
+}
+
+.chip:hover { background: var(–border); color: var(–text); border-color: var(–muted); }
+.chip-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* ── ALL VIEW ── */
+.all-block { margin-bottom: 36px; }
+.all-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+font-weight: 500;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 12px;
+padding-bottom: 8px;
+border-bottom: 1px solid var(–border);
+}
+
+/* ── FOOTER ── */
+footer {
+text-align: center;
+padding: 24px 16px;
+font-size: 11px;
+color: var(–muted);
+border-top: 1px solid var(–border);
+background: var(–surface);
+line-height: 1.8;
+}
+
+footer a { color: var(–muted2); text-decoration: none; }
+footer strong { color: var(–muted2); }
+
+@media(max-width:600px) {
+.hero { padding: 24px 14px 20px; }
+.papers-grid { grid-template-columns: 1fr; }
+h1 { font-size: 1.4rem !important; }
+}
+
+/* ── UNIT HIDDEN (search) ── */
+.unit-row.hidden { display: none; }
+.note-link.hidden { display: none; }
+.paper-card.all-hidden { opacity: .15; pointer-events: none; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER ══════════════════════ -->
+
+<div class="hero" id="hero">
+  <div class="hero-eyebrow">🎓 Free Study Resource Hub · India</div>
+  <h1>
+    B.Sc. <span class="hl-bt">Biotechnology</span>
+    <span class="sep">&</span>
+    <span class="hl-mb">Microbiology</span>
+  </h1>
+  <p class="hero-sub">Complete Notes Links · I Year to III Year · Saare Subjects · Direct Links</p>
+
+  <!-- Stream Switch -->
+
+  <div class="stream-switch">
+    <button class="stream-btn active-bt" id="btn-bt" onclick="switchStream('bt')">🧬 Biotechnology</button>
+    <button class="stream-btn" id="btn-mb" onclick="switchStream('mb')">🧫 Microbiology</button>
+  </div>
+
+  <!-- Year Tabs -->
+
+  <div class="year-tabs bt-stream" id="tabs-bt">
+    <button class="ytab y-active" data-y="all" onclick="switchYear('bt','all',this)">Sab</button>
+    <button class="ytab" data-y="1" onclick="switchYear('bt','1',this)">I Year</button>
+    <button class="ytab" data-y="2" onclick="switchYear('bt','2',this)">II Year</button>
+    <button class="ytab" data-y="3" onclick="switchYear('bt','3',this)">III Year</button>
+  </div>
+  <div class="year-tabs mb-stream" id="tabs-mb" style="display:none">
+    <button class="ytab y-active" data-y="1" onclick="switchYear('mb','1',this)">1st Year</button>
+    <button class="ytab" data-y="2" onclick="switchYear('mb','2',this)">2nd Year</button>
+    <button class="ytab" data-y="3" onclick="switchYear('mb','3',this)">3rd Year</button>
+  </div>
+</div>
+
+<!-- ══════════════════════ MAIN ══════════════════════ -->
+
+<main>
+
+<!-- ── DISCLAIMER ── -->
+
+<div class="disclaimer">
+  <span class="disclaimer-icon">⚠️</span>
+  <div>
+    <strong>Disclaimer:</strong> Is website par diye gaye <strong>saare notes, links aur study material internet par publicly available sources se liye gaye hain</strong> — jaise BrainKart, TechnicalSymposium, BiotechAll4U, NotesFree, MicrobeNotes, LibreTexts, NCERT, UOU, aur anya educational websites. Yeh ek aggregator portal hai. Hum kisi bhi content ke original author/creator nahi hain. Sabhi rights unke respective owners ke paas hain. Yadi koi link kaam na kare toh directly us website par jakar search karein.
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     BIOTECHNOLOGY STREAM
+════════════════════════════════════════════════════════ -->
+
+<div id="stream-bt" class="stream-section bt-stream active">
+
+  <!-- Top Sites BT -->
+
+  <div class="top-sites">
+    <h3>📌 Top Notes Websites — Biotechnology</h3>
+    <div class="chips-row">
+      <a class="chip" href="https://www.brainkart.com/menu/biotechnology/" target="_blank"><span class="chip-dot" style="background:#e8622a"></span>BrainKart</a>
+      <a class="chip" href="https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html" target="_blank"><span class="chip-dot" style="background:#2563eb"></span>TechnicalSymposium</a>
+      <a class="chip" href="https://biotechnologyall4u.weebly.com/biotechnology-notes.html" target="_blank"><span class="chip-dot" style="background:var(--bt)"></span>BiotechAll4U</a>
+      <a class="chip" href="https://www.notesfree.in/notes/biotechnology" target="_blank"><span class="chip-dot" style="background:#9333ea"></span>NotesFree</a>
+      <a class="chip" href="https://www.youtube.com/results?search_query=BSc+Biotechnology+lectures" target="_blank"><span class="chip-dot" style="background:#dc2626"></span>YouTube Lectures</a>
+    </div>
+  </div>
+
+  <!-- BT: ALL VIEW -->
+
+  <div id="bt-all" class="year-section active">
+    <div class="all-block">
+      <div class="all-label">I Year — Papers I to IX</div>
+      <div class="papers-grid" id="bt-grid-all-1"></div>
+    </div>
+    <div class="all-block">
+      <div class="all-label">II Year — Papers X to XVIII</div>
+      <div class="papers-grid" id="bt-grid-all-2"></div>
+    </div>
+    <div class="all-block">
+      <div class="all-label">III Year — Papers XIX to XXVII</div>
+      <div class="papers-grid" id="bt-grid-all-3"></div>
+    </div>
+  </div>
+
+  <!-- BT: YEAR 1 -->
+
+  <div id="bt-y1" class="year-section">
+    <div class="year-banner">
+      <span class="year-banner-icon">📗</span>
+      <div>
+        <div class="year-banner-title">I Year</div>
+        <div class="year-banner-sub">Papers I–IX · 50 marks each · Foundation Subjects</div>
+      </div>
+    </div>
+    <div class="papers-grid" id="bt-grid-1"></div>
+  </div>
+
+  <!-- BT: YEAR 2 -->
+
+  <div id="bt-y2" class="year-section">
+    <div class="year-banner">
+      <span class="year-banner-icon">📘</span>
+      <div>
+        <div class="year-banner-title">II Year</div>
+        <div class="year-banner-sub">Papers X–XVIII · 50 marks each · Core Subjects</div>
+      </div>
+    </div>
+    <div class="papers-grid" id="bt-grid-2"></div>
+  </div>
+
+  <!-- BT: YEAR 3 -->
+
+  <div id="bt-y3" class="year-section">
+    <div class="year-banner">
+      <span class="year-banner-icon">📕</span>
+      <div>
+        <div class="year-banner-title">III Year</div>
+        <div class="year-banner-sub">Papers XIX–XXVII · 75 marks each · Advanced Subjects</div>
+      </div>
+    </div>
+    <div class="papers-grid" id="bt-grid-3"></div>
+  </div>
+
+</div><!-- end stream-bt -->
+
+<!-- ════════════════════════════════════════════════════════
+     MICROBIOLOGY STREAM
+════════════════════════════════════════════════════════ -->
+
+<div id="stream-mb" class="stream-section mb-stream" style="display:none">
+
+  <!-- Top Sites MB -->
+
+  <div class="top-sites">
+    <h3>📌 Top Notes Websites — Microbiology</h3>
+    <div class="chips-row">
+      <a class="chip" href="https://microbenotes.com/" target="_blank"><span class="chip-dot" style="background:var(--mb)"></span>MicrobeNotes</a>
+      <a class="chip" href="https://bio.libretexts.org/" target="_blank"><span class="chip-dot" style="background:var(--bt)"></span>LibreTexts Bio</a>
+      <a class="chip" href="https://www.easybiologyclass.com/" target="_blank"><span class="chip-dot" style="background:#e8622a"></span>EasyBiologyClass</a>
+      <a class="chip" href="https://ncert.nic.in/" target="_blank"><span class="chip-dot" style="background:#9333ea"></span>NCERT</a>
+      <a class="chip" href="https://www.youtube.com/results?search_query=BSc+Microbiology+lectures" target="_blank"><span class="chip-dot" style="background:#dc2626"></span>YouTube Lectures</a>
+    </div>
+  </div>
+
+  <!-- MB: YEAR 1 -->
+
+  <div id="mb-y1" class="year-section active">
+    <div class="year-banner">
+      <span class="year-banner-icon">📘</span>
+      <div>
+        <div class="year-banner-title">1st Year — Foundation Courses</div>
+        <div class="year-banner-sub">Course I–IV · Paper B-101 to B-110 · Microbial Diversity, Biochemistry, Instrumentation</div>
+      </div>
+    </div>
+    <div id="mb-grid-y1"></div>
+  </div>
+
+  <!-- MB: YEAR 2 -->
+
+  <div id="mb-y2" class="year-section">
+    <div class="year-banner">
+      <span class="year-banner-icon">📗</span>
+      <div>
+        <div class="year-banner-title">2nd Year — Intermediate Courses</div>
+        <div class="year-banner-sub">Course V–VIII · Paper B-201 to B-210 · Cell Biology, Physiology, Molecular Biology, Biostatistics</div>
+      </div>
+    </div>
+    <div id="mb-grid-y2"></div>
+  </div>
+
+  <!-- MB: YEAR 3 -->
+
+  <div id="mb-y3" class="year-section">
+    <div class="year-banner">
+      <span class="year-banner-icon">📕</span>
+      <div>
+        <div class="year-banner-title">3rd Year — Advanced Courses</div>
+        <div class="year-banner-sub">Course IX–XIII · Paper B-301 to B-310 · Immunology, Medical, Food, rDNA, Environmental, Bioinformatics</div>
+      </div>
+    </div>
+    <div id="mb-grid-y3"></div>
+  </div>
+
+</div><!-- end stream-mb -->
+
+</main>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+
+<footer>
+  <strong>BioNotes Hub</strong> — B.Sc. Biotechnology &amp; Microbiology Notes Portal<br>
+  ⚠️ Yeh website sirf ek <strong>link aggregator</strong> hai. Sabhi content unke respective websites ke hain.<br>
+  All rights belong to original content creators. | Educational use only. | Kisi link mein problem? Directly source website visit karein.<br><br>
+  <a href="https://www.brainkart.com/menu/biotechnology/" target="_blank">BrainKart</a> &nbsp;·&nbsp;
+  <a href="https://microbenotes.com/" target="_blank">MicrobeNotes</a> &nbsp;·&nbsp;
+  <a href="https://bio.libretexts.org/" target="_blank">LibreTexts</a> &nbsp;·&nbsp;
+  <a href="https://www.notesfree.in/notes/biotechnology" target="_blank">NotesFree</a> &nbsp;·&nbsp;
+  <a href="https://www.easybiologyclass.com/" target="_blank">EasyBiologyClass</a>
+</footer>
+
+<!-- ══════════════════════ SCRIPTS ══════════════════════ -->
+
+<script>
+// ══════════════════════════════════════════
+// BIOTECHNOLOGY DATA
+// ══════════════════════════════════════════
+const btSubjects = {
+  1: [
+    { paper:"Paper I", name:"Biochemistry", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"Free PDF Notes",url:"https://agri-bsc.kkwagh.edu.in/uploads/department_course/Biochemistry_notes.pdf",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=BSc+Biochemistry+lectures+hindi",type:"yt"}]},
+    { paper:"Paper II", name:"Biophysics", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biology_238/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=biophysics+BSc+lecture",type:"yt"}]},
+    { paper:"Paper III", name:"Cell Biology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Basic-Concept-of-Biotechnology_232/",type:"bk"},
+        {label:"APSUREWA PDF",url:"https://www.apsurewa.ac.in/files/561/BSC_BIOTECHNOLOGY_New.pdf",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=cell+biology+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper IV", name:"Microbiology", links:[
+        {label:"BrainKart Microbio",url:"https://www.brainkart.com/subject/Essential-Microbiology_243/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=microbiology+BSc+lecture",type:"yt"}]},
+    { paper:"Paper V", name:"Genetics", links:[
+        {label:"BrainKart Genetics",url:"https://www.brainkart.com/subject/Genetics-and-Molecular-Biology_240/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=genetics+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper VI", name:"Instrumentation & Bio-analytical Techniques", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=bioanalytical+techniques+BSc",type:"yt"}]},
+    { paper:"Paper VII", name:"Biomathematics & Biostatistics", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Basic-Concept-of-Biotechnology_232/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=biostatistics+BSc+lecture",type:"yt"}]},
+    { paper:"Paper VIII", name:"Chemistry", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biology_238/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=chemistry+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper IX", name:"Biodiversity", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Environmental-Biotechnology_242/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=biodiversity+BSc+lecture",type:"yt"}]}
+  ],
+  2: [
+    { paper:"Paper X", name:"Fundamentals of Computers & Bioinformatics", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=bioinformatics+BSc+lecture",type:"yt"}]},
+    { paper:"Paper XI", name:"Bioenergetics and Biomembranes", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Basic-Concept-of-Biotechnology_232/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=bioenergetics+biomembranes+lecture",type:"yt"}]},
+    { paper:"Paper XII", name:"Molecular Biology", links:[
+        {label:"BrainKart Genetics",url:"https://www.brainkart.com/subject/Genetics-and-Molecular-Biology_240/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=molecular+biology+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper XIII", name:"Molecular Genetics and Cytogenetics", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Genetics-and-Molecular-Biology_240/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=cytogenetics+BSc+lecture",type:"yt"}]},
+    { paper:"Paper XIV", name:"Immunology and Immunotechnology", links:[
+        {label:"BrainKart Immunology",url:"https://www.brainkart.com/subject/Essential-Clinical-Immunology_245/",type:"bk"},
+        {label:"Microbio & Immuno",url:"https://www.brainkart.com/subject/Microbiology-and-Immunology_246/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=immunology+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper XV", name:"Recombinant DNA Technology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology-Applying-the-Genetic-Revolution--_228/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=recombinant+DNA+technology+lecture",type:"yt"}]},
+    { paper:"Paper XVI", name:"Animal Physiology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biology_238/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=animal+physiology+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper XVII", name:"Plant Physiology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biology_238/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=plant+physiology+BSc+lecture+hindi",type:"yt"}]},
+    { paper:"Paper XVIII", name:"Enzymes and Enzyme Technology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=enzyme+technology+BSc+lecture",type:"yt"}]}
+  ],
+  3: [
+    { paper:"Paper XIX", name:"Plant Biotechnology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology-Applying-the-Genetic-Revolution--_228/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=plant+biotechnology+BSc+lecture",type:"yt"}]},
+    { paper:"Paper XX", name:"Animal Biotechnology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Pharmaceutical-Biotechnology--Fundamentals-and-Applications_231/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=animal+biotechnology+BSc+lecture",type:"yt"}]},
+    { paper:"Paper XXI", name:"Molecular Virology", links:[
+        {label:"BrainKart Microbio",url:"https://www.brainkart.com/subject/Medical-Microbiology_252/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=molecular+virology+lecture+BSc",type:"yt"}]},
+    { paper:"Paper XXII", name:"Nanobiotechnology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=nanobiotechnology+lecture",type:"yt"}]},
+    { paper:"Paper XXIII", name:"Environmental Biotechnology", links:[
+        {label:"BrainKart Env Bio",url:"https://www.brainkart.com/subject/Environmental-Biotechnology_242/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=environmental+biotechnology+lecture",type:"yt"}]},
+    { paper:"Paper XXIV", name:"Industrial Biotechnology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology-Applying-the-Genetic-Revolution--_228/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=industrial+biotechnology+lecture+BSc",type:"yt"}]},
+    { paper:"Paper XXV", name:"Genomics and Proteomics", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology_255/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=genomics+proteomics+BSc+lecture",type:"yt"}]},
+    { paper:"Paper XXVI", name:"Biosafety, IPR & Entrepreneurship", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Pharmaceutical-Biotechnology--Fundamentals-and-Applications_231/",type:"bk"},
+        {label:"TechnicalSymposium",url:"https://www.technicalsymposium.com/alllecturenotes_BSc_Biotechnology.html",type:"ts"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=biosafety+IPR+biotechnology+lecture",type:"yt"}]},
+    { paper:"Paper XXVII", name:"Recent Trends in Biotechnology", links:[
+        {label:"BrainKart Notes",url:"https://www.brainkart.com/subject/Biotechnology-Applying-the-Genetic-Revolution--_228/",type:"bk"},
+        {label:"BiotechAll4U",url:"https://biotechnologyall4u.weebly.com/study-materials.html",type:"bt"},
+        {label:"NotesFree",url:"https://www.notesfree.in/notes/biotechnology",type:"nb"},
+        {label:"YouTube Lectures",url:"https://www.youtube.com/results?search_query=recent+trends+biotechnology+lecture",type:"yt"}]}
+  ]
+};
+
+// ══════════════════════════════════════════
+// MICROBIOLOGY DATA
+// ══════════════════════════════════════════
+const mbCourses = {
+  1: [
+    { label:"Course I — Microbial Diversity I", papers:[
+      { paper:"Paper 1", name:"Fundamentals of Microbiology", code:"B-101", units:[
+        {num:"I", text:"Discovery of Microorganisms, Spontaneous Generation, Germ Theory of Fermentation", url:"https://egyankosh.ac.in/bitstream/123456789/93476/1/Unit-1.pdf"},
+        {num:"II", text:"Pure Culture Techniques, Discovery of Viruses, Immunity, Chemotherapy", url:"https://tau.edu.ng/assets/media/docs/history-development-and-scope-of-microbiology-mcb-102_1720090111.pdf"},
+        {num:"III", text:"Scope of Microbiology, Career Opportunities for Microbiologists", url:"https://tau.edu.ng/assets/media/docs/history-development-and-scope-of-microbiology-mcb-102_1720090111.pdf"},
+        {num:"IV", text:"Different Groups of Microorganisms, Prokaryotic vs Eukaryotic", url:"https://kamarajwomenscollege.ac.in/wp-content/uploads/MICROBIOLIOLOGY-FUNDAMENTALS-STUDY-MATERIAL_compressed-2.pdf"},
+        {num:"V", text:"Whittaker's 5 Kingdom, Carl Woese's 3 Domain, Microbial Taxonomy", url:"https://kamarajwomenscollege.ac.in/wp-content/uploads/MICROBIOLIOLOGY-FUNDAMENTALS-STUDY-MATERIAL_compressed-2.pdf"}]},
+      { paper:"Paper 2", name:"Bacteriology", code:"B-102", units:[
+        {num:"I", text:"Eubacteria, Archaeobacteria, Cyanobacteria — Morphology & Structure", url:"https://uou.ac.in/sites/default/files/slm/BSCBO-101.pdf"},
+        {num:"II", text:"Gram Staining, Capsular, Endospore & Flagellar Staining Techniques", url:"https://microbenotes.com/gram-staining/"},
+        {num:"III", text:"Archaeobacteria, Cyanobacteria, Actinomycetes, Rickettsiae, Chlamydia, Mycoplasma", url:"https://microbenotes.com/archaebacteria/"},
+        {num:"IV", text:"Types of Nutrition in Bacteria, Reproduction: Transformation, Transduction, Conjugation", url:"https://microbenotes.com/nutrition-in-bacteria/"},
+        {num:"V", text:"Bergey's Manual of Systematic Bacteriology (Latest Edition Classification)", url:"https://microbenotes.com/bergeys-manual-of-systematic-bacteriology/"}]}]},
+    { label:"Course II — Microbial Diversity II", papers:[
+      { paper:"Paper 1", name:"Virology", code:"B-103", units:[
+        {num:"I", text:"Origin of Virology, Animal Viruses (Poxvirus, Poliovirus, HIV), TMV, Bacteriophage Structure", url:"https://uou.ac.in/lecturenotes/science/MSCBOT-17/Viruses%20(BOT-501)%20by%20Dr.%20Kirtika%20Padalia.pdf"},
+        {num:"II", text:"Virus Replication: ssRNA, dsRNA, ssDNA, dsDNA Viruses; Transmission", url:"https://www.ncbi.nlm.nih.gov/books/NBK8174/"},
+        {num:"III", text:"Classification & Nomenclature of Viruses (ICTV, Baltimore System)", url:"https://www.ncbi.nlm.nih.gov/books/NBK8174/"},
+        {num:"IV", text:"Importance of Viruses as Disease Agents & in Biotechnology", url:"https://microbenotes.com/importance-of-viruses/"},
+        {num:"V", text:"Viroids and Prions — Nature & Importance", url:"https://microbenotes.com/viroids-and-prions/"}]},
+      { paper:"Paper 2", name:"Mycology, Phycology & Protozoology", code:"B-104", units:[
+        {num:"I", text:"General Characteristics of Fungi, Thallus Organization, Reproduction, Alexopoulos Classification", url:"https://uou.ac.in/lecturenotes/science/MSCBOT-17/Unit%20%E2%80%9310%E2%80%93%20General%20Characters%20and%20Classification%20of%20Fungi%20by%20Dr.%20Kirtika%20Padalia-converted.pdf"},
+        {num:"II", text:"Important Fungal Genera: Mucor, Rhizopus, Aspergillus, Penicillium, Ustilago, Puccinia", url:"https://www.kngac.ac.in/elearning-portal/ec/admin/contents/2_18KP1BO1_2020120403333239.pdf"},
+        {num:"III", text:"General Characters of Algae, Classification & Economic Importance", url:"https://uou.ac.in/sites/default/files/slm/BSCBO-102.pdf"},
+        {num:"IV", text:"Important Algal Genera: Chlamydomonas, Volvox, Cladophora, Vaucheria, Polysiphonia", url:"https://uou.ac.in/sites/default/files/slm/BSCBO-102.pdf"},
+        {num:"V", text:"Protozoa & Nematodes — Classification & Importance", url:"https://www.pearson.com/channels/microbiology/study-guides/microbiology-study-notes-protozoa-fungi-algae-and"}]}]},
+    { label:"Course III — Biochemistry & Biophysics", papers:[
+      { paper:"Paper 1", name:"Biochemistry", code:"B-105", units:[
+        {num:"I", text:"Biomolecules: Elements, Micromolecules & Macromolecules", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBC1101.pdf"},
+        {num:"II", text:"Water: Polarity, Buffering, pH, Aqueous Environment", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/Concepts_in_Biology_(OpenStax)/02:_Chemistry_of_Life/2.03:_Biological_Molecules"},
+        {num:"III", text:"Building Blocks: Sugars, Amino Acids, Lipids, Nucleotides, Optical Activity", url:"https://ncert.nic.in/textbook/pdf/kebo109.pdf"},
+        {num:"IV", text:"Structure & Function of Macromolecules: Carbohydrates, Proteins, Enzymes, Lipids, Nucleic Acids", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBC1101.pdf"},
+        {num:"V", text:"Biochemical Transformations: ATP, Glycolysis, Photosynthesis, Nitrogen Fixation", url:"https://ncert.nic.in/textbook/pdf/kebo109.pdf"}]},
+      { paper:"Paper 2", name:"Biophysics", code:"B-106", units:[
+        {num:"I", text:"Properties of Open Systems, Scope of Biophysics, Chirality of Biomolecules", url:"https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt)"},
+        {num:"II", text:"Laws of Thermodynamics, Enzyme Kinetics & Enzyme-Substrate Interaction", url:"https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt)"},
+        {num:"III", text:"Physical Aspects of Photoreception: Bacteriorhodopsin", url:"https://microbenotes.com/bacteriorhodopsin/"},
+        {num:"IV", text:"Electrical Properties: Membrane Potential, Neurotransmission, Molecular Transport", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/12:_Membranes_and_Transport/12.01:_Overview_of_Membrane_Transport/12.1A:_Electrochemical_Gradient"},
+        {num:"V", text:"Biomechanics & Chemiosmotic Coupling", url:"https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt)"}]}]},
+    { label:"Course IV — Instrumentation & Analytical Techniques", papers:[
+      { paper:"Paper 1", name:"Instrumentation & Cultural Techniques", code:"B-107", units:[
+        {num:"I", text:"Microscopy: Simple, Phase Contrast, Fluorescence, SEM, TEM, Confocal, STM", url:"https://microbenotes.com/types-of-microscopy/"},
+        {num:"II", text:"pH Meter, Absorption & Emission Spectroscopy, Spectrophotometry (UV, IR, Visible)", url:"https://microbenotes.com/instruments-used-in-microbiology-lab/"},
+        {num:"III", text:"Manometry, Polarography, Centrifugation, IR, NMR, X-ray Crystallography", url:"https://microbenotes.com/centrifugation-principle-types-and-applications/"},
+        {num:"IV", text:"Sterilization Techniques, Types of Culture Media", url:"https://microbenotes.com/sterilization-methods/"},
+        {num:"V", text:"Isolation, Preservation & Identification of Bacteria & Fungi, Enrichment Techniques", url:"https://microbenotes.com/isolation-of-bacteria/"}]},
+      { paper:"Paper 2", name:"Analytical Techniques", code:"B-108", units:[
+        {num:"I", text:"Chromatography: Paper, TLC, Column, GC, GLC, Affinity, Gel Filtration, Ion Exchange", url:"https://microbenotes.com/chromatography-types-principles-applications/"},
+        {num:"II", text:"Electrophoresis: SDS-PAGE, Immunoelectrophoresis, Isoelectric Focusing", url:"https://microbenotes.com/electrophoresis/"},
+        {num:"III", text:"Fermentation: Types of Fermenters, Principles, Construction, Operation", url:"https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(OpenStax)/08:_Microbial_Metabolism"},
+        {num:"IV", text:"Radioisotope Tracer Techniques & Autoradiography", url:"https://microbenotes.com/radioisotope-tracer-techniques/"},
+        {num:"V", text:"Chromosomal Techniques, Nucleic Acid Stains, Karyotyping, Cell Sorting", url:"https://microbenotes.com/karyotyping/"}]}]},
+    { label:"Subsidiary — Biology Papers", papers:[
+      { paper:"S-1", name:"Biology as a Science", code:"B-109", units:[
+        {num:"I", text:"Aristotle, Microscopy, Evolutionary Theories, Pasteur, Crick, Genome Analysis", url:"https://tau.edu.ng/assets/media/docs/history-development-and-scope-of-microbiology-mcb-102_1720090111.pdf"},
+        {num:"II", text:"Biological Method: Hypothesis, Prediction, Experimentation, Variables, Control", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/01:_The_Study_of_Life/1.01:_Themes_and_Concepts_of_Biology"},
+        {num:"III", text:"Biodiversity, Systematics, Binomial Nomenclature, Linnaeus, Species Concept", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/20:_Phylogenies_and_the_History_of_Life/20.01:_Organizing_Life_on_Earth"},
+        {num:"IV", text:"Important Animal Phyla: Porifera, Cnidaria, Annelida, Arthropoda, Chordata", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/28:_Introduction_to_Animal_Diversity"},
+        {num:"V", text:"Use of Identification Keys for Animals & Plants", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/28:_Introduction_to_Animal_Diversity"}]},
+      { paper:"S-2", name:"Plant & Cell Biology", code:"B-110", units:[
+        {num:"I", text:"Plant Divisions: Algae, Bryophyta, Pteridophyta, Coniferophyta, Angiospermophyta", url:"https://uou.ac.in/sites/default/files/slm/BSCBO-102.pdf"},
+        {num:"II", text:"Animal Tissues: Epithelial, Connective, Muscular, Nervous", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/33:_The_Animal_Body-_Basic_Form_and_Function/33.03:_Animal_Tissues"},
+        {num:"III", text:"Plant Tissues: Meristem, Parenchyma, Collenchyma, Sclerenchyma, Xylem, Phloem", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/30:_Plant_Form_and_Physiology"},
+        {num:"IV", text:"Cell Membrane Traffic: Diffusion, Osmosis, Active Transport, Bulk Transport", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/05:_Structure_and_Function_of_Plasma_Membranes"},
+        {num:"V", text:"Photosynthesis: Pigments, Mechanism, Factors, C3 vs C4 Plants", url:"https://ncert.nic.in/textbook/pdf/kebo113.pdf"}]}]}
+  ],
+  2: [
+    { label:"Course V — Cell Biology", papers:[
+      { paper:"Paper 1", name:"Ultrastructure", code:"B-201", units:[
+        {num:"I", text:"Cell Theory, Types & Organization", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
+        {num:"II", text:"Golgi, ER, Ribosomes, Mitochondria, Chloroplasts, Lysosomes, Nucleus", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
+        {num:"III", text:"Cell Membrane & Transport, Proton Pumps", url:"https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(OpenStax)/03:_The_Cell"},
+        {num:"IV", text:"Prokaryotic Cell Wall (Gram +ve / –ve), Osmotic Protection", url:"https://microbenotes.com/cell-wall-of-bacteria/"},
+        {num:"V", text:"Capsules, Slime Layers, S-layers, Pili, Fimbriae, Cilia, Flagella", url:"https://microbenotes.com/capsule-of-bacteria/"}]},
+      { paper:"Paper 2", name:"Cell Reproduction & Differentiation", code:"B-202", units:[
+        {num:"I", text:"Chromosomes: Nucleosome Organization, Polytene & Lampbrush Chromosomes", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
+        {num:"II", text:"Cell Division: Mitosis vs Meiosis, Cell Cycle", url:"https://www.nios.ac.in/media/documents/SrSec314NewE/Lesson-04.pdf"},
+        {num:"III", text:"Cell Differentiation, Normal vs Cancer Cells", url:"https://microbenotes.com/cell-differentiation/"},
+        {num:"IV", text:"Cell-Cell Adhesion, Intercellular Recognition, Cell Junctions", url:"https://bio.libretexts.org/"},
+        {num:"V", text:"Chemical Signaling, Bacterial Chemotaxis", url:"https://microbenotes.com/bacterial-chemotaxis/"}]}]},
+    { label:"Course VI — Microbial Physiology & Metabolism", papers:[
+      { paper:"Paper 1", name:"Microbial Physiology", code:"B-203", units:[
+        {num:"I-II", text:"Overview of Microbial Physiology, Growth Dynamics: Batch, Continuous, Chemostat", url:"https://kamarajwomenscollege.ac.in/wp-content/uploads/Study-Materials-for-Microbial-Physiology-and-Metabolism-Sem-II-1_compressed.pdf"},
+        {num:"III", text:"Nutrient Transport Mechanisms Across Membrane", url:"https://kahedu.edu.in/naac/C-3/Additional%20documents/E-content/1493.pdf"},
+        {num:"IV", text:"Autotrophic CO2 Fixation, Bacterial & Eukaryotic Photosynthesis", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/1/PG_M.Sc._Microbiology_M.Sc.%20(Microbiology)%20-%20364%2013%20-%20Microbial%20Physiology.pdf"},
+        {num:"V", text:"Heterotrophic CO2 Assimilation", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/1/PG_M.Sc._Microbiology_M.Sc.%20(Microbiology)%20-%20364%2013%20-%20Microbial%20Physiology.pdf"}]},
+      { paper:"Paper 2", name:"Microbial Metabolism", code:"B-204", units:[
+        {num:"I", text:"Carbohydrate Metabolism, Fermentation Types & Industrial Applications", url:"https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(OpenStax)/08:_Microbial_Metabolism"},
+        {num:"II", text:"Electron Transport Chain & Oxidative Phosphorylation", url:"https://kamarajwomenscollege.ac.in/wp-content/uploads/Study-material-for-MICROBIAL-PHYSIOLOGY-AND-BIOCHEMISTRY-sem-II_compressed-1.pdf"},
+        {num:"III", text:"Inorganic Nitrogen Assimilation, Nitrogen Cycle, Nitrification & Denitrification", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/1/PG_M.Sc._Microbiology_M.Sc.%20(Microbiology)%20-%20364%2013%20-%20Microbial%20Physiology.pdf"},
+        {num:"IV", text:"Nitrogen Fixation, Nitrogenase, Biological N2 Fixation", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/1/PG_M.Sc._Microbiology_M.Sc.%20(Microbiology)%20-%20364%2013%20-%20Microbial%20Physiology.pdf"},
+        {num:"V", text:"Secondary Metabolites — General Account", url:"https://microbenotes.com/secondary-metabolites/"}]}]},
+    { label:"Course VII — Molecular Biology & Microbial Genetics", papers:[
+      { paper:"Paper 1", name:"Molecular Biology", code:"B-205", units:[
+        {num:"I", text:"DNA Structure, Replication, Recombination, Transformation, Transduction, Conjugation", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBB2101.pdf"},
+        {num:"II", text:"Transposons & Organization of Genetic Material", url:"https://pages.jh.edu/rschlei1/Random_stuff/publications/molbiogene.pdf"},
+        {num:"III", text:"Genetic Code, Codons, Wobble Hypothesis", url:"https://www.aphl.org/programs/infectious_disease/tuberculosis/TBCore/Molecular_Biology_101-WithNotes.pdf"},
+        {num:"IV", text:"Prokaryotic Gene Structure: Transcription, Translation vs Eukaryotes", url:"https://tau.edu.ng/assets/media/docs/microbial-genetics-and-molecular-biology-mcb-302_1720084146.pdf"},
+        {num:"V", text:"Lac Operon, Positive & Negative Gene Regulation", url:"https://kamarajcollege.ac.in/wp-content/uploads/Core-IV-Molecular-Biology-and-Microbial-Genetics-Sem-IV.pdf"}]},
+      { paper:"Paper 2", name:"Microbial Genetics", code:"B-206", units:[
+        {num:"I", text:"Mendel's Laws, Lethality, Gene Interaction, Multiple Alleles", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBB2101.pdf"},
+        {num:"II", text:"Linkage, Crossing Over, Gene Mapping", url:"https://pages.jh.edu/rschlei1/Random_stuff/publications/molbiogene.pdf"},
+        {num:"III", text:"Gene Concept, Cistron, Benzer's T4 Phage (rII Locus)", url:"https://tau.edu.ng/assets/media/docs/microbial-genetics-and-molecular-biology-mcb-302_1720084146.pdf"},
+        {num:"IV", text:"Mutation, Mutagens, DNA Damage & Repair", url:"https://tau.edu.ng/assets/media/docs/microbial-genetics-and-molecular-biology-mcb-302_1720084146.pdf"},
+        {num:"V", text:"Extrachromosomal Inheritance: Mitochondrial & Chloroplast Genetics", url:"https://kamarajcollege.ac.in/wp-content/uploads/Core-IV-Molecular-Biology-and-Microbial-Genetics-Sem-IV.pdf"}]}]},
+    { label:"Course VIII — Biomathematics, Computers & Biostatistics", papers:[
+      { paper:"Paper 1", name:"Biomathematics", code:"B-207", units:[
+        {num:"I", text:"Matrices, Determinants, Eigen Values & Vectors, Cayley-Hamilton", url:"https://nptel.ac.in/courses/111/106/111106051/"},
+        {num:"II", text:"Newton-Raphson, Bisection, False Position, Gauss Elimination", url:"https://nptel.ac.in/courses/111/106/111106051/"},
+        {num:"III", text:"Trigonometry: T-ratios, Addition & Subtraction Formulae", url:"https://nptel.ac.in/courses/111/106/111106051/"},
+        {num:"IV", text:"Differential Calculus: Limits, Chain Rule, Maxima & Minima", url:"https://nptel.ac.in/courses/111/106/111106051/"},
+        {num:"V", text:"Integral Calculus & Applications in Microbiology", url:"https://nptel.ac.in/courses/111/106/111106051/"}]},
+      { paper:"Paper 2", name:"Computers & Biostatistics", code:"B-208", units:[
+        {num:"I", text:"Computer Basics: Hardware, Software, Memory, Binary System, Generations", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"II", text:"MS Excel, Number Systems, I/O Devices, Storage Media", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"III", text:"Statistics: Central Tendency, Dispersion, Probability, Binomial, Poisson, Normal", url:"https://byjus.com/maths/statistics/"},
+        {num:"IV", text:"Correlation, Regression, t-test, Chi-Square, F-test, Contingency Tables", url:"https://byjus.com/maths/statistics/"},
+        {num:"V", text:"Sampling Methods, ANOVA, CRD, RBD, Latin Square Design", url:"https://byjus.com/maths/statistics/"}]}]},
+    { label:"Subsidiary — General Biology Papers", papers:[
+      { paper:"S-3", name:"General Biology", code:"B-209", units:[
+        {num:"I", text:"Animal Nutrition, Digestion, Ruminant Cellulose Digestion", url:"https://extension.msstate.edu/sites/default/files/publications/P2503_web.pdf"},
+        {num:"II", text:"Gaseous Exchange (Earthworm, Fish, Insects, Mammals) + Glycolysis, Krebs Cycle", url:"https://www.caltecacademy.com/notes/s.3/S.3%20BIO.%20RESPIRATION%20AND%20GASEOUS%20EXCHANGE%20Notes.pdf"},
+        {num:"III", text:"Water Transport in Plants: Apoplast, Symplast, Transpiration, Insectivorous Plants", url:"https://labs.plb.ucdavis.edu/courses/bis/1c/text/Chapter11nf.pdf"},
+        {num:"IV", text:"Circulatory System: Human Heart, Open vs Closed, Arteries, Veins", url:"https://conursing.uobaghdad.edu.iq/wp-content/uploads/sites/20/2019/10/Cardiovascular-System.pdf"},
+        {num:"V", text:"Osmoregulation, Human Kidney, Urine Formation, Kidney Failure", url:"https://www.theexpertta.com/book-files/OpenStaxBio2e/Chapter%2041%20-%20Osmotic%20Regulation%20and%20Excretion.pdf"}]},
+      { paper:"S-4", name:"General Biology", code:"B-210", units:[
+        {num:"I", text:"Growth Measurement, Allometric & Isometric Growth, Plants & Vertebrates Development", url:"https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/30:_Plant_Form_and_Physiology/30.35:_Plant_Growth_and_Development_-_Measuring_Plant_Growth"},
+        {num:"II", text:"Plant Movements, Geotropism, Phototropism, Auxin, GA, CK, ABA, Ethylene", url:"https://mccollegeonline.co.in/attendence/classnotes/files/1595872879.pdf"},
+        {num:"III", text:"Neurons, Impulse Transmission, Sensory System, Brain, Endocrine System", url:"https://resources.saylor.org/wwwresources/archived/site/wp-content/uploads/2011/01/Nervous-System.pdf"},
+        {num:"IV", text:"Homeostasis, Thermoregulation: Ectotherms vs Endotherms, Skin Structure", url:"https://openstax.org/books/biology-2e/pages/33-3-homeostasis"},
+        {num:"V", text:"Animal Behaviour: Innate, Learnt, Imprinting, Conditioning, Social Organization", url:"https://openstax.org/books/biology-2e/pages/45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"}]}]}
+  ],
+  3: [
+    { label:"Course IX — Immunology & Medical Microbiology", papers:[
+      { paper:"Paper 1", name:"Immunology", code:"B-301", units:[
+        {num:"I", text:"Historical Developments, Non-specific Defense, Phagocytosis, Types of Immunity", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBMA1302.pdf"},
+        {num:"II", text:"Structure and Types of Antigens and Antibodies", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/3/PG_M.Sc._Microbiology_36431%20IMMUNOLOGY.pdf"},
+        {num:"III", text:"Mechanism of Humoral and Cellular Immunity", url:"https://mis.alagappauniversity.ac.in/siteAdmin/dde-admin/uploads/3/PG_M.Sc._Microbiology_36431%20IMMUNOLOGY.pdf"},
+        {num:"IV", text:"Antigen-Antibody Reactions: Agglutination, Precipitation, ELISA, RIA, Monoclonal Antibodies", url:"https://uou.ac.in/sites/default/files/slm/BSCZO-302.pdf"},
+        {num:"V", text:"Hypersensitivity, Autoimmune Diseases, Rheumatoid Arthritis, Asthma, Vaccines", url:"https://uou.ac.in/sites/default/files/slm/BSCZO-302.pdf"}]},
+      { paper:"Paper 2", name:"Medical Microbiology", code:"B-302", units:[
+        {num:"I", text:"Infection: Mechanism, Virulence (Toxigenicity), Transmission — Foodborne, Waterborne, Airborne, Soilborne", url:"https://files01.core.ac.uk/download/pdf/80151473.pdf"},
+        {num:"II", text:"Bacterial & Viral Diseases: Anthrax, Tuberculosis, Typhoid, Tetanus, Hepatitis B, AIDS, Rabies", url:"https://files01.core.ac.uk/download/pdf/80151473.pdf"},
+        {num:"III", text:"Fungal Diseases: Athlete's Foot, Mycetoma, Aspergillosis, Candidiasis", url:"https://microbenotes.com/aspergillosis/"},
+        {num:"IV", text:"Protozoan Diseases: Malaria, Amoebiasis, Kala Azar", url:"https://microbenotes.com/malaria-plasmodium/"},
+        {num:"V", text:"Chemotherapy: Historical Account, Mode of Action of Antibiotics", url:"https://microbenotes.com/mode-of-action-of-antibiotics/"}]}]},
+    { label:"Course X — Food, Dairy & Agricultural Microbiology", papers:[
+      { paper:"Paper 1", name:"Food & Dairy Microbiology", code:"B-303", units:[
+        {num:"I", text:"Microorganisms in Food: Moulds, Yeasts, Bacteria in Meats, Poultry, Vegetables, Dairy", url:"https://www.biologydiscussion.com/food-microbiology/food-and-dairy-microbiology-microbiology/71645"},
+        {num:"II", text:"Principles of Food Preservation and Spoilage of Foods", url:"https://www.biologydiscussion.com/food-microbiology/food-and-dairy-microbiology-microbiology/71645"},
+        {num:"III", text:"Food-borne Diseases, Food Poisoning and Prevention", url:"https://www.biologydiscussion.com/microbiology-2/food-and-dairy-microbiology-exam-questions-microbiology/71646"},
+        {num:"IV", text:"Microbiology Production of Foods: Indian Foods, Fermented Meats, Bread, Alcoholic Beverages, SCP", url:"https://www.biologydiscussion.com/microbiology-2/food-and-dairy-microbiology-exam-questions-microbiology/71646"},
+        {num:"V", text:"Microbiology of Milk, Pasteurization, Milk Spoilage, Fermented Dairy Products, Cheese", url:"https://microbenotes.com/microbiology-of-milk/"}]},
+      { paper:"Paper 2", name:"Agricultural Microbiology", code:"B-304", units:[
+        {num:"I", text:"Soil Microbiology: Bacteria, Fungi, Actinomycetes, Algae, Protozoa, Viruses, Rhizosphere, Rhizoplane", url:"https://www.easybiologyclass.com/microbiology-mcq-11-agricultural-and-environmental-microbiology/"},
+        {num:"II", text:"Role of Microbes in Weathering, Soil Formation, Components, Texture, Soil Profile", url:"https://www.easybiologyclass.com/microbiology-mcq-11-agricultural-and-environmental-microbiology/"},
+        {num:"III", text:"Microbial Interactions: Neutralism, Symbiosis, Commensalism, Amensalism, Parasitism, Predation", url:"https://microbenotes.com/microbial-interactions/"},
+        {num:"IV", text:"Integrated Pest Management, Biofertilizers: BGA, Rhizobia, Mycorrhiza, Biopesticides", url:"https://microbenotes.com/biofertilizers/"},
+        {num:"V", text:"Fungal, Bacterial & Viral Diseases of Cereal & Vegetable Crops — Symptoms & Control", url:"https://www.biologydiscussion.com/plant-diseases/plant-diseases-caused-by-bacteria/21601"}]}]},
+    { label:"Course XI — Recombinant DNA Technology & Industrial Microbiology", papers:[
+      { paper:"Paper 1", name:"Recombinant DNA Technology", code:"B-305", units:[
+        {num:"I", text:"Gene Cloning Introduction, Uses, Medical/Agricultural/Industrial Sectors, Contributions of Arber, Boyer, Mullis", url:"https://www.dnpgcollegemeerut.ac.in/contentpdf/B.Sc.%20III%20B-302%20Recombinant%20DNA%20Technology%20(1).pdf"},
+        {num:"II", text:"Tools: Restriction Enzymes, Vectors — Plasmids, Bacteriophages, Cosmids, YAC, Viral Vectors", url:"https://www.dnpgcollegemeerut.ac.in/contentpdf/B.Sc.%20III%20B-302%20Recombinant%20DNA%20Technology%20(1).pdf"},
+        {num:"III", text:"Making Recombinant DNA: cDNA Purification, DNA Manipulation, DNA Library, Introduction into Host", url:"https://facultystaff.richmond.edu/~lrunyenj/bio554/lectnotes/chapter14.pdf"},
+        {num:"IV", text:"Expression of Foreign Genes in Prokaryotes, Identification of Recombinants", url:"https://facultystaff.richmond.edu/~lrunyenj/bio554/lectnotes/chapter14.pdf"},
+        {num:"V", text:"PCR, DNA Probes, Hybridization, Northern/Western Blot, Sanger Sequencing, Insulin, HGH, Hep-B Vaccine", url:"https://www.dnpgcollegemeerut.ac.in/contentpdf/B.Sc.%20III%20B-302%20Recombinant%20DNA%20Technology%20(1).pdf"}]},
+      { paper:"Paper 2", name:"Industrial Microbiology", code:"B-306", units:[
+        {num:"I", text:"Characters of Industrially Important Microbes, Acquisition from Nature, Genetic Manipulation", url:"https://www.scribd.com/doc/92538096/Industrial-Microbiology-Free-Version"},
+        {num:"II", text:"Microbial Growth in Controlled Environments: Medium Development, Scale Up", url:"https://www.scribd.com/doc/92538096/Industrial-Microbiology-Free-Version"},
+        {num:"III", text:"Fundamentals of Fermentation: Batch, Continuous, Surface, Submerged, Solid State Fermentation", url:"https://microbenotes.com/fermentation-types-advantages/"},
+        {num:"IV", text:"Fermentation Equipment: Parts of Fermentor, Types, Principles, Computer Applications", url:"https://microbenotes.com/fermentor-bioreactor-parts-functions/"},
+        {num:"V", text:"Industrial Production: Penicillin, Streptomycin, Tetracycline; Amylase, Lipase; Lactic Acid, Citric Acid, Lysine", url:"https://microbenotes.com/industrial-production-of-penicillin/"}]}]},
+    { label:"Course XII — Environmental Microbiology", papers:[
+      { paper:"Paper 1", name:"Microbial Ecology", code:"B-307", units:[
+        {num:"I", text:"Microorganisms in Natural Environments: Terrestrial, Aquatic, Air, Animal Gut, Skin, Rumen", url:"https://easybiologyclass.com/microbiology-multiple-choice-questions-mcq-with-answer-key-and-explanations/"},
+        {num:"II", text:"Structure & Development of Microbial Communities, Ecosystems, Succession on Decomposing Plant Materials", url:"https://easybiologyclass.com/microbiology-multiple-choice-questions-mcq-with-answer-key-and-explanations/"},
+        {num:"III", text:"Biological Interactions: Microbe-Microbe, Microbe-Plant, Microbe-Animal", url:"https://microbenotes.com/microbial-interactions/"},
+        {num:"IV", text:"Biogeochemical Aspects: Role of Microorganisms in Cycling of C, N, P, S, Fe", url:"https://microbenotes.com/biogeochemical-cycles/"},
+        {num:"V", text:"Sewage: Composition, Kinds of Sewage Systems, COD and BOD, Pollution", url:"https://microbenotes.com/sewage-treatment/"}]},
+      { paper:"Paper 2", name:"Microbes in Environmental Biotechnology", code:"B-308", units:[
+        {num:"I", text:"Treatment of Industrial Effluents and Municipal Wastes through Microorganisms", url:"https://microbenotes.com/biological-treatment-of-wastewater/"},
+        {num:"II", text:"Degradation of Pesticides and Other Toxic Chemicals by Microbes", url:"https://microbenotes.com/biodegradation-of-pesticides/"},
+        {num:"III", text:"Biopesticides with Special Reference to Bacillus thuringiensis (Bt)", url:"https://microbenotes.com/bacillus-thuringiensis/"},
+        {num:"IV", text:"Enrichment of Ores by Microorganisms: Bioaccumulation and Biomineralization", url:"https://microbenotes.com/bioleaching/"},
+        {num:"V", text:"Environmental Laws, Policies and Practices", url:"https://www.easybiologyclass.com/microbiology-mcq-11-agricultural-and-environmental-microbiology/"}]}]},
+    { label:"Course XIII — Information Technology & Bioinformatics", papers:[
+      { paper:"Paper 1", name:"Fundamentals of Information Technology", code:"B-309", units:[
+        {num:"I", text:"Operating Systems: Categorization, Functions, Unix/Linux Commands, Shell Programming", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"II", text:"Networking: LAN, WAN, MAN, Connecting Devices, Topologies (Ring, Star, Tree, Bus)", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"III", text:"Database Fundamentals: DBMS Structure (Hierarchical, Network, Relational), Primary/Foreign Keys", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"IV", text:"SQL Commands: CREATE, INSERT, UPDATE, DELETE in Database", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"},
+        {num:"V", text:"Internet Programming, HTML, Hypertext Linking, Perl Programming, CGI, JavaScript Overview", url:"https://ncert.nic.in/textbook.php?lecs1=0-8"}]},
+      { paper:"Paper 2", name:"Genomics, Proteomics & Bioinformatics", code:"B-310", units:[
+        {num:"I", text:"Structural & Functional Genomics, Genome Sequencing (Directed, Random, Shotgun), Gene Prediction", url:"https://ncert.nic.in/textbook/pdf/kebt101.pdf"},
+        {num:"II", text:"Genome Similarity, SNPs, Comparative Genomics, Microarray Technology, FISH", url:"https://ncert.nic.in/textbook/pdf/kebt101.pdf"},
+        {num:"III", text:"History of Bioinformatics, IUPAC Symbols, DNA & Protein Sequences, cDNA, ESTs, Organelle DNA", url:"https://www.ncbi.nlm.nih.gov/books/NBK21097/"},
+        {num:"IV", text:"Major Databases, Database Retrieval Tools, BLAST Family of Search Tools", url:"https://www.ncbi.nlm.nih.gov/books/NBK21097/"},
+        {num:"V", text:"Proteomics: Introduction & Types — Expression, Structural and Functional Proteomics", url:"https://ncert.nic.in/textbook/pdf/kebt101.pdf"}]}]}
+  ]
+};
+
+// ══════════════════════════════════════════
+// RENDER FUNCTIONS
+// ══════════════════════════════════════════
+const dotMap = {bk:'dot-bk', ts:'dot-ts', bt:'dot-bt', nb:'dot-nb', yt:'dot-yt'};
+
+function buildBTCard(sub) {
+  const links = sub.links.map(l => `
+    <a class="note-link" href="${l.url}" target="_blank">
+      <span class="link-dot ${dotMap[l.type]||'dot-open'}"></span>
+      <span class="link-label">${l.label}</span>
+      <span class="link-arrow">→</span>
+    </a>`).join('');
+  return `<div class="paper-card">
+    <div class="card-head">
+      <span class="paper-tag">${sub.paper}</span>
+      <span class="paper-name">${sub.name}</span>
+    </div>
+    <div class="links-list">${links}</div>
+  </div>`;
+}
+
+function buildMBCard(paper) {
+  const units = paper.units.map(u => `
+    <a class="unit-row" href="${u.url}" target="_blank">
+      <span class="unit-num">${u.num}</span>
+      <span class="unit-text">${u.text}</span>
+      <span class="open-btn">Open ↗</span>
+    </a>`).join('');
+  return `<div class="paper-card">
+    <div class="card-head">
+      <span class="paper-tag">${paper.paper}</span>
+      <span class="paper-name">${paper.name}</span>
+      <span class="paper-code">${paper.code}</span>
+    </div>
+    <div class="links-list">${units}</div>
+  </div>`;
+}
+
+function renderBT() {
+  [1,2,3].forEach(y => {
+    const html = btSubjects[y].map(buildBTCard).join('');
+    document.getElementById(`bt-grid-${y}`).innerHTML = html;
+    document.getElementById(`bt-grid-all-${y}`).innerHTML = html;
+  });
+}
+
+function renderMB() {
+  [1,2,3].forEach(y => {
+    const container = document.getElementById(`mb-grid-y${y}`);
+    container.innerHTML = mbCourses[y].map(course => `
+      <div class="course-group">
+        <div class="course-label">${course.label}</div>
+        <div class="papers-grid">${course.papers.map(buildMBCard).join('')}</div>
+      </div>`).join('');
+  });
+}
+
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+let currentStream = 'bt';
+
+function switchStream(s) {
+  currentStream = s;
+  // Toggle section visibility directly
+  const btSection = document.getElementById('stream-bt');
+  const mbSection = document.getElementById('stream-mb');
+  const btTabs = document.getElementById('tabs-bt');
+  const mbTabs = document.getElementById('tabs-mb');
+  const btnBt = document.getElementById('btn-bt');
+  const btnMb = document.getElementById('btn-mb');
+
+  if (s === 'bt') {
+    btSection.style.display = 'block';
+    btSection.classList.add('active');
+    mbSection.style.display = 'none';
+    mbSection.classList.remove('active');
+    btTabs.style.display = 'flex';
+    mbTabs.style.display = 'none';
+    btnBt.className = 'stream-btn active-bt';
+    btnMb.className = 'stream-btn';
+  } else {
+    mbSection.style.display = 'block';
+    mbSection.classList.add('active');
+    btSection.style.display = 'none';
+    btSection.classList.remove('active');
+    mbTabs.style.display = 'flex';
+    btTabs.style.display = 'none';
+    btnMb.className = 'stream-btn active-mb';
+    btnBt.className = 'stream-btn';
+  }
+}
+
+function switchYear(stream, y, btn) {
+  // BT
+  if (stream === 'bt') {
+    document.querySelectorAll('#stream-bt .year-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('#tabs-bt .ytab').forEach(b => b.classList.remove('y-active'));
+    document.getElementById(`bt-${y === 'all' ? 'all' : 'y'+y}`).classList.add('active');
+  } else {
+    // MB
+    document.querySelectorAll('#stream-mb .year-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('#tabs-mb .ytab').forEach(b => b.classList.remove('y-active'));
+    document.getElementById(`mb-y${y}`).classList.add('active');
+  }
+  btn.classList.add('y-active');
+}
+
+// Init
+renderBT();
+renderMB();
+</script>
+
+</body>
+</html>
