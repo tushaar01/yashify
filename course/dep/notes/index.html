@@ -23,42 +23,42 @@
 
 <style>
 :root {
-  --bg:        #0e0f13;
-  --surface:   #16181f;
-  --surface2:  #1e2028;
-  --border:    #2a2d38;
-  --border2:   #373b4a;
-  --text:      #e8eaf0;
-  --muted:     #6b7089;
-  --muted2:    #9299b8;
+  --bg:        #f4f7fb;
+  --surface:   #ffffff;
+  --surface2:  #f0f4f9;
+  --border:    #dde3ed;
+  --border2:   #c8d2e0;
+  --text:      #1a2033;
+  --muted:     #7a88a0;
+  --muted2:    #4d617a;
 
-–bt: #3bba8c;   /* biotechnology green */
-–bt-dim: rgba(59,186,140,.12);
-–bt-border: rgba(59,186,140,.28);
+  --bt: #0fa571;
+  --bt-dim: rgba(15,165,113,.09);
+  --bt-border: rgba(15,165,113,.3);
 
-–mb: #5b8fff;   /* microbiology blue */
-–mb-dim: rgba(91,143,255,.12);
-–mb-border: rgba(91,143,255,.28);
+  --mb: #2563eb;
+  --mb-dim: rgba(37,99,235,.09);
+  --mb-border: rgba(37,99,235,.3);
 
-–gold: #e8a43a;
+  --gold: #c07c10;
 
-–y1-bt: #3bba8c;  –y1-bt-bg: rgba(59,186,140,.1);
-–y2-bt: #a78bfa;  –y2-bt-bg: rgba(167,139,250,.1);
-–y3-bt: #f97316;  –y3-bt-bg: rgba(249,115,22,.1);
+  --y1-bt: #0fa571;  --y1-bt-bg: rgba(15,165,113,.08);
+  --y2-bt: #7c3aed;  --y2-bt-bg: rgba(124,58,237,.08);
+  --y3-bt: #ea580c;  --y3-bt-bg: rgba(234,88,12,.08);
 
-–y1-mb: #5b8fff;  –y1-mb-bg: rgba(91,143,255,.1);
-–y2-mb: #34d399;  –y2-mb-bg: rgba(52,211,153,.1);
-–y3-mb: #fb7185;  –y3-mb-bg: rgba(251,113,133,.1);
+  --y1-mb: #2563eb;  --y1-mb-bg: rgba(37,99,235,.08);
+  --y2-mb: #059669;  --y2-mb-bg: rgba(5,150,105,.08);
+  --y3-mb: #db2777;  --y3-mb-bg: rgba(219,39,119,.08);
 
-–radius: 14px;
-–shadow: 0 4px 24px rgba(0,0,0,.4);
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(30,50,100,.1);
 }
 
-- { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-background: var(–bg);
-color: var(–text);
+background: var(--bg);
+color: var(--text);
 font-family: ‘DM Sans’, sans-serif;
 font-weight: 300;
 min-height: 100vh;
@@ -66,14 +66,15 @@ min-height: 100vh;
 
 /* ── HERO HEADER ── */
 .hero {
-background: var(–surface);
-border-bottom: 1px solid var(–border);
+background: var(--surface);
+border-bottom: 1px solid var(--border);
 padding: 40px 24px 28px;
 text-align: center;
 position: sticky;
 top: 0;
 z-index: 200;
 backdrop-filter: blur(12px);
+box-shadow: 0 2px 16px rgba(30,50,100,.07);
 }
 
 .hero-eyebrow {
@@ -81,7 +82,7 @@ font-family: ‘DM Mono’, monospace;
 font-size: 10px;
 letter-spacing: 3px;
 text-transform: uppercase;
-color: var(–gold);
+color: var(--gold);
 margin-bottom: 10px;
 }
 
@@ -93,13 +94,13 @@ line-height: 1.1;
 margin-bottom: 6px;
 }
 
-.hero h1 .hl-bt { color: var(–bt); }
-.hero h1 .hl-mb { color: var(–mb); }
-.hero h1 .sep   { color: var(–muted); margin: 0 6px; font-style: italic; font-weight: 400; }
+.hero h1 .hl-bt { color: var(--bt); }
+.hero h1 .hl-mb { color: var(--mb); }
+.hero h1 .sep   { color: var(--muted); margin: 0 6px; font-style: italic; font-weight: 400; }
 
 .hero-sub {
 font-size: 12.5px;
-color: var(–muted2);
+color: var(--muted2);
 margin-bottom: 20px;
 letter-spacing: .4px;
 }
@@ -107,8 +108,8 @@ letter-spacing: .4px;
 /* ── STREAM SWITCHER ── */
 .stream-switch {
 display: inline-flex;
-background: var(–bg);
-border: 1px solid var(–border2);
+background: var(--surface2);
+border: 1px solid var(--border2);
 border-radius: 50px;
 padding: 3px;
 gap: 2px;
@@ -120,7 +121,7 @@ padding: 7px 22px;
 border-radius: 50px;
 border: none;
 background: transparent;
-color: var(–muted);
+color: var(--muted);
 font-family: ‘DM Sans’, sans-serif;
 font-size: 13px;
 font-weight: 600;
@@ -130,12 +131,12 @@ letter-spacing: .3px;
 }
 
 .stream-btn.active-bt {
-background: var(–bt);
+background: var(--bt);
 color: #000;
 }
 
 .stream-btn.active-mb {
-background: var(–mb);
+background: var(--mb);
 color: #fff;
 }
 
@@ -150,9 +151,9 @@ flex-wrap: wrap;
 .ytab {
 padding: 6px 18px;
 border-radius: 50px;
-border: 1.5px solid var(–border2);
+border: 1.5px solid var(--border2);
 background: transparent;
-color: var(–muted2);
+color: var(--muted2);
 font-family: ‘DM Sans’, sans-serif;
 font-size: 12px;
 font-weight: 600;
@@ -160,38 +161,39 @@ cursor: pointer;
 transition: all .18s ease;
 }
 
-.ytab:hover { border-color: var(–muted); color: var(–text); }
+.ytab:hover { border-color: var(--muted); color: var(--text); }
 
 /* BT year tab active states */
-.bt-stream .ytab.y-active[data-y=“all”] { background: var(–gold); border-color: var(–gold); color: #000; }
-.bt-stream .ytab.y-active[data-y=“1”]   { background: var(–y1-bt); border-color: var(–y1-bt); color: #000; }
-.bt-stream .ytab.y-active[data-y=“2”]   { background: var(–y2-bt); border-color: var(–y2-bt); color: #fff; }
-.bt-stream .ytab.y-active[data-y=“3”]   { background: var(–y3-bt); border-color: var(–y3-bt); color: #fff; }
+.bt-stream .ytab.y-active[data-y=“all”] { background: var(--gold); border-color: var(--gold); color: #000; }
+.bt-stream .ytab.y-active[data-y=“1”]   { background: var(--y1-bt); border-color: var(--y1-bt); color: #000; }
+.bt-stream .ytab.y-active[data-y=“2”]   { background: var(--y2-bt); border-color: var(--y2-bt); color: #fff; }
+.bt-stream .ytab.y-active[data-y=“3”]   { background: var(--y3-bt); border-color: var(--y3-bt); color: #fff; }
 
 /* MB year tab active states */
-.mb-stream .ytab.y-active[data-y=“1”] { background: var(–y1-mb); border-color: var(–y1-mb); color: #fff; }
-.mb-stream .ytab.y-active[data-y=“2”] { background: var(–y2-mb); border-color: var(–y2-mb); color: #000; }
-.mb-stream .ytab.y-active[data-y=“3”] { background: var(–y3-mb); border-color: var(–y3-mb); color: #fff; }
+.mb-stream .ytab.y-active[data-y=“1”] { background: var(--y1-mb); border-color: var(--y1-mb); color: #fff; }
+.mb-stream .ytab.y-active[data-y=“2”] { background: var(--y2-mb); border-color: var(--y2-mb); color: #000; }
+.mb-stream .ytab.y-active[data-y=“3”] { background: var(--y3-mb); border-color: var(--y3-mb); color: #fff; }
 
 /* ── DISCLAIMER BANNER ── */
 .disclaimer {
 max-width: 980px;
 margin: 24px auto 0;
-background: rgba(232,164,58,.06);
-border: 1px solid rgba(232,164,58,.25);
-border-radius: var(–radius);
-padding: 14px 18px;
+background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+border: none;
+border-radius: var(--radius);
+padding: 18px 22px;
 display: flex;
-gap: 12px;
+gap: 14px;
 align-items: flex-start;
-font-size: 12px;
-line-height: 1.6;
-color: var(–muted2);
+font-size: 12.5px;
+line-height: 1.65;
+color: rgba(255,255,255,0.92);
+box-shadow: 0 4px 20px rgba(234,88,12,0.3);
 }
 
-.disclaimer-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.disclaimer-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
 
-.disclaimer strong { color: var(–gold); }
+.disclaimer strong { color: #ffffff; font-weight: 700; }
 
 /* ── MAIN ── */
 main { max-width: 980px; margin: 0 auto; padding: 28px 16px 80px; }
@@ -212,25 +214,25 @@ display: flex;
 align-items: center;
 gap: 14px;
 padding: 14px 20px;
-border-radius: var(–radius);
+border-radius: var(--radius);
 margin-bottom: 26px;
 border-left: 4px solid;
 }
 
 .year-banner-title { font-family: ‘Playfair Display’, serif; font-size: 1.1rem; font-weight: 700; }
-.year-banner-sub   { font-size: 11.5px; color: var(–muted2); margin-top: 3px; }
+.year-banner-sub   { font-size: 11.5px; color: var(--muted2); margin-top: 3px; }
 .year-banner-icon  { font-size: 24px; }
 
 /* BT year banners */
-#bt-y1 .year-banner { background: var(–y1-bt-bg); border-color: var(–y1-bt); }
-#bt-y2 .year-banner { background: var(–y2-bt-bg); border-color: var(–y2-bt); }
-#bt-y3 .year-banner { background: var(–y3-bt-bg); border-color: var(–y3-bt); }
-#bt-all .year-banner { background: rgba(232,164,58,.08); border-color: var(–gold); }
+#bt-y1 .year-banner { background: var(--y1-bt-bg); border-color: var(--y1-bt); }
+#bt-y2 .year-banner { background: var(--y2-bt-bg); border-color: var(--y2-bt); }
+#bt-y3 .year-banner { background: var(--y3-bt-bg); border-color: var(--y3-bt); }
+#bt-all .year-banner { background: rgba(232,164,58,.08); border-color: var(--gold); }
 
 /* MB year banners */
-#mb-y1 .year-banner { background: var(–y1-mb-bg); border-color: var(–y1-mb); }
-#mb-y2 .year-banner { background: var(–y2-mb-bg); border-color: var(–y2-mb); }
-#mb-y3 .year-banner { background: var(–y3-mb-bg); border-color: var(–y3-mb); }
+#mb-y1 .year-banner { background: var(--y1-mb-bg); border-color: var(--y1-mb); }
+#mb-y2 .year-banner { background: var(--y2-mb-bg); border-color: var(--y2-mb); }
+#mb-y3 .year-banner { background: var(--y3-mb-bg); border-color: var(--y3-mb); }
 
 /* ── COURSE GROUP ── */
 .course-group { margin-bottom: 30px; }
@@ -241,37 +243,37 @@ font-size: 9.5px;
 font-weight: 500;
 letter-spacing: 2.5px;
 text-transform: uppercase;
-color: var(–muted);
+color: var(--muted);
 margin-bottom: 12px;
 display: flex;
 align-items: center;
 gap: 10px;
 }
 
-.course-label::after { content:’’; flex:1; height:1px; background: var(–border); }
+.course-label::after { content:’’; flex:1; height:1px; background: var(--border); }
 
 /* ── PAPER GRID ── */
 .papers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
 
 /* ── CARD ── */
 .paper-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius);
 overflow: hidden;
 transition: border-color .22s, box-shadow .22s, transform .22s;
 }
 
 .paper-card:hover {
 transform: translateY(-3px);
-box-shadow: var(–shadow);
+box-shadow: var(--shadow);
 }
 
 /* BT card hover accent */
-.bt-stream .paper-card:hover { border-color: var(–bt-border); }
+.bt-stream .paper-card:hover { border-color: var(--bt-border); }
 
 /* MB card hover accent */
-.mb-stream .paper-card:hover { border-color: var(–mb-border); }
+.mb-stream .paper-card:hover { border-color: var(--mb-border); }
 
 /* ── CARD HEAD ── */
 .card-head {
@@ -279,8 +281,8 @@ display: flex;
 align-items: center;
 gap: 8px;
 padding: 12px 14px;
-border-bottom: 1px solid var(–border);
-background: var(–surface2);
+border-bottom: 1px solid var(--border);
+background: var(--surface2);
 }
 
 .paper-tag {
@@ -293,19 +295,19 @@ flex-shrink: 0;
 letter-spacing: .5px;
 }
 
-.bt-stream .paper-tag { background: var(–bt-dim); color: var(–bt); border: 1px solid var(–bt-border); }
-.mb-stream .paper-tag { background: var(–mb-dim); color: var(–mb); border: 1px solid var(–mb-border); }
+.bt-stream .paper-tag { background: var(--bt-dim); color: var(--bt); border: 1px solid var(--bt-border); }
+.mb-stream .paper-tag { background: var(--mb-dim); color: var(--mb); border: 1px solid var(--mb-border); }
 
-.paper-name { font-size: 12.5px; font-weight: 600; flex: 1; color: var(–text); line-height: 1.35; }
+.paper-name { font-size: 12.5px; font-weight: 600; flex: 1; color: var(--text); line-height: 1.35; }
 
 .paper-code {
 font-family: ‘DM Mono’, monospace;
 font-size: 9.5px;
 padding: 3px 7px;
 border-radius: 5px;
-background: var(–bg);
-color: var(–muted);
-border: 1px solid var(–border);
+background: var(--surface2);
+color: var(--muted);
+border: 1px solid var(--border);
 flex-shrink: 0;
 }
 
@@ -318,15 +320,15 @@ align-items: center;
 gap: 10px;
 padding: 9px 14px;
 text-decoration: none;
-color: var(–muted2);
+color: var(--muted2);
 font-size: 12px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 transition: background .15s, color .15s;
 }
 
 .note-link:last-child { border-bottom: none; }
 
-.note-link:hover { background: var(–surface2); color: var(–text); }
+.note-link:hover { background: var(--surface2); color: var(--text); }
 
 .link-dot {
 width: 8px; height: 8px;
@@ -348,10 +350,10 @@ transition: opacity .15s, transform .15s;
 /* dot colors */
 .dot-bk { background: #e8622a; }
 .dot-ts { background: #2563eb; }
-.dot-bt { background: var(–bt); }
+.dot-bt { background: var(--bt); }
 .dot-nb { background: #9333ea; }
 .dot-yt { background: #dc2626; }
-.dot-open { background: var(–mb); }
+.dot-open { background: var(--mb); }
 
 /* ── UNIT ROWS (MB style) ── */
 .unit-row {
@@ -360,21 +362,21 @@ align-items: flex-start;
 gap: 10px;
 padding: 9px 14px;
 text-decoration: none;
-color: var(–muted2);
+color: var(--muted2);
 font-size: 11.5px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 transition: background .15s, color .15s;
 line-height: 1.45;
 }
 
 .unit-row:last-child { border-bottom: none; }
-.unit-row:hover { background: var(–surface2); color: var(–text); }
+.unit-row:hover { background: var(--surface2); color: var(--text); }
 
 .unit-num {
 font-family: ‘DM Mono’, monospace;
 font-size: 9.5px;
 font-weight: 500;
-color: var(–muted);
+color: var(--muted);
 width: 24px;
 flex-shrink: 0;
 padding-top: 2px;
@@ -388,20 +390,20 @@ font-size: 9px;
 padding: 3px 9px;
 border-radius: 6px;
 flex-shrink: 0;
-border: 1px solid var(–border2);
-color: var(–muted);
+border: 1px solid var(--border2);
+color: var(--muted);
 white-space: nowrap;
 transition: all .15s;
 background: transparent;
 }
 
-.unit-row:hover .open-btn { border-color: var(–mb-border); color: var(–mb); }
+.unit-row:hover .open-btn { border-color: var(--mb-border); color: var(--mb); }
 
 /* ── TOP SITES ── */
 .top-sites {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius);
 padding: 16px 18px;
 margin-bottom: 24px;
 }
@@ -409,7 +411,7 @@ margin-bottom: 24px;
 .top-sites h3 {
 font-family: ‘Playfair Display’, serif;
 font-size: 14px;
-color: var(–text);
+color: var(--text);
 margin-bottom: 12px;
 font-weight: 600;
 }
@@ -421,17 +423,17 @@ display: inline-flex;
 align-items: center;
 gap: 6px;
 padding: 6px 13px;
-background: var(–surface2);
-border: 1px solid var(–border2);
+background: var(--surface2);
+border: 1px solid var(--border2);
 border-radius: 50px;
 text-decoration: none;
 font-size: 11.5px;
-color: var(–muted2);
+color: var(--muted2);
 font-weight: 500;
 transition: all .18s;
 }
 
-.chip:hover { background: var(–border); color: var(–text); border-color: var(–muted); }
+.chip:hover { background: var(--border); color: var(--text); border-color: var(--muted); }
 .chip-dot { width: 7px; height: 7px; border-radius: 50%; }
 
 /* ── ALL VIEW ── */
@@ -442,10 +444,10 @@ font-size: 9px;
 font-weight: 500;
 letter-spacing: 3px;
 text-transform: uppercase;
-color: var(–muted);
+color: var(--muted);
 margin-bottom: 12px;
 padding-bottom: 8px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 
 /* ── FOOTER ── */
@@ -453,14 +455,14 @@ footer {
 text-align: center;
 padding: 24px 16px;
 font-size: 11px;
-color: var(–muted);
-border-top: 1px solid var(–border);
-background: var(–surface);
+color: var(--muted);
+border-top: 1px solid var(--border);
+background: var(--surface2);
 line-height: 1.8;
 }
 
-footer a { color: var(–muted2); text-decoration: none; }
-footer strong { color: var(–muted2); }
+footer a { color: var(--muted2); text-decoration: none; }
+footer strong { color: var(--muted2); }
 
 @media(max-width:600px) {
 .hero { padding: 24px 14px 20px; }
@@ -566,7 +568,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📗</span>
       <div>
         <div class="year-banner-title">I Year</div>
-        <div class="year-banner-sub">Papers I–IX · 50 marks each · Foundation Subjects</div>
+        <div class="year-banner-sub">Papers I--IX · 50 marks each · Foundation Subjects</div>
       </div>
     </div>
     <div class="papers-grid" id="bt-grid-1"></div>
@@ -579,7 +581,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📘</span>
       <div>
         <div class="year-banner-title">II Year</div>
-        <div class="year-banner-sub">Papers X–XVIII · 50 marks each · Core Subjects</div>
+        <div class="year-banner-sub">Papers X--XVIII · 50 marks each · Core Subjects</div>
       </div>
     </div>
     <div class="papers-grid" id="bt-grid-2"></div>
@@ -592,7 +594,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📕</span>
       <div>
         <div class="year-banner-title">III Year</div>
-        <div class="year-banner-sub">Papers XIX–XXVII · 75 marks each · Advanced Subjects</div>
+        <div class="year-banner-sub">Papers XIX--XXVII · 75 marks each · Advanced Subjects</div>
       </div>
     </div>
     <div class="papers-grid" id="bt-grid-3"></div>
@@ -626,7 +628,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📘</span>
       <div>
         <div class="year-banner-title">1st Year — Foundation Courses</div>
-        <div class="year-banner-sub">Course I–IV · Paper B-101 to B-110 · Microbial Diversity, Biochemistry, Instrumentation</div>
+        <div class="year-banner-sub">Course I--IV · Paper B-101 to B-110 · Microbial Diversity, Biochemistry, Instrumentation</div>
       </div>
     </div>
     <div id="mb-grid-y1"></div>
@@ -639,7 +641,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📗</span>
       <div>
         <div class="year-banner-title">2nd Year — Intermediate Courses</div>
-        <div class="year-banner-sub">Course V–VIII · Paper B-201 to B-210 · Cell Biology, Physiology, Molecular Biology, Biostatistics</div>
+        <div class="year-banner-sub">Course V--VIII · Paper B-201 to B-210 · Cell Biology, Physiology, Molecular Biology, Biostatistics</div>
       </div>
     </div>
     <div id="mb-grid-y2"></div>
@@ -652,7 +654,7 @@ h1 { font-size: 1.4rem !important; }
       <span class="year-banner-icon">📕</span>
       <div>
         <div class="year-banner-title">3rd Year — Advanced Courses</div>
-        <div class="year-banner-sub">Course IX–XIII · Paper B-301 to B-310 · Immunology, Medical, Food, rDNA, Environmental, Bioinformatics</div>
+        <div class="year-banner-sub">Course IX--XIII · Paper B-301 to B-310 · Immunology, Medical, Food, rDNA, Environmental, Bioinformatics</div>
       </div>
     </div>
     <div id="mb-grid-y3"></div>
@@ -902,7 +904,7 @@ const mbCourses = {
         {num:"I", text:"Cell Theory, Types & Organization", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
         {num:"II", text:"Golgi, ER, Ribosomes, Mitochondria, Chloroplasts, Lysosomes, Nucleus", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
         {num:"III", text:"Cell Membrane & Transport, Proton Pumps", url:"https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(OpenStax)/03:_The_Cell"},
-        {num:"IV", text:"Prokaryotic Cell Wall (Gram +ve / –ve), Osmotic Protection", url:"https://microbenotes.com/cell-wall-of-bacteria/"},
+        {num:"IV", text:"Prokaryotic Cell Wall (Gram +ve / --ve), Osmotic Protection", url:"https://microbenotes.com/cell-wall-of-bacteria/"},
         {num:"V", text:"Capsules, Slime Layers, S-layers, Pili, Fimbriae, Cilia, Flagella", url:"https://microbenotes.com/capsule-of-bacteria/"}]},
       { paper:"Paper 2", name:"Cell Reproduction & Differentiation", code:"B-202", units:[
         {num:"I", text:"Chromosomes: Nucleosome Organization, Polytene & Lampbrush Chromosomes", url:"https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBIA1102.pdf"},
