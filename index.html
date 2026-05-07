@@ -7,7 +7,7 @@
 
 <!-- ✅ SEO Meta Tags -->
 <meta name="description" content="Yashifie - Medical notes, NEET prep, stories, articles aur fun games. Curious minds ke liye ek complete platform.">
-<meta name="keywords" content="medical notes, NEET preparation, nursing notes, hindi stories, fun games, yashify, medicose">
+<meta name="keywords" content="medical notes, NEET preparation, nursing notes, hindi stories, fun games, yashifie, medicose">
 <meta name="author" content="Yashifie">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://yashifie.me/">
@@ -191,7 +191,7 @@ setTimeout(function(){
 },3500);
 </script>
 
-<img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify" id="fixedIcon">
+<img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashifie" id="fixedIcon">
 <a href="mailto:admin@yashifie.me" class="mailbox-btn"><i class="fas fa-envelope"></i></a>
 
 <div id="lastVisitBanner">
@@ -199,7 +199,7 @@ setTimeout(function(){
   <button id="lvClose" onclick="document.getElementById('lastVisitBanner').style.display='none'" title="Close"><i class="fas fa-times"></i></button>
 </div>
 
-<nav class="navbar"><div class="logo">YASHIFY</div></nav>
+<nav class="navbar"><div class="logo">YASHIFIE</div></nav>
 
 <section class="hero">
   <div class="hero-avatar">
@@ -234,7 +234,7 @@ setTimeout(function(){
 
 <div class="cards-container">
   <div class="card-wrapper">
-    <a href="medicose/index.html" class="card medicose">
+    <a href="/medicose/" class="card medicose">
       <img src="https://cdn-icons-png.flaticon.com/512/2966/2966334.png" class="card-icon-img" alt="Medicose">
       <h3>Medicose</h3><div class="underline"></div>
       <p>Simplifying complex medical topics &amp; notes</p>
@@ -242,14 +242,14 @@ setTimeout(function(){
   </div>
   <div class="card-wrapper">
     <span class="new-badge">New</span>
-    <a href="./l/library" class="card library">
+    <a href="/l/library/" class="card library">
       <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" class="card-icon-img" alt="Library">
       <h3>Library</h3><div class="underline"></div>
       <p>Stories, Articles &amp; Wisdom</p>
     </a>
   </div>
   <div class="card-wrapper">
-    <a href="./fun" class="card fun">
+    <a href="/fun/" class="card fun">
       <img src="https://cdn-icons-png.flaticon.com/512/5260/5260498.png" class="card-icon-img" alt="Fun Zone">
       <h3>Fun Zone</h3><div class="underline"></div>
       <p>Enjoy games and unwind instantly</p>
@@ -282,7 +282,7 @@ setTimeout(function(){
 <div id="pwaBanner">
   <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashify">
   <div class="pwa-text">
-    <strong>Install Yashify</strong>
+    <strong>Install Yashifie</strong>
     <span>Add to Home Screen</span>
   </div>
   <button class="pwa-ibtn" onclick="installPWA()">Install</button>
@@ -572,7 +572,7 @@ function handleSearch(){
   });
   dd.innerHTML=res.length
     ? res.map(function(r){return '<a class="search-item" href="'+r.href+'"><i class="fas '+r.icon+'"></i><span>'+r.name+'</span><span class="hint">'+r.desc+'</span></a>';}).join('')
-    : '<div class="search-empty">&#10060; "'+q+'" &mdash; Yashify pe nahi mila</div>';
+    : '<div class="search-empty">&#10060; "'+q+'" &mdash; Yashifie pe nahi mila</div>';
   dd.classList.add('show');
 }
 function doSearch(){
@@ -580,7 +580,7 @@ function doSearch(){
   if(!q) return;
   var m=pages.find(function(p){return p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.tags.some(function(t){return t.includes(q);});});
   if(m){window.location.href=m.href;}
-  else{var dd=document.getElementById('searchDropdown');dd.innerHTML='<div class="search-empty">&#10060; "'+q+'" &mdash; Yashify pe nahi mila</div>';dd.classList.add('show');}
+  else{var dd=document.getElementById('searchDropdown');dd.innerHTML='<div class="search-empty">&#10060; "'+q+'" &mdash; Yashifie pe nahi mila</div>';dd.classList.add('show');}
 }
 function searchKeydown(e){
   if(e.key==='Enter') doSearch();
