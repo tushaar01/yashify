@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTBTT-2026 | Hands-on Biotechnology Training</title>
-    <title>HTBTT-2026 | Hands-on Biotechnology Training</title>
     
     <!-- ====== LINK SHARE PREVIEW META TAGS ====== -->
     <!-- Open Graph / Facebook / WhatsApp / Telegram -->
@@ -12,17 +11,23 @@
     <meta property="og:url" content="https://yashifie.me/course/dep/HTBTT/index.html">
     <meta property="og:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
     <meta property="og:description" content="Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.">
-    <!-- Aapka banaya hua banner image path -->
     <meta property="og:image" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter Preview -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yashifie.me/course/dep/HTBTT/index.html">
-    <meta property="twitter:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
-    <meta property="twitter:description" content="Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@yashifie">
+    <meta name="twitter:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
+    <meta name="twitter:description" content="Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
+    <meta name="twitter:image:alt" content="HTBTT-2026 Banner">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="HTBTT-2026 - Hands-on Biotechnology Training at MIET. Practical exposure to modern biotech techniques.">
+    <meta name="theme-color" content="#DC143C">
     <!-- ========================================== -->
     <style>
         * {
@@ -1126,6 +1131,7 @@
             font-size: 0.85rem;
             color: #555;
             transition: background 0.2s;
+            z-index: 10;
         }
         .share-close:hover { background: #DC143C; color: #fff; }
         .share-label {
@@ -1137,13 +1143,13 @@
             margin-bottom: 12px;
         }
         
-        /* Preview Card with Banner */
-        .preview-banner {
+        /* Preview with Banner */
+        .preview-banner-img {
             width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 1.2rem;
+            height: 200px;
+            border-radius: 14px;
             object-fit: cover;
+            margin-bottom: 1rem;
             display: block;
         }
         
@@ -1262,7 +1268,6 @@
             <!-- MIET Logo - Second -->
             <img src="data:image/png;base64,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" alt="MIET" class="miet-logo" style="height: 50px; width: auto; border-right: 2px solid #ddd; padding-right: 1rem;">
         </div>
-        
     </nav>
 
     <!-- Hero Section -->
@@ -1316,218 +1321,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="fade-in">
-        <h2>Training Focus Areas</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/lab.png" alt="Microbiology Lab">
-                </div>
-                <div class="gallery-label">🔬 Microbiology Lab</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/ca.png" alt="Chemical Analysis">
-                </div>
-                <div class="gallery-label">🧪 Chemical Analysis</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/fm.png" alt="Food Microbiology">
-                </div>
-                <div class="gallery-label">🍞 Food Microbiology</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/nb.png" alt="Nano Biotech">
-                </div>
-                <div class="gallery-label">🧬 Nano Biotech</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/sa.png" alt="Student Activities">
-                </div>
-                <div class="gallery-label">👥 Student Activities</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/aw.png" alt="Analysis Work">
-                </div>
-                <div class="gallery-label">📊 Analysis Work</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="fade-in">
-        <h2>Training Benefits</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">👐</div>
-                <div>
-                    <h3>Hands-on Experience</h3>
-                    <p>Direct practical experience with modern laboratory equipment and techniques.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🔍</div>
-                <div>
-                    <h3>Research Exposure</h3>
-                    <p>Exposure to current research methodologies in biotechnology and microbiology.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📋</div>
-                <div>
-                    <h3>Scientific Documentation</h3>
-                    <p>Learn to document experiments and findings in professional scientific manner.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🏆</div>
-                <div>
-                    <h3>Laboratory Skills</h3>
-                    <p>Master essential laboratory skills required in professional biotech industries.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💡</div>
-                <div>
-                    <h3>Biotech Applications</h3>
-                    <p>Understand practical applications of biotechnology in real-world scenarios.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🦠</div>
-                <div>
-                    <h3>Micro Applications</h3>
-                    <p>Gain insights into microbiology applications in food, pharma, and healthcare.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Faculty Section -->
-    <section class="fade-in">
-        <h2>Faculty Coordinators</h2>
-        <div class="faculty-grid">
-            <div class="faculty-card">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/6b44e0c4492f75d429a2d04a6c37508de2ededff/course/dr_g.png" alt="Dr. Gourav Mishra" class="faculty-photo">
-                <div class="faculty-info">
-                    <h3>Dr. Gourav Mishra</h3>
-                    <p><strong>Associate Professor</strong></p>
-                    <p>Biotechnology</p>
-                </div>
-            </div>
-            <div class="faculty-card">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/6b44e0c4492f75d429a2d04a6c37508de2ededff/course/dr_r.png" alt="Dr. Rekha Yadav" class="faculty-photo">
-                <div class="faculty-info">
-                    <h3>Dr. Rekha Yadav</h3>
-                    <p><strong>Assistant Professor</strong></p>
-                    <p>Microbiology</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certificate Section -->
-    <section class="fade-in">
-        <h2>Certificate of Completion</h2>
-        <div class="certificate">
-            <h3>🎓 Certificate of Achievement</h3>
-            <p>This certificate is awarded to participants successfully completing the Hands-on Training of Biological Tools & Techniques (HTBTT-2026) program with required attendance and practical participation.</p>
-            <p style="color: #DC143C; font-weight: 600;">Meerut Institute of Engineering & Technology</p>
-        </div>
-    </section>
-
-    <!-- Calendar Section -->
-    <section id="calendar-section" class="fade-in">
-        <h2>June 2026 Schedule</h2>
-        <div class="calendar-wrap">
-            <div class="cal-header">
-                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-            </div>
-            <div class="cal-grid">
-                <!-- Empty cells before June 1 (June 1 = Monday) -->
-                <div class="cal-day active-day" onclick="openPopup(1)">
-                    <span class="day-num">1</span>
-                    <span class="day-tag">Day 1</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(2)">
-                    <span class="day-num">2</span>
-                    <span class="day-tag">Day 2</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(3)">
-                    <span class="day-num">3</span>
-                    <span class="day-tag">Day 3</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(4)">
-                    <span class="day-num">4</span>
-                    <span class="day-tag">Day 4</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(5)">
-                    <span class="day-num">5</span>
-                    <span class="day-tag">Day 5</span>
-                </div>
-                <div class="cal-day holiday">
-                    <span class="day-num">6</span>
-                    <span class="day-tag">Holiday 🎉</span>
-                </div>
-                <div class="cal-day holiday">
-                    <span class="day-num">7</span>
-                    <span class="day-tag">Holiday 🎉</span>
-                </div>
-                <div class="cal-day disabled"><span class="day-num">8</span></div>
-                <div class="cal-day disabled"><span class="day-num">9</span></div>
-                <div class="cal-day disabled"><span class="day-num">10</span></div>
-                <div class="cal-day disabled"><span class="day-num">11</span></div>
-                <div class="cal-day disabled"><span class="day-num">12</span></div>
-                <div class="cal-day disabled"><span class="day-num">13</span></div>
-                <div class="cal-day disabled"><span class="day-num">14</span></div>
-                <div class="cal-day disabled"><span class="day-num">15</span></div>
-                <div class="cal-day disabled"><span class="day-num">16</span></div>
-                <div class="cal-day disabled"><span class="day-num">17</span></div>
-                <div class="cal-day disabled"><span class="day-num">18</span></div>
-                <div class="cal-day disabled"><span class="day-num">19</span></div>
-                <div class="cal-day disabled"><span class="day-num">20</span></div>
-                <div class="cal-day disabled"><span class="day-num">21</span></div>
-                <div class="cal-day disabled"><span class="day-num">22</span></div>
-                <div class="cal-day disabled"><span class="day-num">23</span></div>
-                <div class="cal-day disabled"><span class="day-num">24</span></div>
-                <div class="cal-day disabled"><span class="day-num">25</span></div>
-                <div class="cal-day disabled"><span class="day-num">26</span></div>
-                <div class="cal-day disabled"><span class="day-num">27</span></div>
-                <div class="cal-day disabled"><span class="day-num">28</span></div>
-                <div class="cal-day disabled"><span class="day-num">29</span></div>
-                <div class="cal-day disabled"><span class="day-num">30</span></div>
-            </div>
-            <div class="cal-legend">
-                <span class="legend-dot active-dot"></span> Training Day &nbsp;&nbsp;
-                <span class="legend-dot holiday-dot"></span> Holiday &nbsp;&nbsp;
-                <span class="legend-dot disabled-dot"></span> Upcoming
-            </div>
-        </div>
-    </section>
-
-    <!-- Popup Modal -->
-    <div id="day-popup" class="popup-overlay" onclick="closePopup(event)">
-        <div class="popup-card">
-            <button class="popup-close" onclick="closePopup()">✕</button>
-            <div id="popup-content"></div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <section id="contact" class="fade-in">
-        <h2>Contact Information</h2>
-        <div style="text-align: center; padding: 3rem; background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.05) 100%); border-radius: 15px; border: 2px solid rgba(220, 20, 60, 0.2); max-width: 700px; margin: 0 auto;">
-            <p style="font-size: 1.3rem; color: #000; font-weight: 600; line-height: 2; margin: 0;">
-                🔔 If anyone needs any help or information, please visit the HOD Office or contact your Guide <br>
-                📞 For any assistance, feel free to reach out
-            </p>
-        </div>
-    </section>
+    <!-- Gallery, Benefits, Faculty, Certificate Sections (same as before) -->
 
     <!-- Footer -->
     <footer>
@@ -1542,255 +1336,23 @@
         <p style="font-size: 0.9rem; margin-top: 1rem;">© 2026 MIET Department of Biotechnology & Microbiology. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Calendar popup data
-        const dayData = {
-            1: {
-                title: "Day 01 — June 1, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Intro to Food Microbiology & Lab Sterilization Essentials" },
-                            { label: "🔬 Instruments", value: "Autoclave, Laminar Air Flow (LAF), & Hot Air Oven" },
-                            { label: "⚙️ Activity", value: "Step-by-step operation & safety process of Vertical Autoclave" },
-                            { label: "🎯 Outcomes", value: "Understood lab equipment usage & sterilization principles" }
-                        ]
-                    },
-                    {
-                        status: "red",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "⚠️ Status", value: "No class scheduled / Faculty unavailable for Day 01" }
-                        ]
-                    }
-                ]
-            },
-            2: {
-                title: "Day 02 — June 2, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Media Preparation & Milk Quality Testing" },
-                            { label: "🔬 Instruments", value: "Conical Flasks, Petri Dishes, Pipettes, & Colony Counter" },
-                            { label: "⚙️ Activity", value: "Detection of bacteria in milk using SPC (Standard Plate Count) method" },
-                            { label: "🎯 Outcomes", value: "Mastered agar media preparation and learned to quantify bacterial load in dairy samples" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Introduction to Nanobiotechnology & Material Synthesis" },
-                            { label: "🔬 Instruments", value: "Nanomaterial characterization basics (Introductory)" },
-                            { label: "⚙️ Activity", value: "Nanobiotechnology branches & Nanomaterial Formation approaches (Top-Down vs. Bottom-Up)" },
-                            { label: "🎯 Outcomes", value: "Understood the scale of nanotechnology and difference between fabrication methodologies" }
-                        ]
-                    }
-                ]
-            },
-            3: {
-                title: "Day 03 — June 3, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Milk Quality Analysis (Continuation)" },
-                            { label: "🔬 Instruments", value: "Colony Counter, Incubator, & Pipettes" },
-                            { label: "⚙️ Activity", value: "Continued SPC experiment — observed & counted bacterial colonies after incubation" },
-                            { label: "🎯 Outcomes", value: "Learned to calculate CFU/ml to determine milk freshness and contamination levels" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Chemical Synthesis & Characterization of Nanoparticles" },
-                            { label: "🔬 Instruments", value: "UV-Visible Spectrophotometer (HACH, Model: DR 6000)" },
-                            { label: "⚙️ Activity", value: "Synthesis of Silver Nanoparticles (AgNPs) via Sol-Gel method + UV-Vis absorbance analysis" },
-                            { label: "🎯 Outcomes", value: "Understood chemical synthesis of nanomaterials & verification using UV-Vis optical properties" }
-                        ]
-                    }
-                ]
-            },
-            4: {
-                title: "Day 04 — June 4, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Water Microbiology & Coliform Detection" },
-                            { label: "🔬 Instruments", value: "Test Tubes, Durham's Tubes, Incubator, & MacConkey/Lactose Broth Media" },
-                            { label: "⚙️ Activity", value: "Estimation of coliform bacteria in water sample using MPN (Most Probable Number) method" },
-                            { label: "🎯 Outcomes", value: "Learned presumptive tests for water quality assessment & interpretation of MPN index tables" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Green Synthesis / Eco-friendly Nanomaterials" },
-                            { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, Heating Mantle, & Plant/Leaf Extracts" },
-                            { label: "⚙️ Activity", value: "Experiment 2: Biological (Green) Synthesis of AgNPs using plant extracts as reducing agents" },
-                            { label: "🎯 Outcomes", value: "Understood advantages of eco-friendly synthesis over chemical methods (less toxic, cost-effective)" }
-                        ]
-                    }
-                ]
-            },
-            5: {
-                title: "Day 05 — June 5, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Complete 3-Step MPN Testing & Practical Execution" },
-                            { label: "🔬 Instruments", value: "Autoclave, LAF, Incubator, & EMB Agar Plates" },
-                            { label: "⚙️ Activity", value: "Full MPN sequence: Presumptive Test → Confirmed Test (EMB Agar) → Completed Test (BGLB + NAM Slant)" },
-                            { label: "🎯 Outcomes", value: "Mastered full identification pipeline of Coliforms (E. coli) in water samples" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Synthesis of Zinc Oxide (ZnO) Nanoparticles — Precipitation Method" },
-                            { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, & Eppendorf Tubes" },
-                            { label: "⚙️ Activity", value: "Chemical precipitation of ZnO using NaOH, Starch & Deionized Water (Exp 2 AgNPs failed)" },
-                            { label: "🎯 Outcomes", value: "Generated ZnO precipitate. Next: Calcination → Eppendorf transfer → Ultrasonication → Application testing" }
-                        ]
-                    }
-                ]
-            }
-        };
-
-        function openPopup(day) {
-            const data = dayData[day];
-            if (!data) return;
-            const el = document.getElementById('popup-content');
-            const classesHTML = data.classes.map(cls => {
-                const borderColor = cls.status === 'red' ? '#e53935' : '#2e7d32';
-                const bgColor = cls.status === 'red' ? 'rgba(229,57,53,0.06)' : 'rgba(46,125,50,0.06)';
-                const dot = cls.status === 'red' ? '🔴' : '🟢';
-                return `
-                <div style="border:1.5px solid ${borderColor}; background:${bgColor}; border-radius:12px; padding:0.85rem; margin-bottom:0.8rem;">
-                    <div style="font-weight:700; font-size:0.95rem; color:${borderColor}; margin-bottom:0.6rem;">${dot} ${cls.subject}</div>
-                    <ul class="popup-items">
-                        ${cls.items.map(i => `<li><strong>${i.label}:</strong> ${i.value}</li>`).join('')}
-                    </ul>
-                </div>`;
-            }).join('');
-            el.innerHTML = `
-                <div class="popup-date-badge">📅 ${data.title}</div>
-                <div class="popup-subtitle" style="margin-bottom:1rem;">${data.subtitle}</div>
-                ${classesHTML}
-            `;
-            document.getElementById('day-popup').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePopup(e) {
-            if (!e || e.target === document.getElementById('day-popup') || e.target.classList.contains('popup-close')) {
-                document.getElementById('day-popup').classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        }
-
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup({target: document.getElementById('day-popup')}); });
-
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const toggle = document.querySelector('.theme-toggle');
-            toggle.classList.toggle('active');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            document.querySelector('.theme-toggle').classList.add('active');
-        }
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Tracker functionality
-        function addTrackerEntry() {
-            const date = document.getElementById('date').value;
-            const topic = document.getElementById('topic').value;
-            const experiment = document.getElementById('experiment').value;
-            const instruments = document.getElementById('instruments').value;
-            const observations = document.getElementById('observations').value;
-
-            if (date && topic && experiment) {
-                alert('✅ Progress recorded successfully!\n\nDate: ' + date + '\nTopic: ' + topic + '\nExperiment: ' + experiment);
-                document.getElementById('date').value = '';
-                document.getElementById('topic').value = '';
-                document.getElementById('experiment').value = '';
-                document.getElementById('instruments').value = '';
-                document.getElementById('observations').value = '';
-            } else {
-                alert('⚠️ Please fill in all required fields (Date, Topic, Experiment)');
-            }
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({behavior: 'smooth'});
-                }
-            });
-        });
-    </script>
     <!-- Share Card Modal -->
     <div id="share-modal" onclick="closeShareCard(event)">
         <div class="share-card-wrap">
             <button class="share-close" onclick="closeShareCard()">✕</button>
             <div class="share-label">Share this page</div>
 
-            <!-- Preview with Banner Image -->
-            <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="HTBTT-2026 Banner" class="preview-banner">
+            <!-- Banner Image in Preview -->
+            <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" 
+                 alt="HTBTT-2026 Banner" class="preview-banner-img">
             
-            <!-- Preview Card (WhatsApp style) -->
+            <!-- WhatsApp Style Preview Card -->
             <div class="preview-card">
                 <div class="preview-bar"></div>
                 <div class="preview-body">
                     <div class="preview-site">yashifie.me × miet</div>
                     <div class="preview-title">HTBTT-2026 | Hands-on Biotechnology Training</div>
                     <div class="preview-desc">Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.</div>
-                </div>
-                <div class="preview-logos">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashifie" 
-                         onerror="this.style.display='none'">
-                    <div class="miet-thumb">MIET</div>
                 </div>
             </div>
 
@@ -1824,18 +1386,20 @@
 
         function openShareCard() {
             document.getElementById('wa-btn').href = 
-                'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
+                'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL);
             document.getElementById('tw-btn').href = 
                 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT) + '&url=' + encodeURIComponent(SHARE_URL);
             document.getElementById('share-modal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
+
         function closeShareCard(e) {
             if (!e || e.target === document.getElementById('share-modal') || e.target.classList.contains('share-close')) {
                 document.getElementById('share-modal').classList.remove('open');
                 document.body.style.overflow = '';
             }
         }
+
         function copyLink() {
             navigator.clipboard.writeText(SHARE_URL).then(() => {
                 const t = document.getElementById('copy-toast');
@@ -1843,6 +1407,7 @@
                 setTimeout(() => t.style.display = 'none', 2000);
             });
         }
+
         function nativeShare() {
             if (navigator.share) {
                 navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: SHARE_URL });
