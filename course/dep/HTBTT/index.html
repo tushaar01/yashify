@@ -1112,6 +1112,8 @@
             box-shadow: 0 24px 64px rgba(0,0,0,0.22);
             animation: popIn 0.28s ease;
             position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .share-close {
             position: absolute;
@@ -1134,6 +1136,17 @@
             color: #999;
             margin-bottom: 12px;
         }
+        
+        /* Preview Card with Banner */
+        .preview-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            object-fit: cover;
+            display: block;
+        }
+        
         /* Preview Card (WhatsApp style) */
         .preview-card {
             background: #1e1e1e;
@@ -1763,13 +1776,16 @@
             <button class="share-close" onclick="closeShareCard()">✕</button>
             <div class="share-label">Share this page</div>
 
-            <!-- Preview Card -->
+            <!-- Preview with Banner Image -->
+            <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="HTBTT-2026 Banner" class="preview-banner">
+            
+            <!-- Preview Card (WhatsApp style) -->
             <div class="preview-card">
                 <div class="preview-bar"></div>
                 <div class="preview-body">
                     <div class="preview-site">yashifie.me × miet</div>
-                    <div class="preview-title">Summer Training Hacks with Yashifie.me</div>
-                    <div class="preview-desc">HTBTT-2026 — Hands-on Biotech Training at MIET. Science-backed hacks for your summer training.</div>
+                    <div class="preview-title">HTBTT-2026 | Hands-on Biotechnology Training</div>
+                    <div class="preview-desc">Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.</div>
                 </div>
                 <div class="preview-logos">
                     <img src="https://raw.githubusercontent.com/tushaar01/yashify/main/icone.jpg" alt="Yashifie" 
@@ -1803,8 +1819,8 @@
 
     <script>
         const SHARE_URL = window.location.href;
-        const SHARE_TITLE = 'Summer Training Hacks with Yashifie.me';
-        const SHARE_TEXT = 'HTBTT-2026 — Hands-on Biotech Training at MIET × Yashifie.me 🧬';
+        const SHARE_TITLE = 'HTBTT-2026 | Hands-on Biotechnology Training';
+        const SHARE_TEXT = 'Check out HTBTT-2026 — Hands-on Biotech Training at MIET × Yashifie.me 🧬🔬';
 
         function openShareCard() {
             document.getElementById('wa-btn').href = 
