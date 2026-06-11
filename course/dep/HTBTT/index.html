@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTBTT-2026 | Hands-on Biotechnology Training</title>
-
-     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X5RJM3XH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,9 +11,6 @@
       gtag('js', new Date());
       gtag('config', 'G-B5X5RJM3XH');
     </script>
-    
-    <!-- ====== LINK SHARE PREVIEW META TAGS ====== -->
-    <!-- Open Graph / Facebook / WhatsApp / Telegram -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yashifie.me/course/dep/HTBTT/index.html">
     <meta property="og:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
@@ -23,1295 +18,188 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="MIET × Yashifie">
-
-    <!-- Twitter Preview -->
+    <meta property="og:site_name" content="MIET x Yashifie">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://yashifie.me/course/dep/HTBTT/index.html">
     <meta property="twitter:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
     <meta property="twitter:description" content="Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.">
     <meta property="twitter:image" content="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg">
     <meta property="twitter:creator" content="@yashifie">
-    
-    <!-- LinkedIn Preview -->
-    <meta property="linkedin:title" content="HTBTT-2026 | Hands-on Biotechnology Training">
-    <meta property="linkedin:description" content="Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.">
-    
-    <!-- ========================================== -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #DC143C;
-            --secondary: #8B0000;
-            --accent: #FF4444;
-            --white: #FFFFFF;
-            --dark: #0a0a0a;
-            --light: #f5f5f5;
+            --primary: #DC143C; --secondary: #8B0000; --accent: #FF4444;
+            --white: #FFFFFF; --dark: #0a0a0a; --light: #f5f5f5;
             --glass: rgba(220, 20, 60, 0.1);
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #FFFFFF;
-            color: #333333;
-            transition: background 0.3s ease;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-logo {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-logo .miet-logo {
-            height: 50px;
-            padding: 0 1rem;
-            border-right: 2px solid #ddd;
-        }
-
-        .nav-logo .yashify-logo {
-            height: 45px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #DC143C, #FF4444);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            width: 50px;
-            height: 26px;
-            background: #ddd;
-            border-radius: 13px;
-            cursor: pointer;
-            position: relative;
-            transition: background 0.3s;
-            border: none;
-        }
-
-        .theme-toggle.active {
-            background: #FF4444;
-        }
-
-        .toggle-circle {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transition: left 0.3s;
-        }
-
-        .theme-toggle.active .toggle-circle {
-            left: 27px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-top: 70px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(220, 20, 60, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            color: #000;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .hero .htbtt-form {
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 750px;
-            margin: 2rem auto 3rem;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: white;
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.5);
-        }
-
-        .btn-secondary {
-            background: var(--glass);
-            color: #DC143C;
-            border: 2px solid #DC143C;
-            backdrop-filter: blur(20px);
-        }
-
-        .btn-secondary:hover {
-            background: #DC143C;
-            color: #ffffff;
-            transform: translateY(-3px);
-        }
-
-        /* Stats Section with Cloud Shape */
-        .stats-section {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            align-items: center;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #000;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        /* Cloud Shape for Students Card */
-        .cloud-card {
-            position: relative;
-            width: 250px;
-            height: 180px;
-            margin: 0 auto;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .cloud {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #DC143C, #FF6B6B);
-            border-radius: 100px;
-            box-shadow: 0 10px 40px rgba(220, 20, 60, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .cloud::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            left: 20px;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #DC143C, #FF6B6B);
-            border-radius: 100px;
-        }
-
-        .cloud::after {
-            content: '';
-            position: absolute;
-            top: -35px;
-            right: 25px;
-            width: 75px;
-            height: 75px;
-            background: linear-gradient(135deg, #DC143C, #FF6B6B);
-            border-radius: 100px;
-        }
-
-        .cloud-content {
-            position: relative;
-            z-index: 10;
-            color: white;
-            text-align: center;
-        }
-
-        .cloud-content .cloud-number {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 0.3rem;
-        }
-
-        .cloud-content .cloud-label {
-            font-size: 0.95rem;
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        /* Main Content Sections */
-        section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #000;
-            text-align: center;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, rgba(220, 20, 60, 0.02) 100%);
-            padding: 3rem;
-            border-radius: 15px;
-        }
-
-        .about-text {
-            line-height: 1.8;
-            color: #555;
-            font-size: 1.05rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-logos {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .miet-info {
-            text-align: center;
-        }
-
-        .miet-info img {
-            height: 80px;
-            margin-bottom: 1rem;
-        }
-
-        .miet-info a {
-            color: #DC143C;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        .miet-info a:hover {
-            color: #8B0000;
-            text-decoration: underline;
-        }
-
-        /* Benefits Grid */
-        .benefits-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .benefit-card {
-            padding: 1rem 1.5rem;
-            background: transparent;
-            border-radius: 8px;
-            border: none;
-            transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--highlight-color);
-            border-radius: 8px;
-            z-index: -1;
-            transition: all 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateX(10px);
-            box-shadow: none;
-            border-color: transparent;
-        }
-
-        .benefit-card:hover::before {
-            opacity: 0.8;
-        }
-
-        /* Individual highlight colors for each benefit */
-        .benefit-card:nth-child(1) {
-            --highlight-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .benefit-card:nth-child(2) {
-            --highlight-color: rgba(255, 105, 180, 0.3);
-        }
-
-        .benefit-card:nth-child(3) {
-            --highlight-color: rgba(100, 200, 255, 0.3);
-        }
-
-        .benefit-card:nth-child(4) {
-            --highlight-color: rgba(144, 238, 144, 0.3);
-        }
-
-        .benefit-card:nth-child(5) {
-            --highlight-color: rgba(255, 165, 0, 0.3);
-        }
-
-        .benefit-card:nth-child(6) {
-            --highlight-color: rgba(221, 160, 221, 0.3);
-        }
-
-        .benefit-icon {
-            font-size: 2rem;
-            margin-bottom: 0;
-            flex-shrink: 0;
-        }
-
-        .benefit-card h3 {
-            color: #000;
-            margin-bottom: 0.3rem;
-            font-size: 1.1rem;
-        }
-
-        .benefit-card p {
-            color: #333;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Faculty Grid */
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            justify-items: center;
-        }
-
-        /* Dr. Gourav - First Card - Vertical White Seamless */
-        .faculty-card:nth-child(1) {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: none;
-            text-align: center;
-            transition: all 0.3s ease;
-            width: 300px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .faculty-card:nth-child(1):hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .faculty-card:nth-child(1) .faculty-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 15px;
-            object-fit: cover;
-            object-position: center;
-            background: #ffffff;
-            padding: 0;
-            border: none;
-            display: block;
-            order: 1;
-        }
-
-        .faculty-card:nth-child(1) .faculty-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-            width: 100%;
-            order: 2;
-            text-align: center;
-        }
-
-        /* Dr. Rekha - Second Card - Same as Gourav */
-        .faculty-card:nth-child(2) {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: none;
-            text-align: center;
-            transition: all 0.3s ease;
-            width: 300px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .faculty-card:nth-child(2):hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .faculty-card:nth-child(2) .faculty-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 15px;
-            object-fit: cover;
-            object-position: center;
-            background: #ffffff;
-            padding: 0;
-            border: none;
-            display: block;
-            order: 1;
-        }
-
-        .faculty-card:nth-child(2) .faculty-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-            width: 100%;
-            order: 2;
-            text-align: center;
-        }
-
-        .faculty-card h3 {
-            color: #000;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .faculty-card p {
-            color: #555;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            line-height: 1.5;
-        }
-
-        .faculty-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.2rem;
-            width: 100%;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-img-wrap {
-            width: 130px;
-            height: 130px;
-            border-radius: 18px;
-            overflow: hidden;
-            background: transparent;
-            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.15);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .gallery-item:hover .gallery-img-wrap {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.25);
-        }
-
-        .gallery-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-img-wrap img {
-            transform: scale(1.08);
-        }
-
-        .gallery-label {
-            color: #333;
-            font-weight: 600;
-            font-size: 0.78rem;
-            text-align: center;
-            padding: 0 0.2rem;
-        }
-
-        @media (max-width: 600px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-                max-width: 300px;
-            }
-            .gallery-img-wrap {
-                width: 110px;
-                height: 110px;
-                border-radius: 14px;
-            }
-            .gallery-label {
-                font-size: 0.72rem;
-            }
-        }
-
-        /* Certificate Section */
-        .certificate {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.05) 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 2px solid #DC143C;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .certificate h3 {
-            color: #000;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .certificate p {
-            color: #666;
-            line-height: 1.5;
-            font-size: 0.85rem;
-            margin-bottom: 0.6rem;
-        }
-
-        /* Contact Section */
-        .contact-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, rgba(220, 20, 60, 0.02) 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(220, 20, 60, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.15);
-            border-color: #DC143C;
-        }
-
-        .contact-card h3 {
-            color: #000;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-card p {
-            color: #666;
-            margin: 0.5rem 0;
-            line-height: 1.6;
-        }
-
-        /* Fade in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Tracker Section */
-        #tracker {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, rgba(220, 20, 60, 0.02) 100%);
-        }
-
-        .tracker-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(220, 20, 60, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid rgba(220, 20, 60, 0.2);
-            border-radius: 10px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #DC143C;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
-            color: #e0e0e0;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-
-        .footer-links a {
-            color: #FF4444;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #ffcccc;
-        }
-
-        /* Responsive */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #FFFFFF; color: #333333; transition: background 0.3s ease; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 0.5rem; }
+        .nav-logo { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-logo img { height: 50px; width: auto; }
+        .nav-logo .miet-logo { height: 50px; padding: 0 1rem; border-right: 2px solid #ddd; }
+        .nav-logo .yashify-logo { height: 45px; }
+        .nav-title { font-size: clamp(0.9rem, 3vw, 1.6rem); font-weight: 800; color: #DC143C; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #DC143C, #FF4444); transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; margin-top: 70px; overflow: hidden; background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%); }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 50%, rgba(220,20,60,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139,0,0,0.08) 0%, transparent 50%); pointer-events: none; }
+        .hero-content { text-align: center; position: relative; z-index: 10; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 { font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; margin-bottom: 0.5rem; color: #000; line-height: 1.2; letter-spacing: -1px; }
+        .hero .htbtt-form { font-size: 1.2rem; color: #666; font-weight: 500; margin-bottom: 2rem; letter-spacing: 0.5px; }
+        .hero p { font-size: 1.1rem; color: #555; max-width: 750px; margin: 2rem auto 3rem; line-height: 1.8; font-weight: 500; }
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.2s both; }
+        .btn { padding: 1rem 2.5rem; font-size: 1rem; font-weight: 600; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
+        .btn-primary { background: linear-gradient(135deg, #DC143C, #8B0000); color: white; box-shadow: 0 10px 30px rgba(220,20,60,0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,20,60,0.5); }
+        .btn-secondary { background: var(--glass); color: #DC143C; border: 2px solid #DC143C; backdrop-filter: blur(20px); }
+        .btn-secondary:hover { background: #DC143C; color: #ffffff; transform: translateY(-3px); }
+        .stats-section { display: flex; gap: 3rem; justify-content: center; align-items: center; margin-top: 4rem; flex-wrap: wrap; }
+        .stat-card { text-align: center; }
+        .stat-number { font-size: 3.5rem; font-weight: 900; color: #000; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 1.1rem; color: #333; font-weight: 600; }
+        section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        section h2 { font-size: 2.5rem; margin-bottom: 3rem; color: #000; text-align: center; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: linear-gradient(135deg, rgba(220,20,60,0.05) 0%, rgba(220,20,60,0.02) 100%); padding: 3rem; border-radius: 15px; }
+        .about-text { line-height: 1.8; color: #555; font-size: 1.05rem; }
+        .about-text p { margin-bottom: 1.5rem; }
+        .about-logos { display: flex; flex-direction: column; gap: 2rem; align-items: center; }
+        .miet-info { text-align: center; }
+        .miet-info a { color: #DC143C; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.3s; }
+        .miet-info a:hover { color: #8B0000; text-decoration: underline; }
+        .benefits-grid { display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+        .benefit-card { padding: 1rem 1.5rem; background: transparent; border-radius: 8px; border: none; transition: all 0.3s ease; position: relative; display: flex; align-items: center; gap: 1rem; }
+        .benefit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--highlight-color); border-radius: 8px; z-index: -1; transition: all 0.3s ease; }
+        .benefit-card:hover { transform: translateX(10px); }
+        .benefit-card:hover::before { opacity: 0.8; }
+        .benefit-card:nth-child(1) { --highlight-color: rgba(255,215,0,0.3); }
+        .benefit-card:nth-child(2) { --highlight-color: rgba(255,105,180,0.3); }
+        .benefit-card:nth-child(3) { --highlight-color: rgba(100,200,255,0.3); }
+        .benefit-card:nth-child(4) { --highlight-color: rgba(144,238,144,0.3); }
+        .benefit-card:nth-child(5) { --highlight-color: rgba(255,165,0,0.3); }
+        .benefit-card:nth-child(6) { --highlight-color: rgba(221,160,221,0.3); }
+        .benefit-icon { font-size: 2rem; flex-shrink: 0; }
+        .benefit-card h3 { color: #000; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .benefit-card p { color: #333; line-height: 1.5; margin: 0; }
+        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; justify-items: center; }
+        .faculty-card:nth-child(1), .faculty-card:nth-child(2) { background: #ffffff; padding: 1.5rem; border-radius: 20px; border: none; text-align: center; transition: all 0.3s ease; width: 300px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+        .faculty-card:nth-child(1):hover, .faculty-card:nth-child(2):hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+        .faculty-card:nth-child(1) .faculty-photo, .faculty-card:nth-child(2) .faculty-photo { width: 220px; height: 220px; border-radius: 15px; object-fit: cover; object-position: center; display: block; order: 1; }
+        .faculty-card:nth-child(1) .faculty-info, .faculty-card:nth-child(2) .faculty-info { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; width: 100%; order: 2; text-align: center; }
+        .faculty-card h3 { color: #000; margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 700; }
+        .faculty-card p { color: #555; font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 600px; margin: 0 auto; }
+        .gallery-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; cursor: pointer; transition: all 0.3s ease; }
+        .gallery-img-wrap { width: 130px; height: 130px; border-radius: 18px; overflow: hidden; background: transparent; box-shadow: 0 4px 15px rgba(220,20,60,0.15); transition: all 0.3s ease; }
+        .gallery-item:hover .gallery-img-wrap { transform: translateY(-6px) scale(1.05); box-shadow: 0 10px 30px rgba(220,20,60,0.25); }
+        .gallery-img-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; transition: transform 0.3s ease; }
+        .gallery-item:hover .gallery-img-wrap img { transform: scale(1.08); }
+        .gallery-label { color: #333; font-weight: 600; font-size: 0.78rem; text-align: center; padding: 0 0.2rem; }
+        .certificate { background: linear-gradient(135deg, rgba(220,20,60,0.1) 0%, rgba(220,20,60,0.05) 100%); padding: 1.5rem; border-radius: 15px; border: 2px solid #DC143C; text-align: center; max-width: 600px; margin: 0 auto; }
+        .certificate h3 { color: #000; font-size: 1.2rem; margin-bottom: 0.8rem; }
+        .certificate p { color: #666; line-height: 1.5; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        footer { background: linear-gradient(135deg, #1a1a1a, #2a1a1a); color: #e0e0e0; padding: 3rem 2rem; text-align: center; }
+        .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
+        .footer-links a { color: #FF4444; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: #ffcccc; }
         @media (max-width: 768px) {
-            nav {
-                flex-direction: row;
-                gap: 0.5rem;
-                padding: 0.75rem 1rem;
-                flex-wrap: wrap;
-            }
-
-            .nav-logo {
-                flex-direction: row;
-                gap: 0.8rem;
-            }
-
-            .nav-logo img {
-                height: 40px;
-            }
-
-            .nav-logo .miet-logo {
-                height: 40px;
-                padding: 0 0.5rem;
-            }
-
-            .nav-links {
-                flex-direction: row;
-                gap: 0.8rem;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .stat-label {
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .htbtt-form {
-                font-size: 1rem;
-            }
-
-            .hero p {
-                font-size: 0.95rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .stats-section {
-                flex-direction: row;
-                gap: 1rem;
-            }
+            nav { flex-direction: row; gap: 0.5rem; padding: 0.75rem 1rem; flex-wrap: wrap; }
+            .nav-title { font-size: clamp(0.75rem, 2.5vw, 1rem); letter-spacing: 0.5px; }
+            .nav-logo { flex-direction: row; gap: 0.8rem; }
+            .nav-logo img { height: 40px; }
+            .nav-logo .miet-logo { height: 40px; padding: 0 0.5rem; }
+            .nav-links { flex-direction: row; gap: 0.8rem; }
+            .nav-links a { font-size: 0.85rem; }
+            .hero h1 { font-size: 3rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .stats-section { flex-direction: row; gap: 1rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: 300px; }
+            .gallery-img-wrap { width: 110px; height: 110px; border-radius: 14px; }
         }
-
-        /* ── Calendar ── */
-        .calendar-wrap {
-            max-width: 560px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(220,20,60,0.12);
-            overflow: hidden;
-            border: 1.5px solid rgba(220,20,60,0.15);
-        }
-        .cal-header {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            padding: 0.7rem 0.5rem;
-        }
-        .cal-header span {
-            color: #fff;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.82rem;
-            letter-spacing: 0.5px;
-        }
-        .cal-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            padding: 0.8rem;
-            background: #fafafa;
-        }
-        .cal-day {
-            aspect-ratio: 1;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            font-size: 0.75rem;
-            transition: all 0.2s ease;
-        }
-        .day-num {
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-        .day-tag {
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-align: center;
-            line-height: 1.2;
-        }
-        .cal-day.active-day {
-            background: linear-gradient(135deg, rgba(220,20,60,0.12), rgba(220,20,60,0.05));
-            border: 2px solid #DC143C;
-            cursor: pointer;
-            color: #DC143C;
-        }
-        .cal-day.active-day:hover {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: #fff;
-            transform: scale(1.08);
-            box-shadow: 0 6px 18px rgba(220,20,60,0.35);
-        }
-        .cal-day.holiday {
-            background: linear-gradient(135deg, rgba(255,165,0,0.15), rgba(255,165,0,0.06));
-            border: 2px solid #FFA500;
-            color: #cc7000;
-        }
+        .calendar-wrap { max-width: 560px; margin: 0 auto; background: #fff; border-radius: 20px; box-shadow: 0 8px 30px rgba(220,20,60,0.12); overflow: hidden; border: 1.5px solid rgba(220,20,60,0.15); }
+        .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); background: linear-gradient(135deg, #DC143C, #8B0000); padding: 0.7rem 0.5rem; }
+        .cal-header span { color: #fff; text-align: center; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.5px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 0.8rem; background: #fafafa; }
+        .cal-day { aspect-ratio: 1; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 0.75rem; transition: all 0.2s ease; }
+        .day-num { font-size: 1rem; font-weight: 700; line-height: 1; }
+        .day-tag { font-size: 0.6rem; font-weight: 600; text-align: center; line-height: 1.2; }
+        .cal-day.active-day { background: linear-gradient(135deg, rgba(220,20,60,0.12), rgba(220,20,60,0.05)); border: 2px solid #DC143C; cursor: pointer; color: #DC143C; }
+        .cal-day.active-day:hover { background: linear-gradient(135deg, #DC143C, #8B0000); color: #fff; transform: scale(1.08); box-shadow: 0 6px 18px rgba(220,20,60,0.35); }
+        .cal-day.holiday { background: linear-gradient(135deg, rgba(255,165,0,0.15), rgba(255,165,0,0.06)); border: 2px solid #FFA500; color: #cc7000; }
         .cal-day.holiday .day-num { color: #cc7000; }
-        .cal-day.disabled {
-            background: transparent;
-            color: #ccc;
-        }
+        .cal-day.disabled { background: transparent; color: #ccc; }
         .cal-day.disabled .day-num { color: #ccc; }
-        .cal-legend {
-            padding: 0.7rem 1rem;
-            background: #fff;
-            font-size: 0.8rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            border-top: 1px solid #f0f0f0;
-        }
-        .legend-dot {
-            width: 12px; height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
+        .cal-legend { padding: 0.7rem 1rem; background: #fff; font-size: 0.8rem; color: #555; display: flex; align-items: center; justify-content: center; gap: 0.3rem; border-top: 1px solid #f0f0f0; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
         .active-dot { background: #DC143C; }
         .holiday-dot { background: #FFA500; }
         .disabled-dot { background: #ddd; }
-
-        /* ── Popup ── */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(4px);
-        }
+        .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .popup-overlay.open { display: flex; }
-        .popup-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            max-height: 85vh;
-            overflow-y: auto;
-            max-width: 480px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            animation: popIn 0.3s ease;
-        }
-        @keyframes popIn {
-            from { opacity:0; transform: scale(0.85); }
-            to   { opacity:1; transform: scale(1); }
-        }
-        .popup-close {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: #f5f5f5;
-            border: none;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #555;
-            transition: background 0.2s;
-        }
+        .popup-card { background: #fff; border-radius: 20px; padding: 2rem; max-height: 85vh; overflow-y: auto; max-width: 480px; width: 90%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2); animation: popIn 0.3s ease; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        .popup-close { position: absolute; top: 1rem; right: 1rem; background: #f5f5f5; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 0.9rem; color: #555; transition: background 0.2s; }
         .popup-close:hover { background: #DC143C; color: #fff; }
-        .popup-date-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-        .popup-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #111;
-            margin-bottom: 0.4rem;
-        }
-        .popup-subtitle {
-            font-size: 0.88rem;
-            color: #DC143C;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .popup-items {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-        }
-        .popup-items li {
-            background: #fafafa;
-            border-left: 3px solid #DC143C;
-            padding: 0.5rem 0.8rem;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.88rem;
-            color: #333;
-        }
+        .popup-date-badge { display: inline-block; background: linear-gradient(135deg, #DC143C, #8B0000); color: #fff; font-weight: 700; font-size: 0.85rem; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1rem; }
+        .popup-subtitle { font-size: 0.88rem; color: #DC143C; font-weight: 600; margin-bottom: 1rem; }
+        .popup-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+        .popup-items li { background: #fafafa; border-left: 3px solid #DC143C; padding: 0.5rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #333; }
         .popup-items li strong { color: #000; }
-
-        /* ── Share Card Modal ── */
-        #share-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(6px);
-        }
+        #share-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
         #share-modal.open { display: flex; }
-        .share-card-wrap {
-            background: #fff;
-            border-radius: 22px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 420px;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.22);
-            animation: popIn 0.28s ease;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .share-close {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: #f5f5f5;
-            border: none;
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.85rem;
-            color: #555;
-            transition: background 0.2s;
-        }
+        .share-card-wrap { background: #fff; border-radius: 22px; padding: 2rem; width: 90%; max-width: 420px; box-shadow: 0 24px 64px rgba(0,0,0,0.22); animation: popIn 0.28s ease; position: relative; max-height: 90vh; overflow-y: auto; }
+        .share-close { position: absolute; top: 1rem; right: 1rem; background: #f5f5f5; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 0.85rem; color: #555; transition: background 0.2s; }
         .share-close:hover { background: #DC143C; color: #fff; }
-        .share-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: #999;
-            margin-bottom: 12px;
-        }
-        
-        /* Preview Card with Banner */
-        .preview-banner {
-            width: 100%;
-            height: 150px;
-            border-radius: 12px;
-            margin-bottom: 1.2rem;
-            object-fit: cover;
-            display: block;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        /* Preview Card (WhatsApp style) */
-        .preview-card {
-            background: #1e1e1e;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: stretch;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-        .preview-bar {
-            width: 4px;
-            background: #25D366;
-            flex-shrink: 0;
-        }
-        .preview-body {
-            padding: 13px 14px;
-            flex: 1;
-            min-width: 0;
-        }
-        .preview-site {
-            font-size: 11px;
-            font-weight: 700;
-            color: #25D366;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        .preview-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #f1f1f1;
-            line-height: 1.3;
-            margin-bottom: 4px;
-        }
-        .preview-desc {
-            font-size: 12px;
-            color: #aaa;
-            line-height: 1.4;
-        }
-        .preview-logos {
-            width: 80px;
-            flex-shrink: 0;
-            background: #2a2a2a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px 8px;
-        }
-        .preview-logos img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: #fff;
-            padding: 2px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        .preview-logos .miet-thumb {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 800;
-            color: #DC143C;
-            letter-spacing: 0.02em;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        /* Share buttons */
-        .share-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .share-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 11px 0;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.15s;
-            text-decoration: none;
-        }
+        .share-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+        .preview-banner { width: 100%; height: 150px; border-radius: 12px; margin-bottom: 1.2rem; object-fit: cover; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .preview-card { background: #1e1e1e; border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; display: flex; align-items: stretch; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .preview-bar { width: 4px; background: #25D366; flex-shrink: 0; }
+        .preview-body { padding: 13px 14px; flex: 1; min-width: 0; }
+        .preview-site { font-size: 11px; font-weight: 700; color: #25D366; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+        .preview-title { font-size: 14px; font-weight: 700; color: #f1f1f1; line-height: 1.3; margin-bottom: 4px; }
+        .preview-desc { font-size: 12px; color: #aaa; line-height: 1.4; }
+        .preview-logos { width: 80px; flex-shrink: 0; background: #2a2a2a; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10px 8px; }
+        .preview-logos img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #fff; padding: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .miet-thumb { width: 36px; height: 36px; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: #DC143C; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .share-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .share-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 0; border: none; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.15s; text-decoration: none; }
         .share-btn:hover { opacity: 0.88; transform: translateY(-1px); }
         .share-btn.whatsapp { background: #25D366; color: #fff; }
         .share-btn.copy { background: #f0f0f0; color: #333; }
         .share-btn.twitter { background: #000; color: #fff; }
-        .share-btn.full { grid-column: 1 / -1; background: linear-gradient(135deg,#DC143C,#8B0000); color: #fff; }
-        .copy-toast {
-            display: none;
-            text-align: center;
-            font-size: 12px;
-            color: #25D366;
-            font-weight: 600;
-            margin-top: 10px;
-        }
+        .share-btn.full { grid-column: 1 / -1; background: linear-gradient(135deg, #DC143C, #8B0000); color: #fff; }
+        .copy-toast { display: none; text-align: center; font-size: 12px; color: #25D366; font-weight: 600; margin-top: 10px; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-logo">
-            <!-- Yashify Logo - First with rounded corners -->
-            <a href="https://yashifie.me/" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
-                <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="Yashify" class="yashify-logo" style="height: 45px; width: 45px; border-radius: 12px; object-fit: contain;">
+            <a href="https://yashifie.me/" target="_blank" style="display:flex;align-items:center;text-decoration:none;">
+                <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="Yashify" class="yashify-logo" style="height:45px;width:45px;border-radius:12px;object-fit:contain;">
             </a>
-            <!-- MIET Logo - Second -->
-            <img src="data:image/png;base64,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" alt="MIET" class="miet-logo" style="height: 50px; width: auto; border-right: 2px solid #ddd; padding-right: 1rem;">
+            <img src="data:image/png;base64,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" alt="MIET" class="miet-logo" style="height:50px;width:auto;border-right:2px solid #ddd;padding-right:1rem;">
         </div>
-        
-        <!-- Center Navigation Text -->
-        <div style="position: absolute; left: 57%; transform: translateX(-50%); font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 800; color: #DC143C; letter-spacing: 1px; text-transform: uppercase;">
-            SUMMER TRAINING
-        </div>
+        <div class="nav-title">SUMMER TRAINING</div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1><span style="color: #000;">H</span><span style="color: #000;">T</span><span style="color: #DC143C;">BT</span><span style="color: #000;">T</span></h1>
-            <div class="htbtt-form">Hands-on Training of Biological Tools & Techniques</div>
+            <h1><span style="color:#000;">H</span><span style="color:#000;">T</span><span style="color:#DC143C;">BT</span><span style="color:#000;">T</span></h1>
+            <div class="htbtt-form">Hands-on Training of Biological Tools &amp; Techniques</div>
             <p>Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training</p>
             <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-number">2026</div>
-                    <div class="stat-label">Program Year</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">87</div>
-                    <div class="stat-label">Students Enrolled</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Modules</div>
-                </div>
-
+                <div class="stat-card"><div class="stat-number">2026</div><div class="stat-label">Program Year</div></div>
+                <div class="stat-card"><div class="stat-number">87</div><div class="stat-label">Students Enrolled</div></div>
+                <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Modules</div></div>
             </div>
             <div class="hero-buttons">
-                <button class="btn btn-secondary" onclick="document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">📅 View Schedule</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">&#128197; View Schedule</button>
                 <button class="btn btn-primary" onclick="openShareCard()" style="display:inline-flex;align-items:center;gap:8px;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                     Share
@@ -1320,152 +208,72 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="fade-in">
         <h2>About the Institute</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Meerut Institute of Engineering & Technology (MIET) is a premier educational institution dedicated to advancing scientific research and practical knowledge in biotechnology and microbiology.</p>
-                <p>Our Hands-on Training of Biological Tools & Techniques (HTBTT) program provides students with industry-oriented practical exposure to modern biotechnology techniques, laboratory equipment, and research methodologies.</p>
+                <p>Meerut Institute of Engineering &amp; Technology (MIET) is a premier educational institution dedicated to advancing scientific research and practical knowledge in biotechnology and microbiology.</p>
+                <p>Our Hands-on Training of Biological Tools &amp; Techniques (HTBTT) program provides students with industry-oriented practical exposure to modern biotechnology techniques, laboratory equipment, and research methodologies.</p>
                 <p>This program bridges the gap between academic learning and professional practice, preparing students for careers in biotechnology, pharmaceutical, food, and healthcare industries.</p>
             </div>
             <div class="about-logos">
                 <div class="miet-info">
-                    <img src="data:image/png;base64,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" alt="MIET Logo" style="height: 100px; margin-bottom: 1rem;">
-                    <h3 style="color: #000; margin: 1rem 0;">MIET</h3>
-                    <p style="color: #333; margin-bottom: 1rem;">Meerut Institute of Engineering & Technology</p>
-                    <a href="https://miet.ac.in/" target="_blank">Visit Website →</a>
+                    <img src="data:image/png;base64,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" alt="MIET Logo" style="height:100px;margin-bottom:1rem;">
+                    <h3 style="color:#000;margin:1rem 0;">MIET</h3>
+                    <p style="color:#333;margin-bottom:1rem;">Meerut Institute of Engineering &amp; Technology</p>
+                    <a href="https://miet.ac.in/" target="_blank">Visit Website &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="fade-in">
         <h2>Training Focus Areas</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/lab.png" alt="Microbiology Lab">
-                </div>
-                <div class="gallery-label">🔬 Microbiology Lab</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/ca.png" alt="Chemical Analysis">
-                </div>
-                <div class="gallery-label">🧪 Chemical Analysis</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/fm.png" alt="Food Microbiology">
-                </div>
-                <div class="gallery-label">🍞 Food Microbiology</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/nb.png" alt="Nano Biotech">
-                </div>
-                <div class="gallery-label">🧬 Nano Biotech</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/sa.png" alt="Student Activities">
-                </div>
-                <div class="gallery-label">👥 Student Activities</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img-wrap">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/aw.png" alt="Analysis Work">
-                </div>
-                <div class="gallery-label">📊 Analysis Work</div>
-            </div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/lab.png" alt="Microbiology Lab"></div><div class="gallery-label">&#128300; Microbiology Lab</div></div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/ca.png" alt="Chemical Analysis"></div><div class="gallery-label">&#129514; Chemical Analysis</div></div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/fm.png" alt="Food Microbiology"></div><div class="gallery-label">&#127838; Food Microbiology</div></div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/nb.png" alt="Nano Biotech"></div><div class="gallery-label">&#129516; Nano Biotech</div></div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/sa.png" alt="Student Activities"></div><div class="gallery-label">&#128101; Student Activities</div></div>
+            <div class="gallery-item"><div class="gallery-img-wrap"><img src="https://raw.githubusercontent.com/tushaar01/yashify/56ec7d1f061692a881f1d85f4b776ce17f519e56/course/aw.png" alt="Analysis Work"></div><div class="gallery-label">&#128202; Analysis Work</div></div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section class="fade-in">
         <h2>Training Benefits</h2>
         <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">👐</div>
-                <div>
-                    <h3>Hands-on Experience</h3>
-                    <p>Direct practical experience with modern laboratory equipment and techniques.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🔍</div>
-                <div>
-                    <h3>Research Exposure</h3>
-                    <p>Exposure to current research methodologies in biotechnology and microbiology.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📋</div>
-                <div>
-                    <h3>Scientific Documentation</h3>
-                    <p>Learn to document experiments and findings in professional scientific manner.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🏆</div>
-                <div>
-                    <h3>Laboratory Skills</h3>
-                    <p>Master essential laboratory skills required in professional biotech industries.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💡</div>
-                <div>
-                    <h3>Biotech Applications</h3>
-                    <p>Understand practical applications of biotechnology in real-world scenarios.</p>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🦠</div>
-                <div>
-                    <h3>Micro Applications</h3>
-                    <p>Gain insights into microbiology applications in food, pharma, and healthcare.</p>
-                </div>
-            </div>
+            <div class="benefit-card"><div class="benefit-icon">&#128080;</div><div><h3>Hands-on Experience</h3><p>Direct practical experience with modern laboratory equipment and techniques.</p></div></div>
+            <div class="benefit-card"><div class="benefit-icon">&#128269;</div><div><h3>Research Exposure</h3><p>Exposure to current research methodologies in biotechnology and microbiology.</p></div></div>
+            <div class="benefit-card"><div class="benefit-icon">&#128203;</div><div><h3>Scientific Documentation</h3><p>Learn to document experiments and findings in professional scientific manner.</p></div></div>
+            <div class="benefit-card"><div class="benefit-icon">&#127942;</div><div><h3>Laboratory Skills</h3><p>Master essential laboratory skills required in professional biotech industries.</p></div></div>
+            <div class="benefit-card"><div class="benefit-icon">&#128161;</div><div><h3>Biotech Applications</h3><p>Understand practical applications of biotechnology in real-world scenarios.</p></div></div>
+            <div class="benefit-card"><div class="benefit-icon">&#129418;</div><div><h3>Micro Applications</h3><p>Gain insights into microbiology applications in food, pharma, and healthcare.</p></div></div>
         </div>
     </section>
 
-    <!-- Faculty Section -->
     <section class="fade-in">
         <h2>Faculty Coordinators</h2>
         <div class="faculty-grid">
             <div class="faculty-card">
                 <img src="https://raw.githubusercontent.com/tushaar01/yashify/6b44e0c4492f75d429a2d04a6c37508de2ededff/course/dr_g.png" alt="Dr. Gourav Mishra" class="faculty-photo">
-                <div class="faculty-info">
-                    <h3>Dr. Gourav Mishra</h3>
-                    <p><strong>Associate Professor</strong></p>
-                    <p>Biotechnology</p>
-                </div>
+                <div class="faculty-info"><h3>Dr. Gourav Mishra</h3><p><strong>Associate Professor</strong></p><p>Biotechnology</p></div>
             </div>
             <div class="faculty-card">
                 <img src="https://raw.githubusercontent.com/tushaar01/yashify/6b44e0c4492f75d429a2d04a6c37508de2ededff/course/dr_r.png" alt="Dr. Rekha Yadav" class="faculty-photo">
-                <div class="faculty-info">
-                    <h3>Dr. Rekha Yadav</h3>
-                    <p><strong>Assistant Professor</strong></p>
-                    <p>Microbiology</p>
-                </div>
+                <div class="faculty-info"><h3>Dr. Rekha Yadav</h3><p><strong>Assistant Professor</strong></p><p>Microbiology</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Certificate Section -->
     <section class="fade-in">
         <h2>Certificate of Completion</h2>
         <div class="certificate">
-            <h3>🎓 Certificate of Achievement</h3>
-            <p>This certificate is awarded to participants successfully completing the Hands-on Training of Biological Tools & Techniques (HTBTT-2026) program with required attendance and practical participation.</p>
-            <p style="color: #DC143C; font-weight: 600;">Meerut Institute of Engineering & Technology</p>
+            <h3>&#127891; Certificate of Achievement</h3>
+            <p>This certificate is awarded to participants successfully completing the Hands-on Training of Biological Tools &amp; Techniques (HTBTT-2026) program with required attendance and practical participation.</p>
+            <p style="color:#DC143C;font-weight:600;">Meerut Institute of Engineering &amp; Technology</p>
         </div>
     </section>
 
-    <!-- Calendar Section -->
     <section id="calendar-section" class="fade-in">
         <h2>June 2026 Schedule</h2>
         <div class="calendar-wrap">
@@ -1473,38 +281,16 @@
                 <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
             </div>
             <div class="cal-grid">
-                <!-- Empty cells before June 1 (June 1 = Monday) -->
-                <div class="cal-day active-day" onclick="openPopup(1)">
-                    <span class="day-num">1</span>
-                    <span class="day-tag">Day 1</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(2)">
-                    <span class="day-num">2</span>
-                    <span class="day-tag">Day 2</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(3)">
-                    <span class="day-num">3</span>
-                    <span class="day-tag">Day 3</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(4)">
-                    <span class="day-num">4</span>
-                    <span class="day-tag">Day 4</span>
-                </div>
-                <div class="cal-day active-day" onclick="openPopup(5)">
-                    <span class="day-num">5</span>
-                    <span class="day-tag">Day 5</span>
-                </div>
-                <div class="cal-day holiday">
-                    <span class="day-num">6</span>
-                    <span class="day-tag">Holiday 🎉</span>
-                </div>
-                <div class="cal-day holiday">
-                    <span class="day-num">7</span>
-                    <span class="day-tag">Holiday 🎉</span>
-                </div>
-                <div class="cal-day disabled"><span class="day-num">8</span></div>
-                <div class="cal-day disabled"><span class="day-num">9</span></div>
-                <div class="cal-day disabled"><span class="day-num">10</span></div>
+                <div class="cal-day active-day" onclick="openPopup(1)"><span class="day-num">1</span><span class="day-tag">Day 1</span></div>
+                <div class="cal-day active-day" onclick="openPopup(2)"><span class="day-num">2</span><span class="day-tag">Day 2</span></div>
+                <div class="cal-day active-day" onclick="openPopup(3)"><span class="day-num">3</span><span class="day-tag">Day 3</span></div>
+                <div class="cal-day active-day" onclick="openPopup(4)"><span class="day-num">4</span><span class="day-tag">Day 4</span></div>
+                <div class="cal-day active-day" onclick="openPopup(5)"><span class="day-num">5</span><span class="day-tag">Day 5</span></div>
+                <div class="cal-day holiday"><span class="day-num">6</span><span class="day-tag">Holiday &#127881;</span></div>
+                <div class="cal-day holiday"><span class="day-num">7</span><span class="day-tag">Holiday &#127881;</span></div>
+                <div class="cal-day active-day" onclick="openPopup(8)"><span class="day-num">8</span><span class="day-tag">Day 8</span></div>
+                <div class="cal-day active-day" onclick="openPopup(9)"><span class="day-num">9</span><span class="day-tag">Day 9</span></div>
+                <div class="cal-day active-day" onclick="openPopup(10)"><span class="day-num">10</span><span class="day-tag">Day 10</span></div>
                 <div class="cal-day disabled"><span class="day-num">11</span></div>
                 <div class="cal-day disabled"><span class="day-num">12</span></div>
                 <div class="cal-day disabled"><span class="day-num">13</span></div>
@@ -1534,291 +320,52 @@
         </div>
     </section>
 
-    <!-- Popup Modal -->
     <div id="day-popup" class="popup-overlay" onclick="closePopup(event)">
         <div class="popup-card">
-            <button class="popup-close" onclick="closePopup()">✕</button>
+            <button class="popup-close" onclick="closePopup()">&#x2715;</button>
             <div id="popup-content"></div>
         </div>
     </div>
 
-    <!-- Contact Section -->
     <section id="contact" class="fade-in">
         <h2>Contact Information</h2>
-        <div style="text-align: center; padding: 3rem; background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.05) 100%); border-radius: 15px; border: 2px solid rgba(220, 20, 60, 0.2); max-width: 700px; margin: 0 auto;">
-            <p style="font-size: 1.3rem; color: #000; font-weight: 600; line-height: 2; margin: 0;">
-                🔔 If anyone needs any help or information, please visit the HOD Office or contact your Guide <br>
-                📞 For any assistance, feel free to reach out
+        <div style="text-align:center;padding:3rem;background:linear-gradient(135deg,rgba(220,20,60,0.1) 0%,rgba(220,20,60,0.05) 100%);border-radius:15px;border:2px solid rgba(220,20,60,0.2);max-width:700px;margin:0 auto;">
+            <p style="font-size:1.3rem;color:#000;font-weight:600;line-height:2;margin:0;">
+                &#128276; If anyone needs any help or information, please visit the HOD Office or contact your Guide <br>
+                &#128222; For any assistance, feel free to reach out
             </p>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p style="font-size: 1.1rem; color: #FF4444; margin-bottom: 1rem;">HTBTT-2026 | Hands-on Training Program</p>
+        <p style="font-size:1.1rem;color:#FF4444;margin-bottom:1rem;">HTBTT-2026 | Hands-on Training Program</p>
         <div class="footer-links">
             <a href="#about">About Program</a>
             <a href="#calendar-section">Schedule</a>
             <a href="#contact">Contact</a>
             <a href="https://miet.ac.in/" target="_blank">MIET Website</a>
         </div>
-        <p style="margin-top: 2rem; font-style: italic;">🧬 Designed for Future Biotechnologists & Microbiologists 🧬</p>
-        <p style="font-size: 0.9rem; margin-top: 1rem;">© 2026 MIET Department of Biotechnology & Microbiology. All rights reserved.</p>
+        <p style="margin-top:2rem;font-style:italic;">&#129516; Designed for Future Biotechnologists &amp; Microbiologists &#129516;</p>
+        <p style="font-size:0.9rem;margin-top:1rem;">&copy; 2026 MIET Department of Biotechnology &amp; Microbiology. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Calendar popup data
-        const dayData = {
-            1: {
-                title: "Day 01 — June 1, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Intro to Food Microbiology & Lab Sterilization Essentials" },
-                            { label: "🔬 Instruments", value: "Autoclave, Laminar Air Flow (LAF), & Hot Air Oven" },
-                            { label: "⚙️ Activity", value: "Step-by-step operation & safety process of Vertical Autoclave" },
-                            { label: "🎯 Outcomes", value: "Understood lab equipment usage & sterilization principles" }
-                        ]
-                    },
-                    {
-                        status: "red",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "⚠️ Status", value: "No class scheduled / Faculty unavailable for Day 01" }
-                        ]
-                    }
-                ]
-            },
-            2: {
-                title: "Day 02 — June 2, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Media Preparation & Milk Quality Testing" },
-                            { label: "🔬 Instruments", value: "Conical Flasks, Petri Dishes, Pipettes, & Colony Counter" },
-                            { label: "⚙️ Activity", value: "Detection of bacteria in milk using SPC (Standard Plate Count) method" },
-                            { label: "🎯 Outcomes", value: "Mastered agar media preparation and learned to quantify bacterial load in dairy samples" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Introduction to Nanobiotechnology & Material Synthesis" },
-                            { label: "🔬 Instruments", value: "Nanomaterial characterization basics (Introductory)" },
-                            { label: "⚙️ Activity", value: "Nanobiotechnology branches & Nanomaterial Formation approaches (Top-Down vs. Bottom-Up)" },
-                            { label: "🎯 Outcomes", value: "Understood the scale of nanotechnology and difference between fabrication methodologies" }
-                        ]
-                    }
-                ]
-            },
-            3: {
-                title: "Day 03 — June 3, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Milk Quality Analysis (Continuation)" },
-                            { label: "🔬 Instruments", value: "Colony Counter, Incubator, & Pipettes" },
-                            { label: "⚙️ Activity", value: "Continued SPC experiment — observed & counted bacterial colonies after incubation" },
-                            { label: "🎯 Outcomes", value: "Learned to calculate CFU/ml to determine milk freshness and contamination levels" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Chemical Synthesis & Characterization of Nanoparticles" },
-                            { label: "🔬 Instruments", value: "UV-Visible Spectrophotometer (HACH, Model: DR 6000)" },
-                            { label: "⚙️ Activity", value: "Synthesis of Silver Nanoparticles (AgNPs) via Sol-Gel method + UV-Vis absorbance analysis" },
-                            { label: "🎯 Outcomes", value: "Understood chemical synthesis of nanomaterials & verification using UV-Vis optical properties" }
-                        ]
-                    }
-                ]
-            },
-            4: {
-                title: "Day 04 — June 4, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Water Microbiology & Coliform Detection" },
-                            { label: "🔬 Instruments", value: "Test Tubes, Durham's Tubes, Incubator, & MacConkey/Lactose Broth Media" },
-                            { label: "⚙️ Activity", value: "Estimation of coliform bacteria in water sample using MPN (Most Probable Number) method" },
-                            { label: "🎯 Outcomes", value: "Learned presumptive tests for water quality assessment & interpretation of MPN index tables" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Green Synthesis / Eco-friendly Nanomaterials" },
-                            { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, Heating Mantle, & Plant/Leaf Extracts" },
-                            { label: "⚙️ Activity", value: "Experiment 2: Biological (Green) Synthesis of AgNPs using plant extracts as reducing agents" },
-                            { label: "🎯 Outcomes", value: "Understood advantages of eco-friendly synthesis over chemical methods (less toxic, cost-effective)" }
-                        ]
-                    }
-                ]
-            },
-            5: {
-                title: "Day 05 — June 5, 2026",
-                subtitle: "2 Classes Scheduled",
-                classes: [
-                    {
-                        status: "green",
-                        subject: "🍞 Food Microbiology",
-                        items: [
-                            { label: "📌 Topic", value: "Complete 3-Step MPN Testing & Practical Execution" },
-                            { label: "🔬 Instruments", value: "Autoclave, LAF, Incubator, & EMB Agar Plates" },
-                            { label: "⚙️ Activity", value: "Full MPN sequence: Presumptive Test → Confirmed Test (EMB Agar) → Completed Test (BGLB + NAM Slant)" },
-                            { label: "🎯 Outcomes", value: "Mastered full identification pipeline of Coliforms (E. coli) in water samples" }
-                        ]
-                    },
-                    {
-                        status: "green",
-                        subject: "🧬 Nanobiotechnology",
-                        items: [
-                            { label: "📌 Topic", value: "Synthesis of Zinc Oxide (ZnO) Nanoparticles — Precipitation Method" },
-                            { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, & Eppendorf Tubes" },
-                            { label: "⚙️ Activity", value: "Chemical precipitation of ZnO using NaOH, Starch & Deionized Water (Exp 2 AgNPs failed)" },
-                            { label: "🎯 Outcomes", value: "Generated ZnO precipitate. Next: Calcination → Eppendorf transfer → Ultrasonication → Application testing" }
-                        ]
-                    }
-                ]
-            }
-        };
-
-        function openPopup(day) {
-            const data = dayData[day];
-            if (!data) return;
-            const el = document.getElementById('popup-content');
-            const classesHTML = data.classes.map(cls => {
-                const borderColor = cls.status === 'red' ? '#e53935' : '#2e7d32';
-                const bgColor = cls.status === 'red' ? 'rgba(229,57,53,0.06)' : 'rgba(46,125,50,0.06)';
-                const dot = cls.status === 'red' ? '🔴' : '🟢';
-                return `
-                <div style="border:1.5px solid ${borderColor}; background:${bgColor}; border-radius:12px; padding:0.85rem; margin-bottom:0.8rem;">
-                    <div style="font-weight:700; font-size:0.95rem; color:${borderColor}; margin-bottom:0.6rem;">${dot} ${cls.subject}</div>
-                    <ul class="popup-items">
-                        ${cls.items.map(i => `<li><strong>${i.label}:</strong> ${i.value}</li>`).join('')}
-                    </ul>
-                </div>`;
-            }).join('');
-            el.innerHTML = `
-                <div class="popup-date-badge">📅 ${data.title}</div>
-                <div class="popup-subtitle" style="margin-bottom:1rem;">${data.subtitle}</div>
-                ${classesHTML}
-            `;
-            document.getElementById('day-popup').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePopup(e) {
-            if (!e || e.target === document.getElementById('day-popup') || e.target.classList.contains('popup-close')) {
-                document.getElementById('day-popup').classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        }
-
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup({target: document.getElementById('day-popup')}); });
-
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const toggle = document.querySelector('.theme-toggle');
-            toggle.classList.toggle('active');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            document.querySelector('.theme-toggle').classList.add('active');
-        }
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Tracker functionality
-        function addTrackerEntry() {
-            const date = document.getElementById('date').value;
-            const topic = document.getElementById('topic').value;
-            const experiment = document.getElementById('experiment').value;
-            const instruments = document.getElementById('instruments').value;
-            const observations = document.getElementById('observations').value;
-
-            if (date && topic && experiment) {
-                alert('✅ Progress recorded successfully!\n\nDate: ' + date + '\nTopic: ' + topic + '\nExperiment: ' + experiment);
-                document.getElementById('date').value = '';
-                document.getElementById('topic').value = '';
-                document.getElementById('experiment').value = '';
-                document.getElementById('instruments').value = '';
-                document.getElementById('observations').value = '';
-            } else {
-                alert('⚠️ Please fill in all required fields (Date, Topic, Experiment)');
-            }
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({behavior: 'smooth'});
-                }
-            });
-        });
-    </script>
-    <!-- Share Card Modal -->
     <div id="share-modal" onclick="closeShareCard(event)">
         <div class="share-card-wrap">
-            <button class="share-close" onclick="closeShareCard()">✕</button>
+            <button class="share-close" onclick="closeShareCard()">&#x2715;</button>
             <div class="share-label">Share this page</div>
-
-            <!-- Preview with Banner Image -->
             <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="HTBTT-2026 Banner" class="preview-banner">
-            
-            <!-- Preview Card (WhatsApp style) -->
             <div class="preview-card">
                 <div class="preview-bar"></div>
                 <div class="preview-body">
-                    <div class="preview-site">yashifie.me × miet</div>
+                    <div class="preview-site">yashifie.me x miet</div>
                     <div class="preview-title">HTBTT-2026 | Hands-on Biotechnology Training</div>
                     <div class="preview-desc">Practical Exposure to Modern Biotechnology and Microbiology Techniques Through Industry-Oriented Hands-on Training.</div>
                 </div>
                 <div class="preview-logos">
-                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="Yashifie" 
-                         style="width:36px; height:36px; border-radius:8px; object-fit:cover; background:#fff; padding:2px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+                    <img src="https://raw.githubusercontent.com/tushaar01/yashify/8993812d43333e8bccb159113bee87697be54852/icone.jpg" alt="Yashifie" style="width:36px;height:36px;border-radius:8px;object-fit:cover;background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
                     <div class="miet-thumb">MIET</div>
                 </div>
             </div>
-
-            <!-- Share Buttons -->
             <div class="share-buttons">
                 <a class="share-btn whatsapp" id="wa-btn" href="#" target="_blank">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1837,20 +384,63 @@
                     More Options
                 </button>
             </div>
-            <div class="copy-toast" id="copy-toast">✅ Link copied!</div>
+            <div class="copy-toast" id="copy-toast">&#9989; Link copied!</div>
         </div>
     </div>
 
     <script>
+        const dayData = {
+            1: { title: "Day 01 — June 1, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "Intro to Food Microbiology & Lab Sterilization Essentials" }, { label: "🔬 Instruments", value: "Autoclave, Laminar Air Flow (LAF), & Hot Air Oven" }, { label: "⚙️ Activity", value: "Step-by-step operation & safety process of Vertical Autoclave" }, { label: "🎯 Outcomes", value: "Understood lab equipment usage & sterilization principles" }] }, { status: "red", subject: "🧬 Nanobiotechnology", items: [{ label: "⚠️ Status", value: "No class scheduled / Faculty unavailable for Day 01" }] }] },
+            2: { title: "Day 02 — June 2, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "Media Preparation & Milk Quality Testing" }, { label: "🔬 Instruments", value: "Conical Flasks, Petri Dishes, Pipettes, & Colony Counter" }, { label: "⚙️ Activity", value: "Detection of bacteria in milk using SPC (Standard Plate Count) method" }, { label: "🎯 Outcomes", value: "Mastered agar media preparation and learned to quantify bacterial load in dairy samples" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "Introduction to Nanobiotechnology & Material Synthesis" }, { label: "🔬 Instruments", value: "Nanomaterial characterization basics (Introductory)" }, { label: "⚙️ Activity", value: "Nanobiotechnology branches & Nanomaterial Formation approaches (Top-Down vs. Bottom-Up)" }, { label: "🎯 Outcomes", value: "Understood the scale of nanotechnology and difference between fabrication methodologies" }] }] },
+            3: { title: "Day 03 — June 3, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "Milk Quality Analysis (Continuation)" }, { label: "🔬 Instruments", value: "Colony Counter, Incubator, & Pipettes" }, { label: "⚙️ Activity", value: "Continued SPC experiment — observed & counted bacterial colonies after incubation" }, { label: "🎯 Outcomes", value: "Learned to calculate CFU/ml to determine milk freshness and contamination levels" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "Chemical Synthesis & Characterization of Nanoparticles" }, { label: "🔬 Instruments", value: "UV-Visible Spectrophotometer (HACH, Model: DR 6000)" }, { label: "⚙️ Activity", value: "Synthesis of Silver Nanoparticles (AgNPs) via Sol-Gel method + UV-Vis absorbance analysis" }, { label: "🎯 Outcomes", value: "Understood chemical synthesis of nanomaterials & verification using UV-Vis optical properties" }] }] },
+            4: { title: "Day 04 — June 4, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "Water Microbiology & Coliform Detection" }, { label: "🔬 Instruments", value: "Test Tubes, Durham's Tubes, Incubator, & MacConkey/Lactose Broth Media" }, { label: "⚙️ Activity", value: "Estimation of coliform bacteria in water sample using MPN (Most Probable Number) method" }, { label: "🎯 Outcomes", value: "Learned presumptive tests for water quality assessment & interpretation of MPN index tables" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "Green Synthesis / Eco-friendly Nanomaterials" }, { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, Heating Mantle, & Plant/Leaf Extracts" }, { label: "⚙️ Activity", value: "Experiment 2: Biological (Green) Synthesis of AgNPs using plant extracts as reducing agents" }, { label: "🎯 Outcomes", value: "Understood advantages of eco-friendly synthesis over chemical methods (less toxic, cost-effective)" }] }] },
+            5: { title: "Day 05 — June 5, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "Complete 3-Step MPN Testing & Practical Execution" }, { label: "🔬 Instruments", value: "Autoclave, LAF, Incubator, & EMB Agar Plates" }, { label: "⚙️ Activity", value: "Full MPN sequence: Presumptive Test → Confirmed Test (EMB Agar) → Completed Test (BGLB + NAM Slant)" }, { label: "🎯 Outcomes", value: "Mastered full identification pipeline of Coliforms (E. coli) in water samples" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "Synthesis of Zinc Oxide (ZnO) Nanoparticles — Precipitation Method" }, { label: "🔬 Instruments", value: "Beakers, Magnetic Stirrer, & Eppendorf Tubes" }, { label: "⚙️ Activity", value: "Chemical precipitation of ZnO using NaOH, Starch & Deionized Water (Exp 2 AgNPs failed)" }, { label: "🎯 Outcomes", value: "Generated ZnO precipitate. Next: Calcination → Eppendorf transfer → Ultrasonication → Application testing" }] }] },
+            8: { title: "Day 08 — June 8, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "MPN Experiment 03 — Confirmed Test" }, { label: "🔬 Instruments", value: "EMB Agar (Endo Agar) Plates, Conical Flask, Autoclave, Petri Dishes, Incubator" }, { label: "⚙️ Activity", value: "Flask mein 7.2 gm EMB media + 200 ml distilled water dissolve kiya → Petri plates mein <20 ml pour kiya (6–9 plates) → Autoclave → Pouring → 10 min wait → Incubator shift" }, { label: "🎯 Outcomes", value: "EMB agar plates prepared for Confirmed Test — 2 days incubation awaited for colony observation" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "ZnO Nanoparticles — Centrifugation & Washing Steps" }, { label: "🔬 Instruments", value: "Centrifuge Machine, Ethanol, Ultra-pure Milli-Q Water" }, { label: "⚙️ Activity", value: "Zinc Hydroxide solution ko 3–4 times centrifuge kiya (water discard) + 1–2 times ethanol wash. Lab Precautions: (a) Only ultra-pure Milli-Q water use karein, (b) Gloves & vacuum cleaning during washing, (c) Filter paper/cotton se clean na karein, (d) Glassware dry karne ke liye only Hot Air Oven" }, { label: "🎯 Outcomes", value: "Zinc Hydroxide properly washed & purified. Learned critical lab precautions for nanoparticle synthesis" }] }] },
+            10: { title: "Day 10 — June 10, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "BGLB & NAM Media Preparation from Scratch" }, { label: "🔬 Instruments", value: "Hot Plate, Test Tubes, Durham Tubes, Autoclave, NAM Slant" }, { label: "⚙️ Activity", value: "BGLB dept mein available nahi tha, toh composition se banaya: Peptone 1.0g + Lactose 1.0g + Bile Salt 2.0g + Brilliant Green 0.00003g (pinch) + 100ml distilled water. NAM bhi prepare kiya. Dono ko hot plate pe dissolve kiya → Test tubes mein 10ml fill kiya → BGLB mein Durham tube daali, NAM mein nahi → Autoclave kiya → NAM ko slant kiya" }, { label: "🎯 Outcomes", value: "BGLB & NAM media successfully prepared from raw composition. Next step: Inoculation aur incubation next day" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "Disk Diffusion Assay — MHA Preparation & Hole Punching" }, { label: "🔬 Instruments", value: "MHA (Mueller Hinton Agar), Autoclave, Petri Dishes, Cork Borer / Hole Puncher, Sonicated ZnO Nanoparticles, Distilled Water" }, { label: "⚙️ Activity", value: "MHA prepared: 80ml deionized water + 3.04g MHA → Autoclave → 3 Petri dishes mein pouring ki → Set hone ke baad 2 holes kiye → Hole 1 mein distilled water (control) → Hole 2 mein sonicated Zinc Hydroxide nanoparticles daale" }, { label: "🎯 Outcomes", value: "Disk diffusion assay setup complete. Next day results observe karne hain — ZnO NPs ki antibacterial activity vs E. coli dikhegi" }] }] },
+            9: { title: "Day 09 — June 9, 2026", subtitle: "2 Classes Scheduled", classes: [{ status: "green", subject: "🍞 Food Microbiology", items: [{ label: "📌 Topic", value: "MPN Experiment 03 — Completed Test" }, { label: "🔬 Instruments", value: "BGLB (Brilliant Green Lactose Bile Broth), Durham Tubes, Inoculation Loop, NAM Slant, EMB Agar Plate, Incubator" }, { label: "⚙️ Activity", value: "Test Tube 1: 10 ml BGLB + Durham tube → loop se EMB colony sample add → 24 hr incubation. Test Tube 2: NAM media slant → 1 colony from EMB agar add kiya" }, { label: "🎯 Outcomes", value: "Completed Test executed — final step of MPN pipeline to confirm & isolate Coliform (E. coli) identity" }] }, { status: "green", subject: "🧬 Nanobiotechnology", items: [{ label: "📌 Topic", value: "ZnO Drying + New Experiment: Disk Diffusion Antibacterial Assay" }, { label: "🔬 Instruments", value: "Hot Air Oven, Flask, Nutrition Broth, Autoclave, Laminar Air Flow (LAF)" }, { label: "⚙️ Activity", value: "ZnO Hydroxide ko Hot Air Oven mein 1–2 din ke liye rakha. New Experiment: Aim — Disk Diffusion Antibacterial Activity of ZnO NPs against E. coli. Flask mein 50 ml E. coli + 5 ml Nutrition Broth → Autoclave → LAF → Pouring done. Next day: plates mein holes karke ZnO NPs apply karna hai" }, { label: "🎯 Outcomes", value: "ZnO drying in progress. Antibacterial assay setup complete — results pending after next session" }] }] }
+        };
+
+        function openPopup(day) {
+            const data = dayData[day];
+            if (!data) return;
+            const el = document.getElementById('popup-content');
+            const classesHTML = data.classes.map(cls => {
+                const borderColor = cls.status === 'red' ? '#e53935' : '#2e7d32';
+                const bgColor = cls.status === 'red' ? 'rgba(229,57,53,0.06)' : 'rgba(46,125,50,0.06)';
+                const dot = cls.status === 'red' ? '🔴' : '🟢';
+                return `<div style="border:1.5px solid ${borderColor};background:${bgColor};border-radius:12px;padding:0.85rem;margin-bottom:0.8rem;"><div style="font-weight:700;font-size:0.95rem;color:${borderColor};margin-bottom:0.6rem;">${dot} ${cls.subject}</div><ul class="popup-items">${cls.items.map(i => `<li><strong>${i.label}:</strong> ${i.value}</li>`).join('')}</ul></div>`;
+            }).join('');
+            el.innerHTML = `<div class="popup-date-badge">📅 ${data.title}</div><div class="popup-subtitle" style="margin-bottom:1rem;">${data.subtitle}</div>${classesHTML}`;
+            document.getElementById('day-popup').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup(e) {
+            if (!e || e.target === document.getElementById('day-popup') || e.target.classList.contains('popup-close')) {
+                document.getElementById('day-popup').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup({target: document.getElementById('day-popup')}); });
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({behavior:'smooth'}); });
+        });
+
         const SHARE_URL = window.location.href;
         const SHARE_TITLE = 'HTBTT-2026 | Hands-on Biotechnology Training';
-        const SHARE_TEXT = 'Check out HTBTT-2026 — Hands-on Biotech Training at MIET × Yashifie.me 🧬🔬';
+        const SHARE_TEXT = 'Check out HTBTT-2026 — Hands-on Biotech Training at MIET x Yashifie.me 🧬🔬';
 
         function openShareCard() {
-            document.getElementById('wa-btn').href = 
-                'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
-            document.getElementById('tw-btn').href = 
-                'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT) + '&url=' + encodeURIComponent(SHARE_URL);
+            document.getElementById('wa-btn').href = 'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
+            document.getElementById('tw-btn').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT) + '&url=' + encodeURIComponent(SHARE_URL);
             document.getElementById('share-modal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -1868,11 +458,8 @@
             });
         }
         function nativeShare() {
-            if (navigator.share) {
-                navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: SHARE_URL });
-            } else {
-                copyLink();
-            }
+            if (navigator.share) { navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: SHARE_URL }); }
+            else { copyLink(); }
         }
     </script>
 </body>
