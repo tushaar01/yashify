@@ -246,20 +246,13 @@
 
 
 <script>
-
-
-
-
 const BOOKS = [
-
-‎ { 
-‎    title: "Hunting Adeline", 
-‎    author: "H.D. Carlton", 
-‎    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/HD.jpeg",
-‎    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Hunting_Adeline.pdf" 
-‎  },
-‎
-
+  { 
+    title: "Hunting Adeline", 
+    author: "H.D. Carlton", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/HD.jpeg",
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Hunting_Adeline.pdf" 
+  },
   { 
     title: "White Nights", 
     author: "Fyodor Dostoevsky", 
@@ -292,8 +285,13 @@ const BOOKS = [
   }
 ];
 
+
+
+
+
+
 const shelf = document.getElementById('shelf');
-shelf.innerHTML = ''; // Pehle ka content clear karne ke liye
+shelf.innerHTML = ''; 
 
 BOOKS.forEach(book => {
   const card = document.createElement('div');
@@ -308,6 +306,112 @@ BOOKS.forEach(book => {
   card.querySelector('.book-cover').addEventListener('click', () => openModal(book));
   shelf.appendChild(card);
 });
+
+/* Empty placeholder slots */
+for(let i=0; i<2; i++){
+  const card = document.createElement('div');
+  card.className = 'book-card';
+  card.innerHTML = `
+    <div class="book-cover empty-slot">
+      <span class="icon">🤍</span>
+      <h3>Empty</h3>
+    </div>
+    <div class="book-title" style="color:var(--ink-soft);">Add a book</div>
+    <div class="book-author">&nbsp;</div>
+  `;
+  shelf.appendChild(card);
+}
+
+/* Reading modal */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalBox = document.getElementById('modalBox');
+const modalFrame = document.getElementById('modalFrame');
+const modalTitle = document.getElementById('modalTitle');
+const modalOpenNew = document.getElementById('modalOpenNew');
+const modalLoading = document.getElementById('modalLoading');
+
+function stripGutenbergBoilerplate(html, url){
+  const startMarker = /\*\*\*\s*START OF THE PROJECT GUTENBERG EBOOK[^*]*\*\*\*/i;
+  const endMarker   = /\*\*\*\s*END OF THE PROJECT GUTENBERG EBOOK[^*]*\*\*\*/i;
+
+  const startMatch = html.match(startMarker);
+  let body = html;
+  let searchFrom = 0;
+
+  if(startMatch){
+    searchFrom = startMatch.index + startMatch[0].length;
+    body = html.slice(searchFrom);
+  }
+
+  const endMatch = body.match(endMarker);
+  if(endMatch){
+    body = body.slice(0, endMatch.index);
+  }
+
+  const baseDir = url.substring(0, url.lastIndexOf('/') + 1);
+
+  return `<!DOCTYPE html><html><head><meta charset="utf-8">
+<base href="${baseDir}">
+<style>
+  body{ font-family: Georgia, 'Times New Roman', serif; line-height:1.75; max-width:720px; margin:0 auto; padding:48px 24px 100px; color:#2b2233; background:#fffaf3; }
+  h1,h2,h3{ font-family:'Fredoka', sans-serif; }
+  img{ max-width:100%; height:auto; }
+  a{ color:#E86A93; }
+</style>
+</head><body>${body}</body></html>`;
+}
+
+async function openModal(book){
+  modalTitle.textContent = book.title + ' — ' + book.author;
+  modalOpenNew.href = book.url;
+  modalLoading.style.display = 'flex';
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalFrame.removeAttribute('src');
+  modalFrame.removeAttribute('srcdoc');
+
+  // Handle PDF files directly
+  if (book.url.endsWith('.pdf')) {
+    modalFrame.src = book.url;
+    modalLoading.style.display = 'none';
+    return;
+  }
+
+  try {
+    const res = await fetch(book.url);
+    if(!res.ok) throw new Error('fetch failed');
+    const rawHtml = await res.text();
+    const cleaned = stripGutenbergBoilerplate(rawHtml, book.url);
+    modalFrame.srcdoc = cleaned;
+    modalLoading.style.display = 'none';
+  } catch(err) {
+    modalFrame.src = book.url;
+  }
+}
+
+modalFrame.addEventListener('load', ()=>{ modalLoading.style.display = 'none'; });
+
+function closeModal(){
+  modalOverlay.classList.remove('open');
+  modalBox.classList.remove('maximized');
+  modalFrame.removeAttribute('src');
+  modalFrame.removeAttribute('srcdoc');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e=>{ if(e.target === modalOverlay) closeModal(); });
+window.addEventListener('keydown', e=>{ if(e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
+
+document.getElementById('modalMaximize').addEventListener('click', ()=>{
+  modalBox.classList.toggle('maximized');
+});
+document.getElementById('modalDark').addEventListener('click', function(){
+  modalBox.classList.toggle('modal-dark');
+  this.textContent = modalBox.classList.contains('modal-dark') ? '☀️' : '🌙';
+});
+</script>
+
 
 
 
