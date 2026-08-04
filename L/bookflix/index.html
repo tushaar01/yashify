@@ -356,6 +356,8 @@ function stripGutenbergBoilerplate(html, url){
 </head><body>${body}</body></html>`;
 }
 
+
+
 async function openModal(book){
   modalTitle.textContent = book.title + ' — ' + book.author;
   modalOpenNew.href = book.url;
@@ -365,9 +367,9 @@ async function openModal(book){
   modalFrame.removeAttribute('src');
   modalFrame.removeAttribute('srcdoc');
 
-  // PDF Viewer via Google Docs Reader
+  // PDF render using PDF.js CDN
   if (book.url.toLowerCase().endsWith('.pdf')) {
-    modalFrame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(book.url)}&embedded=true`;
+    modalFrame.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(book.url)}`;
     modalLoading.style.display = 'none';
     return;
   }
@@ -383,6 +385,7 @@ async function openModal(book){
     modalFrame.src = book.url;
   }
 }
+
 
 modalFrame.addEventListener('load', ()=>{ modalLoading.style.display = 'none'; });
 
