@@ -246,63 +246,85 @@
 
 
 <script>
+
+
+
+
 const BOOKS = [
-  { title:"White Nights", author:"Fyodor Dostoevsky", icon:"🌙",
-    bg:"linear-gradient(150deg, var(--lav), var(--sky))",
-    url:"https://www.gutenberg.org/cache/epub/36034/pg36034-images.html" },
-
-
-
-
-        
-
-
-  { title:"Crime and Punishment", author:"Fyodor Dostoevsky", icon:"🔪",
-    bg:"linear-gradient(150deg, var(--peach), var(--pink))",
-   
- src:"https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/CP.jpeg",
-    url:"https://www.gutenberg.org/cache/epub/2554/pg2554-images.html" },
-
-
-
-
-  { title:"Metamorphosis", author:"Franz Kafka", icon:"🪲",
-    bg:"linear-gradient(150deg, var(--mint), var(--sky))",
-    url:"https://www.gutenberg.org/cache/epub/5200/pg5200-images.html" },
-
-
-
-
-
-  { title:"The Trial", author:"Franz Kafka", icon:"⚖️",
-    bg:"linear-gradient(150deg, var(--butter), var(--peach))",
-    url:"https://www.gutenberg.org/cache/epub/7849/pg7849-images.html" },
-
-
-
-
-  { title:"The Idiot", author:"Fyodor Dostoevsky", icon:"🌸",
-    bg:"linear-gradient(150deg, var(--pink), var(--lav))",
-    url:"https://www.gutenberg.org/cache/epub/2638/pg2638-images.html" }
+  { 
+    title: "White Nights", 
+    author: "Fyodor Dostoevsky", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/WN.jpeg",
+    url: "https://www.gutenberg.org/cache/epub/36034/pg36034-images.html" 
+  },
+  { 
+    title: "Crime and Punishment", 
+    author: "Fyodor Dostoevsky", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/CP.jpeg",
+    url: "https://www.gutenberg.org/cache/epub/2554/pg2554-images.html" 
+  },
+  { 
+    title: "Metamorphosis", 
+    author: "Franz Kafka", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Meta.jpeg",
+    url: "https://www.gutenberg.org/cache/epub/5200/pg5200-images.html" 
+  },
+  { 
+    title: "The Trial", 
+    author: "Franz Kafka", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Trial.jpeg",
+    url: "https://www.gutenberg.org/cache/epub/7849/pg7849-images.html" 
+  },
+  { 
+    title: "The Idiot", 
+    author: "Fyodor Dostoevsky", 
+    cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/idi.jpeg",
+    url: "https://www.gutenberg.org/cache/epub/2638/pg2638-images.html" 
+  }
 ];
 
 const shelf = document.getElementById('shelf');
-BOOKS.forEach(book=>{
+shelf.innerHTML = ''; // Pehle ka content clear karne ke liye
+
+BOOKS.forEach(book => {
   const card = document.createElement('div');
   card.className = 'book-card';
   card.innerHTML = `
-    <div class="book-cover" style="background:${book.bg};">
-      <span class="icon">${book.icon}</span>
-      <h3>${book.title}</h3>
-      <span class="author">${book.author}</span>
+    <div class="book-cover" style="background-image: url('${book.cover}'); background-size: cover; background-position: center;">
       <span class="open-hint">TAP TO OPEN ↗</span>
     </div>
     <div class="book-title">${book.title}</div>
     <div class="book-author">${book.author}</div>
   `;
-  card.querySelector('.book-cover').addEventListener('click', ()=> openModal(book));
+  card.querySelector('.book-cover').addEventListener('click', () => openModal(book));
   shelf.appendChild(card);
 });
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Empty placeholder slots */
 for(let i=0; i<2; i++){
