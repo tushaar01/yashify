@@ -3,1084 +3,383 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>READLY — A Reader's Room</title>
+<title>READLY 💭 your cozy reading corner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FDFDFD;
-    --paper:#F7F4EC;
-    --paper-dark:#1B2028;
-    --ink:#1C2333;
-    --ink-soft:#454C60;
-    --ink-faint:#6B7180;
-    --gold:#B8894B;
-    --gold-deep:#8C6432;
-    --gold-light:#D9B872;
-    --line:#E7E2D6;
-    --hl-yellow:#FFF3B0;
-    --hl-green:#C9E4CA;
-    --hl-blue:#C6DFF0;
-    --radius:2px;
-    --reader-font: 18px;
+    --bg:#FFF8F2;
+    --card-bg:#FFFFFF;
+    --ink:#4A3F55;
+    --ink-soft:#8A7F94;
+    --pink:#FFB6C9;
+    --lav:#C9B6FF;
+    --mint:#B6F0D8;
+    --peach:#FFD8B0;
+    --sky:#B6E2FF;
+    --butter:#FFE9A8;
+    --accent:#FF8FAB;
+    --accent-deep:#E86A93;
+    --shadow: 0 10px 24px rgba(180,150,190,0.18);
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  [data-theme="dark"]{
+    --bg:#241E2E;
+    --card-bg:#2F2739;
+    --ink:#F3EEF7;
+    --ink-soft:#B8AEC4;
+    --shadow: 0 10px 26px rgba(0,0,0,0.4);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
   body{
     background:var(--bg);
     color:var(--ink);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    font-family:'Quicksand', sans-serif;
+    transition:background .35s ease, color .35s ease;
+    min-height:100vh;
   }
-  ::selection{ background:var(--gold-light); color:var(--ink); }
-  a{color:inherit;}
-  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
-  img{max-width:100%; display:block;}
+  h1,h2,h3,.brand,.quote-text{ font-family:'Fredoka', sans-serif; }
+  a{ text-decoration:none; color:inherit; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
 
-  /* ===== Topbar ===== */
+  /* Topbar */
   .topbar{
-    position:sticky; top:0; z-index:200;
-    display:flex; align-items:center; gap:28px;
-    padding:16px 40px;
-    background:rgba(253,253,253,0.88);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
   }
   .brand{
-    font-family:'Playfair Display',serif;
-    font-weight:700;
-    font-size:22px;
-    letter-spacing:0.3px;
-    white-space:nowrap;
+    font-size:26px; font-weight:700; color:var(--accent-deep);
+    display:flex; align-items:center; gap:8px;
   }
-  .brand span{ color:var(--gold-deep); font-style:italic; font-weight:500; }
-  .search-wrap{
-    position:relative;
-    flex:1 1 320px;
-    max-width:420px;
+  .theme-toggle{
+    width:56px; height:30px; border-radius:20px;
+    background:var(--lav);
+    display:flex; align-items:center; padding:3px;
+    transition:background .3s;
   }
-  .search-wrap input{
-    width:100%;
-    padding:10px 14px 10px 36px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    background:#fff;
-    font-size:14px;
-    color:var(--ink);
-    transition:border-color .2s, box-shadow .2s;
+  [data-theme="dark"] .theme-toggle{ background:#4A3F6B; }
+  .theme-toggle .knob{
+    width:24px; height:24px; border-radius:50%;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:13px; transition:transform .3s;
   }
-  .search-wrap input:focus{
-    outline:none;
-    border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(184,137,75,0.12);
-  }
-  .search-wrap svg{
-    position:absolute; left:12px; top:50%; transform:translateY(-50%);
-    width:15px; height:15px; stroke:var(--ink-faint);
-  }
-  .categories{
-    display:flex; gap:8px; overflow-x:auto; scrollbar-width:none;
-    flex:1 1 auto;
-  }
-  .categories::-webkit-scrollbar{display:none;}
-  .cat-pill{
-    flex:none;
-    padding:7px 15px;
-    font-size:13px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    color:var(--ink-soft);
-    white-space:nowrap;
-    transition:all .2s;
-  }
-  .cat-pill:hover{ border-color:var(--gold); color:var(--ink); }
-  .cat-pill.active{
-    background:var(--ink); color:#fff; border-color:var(--ink);
-  }
+  [data-theme="dark"] .theme-toggle .knob{ transform:translateX(26px); }
 
-  /* ===== Hero ===== */
+  /* Hero / Quote */
   .hero{
-    max-width:760px;
-    margin:0 auto;
-    padding:110px 28px 90px;
-    text-align:center;
+    max-width:680px; margin:40px auto 60px; text-align:center; padding:0 24px;
   }
-  .hero .eyebrow{
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:var(--gold-deep);
-    margin-bottom:26px;
-    display:inline-block;
-  }
-  .hero blockquote{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-weight:600;
-    font-size:clamp(26px, 4vw, 40px);
-    line-height:1.5;
+  .hero .bubble-emoji{ font-size:34px; margin-bottom:14px; display:inline-block; }
+  .quote-text{
+    font-size:clamp(22px,4vw,32px); font-weight:600; line-height:1.55;
     color:var(--ink);
   }
-  .hero cite{
-    display:block;
-    margin-top:22px;
-    font-family:'Inter',sans-serif;
-    font-style:normal;
-    font-weight:600;
-    font-size:13px;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    color:var(--ink-soft);
+  .quote-text::before, .quote-text::after{ color:var(--accent); }
+  .hero .who{
+    margin-top:16px; font-weight:600; color:var(--ink-soft); font-size:14px;
+    letter-spacing:0.5px;
   }
-  .ink-divider{
-    display:block;
-    margin:38px auto 0;
-    width:220px;
-    height:14px;
-  }
-  .ink-divider path{
-    fill:none;
-    stroke:var(--gold);
-    stroke-width:1.6;
-    stroke-linecap:round;
-    stroke-dasharray:300;
-    stroke-dashoffset:300;
-    animation:draw 1.4s ease forwards .3s;
-  }
-  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .hero .squiggle{ margin:26px auto 0; width:90px; }
 
-  /* ===== Gallery ===== */
-  .gallery-section{ padding:10px 40px 120px; }
-  .gallery-heading{
-    max-width:1240px; margin:0 auto 30px;
-    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
-    flex-wrap:wrap;
+  /* Shelf */
+  .shelf-heading{
+    max-width:1100px; margin:0 auto 26px; padding:0 24px;
+    display:flex; align-items:center; gap:10px;
   }
-  .gallery-heading h2{
-    font-family:'Playfair Display',serif; font-weight:700; font-size:28px; color:var(--ink);
+  .shelf-heading h2{ font-size:24px; font-weight:600; }
+  .shelf{
+    max-width:1100px; margin:0 auto; padding:0 24px 80px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px;
   }
-  .gallery-heading p{ color:var(--ink-soft); font-size:13.5px; font-weight:500; }
-  .grid{
-    max-width:1240px; margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:34px 28px;
-  }
-  @media (max-width:980px){ .grid{ grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:640px){ .grid{ grid-template-columns:repeat(2,1fr); gap:26px 16px;} }
+  @media (max-width:900px){ .shelf{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:640px){ .shelf{ grid-template-columns:repeat(2,1fr); gap:18px;} .topbar{padding:18px 20px;} }
 
-  .card{ perspective:900px; }
-  .card-inner{
-    position:relative;
-    border-radius:3px;
+  .book-card{
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .book-cover{
+    width:100%; aspect-ratio:3/4; border-radius:28px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:18px;
+    box-shadow:var(--shadow);
+    transition:transform .22s ease, box-shadow .22s ease;
     cursor:pointer;
-    transform-style:preserve-3d;
-    transition:transform .18s ease, box-shadow .18s ease;
-    box-shadow:0 2px 6px rgba(28,35,51,0.12), 0 1px 2px rgba(28,35,51,0.08);
-  }
-  .card-inner:hover, .card-inner.hovering{
-    box-shadow:0 22px 34px -12px rgba(28,35,51,0.30), 0 4px 10px rgba(28,35,51,0.10);
-  }
-  .cover{
     position:relative;
-    aspect-ratio:2/3;
-    border-radius:3px;
     overflow:hidden;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:20px 16px;
-    text-align:center;
   }
-  .cover::before{
-    content:"";
-    position:absolute; inset:9px;
-    border:1px solid rgba(217,184,114,0.55);
-    pointer-events:none;
+  .book-cover:hover{ transform:translateY(-8px) scale(1.03); }
+  .book-cover .icon{ font-size:32px; margin-bottom:10px; }
+  .book-cover h3{ font-size:15px; font-weight:600; line-height:1.3; color:#3A2E45; }
+  .book-cover .author{ font-size:11px; margin-top:6px; color:#5c4d68; font-weight:600; opacity:.85; }
+  .book-cover .open-hint{
+    position:absolute; bottom:10px; left:0; right:0;
+    font-size:10.5px; font-weight:700; letter-spacing:0.5px;
+    color:#3A2E45; opacity:0; transition:opacity .2s;
   }
-  .cover::after{
-    content:"";
-    position:absolute; left:0; top:0; bottom:0; width:14px;
-    background:linear-gradient(90deg, rgba(0,0,0,0.28), rgba(0,0,0,0));
+  .book-cover:hover .open-hint{ opacity:.75; }
+  .book-title{ font-size:13.5px; font-weight:600; text-align:center; color:var(--ink); }
+  .book-author{ font-size:11.5px; color:var(--ink-soft); text-align:center; }
+
+  .book-cover.empty-slot{
+    background:transparent;
+    border:2px dashed var(--ink-soft);
+    box-shadow:none;
+    opacity:.55;
+    cursor:default;
   }
-  .cover .monogram{
-    font-family:'Playfair Display',serif;
-    font-size:15px;
-    letter-spacing:4px;
-    margin-bottom:14px;
-    opacity:.85;
-  }
-  .cover h3{
-    font-family:'Playfair Display',serif;
-    font-weight:600;
-    font-size:17px;
-    line-height:1.3;
-  }
-  .cover .rule{
-    width:30px; height:1px; background:currentColor; opacity:.55;
-    margin:12px 0;
-  }
-  .cover .author{
-    font-size:10.5px;
-    letter-spacing:1.6px;
-    text-transform:uppercase;
-    opacity:.85;
-  }
-  .ribbon{
-    position:absolute; top:0; right:16px;
-    width:20px; height:34px;
-    background:var(--gold);
-    clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
-    box-shadow:0 2px 4px rgba(0,0,0,0.25);
-    display:none;
-  }
-  .ribbon.show{ display:block; }
-  .card-meta{ padding:12px 2px 0; }
-  .card-meta h4{
-    font-family:'Playfair Display',serif; font-size:14.5px; font-weight:600;
-    line-height:1.3;
-  }
-  .card-meta p{ font-size:12px; color:var(--ink-faint); margin-top:3px; }
-  .card-meta .tag{
-    display:inline-block; margin-top:7px;
-    font-size:10px; letter-spacing:1px; text-transform:uppercase;
-    color:var(--gold-deep); border:1px solid var(--line); padding:3px 8px; border-radius:20px;
-  }
-  .upload-tile{
-    aspect-ratio:2/3;
-    border:1.6px dashed var(--gold);
-    border-radius:3px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:10px; cursor:pointer; color:var(--gold-deep);
-    background:rgba(184,137,75,0.05);
-    transition:background .2s, transform .18s;
-    text-align:center; padding:16px;
-  }
-  .upload-tile:hover{ background:rgba(184,137,75,0.12); transform:translateY(-3px); }
-  .upload-tile .plus{
-    width:38px; height:38px; border-radius:50%; border:1.6px solid var(--gold);
-    display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:300;
-  }
-  .upload-tile span{ font-size:12.5px; font-weight:600; line-height:1.4; }
-  .cover.has-image{ background-size:cover; background-position:center top; }
-  .cover.has-image::before{ display:none; }
-  .cover-img-overlay{
-    position:absolute; left:0; right:0; bottom:0; top:auto;
-    background:linear-gradient(to top, rgba(10,12,18,0.88), rgba(10,12,18,0.15) 65%, transparent);
-    padding:16px 14px 14px; text-align:left;
-  }
-  .cover-img-overlay h3{ font-family:'Playfair Display',serif; font-weight:600; font-size:15px; color:#fff; line-height:1.3; }
-  .cover-img-overlay .author{ font-size:10px; letter-spacing:1.4px; text-transform:uppercase; color:#D9B872; margin-top:5px; display:block; }
-  .empty-state{
-    max-width:1240px; margin:60px auto; text-align:center; color:var(--ink-faint);
-    font-size:14px; display:none;
-  }
+  .book-cover.empty-slot:hover{ transform:none; }
+  .book-cover.empty-slot .icon{ font-size:26px; margin-bottom:8px; }
+  .book-cover.empty-slot h3{ color:var(--ink-soft); font-size:13px; font-weight:600; }
 
   footer{
-    text-align:center; padding:40px 20px 60px;
-    color:var(--ink-faint); font-size:12.5px;
-    border-top:1px solid var(--line);
+    text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:12.5px;
   }
-  footer .fmark{ font-family:'Playfair Display',serif; font-style:italic; color:var(--gold-deep); }
 
-  /* ===== Reader ===== */
-  .reader-overlay{
-    position:fixed; inset:0; z-index:1000;
-    background:var(--paper);
+  /* Reading modal */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:500;
+    background:rgba(74,63,85,0.55);
+    display:none; align-items:center; justify-content:center;
+    padding:30px;
+    backdrop-filter:blur(3px);
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    background:var(--card-bg);
+    width:min(900px, 100%);
+    height:80vh;
+    border-radius:24px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
     display:flex; flex-direction:column;
-    transform:translateY(100%);
-    transition:transform .38s cubic-bezier(.65,0,.35,1);
+    overflow:hidden;
+    transition:width .3s ease, height .3s ease, border-radius .3s ease;
   }
-  .reader-overlay.open{ transform:translateY(0); }
-  .reader-overlay.dark{ background:var(--paper-dark); color:#EDEBE4; }
-
-  .reader-toolbar{
-    display:flex; align-items:center; gap:6px;
-    padding:12px 18px;
-    border-bottom:1px solid var(--line);
-    background:inherit;
-    flex-wrap:wrap;
+  .modal-box.maximized{
+    width:100vw; height:100vh; border-radius:0;
   }
-  .reader-overlay.dark .reader-toolbar{ border-bottom-color:#333a46; }
-  .tb-title{
-    font-family:'Playfair Display',serif; font-style:italic; font-size:15px;
-    margin-right:auto; padding-left:4px;
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px;
-  }
-  .tb-btn{
-    width:34px; height:34px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    color:inherit; transition:background .15s;
+  .modal-bar{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 16px;
+    background:var(--bg);
     flex:none;
   }
-  .tb-btn:hover{ background:rgba(184,137,75,0.14); }
-  .tb-btn svg{ width:17px; height:17px; }
-  .tb-btn.active{ background:var(--gold); color:#fff; }
-  .tb-sep{ width:1px; height:20px; background:var(--line); margin:0 6px; flex:none; }
-  .reader-overlay.dark .tb-sep{ background:#3a4150; }
-
-  .font-ctrl{ display:flex; align-items:center; gap:2px; }
-  .font-ctrl button{
-    width:30px; height:30px; border-radius:50%; font-size:12px; font-weight:700;
+  .modal-bar .modal-title{
+    font-family:'Fredoka', sans-serif; font-weight:600; font-size:15px;
+    margin-right:auto; color:var(--ink);
+  }
+  .modal-btn{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--card-bg); color:var(--ink);
     display:flex; align-items:center; justify-content:center;
+    font-size:15px; box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    transition:background .15s;
   }
-  .font-ctrl button:hover{ background:rgba(184,137,75,0.14); }
-
-  .lang-toggle{
-    display:flex; align-items:center; background:rgba(184,137,75,0.12);
-    border-radius:20px; padding:3px; font-size:11.5px; font-weight:600; gap:2px;
+  .modal-btn:hover{ background:var(--pink); }
+  .modal-frame-wrap{ flex:1; position:relative; background:#fff; }
+  .modal-frame-wrap iframe{ width:100%; height:100%; border:none; }
+  .modal-loading{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka', sans-serif; color:var(--ink-soft); font-size:14px;
+    background:var(--card-bg);
   }
-  .lang-toggle button{
-    padding:6px 12px; border-radius:20px; color:var(--ink-soft);
-  }
-  .reader-overlay.dark .lang-toggle button{ color:#c7c9d3; }
-  .lang-toggle button.active{ background:var(--ink); color:#fff; }
-  .reader-overlay.dark .lang-toggle button.active{ background:var(--gold); }
-  .lang-toggle.disabled-lang button[data-lang="hi"]{ opacity:.4; cursor:not-allowed; }
-
-  .reader-body{ flex:1; display:flex; overflow:hidden; position:relative; }
-
-  .toc-drawer{
-    width:280px; flex:none;
-    border-right:1px solid var(--line);
-    padding:22px 20px; overflow-y:auto;
-    transform:translateX(-100%);
-    transition:transform .28s ease, margin-left .28s ease;
-    margin-left:-280px;
-  }
-  .reader-overlay.dark .toc-drawer{ border-right-color:#333a46; }
-  .toc-drawer.open{ transform:translateX(0); margin-left:0; }
-  .toc-drawer h5{
-    font-family:'Playfair Display',serif; font-size:13px; letter-spacing:1px;
-    text-transform:uppercase; color:var(--gold-deep); margin-bottom:16px;
-  }
-  .toc-item{
-    display:block; width:100%; text-align:left;
-    padding:10px 8px; font-size:14px; border-radius:4px;
-    color:inherit; line-height:1.4;
-  }
-  .toc-item:hover{ background:rgba(184,137,75,0.12); }
-  .toc-item .num{ color:var(--gold-deep); font-size:11px; margin-right:6px; }
-
-  .reader-content-wrap{ flex:1; overflow-y:auto; }
-  .reader-content{
-    max-width:660px; margin:0 auto;
-    padding:60px 30px 140px;
-    font-size:var(--reader-font);
-    line-height:1.85;
-  }
-  .reader-content h2{
-    font-family:'Playfair Display',serif; font-weight:600;
-    font-size:1.55em; margin:2.2em 0 0.9em;
-  }
-  .reader-content h2:first-child{ margin-top:0; }
-  .reader-content p{ margin-bottom:1.3em; }
-  .reader-content mark{ padding:1px 2px; border-radius:2px; }
-  .reader-byline{
-    text-align:center; color:var(--ink-faint); font-size:12.5px;
-    letter-spacing:1.5px; text-transform:uppercase; margin-bottom:50px;
-  }
-
-  .hl-popup{
-    position:fixed; z-index:1300;
-    background:var(--ink); border-radius:24px;
-    padding:6px; display:flex; gap:6px;
-    box-shadow:0 10px 26px rgba(0,0,0,0.3);
-    opacity:0; pointer-events:none; transform:translate(-50%,-8px) scale(.9);
-    transition:opacity .12s, transform .12s;
-  }
-  .hl-popup.show{ opacity:1; pointer-events:auto; transform:translate(-50%,0) scale(1); }
-  .hl-popup button{ width:26px; height:26px; border-radius:50%; border:2px solid rgba(255,255,255,0.5); }
-  .hl-popup button[data-c="yellow"]{ background:var(--hl-yellow); }
-  .hl-popup button[data-c="green"]{ background:var(--hl-green); }
-  .hl-popup button[data-c="blue"]{ background:var(--hl-blue); }
-
-  .toast{
-    position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:var(--ink); color:#fff; padding:11px 22px; border-radius:24px;
-    font-size:13px; z-index:1400; opacity:0; transition:opacity .25s, transform .25s;
-    pointer-events:none;
-  }
-  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
-
-  @media (max-width:760px){
-    .topbar{ padding:12px 16px; gap:14px; flex-wrap:wrap; }
-    .brand{ font-size:18px; }
-    .search-wrap{ order:3; max-width:none; flex:1 1 100%; }
-    .categories{ order:2; }
-    .hero{ padding:70px 22px 60px; }
-    .gallery-section{ padding:0 18px 90px; }
-    .toc-drawer{ position:absolute; z-index:50; background:var(--paper); height:100%; }
-    .reader-overlay.dark .toc-drawer{ background:var(--paper-dark); }
-    .reader-content{ padding:40px 20px 120px; }
-    .tb-title{ display:none; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  .modal-box.modal-dark{ background:#1D1826; }
+  .modal-box.modal-dark .modal-bar{ background:#241E30; }
+  .modal-box.modal-dark .modal-bar .modal-title{ color:#F3EEF7; }
+  .modal-box.modal-dark .modal-btn{ background:#2F2739; color:#F3EEF7; }
+  .modal-box.modal-dark .modal-btn:hover{ background:var(--accent); }
+  .modal-box.modal-dark .modal-loading{ background:#1D1826; color:#B8AEC4; }
+  @media (max-width:640px){
+    .modal-overlay{ padding:0; }
+    .modal-box{ width:100vw; height:100vh; border-radius:0; }
   }
 </style>
 </head>
-<body>
+<body data-theme="light">
 
 <div class="topbar">
-  <div class="brand">READLY<span>.</span></div>
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="searchInput" type="text" placeholder="Search by title or author…">
-  </div>
-  <div class="categories" id="categories"></div>
-  <button class="cat-pill" id="uploadPdfBtn" style="border-color:var(--gold); color:var(--gold-deep); font-weight:600; flex:none;">+ Upload PDF</button>
-  <input type="file" id="pdfUpload" accept="application/pdf" style="display:none;">
+  <div class="brand">📖 READLY</div>
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+    <div class="knob">🌙</div>
+  </button>
 </div>
 
 <section class="hero">
-  <span class="eyebrow">Est. for the quietly obsessive reader</span>
-  <blockquote>"A reader lives a thousand lives before he dies... The man who never reads lives only one."</blockquote>
-  <cite>George R. R. Martin</cite>
-  <svg class="ink-divider" viewBox="0 0 220 14">
-    <path d="M2 8 C 40 2, 80 12, 110 7 S 180 2, 218 8"/>
+  <span class="bubble-emoji">💭</span>
+  <p class="quote-text">"A reader lives a thousand lives before he dies... The man who never reads lives only one."</p>
+  <p class="who">— George R. R. Martin</p>
+  <svg class="squiggle" viewBox="0 0 90 12" fill="none">
+    <path d="M2 6 Q 15 -2, 25 6 T 48 6 T 71 6 T 88 6" stroke="#FF8FAB" stroke-width="2.5" stroke-linecap="round"/>
   </svg>
 </section>
 
-<section class="gallery-section">
-  <div class="gallery-heading">
-    <h2>The Shelf</h2>
-    <p id="resultCount">12 volumes, bound and waiting</p>
-  </div>
-  <div class="grid" id="grid"></div>
-  <div class="empty-state" id="emptyState">No books match your search. Try another title or author.</div>
-</section>
+<div class="shelf-heading">
+  <h2>Your Shelf</h2>
+  <span>📚</span>
+</div>
 
-<footer>
-  <p><span class="fmark">READLY</span> — for readers who write in the margins.</p>
-</footer>
+<div class="shelf" id="shelf"></div>
 
-<!-- READER OVERLAY -->
-<div class="reader-overlay" id="readerOverlay">
-  <div class="reader-toolbar">
-    <button class="tb-btn" id="closeReader" title="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <button class="tb-btn" id="tocBtn" title="Table of contents">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
-    </button>
-    <div class="tb-title" id="tbTitle">Title</div>
+<footer>made with 💭 for people who read past their bedtime</footer>
 
-    <div class="lang-toggle" id="langToggle">
-      <button data-lang="en" class="active">EN</button>
-      <button data-lang="hi">Hinglish</button>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-bar">
+      <span class="modal-title" id="modalTitle">Reading</span>
+      <a class="modal-btn" id="modalOpenNew" href="#" target="_blank" rel="noopener" title="Open in new tab">↗</a>
+      <button class="modal-btn" id="modalDark" title="Toggle popup dark mode">🌙</button>
+      <button class="modal-btn" id="modalMaximize" title="Maximize">⤢</button>
+      <button class="modal-btn" id="modalClose" title="Close">✕</button>
     </div>
-    <div class="tb-sep"></div>
-    <div class="font-ctrl">
-      <button id="fontMinus" title="Decrease text size">A−</button>
-      <button id="fontPlus" title="Increase text size">A+</button>
-    </div>
-    <div class="tb-sep"></div>
-    <button class="tb-btn" id="themeBtn" title="Toggle night reading">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <button class="tb-btn" id="bookmarkBtn" title="Bookmark this page">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-    </button>
-  </div>
-
-  <div class="reader-body">
-    <nav class="toc-drawer" id="tocDrawer">
-      <h5>Contents</h5>
-      <div id="tocList"></div>
-    </nav>
-    <div class="reader-content-wrap" id="readerScroll">
-      <div class="reader-content" id="readerContent"></div>
+    <div class="modal-frame-wrap">
+      <div class="modal-loading" id="modalLoading">opening your book… 💭</div>
+      <iframe id="modalFrame" title="Book reader"></iframe>
     </div>
   </div>
 </div>
 
-<div class="hl-popup" id="hlPopup">
-  <button data-c="yellow"></button>
-  <button data-c="green"></button>
-  <button data-c="blue"></button>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-/* ================= DATA ================= */
 const BOOKS = [
-  { id:'pride', title:"Pride and Prejudice", author:"Jane Austen", category:"Romance",
-    bg:"#6B2C3E", fg:"#EFD9B0",
-    chapters:[
-      {title:"Chapter One",
-        en:"It is a truth universally acknowledged that a house left too long unvisited soon gathers opinions of its own. So it was with Longbourn, where every arrival was studied, every letter dissected, and every silence at dinner read as a sentence with a hidden clause. Mrs. Bennet, who considered matchmaking a civic duty, had already decided the new tenant of Netherfield owed the neighbourhood a wife before he had so much as chosen his curtains.",
-        hi:"Ek baat toh sab jaante hain — jab ghar bahut din khaali rahe, log usके baare mein apni hi kahaniyan bana lete hain. Longbourn mein bhi yahi haal tha, jahan har naya mehmaan discuss hota, har letter ko line by line padha jaata. Mrs. Bennet ke liye toh matchmaking kisi duty se kam nahi thi — Netherfield ka naya tenant abhi curtains bhi nahi chun paaya tha ki usकी shaadi already plan ho chuki thi."},
-      {title:"Chapter Two",
-        en:"Elizabeth watched her mother's excitement with the fond exasperation of someone who had inherited none of it and all of its consequences. She preferred a long walk and an honest opinion to a ballroom of flattery, and it was this preference, more than her modest fortune, that the neighbourhood found difficult to forgive.",
-        hi:"Elizabeth apni maa ke excitement ko dekh kar half-pyaar, half-thak jaati thi — kyunki na toh usमें wo excitement thi, par consequences poore mil jaate the. Usko ek lambi walk aur ek honest opinion, ballroom ki flattery se zyada pasand thi. Aur yahi cheez, uski limited daulat se bhi zyada, logon ko haz़am nahi hoti thi."},
-      {title:"Chapter Three",
-        en:"When Mr. Darcy first declined to dance with her, calling her merely tolerable, Elizabeth decided the matter with the swiftness of a mind already made up: she would dislike him thoroughly, and enjoy doing so.",
-        hi:"Jab Mr. Darcy ne pehli baar usके saath dance karne se mana kiya aur bola ki wo sirf 'tolerable' hai, Elizabeth ne turant decide kar liya — ab wo isse pura-pura dislike karegi, aur is dislike ko thoड़ा enjoy bhi karegi."}
-    ]},
-  { id:'moby', title:"Moby-Dick", author:"Herman Melville", category:"Adventure",
-    bg:"#1C2333", fg:"#D9B872",
-    chapters:[
-      {title:"Chapter One — The Sea",
-        en:"Call me Ishmael, or call me nothing at all — the sea does not care for names. It was a damp, drizzly November in my soul when I first felt the pull of open water, that quiet insistence that land had nothing left to offer a man who had already read every book in it twice.",
-        hi:"Mujhe Ishmael bulao, ya kuch bhi mat bulao — samundar ko naam se koi farq nahi padta. Wo ek geela, halka barsaat wala November tha jab mujhne pehli baar samundar ki pukaar mehsoos ki — jaise zameen ne mujhe wo sab de diya tha jo usके paas tha, aur ab kuch naya chahiye tha."},
-      {title:"Chapter Two — The Pequod",
-        en:"The Pequod herself was an old, strange craft, ornamented like a barbaric prince, her bulwarks bristling with the teeth of whales long dead. Captain Ahab had not yet appeared on deck, but his absence was already the loudest thing aboard.",
-        hi:"Pequod khud ek purani, ajeeb si jahaz thi, kisi barbaric prince ki tarah sajaayi hui, uski deewaron par mare hue whales ke daant lage the. Captain Ahab abhi tak deck par nahi aaya tha, lekin uski absence hi jahaz par sabse loud cheez thi."},
-      {title:"Chapter Three — The White Whale",
-        en:"They spoke of the white whale the way villages speak of a storm that took someone's father — half warning, half legend, and entirely true.",
-        hi:"Log us safed whale ki baat aise karte the jaise koi gaon kisi purani toofan ki baat karta hai jisने kisi ka baap le liya ho — aadha warning, aadha legend, aur pura sach."}
-    ]},
-  { id:'frank', title:"Frankenstein", author:"Mary Shelley", category:"Gothic",
-    bg:"#2B2B2B", fg:"#D9B872",
-    chapters:[
-      {title:"Letter One",
-        en:"I write to you from a country of ice, where the sun barely sets and ambition feels less like a virtue than a fever. It was here, at the edge of the known world, that I first heard the strange account of a man pursued across the frozen sea by something he himself had made.",
-        hi:"Main tumhe ek barfeeli duniya se likh raha hoon, jahan suraj mushkil se dubta hai aur ambition kisi virtue se zyada ek fever jaisa lagta hai. Yahin, duniya ke aakhri kinare par, maine pehli baar us ajeeb kahani ke baare mein suna — ek aadmi jo apni hi banayi hui cheez se bhaag raha tha, jamme hue samundar ke paar."},
-      {title:"Chapter One — The Creation",
-        en:"I had worked for two years with a single purpose: to give life where there was none. When the creature's eye first opened, dull yellow and watery, I felt not triumph but a horror I had no name for — the horror of a question answered too late to take back.",
-        hi:"Maine do saal tak sirf ek hi maqsad ke liye kaam kiya tha — wahan zindagi laana jahan kuch nahi tha. Jab us creature ki aankh pehli baar khuli, dull yellow aur watery, mujhe koi triumph nahi hua — sirf ek aisa dar jiska naam bhi nahi tha. Ek sawaal ka jawab, jo bahut der se aaya tha, waapas lene ke liye."},
-      {title:"Chapter Two — Flight",
-        en:"I fled the room and did not look back, as though distance itself could undo what my own hands had done.",
-        hi:"Main us kamre se bhaag gaya aur peeche mudkar nahi dekha — jaise faasla hi wapas kar dega jo mere haathon ne kiya tha."}
-    ]},
-  { id:'dracula', title:"Dracula", author:"Bram Stoker", category:"Gothic",
-    bg:"#4A1620", fg:"#D9B872",
-    chapters:[
-      {title:"3 May — Journal",
-        en:"The castle rose out of the mist like a decision the mountain had regretted making. My host received me with a courtesy so precise it felt rehearsed, and I could not shake the sense that I was the first guest he had welcomed in a very long time — and perhaps the only one he intended to let leave.",
-        hi:"Castle mist mein se aise nikla jaise pahaad ne khud apna decision pachhtaya ho. Mere host ne mera swagat itni precision se kiya ki wo rehearsed lag raha tha, aur mujhe laga ki main bahut lambe arse baad uska pehla guest hoon — aur shayad akela jise wo jaane bhi dega."},
-      {title:"12 May — The Count",
-        en:"He does not eat with me, nor sleep, it seems, at any hour I have witnessed. I begin to suspect that the rules I know of hosts and guests do not apply within these walls.",
-        hi:"Wo mere saath khaana nahi khaata, aur sona bhi kabhi nahi dekha maine usko. Ab lagne laga hai ki host aur guest ke jo rules mujhe pata hain, wo in deewaron ke andar kaam nahi karte."},
-      {title:"19 May — The Locked Door",
-        en:"I have counted the doors of this castle three times now, and three times arrived at a different number. Some places do not wish to be understood.",
-        hi:"Maine is castle ke doors teen baar gine hain, aur teenon baar alag number aaya. Kuch jagah samjhi jaana pasand hi nahi karti."}
-    ]},
-  { id:'alice', title:"Alice's Adventures in Wonderland", author:"Lewis Carroll", category:"Fantasy",
-    bg:"#2F4A3E", fg:"#EFD9B0",
-    chapters:[
-      {title:"Chapter One — Down the Rabbit-Hole",
-        en:"Alice was beginning to get very tired of sitting by her sister on the bank, with nothing to do, when a White Rabbit with pink eyes ran close by her, muttering about being late for something it had clearly never been on time for in its life.",
-        hi:"Alice apni behen ke paas kinare par baithe-baithe bore hone lagi thi, kuch karne ko nahi tha, tabhi ek White Rabbit, pink aankhon wala, uske paas se daudta hua nikla, apne aap se bol raha tha ki late ho raha hai — kisi cheez ke liye jiske liye wo shayad kabhi time par nahi pahuncha tha."},
-      {title:"Chapter Two — A Curious Bottle",
-        en:"On the table she found a little bottle marked 'Drink Me' in neat letters, and Alice, who had already decided the day was too strange to make sensible choices, drank it anyway.",
-        hi:"Table par usko ek chhoti bottle mili jisPar neat letters mein likha tha 'Drink Me', aur Alice, jo already decide kar chuki thi ki aaj ka din itna ajeeb hai ki sensible choices ka koi fayda nahi, usne wo pi hi li."},
-      {title:"Chapter Three — The Grinning Cat",
-        en:"'We're all mad here,' said the Cat, and vanished slowly, leaving only its grin behind, as if the smile had somewhere better to be than the rest of it.",
-        hi:"'Yahan sab paagal hain,' Cat ne kaha, aur dheere-dheere ghayab ho gaya, sirf apni grin peeche chhod kar — jaise us smile ko baaki sab se zyada kahin aur jaana tha."}
-    ]},
-  { id:'gatsby', title:"The Great Gatsby", author:"F. Scott Fitzgerald", category:"Classic Fiction",
-    bg:"#8C6E2F", fg:"#1C2333",
-    chapters:[
-      {title:"Chapter One",
-        en:"In my younger and more vulnerable years, my father gave me advice I have turned over in my mind ever since. Whenever you feel like criticizing anyone, he told me, remember that all the people in this world have not had the advantages that you have had.",
-        hi:"Apni jawaani ke, aur zyada vulnerable, saalon mein, mere father ne mujhe ek advice di thi jo main tab se apne dimaag mein ghumata rehta hoon. Jab bhi kisi ko criticize karne ka mann kare, unhone kaha, yaad rakhna ki is duniya ke sab logon ko wo advantages nahi mile jo tumhe mile hain."},
-      {title:"Chapter Two — The Green Light",
-        en:"Across the bay, a single green light burned at the end of a dock, and Gatsby stood watching it the way a man watches a door he has decided, against all evidence, will one day open.",
-        hi:"Bay ke us paar, ek akela green light jal raha tha dock ke aakhri sirey par, aur Gatsby usse aise dekh raha tha jaise koi aadmi ek darwaaze ko dekhta hai jiske baare mein usne, har evidence ke khilaaf, decide kar liya hai ki wo ek din khulega."},
-      {title:"Chapter Three — The Party",
-        en:"His parties went on all summer, music and laughter spilling into the garden, and yet I never once saw him drink from his own glass, as though the whole evening was a stage built for someone who had not yet arrived.",
-        hi:"Uski parties poori garmiyon chalti rahin, music aur hansi garden mein failti rahi, lekin maine usko kabhi apna hi glass peete nahi dekha — jaise poori shaam ek stage thi, kisi aise insaan ke liye jo abhi tak aaya hi nahi tha."}
-    ]},
-  { id:'jane', title:"Jane Eyre", author:"Charlotte Brontë", category:"Romance",
-    bg:"#3E2A4A", fg:"#EFD9B0",
-    chapters:[
-      {title:"Chapter One",
-        en:"There was no possibility of taking a walk that day, and I was glad of it, for I had never liked long walks, especially on chilly afternoons, when the wind carried a kind of judgment I felt but could not name.",
-        hi:"Us din walk par jaane ka koi chance nahi tha, aur mujhe khushi hi hui, kyunki mujhe lambi walks kabhi pasand nahi thi, khaaskar thandi dopahar mein, jab hawa ek tarah ki judgment lekar aati thi jo main mehsoos toh karti thi par naam nahi de paati thi."},
-      {title:"Chapter Two — Thornfield",
-        en:"Thornfield Hall received me with a silence too large for its rooms, and somewhere above the ordinary creak of an old house, I began to hear something closer to a voice.",
-        hi:"Thornfield Hall ne mera swagat ek aisi khaamoshi se kiya jo uske kamron ke liye bhi bahut badi thi, aur us purane ghar ki aam si creaking ke upar, mujhe kuch aisa sunayi dene laga jo ek voice ke zyada kareeb tha."},
-      {title:"Chapter Three — Mr. Rochester",
-        en:"He spoke to me not as a governess but as an equal mind, and it was this, more than anything in his uneven face, that I found impossible to forget.",
-        hi:"Wo mujhse kisi governess ki tarah nahi, balki ek equal mind ki tarah baat karte the, aur yahi cheez, unke uneven chehre se bhi zyada, mujhe bhoolna mushkil tha."}
-    ]},
-  { id:'sherlock', title:"A Study in Scarlet", author:"Arthur Conan Doyle", category:"Mystery",
-    bg:"#22303F", fg:"#D9B872",
-    chapters:[
-      {title:"Chapter One — Dr. Watson",
-        en:"I was introduced to Sherlock Holmes on an ordinary afternoon that had no business producing anything memorable, and yet within five minutes he had deduced my recent history in Afghanistan from the tan on my wrist and the set of my shoulders.",
-        hi:"Mujhe Sherlock Holmes se ek bilkul ordinary dopahar mein milwaya gaya, jisme kuch memorable hone ki koi wajah nahi thi, phir bhi paanch minute ke andar unhone meri kalaai ke tan aur mere shoulders ki position se mera Afghanistan wala past nikaal liya."},
-      {title:"Chapter Two — The Method",
-        en:"'You see, but you do not observe,' he told me, and the distinction, small as it sounded, rearranged the way I looked at every room I entered afterward.",
-        hi:"'Tum dekhte ho, lekin observe nahi karte,' unhone mujhse kaha, aur ye farq, sunne mein chhota lagne ke bawajood, uske baad se har kamre ko dekhne ka mera tareeka hi badal gaya."},
-      {title:"Chapter Three — The Trail",
-        en:"On the wall, in letters of blood, someone had written a single German word, and Holmes read it the way other men read a signature — as an introduction, not a mystery.",
-        hi:"Deewar par, khoon ke letters mein, kisi ne ek German word likha tha, aur Holmes usko aise padh rahe the jaise doosre log ek signature padhte hain — ek introduction ki tarah, mystery ki tarah nahi."}
-    ]},
-  { id:'war', title:"War and Peace", author:"Leo Tolstoy", category:"Classic Fiction",
-    bg:"#7A3B1E", fg:"#EFD9B0",
-    chapters:[
-      {title:"Part One — The Salon",
-        en:"Well, Prince, Genoa and Lucca are now no more than family estates of the Bonapartes, said Anna Pavlovna, and the room adjusted itself around the sentence the way a court adjusts around a verdict it has already agreed to accept.",
-        hi:"'Prince, Genoa aur Lucca ab sirf Bonaparte family ki estates reh gayi hain,' Anna Pavlovna ne kaha, aur poora room us sentence ke around aise adjust ho gaya jaise koi court kisi verdict ko already accept kar chuki ho."},
-      {title:"Part Two — Pierre",
-        en:"Pierre stood at the edge of every conversation the way a man stands at the edge of a party he was invited to by mistake, certain that someone would eventually notice and ask him to leave.",
-        hi:"Pierre har conversation ke kinare par aise khada rehta tha jaise koi aadmi kisi party ke kinare par khada ho jahan usko galti se bulaaya gaya ho, ye sochte hue ki kabhi na kabhi koi usse jaane ko bolega."},
-      {title:"Part Three — The Field",
-        en:"Above the smoke of the battlefield, Prince Andrei looked up and saw only sky — vast, quiet, and entirely uninterested in the outcome of the war beneath it.",
-        hi:"Battlefield ke dhuein ke upar, Prince Andrei ne upar dekha aur usko sirf aasmaan dikha — bahut bada, shaant, aur neeche ki war ke result mein bilkul bhi interested nahi."}
-    ]},
-  { id:'dorian', title:"The Picture of Dorian Gray", author:"Oscar Wilde", category:"Gothic",
-    bg:"#1F3B32", fg:"#D9B872",
-    chapters:[
-      {title:"Chapter One — The Studio",
-        en:"The studio was filled with the rich odour of roses, and Lord Henry, who found sincerity slightly vulgar in company, had already decided he would ruin the beautiful young man in the portrait purely as an intellectual exercise.",
-        hi:"Studio roses ki khushboo se bhara hua tha, aur Lord Henry, jinhe company mein sincerity thodi vulgar lagti thi, already decide kar chuke the ki wo portrait mein us khoobsurat jawaan aadmi ko sirf ek intellectual exercise ke taur par barbaad karenge."},
-      {title:"Chapter Two — The Wish",
-        en:"If it were I who was to be always young, and the picture that were to grow old, Dorian said, half in jest, I would give my soul for it — and somewhere in the room, something quietly agreed to the terms.",
-        hi:"'Agar hamesha jawaan main rahoon, aur wo picture buddha ho jaaye,' Dorian ne aadhe mazaak mein kaha, 'toh main apni soul de doonga.' Aur room mein kahin, kisi ne chupchaap us deal ko accept kar liya."},
-      {title:"Chapter Three — The First Change",
-        en:"He noticed it first as a trick of the light — a small cruelty at the corner of the painted mouth that had not been there yesterday.",
-        hi:"Usne pehli baar isko sirf light ka trick samjha — painted mooh ke corner par ek chhoti si cruelty, jo kal wahan nahi thi."}
-    ]},
-  { id:'great', title:"Great Expectations", author:"Charles Dickens", category:"Classic Fiction",
-    bg:"#4A342A", fg:"#EFD9B0",
-    chapters:[
-      {title:"Chapter One — The Marshes",
-        en:"My first vivid impression of the world was on a raw afternoon in the marshes, when a fearful man in grey, with a great iron on his leg, started up from among the graves and told me to hold my tongue, or he would cut it.",
-        hi:"Duniya ke baare mein meri pehli sachchi impression ek thandi dopahar mein bani, marshes mein, jab ek daraawana aadmi, grey kapdon mein, taang mein ek bada iron pehne, kabron ke beech se uthkar aaya aur mujhe chup rehne ko kaha, warna zubaan kaat dega."},
-      {title:"Chapter Two — Great Expectations",
-        en:"I was told, without warning, that I had great expectations, and it is a curious thing how quickly a boy can learn to be ashamed of the very hands that raised him.",
-        hi:"Mujhe bina kisi warning ke bataya gaya ki mere 'great expectations' hain, aur ye ajeeb baat hai ki ek ladka kitni jaldi un hi haathon se sharminda hona seekh leta hai jinhone usko pala tha."},
-      {title:"Chapter Three — Miss Havisham",
-        en:"The clocks in that house had all stopped at twenty minutes to nine, and so, it seemed, had the woman who lived among them, still dressed for a wedding that had ended decades before it began.",
-        hi:"Us ghar ki saari ghadiyaan nau baj kar bees minute par ruki hui thi, aur aisa lagta tha ki wo aurat bhi wahin ruk gayi thi — abhi bhi ek shaadi ke kapdon mein, jo shuru hone se dashkon pehle hi khatam ho chuki thi."}
-    ]},
-  { id:'wuthering', title:"Wuthering Heights", author:"Emily Brontë", category:"Gothic",
-    bg:"#33475A", fg:"#EFD9B0",
-    chapters:[
-      {title:"Chapter One — The Visitor",
-        en:"I have just returned from a visit to my landlord, the solitary neighbour I shall be troubled with, and a more stormy, unwelcoming stretch of country I do not think I have ever crossed in my life.",
-        hi:"Main abhi apne landlord se milkar aaya hoon, wo akela padosi jisse mujhe deal karna hoga, aur mujhe nahi lagta ki maine apni zindagi mein isse zyada toofani, anmanya jagah kabhi paar ki ho."},
-      {title:"Chapter Two — The Name on the Wall",
-        en:"Scratched into the paint of the windowsill, over and over in different hands, was a single name, as though someone long ago had needed to prove, again and again, that she had existed.",
-        hi:"Windowsill ke paint par, baar baar, alag alag handwriting mein, ek hi naam khurcha hua tha — jaise bahut pehle kisi ko baar baar prove karna zaroori tha ki wo thi, wo exist karti thi."},
-      {title:"Chapter Three — Heathcliff",
-        en:"He was not a man so much as a weather system — one learned to read him the way one reads a darkening sky, and to take shelter accordingly.",
-        hi:"Wo insaan kam, weather system zyada tha — usko samajhne ke liye waise hi dekhna padta tha jaise koi kaale badalon ko dekhta hai, aur uske hisaab se shelter dhoondh leta hai."}
-    ]}
+  { title:"White Nights", author:"Fyodor Dostoevsky", icon:"🌙",
+    bg:"linear-gradient(150deg, var(--lav), var(--sky))",
+    url:"https://www.gutenberg.org/cache/epub/36034/pg36034-images.html" },
+  { title:"Crime and Punishment", author:"Fyodor Dostoevsky", icon:"🔪",
+    bg:"linear-gradient(150deg, var(--peach), var(--pink))",
+    url:"https://www.gutenberg.org/cache/epub/2554/pg2554-images.html" },
+  { title:"Metamorphosis", author:"Franz Kafka", icon:"🪲",
+    bg:"linear-gradient(150deg, var(--mint), var(--sky))",
+    url:"https://www.gutenberg.org/cache/epub/5200/pg5200-images.html" },
+  { title:"The Trial", author:"Franz Kafka", icon:"⚖️",
+    bg:"linear-gradient(150deg, var(--butter), var(--peach))",
+    url:"https://www.gutenberg.org/cache/epub/7849/pg7849-images.html" },
+  { title:"The Idiot", author:"Fyodor Dostoevsky", icon:"🌸",
+    bg:"linear-gradient(150deg, var(--pink), var(--lav))",
+    url:"https://www.gutenberg.org/cache/epub/2638/pg2638-images.html" }
 ];
 
-const CATEGORIES = ["All","My Uploads","Romance","Gothic","Adventure","Fantasy","Mystery","Classic Fiction"];
-
-/* ================= STATE ================= */
-const state = {
-  activeCategory:"All",
-  searchTerm:"",
-  bookmarks:{},          // id -> true
-  currentBook:null,
-  lang:"en",
-  fontStep:2,
-  fontSizes:[15,16.5,18,19.5,21,23],
-  tocOpen:false,
-  dark:false
-};
-
-const uploadedBooks = []; // session-only, in-memory
-let uploadCounter = 0;
-
-function allBooks(){ return [...uploadedBooks, ...BOOKS]; }
-
-/* ================= RENDER: TOPBAR CATEGORIES ================= */
-const categoriesEl = document.getElementById('categories');
-CATEGORIES.forEach(cat=>{
-  const btn = document.createElement('button');
-  btn.className = 'cat-pill' + (cat==='All' ? ' active' : '');
-  btn.textContent = cat;
-  btn.addEventListener('click', ()=>{
-    state.activeCategory = cat;
-    document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    renderGrid();
-  });
-  categoriesEl.appendChild(btn);
+const shelf = document.getElementById('shelf');
+BOOKS.forEach(book=>{
+  const card = document.createElement('div');
+  card.className = 'book-card';
+  card.innerHTML = `
+    <div class="book-cover" style="background:${book.bg};">
+      <span class="icon">${book.icon}</span>
+      <h3>${book.title}</h3>
+      <span class="author">${book.author}</span>
+      <span class="open-hint">TAP TO OPEN ↗</span>
+    </div>
+    <div class="book-title">${book.title}</div>
+    <div class="book-author">${book.author}</div>
+  `;
+  card.querySelector('.book-cover').addEventListener('click', ()=> openModal(book));
+  shelf.appendChild(card);
 });
 
-/* ================= RENDER: GRID ================= */
-const gridEl = document.getElementById('grid');
-const emptyStateEl = document.getElementById('emptyState');
-const resultCountEl = document.getElementById('resultCount');
-
-function monogram(title){
-  return title.split(' ').filter(w=>/^[A-Z]/.test(w)).slice(0,2).map(w=>w[0]).join('') || title[0];
+/* Empty placeholder slots */
+for(let i=0; i<2; i++){
+  const card = document.createElement('div');
+  card.className = 'book-card';
+  card.innerHTML = `
+    <div class="book-cover empty-slot">
+      <span class="icon">🤍</span>
+      <h3>Empty</h3>
+    </div>
+    <div class="book-title" style="color:var(--ink-soft);">Add a book</div>
+    <div class="book-author">&nbsp;</div>
+  `;
+  shelf.appendChild(card);
 }
 
-function renderGrid(){
-  const term = state.searchTerm.trim().toLowerCase();
-  const source = allBooks();
-  const filtered = source.filter(b=>{
-    const matchCat = state.activeCategory==='All' || b.category===state.activeCategory;
-    const matchSearch = !term || b.title.toLowerCase().includes(term) || b.author.toLowerCase().includes(term);
-    return matchCat && matchSearch;
-  });
+/* Reading modal */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalBox = document.getElementById('modalBox');
+const modalFrame = document.getElementById('modalFrame');
+const modalTitle = document.getElementById('modalTitle');
+const modalOpenNew = document.getElementById('modalOpenNew');
+const modalLoading = document.getElementById('modalLoading');
 
-  gridEl.innerHTML = '';
+/* Strip Project Gutenberg's boilerplate (license header/footer) so the
+   reader lands right on the book's own title page instead of the PG intro. */
+function stripGutenbergBoilerplate(html, url){
+  const startMarker = /\*\*\*\s*START OF THE PROJECT GUTENBERG EBOOK[^*]*\*\*\*/i;
+  const endMarker   = /\*\*\*\s*END OF THE PROJECT GUTENBERG EBOOK[^*]*\*\*\*/i;
 
-  const showUploadTile = !term && (state.activeCategory==='All' || state.activeCategory==='My Uploads');
-  if(showUploadTile){
-    const tile = document.createElement('div');
-    tile.className = 'card';
-    tile.innerHTML = `
-      <div class="upload-tile">
-        <div class="plus">+</div>
-        <span>Upload your own PDF</span>
-      </div>`;
-    tile.querySelector('.upload-tile').addEventListener('click', triggerUpload);
-    gridEl.appendChild(tile);
+  const startMatch = html.match(startMarker);
+  let body = html;
+  let searchFrom = 0;
+
+  if(startMatch){
+    searchFrom = startMatch.index + startMatch[0].length;
+    body = html.slice(searchFrom);
   }
 
-  emptyStateEl.style.display = (filtered.length===0 && !showUploadTile) ? 'block' : 'none';
-  resultCountEl.textContent = filtered.length + (filtered.length===1 ? ' volume found' : ' volumes, bound and waiting');
+  const endMatch = body.match(endMarker);
+  if(endMatch){
+    body = body.slice(0, endMatch.index);
+  }
 
-  filtered.forEach(book=>{
-    const card = document.createElement('div');
-    card.className = 'card';
-    const coverInner = book.coverImg
-      ? `<div class="cover has-image" style="background-image:url('${book.coverImg}');">
-           <div class="cover-img-overlay"><h3>${book.title}</h3><span class="author">${book.author}</span></div>
-         </div>`
-      : `<div class="cover" style="background:${book.bg}; color:${book.fg};">
-           <div class="monogram">${monogram(book.title)}</div>
-           <h3>${book.title}</h3>
-           <div class="rule"></div>
-           <div class="author">${book.author}</div>
-         </div>`;
-    card.innerHTML = `
-      <div class="card-inner">
-        <div class="ribbon ${state.bookmarks[book.id] ? 'show' : ''}"></div>
-        ${coverInner}
-      </div>
-      <div class="card-meta">
-        <h4>${book.title}</h4>
-        <p>${book.author}</p>
-        <span class="tag">${book.category}</span>
-      </div>
-    `;
-    const inner = card.querySelector('.card-inner');
-    inner.addEventListener('mousemove', e=>{
-      const r = inner.getBoundingClientRect();
-      const x = (e.clientX - r.left)/r.width - 0.5;
-      const y = (e.clientY - r.top)/r.height - 0.5;
-      inner.style.transform = `rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-4px)`;
-      inner.classList.add('hovering');
-    });
-    inner.addEventListener('mouseleave', ()=>{
-      inner.style.transform = 'rotateY(0) rotateX(0) translateY(0)';
-      inner.classList.remove('hovering');
-    });
-    inner.addEventListener('click', ()=> openReader(book.id));
-    gridEl.appendChild(card);
-  });
+  // Fix relative image/asset paths since we're injecting via srcdoc
+  const baseDir = url.substring(0, url.lastIndexOf('/') + 1);
+
+  return `<!DOCTYPE html><html><head><meta charset="utf-8">
+<base href="${baseDir}">
+<style>
+  body{ font-family: Georgia, 'Times New Roman', serif; line-height:1.75; max-width:720px; margin:0 auto; padding:48px 24px 100px; color:#2b2233; background:#fffaf3; }
+  h1,h2,h3{ font-family:'Fredoka', sans-serif; }
+  img{ max-width:100%; height:auto; }
+  a{ color:#E86A93; }
+</style>
+</head><body>${body}</body></html>`;
 }
 
-function triggerUpload(){ document.getElementById('pdfUpload').click(); }
-document.getElementById('uploadPdfBtn').addEventListener('click', triggerUpload);
-document.getElementById('pdfUpload').addEventListener('change', async (e)=>{
-  const file = e.target.files[0];
-  e.target.value = '';
-  if(!file) return;
-  if(file.type !== 'application/pdf'){ showToast('Please choose a PDF file'); return; }
-  await handlePdfUpload(file);
-});
-
-async function handlePdfUpload(file, opts={}){
-  showToast('Reading your PDF…');
-  try{
-    const buf = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
-    const numPages = pdf.numPages;
-
-    let pagesText = [];
-    for(let i=1; i<=numPages; i++){
-      const page = await pdf.getPage(i);
-      const content = await page.getTextContent();
-      pagesText.push(content.items.map(it=>it.str).join(' '));
-    }
-
-    const maxChapters = 30;
-    const chunkSize = Math.max(1, Math.ceil(numPages / maxChapters));
-    const chapters = [];
-    for(let i=0; i<numPages; i+=chunkSize){
-      const startPage = i+1, endPage = Math.min(i+chunkSize, numPages);
-      const slice = pagesText.slice(i, i+chunkSize).join('\n\n').trim();
-      const headingMatch = slice.match(/\b(chapter|part)\s+[a-z0-9]+\b/i);
-      const title = headingMatch ? headingMatch[0].replace(/\s+/g,' ') : `Pages ${startPage}–${endPage}`;
-      chapters.push({
-        title,
-        en: slice ? slice.slice(0, 8000) : '(No selectable text found on these pages — this may be a scanned image PDF.)',
-        hi: null
-      });
-    }
-
-    let coverImg = null;
-    try{
-      const page1 = await pdf.getPage(1);
-      const viewport = page1.getViewport({ scale: 0.6 });
-      const canvas = document.createElement('canvas');
-      canvas.width = viewport.width; canvas.height = viewport.height;
-      await page1.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-      coverImg = canvas.toDataURL('image/jpeg', 0.85);
-    }catch(err){ /* fall back to CSS cover */ }
-
-    uploadCounter++;
-    const id = 'upload-' + uploadCounter;
-    const title = opts.title || file.name.replace(/\.pdf$/i, '');
-    const book = {
-      id, title, author: opts.author || 'Your upload', category:'My Uploads',
-      bg:'#33475A', fg:'#EFD9B0', coverImg, isUpload:true,
-      chapters
-    };
-    uploadedBooks.unshift(book);
-    showToast(`Added "${title}" to your shelf`);
-    renderGrid();
-    return book;
-  }catch(err){
-    console.error(err);
-    showToast('Could not read that PDF — try another file');
-  }
-}
-
-/* ================= AUTOLOAD FROM A FIXED LINK =================
-   Add entries here to have specific PDFs load automatically for you
-   when the page opens — no click needed. Each url must point to a
-   PDF you have the right to view (a file you host yourself, e.g. in
-   the same folder as this HTML file, or a link only you use).
-   Example:
-   const AUTOLOAD_PDFS = [
-     { url: "my-notes.pdf", title: "My Notes" },
-     { url: "https://example.com/my-file.pdf", title: "My Draft" }
-   ];
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const AUTOLOAD_PDFS = [
-  { 
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Haunting_Adeline.pdf", 
-    title: "Haunting Adeline", 
-    author: "H. D. Carlton" 
-  }
-];
-
-
-
-
-
-
-async function loadPdfFromUrl(entry){
-  try{
-    const res = await fetch(entry.url);
-    if(!res.ok) throw new Error('HTTP ' + res.status);
-    const blob = await res.blob();
-    const file = new File([blob], entry.title || entry.url.split('/').pop(), { type:'application/pdf' });
-    await handlePdfUpload(file, { title: entry.title, author: entry.author });
-  }catch(err){
-    console.error('Autoload failed for', entry.url, err);
-    showToast('Could not load configured PDF: ' + (entry.title || entry.url));
-  }
-}
-
-async function runAutoload(){
-  for(const entry of AUTOLOAD_PDFS){
-    await loadPdfFromUrl(entry);
-  }
-}
-
-document.getElementById('searchInput').addEventListener('input', e=>{
-  state.searchTerm = e.target.value;
-  renderGrid();
-});
-
-/* ================= READER ================= */
-const overlay = document.getElementById('readerOverlay');
-const readerContent = document.getElementById('readerContent');
-const tbTitle = document.getElementById('tbTitle');
-const tocList = document.getElementById('tocList');
-const tocDrawer = document.getElementById('tocDrawer');
-const readerScroll = document.getElementById('readerScroll');
-
-function openReader(id){
-  const book = allBooks().find(b=>b.id===id);
-  if(!book) return;
-  state.currentBook = book;
-  state.lang = 'en';
-  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active', b.dataset.lang==='en'));
-  document.getElementById('langToggle').classList.toggle('disabled-lang', !!book.isUpload);
-  tbTitle.textContent = book.title;
-  renderReaderContent();
-  renderTOC();
-  updateBookmarkIcon();
-  overlay.classList.add('open');
+async function openModal(book){
+  modalTitle.textContent = book.title + ' — ' + book.author;
+  modalOpenNew.href = book.url;
+  modalLoading.style.display = 'flex';
+  modalOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  readerScroll.scrollTop = 0;
-}
+  modalFrame.removeAttribute('src');
+  modalFrame.removeAttribute('srcdoc');
 
-function closeReader(){
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-  tocDrawer.classList.remove('open');
-}
-document.getElementById('closeReader').addEventListener('click', closeReader);
-window.addEventListener('keydown', e=>{ if(e.key==='Escape' && overlay.classList.contains('open')) closeReader(); });
-
-function renderReaderContent(){
-  const book = state.currentBook;
-  const useHi = state.lang==='hi' && !book.isUpload;
-  readerContent.innerHTML = `<div class="reader-byline">${book.author} &nbsp;·&nbsp; ${book.category}</div>` +
-    book.chapters.map((ch,i)=>{
-      const text = useHi ? ch.hi : ch.en;
-      const paras = String(text||'').split(/\n{2,}/).map(p=>`<p>${p.trim()}</p>`).join('');
-      return `<h2 id="chap-${i}">${ch.title}</h2>${paras}`;
-    }).join('');
-  applyFontSize();
-}
-
-function renderTOC(){
-  const book = state.currentBook;
-  tocList.innerHTML = book.chapters.map((ch,i)=>`
-    <button class="toc-item" data-target="chap-${i}"><span class="num">${String(i+1).padStart(2,'0')}</span>${ch.title}</button>
-  `).join('');
-  tocList.querySelectorAll('.toc-item').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const target = document.getElementById(btn.dataset.target);
-      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-      if(window.innerWidth <= 760) tocDrawer.classList.remove('open');
-    });
-  });
-}
-
-document.getElementById('tocBtn').addEventListener('click', ()=>{
-  tocDrawer.classList.toggle('open');
-});
-
-/* Language toggle */
-document.getElementById('langToggle').addEventListener('click', e=>{
-  const btn = e.target.closest('button');
-  if(!btn) return;
-  if(btn.dataset.lang==='hi' && state.currentBook && state.currentBook.isUpload){
-    showToast('Hinglish needs a connected translation service — not available for uploaded PDFs in this demo');
-    return;
-  }
-  state.lang = btn.dataset.lang;
-  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active', b===btn));
-  renderReaderContent();
-});
-
-/* Font size */
-function applyFontSize(){
-  readerContent.style.setProperty('--reader-font', state.fontSizes[state.fontStep] + 'px');
-  readerContent.style.fontSize = state.fontSizes[state.fontStep] + 'px';
-}
-document.getElementById('fontPlus').addEventListener('click', ()=>{
-  state.fontStep = Math.min(state.fontStep+1, state.fontSizes.length-1);
-  applyFontSize();
-});
-document.getElementById('fontMinus').addEventListener('click', ()=>{
-  state.fontStep = Math.max(state.fontStep-1, 0);
-  applyFontSize();
-});
-
-/* Theme toggle (reader only) */
-document.getElementById('themeBtn').addEventListener('click', ()=>{
-  state.dark = !state.dark;
-  overlay.classList.toggle('dark', state.dark);
-  document.getElementById('themeBtn').classList.toggle('active', state.dark);
-});
-
-/* Bookmark */
-function updateBookmarkIcon(){
-  const active = !!state.bookmarks[state.currentBook.id];
-  document.getElementById('bookmarkBtn').classList.toggle('active', active);
-}
-document.getElementById('bookmarkBtn').addEventListener('click', ()=>{
-  const id = state.currentBook.id;
-  state.bookmarks[id] = !state.bookmarks[id];
-  updateBookmarkIcon();
-  showToast(state.bookmarks[id] ? 'Bookmarked this page' : 'Bookmark removed');
-  renderGrid();
-});
-
-/* Toast */
-let toastTimer;
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> t.classList.remove('show'), 1800);
-}
-
-/* ================= HIGHLIGHTER ================= */
-const hlPopup = document.getElementById('hlPopup');
-let savedRange = null;
-
-readerContent.addEventListener('mouseup', ()=>{
-  const sel = window.getSelection();
-  if(!sel || sel.isCollapsed || sel.toString().trim().length===0){
-    hlPopup.classList.remove('show');
-    return;
-  }
-  const range = sel.getRangeAt(0);
-  if(!readerContent.contains(range.commonAncestorContainer)){
-    hlPopup.classList.remove('show');
-    return;
-  }
-  savedRange = range.cloneRange();
-  const rect = range.getBoundingClientRect();
-  hlPopup.style.left = (rect.left + rect.width/2) + 'px';
-  hlPopup.style.top = (rect.top - 44) + 'px';
-  hlPopup.classList.add('show');
-});
-
-const HL_COLORS = { yellow:'var(--hl-yellow)', green:'var(--hl-green)', blue:'var(--hl-blue)' };
-hlPopup.addEventListener('mousedown', e=>{
-  const btn = e.target.closest('button');
-  if(!btn || !savedRange) return;
-  e.preventDefault();
   try{
-    const mark = document.createElement('mark');
-    mark.style.background = HL_COLORS[btn.dataset.c];
-    savedRange.surroundContents(mark);
+    const res = await fetch(book.url);
+    if(!res.ok) throw new Error('fetch failed: ' + res.status);
+    const rawHtml = await res.text();
+    const cleaned = stripGutenbergBoilerplate(rawHtml, book.url);
+    modalFrame.srcdoc = cleaned;
+    modalLoading.style.display = 'none';
   }catch(err){
-    // fallback for selections crossing multiple elements
-    const mark = document.createElement('mark');
-    mark.style.background = HL_COLORS[btn.dataset.c];
-    mark.appendChild(savedRange.extractContents());
-    savedRange.insertNode(mark);
+    // Fallback: some browsers/hosts block cross-origin fetch (CORS).
+    // In that case just load the original page directly.
+    modalFrame.src = book.url;
   }
-  window.getSelection().removeAllRanges();
-  hlPopup.classList.remove('show');
-  showToast('Highlight added');
+}
+modalFrame.addEventListener('load', ()=>{ modalLoading.style.display = 'none'; });
+
+function closeModal(){
+  modalOverlay.classList.remove('open');
+  modalBox.classList.remove('maximized');
+  modalFrame.removeAttribute('src');
+  modalFrame.removeAttribute('srcdoc');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e=>{ if(e.target === modalOverlay) closeModal(); });
+window.addEventListener('keydown', e=>{ if(e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
+
+document.getElementById('modalMaximize').addEventListener('click', ()=>{
+  modalBox.classList.toggle('maximized');
+});
+document.getElementById('modalDark').addEventListener('click', function(){
+  modalBox.classList.toggle('modal-dark');
+  this.textContent = modalBox.classList.contains('modal-dark') ? '☀️' : '🌙';
 });
 
-document.addEventListener('mousedown', e=>{
-  if(!hlPopup.contains(e.target) && e.target !== hlPopup) {
-    if(!readerContent.contains(e.target)) hlPopup.classList.remove('show');
-  }
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', ()=>{
+  const body = document.body;
+  const isDark = body.getAttribute('data-theme') === 'dark';
+  body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeToggle.querySelector('.knob').textContent = isDark ? '🌙' : '☀️';
 });
-
-/* ================= INIT ================= */
-renderGrid();
-runAutoload();
 </script>
 </body>
 </html>
