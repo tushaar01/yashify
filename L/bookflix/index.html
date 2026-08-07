@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,6 +210,53 @@
     .modal-overlay{ padding:0; }
     .modal-box{ width:100vw; height:100vh; border-radius:0; }
   }
+
+  /* Harry Potter Netflix-style slider (added section, everything else untouched) */
+  .hp-heading{
+    max-width:1100px; margin:0 auto 18px; padding:0 24px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hp-heading h2{ font-size:24px; font-weight:600; }
+  .hp-row-wrap{
+    max-width:1100px; margin:0 auto; padding:0 24px 70px;
+    position:relative;
+  }
+  .hp-row{
+    display:flex; gap:16px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding:6px 2px 16px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .hp-row::-webkit-scrollbar{ height:8px; }
+  .hp-row::-webkit-scrollbar-thumb{ background:var(--lav); border-radius:10px; }
+  .hp-card{
+    flex:0 0 auto;
+    width:140px;
+    display:flex; flex-direction:column; gap:8px;
+    cursor:pointer;
+  }
+  @media (max-width:640px){ .hp-card{ width:112px; } }
+  .hp-cover{
+    width:100%; aspect-ratio:2/3; border-radius:12px;
+    background:#ddd center/cover no-repeat;
+    box-shadow:var(--shadow);
+    transition:transform .22s ease, box-shadow .22s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .hp-card:hover .hp-cover{ transform:translateY(-6px) scale(1.06); box-shadow:0 16px 30px rgba(0,0,0,0.3); }
+  .hp-cover .hp-hint{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:6px 6px 5px;
+    font-size:9.5px; font-weight:700; letter-spacing:.4px;
+    text-align:center; color:#fff;
+    background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
+    opacity:0; transition:opacity .2s;
+  }
+  .hp-card:hover .hp-hint{ opacity:1; }
+  .hp-card-title{ font-size:12px; font-weight:600; color:var(--ink); text-align:center; line-height:1.3; }
 </style>
 </head>
 <body data-theme="light">
@@ -224,6 +276,14 @@
     <path d="M2 6 Q 15 -2, 25 6 T 48 6 T 71 6 T 88 6" stroke="#FF8FAB" stroke-width="2.5" stroke-linecap="round"/>
   </svg>
 </section>
+
+<div class="hp-heading">
+  <h2>Harry Potter</h2>
+  <span>⚡</span>
+</div>
+<div class="hp-row-wrap">
+  <div class="hp-row" id="hpRow"></div>
+</div>
 
 <div class="shelf-heading">
   <h2>Your Shelf</h2>
@@ -339,6 +399,77 @@ for(let i=0; i<2; i++){
   shelf.appendChild(card);
 }
 
+/* ---- Harry Potter Netflix-style slider (only this section is new) ----
+   Note: unlike the public-domain books above, the Harry Potter novels are
+   still under copyright, so there's no legal free full-text source to open
+   in the reader modal. These mini covers link out to the book's page on
+   Goodreads instead of embedding the full book. */
+/* NOTE: Harry Potter books are still under copyright — unlike the public-
+   domain Gutenberg titles above, there's no legal free full-text file I can
+   fetch or link to on your behalf. The "url" fields below are left empty;
+   if you have your own legally-owned PDF/ebook file for a title, put its
+   link in that book's "url" and it will open + maximize in the exact same
+   popup reader as your other books. Until then, tapping a cover shows a
+   short note in the popup instead of pretending to load a file. */
+const HP_BOOKS = [
+  {
+    title: "Harry Potter and the Sorcerer's Stone",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/059035342X-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Chamber of Secrets",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/0439064872-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Prisoner of Azkaban",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/0439136369-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Goblet of Fire",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/0439139597-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Order of the Phoenix",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/043935806X-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Half-Blood Prince",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/0439785960-L.jpg",
+    url: ""
+  },
+  {
+    title: "Harry Potter and the Deathly Hallows",
+    author: "J.K. Rowling",
+    cover: "https://covers.openlibrary.org/b/isbn/0545010225-L.jpg",
+    url: ""
+  }
+];
+
+const hpRow = document.getElementById('hpRow');
+HP_BOOKS.forEach(book => {
+  const card = document.createElement('div');
+  card.className = 'hp-card';
+  card.innerHTML = `
+    <div class="hp-cover" style="background-image:url('${book.cover}');">
+      <span class="hp-hint">TAP TO OPEN ↗</span>
+    </div>
+    <div class="hp-card-title">${book.title}</div>
+  `;
+  card.addEventListener('click', () => openModal(book));
+  hpRow.appendChild(card);
+});
+
 /* Reading modal */
 const modalOverlay = document.getElementById('modalOverlay');
 const modalBox = document.getElementById('modalBox');
@@ -388,6 +519,23 @@ async function openModal(book){
   document.body.style.overflow = 'hidden';
   modalFrame.removeAttribute('src');
   modalFrame.removeAttribute('srcdoc');
+
+  // No file linked yet for this title — show a note in the same popup UI
+  if (!book.url) {
+    modalFrame.srcdoc = `<!DOCTYPE html><html><head><meta charset="utf-8">
+      <style>
+        body{ font-family:'Quicksand',sans-serif; display:flex; align-items:center; justify-content:center;
+              height:100vh; margin:0; text-align:center; color:#4A3F55; background:#FFF8F2; padding:24px; }
+        .box{ max-width:420px; }
+        .box span{ font-size:34px; display:block; margin-bottom:12px; }
+      </style></head>
+      <body><div class="box"><span>📖</span>
+        <p><strong>${book.title}</strong> isn't linked to a file yet.<br><br>
+        Add your own PDF/ebook link to this book's "url" in the code and it'll open right here, maximize and all — just like your other books.</p>
+      </div></body></html>`;
+    modalLoading.style.display = 'none';
+    return;
+  }
 
   // PDF render using PDF.js CDN
   if (book.url.toLowerCase().endsWith('.pdf')) {
@@ -444,3 +592,4 @@ if(themeToggle){
 
 </body>
 </html>
+
