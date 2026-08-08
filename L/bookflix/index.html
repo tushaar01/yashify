@@ -3,6 +3,11 @@
 
 
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,6 +87,68 @@
     font-size:13px; transition:transform .3s;
   }
   [data-theme="dark"] .theme-toggle .knob{ transform:translateX(26px); }
+
+  /* ---- Profile hero (avatar video + quote + smart search) ---- */
+  .profile-hero{
+    max-width:1100px; margin:6px auto 0; padding:0 40px;
+    display:flex; align-items:center; gap:26px;
+  }
+  .avatar-frame{
+    flex:none; width:104px; height:104px; border-radius:50%;
+    padding:4px;
+    background:linear-gradient(135deg, var(--pink), var(--lav) 60%, var(--sky));
+    box-shadow:var(--shadow);
+  }
+  .avatar-frame .avatar-inner{
+    width:100%; height:100%; border-radius:50%; overflow:hidden;
+    background:var(--card-bg);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .avatar-frame video{
+    width:100%; height:100%; object-fit:cover; display:none;
+  }
+  .avatar-frame .avatar-fallback{
+    font-size:34px;
+  }
+  .profile-hero-text{ flex:1; min-width:0; }
+  .profile-quote{
+    font-family:'Fredoka', sans-serif;
+    font-size:clamp(17px,2.6vw,22px); font-weight:600; line-height:1.5;
+    color:var(--ink);
+  }
+  .profile-hero-sub{
+    margin-top:6px; font-size:13px; color:var(--ink-soft); font-weight:600;
+  }
+
+  .search-wrap{ max-width:1100px; margin:22px auto 8px; padding:0 40px; }
+  .search-bar{
+    display:flex; align-items:center; gap:10px;
+    background:var(--card-bg); border-radius:18px; padding:13px 20px;
+    box-shadow:var(--shadow);
+  }
+  .search-bar .search-icon{ font-size:16px; opacity:.7; }
+  .search-bar input{
+    flex:1; border:none; outline:none; background:transparent;
+    font-family:'Quicksand', sans-serif; font-size:15px; font-weight:600;
+    color:var(--ink);
+  }
+  .search-bar input::placeholder{ color:var(--ink-soft); font-weight:500; }
+  .search-clear{
+    font-size:13px; font-weight:700; color:var(--ink-soft);
+    padding:4px 8px; border-radius:10px; display:none;
+  }
+  .search-clear:hover{ background:var(--pink); color:#3A2E45; }
+  .search-empty{
+    max-width:1100px; margin:0 auto; padding:10px 40px 0;
+    color:var(--ink-soft); font-size:13.5px; font-weight:600; display:none;
+  }
+
+  @media (max-width:640px){
+    .profile-hero{ padding:0 20px; gap:16px; }
+    .avatar-frame{ width:78px; height:78px; }
+    .search-wrap{ padding:0 20px; }
+  }
 
   /* Hero / Quote */
   .hero{
@@ -184,6 +251,7 @@
   .modal-bar .modal-title{
     font-family:'Fredoka', sans-serif; font-weight:600; font-size:15px;
     margin-right:auto; color:var(--ink);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   }
   .modal-btn{
     width:34px; height:34px; border-radius:50%;
@@ -191,6 +259,7 @@
     display:flex; align-items:center; justify-content:center;
     font-size:15px; box-shadow:0 2px 6px rgba(0,0,0,0.08);
     transition:background .15s;
+    flex:none;
   }
   .modal-btn:hover{ background:var(--pink); }
   .modal-frame-wrap{ flex:1; position:relative; background:#fff; }
@@ -199,17 +268,45 @@
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
     font-family:'Fredoka', sans-serif; color:var(--ink-soft); font-size:14px;
     background:var(--card-bg);
+    z-index:5;
   }
-  .modal-box.modal-dark{ background:#1D1826; }
-  .modal-box.modal-dark .modal-bar{ background:#241E30; }
-  .modal-box.modal-dark .modal-bar .modal-title{ color:#F3EEF7; }
-  .modal-box.modal-dark .modal-btn{ background:#2F2739; color:#F3EEF7; }
-  .modal-box.modal-dark .modal-btn:hover{ background:var(--accent); }
-  .modal-box.modal-dark .modal-loading{ background:#1D1826; color:#B8AEC4; }
   @media (max-width:640px){
     .modal-overlay{ padding:0; }
     .modal-box{ width:100vw; height:100vh; border-radius:0; }
   }
+
+  /* ---- Custom page-by-page PDF reader (no scroll-jump, no highlight tool) ---- */
+  #pdfViewerWrap{
+    position:absolute; inset:0;
+    display:none; flex-direction:column;
+    background:#57545E;
+  }
+  #pdfCanvasHolder{
+    flex:1; overflow:auto;
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:18px 12px;
+  }
+  #pdfCanvas{
+    background:#fff; box-shadow:0 6px 22px rgba(0,0,0,0.35);
+    border-radius:4px;
+  }
+  .pdf-controls{
+    flex:none; display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 14px; background:#3F3C47;
+  }
+  .pdf-controls button{
+    width:36px; height:36px; border-radius:50%;
+    background:#524E5C; color:#fff; font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .15s;
+  }
+  .pdf-controls button:hover{ background:var(--accent); }
+  .pdf-controls button:disabled{ opacity:.35; cursor:default; background:#524E5C; }
+  .pdf-page-indicator{
+    color:#fff; font-size:13px; font-weight:600; min-width:76px; text-align:center;
+    font-family:'Quicksand', sans-serif;
+  }
+  .pdf-zoom-group{ display:flex; align-items:center; gap:6px; margin-left:10px; }
 
   /* Harry Potter Netflix-style slider (added section, everything else untouched) */
   .hp-heading{
@@ -222,10 +319,10 @@
     position:relative;
   }
   .hp-row{
-    display:flex; gap:16px;
-    overflow-x:auto;
+    display:flex; gap:42px;
+    overflow-x:auto; overflow-y:visible;
     scroll-behavior:smooth;
-    padding:6px 2px 16px;
+    padding:20px 24px 24px 58px;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:thin;
   }
@@ -236,8 +333,9 @@
     width:140px;
     display:flex; flex-direction:column; gap:8px;
     cursor:pointer;
+    position:relative;
   }
-  @media (max-width:640px){ .hp-card{ width:112px; } }
+  @media (max-width:640px){ .hp-card{ width:112px; } .hp-row{ gap:30px; padding-left:42px; } }
   .hp-cover{
     width:100%; aspect-ratio:2/3; border-radius:12px;
     background:#ddd center/cover no-repeat;
@@ -257,6 +355,29 @@
   }
   .hp-card:hover .hp-hint{ opacity:1; }
   .hp-card-title{ font-size:12px; font-weight:600; color:var(--ink); text-align:center; line-height:1.3; }
+
+  /* Netflix Top-10 style rank number: sits to the LEFT of the poster,
+     bleeding outside its box (not clipped, since it's a sibling of
+     .hp-cover rather than a child of it). Each card reserves its own
+     space via the row's gap/padding, so numbers never collide. */
+  .hp-rank{
+    position:absolute;
+    left:-46px; bottom:-10px;
+    z-index:3;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:124px;
+    line-height:0.78;
+    color:var(--bg);
+    -webkit-text-stroke:4px var(--accent-deep);
+    paint-order:stroke fill;
+    text-shadow:2px 3px 0 rgba(0,0,0,0.2);
+    pointer-events:none;
+    user-select:none;
+  }
+  @media (max-width:640px){
+    .hp-rank{ font-size:88px; left:-32px; bottom:-7px; -webkit-text-stroke:3px var(--accent-deep); }
+  }
 </style>
 </head>
 <body data-theme="light">
@@ -267,6 +388,30 @@
     <div class="knob">🌙</div>
   </button>
 </div>
+
+<!-- Profile hero: avatar video circle + quote -->
+<section class="profile-hero">
+  <div class="avatar-frame">
+    <div class="avatar-inner">
+      <video id="avatarVideo" autoplay muted loop playsinline></video>
+      <span class="avatar-fallback" id="avatarFallback">💭</span>
+    </div>
+  </div>
+  <div class="profile-hero-text">
+    <p class="profile-quote" id="profileQuote"></p>
+    <p class="profile-hero-sub">Read Stories · Unwind with Fun</p>
+  </div>
+</section>
+
+<!-- Smart search: automatically indexes every book in BOOKS + HP_BOOKS below, no manual syncing needed -->
+<div class="search-wrap">
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="mainSearch" placeholder="Search any book or author on this page…" autocomplete="off">
+    <span class="search-clear" id="searchClear">✕ clear</span>
+  </div>
+</div>
+<p class="search-empty" id="searchEmpty">No books match that search 💭</p>
 
 <section class="hero">
   <span class="bubble-emoji">💭</span>
@@ -299,13 +444,29 @@
     <div class="modal-bar">
       <span class="modal-title" id="modalTitle">Reading</span>
       <a class="modal-btn" id="modalOpenNew" href="#" target="_blank" rel="noopener" title="Open in new tab">↗</a>
-      <button class="modal-btn" id="modalDark" title="Toggle popup dark mode">🌙</button>
       <button class="modal-btn" id="modalMaximize" title="Maximize">⤢</button>
       <button class="modal-btn" id="modalClose" title="Close">✕</button>
     </div>
     <div class="modal-frame-wrap">
       <div class="modal-loading" id="modalLoading">opening your book… 💭</div>
       <iframe id="modalFrame" title="Book reader"></iframe>
+
+      <!-- Custom PDF reader: renders one page at a time so scrolling never skips pages,
+           and has no highlight/annotation tool and no dark-mode toggle -->
+      <div id="pdfViewerWrap">
+        <div id="pdfCanvasHolder">
+          <canvas id="pdfCanvas"></canvas>
+        </div>
+        <div class="pdf-controls">
+          <button id="pdfPrev" title="Previous page">◀</button>
+          <span class="pdf-page-indicator" id="pdfPageIndicator">– / –</span>
+          <button id="pdfNext" title="Next page">▶</button>
+          <div class="pdf-zoom-group">
+            <button id="pdfZoomOut" title="Zoom out">–</button>
+            <button id="pdfZoomIn" title="Zoom in">+</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -319,7 +480,36 @@
 
 
 
-<script>
+<script type="module">
+import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.min.mjs";
+// pdf.js 6.x ships as a pure ES module, and its worker file is a module
+// too. Just setting workerSrc makes the browser spin it up as a classic
+// (non-module) worker, which can't parse the module's import/export
+// syntax and silently fails — nothing ever renders. Creating the worker
+// ourselves with { type: 'module' } fixes that.
+const PDFJS_WORKER_URL = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(PDFJS_WORKER_URL, { type: "module" });
+
+/* ================= Profile hero: video avatar + quote =================
+   👉 Paste your own video link below (mp4/webm URL). If left empty, a
+   simple 💭 placeholder shows instead of a broken video.
+   👉 Change HERO_QUOTE to whatever line you want under the avatar.
+*/
+const AVATAR_VIDEO_URL = ""; // e.g. "https://your-link-here.com/avatar.mp4"
+const HERO_QUOTE = "Every book is a door to somewhere new. 💭";
+
+const avatarVideo = document.getElementById('avatarVideo');
+const avatarFallback = document.getElementById('avatarFallback');
+if(AVATAR_VIDEO_URL){
+  avatarVideo.src = AVATAR_VIDEO_URL;
+  avatarVideo.style.display = 'block';
+  avatarFallback.style.display = 'none';
+} else {
+  avatarVideo.style.display = 'none';
+  avatarFallback.style.display = 'flex';
+}
+document.getElementById('profileQuote').textContent = HERO_QUOTE;
+
 const BOOKS = [
   
   { 
@@ -367,6 +557,15 @@ const BOOKS = [
   }
 ];
 
+/* ================= Smart search index =================
+   Every card created below (Your Shelf + Harry Potter) registers itself
+   here automatically, so adding a new book to BOOKS or HP_BOOKS makes it
+   searchable with zero extra edits. */
+const searchIndex = [];
+function registerSearchable(el, title, author){
+  searchIndex.push({ el, title: (title||'').toLowerCase(), author: (author||'').toLowerCase() });
+}
+
 const shelf = document.getElementById('shelf');
 shelf.innerHTML = ''; 
 
@@ -382,9 +581,11 @@ BOOKS.forEach(book => {
   `;
   card.querySelector('.book-cover').addEventListener('click', () => openModal(book));
   shelf.appendChild(card);
+  registerSearchable(card, book.title, book.author);
 });
 
-/* Empty placeholder slots */
+/* Empty placeholder slots (excluded from search) */
+const emptySlotEls = [];
 for(let i=0; i<2; i++){
   const card = document.createElement('div');
   card.className = 'book-card';
@@ -397,6 +598,7 @@ for(let i=0; i<2; i++){
     <div class="book-author">&nbsp;</div>
   `;
   shelf.appendChild(card);
+  emptySlotEls.push(card);
 }
 
 /* ---- Harry Potter Netflix-style slider (only this section is new) ----
@@ -457,10 +659,11 @@ const HP_BOOKS = [
 ];
 
 const hpRow = document.getElementById('hpRow');
-HP_BOOKS.forEach(book => {
+HP_BOOKS.forEach((book, idx) => {
   const card = document.createElement('div');
   card.className = 'hp-card';
   card.innerHTML = `
+    <span class="hp-rank">${idx + 1}</span>
     <div class="hp-cover" style="background-image:url('${book.cover}');">
       <span class="hp-hint">TAP TO OPEN ↗</span>
     </div>
@@ -468,7 +671,36 @@ HP_BOOKS.forEach(book => {
   `;
   card.addEventListener('click', () => openModal(book));
   hpRow.appendChild(card);
+  registerSearchable(card, book.title, book.author);
 });
+
+/* ---- Live search across every book on the page ---- */
+const mainSearch = document.getElementById('mainSearch');
+const searchClear = document.getElementById('searchClear');
+const searchEmpty = document.getElementById('searchEmpty');
+
+function runSearch(){
+  const q = mainSearch.value.trim().toLowerCase();
+  searchClear.style.display = q ? 'inline-block' : 'none';
+
+  if(!q){
+    searchIndex.forEach(item => item.el.style.display = '');
+    emptySlotEls.forEach(el => el.style.display = '');
+    searchEmpty.style.display = 'none';
+    return;
+  }
+
+  emptySlotEls.forEach(el => el.style.display = 'none');
+  let matches = 0;
+  searchIndex.forEach(item => {
+    const isMatch = item.title.includes(q) || item.author.includes(q);
+    item.el.style.display = isMatch ? '' : 'none';
+    if(isMatch) matches++;
+  });
+  searchEmpty.style.display = matches === 0 ? 'block' : 'none';
+}
+mainSearch.addEventListener('input', runSearch);
+searchClear.addEventListener('click', () => { mainSearch.value=''; runSearch(); mainSearch.focus(); });
 
 /* Reading modal */
 const modalOverlay = document.getElementById('modalOverlay');
@@ -477,6 +709,12 @@ const modalFrame = document.getElementById('modalFrame');
 const modalTitle = document.getElementById('modalTitle');
 const modalOpenNew = document.getElementById('modalOpenNew');
 const modalLoading = document.getElementById('modalLoading');
+const pdfViewerWrap = document.getElementById('pdfViewerWrap');
+let pdfCanvas = document.getElementById('pdfCanvas');
+const pdfCanvasHolder = document.getElementById('pdfCanvasHolder');
+const pdfPageIndicator = document.getElementById('pdfPageIndicator');
+const pdfPrevBtn = document.getElementById('pdfPrev');
+const pdfNextBtn = document.getElementById('pdfNext');
 
 function stripGutenbergBoilerplate(html, url){
   const startMarker = /\*\*\*\s*START OF THE PROJECT GUTENBERG EBOOK[^*]*\*\*\*/i;
@@ -509,19 +747,92 @@ function stripGutenbergBoilerplate(html, url){
 </head><body>${body}</body></html>`;
 }
 
+/* ---------------- Custom PDF reader (page-by-page, no scroll-jump) ---------------- */
+let pdfDoc = null;
+let pdfPageNum = 1;
+let pdfZoom = 1;
+let pdfRendering = false;
+let pdfPending = null;
 
+function renderPdfPage(num){
+  if(!pdfDoc) return;
+  pdfRendering = true;
+  pdfDoc.getPage(num).then(page => {
+    const baseViewport = page.getViewport({ scale: 1 });
+    const availableWidth = Math.max(pdfCanvasHolder.clientWidth - 28, 120);
+    const fitScale = availableWidth / baseViewport.width;
+    const viewport = page.getViewport({ scale: fitScale * pdfZoom });
+
+    pdfCanvas.width = viewport.width;
+    pdfCanvas.height = viewport.height;
+    const ctx = pdfCanvas.getContext('2d');
+
+    page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+      pdfRendering = false;
+      if(pdfPending !== null){
+        const next = pdfPending;
+        pdfPending = null;
+        renderPdfPage(next);
+      }
+    });
+
+    pdfPageNum = num;
+    pdfPageIndicator.textContent = `${num} / ${pdfDoc.numPages}`;
+    pdfPrevBtn.disabled = num <= 1;
+    pdfNextBtn.disabled = num >= pdfDoc.numPages;
+  });
+}
+
+function queueRenderPage(num){
+  if(pdfRendering){ pdfPending = num; }
+  else { renderPdfPage(num); }
+}
+
+pdfPrevBtn.addEventListener('click', () => { if(pdfDoc && pdfPageNum > 1) queueRenderPage(pdfPageNum - 1); });
+pdfNextBtn.addEventListener('click', () => { if(pdfDoc && pdfPageNum < pdfDoc.numPages) queueRenderPage(pdfPageNum + 1); });
+document.getElementById('pdfZoomIn').addEventListener('click', () => {
+  pdfZoom = Math.min(pdfZoom + 0.2, 3);
+  if(pdfDoc) queueRenderPage(pdfPageNum);
+});
+document.getElementById('pdfZoomOut').addEventListener('click', () => {
+  pdfZoom = Math.max(pdfZoom - 0.2, 0.5);
+  if(pdfDoc) queueRenderPage(pdfPageNum);
+});
+
+async function openPdfViewer(url){
+  pdfViewerWrap.style.display = 'flex';
+  modalFrame.style.display = 'none';
+  pdfDoc = null;
+  pdfPageNum = 1;
+  pdfZoom = 1;
+  pdfPageIndicator.textContent = '– / –';
+  try{
+    const loadingTask = pdfjsLib.getDocument({ url, disableRange: true, disableStream: true });
+    pdfDoc = await loadingTask.promise;
+    renderPdfPage(1);
+  } catch(err){
+    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">Couldn't load this PDF here. <a href="${url}" target="_blank" style="color:#FFB6C9;">Open it directly ↗</a></p>`;
+  }
+  modalLoading.style.display = 'none';
+}
 
 async function openModal(book){
   modalTitle.textContent = book.title + ' — ' + book.author;
-  modalOpenNew.href = book.url;
+  modalOpenNew.href = book.url || '#';
   modalLoading.style.display = 'flex';
   modalOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
   modalFrame.removeAttribute('src');
   modalFrame.removeAttribute('srcdoc');
+  modalFrame.style.display = 'none';
+  pdfViewerWrap.style.display = 'none';
+  pdfCanvasHolder.innerHTML = '<canvas id="pdfCanvas"></canvas>';
+  pdfCanvas = document.getElementById('pdfCanvas'); // re-grab the reference — innerHTML above created a brand new element
 
   // No file linked yet for this title — show a note in the same popup UI
   if (!book.url) {
+    modalFrame.style.display = 'block';
     modalFrame.srcdoc = `<!DOCTYPE html><html><head><meta charset="utf-8">
       <style>
         body{ font-family:'Quicksand',sans-serif; display:flex; align-items:center; justify-content:center;
@@ -537,13 +848,13 @@ async function openModal(book){
     return;
   }
 
-  // PDF render using PDF.js CDN
+  // Custom PDF.js canvas reader — one page at a time, no scroll-jump, no highlight tool
   if (book.url.toLowerCase().endsWith('.pdf')) {
-    modalFrame.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(book.url)}`;
-    modalLoading.style.display = 'none';
+    openPdfViewer(book.url);
     return;
   }
 
+  modalFrame.style.display = 'block';
   try {
     const res = await fetch(book.url);
     if(!res.ok) throw new Error('fetch failed');
@@ -556,7 +867,6 @@ async function openModal(book){
   }
 }
 
-
 modalFrame.addEventListener('load', ()=>{ modalLoading.style.display = 'none'; });
 
 function closeModal(){
@@ -564,19 +874,31 @@ function closeModal(){
   modalBox.classList.remove('maximized');
   modalFrame.removeAttribute('src');
   modalFrame.removeAttribute('srcdoc');
+  pdfViewerWrap.style.display = 'none';
+  pdfDoc = null;
   document.body.style.overflow = '';
 }
 
 document.getElementById('modalClose').addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', e=>{ if(e.target === modalOverlay) closeModal(); });
-window.addEventListener('keydown', e=>{ if(e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
+window.addEventListener('keydown', e=>{
+  if(!modalOverlay.classList.contains('open')) return;
+  if(e.key === 'Escape') closeModal();
+  if(pdfDoc){
+    if(e.key === 'ArrowRight') pdfNextBtn.click();
+    if(e.key === 'ArrowLeft') pdfPrevBtn.click();
+  }
+});
 
 document.getElementById('modalMaximize').addEventListener('click', ()=>{
   modalBox.classList.toggle('maximized');
+  if(pdfDoc){ setTimeout(() => queueRenderPage(pdfPageNum), 260); }
 });
-document.getElementById('modalDark').addEventListener('click', function(){
-  modalBox.classList.toggle('modal-dark');
-  this.textContent = modalBox.classList.contains('modal-dark') ? '☀️' : '🌙';
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { if(pdfDoc) queueRenderPage(pdfPageNum); }, 200);
 });
 
 const themeToggle = document.getElementById('themeToggle');
