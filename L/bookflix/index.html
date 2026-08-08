@@ -850,9 +850,13 @@ async function openModal(book){
     return;
   }
 
-  // Custom PDF.js canvas reader — one page at a time, no scroll-jump, no highlight tool
+  // Full-featured PDF reader — Mozilla's official PDF.js web viewer (toolbar, zoom,
+  // search, thumbnails, continuous scroll — like Adobe's web viewer), embedded right
+  // here in the same in-site popup, not opening a new tab.
   if (book.url.toLowerCase().endsWith('.pdf')) {
-    openPdfViewer(book.url);
+    modalFrame.style.display = 'block';
+    modalFrame.src = 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + encodeURIComponent(book.url);
+    modalLoading.style.display = 'none';
     return;
   }
 
