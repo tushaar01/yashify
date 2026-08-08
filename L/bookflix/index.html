@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>READLY ðŸ’­ your cozy reading corner</title>
+<title>READLY 💭 your cozy reading corner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -375,7 +375,7 @@
 <body>
 
 <div class="topbar">
-  <div class="brand">ðŸ“– READLY</div>
+  <div class="brand">📖 READLY</div>
 </div>
 
 <!-- Profile hero: avatar video circle + quote -->
@@ -383,29 +383,29 @@
   <div class="avatar-frame">
     <div class="avatar-inner">
       <img id="avatarVideo" alt="Avatar">
-      <span class="avatar-fallback" id="avatarFallback">ðŸ’­</span>
+      <span class="avatar-fallback" id="avatarFallback">💭</span>
     </div>
   </div>
   <div class="profile-hero-text">
     <p class="profile-quote" id="profileQuote"></p>
-    <p class="profile-hero-sub">Read Stories Â· Unwind with Fun</p>
+    <p class="profile-hero-sub">Read Stories · Unwind with Fun</p>
   </div>
 </section>
 
 <!-- Smart search: automatically indexes every book in BOOKS + HP_BOOKS below, no manual syncing needed -->
 <div class="search-wrap">
   <div class="search-bar">
-    <span class="search-icon">ðŸ”</span>
-    <input type="text" id="mainSearch" placeholder="Search any book or author on this pageâ€¦" autocomplete="off">
-    <span class="search-clear" id="searchClear">âœ• clear</span>
+    <span class="search-icon">🔍</span>
+    <input type="text" id="mainSearch" placeholder="Search any book or author on this page…" autocomplete="off">
+    <span class="search-clear" id="searchClear">✕ clear</span>
   </div>
 </div>
 <div class="tag-row" id="tagRow"></div>
-<p class="search-empty" id="searchEmpty">No books match that search ðŸ’­</p>
+<p class="search-empty" id="searchEmpty">No books match that search 💭</p>
 
 <div class="hp-heading">
   <h2>Harry Potter</h2>
-  <span>âš¡</span>
+  <span>⚡</span>
 </div>
 <div class="hp-row-wrap">
   <div class="hp-row" id="hpRow"></div>
@@ -413,23 +413,23 @@
 
 <div class="shelf-heading">
   <h2>Your Shelf</h2>
-  <span>ðŸ“š</span>
+  <span>📚</span>
 </div>
 
 <div class="shelf" id="shelf"></div>
 
-<footer>made with ðŸ’­ for people who read past their bedtime</footer>
+<footer>made with 💭 for people who read past their bedtime</footer>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box" id="modalBox">
     <div class="modal-bar">
       <span class="modal-title" id="modalTitle">Reading</span>
-      <a class="modal-btn" id="modalOpenNew" href="#" target="_blank" rel="noopener" title="Open in new tab">â†—</a>
-      <button class="modal-btn" id="modalMaximize" title="Maximize">â¤¢</button>
-      <button class="modal-btn" id="modalClose" title="Close">âœ•</button>
+      <a class="modal-btn" id="modalOpenNew" href="#" target="_blank" rel="noopener" title="Open in new tab">↗</a>
+      <button class="modal-btn" id="modalMaximize" title="Maximize">⤢</button>
+      <button class="modal-btn" id="modalClose" title="Close">✕</button>
     </div>
     <div class="modal-frame-wrap">
-      <div class="modal-loading" id="modalLoading">opening your bookâ€¦ ðŸ’­</div>
+      <div class="modal-loading" id="modalLoading">opening your book… 💭</div>
       <iframe id="modalFrame" title="Book reader"></iframe>
 
       <!-- Custom PDF reader: renders one page at a time so scrolling never skips pages,
@@ -439,11 +439,11 @@
           <canvas id="pdfCanvas"></canvas>
         </div>
         <div class="pdf-controls">
-          <button id="pdfPrev" title="Previous page">â—€</button>
-          <span class="pdf-page-indicator" id="pdfPageIndicator">â€“ / â€“</span>
-          <button id="pdfNext" title="Next page">â–¶</button>
+          <button id="pdfPrev" title="Previous page">◀</button>
+          <span class="pdf-page-indicator" id="pdfPageIndicator">– / –</span>
+          <button id="pdfNext" title="Next page">▶</button>
           <div class="pdf-zoom-group">
-            <button id="pdfZoomOut" title="Zoom out">â€“</button>
+            <button id="pdfZoomOut" title="Zoom out">–</button>
             <button id="pdfZoomIn" title="Zoom in">+</button>
           </div>
         </div>
@@ -461,7 +461,7 @@
 
 
 
-<!-- Older, classic (non-module) pdf.js build â€” this loads as a plain global
+<!-- Older, classic (non-module) pdf.js build — this loads as a plain global
      script, so even if the network blocks it, it can never crash the rest
      of the page's JavaScript. Loaded here, before the main script below,
      so `pdfjsLib` is ready when needed. -->
@@ -469,20 +469,20 @@
 
 <script>
 // Everything in this script (books, search, the reading modal) is
-// completely independent of pdf.js â€” if pdf.js fails to load for any
+// completely independent of pdf.js — if pdf.js fails to load for any
 // reason, only the PDF preview degrades gracefully; nothing else breaks.
 if (window.pdfjsLib) {
   pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 }
 
 /* ================= Profile hero: video avatar + quote =================
-   ðŸ‘‰ Paste your own video link below (mp4/webm URL). If left empty, a
-   simple ðŸ’­ placeholder shows instead of a broken video.
+   👉 Paste your own video link below (mp4/webm URL). If left empty, a
+   simple 💭 placeholder shows instead of a broken video.
 
-   ðŸ‘‰ Change HERO_QUOTE to whatever line you want under the avatar.
+   👉 Change HERO_QUOTE to whatever line you want under the avatar.
 */
 const AVATAR_VIDEO_URL = "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/c.gif"
-const HERO_QUOTE = "Every book is a door to somewhere new. ðŸ’­";
+const HERO_QUOTE = "Every book is a door to somewhere new. 💭";
 
 const avatarVideo = document.getElementById('avatarVideo');
 const avatarFallback = document.getElementById('avatarFallback');
@@ -577,7 +577,7 @@ BOOKS.forEach(book => {
   card.className = 'book-card';
   card.innerHTML = `
     <div class="book-cover" style="background-image: url('${book.cover}'); background-size: cover; background-position: center;">
-      <span class="open-hint">TAP TO OPEN â†—</span>
+      <span class="open-hint">TAP TO OPEN ↗</span>
     </div>
     <div class="book-title">${book.title}</div>
     <div class="book-author">${book.author}</div>
@@ -594,7 +594,7 @@ for(let i=0; i<2; i++){
   card.className = 'book-card';
   card.innerHTML = `
     <div class="book-cover empty-slot">
-      <span class="icon">ðŸ¤</span>
+      <span class="icon">🤍</span>
       <h3>Empty</h3>
     </div>
     <div class="book-title" style="color:var(--ink-soft);">Add a book</div>
@@ -609,7 +609,7 @@ for(let i=0; i<2; i++){
    still under copyright, so there's no legal free full-text source to open
    in the reader modal. These mini covers link out to the book's page on
    Goodreads instead of embedding the full book. */
-/* NOTE: Harry Potter books are still under copyright â€” unlike the public-
+/* NOTE: Harry Potter books are still under copyright — unlike the public-
    domain Gutenberg titles above, there's no legal free full-text file I can
    fetch or link to on your behalf. The "url" fields below are left empty;
    if you have your own legally-owned PDF/ebook file for a title, put its
@@ -675,7 +675,7 @@ HP_BOOKS.forEach((book, idx) => {
   card.innerHTML = `
     <span class="hp-rank">${idx + 1}</span>
     <div class="hp-cover" style="background-image:url('${book.cover}');">
-      <span class="hp-hint">TAP TO OPEN â†—</span>
+      <span class="hp-hint">TAP TO OPEN ↗</span>
     </div>
     <div class="hp-card-title">${book.title}</div>
   `;
@@ -830,10 +830,10 @@ async function openPdfViewer(url){
   pdfDoc = null;
   pdfPageNum = 1;
   pdfZoom = 1;
-  pdfPageIndicator.textContent = 'â€“ / â€“';
+  pdfPageIndicator.textContent = '– / –';
 
   if (!window.pdfjsLib) {
-    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">The PDF reader couldn't load (probably a network hiccup). <a href="${url}" target="_blank" style="color:#FFB6C9;">Open the PDF directly â†—</a></p>`;
+    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">The PDF reader couldn't load (probably a network hiccup). <a href="${url}" target="_blank" style="color:#FFB6C9;">Open the PDF directly ↗</a></p>`;
     modalLoading.style.display = 'none';
     return;
   }
@@ -843,13 +843,13 @@ async function openPdfViewer(url){
     pdfDoc = await loadingTask.promise;
     renderPdfPage(1);
   } catch(err){
-    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">Couldn't load this PDF here. <a href="${url}" target="_blank" style="color:#FFB6C9;">Open it directly â†—</a></p>`;
+    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">Couldn't load this PDF here. <a href="${url}" target="_blank" style="color:#FFB6C9;">Open it directly ↗</a></p>`;
   }
   modalLoading.style.display = 'none';
 }
 
 async function openModal(book){
-  modalTitle.textContent = book.title + ' â€” ' + book.author;
+  modalTitle.textContent = book.title + ' — ' + book.author;
   modalOpenNew.href = book.url || '#';
   modalLoading.style.display = 'flex';
   modalOverlay.classList.add('open');
@@ -860,9 +860,9 @@ async function openModal(book){
   modalFrame.style.display = 'none';
   pdfViewerWrap.style.display = 'none';
   pdfCanvasHolder.innerHTML = '<canvas id="pdfCanvas"></canvas>';
-  pdfCanvas = document.getElementById('pdfCanvas'); // re-grab the reference â€” innerHTML above created a brand new element
+  pdfCanvas = document.getElementById('pdfCanvas'); // re-grab the reference — innerHTML above created a brand new element
 
-  // No file linked yet for this title â€” show a note in the same popup UI
+  // No file linked yet for this title — show a note in the same popup UI
   if (!book.url) {
     modalFrame.style.display = 'block';
     modalFrame.srcdoc = `<!DOCTYPE html><html><head><meta charset="utf-8">
@@ -872,16 +872,16 @@ async function openModal(book){
         .box{ max-width:420px; }
         .box span{ font-size:34px; display:block; margin-bottom:12px; }
       </style></head>
-      <body><div class="box"><span>ðŸ“–</span>
+      <body><div class="box"><span>📖</span>
         <p><strong>${book.title}</strong> isn't linked to a file yet.<br><br>
-        Add your own PDF/ebook link to this book's "url" in the code and it'll open right here, maximize and all â€” just like your other books.</p>
+        Add your own PDF/ebook link to this book's "url" in the code and it'll open right here, maximize and all — just like your other books.</p>
       </div></body></html>`;
     modalLoading.style.display = 'none';
     return;
   }
 
-  // Full-featured PDF reader â€” Mozilla's official PDF.js web viewer (toolbar, zoom,
-  // search, thumbnails, continuous scroll â€” like Adobe's web viewer), embedded right
+  // Full-featured PDF reader — Mozilla's official PDF.js web viewer (toolbar, zoom,
+  // search, thumbnails, continuous scroll — like Adobe's web viewer), embedded right
   // here in the same in-site popup, not opening a new tab.
   if (book.url.toLowerCase().endsWith('.pdf')) {
     modalFrame.style.display = 'block';
