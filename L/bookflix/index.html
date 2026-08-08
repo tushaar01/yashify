@@ -69,8 +69,7 @@
     background:var(--lav);
     display:flex; align-items:center; padding:3px;
     transition:background .3s;
-  }
-  [data-theme="dark"] .theme-toggle{ background:#4A3F6B; }
+  }  [data-theme="dark"] .theme-toggle{ background:#4A3F6B; }
   .theme-toggle .knob{
     width:24px; height:24px; border-radius:50%;
     background:#fff; display:flex; align-items:center; justify-content:center;
@@ -78,15 +77,29 @@
   }
   [data-theme="dark"] .theme-toggle .knob{ transform:translateX(26px); }
 
+  .bg-swatches{ display:flex; align-items:center; gap:7px; margin-right:14px; }
+  .bg-swatch{
+    width:20px; height:20px; border-radius:50%;
+    display:inline-block; cursor:pointer;
+    border:2px solid rgba(0,0,0,0.12);
+    transition:transform .15s ease;
+  }
+  .bg-swatch:hover{ transform:scale(1.18); }
+  @media (max-width:640px){
+    .bg-swatches{ gap:5px; margin-right:8px; }
+    .bg-swatch{ width:16px; height:16px; }
+  }
+
   /* ---- Profile hero (avatar video + quote + smart search) ---- */
   .profile-hero{
     max-width:1100px; margin:6px auto 0; padding:0 40px;
     display:flex; align-items:center; gap:26px;
   }
   .avatar-frame{
-    flex:none; width:104px; height:104px; border-radius:50%;
-    padding:4px;
-    background:linear-gradient(135deg, var(--pink), var(--lav) 60%, var(--sky));
+    flex:none; width:150px; height:150px; border-radius:50%;
+    border:3px solid var(--accent);
+    overflow:hidden;
+    background:#fff;
     box-shadow:var(--shadow);
   }
   .avatar-frame .avatar-inner{
@@ -95,7 +108,7 @@
     display:flex; align-items:center; justify-content:center;
     position:relative;
   }
-  .avatar-frame video{
+  .avatar-frame img{
     width:100%; height:100%; object-fit:cover; display:none;
   }
   .avatar-frame .avatar-fallback{
@@ -104,7 +117,7 @@
   .profile-hero-text{ flex:1; min-width:0; }
   .profile-quote{
     font-family:'Fredoka', sans-serif;
-    font-size:clamp(17px,2.6vw,22px); font-weight:600; line-height:1.5;
+    font-size:clamp(22px,3.4vw,30px); font-weight:700; line-height:1.25;
     color:var(--ink);
   }
   .profile-hero-sub{
@@ -114,9 +127,10 @@
   .search-wrap{ max-width:1100px; margin:22px auto 8px; padding:0 40px; }
   .search-bar{
     display:flex; align-items:center; gap:10px;
-    background:var(--card-bg); border-radius:18px; padding:13px 20px;
-    box-shadow:var(--shadow);
+    background:var(--card-bg); border:2px solid #e3d9ea; border-radius:50px;
+    padding:0 20px; height:48px; transition:border-color .2s;
   }
+  .search-bar:focus-within{ border-color:var(--accent); }
   .search-bar .search-icon{ font-size:16px; opacity:.7; }
   .search-bar input{
     flex:1; border:none; outline:none; background:transparent;
@@ -134,9 +148,29 @@
     color:var(--ink-soft); font-size:13.5px; font-weight:600; display:none;
   }
 
+  .tag-row{
+    max-width:1100px; margin:14px auto 0; padding:0 40px;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .tag-chip{
+    font-family:'Quicksand', sans-serif; font-size:12.5px; font-weight:700;
+    padding:6px 14px; border-radius:20px;
+    background:var(--card-bg); color:var(--ink-soft);
+    border:2px solid #e3d9ea;
+    cursor:pointer; transition:all .2s ease;
+  }
+  .tag-chip:hover{ border-color:var(--accent); color:var(--accent-deep); }
+  .tag-chip.active{
+    background:var(--accent); border-color:var(--accent); color:#fff;
+  }
   @media (max-width:640px){
-    .profile-hero{ padding:0 20px; gap:16px; }
-    .avatar-frame{ width:78px; height:78px; }
+    .tag-row{ padding:0 20px; justify-content:center; }
+  }
+
+  @media (max-width:640px){
+    .profile-hero{ padding:0 20px; gap:14px; flex-direction:column; text-align:center; }
+    .avatar-frame{ width:120px; height:120px; }
+    .profile-hero-text{ text-align:center; }
     .search-wrap{ padding:0 20px; }
   }
 
@@ -374,6 +408,15 @@
 
 <div class="topbar">
   <div class="brand">📖 READLY</div>
+  <div class="bg-swatches" id="bgSwatches">
+    <span class="bg-swatch" style="background:#FFD93D" data-color="#FFD93D" title="Yellow"></span>
+    <span class="bg-swatch" style="background:#FF9F45" data-color="#FF9F45" title="Orange"></span>
+    <span class="bg-swatch" style="background:#FF4B4B" data-color="#FF4B4B" title="Red"></span>
+    <span class="bg-swatch" style="background:#7A0000" data-color="#7A0000" title="Blood Red"></span>
+    <span class="bg-swatch" style="background:#8C52FF" data-color="#8C52FF" title="Purple"></span>
+    <span class="bg-swatch" style="background:#0D0D0D" data-color="#0D0D0D" title="Dark Black"></span>
+    <span class="bg-swatch" style="background:#6B8E23" data-color="#6B8E23" title="Olive Green"></span>
+  </div>
   <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
     <div class="knob">🌙</div>
   </button>
@@ -383,7 +426,7 @@
 <section class="profile-hero">
   <div class="avatar-frame">
     <div class="avatar-inner">
-      <video id="avatarVideo" autoplay muted loop playsinline></video>
+      <img id="avatarVideo" alt="Avatar">
       <span class="avatar-fallback" id="avatarFallback">💭</span>
     </div>
   </div>
@@ -401,16 +444,8 @@
     <span class="search-clear" id="searchClear">✕ clear</span>
   </div>
 </div>
+<div class="tag-row" id="tagRow"></div>
 <p class="search-empty" id="searchEmpty">No books match that search 💭</p>
-
-<section class="hero">
-  <span class="bubble-emoji">💭</span>
-  <p class="quote-text">"A reader lives a thousand lives before he dies... The man who never reads lives only one."</p>
-  <p class="who">— George R. R. Martin</p>
-  <svg class="squiggle" viewBox="0 0 90 12" fill="none">
-    <path d="M2 6 Q 15 -2, 25 6 T 48 6 T 71 6 T 88 6" stroke="#FF8FAB" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
-</section>
 
 <div class="hp-heading">
   <h2>Harry Potter</h2>
@@ -503,7 +538,17 @@ if(AVATAR_VIDEO_URL){
   avatarVideo.style.display = 'none';
   avatarFallback.style.display = 'flex';
 }
-document.getElementById('profileQuote').textContent = HERO_QUOTE;
+(function(){
+  var txt = HERO_QUOTE;
+  var el = document.getElementById('profileQuote');
+  var i = 0;
+  function typeQuote(){
+    if(!el) return;
+    el.textContent = txt.slice(0, i);
+    if(i <= txt.length){ i++; setTimeout(typeQuote, 45); }
+  }
+  typeQuote();
+})();
 
 const BOOKS = [
   
@@ -511,44 +556,51 @@ const BOOKS = [
     title: "Hunting Adeline VOL 2", 
     author: "H.D. Carlton", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/HD2.jpeg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Haunting_Adeline2.pdf" 
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Haunting_Adeline2.pdf",
+    categories: ["Dark Romance"]
   },
   
   { 
     title: "Hunting Adeline VOL 1", 
     author: "H.D. Carlton", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/HD.jpeg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Haunting_Adeline.pdf" 
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Haunting_Adeline.pdf",
+    categories: ["Dark Romance"]
   },
   { 
     title: "White Nights", 
     author: "Fyodor Dostoevsky", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/WN.jpeg",
-    url: "https://www.gutenberg.org/cache/epub/36034/pg36034-images.html" 
+    url: "https://www.gutenberg.org/cache/epub/36034/pg36034-images.html",
+    categories: ["Romance", "Classic"]
   },
   { 
     title: "Crime and Punishment", 
     author: "Fyodor Dostoevsky", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/CP.jpeg",
-    url: "https://www.gutenberg.org/cache/epub/2554/pg2554-images.html" 
+    url: "https://www.gutenberg.org/cache/epub/2554/pg2554-images.html",
+    categories: ["Classic"]
   },
   { 
     title: "Metamorphosis", 
     author: "Franz Kafka", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Meta.jpeg",
-    url: "https://www.gutenberg.org/cache/epub/5200/pg5200-images.html" 
+    url: "https://www.gutenberg.org/cache/epub/5200/pg5200-images.html",
+    categories: ["Classic"]
   },
   { 
     title: "The Trial", 
     author: "Franz Kafka", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/Trial.jpeg",
-    url: "https://www.gutenberg.org/cache/epub/7849/pg7849-images.html" 
+    url: "https://www.gutenberg.org/cache/epub/7849/pg7849-images.html",
+    categories: ["Classic"]
   },
   { 
     title: "The Idiot", 
     author: "Fyodor Dostoevsky", 
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/idi.jpeg",
-    url: "https://www.gutenberg.org/cache/epub/2638/pg2638-images.html" 
+    url: "https://www.gutenberg.org/cache/epub/2638/pg2638-images.html",
+    categories: ["Classic"]
   }
 ];
 
@@ -557,8 +609,8 @@ const BOOKS = [
    here automatically, so adding a new book to BOOKS or HP_BOOKS makes it
    searchable with zero extra edits. */
 const searchIndex = [];
-function registerSearchable(el, title, author){
-  searchIndex.push({ el, title: (title||'').toLowerCase(), author: (author||'').toLowerCase() });
+function registerSearchable(el, title, author, categories){
+  searchIndex.push({ el, title: (title||'').toLowerCase(), author: (author||'').toLowerCase(), categories: categories || [] });
 }
 
 const shelf = document.getElementById('shelf');
@@ -576,7 +628,7 @@ BOOKS.forEach(book => {
   `;
   card.querySelector('.book-cover').addEventListener('click', () => openModal(book));
   shelf.appendChild(card);
-  registerSearchable(card, book.title, book.author);
+  registerSearchable(card, book.title, book.author, book.categories);
 });
 
 /* Empty placeholder slots (excluded from search) */
@@ -613,43 +665,50 @@ const HP_BOOKS = [
     title: "Harry Potter and the Sorcerer's Stone",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/059035342X-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/1.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/1.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Chamber of Secrets",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/0439064872-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/2.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/2.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Prisoner of Azkaban",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/0439136369-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/3.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/3.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Goblet of Fire",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/0439139597-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/4.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/4.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Order of the Phoenix",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/043935806X-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/5.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/5.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Half-Blood Prince",
     author: "J.K. Rowling",
     cover: "https://covers.openlibrary.org/b/isbn/0439785960-L.jpg",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/6.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/6.pdf",
+    categories: ["Fantasy"]
   },
   {
     title: "Harry Potter and the Deathly Hallows",
     author: "J.K. Rowling",
     cover: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/7.JPG",
-    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/7.pdf"
+    url: "https://raw.githubusercontent.com/tushaar01/yashify/main/L/bookflix/books/hp/7.pdf",
+    categories: ["Fantasy"]
   }
 ];
 
@@ -666,36 +725,51 @@ HP_BOOKS.forEach((book, idx) => {
   `;
   card.addEventListener('click', () => openModal(book));
   hpRow.appendChild(card);
-  registerSearchable(card, book.title, book.author);
+  registerSearchable(card, book.title, book.author, book.categories);
 });
 
-/* ---- Live search across every book on the page ---- */
+/* ---- Category tag chips ---- */
+const tagRow = document.getElementById('tagRow');
+const allCategories = [...new Set(searchIndex.flatMap(item => item.categories))];
+let activeTag = null;
+
+function renderTags(){
+  tagRow.innerHTML = allCategories.map(cat =>
+    `<span class="tag-chip${activeTag === cat ? ' active' : ''}" data-cat="${cat}">${cat}</span>`
+  ).join('');
+  tagRow.querySelectorAll('.tag-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      activeTag = (activeTag === chip.dataset.cat) ? null : chip.dataset.cat;
+      renderTags();
+      applyFilters();
+    });
+  });
+}
+renderTags();
+
+/* ---- Live search + tag filter across every book on the page ---- */
 const mainSearch = document.getElementById('mainSearch');
 const searchClear = document.getElementById('searchClear');
 const searchEmpty = document.getElementById('searchEmpty');
 
-function runSearch(){
+function applyFilters(){
   const q = mainSearch.value.trim().toLowerCase();
   searchClear.style.display = q ? 'inline-block' : 'none';
 
-  if(!q){
-    searchIndex.forEach(item => item.el.style.display = '');
-    emptySlotEls.forEach(el => el.style.display = '');
-    searchEmpty.style.display = 'none';
-    return;
-  }
+  emptySlotEls.forEach(el => el.style.display = (q || activeTag) ? 'none' : '');
 
-  emptySlotEls.forEach(el => el.style.display = 'none');
   let matches = 0;
   searchIndex.forEach(item => {
-    const isMatch = item.title.includes(q) || item.author.includes(q);
+    const textMatch = !q || item.title.includes(q) || item.author.includes(q);
+    const tagMatch = !activeTag || item.categories.includes(activeTag);
+    const isMatch = textMatch && tagMatch;
     item.el.style.display = isMatch ? '' : 'none';
     if(isMatch) matches++;
   });
   searchEmpty.style.display = matches === 0 ? 'block' : 'none';
 }
-mainSearch.addEventListener('input', runSearch);
-searchClear.addEventListener('click', () => { mainSearch.value=''; runSearch(); mainSearch.focus(); });
+mainSearch.addEventListener('input', applyFilters);
+searchClear.addEventListener('click', () => { mainSearch.value=''; applyFilters(); mainSearch.focus(); });
 
 /* Reading modal */
 const modalOverlay = document.getElementById('modalOverlay');
@@ -916,6 +990,12 @@ if(themeToggle){
     themeToggle.querySelector('.knob').textContent = isDark ? '🌙' : '☀️';
   });
 }
+
+document.querySelectorAll('.bg-swatch').forEach(function(sw){
+  sw.addEventListener('click', function(){
+    document.body.style.setProperty('--bg', sw.dataset.color);
+  });
+});
 </script>
 
 </body>
