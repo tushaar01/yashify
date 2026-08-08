@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -480,19 +470,24 @@
 
 
 
-<script type="module">
-import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.min.mjs";
-// pdf.js 6.x ships as a pure ES module, and its worker file is a module
-// too. Just setting workerSrc makes the browser spin it up as a classic
-// (non-module) worker, which can't parse the module's import/export
-// syntax and silently fails — nothing ever renders. Creating the worker
-// ourselves with { type: 'module' } fixes that.
-const PDFJS_WORKER_URL = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.1.200/pdf.worker.min.mjs";
-pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(PDFJS_WORKER_URL, { type: "module" });
+<!-- Older, classic (non-module) pdf.js build — this loads as a plain global
+     script, so even if the network blocks it, it can never crash the rest
+     of the page's JavaScript. Loaded here, before the main script below,
+     so `pdfjsLib` is ready when needed. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+// Everything in this script (books, search, the reading modal) is
+// completely independent of pdf.js — if pdf.js fails to load for any
+// reason, only the PDF preview degrades gracefully; nothing else breaks.
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+}
 
 /* ================= Profile hero: video avatar + quote =================
    👉 Paste your own video link below (mp4/webm URL). If left empty, a
    simple 💭 placeholder shows instead of a broken video.
+
    👉 Change HERO_QUOTE to whatever line you want under the avatar.
 */
 const AVATAR_VIDEO_URL = ""; // e.g. "https://your-link-here.com/avatar.mp4"
@@ -806,6 +801,13 @@ async function openPdfViewer(url){
   pdfPageNum = 1;
   pdfZoom = 1;
   pdfPageIndicator.textContent = '– / –';
+
+  if (!window.pdfjsLib) {
+    pdfCanvasHolder.innerHTML = `<p style="color:#fff;padding:24px;text-align:center;max-width:420px;">The PDF reader couldn't load (probably a network hiccup). <a href="${url}" target="_blank" style="color:#FFB6C9;">Open the PDF directly ↗</a></p>`;
+    modalLoading.style.display = 'none';
+    return;
+  }
+
   try{
     const loadingTask = pdfjsLib.getDocument({ url, disableRange: true, disableStream: true });
     pdfDoc = await loadingTask.promise;
@@ -914,4 +916,3 @@ if(themeToggle){
 
 </body>
 </html>
-
