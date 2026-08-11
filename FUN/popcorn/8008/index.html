@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -485,33 +483,19 @@
                 <div class="player-title-txt" id="pl-title">Episode 1</div>
                 <div class="player-info-txt" id="pl-info">E01 · 23m · 1080p</div>
             </div>
-            <div class="vid-wrap">
+            <!-- Dynamic Video Wrapper -->
+            <div class="vid-wrap" id="main-vid-wrap">
                 <div class="vid-ph">
-                    <button class="play-big" onclick="toast('▶ Connect your video source to enable playback!')">
+                    <button class="play-big" onclick="toast('▶ Episode select karo niche se play karne ke liye!')">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="vid-ep-label" id="vid-label">Click to play</div>
-                </div>
-                <div class="vid-ctrl">
-                    <div class="prog-bar"><div class="prog-fill"></div></div>
-                    <div class="ctrl-row">
-                        <button class="cbtn"><i class="fas fa-step-backward"></i></button>
-                        <button class="cbtn"><i class="fas fa-backward"></i></button>
-                        <button class="cbtn"><i class="fas fa-play"></i></button>
-                        <button class="cbtn"><i class="fas fa-forward"></i></button>
-                        <button class="cbtn"><i class="fas fa-step-forward"></i></button>
-                        <span class="ctime">00:00 / 23:40</span>
-                        <div class="csp"></div>
-                        <span class="cq">1080p</span>
-                        <button class="cbtn" onclick="toast('Subtitles: SUB / DUB available')"><i class="fas fa-closed-captioning"></i></button>
-                        <button class="cbtn"><i class="fas fa-expand"></i></button>
-                    </div>
                 </div>
             </div>
             <!-- SERVER BAR -->
             <div class="srv-bar">
                 <span class="srv-lbl">Servers:</span>
-                <button class="srv-btn active" onclick="switchSrv(this,'VidStream')">VidStream</button>
+                <button class="srv-btn active" onclick="switchSrv(this,'Streamtape')">Streamtape</button>
                 <button class="srv-btn" onclick="switchSrv(this,'StreamSB')">StreamSB</button>
                 <button class="srv-btn" onclick="switchSrv(this,'DoodStream')">DoodStream</button>
                 <button class="srv-btn" onclick="switchSrv(this,'Filemoon')">Filemoon</button>
@@ -633,7 +617,9 @@ const webSeriesData = [
 
     {id:104,title:"Peaky Blinders",poster:"https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/PB.jpeg",genres:["Crime","Drama","Historical"],year:"2013",seasons:"6",type:"BBC/Netflix",status:"Completed",description:"A gangster family epic set in 1919 Birmingham, England, centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",rating:"4.9",whyWatch:"Stylish period crime drama with incredible performances, especially from Cillian Murphy. The atmosphere and soundtrack are exceptional.",details:"Creator: Steven Knight | Seasons: 6",links:[{name:"Netflix",url:"https://www.netflix.com/title/80002479"},{name:"IMDb",url:"https://www.imdb.com/title/tt2442560/"}]},
 
-    {id:105,title:"Dhurandhara",poster:"https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/d.jpeg",genres:["Drama","Thriller","Political"],year:"2024",seasons:"1",type:"Hotstar Special",status:"Ongoing",description:"A political thriller that follows the rise and fall of a charismatic politician in contemporary India. The series explores power, corruption, and the personal costs of ambition.",rating:"4.3",whyWatch:"A gripping political drama with sharp writing and strong performances. Offers an insightful look into the mechanics of power and ambition.",details:"Creator: Anurag Kashyap | Seasons: 1",links:[{name:"Hotstar",url:"https://www.hotstar.com/in"},{name:"Trailer",url:"https://www.youtube.com/watch?v=example"}]}
+    {id:105,title:"Dhurandhara",poster:"https://raw.githubusercontent.com/tushaar01/yashify/main/FUN/popcorn/pop/d.jpeg",genres:["Drama","Thriller","Political"],year:"2024",seasons:"1",type:"Hotstar Special",status:"Ongoing",description:"A political thriller that follows the rise and fall of a charismatic politician in contemporary India. The series explores power, corruption, and the personal costs of ambition.",rating:"4.3",whyWatch:"A gripping political drama with sharp writing and strong performances. Offers an insightful look into the mechanics of power and ambition.",details:"Creator: Anurag Kashyap | Seasons: 1",links:[{name:"Hotstar",url:"https://www.hotstar.com/in"},{name:"Trailer",url:"https://www.youtube.com/watch?v=example"}]},
+
+    {id:106,title:"Hannibal",poster:"https://raw.githubusercontent.com/tushaar01/yashify/ebc0c4ca5f38f2f1b328a470df0516b20833692a/FUN/popcorn/pop/PB.jpeg",genres:["Horror","Thriller","Crime"],year:"2013",seasons:"3",seasonList:[{num:1,label:"Season 1 (2013)",eps:13},{num:2,label:"Season 2 (2014)",eps:13},{num:3,label:"Season 3 (2015)",eps:13}],type:"NBC Original",status:"Completed",description:"Gifted criminal profiler Will Graham is recruited by the FBI to help catch serial killers, working alongside forensic psychiatrist Dr. Hannibal Lecter — unaware that Lecter himself is a cannibalistic murderer.",rating:"4.7",whyWatch:"A visually stunning, deeply unsettling psychological horror with one of TV's greatest villains. Every frame is composed like a painting.",details:"Creator: Bryan Fuller | Seasons: 3",links:[{name:"IMDb",url:"https://www.imdb.com/title/tt2243973/"},{name:"Wikipedia",url:"https://en.wikipedia.org/wiki/Hannibal_(TV_series)"}]}
 ];
 
 // ── STATE ──
@@ -683,7 +669,7 @@ function renderFeatured() {
         {title:"Takopii no Genzai", type:'anime'},
         {title:"Peaky Blinders", type:'webseries'},
         {title:"DARK", type:'webseries'},
-        {title:"FROM", type:'webseries'},
+        {title:"Hannibal", type:'webseries'},
         {title:"Death Note", type:'anime'}
     ];
     picks.forEach(p => {
@@ -810,7 +796,18 @@ function openDetail(id, type) {
     curDetailId = id;
     curDetailType = type;
 
-    // Banner — use poster as banner (these are GitHub raw images, no separate banner)
+    // Reset Video Player to Placeholder
+    const mainVidWrap = document.getElementById('main-vid-wrap');
+    mainVidWrap.innerHTML = `
+        <div class="vid-ph">
+            <button class="play-big" onclick="toast('▶ Episode select karo niche se play karne ke liye!')">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="vid-ep-label" id="vid-label">${item.title} — Click an episode below</div>
+        </div>
+    `;
+
+    // Banner — use poster as banner
     const bg = document.getElementById('det-bg');
     bg.style.backgroundImage = `url(${item.poster})`;
 
@@ -844,17 +841,17 @@ function openDetail(id, type) {
     ).join('');
 
     // Player label
-    document.getElementById('pl-title').textContent = `${item.title}${type === 'anime' && item.type !== 'Movie' ? ' · Episode 1' : ''}`;
-    document.getElementById('pl-info').textContent = `${type === 'anime' && item.type !== 'Movie' ? 'S1 · E01 · ' : ''}23m · 1080p`;
-    document.getElementById('vid-label').textContent = `${item.title} — Click to play`;
+    document.getElementById('pl-title').textContent = `${item.title}`;
+    document.getElementById('pl-info').textContent = `1080p · Streamtape`;
 
-    // Episodes (anime only)
+    // Episodes (anime seasons array, or webseries seasonList array)
     const epsSection = document.getElementById('eps-section');
-    if (type === 'anime' && item.type !== 'Movie' && item.seasons && item.seasons.length) {
+    const seasonArr = type === 'anime' ? item.seasons : (Array.isArray(item.seasonList) ? item.seasonList : null);
+    if (item.type !== 'Movie' && seasonArr && seasonArr.length) {
         epsSection.style.display = 'block';
         const sel = document.getElementById('sea-sel');
-        sel.innerHTML = item.seasons.map(s => `<option value="${s.num}">${s.label}</option>`).join('');
-        loadEps(item, 1);
+        sel.innerHTML = seasonArr.map(s => `<option value="${s.num}">${s.label}</option>`).join('');
+        loadEps(seasonArr, 1, item);
     } else if (type === 'anime' && item.type === 'Movie') {
         epsSection.style.display = 'block';
         document.getElementById('sea-sel').innerHTML = `<option>Full Movie</option>`;
@@ -885,35 +882,46 @@ function closeDetail() {
     window.scrollTo(0, 0);
 }
 
-function loadEps(item, sNum) {
-    const s = item.seasons.find(x => x.num === parseInt(sNum));
+function loadEps(seasonArr, sNum, item) {
+    const s = seasonArr.find(x => x.num === parseInt(sNum));
     if (!s) return;
     document.getElementById('ep-cnt').textContent = `${s.eps} episode${s.eps > 1 ? 's' : ''} · ${item.year}`;
     const g = document.getElementById('ep-grid');
     g.innerHTML = '';
     const show = Math.min(s.eps, 60);
+    
     for (let i = 1; i <= show; i++) {
         const b = document.createElement('button');
-        b.className = 'ep-btn' + (i <= 2 ? ' watched' : '') + (i === 1 ? ' active' : '');
+        b.className = 'ep-btn' + (i <= 2 ? ' watched' : '');
         b.textContent = i;
         b.onclick = () => {
             g.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
             b.classList.add('active');
+            
             const lbl = `${item.title} · S${sNum} E${i}`;
             document.getElementById('pl-title').textContent = lbl;
-            document.getElementById('pl-info').textContent = `S${sNum} · E${String(i).padStart(2,'0')} · 23m · 1080p`;
-            document.getElementById('vid-label').textContent = lbl;
+            document.getElementById('pl-info').textContent = `S${sNum} · E${String(i).padStart(2,'0')} · 1080p`;
+
+            // Hannibal S01 Ep01 Specific Streamtape Embed Integration
+            if(item.id === 106 && parseInt(sNum) === 1 && i === 1) {
+                const mainVidWrap = document.getElementById('main-vid-wrap');
+                mainVidWrap.innerHTML = `<iframe src="https://streamtape.com/e/o6j2GwG224sxVd/Hannibal.S01E01.mkv.mp4" width="100%" height="100%" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>`;
+            } else {
+                // Default placeholder for other episodes
+                const mainVidWrap = document.getElementById('main-vid-wrap');
+                mainVidWrap.innerHTML = `
+                    <div class="vid-ph">
+                        <button class="play-big" onclick="toast('▶ Streaming link for this episode will be added soon!')">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="vid-ep-label">${lbl} - Stream Pending</div>
+                    </div>
+                `;
+            }
+
             document.getElementById('detail-page').scrollTo({ top: document.querySelector('.player-section').offsetTop - 70, behavior: 'smooth' });
         };
         g.appendChild(b);
-    }
-    if (s.eps > 60) {
-        const m = document.createElement('button');
-        m.className = 'ep-btn';
-        m.style.cssText = 'background:rgba(255,107,53,.1);border-color:rgba(255,107,53,.3);color:var(--primary);font-size:.6rem';
-        m.textContent = `+${s.eps - 60}`;
-        m.onclick = () => toast(`Loading ${s.eps - 60} more episodes...`);
-        g.appendChild(m);
     }
 }
 
@@ -921,7 +929,9 @@ function changeSeason(v) {
     if (!curDetailId) return;
     const data = curDetailType === 'anime' ? animeData : webSeriesData;
     const item = data.find(x => x.id === curDetailId);
-    if (item && item.seasons) loadEps(item, parseInt(v));
+    if (!item) return;
+    const seasonArr = curDetailType === 'anime' ? item.seasons : (Array.isArray(item.seasonList) ? item.seasonList : null);
+    if (seasonArr) loadEps(seasonArr, parseInt(v), item);
 }
 
 function switchSrv(el, name) {
@@ -1000,4 +1010,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
