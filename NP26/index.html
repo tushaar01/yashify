@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nobel Prizes 2026 | Yashifie</title>
+<meta name="description" content="The 2026 Nobel Prize laureates in Physiology or Medicine, Chemistry and Physics: who they are, what they discovered, and links to the original research papers.">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://yashifie.me/Nobel2026/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #000;
+    --white: #fff;
+    --muted: #555;
+    --placeholder: #ececec;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 3px solid var(--black); outline-offset: 3px; }
+
+  /* ---------- top bar ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .85rem clamp(1rem, 4vw, 3rem);
+    background: var(--white);
+    border-bottom: 2px solid var(--black);
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: .95rem;
+  }
+  .bar .brand { text-decoration: none; font-weight: 800; }
+  .bar nav { display: flex; gap: clamp(.9rem, 3vw, 1.75rem); }
+  .bar nav a { text-decoration: none; color: var(--muted); }
+  .bar nav a:hover { color: var(--black); text-decoration: underline; text-underline-offset: 6px; }
+
+  /* ---------- hero: Nobel statue image, then title ---------- */
+  .hero { max-width: 78rem; margin: 0 auto; }
+  .hero figure { margin: 0; }
+  .hero .hero-img {
+    position: relative;
+    background: var(--placeholder);
+    min-height: 14rem;
+  }
+  .hero .hero-img img { display: block; width: 100%; height: auto; }
+  .hero figcaption {
+    padding: .6rem clamp(1rem, 4vw, 3rem) 0;
+    color: var(--muted);
+    font-size: .95rem;
+  }
+  .hero h1 {
+    margin: clamp(2rem, 6vw, 4rem) 0 clamp(2rem, 6vw, 4rem);
+    padding: 0 1rem;
+    text-align: center;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2rem, 7vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- prize sections ---------- */
+  .prize {
+    padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem);
+    border-top: 2px solid var(--black);
+  }
+  .prize > .inner { max-width: 78rem; margin: 0 auto; }
+
+  .prize h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .prize .reason {
+    max-width: 46rem;
+    margin: 1.1rem 0 0;
+    font-style: italic;
+    color: var(--muted);
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  }
+  .prize .share { margin: .4rem 0 0; color: var(--muted); font-size: 1rem; }
+
+  /* ---------- all laureates of a prize, side by side ---------- */
+  .group {
+    display: grid;
+    gap: clamp(.5rem, 2vw, 1.5rem);
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+  }
+  .group.n1 { grid-template-columns: minmax(0, 28rem); }
+  .group.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 56rem; }
+  .group.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .group figure { margin: 0; }
+  .group .pic {
+    position: relative;
+    background: var(--placeholder);
+    aspect-ratio: 4 / 5;
+  }
+  .group .pic.loaded { aspect-ratio: auto; }
+  .group .pic img { display: block; width: 100%; height: auto; }
+  .group .pic .initials {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1.5rem, 6vw, 4rem); opacity: .25;
+  }
+  .group .pic.loaded .initials { display: none; }
+  .group figcaption {
+    margin-top: .6rem;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(.8rem, 2.6vw, 1.1rem);
+    line-height: 1.25;
+  }
+
+  /* ---------- laureate text ---------- */
+  .laureate {
+    margin-top: clamp(2.25rem, 5vw, 3.5rem);
+    padding-top: clamp(1.5rem, 4vw, 2.25rem);
+    border-top: 1px solid var(--black);
+    max-width: 46rem;
+  }
+  .laureate h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -.015em;
+  }
+  .laureate .affil { margin: .3rem 0 1.1rem; color: var(--muted); font-size: 1rem; }
+  .laureate p { margin: 0 0 1rem; }
+  .laureate .topic {
+    margin-top: 1.4rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--black);
+  }
+  .laureate .topic strong { font-family: var(--display); font-weight: 800; }
+
+  .papers { margin-top: 1.5rem; }
+  .papers h4 { margin: 0 0 .5rem; font-family: var(--display); font-weight: 800; font-size: 1.05rem; }
+  .papers ul { margin: 0; padding: 0; list-style: none; }
+  .papers li { padding: .7rem 0; border-top: 1px solid #999; }
+  .papers li:last-child { border-bottom: 1px solid #999; }
+  .papers a { font-weight: 500; text-underline-offset: 4px; }
+  .papers .meta { display: block; color: var(--muted); font-size: .95rem; }
+
+  .more { margin-top: 2.25rem; }
+  .more a { font-family: var(--display); font-weight: 500; text-underline-offset: 5px; }
+
+  footer {
+    padding: 3rem clamp(1rem, 4vw, 3rem);
+    border-top: 2px solid var(--black);
+    color: var(--muted);
+    font-size: .95rem;
+    text-align: center;
+  }
+  footer p { margin: .35rem 0; }
+  footer a { color: var(--black); }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+
+<body>
+
+<header class="bar">
+  <a class="brand" href="https://yashifie.me/">Yashifie</a>
+  <nav aria-label="Prize sections">
+    <a href="#medicine">Medicine</a>
+    <a href="#chemistry">Chemistry</a>
+    <a href="#physics">Physics</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" aria-labelledby="top">
+    <figure>
+      <div class="hero-img"><img data-img="hero" alt="Statue of Alfred Nobel" hidden></div>
+      <figcaption>Statue of Alfred Nobel. Photo: A. Mahmoud</figcaption>
+    </figure>
+    <h1 id="top">Nobel Prizes 2026</h1>
+  </section>
+
+  <!-- MEDICINE -->
+  <section class="prize" id="medicine" aria-labelledby="med-h">
+    <div class="inner">
+      <h2 id="med-h">Nobel Prize in Physiology or Medicine 2026</h2>
+      <p class="reason">For discovering light-gated ion channels and developing optogenetics. The prize is shared equally by three laureates.</p>
+
+      <div class="group n3">
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">KD</span><img data-img="deisseroth" alt="Karl Deisseroth" hidden></div>
+          <figcaption>Karl Deisseroth</figcaption>
+        </figure>
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">PH</span><img data-img="hegemann" alt="Peter Hegemann" hidden></div>
+          <figcaption>Peter Hegemann</figcaption>
+        </figure>
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">GN</span><img data-img="nagel" alt="Georg Nagel" hidden></div>
+          <figcaption>Georg Nagel</figcaption>
+        </figure>
+      </div>
+
+      <article class="laureate">
+        <h3>Karl Deisseroth</h3>
+        <p class="affil">Psychiatrist and bioengineer, USA. Stanford University</p>
+        <p>Deisseroth is a professor of bioengineering and of psychiatry and behavioral sciences at Stanford. As a medical student he considered becoming a neurosurgeon, but his training at a psychiatric clinic pulled him toward understanding diseases of the brain.</p>
+        <p>His lab took the algae's light-sensitive protein into neurons and showed that specific brain cells can be controlled with pulses of light.</p>
+        <p class="topic"><strong>Nobel topic:</strong> Using channelrhodopsin in neurons, which became optogenetics.</p>
+        <div class="papers">
+          <h4>Original research paper</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1038/nn1525" target="_blank" rel="noopener">Millisecond-timescale, genetically targeted optical control of neural activity</a>
+              <span class="meta">Boyden et al., Nature Neuroscience, 2005</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="laureate">
+        <h3>Peter Hegemann</h3>
+        <p class="affil">Biophysicist, Germany. Humboldt University of Berlin</p>
+        <p>Hegemann studied the eyespot of green algae, the small structure that lets them sense light. His lab identified channelrhodopsin-1, the first direct evidence of an ion channel that opens in response to light.</p>
+        <p class="topic"><strong>Nobel topic:</strong> Discovery of light-gated ion channels (channelrhodopsins) in algae.</p>
+        <div class="papers">
+          <h4>Original research paper</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1126/science.1072068" target="_blank" rel="noopener">Channelrhodopsin-1: a light-gated proton channel in green algae</a>
+              <span class="meta">Nagel et al., Science, 2002</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="laureate">
+        <h3>Georg Nagel</h3>
+        <p class="affil">Neurophysiologist, Germany. University of Würzburg</p>
+        <p>Nagel is a professor of neurophysiology at the University of Würzburg. Working with Hegemann, he showed that channelrhodopsin-2 lets positive ions flow into a cell the moment light hits it. That property made it the key tool of optogenetics.</p>
+        <p class="topic"><strong>Nobel topic:</strong> Channelrhodopsin-2, a channel that is opened directly by light.</p>
+        <div class="papers">
+          <h4>Original research paper</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1073/pnas.1936192100" target="_blank" rel="noopener">Channelrhodopsin-2, a directly light-gated cation-selective membrane channel</a>
+              <span class="meta">Nagel et al., PNAS, 2003</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <p class="more"><a href="https://www.nobelprize.org/prizes/medicine/2026/popular-information/" target="_blank" rel="noopener">See the official Nobel Prize page</a></p>
+    </div>
+  </section>
+
+  <!-- CHEMISTRY -->
+  <section class="prize" id="chemistry" aria-labelledby="chem-h">
+    <div class="inner">
+      <h2 id="chem-h">Nobel Prize in Chemistry 2026</h2>
+      <p class="reason">For discovering non-linear effects and autocatalysis in asymmetric organic synthesis. The prize is shared equally by two laureates.</p>
+
+      <div class="group n2">
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">HK</span><img data-img="kagan" alt="Henri B. Kagan" hidden></div>
+          <figcaption>Henri B. Kagan</figcaption>
+        </figure>
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">KS</span><img data-img="soai" alt="Kenso Soai" hidden></div>
+          <figcaption>Kenso Soai</figcaption>
+        </figure>
+      </div>
+
+      <article class="laureate">
+        <h3>Henri B. Kagan</h3>
+        <p class="affil">Chemist, France. Université Paris-Sud, Orsay</p>
+        <p>Some molecules come in two forms that are mirror images of each other, like a left and a right hand. Medicines usually need exactly the right "hand", and why nature uses only one hand of its molecules has been a puzzle for over a century.</p>
+        <p>Kagan is 95 years old. In 1986 he showed that the purity of a catalyst and the purity of the product it makes do not always follow a straight line. A partly pure catalyst can sometimes give a very pure product. This is called a non-linear effect, and it is now an important part of how chemists design reactions for making pharmaceuticals.</p>
+        <p class="topic"><strong>Nobel topic:</strong> Non-linear effects in asymmetric synthesis.</p>
+        <div class="papers">
+          <h4>Original research paper</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1021/ja00269a036" target="_blank" rel="noopener">Nonlinear effects in asymmetric synthesis. Examples in asymmetric oxidations and aldolization reactions</a>
+              <span class="meta">Puchot et al., with Kagan, Journal of the American Chemical Society, 1986</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="laureate">
+        <h3>Kenso Soai</h3>
+        <p class="affil">Chemist, Japan. Tokyo University of Science</p>
+        <p>Soai discovered a reaction in which the product acts as its own catalyst and keeps producing more molecules of the same "handedness". Even a tiny early imbalance grows into a large one. The reaction is now known as the Soai reaction, and it shows one way a single handedness could take over in nature.</p>
+        <p class="topic"><strong>Nobel topic:</strong> Asymmetric autocatalysis and the amplification of chirality.</p>
+        <div class="papers">
+          <h4>Original research paper</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1038/378767a0" target="_blank" rel="noopener">Asymmetric autocatalysis and amplification of enantiomeric excess of a chiral molecule</a>
+              <span class="meta">Soai et al., Nature, 1995</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <p class="more"><a href="https://www.nobelprize.org/prizes/chemistry/2026/summary/" target="_blank" rel="noopener">See the official Nobel Prize page</a></p>
+    </div>
+  </section>
+
+  <!-- PHYSICS -->
+  <section class="prize" id="physics" aria-labelledby="physics-h">
+    <div class="inner">
+      <h2 id="physics-h">Nobel Prize in Physics 2026</h2>
+      <p class="reason">For decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos from space. The whole prize goes to one laureate.</p>
+
+      <div class="group n1">
+        <figure>
+          <div class="pic"><span class="initials" aria-hidden="true">FH</span><img data-img="halzen" alt="Francis Halzen" hidden></div>
+          <figcaption>Francis Halzen</figcaption>
+        </figure>
+      </div>
+
+      <article class="laureate">
+        <h3>Francis Halzen</h3>
+        <p class="affil">Particle physicist, Belgium and USA. University of Wisconsin–Madison</p>
+        <p>Neutrinos are extremely light, ghost-like particles that pass straight through matter, which makes them very hard to catch. Halzen led the effort to build IceCube, a giant detector buried in the ice of Antarctica.</p>
+        <p>IceCube caught high-energy neutrinos arriving from far out in the universe. This opened a new kind of astronomy: looking at the cosmos with neutrinos, not only with light.</p>
+        <p class="topic"><strong>Nobel topic:</strong> The IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.</p>
+        <div class="papers">
+          <h4>Original research papers</h4>
+          <ul>
+            <li>
+              <a href="https://doi.org/10.1126/science.1242856" target="_blank" rel="noopener">Evidence for High-Energy Extraterrestrial Neutrinos at the IceCube Detector</a>
+              <span class="meta">IceCube Collaboration, Science, 2013</span>
+            </li>
+            <li>
+              <a href="https://doi.org/10.1126/science.aat1378" target="_blank" rel="noopener">Multimessenger observations of a flaring blazar coincident with high-energy neutrino IceCube-170922A</a>
+              <span class="meta">IceCube Collaboration and partners, Science, 2018</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <p class="more"><a href="https://www.nobelprize.org/prizes/physics/2026/summary/" target="_blank" rel="noopener">See the official Nobel Prize page</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Made with ❤️ by Yashify</p>
+  <p><a href="https://yashifie.me/">Back to yashifie.me</a></p>
+  <p>Prize information and illustrations: <a href="https://www.nobelprize.org/" target="_blank" rel="noopener">nobelprize.org</a>. Illustrations: Niklas Elmehed © Nobel Prize Outreach.</p>
+</footer>
+
+<script>
+  /* ------------------------------------------------------------------
+     IMAGES
+     Paste the image address (or a file path like "images/halzen.jpg")
+     between the quotes for each one. Images are shown in original colour.
+       hero        = Alfred Nobel statue photo (top of the page)
+       the others  = each laureate's illustration from nobelprize.org
+     ------------------------------------------------------------------ */
+  var IMAGES = {
+    hero:       "",
+    deisseroth: "",
+    hegemann:   "",
+    nagel:      "",
+    kagan:      "",
+    soai:       "",
+    halzen:     ""
+  };
+
+  document.querySelectorAll("img[data-img]").forEach(function (img) {
+    var src = IMAGES[img.dataset.img];
+    if (!src) return;
+    var box = img.parentElement;
+    img.addEventListener("load", function () {
+      img.hidden = false;
+      box.classList.add("loaded");
+    });
+    img.referrerPolicy = "no-referrer";
+    img.src = src;
+  });
+</script>
+
+</body>
+</html>
