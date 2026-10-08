@@ -48,6 +48,8 @@
 <link rel="icon" type="image/png" href="512.png">
 <meta name="theme-color" content="#8C52FF">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- NEW: cute font for the Nobel Prize 2026 button -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 
 <!-- Google tag (gtag.js) -->
@@ -106,6 +108,13 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
 .search-item i{color:var(--purple);width:16px;}
 .search-item .hint{color:#9ca3af;font-size:.78rem;margin-left:auto;}
 .search-empty{padding:14px 20px;color:var(--sub);font-size:.88rem;}
+
+/* NEW: Nobel Prize 2026 button (below search bar) */
+.np-link{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-family:'Fredoka','Outfit',sans-serif;font-weight:600;font-size:1.25rem;letter-spacing:1.5px;text-transform:uppercase;color:#111827;background:white;border:2.5px solid #111827;border-radius:50px;padding:10px 24px;text-decoration:none;box-shadow:4px 4px 0 #111827;transition:transform .2s,box-shadow .2s;}
+.np-link i{color:var(--yellow);}
+.np-link:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111827;}
+.np-link:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111827;}
+
 .stats-section{max-width:780px;margin:10px auto 0;display:flex;justify-content:center;gap:40px;padding:18px 20px;background:white;border-radius:20px;box-shadow:0 2px 12px rgba(140,82,255,.07);}
 .stat-item{text-align:center;}
 .stat-number{font-size:1.5rem;font-weight:800;color:var(--purple);line-height:1;}
@@ -170,6 +179,7 @@ footer{text-align:center;padding:30px 0;margin-top:20px;color:var(--sub);font-si
 #fixedIcon{width:36px;height:36px;}
 .mailbox-btn{width:44px;height:44px;font-size:1.1rem;}
 .share-btn{margin-left:0;}
+.np-link{align-self:center;font-size:1.05rem;padding:9px 20px;}
 }
 @media(max-width:400px){.card h3{font-size:.72rem;}}
 </style>
@@ -221,6 +231,9 @@ setTimeout(function(){
       </div>
       <div class="search-dropdown" id="searchDropdown"></div>
     </div>
+
+    <!-- NEW: Nobel Prize 2026 link (opens NP26/index.html) -->
+    <a href="/NP26/" class="np-link"><i class="fas fa-award"></i> Nobel Prize 2026</a>
   </div>
 </section>
 
@@ -516,6 +529,7 @@ window.dismissPWA = function(){
 
 // SEARCH DATA
 var pages=[
+  {name:'Nobel Prize 2026',desc:'Medicine, Chemistry & Physics winners',href:'/NP26/',icon:'fa-award',tags:['nobel','nobel prize','2026','physics','chemistry','medicine','optogenetics','neutrino']},
   {name:'Medicose',desc:'Medical topics & notes',href:'/medicose/',icon:'fa-stethoscope',tags:['medicine','medical','health','doctor','mbbs','bsc']},
   {name:'Library',desc:'Stories, Articles & Wisdom',href:'/l/library',icon:'fa-book',tags:['library','read','books','wisdom','stories']},
   {name:'Fun Zone',desc:'Games & entertainment',href:'/fun/',icon:'fa-gamepad',tags:['fun','games','play','entertainment','unwind']},
