@@ -1359,6 +1359,37 @@
     .mobile-menu a { font-size: 20px; font-weight: 700; color: white; text-decoration: none; transition: 0.2s; }
     .mobile-menu a:hover { color: #93c5fd; }
     .mobile-close { position: absolute; top: 20px; right: 20px; font-size: 26px; color: white; cursor: pointer; }
+
+    /* ===== COLLEGE EXAM PAPERS ===== */
+    .ex-block { margin-bottom: 28px; }
+    .ex-label {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 17px; font-weight: 800; color: var(--text);
+      margin-bottom: 10px;
+    }
+    .ex-label small { font-size: 13px; color: var(--gray); font-weight: 700; }
+    .ex-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--card-shadow); background: white; }
+    .ex-table { width: 100%; min-width: 560px; border-collapse: collapse; }
+    .ex-table td {
+      border: 1px solid var(--border);
+      text-align: center; vertical-align: middle;
+      padding: 14px 8px; width: 16.66%;
+    }
+    .ex-code {
+      display: inline-block;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px; font-weight: 800;
+      padding: 6px 16px; border-radius: 20px;
+      text-decoration: none;
+      background: var(--bio-light); color: var(--bio);
+      border: 2px solid var(--bio-light);
+      transition: 0.2s;
+    }
+    a.ex-code:hover { background: var(--bio); color: white; border-color: var(--bio); transform: translateY(-2px); }
+    .ex-code.locked { background: #f1f5f9; color: var(--gray); border-color: #f1f5f9; cursor: default; }
+    .ex-date { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--gray); }
+    .ex-note { font-size: 12px; color: var(--gray); margin-top: 8px; font-weight: 600; }
+    .ex-divider { height: 1px; background: var(--border); margin: 8px 0 28px; }
   </style>
 </head>
 <body>
@@ -1632,6 +1663,118 @@
           <div class="subj-card"><div class="subj-top"><span class="subj-code">309</span><span class="subj-name">Subject 309</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note309.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="microbiology/qbank/M3qbank309.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a><a class="subj-btn" href="https://raw.githubusercontent.com/tushaar01/yashify/main/course/dep/MB3/B-309.pdf" download><i class="fas fa-flask"></i> Manual</a></div></div>
           <div class="subj-card"><div class="subj-top"><span class="subj-code">310</span><span class="subj-name">Subject 310</span></div><div class="subj-actions"><a class="subj-btn" href="microbiology/notes/M3note310.pdf" download><i class="fas fa-file-pdf"></i> Notes</a><a class="subj-btn" href="microbiology/qbank/M3qbank310.pdf" download><i class="fas fa-question-circle"></i> Q-Bank</a><a class="subj-btn" href="microbiology/practical/M3practical310.pdf" download><i class="fas fa-flask"></i> Manual</a></div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLEGE EXAM PAPERS -->
+  <section id="exam-papers">
+    <div class="sec-title" style="justify-content:center;">📝 College Exam Papers</div>
+
+    <!-- SESSIONAL 1 -->
+    <div class="ex-block">
+      <div class="ex-label">Sessional 1 <small>( Unit 1, 2 )</small></div>
+      <div class="ex-wrap">
+        <table class="ex-table">
+          <tr>
+            <td><a class="ex-code" href="exam/s1/301.pdf" download>301</a><span class="ex-date">5 Oct 2026</span></td>
+            <td><a class="ex-code" href="exam/s1/302.pdf" download>302</a><span class="ex-date">6 Oct 2026</span></td>
+            <td><a class="ex-code" href="exam/s1/303.pdf" download>303</a><span class="ex-date">7 Oct 2026</span></td>
+            <td><a class="ex-code" href="exam/s1/304.pdf" download>304</a><span class="ex-date">8 Oct 2026</span></td>
+            <td><a class="ex-code" href="exam/s1/305.pdf" download>305</a><span class="ex-date">9 Oct 2026</span></td>
+            <td><span class="ex-code locked">306</span><span class="ex-date">10 Oct 2026</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-code locked">307</span><span class="ex-date">12 Oct 2026</span></td>
+            <td><span class="ex-code locked">308</span><span class="ex-date">13 Oct 2026</span></td>
+            <td><span class="ex-code locked">309</span><span class="ex-date">14 Oct 2026</span></td>
+            <td><span class="ex-code locked">310</span><span class="ex-date">15 Oct 2026</span></td>
+            <td><span class="ex-code locked">311</span><span class="ex-date">16 Oct 2026</span></td>
+            <td><span class="ex-code locked">312</span><span class="ex-date">17 Oct 2026</span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="ex-note">📅 5 Oct 2026 to 17 Oct 2026 (11 Oct holiday)</div>
+    </div>
+
+    <div class="ex-divider"></div>
+
+    <!-- SESSIONAL 2 -->
+    <div class="ex-block">
+      <div class="ex-label">Sessional 2 <small>( Unit 3, 4 )</small></div>
+      <div class="ex-wrap">
+        <table class="ex-table">
+          <tr>
+            <td><span class="ex-code locked">301</span></td>
+            <td><span class="ex-code locked">302</span></td>
+            <td><span class="ex-code locked">303</span></td>
+            <td><span class="ex-code locked">304</span></td>
+            <td><span class="ex-code locked">305</span></td>
+            <td><span class="ex-code locked">306</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-code locked">307</span></td>
+            <td><span class="ex-code locked">308</span></td>
+            <td><span class="ex-code locked">309</span></td>
+            <td><span class="ex-code locked">310</span></td>
+            <td><span class="ex-code locked">311</span></td>
+            <td><span class="ex-code locked">312</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="ex-divider"></div>
+
+    <!-- SESSIONAL 3 -->
+    <div class="ex-block">
+      <div class="ex-label">Sessional 3 <small>( Unit 1, 2, 3, 4 )</small></div>
+      <div class="ex-wrap">
+        <table class="ex-table">
+          <tr>
+            <td><span class="ex-code locked">301</span></td>
+            <td><span class="ex-code locked">302</span></td>
+            <td><span class="ex-code locked">303</span></td>
+            <td><span class="ex-code locked">304</span></td>
+            <td><span class="ex-code locked">305</span></td>
+            <td><span class="ex-code locked">306</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-code locked">307</span></td>
+            <td><span class="ex-code locked">308</span></td>
+            <td><span class="ex-code locked">309</span></td>
+            <td><span class="ex-code locked">310</span></td>
+            <td><span class="ex-code locked">311</span></td>
+            <td><span class="ex-code locked">312</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="ex-divider"></div>
+
+    <!-- PUT 1 -->
+    <div class="ex-block">
+      <div class="ex-label">PUT 1 <small>( Complete Syllabus )</small></div>
+      <div class="ex-wrap">
+        <table class="ex-table">
+          <tr>
+            <td><span class="ex-code locked">301</span></td>
+            <td><span class="ex-code locked">302</span></td>
+            <td><span class="ex-code locked">303</span></td>
+            <td><span class="ex-code locked">304</span></td>
+            <td><span class="ex-code locked">305</span></td>
+            <td><span class="ex-code locked">306</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-code locked">307</span></td>
+            <td><span class="ex-code locked">308</span></td>
+            <td><span class="ex-code locked">309</span></td>
+            <td><span class="ex-code locked">310</span></td>
+            <td><span class="ex-code locked">311</span></td>
+            <td><span class="ex-code locked">312</span></td>
+          </tr>
+        </table>
       </div>
     </div>
   </section>
