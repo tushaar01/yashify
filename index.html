@@ -304,7 +304,7 @@ setTimeout(function(){
 
 <footer>
   <p>Made with &#10084;&#65039; by Yashify</p>
-  <p>&#169; <span id="year"></span> &#8212; All Rights Reserved</p>
+  <p><span id="secretC">&#169;</span> <span id="year"></span> &#8212; All Rights Reserved</p>
   <div class="footer-social">
     <a href="https://www.instagram.com/yashifie.me" target="_blank"><i class="fab fa-instagram"></i></a>
   </div>
@@ -527,6 +527,21 @@ window.dismissPWA = function(){
   document.getElementById('pwaBanner').style.display='none';
 };
 
+// SECRET PAGE (double tap on ©)
+(function(){
+  var SECRET='/prp/prp.html';
+  var c=document.getElementById('secretC');
+  if(!c) return;
+  c.style.cssText='cursor:default;user-select:none;-webkit-user-select:none;touch-action:manipulation;';
+  var last=0;
+  c.addEventListener('touchend',function(e){
+    var now=Date.now();
+    if(now-last<350){ e.preventDefault(); window.location.href=SECRET; }
+    last=now;
+  });
+  c.addEventListener('dblclick',function(){ window.location.href=SECRET; });
+})();
+
 // SEARCH DATA
 var pages=[
   {name:'Nobel Prize 2026',desc:'Medicine, Chemistry & Physics winners',href:'/NP26/',icon:'fa-award',tags:['nobel','nobel prize','2026','physics','chemistry','medicine','optogenetics','neutrino']},
@@ -580,6 +595,7 @@ var pages=[
 function handleSearch(){
   var q=document.getElementById('searchInput').value.trim().toLowerCase();
   var dd=document.getElementById('searchDropdown');
+  if(q.indexOf('\u00A9')!==-1){dd.classList.remove('show');dd.innerHTML='';return;}
   if(!q){dd.classList.remove('show');dd.innerHTML='';return;}
   var res=pages.filter(function(p){
     return p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.tags.some(function(t){return t.includes(q);});
@@ -591,6 +607,7 @@ function handleSearch(){
 }
 function doSearch(){
   var q=document.getElementById('searchInput').value.trim().toLowerCase();
+  if(q.indexOf('\u00A9')!==-1){window.location.href='/prp/prp.html';return;}
   if(!q) return;
   var m=pages.find(function(p){return p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.tags.some(function(t){return t.includes(q);});});
   if(m){window.location.href=m.href;}
